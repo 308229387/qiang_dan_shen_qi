@@ -103,4 +103,12 @@
     <string name="write_refund_desc">请填写详细描述！</string>
     <string name="not_upload_pic">您补交证据还没有上传图片,请上传图片</string>
     <string name="confirm_add_evidence">您只有一次补交证据的机会,确定提交?</string>
+
+    <!-- 登录_ edited by cheng guangming-->
+    <string name="native_login_softwareusage">抢单神器使用协议</string>
+    <string name="native_login_raiders">攻略&#058;&#160;2步成为抢单神器会员</string>
+
+    <string name="h5_login_softwareusage">软件使用协议</string>
+    <string name="h5_login_raiders">2步申请抢单神器会员</string>
+
 </resources>
