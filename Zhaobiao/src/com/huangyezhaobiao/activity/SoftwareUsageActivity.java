@@ -14,12 +14,20 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.url.URLConstans;
+import com.huangyezhaobiao.constans.AppConstants;
+import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.NetUtils;
+import com.huangyezhaobiao.view.ZhaoBiaoDialog;
+
+import java.util.HashMap;
 
 /**
  * Created by shenzhixin on 2015/12/7.
+ *
+ * edited by chenguangming on 2016/03/14
+ *
+ * description：目前包含抢单神器使用协议以及2步申请抢单神器会员
  */
 public class SoftwareUsageActivity extends QBBaseActivity implements View.OnClickListener {
     private LinearLayout backLayout,ll_webview_container;
@@ -29,6 +37,8 @@ public class SoftwareUsageActivity extends QBBaseActivity implements View.OnClic
     private WebChromeBaseClient chromeBaseClient;
     private ProgressBar pb;
     private View view_no_internet;
+    private ZhaoBiaoDialog dialog;
+    private String mTitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,9 +65,11 @@ public class SoftwareUsageActivity extends QBBaseActivity implements View.OnClic
         webView_introduce.setWebViewClient(client);
         webView_introduce.setWebChromeClient(chromeBaseClient);
         removeJSInterface();
-        txt_head.setText("软件使用协议");
+
+        mTitle = getIntent().getStringExtra(AppConstants.H5_TITLE);
+        txt_head.setText(mTitle);
         //TODO:换成软件使用协议的地址即可
-        String url = URLConstans.SOFTWARE_USAGE;
+        String url = getIntent().getStringExtra(AppConstants.H5_WEBURL);
         LogUtils.LogE("ashenIntro", "url:" + url);
         if(!NetUtils.isNetworkConnected(this)){
             view_no_internet.setVisibility(View.VISIBLE);
@@ -104,7 +116,33 @@ public class SoftwareUsageActivity extends QBBaseActivity implements View.OnClic
         }
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            return super.shouldOverrideUrlLoading(view, url);
+
+            if(url.contains("reg")) {
+                // 跳转到注册界面 added by chenguangming
+                HashMap<String, String> map = new HashMap<String, String>();
+                map.put(AppConstants.H5_TITLE, "注册");
+                map.put(AppConstants.H5_WEBURL, url);
+                ActivityUtils.goToActivityWithString(SoftwareUsageActivity.this, SoftwareUsageActivity.class, map);
+            } else if(url.contains("tel:")) {
+                final String urlTel = url.split(":")[1];
+                // 拨打电话
+                if(dialog == null){
+                    dialog = new ZhaoBiaoDialog(SoftwareUsageActivity.this,SoftwareUsageActivity.this.getString(R.string.hint), SoftwareUsageActivity.this.getString(R.string.make_sure_tel));
+                    dialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
+                        @Override
+                        public void onDialogOkClick() {
+                            ActivityUtils.goToDialActivity(SoftwareUsageActivity.this, urlTel.split(":")[1]);
+                            dialog.dismiss();
+                        }
+
+                        @Override
+                        public void onDialogCancelClick() {
+                            dialog.dismiss();
+                        }
+                    });
+                }
+            }
+            return true;
         }
 
         @Override
@@ -159,7 +197,7 @@ public class SoftwareUsageActivity extends QBBaseActivity implements View.OnClic
         webView_introduce.removeAllViews();
         webView_introduce.destroy();
         webView_introduce = null;
-        System.exit(0);
+//        System.exit(0);
     }
 
 }
