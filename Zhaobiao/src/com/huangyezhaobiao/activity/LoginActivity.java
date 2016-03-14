@@ -173,7 +173,7 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 		 * created by chenguangcheng
 		 */
 
-		tv_accept_text_usage.setOnClickListener(new OnClickListener() {
+		tv_how_to_become_vip.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				HashMap<String, String> map = new HashMap<String, String>();
