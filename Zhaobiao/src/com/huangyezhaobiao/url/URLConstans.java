@@ -189,19 +189,14 @@ public interface URLConstans {
 	
 	
 	String SOFTWARE_USAGE = BASE_URL_APP + "usageProtocol";
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+	/**
+	 * created by chenguangming 2016/03/14
+	 * 申请成为抢单神器会员
+	 */
+	String HOW_TO_BECOME_VIP = BASE_URL_APP + "usageProtocol";
+
 	
 	/**
 	 * 版本字段
