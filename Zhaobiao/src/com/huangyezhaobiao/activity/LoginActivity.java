@@ -178,7 +178,7 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 			public void onClick(View v) {
 				HashMap<String, String> map = new HashMap<String, String>();
 				map.put(AppConstants.H5_TITLE, getString(R.string.h5_login_raiders));
-				map.put(AppConstants.H5_WEBURL, URLConstans.SOFTWARE_USAGE);
+				map.put(AppConstants.H5_WEBURL, URLConstans.HOW_TO_BECOME_VIP);
 				ActivityUtils.goToActivityWithString(LoginActivity.this, SoftwareUsageActivity.class, map);
 //				ActivityUtils.goToActivity(LoginActivity.this,SoftwareUsageActivity.class);
 			}
