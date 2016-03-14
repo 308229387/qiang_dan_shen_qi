@@ -1,0 +1,233 @@
+package com.huangye.commonlib.model;
+
+import android.content.Context;
+import android.text.TextUtils;
+import android.util.Log;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.huangye.commonlib.MyLoginBean.MineBean;
+import com.huangye.commonlib.constans.ResponseConstans;
+import com.huangye.commonlib.constans.URLConstans;
+import com.huangye.commonlib.delegate.HttpRequestCallBack;
+import com.huangye.commonlib.file.SharedPreferencesUtils;
+import com.huangye.commonlib.model.callback.NetworkModelCallBack;
+import com.huangye.commonlib.network.HTTPTools;
+import com.huangye.commonlib.network.HttpRequest;
+import com.huangye.commonlib.utils.JsonUtils;
+import com.huangye.commonlib.utils.NetBean;
+import com.huangye.commonlib.utils.NetworkTools;
+import com.huangye.commonlib.utils.UserConstans;
+
+import java.util.HashMap;
+
+/**
+ * 网络层的model模型
+ * @author shenzhixin
+ *
+ */
+public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCallBack{
+
+	private static final String LOGIN_TYPE = "1";
+	private static final String OTHER_TYPE = "2";
+	protected NetworkModelCallBack baseSourceModelCallBack;
+	private HttpRequest<String> request;
+	protected Context context;
+	//@SuppressWarnings("unchecked")
+	//Class<T> entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]; 
+	public TAG type;
+
+	public void setBaseSourceModelCallBack(
+			NetworkModelCallBack baseSourceModelCallBack) {
+		this.baseSourceModelCallBack = baseSourceModelCallBack;
+	}
+	
+	
+	
+	public NetWorkModel(NetworkModelCallBack baseSourceModelCallBack,Context context) {
+		super();
+		this.context = context;
+		this.baseSourceModelCallBack = baseSourceModelCallBack;
+		request = createHttpRequest();
+	}
+	
+	public void setRequestURL(String url){
+		request.setUrl(url);
+	}
+	
+	public void setRequestMethodGet(){
+		request.setMethod(HttpRequest.METHOD_GET);
+	}
+	
+	public void setRequestMethodPost(){
+		request.setMethod(HttpRequest.METHOD_POST);
+	}
+	
+	/**
+	 * 创建model对应的httpRequest,工厂方法
+	 */
+	protected abstract HttpRequest<String> createHttpRequest();
+	
+	public void configParams(HashMap<String, String> params_map){
+		request.configParams(params_map);
+	}
+	
+	public void getDatas(){
+		if(!NetworkTools.isNetworkConnected(context)){
+			baseSourceModelCallBack.noInternetConnect();
+			return ;
+		}
+		if(request != null)
+			request.getDatas();
+	}
+	@Override
+	public void onLoadingSuccess(String result) {
+		Log.e("httpRequestResult", "result:"+result);
+		boolean isLoginValidate = true;//登录是否合法，默认为是
+		try {
+			//这块需要做的是解析loginflag和token,如果loginflag为null，则表示是登录,存储token
+			//如果loginflag不为null,则表示不是登录，就把token和存储出来的token进行比对
+			//两个token一致,就表示正常,如果不一致,则表示退出登录,登录异常
+			JSONObject jsonObject = JSON.parseObject(result);
+			int loginflag = 0;
+			//获得请求的flag
+			try {
+				loginflag = jsonObject.getInteger("loginFlag");
+			}catch(Exception e){
+				loginflag = -1;//如果解析不成功，不让他掉线
+			}
+			//获得返回的token
+			String token     = jsonObject.getString("token");
+			Log.e("shenzhixinHAHAHA","loginFlag:"+loginflag+",token:"+token);
+			int status = jsonObject.getInteger("status");
+			/*if(status!=0){//server异常
+				String serverMsg= jsonObject.getString("msg");
+				baseSourceModelCallBack.onLoadingFailure(serverMsg);
+				return;
+			}*/
+			if(loginflag==1){//登录
+				NetBean netBean = transformJsonToNetBean(result);
+				MineBean mineBean = JsonUtils.jsonToObject(netBean.getData(), MineBean.class);
+				UserConstans.USER_ID = mineBean.getUserId()+"";
+				SharedPreferencesUtils.saveUserToken(context,ResponseConstans.SP_NAME,token);
+				///api/testToken?userId=&apiType=&clientToken=&serverToken=&token=
+
+				String suffix_url = "api/testToken?userId="+UserConstans.USER_ID+"&apiType="+LOGIN_TYPE+"&clientToken="+token+"&serverToken="+token+"&platform=1";
+				//TODO:传递
+				Log.e("shenzhixinUUU","suffixUrl:"+ URLConstans.BASE_URL+suffix_url);
+				HTTPTools.newHttpUtilsInstance().doGet(URLConstans.BASE_URL + suffix_url, new HttpRequestCallBack() {
+					@Override
+					public void onLoadingFailure(String err) {
+
+					}
+
+					@Override
+					public void onLoadingSuccess(String result) {
+
+					}
+
+					@Override
+					public void onLoadingStart() {
+
+					}
+
+					@Override
+					public void onLoadingCancelled() {
+
+					}
+
+					@Override
+					public void onLoading(long total, long current) {
+
+					}
+				});
+			}else if(loginflag == 0){//其他请求
+				isLoginValidate = SharedPreferencesUtils.isLoginValidate(context,ResponseConstans.SP_NAME,token);
+			}//-1就是退出登录，什么都不做
+
+			if(!isLoginValidate){
+			//	不合法
+				baseSourceModelCallBack.onModelLoginInvalidate();
+				String suffix_url = "api/testToken?userId="+UserConstans.USER_ID+"&apiType="+OTHER_TYPE+"&clientToken="+SharedPreferencesUtils.getUserToken(context)+"&serverToken="+token+"&platform=1";
+				//TODO:传递
+				Log.e("shenzhixinUUU","suffixUrl:"+URLConstans.BASE_URL+suffix_url);
+				HTTPTools.newHttpUtilsInstance().doGet(URLConstans.BASE_URL + suffix_url, new HttpRequestCallBack() {
+					@Override
+					public void onLoadingFailure(String err) {
+
+					}
+
+					@Override
+					public void onLoadingSuccess(String result) {
+
+					}
+
+					@Override
+					public void onLoadingStart() {
+
+					}
+
+					@Override
+					public void onLoadingCancelled() {
+
+					}
+
+					@Override
+					public void onLoading(long total, long current) {
+
+					}
+				});
+			}else {//合法
+				Log.e("shenzhixin","json string:"+jsonObject.toJSONString());
+				if (TextUtils.isEmpty(jsonObject.getString("result"))) {
+					baseSourceModelCallBack.onLoadingFailure(jsonObject.getString("msg"));
+				} else {
+					baseSourceModelCallBack.onLoadingSuccess(transformJsonToNetBean(result), this);
+				}
+			}
+		}catch(Exception e){//fix bug 185 on bugly
+			baseSourceModelCallBack.onLoadingFailure("服务器出现了问题，稍后再试呢");
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 先把json转成netBean
+	 * @param result
+	 * @return
+	 */
+	public NetBean transformJsonToNetBean(String result){
+		NetBean bean = JsonUtils.jsonToNetBean(result);
+		return bean;
+	}
+	
+	@Override
+	public void onLoadingStart() {
+		baseSourceModelCallBack.onLoadingStart();
+	}
+	@Override
+	public void onLoadingCancelled() {
+		baseSourceModelCallBack.onLoadingCancell();
+	}
+
+	@Override
+	public void onLoading(long total, long current) {
+		
+	}
+
+	@Override
+	public void onLoadingFailure(String err) {
+		Log.e("shenzhixinHHH","err:"+err);
+		baseSourceModelCallBack.onLoadingFailure("当前网络慢，请稍后重试");
+	}
+
+
+
+
+	
+	public enum TAG{
+		LOGIN,LOADMORE,REFRESH,CHECKVERSION
+	}
+	
+	
+	
+}
