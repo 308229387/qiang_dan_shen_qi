@@ -167,4 +167,17 @@ public class AppConstants {
      * 在详情页抢的单子
      */
         public static final String BIDSOURCE_DETAIL = "2";
+
+
+    /**
+     * 跳转到H5页 title
+     * created by chenguangming 2016/03/14
+     */
+    public static final String H5_TITLE = "title";
+
+    /**
+     * 跳转到H5页 url
+     * created by chenguangming 2016/03/14
+     */
+    public static final String H5_WEBURL = "url";
 }
