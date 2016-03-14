@@ -1,0 +1,90 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.quicklyack.photoutils.TuceActivity">
+
+    <include
+        android:id="@+id/ll_titlebar"
+        layout="@layout/titlebar_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height" />
+
+    <ImageView
+        android:id="@+id/sdv"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <RelativeLayout
+            android:id="@+id/gallery_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:layout_alignParentBottom="true"
+            android:alpha="0.98"
+            android:background="#ffffff"
+            android:clickable="true">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_choose_dir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dip"
+                    android:text="所有图片"
+                    android:textColor="@color/gray_dark" />
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="2dp"
+                    android:layout_toRightOf="@id/tv_choose_dir"
+                    android:src="@drawable/all_photo_szx" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_chosen_total_view"
+                android:layout_width="50dip"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="预览"
+                android:textColor="@color/gray_dark" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="#bbbbbb" />
+        </RelativeLayout>
+
+        <GridView
+            android:id="@+id/grid_photo"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@+id/gallery_bottom"
+            android:layout_alignParentRight="true"
+            android:cacheColorHint="@android:color/transparent"
+            android:clipChildren="true"
+            android:gravity="center"
+            android:horizontalSpacing="3dip"
+            android:listSelector="@android:color/transparent"
+            android:numColumns="3"
+            android:scrollbars="none"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="3dip"></GridView>
+
+    </RelativeLayout>
+</LinearLayout>

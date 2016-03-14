@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#f8f9fa"
+    android:orientation="vertical"
+    android:paddingBottom="10dp" >
+
+    <include layout="@layout/layout_backhead"
+        android:id="@+id/layout_head"
+        />
+
+   
+    <com.huangyezhaobiao.view.TitleMessageBarLayout
+        android:id="@+id/tbl"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp" />
+
+    <com.huangyezhaobiao.view.StretchScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </com.huangyezhaobiao.view.StretchScrollView>
+
+</LinearLayout>

@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.huangyezhaobiao"
+    android:installLocation="auto"
+    android:versionCode="20"
+    android:versionName="2.4.0">
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="23" />
+    <!--===================================================Ma===============-->
+    <!-- 个推SDK权限配置开始 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <!-- ibeancon 需要蓝牙权限 -->
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <!-- 支持个推3.0 电子围栏功能 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 浮动通知权限 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <!-- 自定义权限 -->
+    <uses-permission android:name="getui.permission.GetuiService.com.huangyezhaobiao" />
+    <permission
+        android:name="getui.permission.GetuiService.com.huangyezhaobiao"
+        android:protectionLevel="normal" >
+    </permission>
+    <!-- 个推SDK权限配置结束 -->
+    <!--==================================================================-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <!-- 连接网络权限，用于执行云端语音能力 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 获取手机录音机使用权限，听写、识别、语义理解需要用到此权限 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- 读取网络信息状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 获取当前wifi状态 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 允许程序改变网络连接状态 -->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <!-- 读取手机信息权限 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 读取联系人权限，上传联系人需要用到此权限 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!-- the following 2 com.xiaomi.mipushdemo should be changed to your package name -->
+    <permission
+        android:name="com.huangyezhaobiao.permission.MIPUSH_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.huangyezhaobiao.permission.MIPUSH_RECEIVE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- 必须的权限： -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 获取设备信息 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 网络通信 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 获取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 获取MAC地址 -->
+
+
+    <!-- 可选的权限： -->
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <!-- 获取logcat日志 -->
+
+
+    <!-- 【必须】 信鸽SDK所需权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.READ_LOGS"
+
+        />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 【可选】 信鸽SDK所需权限 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BATTERY_STATS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--may be fix bug android could not open the database in read/write mode-->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application
+        android:name="com.huangyezhaobiao.application.BiddingApplication"
+        android:persistent="true"
+        android:icon="@drawable/launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:theme="@style/Base.AppTheme">
+
+        <!--Fabric-->
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="f8a6943acc389931045803db6e43faae5fe983f5" />
+        <!--Fabric-->
+
+        <!-- 您从百度网站获取的APP KEY -->
+        <meta-data
+            android:name="BaiduMobAd_STAT_ID"
+            android:value="9f91066bf6" />
+        <!-- abcd1234 -->
+        <!-- 渠道商编号 -->
+        <meta-data
+            android:name="BaiduMobAd_CHANNEL"
+            android:value="fir" />
+
+
+       <!--开启错误日志的统计-->
+        <meta-data
+        android:name="BaiduMobAd_EXCEPTION_LOG"
+        android:value="false"
+        />
+
+        <!--错误日志的发送策略，此时选择一段间隔就发送-->
+        <meta-data
+            android:name="BaiduMobAd_SEND_STRATEGY"
+            android:value="SET_TIME_INTERVAL"
+        />
+
+<!--=====================================================================================-->
+        <!--个推SDK配置开始-->
+        <!-- 配置的第三方参数属性 -->
+        <meta-data
+            android:name="PUSH_APPID"
+            android:value="otNMzfOiCaAfiPCC1MVne9" /><!--替换为第三方应用的APPID-->
+        <meta-data
+            android:name="PUSH_APPKEY"
+            android:value="8mi4KoOEC09JJm9VLoemuA" /><!--替换为第三方应用的APPKEY-->
+        <meta-data
+            android:name="PUSH_APPSECRET"
+            android:value="QVKG3QMl0981yrUlDGyN31" /><!--替换为第三方应用的APPSECRET-->
+        <!-- 配置第三方Receiver -->
+        <receiver
+            android:name="com.huangyezhaobiao.push.GPushReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.otNMzfOiCaAfiPCC1MVne9" />
+            </intent-filter>
+        </receiver>
+        <!-- 配置SDK核心服务 -->
+        <service
+            android:name="com.igexin.sdk.PushService"
+            android:exported="true"
+            android:label="NotificationCenter"
+            android:process=":pushservice" />
+
+        <service android:name=".service.GPushService"/>
+        <service
+            android:name="com.igexin.sdk.PushServiceUser"
+            android:exported="true"
+            android:label="NotificationCenterUser" />
+        <receiver android:name="com.igexin.sdk.PushReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="com.igexin.sdk.action.refreshls" />
+                <!-- 以下三项为可选的action声明，可大大提高service存活率和消息到达速度 -->
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name="com.igexin.sdk.PushManagerReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.pushmanager" />
+            </intent-filter>
+        </receiver>
+        <activity
+            android:name="com.igexin.sdk.PushActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:process=":pushservice"
+            android:taskAffinity="com.igexin.sdk.PushActivityTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.igexin.sdk.GActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:process=":pushservice"
+            android:taskAffinity="com.igexin.sdk.PushActivityTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+
+        <service
+            android:name="com.igexin.download.DownloadService"
+            android:process=":pushservice" />
+
+        <receiver android:name="com.igexin.download.DownloadReceiver" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="com.igexin.download.DownloadProvider"
+            android:exported="true"
+            android:authorities="downloads.com.huangyezhaobiao"
+            android:process=":pushservice" />
+
+        <activity
+            android:name="com.igexin.getuiext.activity.GetuiExtActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:process=":pushservice"
+            android:taskAffinity="android.task.myServicetask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <receiver
+            android:name="com.igexin.getuiext.service.PayloadReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.7fjUl2Z3LH6xYy7NQK4ni4" />
+                <action android:name="com.igexin.sdk.action.otNMzfOiCaAfiPCC1MVne9" />
+            </intent-filter>
+        </receiver>
+        <service
+            android:name="com.igexin.getuiext.service.GetuiExtService"
+            android:process=":pushservice" />
+
+        <!-- 个推SDK配置结束 -->
+        <!--=====================================================================================-->
+        <activity
+            android:name="com.huangyezhaobiao.activity.LoginActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name="com.huangyezhaobiao.activity.MainActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"></activity>
+        <activity
+            android:name="com.huangyezhaobiao.activity.OrderDetailActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"></activity>
+
+        <activity android:name=".activity.SystemNotiListActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name="com.huangyezhaobiao.activity.HelpActivity"
+            android:screenOrientation="portrait"
+            android:process=":webhelp"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name="com.huangyezhaobiao.activity.AboutActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name="com.huangyezhaobiao.activity.OrderListActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"></activity>
+        <activity android:name=".activity.SystemActiveActivity"
+            android:screenOrientation="portrait"
+            android:process=":webhelp"
+            />
+        <activity android:name=".activity.SystemNotiDetailActivity"
+            android:screenOrientation="portrait"
+            />
+
+        <activity android:name="com.huangyezhaobiao.activity.MessageCenterActivity"
+            android:screenOrientation="portrait"
+            ></activity>
+        <activity android:name="com.huangyezhaobiao.activity.YuEDetailActivity"
+            android:screenOrientation="portrait"
+            ></activity>
+        <activity android:name="com.huangyezhaobiao.activity.OtherDetailActivity"
+            android:screenOrientation="portrait"
+            />
+
+        <activity android:name="com.huangyezhaobiao.activity.UserFeedBackActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.huangyezhaobiao.activity.FetchDetailsActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.huangyezhaobiao.activity.MobileValidateActivity"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+        <activity android:name="com.huangyezhaobiao.activity.BidFailureActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.huangyezhaobiao.activity.BidGoneActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.huangyezhaobiao.activity.BidLoadingActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.huangyezhaobiao.activity.BidSuccessActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.RefundActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateUnchanged|adjustPan"
+            />
+        <activity
+            android:name="com.huangyezhaobiao.activity.SplashActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme3">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.LockActivity"
+            android:theme="@android:style/Theme.Wallpaper.NoTitleBar"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:noHistory="true"
+            />
+
+        <activity android:name="com.huangyezhaobiao.activity.GuideActivity"
+            android:screenOrientation="portrait"
+            ></activity>
+        <activity android:name=".activity.MyWalletActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.huangyezhaobiao.activity.IntroduceFunctionActivity"
+            android:screenOrientation="portrait"
+            android:process=":webhelp"
+            />
+        <activity android:name=".activity.AutoSettingsActivity"
+            android:screenOrientation="portrait"
+            android:process=":webhelp"
+            >
+           <!-- <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+            </activity>
+        <activity android:name=".activity.SoftwareUsageActivity"
+            android:screenOrientation="portrait"
+            android:process=":webhelp"
+            />
+        <activity android:name=".activity.PushInActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/myTransparent"
+            android:noHistory="true"
+            />
+        <activity android:name=".photomodule.SinglePhotoActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".photomodule.ViewSinglePhotoActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.DemoPhotoActivity"
+            android:screenOrientation="portrait"
+            >
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+        <activity android:name=".photomodule.GalleryActivity"
+            android:screenOrientation="portrait"
+            >
+
+           <!-- <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+            </activity>
+        <activity android:name=".activity.ConsumptionActivity"
+            android:screenOrientation="portrait"
+            />
+        <!--<activity android:name=".activity.TestActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            </activity>-->
+        <!-- 小米推送需要注册的这个服务和广播 -->
+        <service
+            android:name="com.xiaomi.push.service.XMPushService"
+            android:enabled="true"
+            android:process=":pushservice" />
+        <service
+            android:name="com.xiaomi.mipush.sdk.PushMessageHandler"
+            android:enabled="true"
+            android:exported="true" />
+
+        <service android:name=".service.MyService"
+            >
+            <intent-filter android:priority="1000">
+                <action
+                    android:name="hahah"
+                    />
+            </intent-filter>
+                </service>
+
+        <service android:name=".windowf.AppExitService"/>
+        <service
+            android:name="com.xiaomi.mipush.sdk.MessageHandleService"
+            android:enabled="true" />
+        <!-- 注：此service必须在2.2.5版本以后（包括2.2.5版本）加入 -->
+        <receiver
+            android:name="com.xiaomi.push.service.receivers.NetworkStatusReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.xiaomi.push.service.receivers.PingReceiver"
+            android:exported="false"
+            android:process=":pushservice">
+            <intent-filter>
+                <action android:name="com.xiaomi.push.PING_TIMER" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.huangyezhaobiao.push.BiddingMessageReceiver"
+            android:exported="true">
+
+            <!-- 这里com.xiaomi.mipushdemo.DemoMessageRreceiver改成app中定义的完整类名 -->
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.RECEIVE_MESSAGE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.MESSAGE_ARRIVED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.ERROR" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.squareup.leakcanary.internal.HeapAnalyzerService"
+            android:enabled="false"
+            android:process=":leakcanary" />
+        <service
+            android:name="com.squareup.leakcanary.DisplayLeakService"
+            android:enabled="false" />
+        <!--<activity
+            android:name="com.squareup.leakcanary.internal.DisplayLeakActivity"
+            android:enabled="false"
+            android:icon="@drawable/__leak_canary_icon"
+            android:label="@string/__leak_canary_display_activity_label"
+            android:taskAffinity="com.squareup.leakcanary"
+            android:theme="@style/__LeakCanary.Base" >
+           &lt;!&ndash; <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>&ndash;&gt;
+        </activity>-->
+
+        <activity android:name=".activity.MobileBindChangeActivity"
+            android:theme="@style/Mobile.AppTheme"
+            android:screenOrientation="portrait"
+            >
+         <!--   <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+        <activity android:name=".activity.SettingsActivity"
+            android:screenOrientation="portrait"
+            >
+
+
+        </activity>
+        <receiver android:name=".receiver.BatteryReceiver">
+            <intent-filter>
+                <action
+                    android:name="android.intent.action.BATTERY_CHANGED"
+                    />
+            </intent-filter>
+        </receiver>
+        <service
+            android:name="air.com.wuba.bangbang.common.impush.DeamonService"
+
+            android:process=":pushservice" />
+
+
+    </application>
+
+
+</manifest>

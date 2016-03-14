@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <!--native dialog  -->
+	<dimen name="wb_dialog_content_size">19sp</dimen>
+	<dimen name="wb_dialog_button_height">38.6dip</dimen>
+	<dimen name="image_url_medium_width">100dip</dimen>
+	<dimen name="grid_scroll_view_length">60dp</dimen>
+	<dimen name="image_url_small_width">50dip</dimen>
+	<dimen name="image_url_xlarge_width">200dip</dimen>
+	<dimen name="image_url_large_width">150dip</dimen>
+	<!-- Loading控件的适配  (3.0版本IM在用，如果修改，请通知)-->
+	<dimen name="title_bar_height">40dp</dimen>
+
+	<dimen name="common_divider_padding">10dip</dimen>
+
+	<dimen name="action_bar_height">40dp</dimen>
+    
+    <!-- 分享 -->
+	
+	<!-- 设置 -->
+	<dimen name="cornerradius">20dip</dimen>
+	
+	<!-- 司机列表页-->
+
+    <dimen name="shadow_width">0dp</dimen>
+</resources>

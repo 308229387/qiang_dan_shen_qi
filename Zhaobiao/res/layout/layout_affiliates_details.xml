@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    app:cardElevation="2dp"
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/qiangdan_bg_item"
+    android:orientation="vertical"
+    android:paddingBottom="15dp">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="44dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="订单详情"
+            android:textColor="@color/black" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#e4e4e4" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="咨询类别:"
+            android:textColor="@color/light_text_color" />
+
+        <TextView
+            android:id="@+id/consultCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/tv_type"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:id="@+id/tv_rg_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="投资预算:"
+            android:textColor="@color/light_text_color" />
+
+        <TextView
+            android:id="@+id/budget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/tv_rg_time"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="投资意向:"
+            android:textColor="@color/light_text_color" />
+
+        <TextView
+            android:id="@+id/investKeywords"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/tv_location"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:id="@+id/tv_needs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="意向行业:"
+            android:textColor="@color/light_text_color" />
+
+        <TextView
+            android:id="@+id/investIndusty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/tv_needs"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:id="@+id/tv_dir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="意向城市:"
+            android:textColor="@color/light_text_color" />
+
+        <TextView
+            android:id="@+id/investCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/tv_dir"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:id="@+id/tv_hangye"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="工作行业:"
+            android:textColor="@color/light_text_color" />
+
+        <TextView
+            android:id="@+id/jobIndusty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/tv_hangye"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:id="@+id/tv_craeer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="工作职位:"
+            android:textColor="@color/light_text_color" />
+
+        <TextView
+            android:id="@+id/jobTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/tv_craeer"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:id="@+id/tv_exp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="工作经验:"
+            android:textColor="@color/light_text_color" />
+
+        <TextView
+            android:id="@+id/jobExperience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/tv_exp"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:id="@+id/tv_s"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开店经验:"
+            android:textColor="@color/light_text_color" />
+
+        <TextView
+            android:id="@+id/shopExperience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/tv_s"
+            android:text="无"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:id="@+id/tv_special"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="留言内容:"
+            android:textColor="@color/light_text_color" />
+
+        <TextView
+            android:id="@+id/special"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/tv_special"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:visibility="gone"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:id="@+id/tv_ch_tel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="客户电话:"
+            android:textColor="@color/light_text_color" />
+
+        <TextView
+            android:id="@+id/clientPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/tv_ch_tel"
+            android:singleLine="true"
+            android:textColor="@color/red" />
+
+        <ImageView
+            android:id="@+id/iv_tels"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/clientPhone"
+            android:src="@drawable/qd_tel" />
+    </RelativeLayout>
+
+</LinearLayout>
+</android.support.v7.widget.CardView>

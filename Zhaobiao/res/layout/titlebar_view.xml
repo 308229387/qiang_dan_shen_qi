@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/title_bar_height"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/tv_back"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:drawableLeft="@drawable/title_back_btn_selector"
+        android:gravity="center_vertical" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/ll_right_btn"
+        android:layout_toRightOf="@id/tv_back"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@color/gray_dark"
+        android:textSize="@dimen/title_bar_title_text_size" />
+
+    <RelativeLayout
+        android:id="@+id/ll_right_btn"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp">
+
+        <TextView
+            android:id="@+id/tv_right_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:ellipsize="end"
+            android:gravity="center_vertical|right"
+            android:singleLine="true"
+            android:textColor="@color/red"
+             />
+
+
+
+
+        <ImageView
+            android:id="@+id/iv_right_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical" />
+
+        <ImageView
+            android:id="@+id/iv_right_btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/iv_right_btn"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:layout_marginRight="15dp"/>
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_divider_line_height"
+        android:layout_alignParentBottom="true"
+        android:background="@color/line_gray_color" />
+</RelativeLayout>

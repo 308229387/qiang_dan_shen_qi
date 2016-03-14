@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/domesticregister_item"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_marginBottom="5dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="5dp"
+    android:background="@drawable/grap_list_selector"
+    android:layout_height="wrap_content"
+    >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/divider"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/divider"
+        android:layout_alignParentBottom="true"
+        />
+        <TextView
+            android:id="@+id/grab_domesticregister_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:text="123123123"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/grab_domesticregister_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:text="123123123"
+            android:layout_alignBaseline="@id/grab_domesticregister_title"
+            android:textColor="#000000"
+            android:textSize="12sp" />
+
+
+    <View
+        android:id="@+id/grab_title"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/grab_domesticregister_time"
+        android:layout_marginTop="5dp"
+        android:background="@color/divider" />
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_below="@id/grab_title"
+        android:layout_marginTop="5dp"
+        layout="@layout/can_fetch_list_domestic_item"
+        />
+
+</RelativeLayout>

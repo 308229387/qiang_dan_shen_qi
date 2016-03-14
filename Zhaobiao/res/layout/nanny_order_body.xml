@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:minHeight="120dp"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+        android:id="@+id/tv_nanny_order_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:text="保洁保姆"
+        android:layout_marginTop="5dp"
+        android:textColor="#808080"
+        />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:minHeight="100dp"
+        android:layout_marginTop="5dp"
+        android:layout_height="fill_parent">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="7"
+            android:layout_height="fill_parent"
+            >
+            <LinearLayout
+                android:layout_width="0dp"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_height="fill_parent">
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/time_hire"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="雇佣时间:"
+                        android:layout_centerVertical="true"
+                        />
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/tv_nanny_time_limit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#808080"
+                        android:layout_toRightOf="@id/time_hire"
+                        android:text="1个月"
+                        />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/tv_nanny_times"
+                        android:layout_width="wrap_content"
+                        android:textColor="#808080"
+                        android:layout_height="wrap_content"
+                        android:text="开始时间:"
+                        />
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/tv_nanny_time"
+                        android:layout_width="wrap_content"
+                        android:textColor="#808080"
+                        android:layout_toRightOf="@id/tv_nanny_times"
+                        android:layout_height="wrap_content"
+                        android:text="2015年3月12日"
+                        />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textColor="#808080"
+                        android:id="@+id/tv_nanny_locations"
+                        android:text="所在区域: "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textColor="#808080"
+                        android:id="@+id/tv_nanny_location"
+                        android:text="朝阳区-望京"
+                        android:layout_toRightOf="@id/tv_nanny_locations"
+                        android:layout_width="wrap_content"
+                        android:singleLine="true"
+                        android:layout_height="wrap_content"
+                        />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_height="fill_parent">
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+
+                  >
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/age"
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_height="wrap_content"
+                        android:text="年龄要求:"
+                        android:textColor="#808080"
+                        />
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/tv_cleaning_age"
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:layout_toRightOf="@id/age"
+                        android:layout_height="wrap_content"
+                        android:text="35sui"
+                        android:textColor="#808080"
+                        />
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/tv_nanny_experience"
+                        android:text="1个月"
+                        android:visibility="gone"
+                        android:textColor="#808080"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

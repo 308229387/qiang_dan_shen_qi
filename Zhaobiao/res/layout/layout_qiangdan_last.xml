@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    app:cardElevation="2dp"
+
+    android:layout_marginBottom="30dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:background="@drawable/qiangdan_bg_item"
+    android:orientation="vertical" >
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+         >
+    <TextView
+        android:id="@+id/tv_last_cost"
+        android:layout_width="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_marginLeft="10dp"
+        android:text="抢单费用:"
+        />
+      <TextView
+        android:id="@+id/tv_last_cost_content"
+        android:layout_width="wrap_content"
+        android:layout_toRightOf="@id/tv_last_cost"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content"
+         android:textColor="#FF2F37"
+          android:text="123"
+          android:textSize="18sp"
+        android:layout_marginLeft="10dp"
+        
+        />
+
+        <TextView
+            android:id="@+id/tv_original_fee"
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@id/tv_last_cost_content"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="#808080"
+            android:layout_marginLeft="5dp"
+            />
+	</RelativeLayout>
+	<View
+	    android:layout_width="fill_parent"
+	    android:layout_height="1dp"
+	    android:background="#e4e4e4"
+	    />
+	<RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+
+         >
+    <TextView
+        android:id="@+id/tv_last_number"
+        android:layout_width="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content"
+        android:textColor="@color/light_text_color"
+        android:layout_marginLeft="10dp"
+
+        android:text="订单编号:"
+        />
+      <TextView
+        android:id="@+id/tv_last_number_content"
+        android:layout_width="wrap_content"
+        android:layout_toRightOf="@id/tv_last_number"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content"
+         android:textColor="@color/light_text_color"
+        android:layout_marginLeft="10dp"
+        />
+	</RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#e4e4e4"
+        />
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:id="@+id/rl_tuidan"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"
+            android:text="我要退单:"
+            />
+        <TextView
+            android:id="@+id/tv_array"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:textColor="@color/light_text_color"
+            android:layout_marginRight="10dp"
+            android:text=">"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查看"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/tv_array"
+            android:layout_marginRight="5dp"
+            />
+    </RelativeLayout>
+</LinearLayout>
+</android.support.v7.widget.CardView>

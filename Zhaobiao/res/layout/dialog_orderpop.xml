@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/orderpop"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true">
+
+    <LinearLayout
+
+        android:id="@+id/this1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/content_bg"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/dialog_voice"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/t_voice" />
+
+        <LinearLayout
+            android:id="@+id/dialog_linear"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/dialog_knock"
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:background="@color/tab_red"
+                android:text="抢单"
+                android:textColor="@color/white" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="抢此单将花费:"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#808080" />
+                <TextView
+                    android:id="@+id/dialog_fee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:textColor="#FF2F37"
+                    android:text="300.00元"
+                    />
+                <TextView
+                    android:id="@+id/dialog_discount_fee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="300.00"
+                    android:textColor="#808080"
+                    />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/dialog_next"
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:background="@color/white"
+                android:text="下一条"
+                android:layout_marginTop="20dp"
+                android:visibility="invisible"
+                android:textColor="@color/tab_red"
+               />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/dialog_cancel"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/t_cancel" />
+
+</RelativeLayout>

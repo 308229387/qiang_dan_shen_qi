@@ -1,0 +1,238 @@
+package com.huangyezhaobiao.bean.push.pop;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
+
+import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.bean.push.PushToPassBean;
+import com.huangyezhaobiao.bean.push.PushToStorageBean;
+
+public class DomesticRegisterPopBean extends PopBaseBean {
+	private String orderId;
+	private int status;// 抢单结果通知，1代表成功，0代表失败
+	private int cateId;//":"4065",
+	private int displayType;//":"3"
+	private long bidId;//":"12312321",	
+	private String title;//:"工商注册-内资",
+	private String registerType;//":"内资工商注册",
+	private String bidState;//":"0"
+	private String location;//":"朝阳区北苑",
+	private String time;//":"2015-05-15 18:49",
+	private String registerTime;//":"2015年6月",
+	private String proxyTally;//":"3个月",//代理记账周期
+	private String isProxyLocation;//":"是",
+	private String registerLocation;//":"朝阳区北苑"//如果isProxyLocation的值为“是”，该字段为空
+	private String industry;//":"商贸类"
+	private String fee;//", "300"
+
+	//2015.10.22 add
+	private String business;//经营业务
+	//2015.10.22 add end
+	private String voice;
+	private String originalFee;
+
+	@Override
+	public String getOriginalFee() {
+		return originalFee;
+	}
+
+	public void setOriginalFee(String originalFee) {
+		this.originalFee = originalFee;
+	}
+
+	@Override
+	public View initView(Context context) {
+		if(location!=null && location.length()>20){
+			location = location.substring(0,19)+"...";
+		}
+		View view = LayoutInflater.from(context).inflate(R.layout.dialog_pop_domesticregister, null);
+		((TextView) view.findViewById(R.id.domesticregister_pop_industry)).setText(industry);
+		((TextView) view.findViewById(R.id.domesticregister_pop_isproxylocation)).setText(proxyTally);
+		((TextView) view.findViewById(R.id.domesticregister_pop_proxytally)).setText(isProxyLocation);
+		((TextView) view.findViewById(R.id.domesticregister_pop_registertime)).setText(registerTime);
+		((TextView) view.findViewById(R.id.domesticregister_pop_registertype)).setText(registerType);
+		((TextView) view.findViewById(R.id.domesticregister_pop_location)).setText(location);
+		((TextView) view.findViewById(R.id.domesticregister_pop_business)).setText(business);
+		return view;
+	}
+
+	@Override
+	public PushToStorageBean toPushStorageBean() {
+
+		PushToStorageBean bean = new PushToStorageBean();
+		try {
+			bean.setOrderid(Long.parseLong(orderId));
+		} catch (Exception e) {
+
+		}
+		bean.setTag(100);
+		bean.setTime(time);
+
+		// 拼接消息字符串
+		StringBuilder str = new StringBuilder();
+		str.append(title + " ").append(proxyTally + " ").append(time + "");
+		if (status == 1) {
+			bean.setFee(fee);
+		}
+		bean.setStr(str.toString());
+		bean.setStatus(status);
+
+		return bean;
+	}
+	
+	@Override
+	public PushToPassBean toPushPassBean(){
+		PushToPassBean bean = new PushToPassBean();
+		bean.setBidId(bidId);
+		bean.setPushId(pushId);
+		bean.setPushTurn(pushTurn);
+		bean.setCateId(cateId);
+		return bean;
+	}
+
+	@Override
+	public int getCateId() {
+		return cateId;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public int getDisplayType() {
+		return displayType;
+	}
+
+	public void setDisplayType(int displayType) {
+		this.displayType = displayType;
+	}
+
+	public long getBidId() {
+		return bidId;
+	}
+
+	public void setBidId(long bidId) {
+		this.bidId = bidId;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getRegisterType() {
+		return registerType;
+	}
+
+	public void setRegisterType(String registerType) {
+		this.registerType = registerType;
+	}
+
+	public String getBidState() {
+		return bidState;
+	}
+
+	public void setBidState(String bidState) {
+		this.bidState = bidState;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public String getRegisterTime() {
+		return registerTime;
+	}
+
+	public void setRegisterTime(String registerTime) {
+		this.registerTime = registerTime;
+	}
+
+	public String getProxyTally() {
+		return proxyTally;
+	}
+
+	public void setProxyTally(String proxyTally) {
+		this.proxyTally = proxyTally;
+	}
+
+	public String getIsProxyLocation() {
+		return isProxyLocation;
+	}
+
+	public void setIsProxyLocation(String isProxyLocation) {
+		this.isProxyLocation = isProxyLocation;
+	}
+
+	public String getRegisterLocation() {
+		return registerLocation;
+	}
+
+	public void setRegisterLocation(String registerLocation) {
+		this.registerLocation = registerLocation;
+	}
+
+	public String getIndustry() {
+		return industry;
+	}
+
+	public void setIndustry(String industry) {
+		this.industry = industry;
+	}
+
+	public String getFee() {
+		return fee;
+	}
+
+	public void setFee(String fee) {
+		this.fee = fee;
+	}
+
+	public void setCateId(int cateId) {
+		this.cateId = cateId;
+	}
+
+	
+	
+	public void setVoice(String voice) {
+		this.voice = voice;
+	}
+
+	@Override
+	public String getVoice() {
+		return voice;
+	}
+
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+
+	public String getBusiness() {
+		return business;
+	}
+
+	public void setBusiness(String business) {
+		this.business = business;
+	}
+}

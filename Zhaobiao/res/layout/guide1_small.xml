@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/guide1"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/ee"
+        android:layout_width="wrap_content"
+        android:layout_height="229dp"
+        android:layout_marginTop="45dp"
+        android:src="@drawable/guide1_item1" />
+
+    <RelativeLayout
+        android:id="@+id/rl1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp" >
+        <!--<ImageView
+            android:id="@+id/shang"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:src="@drawable/s" />
+        <ImageView
+            android:id="@+id/ji"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@id/shang"
+            android:src="@drawable/j" />
+        <ImageView
+            android:id="@+id/wu"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@id/ji"
+            android:src="@drawable/w" />
+        <ImageView
+            android:id="@+id/xian"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@id/wu"
+            android:src="@drawable/x" />
+        <ImageView
+            android:id="@+id/ding"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@id/xian"
+            android:src="@drawable/d" />
+        <ImageView
+            android:id="@+id/dan"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@id/ding"
+            android:src="@drawable/dan" />
+        <ImageView
+            android:id="@+id/kao"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@id/dan"
+            android:src="@drawable/kao" />
+        <ImageView
+            android:id="@+id/pu"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@id/kao"
+            android:src="@drawable/pu" />-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="商 机 无 限 订 单 靠 谱"
+            />
+    </RelativeLayout>
+
+    
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="58同城百万用户的真实需求"
+            android:textColor="@color/white"
+            android:layout_marginTop="11dp"
+            android:textSize="13sp" />
+   
+
+</LinearLayout>

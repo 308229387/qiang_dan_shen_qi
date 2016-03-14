@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:segmentcontrol="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutchose_head"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/tab_red"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" >
+
+        <com.huangyezhaobiao.view.SegmentControl
+            android:id="@+id/segment_control"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textSize="18sp"
+            segmentcontrol:colors="#ffffff"
+            segmentcontrol:cornerRadius="12dip"
+            segmentcontrol:direction="horizon"
+            segmentcontrol:horizonGap="13dip"
+            segmentcontrol:selectedIndex="0"
+            segmentcontrol:texts="服务|休息"
+            segmentcontrol:verticalGap="5dip" />
+
+        <ImageView
+            android:id="@+id/userbutton"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/t_head" />
+
+        <TextView
+            android:id="@+id/smallred"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_smallred"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/white" 
+            android:textSize="11sp"
+        />
+
+        <ImageView
+            android:id="@+id/refreshbutton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/t_order" />
+    </RelativeLayout>
+
+</LinearLayout>

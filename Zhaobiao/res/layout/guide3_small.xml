@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/guide3"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/e3"
+        android:layout_width="fill_parent"
+        android:layout_height="229dp"
+        android:layout_marginTop="45dp"
+        android:src="@drawable/guide3_item1" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp" >
+
+       <!-- <ImageView
+            android:id="@+id/shang"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:src="@drawable/yi" />
+
+        <ImageView
+            android:id="@+id/ji"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@id/shang"
+            android:src="@drawable/jian" />
+
+        <ImageView
+            android:id="@+id/wu"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@id/ji"
+            android:src="@drawable/shi" />
+
+        <ImageView
+            android:id="@+id/xian"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@id/wu"
+            android:src="@drawable/qiang" />
+
+        <ImageView
+            android:id="@+id/ding"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_marginLeft="2dp"
+            android:layout_toRightOf="@id/xian"
+            android:src="@drawable/dan" />-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="一 键 式 抢 单"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="11dp"
+        android:text="操作简单高效,秒杀心动订单"
+        android:textColor="@color/white" />
+
+</LinearLayout>

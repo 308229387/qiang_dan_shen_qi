@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:minHeight="100dp"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="7"
+        android:orientation="vertical"
+        android:layout_height="fill_parent"
+        >
+
+            <TextView
+                android:id="@+id/tv_location_title"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="注册区域:"
+                android:textColor="#8f8f8f"
+                />
+
+            <TextView
+                android:id="@+id/tv_business_title"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:gravity="center_vertical"
+                android:textColor="#8f8f8f"
+                android:text="经营业务:"
+                />
+    </LinearLayout>
+
+    <View
+        android:layout_width="1px"
+        android:layout_height="fill_parent"
+        android:background="@color/gray"/>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:layout_height="fill_parent">
+        <ImageView
+            android:id="@+id/grab_personalregister_knock"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/t_knock"
+            />
+
+    </RelativeLayout>
+</LinearLayout>

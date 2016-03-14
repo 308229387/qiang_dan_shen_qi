@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/layout_backhead"
+        android:id="@+id/layout_head"
+        />
+
+    <!-- <include layout="@layout/layout_order_hint" /> -->
+
+    <com.huangyezhaobiao.view.TitleMessageBarLayout
+        android:id="@+id/tbl"
+        android:layout_width="fill_parent"
+        android:layout_below="@id/layout_head"
+        android:visibility="invisible"
+        android:layout_height="45dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/change_settings"
+        android:layout_centerInParent="true"
+        />
+    <!--更改手机号绑定-->
+    <RelativeLayout
+        android:id="@+id/rl_change_mobile_settings"
+        android:layout_width="fill_parent"
+        android:layout_below="@id/tbl"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/menu_item_background"
+        >
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="更改手机绑定"
+            android:textColor="@color/black"
+            />
+        <TextView
+            android:id="@+id/tv_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=">"
+            android:textColor="@color/gray"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_now_bind_mobile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="目前绑定号码"
+            android:layout_toLeftOf="@id/tv_arrow"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:textColor="#e5e5e5"
+            android:textStyle="bold"
+            />
+    </RelativeLayout>
+    <View
+        android:id="@+id/view"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"
+        android:layout_below="@id/rl_change_mobile_settings"
+        />
+    <!--自定义接单设置-->
+    <RelativeLayout
+        android:id="@+id/rl_auto_settings"
+        android:layout_width="fill_parent"
+        android:layout_below="@id/view"
+        android:layout_height="40dp"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/menu_item_background"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="自定义接单设置"
+            android:textColor="@color/black"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=">"
+            android:textColor="@color/gray"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
+</RelativeLayout>

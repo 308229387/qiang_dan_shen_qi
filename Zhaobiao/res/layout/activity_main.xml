@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+android:id="@+id/dl_main_drawer"
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:keepScreenOn="true"
+android:fitsSystemWindows="true">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <include
+            android:id="@+id/layout_head"
+            layout="@layout/layout_chosehead"
+            android:background="@color/tab_red" />
+
+        <com.huangyezhaobiao.view.TitleMessageBarLayout
+            android:id="@+id/tbl"
+            android:layout_width="fill_parent"
+            android:layout_height="45dp" />
+        <!--ViewStub-->
+        <ViewStub
+            android:id="@+id/viewStub_no_data"
+            android:layout_width="fill_parent"
+            android:inflatedId="@+id/pic_view_id_after_inflate"
+            android:layout="@layout/view_main_no_bid"
+            android:layout_height="match_parent" />
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/srl"
+                android:layout_width="fill_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="fill_parent">
+                <com.handmark.pulltorefresh.library.PullToRefreshListView
+                    xmlns:ptr="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/mainlist"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:cacheColorHint="@android:color/transparent"
+                    android:divider="@null"
+                    android:fadingEdge="none"
+                    android:listSelector="#000000"
+                    android:persistentDrawingCache="none"
+                    android:scrollbars="none"
+                    android:scrollingCache="false"
+                    android:splitMotionEvents="false"
+                    ptr:ptrAnimationStyle="flip"
+                    ptr:ptrHeaderSubTextColor="@color/red"
+                    ptr:ptrHeaderTextColor="@color/black"
+                    ptr:ptrMode="pullUpFromBottom" />
+            </android.support.v4.widget.SwipeRefreshLayout>
+        </LinearLayout>
+    <!--ViewStub-->
+    <RelativeLayout
+        android:id="@+id/rl_qd"
+        android:layout_width="fill_parent"
+        android:visibility="gone"
+        android:clickable="true"
+        android:background="#e1000000"
+        android:layout_height="fill_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="抢单等待中..."
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            />
+    </RelativeLayout>
+    <!--ViewStub-->
+
+<android.support.design.widget.NavigationView
+    android:id="@+id/nv_main_navigation"
+    android:layout_width="wrap_content"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:fitsSystemWindows="true"
+    app:headerLayout="@layout/navigation_header"
+    />
+</android.support.v4.widget.DrawerLayout>

@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    app:cardElevation="2dp"
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/qiangdan_bg_item"
+    android:orientation="vertical"
+    android:paddingBottom="15dp" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="44dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="订单详情"
+            android:textColor="@color/black" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#e4e4e4" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp" >
+
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="装修类型:"
+            android:textColor="@color/light_text_color" />
+
+        <TextView
+            android:id="@+id/tv_type_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/tv_type"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp" >
+
+        <TextView
+            android:id="@+id/tv_budget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="装修预算:"
+            android:textColor="@color/light_text_color" />
+
+        <TextView
+            android:id="@+id/tv_budget_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/tv_budget"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp" >
+
+        <TextView
+            android:id="@+id/tv_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="房屋面积:"
+            android:textColor="@color/light_text_color" />
+
+        <TextView
+            android:id="@+id/tv_size_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/tv_size"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp" >
+
+        <TextView
+            android:id="@+id/tv_zx_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="装修方式:"
+            android:textColor="@color/light_text_color" />
+
+        <TextView
+            android:id="@+id/tv_zx_type_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/tv_zx_type"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp" >
+
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="所在区域:"
+            android:textColor="@color/light_text_color" />
+
+        <TextView
+            android:id="@+id/tv_location_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/tv_location"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp" >
+
+        <TextView
+            android:id="@+id/tv_detail_address_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="详细地址:"
+            android:textColor="@color/light_text_color" />
+
+        <TextView
+            android:id="@+id/tv_detail_address_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/tv_detail_address_title"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp" >
+
+        <TextView
+            android:id="@+id/tv_lf_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="量房时间:"
+            android:textColor="@color/light_text_color" />
+
+        <TextView
+            android:id="@+id/tv_lf_time_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/tv_lf_time"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp" >
+
+        <TextView
+            android:id="@+id/tv_zx_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="装修时间:"
+            android:textColor="@color/light_text_color" />
+
+        <TextView
+            android:id="@+id/tv_zx_time_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/tv_zx_time"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="15dp" >
+
+        <TextView
+            android:id="@+id/tv_needs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="特殊需求:"
+            android:textColor="@color/light_text_color" />
+
+        <TextView
+            android:id="@+id/tv_needs_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/tv_needs"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:visibility="gone"
+        android:layout_marginTop="15dp" >
+
+        <TextView
+            android:id="@+id/tv_ch_tel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="客户电话:"
+            android:textColor="@color/light_text_color" />
+
+        <TextView
+            android:id="@+id/tv_ch_tel_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@id/tv_ch_tel"
+            android:singleLine="true"
+            android:textColor="@color/red" />
+
+        <ImageView
+            android:id="@+id/iv_tels"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/tv_ch_tel_content"
+            android:src="@drawable/qd_tel" />
+    </RelativeLayout>
+
+</LinearLayout>
+</android.support.v7.widget.CardView>

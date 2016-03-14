@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <!-- 最头部，已结束时是是要隐藏的 -->
+
+    <RelativeLayout
+        android:id="@+id/rl_done_not_gone"
+        android:layout_width="fill_parent"
+        android:layout_height="44dp"
+
+        android:background="@drawable/qiangdan_bg_item"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_done_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="已结束:"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+    <!-- 客户电话+剩余时间 -->
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider"
+        />
+    <LinearLayout
+        android:id="@+id/rl_tel_contact"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/qiangdan_bg_item"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tv_tel_time_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:text="剩余时间:"
+                android:textColor="@color/light_text_color" />
+
+            <TextView
+                android:id="@+id/tv_tel_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_toRightOf="@id/tv_tel_time_content"
+                android:textColor="@color/light_text_color" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tv_customer_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:text="客户姓名:"
+                android:textColor="@color/light_text_color" />
+
+            <TextView
+                android:id="@+id/tv_customer_name_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_toRightOf="@id/tv_customer_name"
+                android:textColor="@color/light_text_color" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp" >
+
+            <TextView
+                android:id="@+id/tv_tel_phone_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="客户电话:"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_tel_phone_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="3dp"
+                android:layout_toRightOf="@id/tv_tel_phone_title"
+                android:textColor="@color/red" />
+
+            <ImageView
+                android:id="@+id/iv_tel"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/tv_tel_phone_content"
+                android:src="@drawable/qd_tel" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>
+</android.support.v7.widget.CardView>

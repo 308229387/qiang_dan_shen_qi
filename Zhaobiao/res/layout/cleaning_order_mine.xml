@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:minHeight="120dp"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+        android:id="@+id/tv_cleaning_order_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:layout_marginTop="5dp"
+        android:textColor="#808080"
+        />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:orientation="vertical"
+                android:layout_height="fill_parent">
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1">
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/tv_cleaning_sizes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#808080"
+                        android:text="清洁面积: "
+                        />
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/tv_cleaning_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#808080"
+                        android:text="面积"
+                        android:layout_toRightOf="@id/tv_cleaning_sizes"
+                        />
+                </RelativeLayout>
+
+
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1">
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/tv_cleaning_need_toolss"
+                        android:textColor="#808080"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="洁具用品："
+                        />
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/tv_cleaning_need_tools"
+                        android:textColor="#808080"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_cleaning_need_toolss"
+                        />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1">
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/tv_cleaning_times"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#808080"
+                        android:text="服务时间: "
+                        />
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/tv_cleaning_time"
+                        android:layout_width="wrap_content"
+                        android:textColor="#808080"
+                        android:text="服务时间"
+                        android:layout_toRightOf="@id/tv_cleaning_times"
+                        android:layout_height="wrap_content"
+                        />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1">
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textColor="#808080"
+                        android:id="@+id/tv_cleaning_locations"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="所在区域: "
+                        />
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textColor="#808080"
+                        android:id="@+id/tv_cleaning_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_cleaning_locations"
+                        android:text="服务区域"
+                        />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1">
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textColor="#808080"
+                        android:id="@+id/tv_customer_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="客户姓名: "
+                        />
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textColor="#808080"
+                        android:id="@+id/tv_customer_name_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_customer_name"
+                        android:text="服务区域"
+                        />
+                </RelativeLayout>
+            </LinearLayout>
+</LinearLayout>

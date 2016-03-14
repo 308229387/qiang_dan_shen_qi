@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="#efefef"
+    android:layout_height="match_parent">
+    <include layout="@layout/layout_backhead"
+        android:id="@+id/layout_head"
+        />
+
+    <!-- <include layout="@layout/layout_order_hint" /> -->
+
+    <com.huangyezhaobiao.view.TitleMessageBarLayout
+        android:id="@+id/tbl"
+        android:layout_width="fill_parent"
+        android:layout_below="@id/layout_head"
+        android:layout_height="45dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/mywallet"
+        />
+
+
+    <RelativeLayout
+        android:id="@+id/rl_charge"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/menu_item_background"
+        android:layout_marginTop="100dp"
+        >
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/t_gray"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="消费记录"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            />
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="16dp"
+           android:src="@drawable/title_iv_right_new"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            />
+
+        <View
+            android:layout_alignParentBottom="true"
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/t_gray"
+            />
+    </RelativeLayout>
+
+
+</RelativeLayout>
