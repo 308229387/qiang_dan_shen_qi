@@ -237,7 +237,7 @@ public class RefundPresenter {
             try {
                 String headUrl = file.getAbsolutePath();
                 if (file.length() / 1024 <= AppConstants.UPLOAD_PIC_MAX_SIZE) {
-                    params.addBodyParameter(AppConstants.UPLOAD_REFUND_EVIDENCE + (index + 1), file);
+                    params.addBodyParameter(AppConstants.UPLOAD_REFUND_EVIDENCE + (index + 1), file,"image/*");
                 } else {
                     String url = AppConstants.Directorys.SDCARD + "/tmp"  + index + SystemClock.currentThreadTimeMillis() + ".jpg";
                     File emp_file = new File(url);
@@ -245,8 +245,9 @@ public class RefundPresenter {
                         emp_file.delete();
                    }
                     UploadPicUtil.compressImage(headUrl, url);
-                    params.addBodyParameter(AppConstants.UPLOAD_REFUND_EVIDENCE + (index + 1), new File(url));
+                    params.addBodyParameter(AppConstants.UPLOAD_REFUND_EVIDENCE + (index + 1), new File(url),"image/*");
                 }
+                //params.addHeader("Content-Type", "image/*");
             } catch (Exception e) {
                 e.printStackTrace();
                 if (listener != null) {

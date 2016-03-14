@@ -24,6 +24,7 @@ public class XHttpWrapper<T> {
         HttpUtils http = new HttpUtils();
         http.configTimeout(30000);
         http.configCurrentHttpCacheExpiry(0);
+        
         http.send(method, url, params, callBack);
         Log.e("shenzhixin", "url:" + url + ",params:" + params.toString());
     }
