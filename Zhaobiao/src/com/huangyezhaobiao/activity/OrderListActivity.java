@@ -124,8 +124,6 @@ public class OrderListActivity extends CommonFragmentActivity implements
 		if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT){
 			//透明状态栏
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-			//透明导航栏
-			getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 			int height = Utils.getStatusBarHeight(this);
 			int more = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, getResources().getDisplayMetrics());
 			LogUtils.LogE("shenzhixin", "layout_back_head..." + (layout_back_head == null) + ",height:" + height);
