@@ -23,14 +23,16 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.huangye.commonlib.activity.BaseActivity;
+
 import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.bean.LoginBean;
+import com.huangyezhaobiao.constans.AppConstants;
 import com.huangyezhaobiao.eventbus.EventAction;
 import com.huangyezhaobiao.eventbus.EventbusAgent;
 import com.huangyezhaobiao.gtui.GePushProxy;
 import com.huangyezhaobiao.service.MyService;
+import com.huangyezhaobiao.url.URLConstans;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.AnimationController;
 import com.huangyezhaobiao.utils.BDEventConstans;
@@ -42,6 +44,8 @@ import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog.onDialogClickListener;
 import com.huangyezhaobiao.vm.LoginViewModel;
 import com.xiaomi.mipush.sdk.MiPushClient;
+
+import java.util.HashMap;
 
 /**
  * 登陆页面
@@ -55,6 +59,8 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 	private ImageButton pCloseBtn;
 	private CheckBox    cb_usage;
 	private TextView    tv_accept_text_usage;
+
+	private TextView tv_how_to_become_vip;
 	private Button loginbutton;
 	private View        ll_root;
 	private ImageView   iv_icon;
@@ -65,6 +71,8 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 	private String userName;
 	private TextInputLayout textInputLayout_username;
 	private TextInputLayout textInputLayout_password;
+
+
 	private int hasValidated;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +129,9 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 		cb_usage   			 = (CheckBox) findViewById(R.id.cb_usage);
 		tv_accept_text_usage = (TextView) findViewById(R.id.tv_accept_text_usage);
 		tv_accept_text_usage.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
+
+		tv_how_to_become_vip = (TextView) findViewById(R.id.tv_login_raiders);
+		tv_how_to_become_vip.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 	}
 	@Override
 	public void initListener() {
@@ -136,12 +147,49 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 				password.setText("");
 			}
 		});
+
+		/**
+		 * 抢单神器使用协议start
+		 * edited by chenguangcheng
+		 */
 		tv_accept_text_usage.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				ActivityUtils.goToActivity(LoginActivity.this,SoftwareUsageActivity.class);
+				HashMap<String, String> map = new HashMap<String, String>();
+				map.put(AppConstants.H5_TITLE, getString(R.string.h5_login_softwareusage));
+				map.put(AppConstants.H5_WEBURL, URLConstans.SOFTWARE_USAGE);
+				ActivityUtils.goToActivityWithString(LoginActivity.this, SoftwareUsageActivity.class, map);
+//				ActivityUtils.goToActivity(LoginActivity.this,SoftwareUsageActivity.class);
 			}
 		});
+
+		/**
+		 * 抢单神器使用协议end
+		 * edited by chenguangcheng
+		 */
+
+		/**
+		 * 申请成为抢单神器会员start
+		 * created by chenguangcheng
+		 */
+
+		tv_accept_text_usage.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				HashMap<String, String> map = new HashMap<String, String>();
+				map.put(AppConstants.H5_TITLE, getString(R.string.h5_login_raiders));
+				map.put(AppConstants.H5_WEBURL, URLConstans.SOFTWARE_USAGE);
+				ActivityUtils.goToActivityWithString(LoginActivity.this, SoftwareUsageActivity.class, map);
+//				ActivityUtils.goToActivity(LoginActivity.this,SoftwareUsageActivity.class);
+			}
+		});
+
+		/**
+		 * 申请成为抢单神器会员end
+		 * created by chenguangcheng
+		 */
+
+
 		loginbutton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
@@ -235,7 +283,7 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 			MiPushClient.setAlias(getApplicationContext(), UserUtils.getUserId(getApplicationContext()), null);
 			//个推注册别名
 			boolean result = GePushProxy.bindPushAlias(getApplicationContext(),userId+"_"+ PhoneUtils.getIMEI(this));
-			Toast.makeText(this,"注册别名结果:"+result,0).show();
+			Toast.makeText(this,"注册别名结果:"+result,Toast.LENGTH_SHORT).show();
 			startLoading();
 			//判断是否验证过手机
 			if(hasValidated==1) {
@@ -263,7 +311,7 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 				dialog.show();
 			}
 		} catch (Exception e) {
-			Toast.makeText(this, msg, 0).show();
+			Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 		}
 	}
 
