@@ -195,7 +195,7 @@ public interface URLConstans {
 	 * created by chenguangming 2016/03/14
 	 * 申请成为抢单神器会员
 	 */
-	String HOW_TO_BECOME_VIP = BASE_URL_APP + "usageProtocol";
+	String HOW_TO_BECOME_VIP = BASE_URL_APP + "howToLogin";
 
 	
 	/**
