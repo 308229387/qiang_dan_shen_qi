@@ -4,7 +4,10 @@ import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.webkit.JsPromptResult;
+import android.webkit.JsResult;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -12,6 +15,7 @@ import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.constans.AppConstants;
@@ -30,6 +34,7 @@ import java.util.HashMap;
  * description：目前包含抢单神器使用协议以及2步申请抢单神器会员
  */
 public class SoftwareUsageActivity extends QBBaseActivity implements View.OnClickListener {
+    private static final String TAG = SoftwareUsageActivity.class.getName();
     private LinearLayout backLayout,ll_webview_container;
     private TextView txt_head;
     private WebView webView_introduce;
@@ -75,6 +80,7 @@ public class SoftwareUsageActivity extends QBBaseActivity implements View.OnClic
             view_no_internet.setVisibility(View.VISIBLE);
         }
         webView_introduce.loadUrl(url);
+
     }
 
     /**
@@ -98,6 +104,7 @@ public class SoftwareUsageActivity extends QBBaseActivity implements View.OnClic
         }
     }
 
+
     @Override
     public void initListener() {
         backLayout.setOnClickListener(this);
@@ -116,14 +123,14 @@ public class SoftwareUsageActivity extends QBBaseActivity implements View.OnClic
         }
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-
-            if(url.contains("reg")) {
+            Log.v(TAG,"shouldOverrideUrlLoading:url=" + url);
+            if(url.startsWith(AppConstants.H5_FAST_LOGIN)) {
                 // 跳转到注册界面 added by chenguangming
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put(AppConstants.H5_TITLE, "注册");
                 map.put(AppConstants.H5_WEBURL, url);
                 ActivityUtils.goToActivityWithString(SoftwareUsageActivity.this, SoftwareUsageActivity.class, map);
-            } else if(url.contains("tel:")) {
+            } else if(url.startsWith("tel:")) {
                 final String urlTel = url.split(":")[1];
                 // 拨打电话
                 if(dialog == null || !dialog.isShowing()){
@@ -142,6 +149,8 @@ public class SoftwareUsageActivity extends QBBaseActivity implements View.OnClic
                     });
                     dialog.show();
                 }
+            } else if(AppConstants.H5_FAST_SUCCESSREG.equals(url)) {
+                SoftwareUsageActivity.this.finish();
             }
             return true;
         }
@@ -172,6 +181,24 @@ public class SoftwareUsageActivity extends QBBaseActivity implements View.OnClic
         @Override
         public void onReceivedTitle(WebView view, String title) {
             super.onReceivedTitle(view, title);
+        }
+
+        @Override
+        public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
+            Toast.makeText(SoftwareUsageActivity.this,"onJsAlert()"+message,Toast.LENGTH_SHORT).show();
+            return super.onJsAlert(view, url, message, result);
+        }
+
+        @Override
+        public boolean onJsConfirm(WebView view, String url, String message, JsResult result) {
+            Toast.makeText(SoftwareUsageActivity.this,"onJsConfirm()"+message,Toast.LENGTH_SHORT).show();
+            return super.onJsConfirm(view, url, message, result);
+        }
+
+        @Override
+        public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, JsPromptResult result) {
+            Toast.makeText(SoftwareUsageActivity.this,"onJsPrompt()"+message,Toast.LENGTH_SHORT).show();
+            return super.onJsPrompt(view, url, message, defaultValue, result);
         }
 
         @Override
