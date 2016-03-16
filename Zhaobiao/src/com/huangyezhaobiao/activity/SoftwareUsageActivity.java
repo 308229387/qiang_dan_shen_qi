@@ -126,12 +126,12 @@ public class SoftwareUsageActivity extends QBBaseActivity implements View.OnClic
             } else if(url.contains("tel:")) {
                 final String urlTel = url.split(":")[1];
                 // 拨打电话
-                if(dialog == null){
+                if(dialog == null || !dialog.isShowing()){
                     dialog = new ZhaoBiaoDialog(SoftwareUsageActivity.this,SoftwareUsageActivity.this.getString(R.string.hint), SoftwareUsageActivity.this.getString(R.string.make_sure_tel));
                     dialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
                         @Override
                         public void onDialogOkClick() {
-                            ActivityUtils.goToDialActivity(SoftwareUsageActivity.this, urlTel.split(":")[1]);
+                            ActivityUtils.goToDialActivity(SoftwareUsageActivity.this, urlTel);
                             dialog.dismiss();
                         }
 
@@ -140,6 +140,7 @@ public class SoftwareUsageActivity extends QBBaseActivity implements View.OnClic
                             dialog.dismiss();
                         }
                     });
+                    dialog.show();
                 }
             }
             return true;
