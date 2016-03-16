@@ -112,7 +112,7 @@
             android:layout_toRightOf="@id/cb_usage"
             android:layout_alignBaseline="@id/cb_usage"
             android:text="接受"
-            android:textColor="#e9e9e9"
+            android:textColor="#f5b9ba"
             />
         <TextView
             android:id="@+id/tv_accept_text_usage"
@@ -121,7 +121,7 @@
             android:layout_toRightOf="@id/tv_accept_text_usages"
             android:layout_alignBaseline="@id/cb_usage"
             android:text="@string/native_login_softwareusage"
-            android:textColor="#ffffff"
+            android:textColor="#f5b9ba"
 
             />
         </RelativeLayout>
@@ -138,9 +138,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="6dp"
+            android:padding="4dp"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:text="@string/native_login_raiders"
-            android:textColor="#ad2f3c" />
+            android:textColor="#ffffff" />
     </LinearLayout>
 
 </LinearLayout>
