@@ -180,4 +180,6 @@ public class AppConstants {
      * created by chenguangming 2016/03/14
      */
     public static final String H5_WEBURL = "url";
+    public static final String H5_FAST_LOGIN = "http://m.m.58.com/reg/?from=qdsq";
+    public static final String H5_FAST_SUCCESSREG= "http://m.m.58.com/";
 }
