@@ -22,6 +22,7 @@ import com.huangyezhaobiao.constans.AppConstants;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.NetUtils;
+import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 
 import java.util.HashMap;
@@ -150,6 +151,8 @@ public class SoftwareUsageActivity extends QBBaseActivity implements View.OnClic
                     dialog.show();
                 }
             } else if(AppConstants.H5_FAST_SUCCESSREG.equals(url)) {
+                ToastUtils.showShort(SoftwareUsageActivity.this,getString(R.string.h5_register_success),1500);
+                // ToastUtils.makeText(SoftwareUsageActivity.this,getString(R.string.h5_register_success),Toast.LENGTH_LONG).show();
                 SoftwareUsageActivity.this.finish();
             }
             return true;
