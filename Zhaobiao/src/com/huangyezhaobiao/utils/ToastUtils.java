@@ -1,6 +1,8 @@
 package com.huangyezhaobiao.utils;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +32,7 @@ public class ToastUtils extends Toast{
 	 *            // 上下文对象
 	 * @param res_id
 	 *            // 要显示的图片的资源id
-	 * @param text
+	 * @param content
 	 *            // 要显示的文字
 	 * @param duration
 	 *            // 显示时间
@@ -54,4 +56,52 @@ public class ToastUtils extends Toast{
 		result.setDuration(duration);
 		return result;
 	}
+
+	/**
+	 * ****************start****************
+	 * added by chenguangming 2016/03/17
+	 * 修改Toast显示时间
+	 * */
+	public static void showShort(Context cxt,int resId,int timeMillions) {
+		Handler handler = new Handler() {
+			@Override
+			public void handleMessage(Message msg) {
+
+			}
+		};
+		final Toast toast = Toast.makeText(cxt,resId, Toast.LENGTH_SHORT);
+		toast.setGravity(Gravity.CENTER, 0, 0);
+		toast.show();
+
+		handler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				toast.cancel();
+			}
+		}, timeMillions);
+	}
+
+	public static void showShort(Context cxt,final String message,int timeMillions) {
+		Handler handler = new Handler() {
+			@Override
+			public void handleMessage(Message msg) {
+
+			}
+		};
+		final Toast toast = Toast.makeText(cxt,message, Toast.LENGTH_SHORT);
+		toast.setGravity(Gravity.CENTER, 0, 0);
+		toast.show();
+
+		handler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				toast.cancel();
+			}
+		}, timeMillions);
+	}
+	/**
+	 *修改Toast显示时间
+	 * ****************end****************
+	 */
+
 }
