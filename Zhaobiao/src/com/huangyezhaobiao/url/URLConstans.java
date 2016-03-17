@@ -196,8 +196,7 @@ public interface URLConstans {
 	 * 申请成为抢单神器会员
 	 */
 	String HOW_TO_BECOME_VIP = BASE_URL_APP + "howToLogin";
-
-	
+	//String HOW_TO_BECOME_VIP = "http://192.168.118.132:9090/app/howToLogin";
 	/**
 	 * 版本字段
 	 */
