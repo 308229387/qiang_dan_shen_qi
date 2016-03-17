@@ -110,5 +110,8 @@
 
     <string name="h5_login_softwareusage">软件使用协议</string>
     <string name="h5_login_raiders">2步申请抢单神器会员</string>
+    <string name="h5_register_success">注册成功，去进行下一步吧</string>
+
+
 
 </resources>
