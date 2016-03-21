@@ -39,4 +39,8 @@ public class LvAdapter extends BaseAdapter {
 		return tv;
 	}
 
+	@Override
+	public boolean hasStableIds() {
+		return true;
+	}
 }

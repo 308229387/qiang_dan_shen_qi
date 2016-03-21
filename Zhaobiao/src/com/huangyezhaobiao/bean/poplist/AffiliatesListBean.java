@@ -16,6 +16,8 @@ import com.huangyezhaobiao.holder.AffiliateGrabHolder;
 import com.huangyezhaobiao.inter.MDConstans;
 import com.huangyezhaobiao.lib.QDBaseBean;
 import com.huangyezhaobiao.lib.ZBBaseAdapter;
+import com.huangyezhaobiao.utils.BDEventConstans;
+import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.MDUtils;
 
 /**
@@ -188,6 +190,11 @@ public class AffiliatesListBean extends QDBaseBean{
 		holder.affiliates_item.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
+				if(bidState==1){//不可抢
+					BDMob.getBdMobInstance().onMobEvent(context, BDEventConstans.EVENT_ID_BIDDING_LIST_TO_DETAIL_UNABLE_BIDDING);
+				}else{
+					BDMob.getBdMobInstance().onMobEvent(context, BDEventConstans.EVENT_ID_BIDDING_LIST_TO_DETAIL_ENABLE_BIDDING);
+				}
 				Intent intent = new Intent();
 				intent.setClass(context, OrderDetailActivity.class);
 				Bundle bundle = new Bundle();
