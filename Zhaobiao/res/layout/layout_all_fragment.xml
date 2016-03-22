@@ -3,40 +3,41 @@
     android:id="@+id/root_fragment_all"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f8f9fa"
-    android:orientation="vertical" >
-<android.support.v4.widget.SwipeRefreshLayout
-    android:id="@+id/srl"
-    android:layout_width="fill_parent"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    android:layout_height="fill_parent">
-    <com.handmark.pulltorefresh.library.PullToRefreshListView
-        xmlns:ptr="http://schemas.android.com/apk/res-auto"  
-        android:id="@+id/lv_all_fragment"
+    android:orientation="vertical">
+    <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:id="@+id/root_fragment_all"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:background="#f8f9fa"-->
+    <!--android:orientation="vertical" >    -->
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:cacheColorHint="@android:color/transparent"
-        android:fadingEdge="none"
-        android:listSelector="#00000000"
-        android:persistentDrawingCache="none"
-        android:scrollbars="none"
-        android:divider="@null"
         android:layout_marginLeft="10dp"
-        ptr:ptrAnimationStyle="flip" 
-        android:layout_marginRight="10dp"
-        ptr:ptrHeaderSubTextColor="@color/red"
-        ptr:ptrHeaderTextColor="@color/black"
+        android:layout_marginRight="10dp">
 
-        android:scrollingCache="false" />
-</android.support.v4.widget.SwipeRefreshLayout>
+        <com.handmark.pulltorefresh.library.PullToRefreshListView xmlns:ptr="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/lv_all_fragment"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@null"
+            android:fadingEdge="none"
+            android:listSelector="#00000000"
+            android:persistentDrawingCache="none"
+            android:scrollbars="none"
+            android:scrollingCache="false"
+            ptr:ptrAnimationStyle="flip"
+            ptr:ptrHeaderSubTextColor="@color/red"
+            ptr:ptrHeaderTextColor="@color/black" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <include layout="@layout/activity_no_internet" />
+
     <include
-        layout="@layout/activity_no_internet"
-
-        />
-
-    <include
-        layout="@layout/no_internet_layout"
         android:id="@+id/layout_no_internets"
-        />
+        layout="@layout/no_internet_layout" />
 </RelativeLayout>

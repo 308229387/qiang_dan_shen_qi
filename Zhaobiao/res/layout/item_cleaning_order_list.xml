@@ -15,23 +15,17 @@
 
         <!-- 必须有的一块 -->
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:minHeight="175dp"
-
-            android:orientation="vertical" >
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="35dp" >
+            android:minHeight="175dp">
 
                 <TextView
                     android:id="@+id/tv_times"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
+                    android:layout_height="35dp"
                     android:layout_marginLeft="10dp"
+                    android:gravity="center"
                     android:text="抢单时间:"
                     android:textColor="@color/timeline_color" />
 
@@ -39,43 +33,53 @@
                     android:id="@+id/tv_cleaning_qd_time_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:layout_alignTop="@+id/tv_times"
+                    android:layout_alignBottom="@+id/tv_times"
                     android:layout_toRightOf="@id/tv_times"
                     android:textColor="@color/timeline_color" />
 
                 <View
+                    android:id="@+id/v_divider1"
                     android:layout_width="fill_parent"
                     android:layout_height="1px"
-                    android:layout_alignParentBottom="true"
+                    android:layout_below="@+id/tv_times"
                     android:background="@color/divider" />
-            </RelativeLayout>
 
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical" >
+            <!--<RelativeLayout-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="fill_parent"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:orientation="vertical" >-->
                 <include
                     android:id="@+id/cleaning"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/v_divider1"
+                    android:layout_marginLeft="10dp"
                     layout="@layout/cleaning_order_mine"
                     />
-                <RelativeLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_marginTop="10dp" >
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="fill_parent"-->
+                    <!--android:layout_height="fill_parent"-->
+                    <!--android:layout_marginTop="10dp" >-->
                     <View
+                        android:id="@+id/v_divider2"
                         android:layout_width="fill_parent"
                         android:layout_height="1px"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/cleaning"
                         android:background="@color/divider"
                         />
                     <TextView
                         android:id="@+id/tv_telephone_a"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
+                        android:gravity="center"
                         android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_below="@+id/v_divider2"
                         android:text="客户电话："
                         android:textColor="@color/black"
                         />
@@ -84,8 +88,9 @@
                         android:id="@+id/tv_telephone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
+                        android:gravity="center"
                         android:layout_marginTop="10dp"
+                        android:layout_below="@+id/v_divider2"
                         android:layout_toRightOf="@id/tv_telephone_a"
                         android:textColor="@color/red"
                         />
@@ -96,13 +101,14 @@
                         android:layout_height="25dp"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="5dp"
+                        android:layout_below="@+id/v_divider2"
                         android:layout_marginTop="8dp"
                         android:layout_toRightOf="@id/tv_telephone"
                         android:src="@drawable/qd_tel"
                         android:text="我已联系" />
                 </RelativeLayout>
-            </LinearLayout>
-        </LinearLayout>
+            <!--</RelativeLayout>-->
+        <!--</RelativeLayout>-->
 
         <!-- 只有已结束才会出现的一块 -->
         <RelativeLayout
