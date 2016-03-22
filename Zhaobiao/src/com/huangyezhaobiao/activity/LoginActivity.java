@@ -119,6 +119,7 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 		InputFilter[] filters = new InputFilter[1];
 		filters[0] = new LoginEditFilter(this,"");
 		username.setFilters(filters);
+		password.setFilters(filters);
 		if(!TextUtils.isEmpty(UserUtils.getUserName(LoginActivity.this)))
 		{
 			username.setText(UserUtils.getUserName(LoginActivity.this));

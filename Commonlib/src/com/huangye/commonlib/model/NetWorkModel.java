@@ -99,22 +99,13 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
 			//获得返回的token
 			String token     = jsonObject.getString("token");
 			Log.e("shenzhixinHAHAHA","loginFlag:"+loginflag+",token:"+token);
-			int status = jsonObject.getInteger("status");
-			/*if(status!=0){//server异常
-				String serverMsg= jsonObject.getString("msg");
-				baseSourceModelCallBack.onLoadingFailure(serverMsg);
-				return;
-			}*/
 			if(loginflag==1){//登录
 				NetBean netBean = transformJsonToNetBean(result);
 				MineBean mineBean = JsonUtils.jsonToObject(netBean.getData(), MineBean.class);
 				UserConstans.USER_ID = mineBean.getUserId()+"";
 				SharedPreferencesUtils.saveUserToken(context,ResponseConstans.SP_NAME,token);
 				///api/testToken?userId=&apiType=&clientToken=&serverToken=&token=
-
 				String suffix_url = "api/testToken?userId="+UserConstans.USER_ID+"&apiType="+LOGIN_TYPE+"&clientToken="+token+"&serverToken="+token+"&platform=1";
-				//TODO:传递
-				Log.e("shenzhixinUUU","suffixUrl:"+ URLConstans.BASE_URL+suffix_url);
 				HTTPTools.newHttpUtilsInstance().doGet(URLConstans.BASE_URL + suffix_url, new HttpRequestCallBack() {
 					@Override
 					public void onLoadingFailure(String err) {
@@ -149,8 +140,6 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
 			//	不合法
 				baseSourceModelCallBack.onModelLoginInvalidate();
 				String suffix_url = "api/testToken?userId="+UserConstans.USER_ID+"&apiType="+OTHER_TYPE+"&clientToken="+SharedPreferencesUtils.getUserToken(context)+"&serverToken="+token+"&platform=1";
-				//TODO:传递
-				Log.e("shenzhixinUUU","suffixUrl:"+URLConstans.BASE_URL+suffix_url);
 				HTTPTools.newHttpUtilsInstance().doGet(URLConstans.BASE_URL + suffix_url, new HttpRequestCallBack() {
 					@Override
 					public void onLoadingFailure(String err) {
@@ -188,8 +177,41 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
 		}catch(Exception e){//fix bug 185 on bugly
 			baseSourceModelCallBack.onLoadingFailure("服务器出现了问题，稍后再试呢");
 			e.printStackTrace();
+			//上传异常信息
+			uploadException(e,result);
 		}
 	}
+
+	private void uploadException(Exception e, String result) {
+		String url = URLConstans.BASE_URL + "app/exception/parseData?json="+result+"&exception="+e.getMessage()+"&userId="+UserConstans.USER_ID+"&token="+System.currentTimeMillis()+"&platform=1";
+			HTTPTools.newHttpUtilsInstance().doGet(url, new HttpRequestCallBack() {
+				@Override
+				public void onLoadingFailure(String err) {
+
+				}
+
+				@Override
+				public void onLoadingSuccess(String result) {
+
+				}
+
+				@Override
+				public void onLoadingStart() {
+
+				}
+
+				@Override
+				public void onLoadingCancelled() {
+
+				}
+
+				@Override
+				public void onLoading(long total, long current) {
+
+				}
+			});
+	}
+
 	/**
 	 * 先把json转成netBean
 	 * @param result
@@ -216,7 +238,6 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
 
 	@Override
 	public void onLoadingFailure(String err) {
-		Log.e("shenzhixinHHH","err:"+err);
 		baseSourceModelCallBack.onLoadingFailure("当前网络慢，请稍后重试");
 	}
 

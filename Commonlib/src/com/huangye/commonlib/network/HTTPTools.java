@@ -59,7 +59,7 @@ public class HTTPTools {
 	private HttpHandler<String> doPostJson(String url, RequestParams params,
 			final HttpRequestCallBack iOAuthCallBack) {
 		
-		if (config) {
+		if (config && httpUtils!=null) {
 			httpUtils.configCurrentHttpCacheExpiry(1000 * 10);
 			config = false;
 		}
