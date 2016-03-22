@@ -7,11 +7,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
@@ -56,7 +54,6 @@ import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.utils.Utils;
 import com.huangyezhaobiao.utils.ViewPageHelper;
 import com.huangyezhaobiao.view.CustomViewPager;
-import com.huangyezhaobiao.view.MyCustomDialog;
 import com.huangyezhaobiao.view.QDWaitDialog;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
 import com.huangyezhaobiao.view.TitleMessageBarLayout.OnTitleBarClickListener;
@@ -447,7 +444,6 @@ public class OrderListActivity extends CommonFragmentActivity implements
 
 	/**
 	 * 改变ui的样式
-	 *
 	 * @param position
 	 */
 	public void configUIStyle(int position) {
@@ -478,8 +474,6 @@ public class OrderListActivity extends CommonFragmentActivity implements
 				break;
 		}
 	}
-
-
 
 	public void onItemClick(String id) {
 		ActivityUtils.goToActivity(this, FetchDetailsActivity.class);
@@ -547,6 +541,7 @@ public class OrderListActivity extends CommonFragmentActivity implements
 			progressDialog.dismiss();
 		}
 	}
+
 	@Override
 	public void onLoadingSuccess(Object t) {
 		if (t instanceof Integer) {
@@ -561,7 +556,7 @@ public class OrderListActivity extends CommonFragmentActivity implements
 				intent.setClass(OrderListActivity.this,
 						BidSuccessActivity.class);
 				startActivity(intent);
-				Toast.makeText(OrderListActivity.this,"抢单成功",0).show();
+				Toast.makeText(OrderListActivity.this,"抢单成功",Toast.LENGTH_SHORT).show();
 			} else if (status == 1) {
 				intent.setClass(OrderListActivity.this, BidGoneActivity.class);
 				startActivity(intent);
@@ -585,14 +580,14 @@ public class OrderListActivity extends CommonFragmentActivity implements
 				if(passBean!=null)
 					MDUtils.YuENotEnough(""+passBean.getCateId(), ""+passBean.getBidId());
 			}else if(status==5){
-				Toast.makeText(OrderListActivity.this,"抢单失败",0).show();
+				Toast.makeText(OrderListActivity.this,"抢单失败",Toast.LENGTH_SHORT).show();
 				intent.setClass(OrderListActivity.this,
 						BidFailureActivity.class);
 				startActivity(intent);
 			}else if(status ==4){
-				Toast.makeText(OrderListActivity.this,"您已抢过此单",0).show();
+				Toast.makeText(OrderListActivity.this,"您已抢过此单",Toast.LENGTH_SHORT).show();
 			}else{
-				Toast.makeText(OrderListActivity.this,"抢单异常",0).show();
+				Toast.makeText(OrderListActivity.this,"抢单异常",Toast.LENGTH_SHORT).show();
 			}
 
 		}
@@ -602,7 +597,7 @@ public class OrderListActivity extends CommonFragmentActivity implements
 	@Override
 	public void onLoadingError(String msg) {
 		dismissQDWaitDialog();
-		Toast.makeText(this,msg,0).show();
+		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
@@ -613,7 +608,7 @@ public class OrderListActivity extends CommonFragmentActivity implements
 	@Override
 	public void onNoInterNetError() {
 		dismissQDWaitDialog();
-		Toast.makeText(this,getString(R.string.no_network),0).show();
+		Toast.makeText(this,getString(R.string.no_network),Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
