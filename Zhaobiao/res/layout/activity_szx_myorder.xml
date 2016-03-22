@@ -1,54 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout 
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical" >
-    <include layout="@layout/layout_backhead"
-		     android:id="@+id/layout_back"
-		/>
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/layout_back"
+        layout="@layout/layout_backhead" />
     <!-- <include
         layout="@layout/layout_order_hint"
         android:visibility="gone"
         /> -->
-        <com.huangyezhaobiao.view.TitleMessageBarLayout
-	       android:id="@+id/tbl"
-	       android:layout_width="fill_parent"
-	       android:layout_height="45dp"
-       />
-	<RelativeLayout
-	    android:layout_width="fill_parent"
+    <com.huangyezhaobiao.view.TitleMessageBarLayout
+        android:id="@+id/tbl"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
         android:layout_height="50dp"
-		android:visibility="gone"
-	    >
+        android:visibility="gone">
 
-	    <include
+        <include
+            layout="@layout/layout_fragment_title_myorder"
+            android:layout_alignParentBottom="true" />
 
-	        android:layout_alignParentBottom="true"
-	        layout="@layout/layout_fragment_title_myorder" />
+        <!--  <View
+             android:id="@+id/line_fragment_title"
+             android:layout_height="4dp"
+             android:layout_width="3dp"
+             android:background="@color/red"
+             android:layout_alignParentBottom="true"
+             /> -->
+    </RelativeLayout>
 
-	   <!--  <View
-	        android:id="@+id/line_fragment_title"
-	        android:layout_height="4dp"
-	        android:layout_width="3dp"
-	        android:background="@color/red"
-	        android:layout_alignParentBottom="true"
-	        /> -->
-	 </RelativeLayout>
-	<android.support.design.widget.TabLayout
-		xmlns:app="http://schemas.android.com/apk/res-auto"
-		android:id="@+id/tabLayout"
-		android:layout_width="fill_parent"
-		app:tabIndicatorColor="@color/red"
-		app:tabSelectedTextColor="@color/red"
-		app:tabTextColor="@color/black"
-		android:layout_height="50dp"
-		/>
-	 <com.huangyezhaobiao.view.CustomViewPager
-	     android:id="@+id/viewpage_fragment"
-	     android:layout_width="fill_parent"
-	     android:layout_height="fill_parent"
-	     />
-	 
+    <android.support.design.widget.TabLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/tabLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        app:tabIndicatorColor="@color/red"
+        app:tabSelectedTextColor="@color/red"
+        app:tabTextColor="@color/black" />
+
+    <com.huangyezhaobiao.view.CustomViewPager
+        android:id="@+id/viewpage_fragment"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
 </LinearLayout>
