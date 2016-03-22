@@ -9,11 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.AnimationSet;
 import android.view.animation.LayoutAnimationController;
-import android.view.animation.OvershootInterpolator;
-import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
@@ -36,9 +33,6 @@ import com.huangyezhaobiao.utils.MDUtils;
 import com.huangyezhaobiao.view.LoadingProgress;
 import com.huangyezhaobiao.vm.QiangDanListViewModel;
 import com.huangyezhaobiao.vm.YuEViewModel;
-
-import listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
-import listviewanimations.swinginadapters.prepared.SwingRightInAnimationAdapter;
 
 
 /**
@@ -209,13 +203,13 @@ public abstract class QiangDanBaseFragment extends Fragment implements
 	protected LayoutAnimationController getAnimationController(float fromX,
 			float toX) {
 		AnimationSet set = new AnimationSet(true);
-		AlphaAnimation alphaAnimation = new AlphaAnimation(0, 1);
-		alphaAnimation.setDuration(600);
-		TranslateAnimation animation = new TranslateAnimation(fromX, toX, 0, 0);
-		animation.setDuration(600);
-		set.addAnimation(alphaAnimation);
-		set.addAnimation(animation);
-		set.setInterpolator(new OvershootInterpolator(1.3f));
+		//AlphaAnimation alphaAnimation = new AlphaAnimation(0, 1);
+		//alphaAnimation.setDuration(600);
+		//TranslateAnimation animation = new TranslateAnimation(fromX, toX, 0, 0);
+		//animation.setDuration(600);
+		//set.addAnimation(alphaAnimation);
+		//set.addAnimation(animation);
+		//set.setInterpolator(new OvershootInterpolator(1.3f));
 		LayoutAnimationController lac = new LayoutAnimationController(set, 0.3f);
 		return lac;
 	}
@@ -392,9 +386,9 @@ public abstract class QiangDanBaseFragment extends Fragment implements
 	 */
 	protected void setListViewWithAnimation(ListView lv,BaseAdapter adapter){
 		if(lv==null || adapter==null) return;
-		SwingBottomInAnimationAdapter swingBottomInAnimationAdapter = new SwingBottomInAnimationAdapter(adapter);
-		SwingRightInAnimationAdapter swingRightInAnimationAdapter = new SwingRightInAnimationAdapter(swingBottomInAnimationAdapter);
-		swingRightInAnimationAdapter.setAbsListView(lv);
-		lv.setAdapter(swingRightInAnimationAdapter);
+//		SwingBottomInAnimationAdapter swingBottomInAnimationAdapter = new SwingBottomInAnimationAdapter(adapter);
+//		SwingRightInAnimationAdapter swingRightInAnimationAdapter = new SwingRightInAnimationAdapter(swingBottomInAnimationAdapter);
+//		swingRightInAnimationAdapter.setAbsListView(lv);
+		lv.setAdapter(adapter);
 	}
 }

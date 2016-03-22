@@ -61,10 +61,11 @@ public class ReadyServiceFragment extends QiangDanBaseFragment {
 			LogUtils.LogE("ashenService", "setAdapter");
 			setOnItemClickListener(lv);
 			goQDActivity(layout_no_internet_click);
-		}else{
+		} else {
+
 		}
 		
-			return root_fragment_all;
+		return root_fragment_all;
 	}
 
 	@Override
