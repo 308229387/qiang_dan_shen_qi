@@ -93,8 +93,8 @@ public class ServiceTypeBean extends QDDetailBaseBean{
 			tv_done_status.setText(R.string.order_details);
 		}
 		tv_tel_phone_content.setText(clientPhone);
-		tv_tel_time.setText(leftTime);
-		tv_customer_name_content.setText(customerName);
+		tv_tel_time.setText("剩余时间:    "+leftTime);
+		tv_customer_name_content.setText("客户姓名:    "+customerName);
 	}
 	public Context getContext() {
 		return context;

@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="5dp"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/qiangdan_bg_item"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
@@ -20,7 +13,6 @@
         android:layout_width="fill_parent"
         android:layout_height="44dp"
 
-        android:background="@drawable/qiangdan_bg_item"
         android:orientation="vertical" >
 
         <TextView
@@ -38,25 +30,16 @@
         android:layout_height="1dp"
         android:background="@color/divider"
         />
-    <LinearLayout
+   <!-- <LinearLayout
         android:id="@+id/rl_tel_contact"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/qiangdan_bg_item"
-        android:orientation="vertical" >
+        android:orientation="vertical" >-->
 
-        <RelativeLayout
+      <!--  <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/tv_tel_time_content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:text="剩余时间:"
-                android:textColor="@color/light_text_color" />
+            android:layout_height="wrap_content" >-->
 
             <TextView
                 android:id="@+id/tv_tel_time"
@@ -64,21 +47,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
-                android:layout_toRightOf="@id/tv_tel_time_content"
+                android:text="剩余时间:"
                 android:textColor="@color/light_text_color" />
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
 
-            <TextView
-                android:id="@+id/tv_customer_name"
+          <!--  <TextView
+                android:id="@+id/tv_tel_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
-                android:text="客户姓名:"
+                android:layout_toRightOf="@id/tv_tel_time_content"
                 android:textColor="@color/light_text_color" />
+        </RelativeLayout>-->
+     <!--   <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >-->
 
             <TextView
                 android:id="@+id/tv_customer_name_content"
@@ -86,9 +69,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
+                android:text="客户姓名:"
+                android:textColor="@color/light_text_color" />
+
+            <!--<TextView
+                android:id="@+id/tv_customer_name_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_toRightOf="@id/tv_customer_name"
                 android:textColor="@color/light_text_color" />
-        </RelativeLayout>
+        </RelativeLayout>-->
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -123,5 +115,4 @@
         </RelativeLayout>
     </LinearLayout>
 
-</LinearLayout>
-</android.support.v7.widget.CardView>
+

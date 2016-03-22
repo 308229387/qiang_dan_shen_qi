@@ -53,7 +53,6 @@
             android:cacheColorHint="@android:color/transparent"
             android:divider="@null"
             android:fadingEdge="none"
-            android:listSelector="#000000"
             android:persistentDrawingCache="none"
             android:scrollbars="none"
             android:scrollingCache="false"

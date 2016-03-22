@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
@@ -25,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
+import com.huangyezhaobiao.LoginEditFilter;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.bean.LoginBean;
 import com.huangyezhaobiao.constans.AppConstants;
@@ -114,6 +116,10 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 		textInputLayout_password.setHint("请输入密码");
 		username = textInputLayout_username.getEditText();
 		password = textInputLayout_password.getEditText();
+		InputFilter[] filters = new InputFilter[1];
+		filters[0] = new LoginEditFilter(this,"");
+		username.setFilters(filters);
+		password.setFilters(filters);
 		if(!TextUtils.isEmpty(UserUtils.getUserName(LoginActivity.this)))
 		{
 			username.setText(UserUtils.getUserName(LoginActivity.this));
@@ -216,6 +222,10 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 					return;
 				}
 				startLoading();
+				//test
+				name = "琼nl";
+				passwords = "qwer123";
+				//test
 				loginViewModel.login(name, passwords);
 			}
 		});

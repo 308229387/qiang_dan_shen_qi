@@ -36,6 +36,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:textColor="@color/white"
+                android:singleLine="true"
                 android:layout_height="wrap_content" />
         </android.support.design.widget.TextInputLayout>
         <ImageButton
@@ -62,6 +63,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:inputType="textPassword"
+                android:singleLine="true"
                 android:textColor="@color/white"
                 android:layout_height="wrap_content" />
         </android.support.design.widget.TextInputLayout>

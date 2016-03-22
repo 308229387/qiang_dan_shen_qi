@@ -67,11 +67,12 @@ android {
         abortOnError false
     }
 
-   /* buildTypes{
+    buildTypes{
         release{
             minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
         }
-    }*/
+    }
 
 }

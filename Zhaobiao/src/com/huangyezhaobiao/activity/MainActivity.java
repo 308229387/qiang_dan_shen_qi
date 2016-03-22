@@ -99,7 +99,7 @@ import de.greenrobot.event.EventBus;
  * @author 58
  *
  */
-public class MainActivity   extends CommonFragmentActivity implements
+public class MainActivity extends CommonFragmentActivity implements
 		ActivityInterface, OnClickListener, ListNetWorkVMCallBack,
 		INotificationListener, OnTitleBarClickListener,INetStateChangedListener, AdapterListener, onDialogClickListener {
 	//当用户被挤掉时,显示这个对话框

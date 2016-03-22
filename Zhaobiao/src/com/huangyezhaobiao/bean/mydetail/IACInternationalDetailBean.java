@@ -63,7 +63,7 @@ public class IACInternationalDetailBean extends QDDetailBaseBean{
 		initDialog(context);
 		View view = LayoutInflater.from(context).inflate(R.layout.layout_qiangdan_middle_reg_international, null);
 		tv_budget_content = (TextView) view.findViewById(R.id.tv_budget_content);
-		tv_ch_tel_content = (TextView) view.findViewById(R.id.tv_ch_tel_content);
+		//tv_ch_tel_content = (TextView) view.findViewById(R.id.tv_ch_tel_content);
 		tv_lf_time_content = (TextView) view.findViewById(R.id.tv_lf_time_content);
 		tv_location_content = (TextView) view.findViewById(R.id.tv_location_content);
 		tv_needs_content = (TextView) view.findViewById(R.id.tv_needs_content);
@@ -72,7 +72,7 @@ public class IACInternationalDetailBean extends QDDetailBaseBean{
 		tv_zx_business_content = (TextView) view.findViewById(R.id.tv_zx_business_content);
 		tv_zx_time_content = (TextView) view.findViewById(R.id.tv_zx_time_content);
 		iv_tels = (ImageView) view.findViewById(R.id.iv_tels);
-		iv_tels.setOnClickListener(new OnClickListener() {
+		/*iv_tels.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				//点击了打电话按钮
@@ -80,26 +80,26 @@ public class IACInternationalDetailBean extends QDDetailBaseBean{
 				initDialog(mContext);
 				dialog.show();
 			}
-		});
+		});*/
 		fillDatas();
 		return view;
 	}
 	private void fillDatas() {
-		tv_budget_content.setText(agencyLocation);
-		tv_ch_tel_content.setText(clientPhone);
-		tv_lf_time_content.setText(registerTime);
-		tv_location_content.setText(registerLocation);
-		tv_needs_content.setText(special);
+		tv_budget_content.setText("代理地址:    "+agencyLocation);
+		//tv_ch_tel_content.setText(clientPhone);
+		tv_lf_time_content.setText("注册时间:    "+registerTime);
+		tv_location_content.setText("所在区域:  " + registerLocation);
+		tv_needs_content.setText("特殊需求:    "+special);
 		if(TextUtils.isEmpty(special)){
-			tv_needs_content.setText("无");
+			tv_needs_content.setText("特殊需求:    "+"无");
 		}
-		tv_size_content.setText(proxyTally);
-		tv_type_content.setText(registerType);
-		tv_zx_time_content.setText(industry);
+		tv_size_content.setText("代理记账:    "+proxyTally);
+		tv_type_content.setText("注册类型:  "+ registerType);
+		tv_zx_time_content.setText("所属行业:   "+industry);
 		if(!TextUtils.isEmpty(business)){
-			tv_zx_business_content.setText(business);
+			tv_zx_business_content.setText("经营业务:    "+business);
 		}else{
-			tv_zx_business_content.setText("无");
+			tv_zx_business_content.setText("经营业务:    无");
 		}
 		if(TextUtils.isEmpty(registerLocation)){
 			tv_location_content.setText("无地址");
