@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    app:cardElevation="2dp"
-
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginTop="10dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/qiangdan_bg_item"
@@ -35,114 +27,119 @@
             android:background="#e4e4e4" />
     </RelativeLayout>
 
-    <RelativeLayout
+   <!-- <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp" >
-
-        <TextView
-            android:id="@+id/tv_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="注册类型:"
-            android:textColor="@color/light_text_color" />
+         >-->
 
         <TextView
             android:id="@+id/tv_type_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/tv_type"
-            android:text="个体工商注册"
-            android:textColor="@color/black" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp" >
+            android:layout_marginTop="15dp"
+            android:text="注册类型:"
+            android:textColor="@color/light_text_color" />
 
-        <TextView
-            android:id="@+id/tv_location"
+      <!--  <TextView
+            android:id="@+id/tv_type_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="注册区域:"
-            android:textColor="@color/light_text_color" />
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/tv_type"
+            android:text="个体工商注册"
+            android:textColor="@color/black" />-->
+    <!--</RelativeLayout>-->
+   <!-- <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+       >-->
 
         <TextView
             android:id="@+id/tv_location_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:text="注册区域:"
+            android:textColor="@color/light_text_color" />
+
+      <!--  <TextView
+            android:id="@+id/tv_location_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/tv_location"
             android:text="朝阳区-北苑"
-            android:textColor="@color/black" />
-    </RelativeLayout>
+            android:textColor="@color/black" />-->
+   <!-- </RelativeLayout>-->
 
-    <RelativeLayout
+   <!-- <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp" >
+       >-->
 
         <TextView
-            android:id="@+id/tv_business"
+            android:id="@+id/tv_business_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="经营业务:"
             android:textColor="@color/light_text_color" />
 
-        <TextView
+       <!-- <TextView
             android:id="@+id/tv_business_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/tv_business"
             android:text="未填写"
-            android:textColor="@color/black" />
-    </RelativeLayout>
+            android:textColor="@color/black" />-->
+   <!-- </RelativeLayout>-->
 
-    <RelativeLayout
+    <!--<RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp" >
+        >-->
 
         <TextView
-            android:id="@+id/tv_rg_time"
+            android:id="@+id/tv_lf_time_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="注册时间:"
             android:textColor="@color/light_text_color" />
 
-        <TextView
+       <!-- <TextView
             android:id="@+id/tv_lf_time_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/tv_rg_time"
             android:text="2015年8月-20时"
-            android:textColor="@color/black" />
-    </RelativeLayout>
+            android:textColor="@color/black" />-->
+    <!--</RelativeLayout>-->
 
 
-
+<!--
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="18dp"
-        android:layout_marginTop="15dp" >
+        >-->
 
         <TextView
-            android:id="@+id/tv_needs"
+            android:id="@+id/tv_needs_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="18dp"
+            android:layout_marginTop="15dp"
             android:text="特殊需求:"
             android:textColor="@color/light_text_color" />
 
-        <TextView
+        <!--<TextView
             android:id="@+id/tv_needs_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -150,9 +147,9 @@
             android:layout_toRightOf="@id/tv_needs"
             android:text="你看见带你飞科技文发空间文本附件为空白返还金额为代表符号进入网吧附近后务必发货惊人比分vhjrbfvjhrbv"
             android:textColor="@color/black" />
-    </RelativeLayout>
+    </RelativeLayout>-->
 
-    <RelativeLayout
+   <!-- <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -183,7 +180,6 @@
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@id/tv_ch_tel_content"
             android:src="@drawable/qd_tel" />
-    </RelativeLayout>
+    </RelativeLayout>-->
 
 </LinearLayout>
-</android.support.v7.widget.CardView>

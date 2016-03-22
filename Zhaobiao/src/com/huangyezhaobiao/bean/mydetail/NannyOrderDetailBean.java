@@ -127,17 +127,17 @@ public class NannyOrderDetailBean extends QDDetailBaseBean{
     @Override
     public View initView(final Context context) {
         View rootView = LayoutInflater.from(context).inflate(R.layout.item_nanny_order_detail,null);
-        ((TextView)rootView.findViewById(R.id.nanny_bid_detail_service_type_content)).setText(serviceType);
-        ((TextView)rootView.findViewById(R.id.nanny_bid_detail_hire_time_content)).setText(employTime);
-        ((TextView)rootView.findViewById(R.id.nanny_bid_detail_service_location_content)).setText(location);
-        ((TextView)rootView.findViewById(R.id.nanny_bid_detail_age_content)).setText(age);
-        ((TextView)rootView.findViewById(R.id.nanny_bid_detail_experience_content)).setText(experience);
-        ((TextView)rootView.findViewById(R.id.nanny_bid_detail_budget)).setText(budget);
-        ((TextView)rootView.findViewById(R.id.nanny_bid_detail_start_time)).setText(startTime);
-        ((TextView)rootView.findViewById(R.id.nanny_order_detail_special)).setText(special);
-        ((TextView)rootView.findViewById(R.id.tv_ch_tel_content)).setText(clientPhone);
-        ((TextView)rootView.findViewById(R.id.nanny_bid_detail_service_detail_address_content)).setText(detailAddress);
-        ((ImageView)rootView.findViewById(R.id.iv_tels)).setOnClickListener(new View.OnClickListener() {
+        ((TextView)rootView.findViewById(R.id.nanny_bid_detail_service_type_content)).setText("服务类型:   "+serviceType);
+        ((TextView)rootView.findViewById(R.id.nanny_bid_detail_hire_time_content)).setText("雇佣时间:    "+employTime);
+        ((TextView)rootView.findViewById(R.id.nanny_bid_detail_service_location_content)).setText("服务区域:    "+location);
+        ((TextView)rootView.findViewById(R.id.nanny_bid_detail_age_content)).setText("年龄要求:    "+age);
+        ((TextView)rootView.findViewById(R.id.nanny_bid_detail_experience_content)).setText("经验年限:    "+experience);
+        ((TextView)rootView.findViewById(R.id.nanny_bid_detail_budget)).setText("预    算：    "+budget);
+        ((TextView)rootView.findViewById(R.id.nanny_bid_detail_start_time)).setText("开始时间:    "+startTime);
+        ((TextView)rootView.findViewById(R.id.nanny_order_detail_special)).setText("特殊需求:    "+special);
+      //  ((TextView)rootView.findViewById(R.id.tv_ch_tel_content)).setText(clientPhone);
+        ((TextView)rootView.findViewById(R.id.nanny_bid_detail_service_detail_address_content)).setText("详细地址:    "+detailAddress);
+        /*((ImageView)rootView.findViewById(R.id.iv_tels)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //点击了打电话按钮
@@ -145,7 +145,7 @@ public class NannyOrderDetailBean extends QDDetailBaseBean{
                 initDialog(context);
                 dialog.show();
             }
-        });
+        });*/
         return rootView;
     }
 

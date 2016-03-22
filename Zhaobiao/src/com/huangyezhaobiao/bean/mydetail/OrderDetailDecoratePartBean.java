@@ -57,7 +57,7 @@ public class OrderDetailDecoratePartBean extends QDDetailBaseBean {
         initDialog(context);
         View view = LayoutInflater.from(context).inflate(R.layout.layout_qiangdan_middle_decorate_part, null);
         tv_budget_content = (TextView) view.findViewById(R.id.tv_budget_content);
-        tv_ch_tel_content = (TextView) view.findViewById(R.id.tv_ch_tel_content);
+      //  tv_ch_tel_content = (TextView) view.findViewById(R.id.tv_ch_tel_content);
         tv_lf_time_content = (TextView) view.findViewById(R.id.tv_lf_time_content);
         tv_location_content = (TextView) view.findViewById(R.id.tv_location_content);
         tv_needs_content = (TextView) view.findViewById(R.id.tv_needs_content);
@@ -68,7 +68,7 @@ public class OrderDetailDecoratePartBean extends QDDetailBaseBean {
         tv_rec_type_content = (TextView) view.findViewById(R.id.tv_recon_type_content);
         tv_detail_address_content = (TextView) view.findViewById(R.id.tv_detail_address_content);
         iv_tels = (ImageView) view.findViewById(R.id.iv_tels);
-        iv_tels.setOnClickListener(new View.OnClickListener() {
+       /* iv_tels.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //点击了打电话按钮
@@ -76,7 +76,7 @@ public class OrderDetailDecoratePartBean extends QDDetailBaseBean {
                 initDialog(OrderDetailDecoratePartBean.this.context);
                 dialog.show();
             }
-        });
+        });*/
         fillDatas();
         return view;
     }
@@ -93,17 +93,17 @@ public class OrderDetailDecoratePartBean extends QDDetailBaseBean {
      * 填充数据
      */
     private void fillDatas() {
-        tv_budget_content.setText(budget);
-        tv_ch_tel_content.setText(clientPhone);
-        tv_lf_time_content.setText(measureTime);
-        tv_location_content.setText(location);
-        tv_needs_content.setText(special);
-        tv_size_content.setText(space);
-        tv_type_content.setText(decoraType);
-        tv_zx_time_content.setText(decorateTime);
-        tv_zx_type_content.setText(type);
-        tv_rec_type_content.setText(reconsProject);
-        tv_detail_address_content.setText(detailAddress);
+        tv_budget_content.setText("装修预算:    "+budget);
+        //tv_ch_tel_content.setText(clientPhone);
+        tv_lf_time_content.setText("量房时间:   "+measureTime);
+        tv_location_content.setText("所在区域:    "+location);
+        tv_needs_content.setText("特殊需求:    "+special);
+        tv_size_content.setText("房屋面积:    "+space);
+        tv_type_content.setText("装修类型:   "+decoraType);
+        tv_zx_time_content.setText("装修时间:    "+decorateTime);
+        tv_zx_type_content.setText("装修方式:    "+type);
+        tv_rec_type_content.setText("改造类型:    "+reconsProject);
+        tv_detail_address_content.setText("详细地址:    "+detailAddress);
     }
 
     public Context getContext() {

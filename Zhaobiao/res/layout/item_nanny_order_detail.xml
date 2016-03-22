@@ -1,32 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_marginTop="10dp"
-    android:layout_height="wrap_content"
-    app:cardElevation="2dp"
-
-    >
-    <LinearLayout
-
-        android:layout_width="wrap_content"
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+       android:background="@drawable/qiangdan_bg_item"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+
         android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:orientation="vertical"
-            >
 
             <TextView
                 android:layout_width="wrap_content"
+                android:layout_marginTop="4dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="14dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="14dp"
+                android:layout_marginLeft="10dp"
                 android:text="基本信息"
                 android:textColor="@color/black" />
 
@@ -35,205 +22,230 @@
                 android:layout_height="1dp"
                 android:background="@color/divider" />
 
-            <LinearLayout
+          <!--  <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="4dp"
-                android:orientation="vertical">
 
-                <LinearLayout
+                android:orientation="vertical">-->
+
+               <!-- <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="服务类型："
-                        android:textColor="#808080"
-                        android:textSize="14sp" />
+                   >-->
 
                     <TextView
                         android:id="@+id/nanny_bid_detail_service_type_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="雇佣时间："
+                        android:text="服务类型："
+                        android:layout_marginTop="6dp"
+                        android:layout_marginLeft="10dp"
                         android:textColor="#808080"
                         android:textSize="14sp" />
+
+                   <!-- <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+                </LinearLayout>-->
+
+              <!--  <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                 >-->
 
                     <TextView
                         android:id="@+id/nanny_bid_detail_hire_time_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="雇佣时间："
+                        android:textColor="#808080"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="6dp"
+                        android:textSize="14sp" />
+
+                    <!--<TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text=""
                         android:textColor="@color/black"
                         android:textSize="14sp" />
-                </LinearLayout>
+                </LinearLayout>-->
 
-                <LinearLayout
+                <!--<LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="服务区域："
-                        android:textColor="#808080"
-                        android:textSize="14sp" />
+                    >-->
 
                     <TextView
                         android:id="@+id/nanny_bid_detail_service_location_content"
                         android:layout_width="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_height="wrap_content"
+                        android:text="服务区域："
+                        android:layout_marginTop="6dp"
+                        android:textColor="#808080"
+                        android:textSize="14sp" />
+
+                   <!-- <TextView
+
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textColor="@color/black"
                         android:textSize="14sp" />
-                </LinearLayout>
-                <LinearLayout
+                </LinearLayout>-->
+                <!--<LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp">
+                    >-->
 
                     <TextView
+                        android:id="@+id/nanny_bid_detail_service_detail_address_content"
                         android:layout_width="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_height="wrap_content"
                         android:text="详细地址："
                         android:textColor="#808080"
                         android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/nanny_bid_detail_service_detail_address_content"
+                  <!--  <TextView
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textColor="@color/black"
                         android:textSize="14sp" />
-                </LinearLayout>
+                </LinearLayout>-->
 
-                <LinearLayout
+                <!--<LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="年龄要求："
-                        android:textColor="#808080"
-                        android:textSize="14sp" />
+                   >-->
 
                     <TextView
                         android:id="@+id/nanny_bid_detail_age_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="年龄要求："
+                        android:layout_marginTop="6dp"
+                        android:textColor="#808080"
+                        android:textSize="14sp" />
+
+                   <!-- <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text=""
                         android:textColor="@color/black"
                         android:textSize="14sp" />
-                </LinearLayout>
+                </LinearLayout>-->
 
 
 
-                <LinearLayout
+                <!--<LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp">
+                    >-->
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="经验年限："
+                        android:layout_marginTop="6dp"
                         android:textColor="#808080"
+                        android:id="@+id/nanny_bid_detail_experience_content"
+                        android:layout_marginLeft="10dp"
                         android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/nanny_bid_detail_experience_content"
+                    <!--<TextView
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textColor="@color/black"
                         android:textSize="14sp" />
-                </LinearLayout>
+                </LinearLayout>-->
 
 
 
-                <LinearLayout
+               <!-- <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="预        算："
-                        android:textColor="#808080"
-                        android:textSize="14sp" />
+                   >-->
 
                     <TextView
                         android:id="@+id/nanny_bid_detail_budget"
                         android:layout_width="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:layout_height="wrap_content"
+                        android:text="预        算："
+                        android:textColor="#808080"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="14sp" />
+
+                   <!-- <TextView
+
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textColor="@color/black"
                         android:textSize="14sp" />
-                </LinearLayout>
+                </LinearLayout>-->
 
-                <LinearLayout
+               <!-- <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="开始时间："
-                        android:textColor="#808080"
-                        android:textSize="14sp" />
+                   >-->
 
                     <TextView
                         android:id="@+id/nanny_bid_detail_start_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="特殊需求："
+                        android:layout_marginTop="6dp"
+                        android:layout_marginLeft="10dp"
+                        android:text="开始时间："
                         android:textColor="#808080"
                         android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/nanny_order_detail_special"
+                  <!--  <TextView
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
-                </LinearLayout>
+                </LinearLayout>-->
+               <!-- <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                   >-->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="特殊需求："
+                        android:layout_marginTop="6dp"
+                        android:textColor="#808080"
+                        android:id="@+id/nanny_order_detail_special"
+                        android:textSize="14sp" />
+
+                   <!-- <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+                </LinearLayout>-->
 
 
-            </LinearLayout>
-            <RelativeLayout
+           <!-- </LinearLayout>-->
+          <!--  <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
@@ -264,8 +276,8 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@id/tv_ch_tel_content"
                     android:src="@drawable/qd_tel" />
-            </RelativeLayout>
+            </RelativeLayout>-->
         </LinearLayout>
 
-    </LinearLayout>
-</android.support.v7.widget.CardView>
+
+
