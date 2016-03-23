@@ -156,7 +156,7 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 
 		/**
 		 * 抢单神器使用协议start
-		 * edited by chenguangcheng
+		 * edited by chenguangming
 		 */
 		tv_accept_text_usage.setOnClickListener(new OnClickListener() {
 			@Override
@@ -171,17 +171,18 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 
 		/**
 		 * 抢单神器使用协议end
-		 * edited by chenguangcheng
+		 * edited by chenguangming
 		 */
 
 		/**
 		 * 申请成为抢单神器会员start
-		 * created by chenguangcheng
+		 * created by chenguangming
 		 */
 
 		tv_how_to_become_vip.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				BDMob.getBdMobInstance().onMobEvent(LoginActivity.this, BDEventConstans.EVENT_ID_BECOME_TO_VIP);
 				HashMap<String, String> map = new HashMap<String, String>();
 				map.put(AppConstants.H5_TITLE, getString(R.string.h5_login_raiders));
 				map.put(AppConstants.H5_WEBURL, URLConstans.HOW_TO_BECOME_VIP);
@@ -192,7 +193,7 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 
 		/**
 		 * 申请成为抢单神器会员end
-		 * created by chenguangcheng
+		 * created by chenguangming
 		 */
 
 
