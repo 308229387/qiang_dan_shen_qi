@@ -44,6 +44,9 @@ public class HttpRequest<T> {
 	
 	public void setRequestTimeOut(int timeout){
 		this.timeout = timeout;
+		if(httpTools==null){
+			httpTools = HTTPTools.newHttpUtilsInstance();
+		}
 		httpTools.setRequestTimeOut(timeout);
 	}
 	

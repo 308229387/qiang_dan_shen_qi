@@ -28,38 +28,46 @@ public abstract class SourceViewModel implements NetworkModelCallBack{
 
 	@Override
 	public void onLoadingCancell() {
-		callBack.onLoadingCancel();
+		if(callBack!=null)
+			callBack.onLoadingCancel();
 	}
 
 	@Override
 	public void onLoadingStart() {
-		callBack.onLoadingStart();
+		if(callBack!=null)
+			callBack.onLoadingStart();
 		
 	}
 
 	@Override
 	public void onLoadingFailure(String err) {
-		callBack.onLoadingError(err);
+		if(callBack!=null)
+			callBack.onLoadingError(err);
 	}
 
 	@Override
 	public void onLoadingSuccess(NetBean bean, NetWorkModel model) {
 		int status = bean.getStatus();
-		if(status==0){
-			callBack.onLoadingSuccess(jsonTransferToMap(bean));
-		}else{
-			String msg = bean.getMsg();
-			if(!TextUtils.isEmpty(msg)){
-				callBack.onLoadingError(bean.getMsg());
-			}else{
-				callBack.onLoadingError("连接失败!");
+		if(callBack!=null) {
+			if (status == 0) {
+
+				callBack.onLoadingSuccess(jsonTransferToMap(bean));
+			} else {
+				String msg = bean.getMsg();
+				if (!TextUtils.isEmpty(msg)) {
+					callBack.onLoadingError(bean.getMsg());
+				} else {
+					callBack.onLoadingError("连接失败!");
+				}
 			}
 		}
 	}
 	
 	@Override
 	public void noInternetConnect() {
-		callBack.onNoInterNetError();
+		if(callBack!=null) {
+			callBack.onNoInterNetError();
+		}
 	}
 	
 
