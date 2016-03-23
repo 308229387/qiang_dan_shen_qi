@@ -159,4 +159,9 @@ public interface BDEventConstans {
      * 点击了休息模式按钮
      */
     String EVENT_ID_REST_MODE = "restMode";
+
+    /**
+     * 点击了2步成为抢单神器会员
+     * */
+    String EVENT_ID_BECOME_TO_VIP = "becometoVip";
 }
