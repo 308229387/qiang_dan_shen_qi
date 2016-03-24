@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
@@ -13,9 +13,11 @@
     <com.huangyezhaobiao.view.TitleMessageBarLayout
         android:id="@+id/tbl"
         android:layout_width="fill_parent"
+        android:layout_below="@id/layout_head"
         android:layout_height="45dp" />
 
     <com.huangyezhaobiao.view.StretchScrollView
+        android:layout_below="@id/tbl"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
@@ -29,4 +31,4 @@
         </LinearLayout>
     </com.huangyezhaobiao.view.StretchScrollView>
 
-</LinearLayout>
+</RelativeLayout>
