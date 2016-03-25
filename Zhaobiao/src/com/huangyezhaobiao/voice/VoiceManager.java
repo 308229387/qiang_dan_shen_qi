@@ -100,7 +100,7 @@ public class VoiceManager {
 	}
 
 	private void respeak(){
-		if(!TextUtils.isEmpty(message)){
+		if(mTts!=null && !TextUtils.isEmpty(message)){
 			mTts.startSpeaking(message, mSynListener);
 		}
 	}
@@ -109,7 +109,7 @@ public class VoiceManager {
 	 * 停止说话
 	 */
 	private void stop(){
-		if(mTts.isSpeaking()){
+		if(mTts!=null && mTts.isSpeaking()){
 			mTts.stopSpeaking();
 		}
 	}
