@@ -389,7 +389,6 @@ public class MainActivity extends CommonFragmentActivity implements
 
 	private void setNavigationHeight(RelativeLayout navigation_rl) {
 		int screenHeight = getWindowManager().getDefaultDisplay().getHeight();
-		Toast.makeText(this,"height:"+screenHeight,0).show();
 		ViewGroup.LayoutParams layoutParams = navigation_rl.getLayoutParams();
 		layoutParams.height = screenHeight-50;
 		navigation_rl.setLayoutParams(layoutParams);

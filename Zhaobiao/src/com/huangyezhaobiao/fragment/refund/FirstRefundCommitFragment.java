@@ -162,7 +162,6 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
         refund_reason_dialog.setCancelButtonGone();
         refund_reason_dialog.setOnDialogClickListener(this);
         refund_desc_dialog.setOnDialogClickListener(this);
-        ListView listView = null;
 
     }
 
