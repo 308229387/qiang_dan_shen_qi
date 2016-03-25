@@ -16,3 +16,5 @@
 3.代码
         各自界面的ViewModel进行了各自业务Bean的注册----GrabListViewModel进行了主列表页的业务注册
         各自界面的Adapter进行了各自业务类型到adapter类型的转化----PopAdapter进行了主列表也的业务类型到adapter的类型的转化
+        
+4.以后每个线上版本都打一个branch,方便回溯
