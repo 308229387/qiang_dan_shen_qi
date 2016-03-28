@@ -3,14 +3,13 @@ package com.huangyezhaobiao.bean.poplist;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
@@ -45,6 +44,11 @@ public class RenovationListBean extends QDBaseBean {
 	private String type;
 	private String endTime;
 	private String space;
+
+	// edited by guangming
+	private String originalPrice; //原价
+	private String activePrice;//活动价
+
 	private int bidState;
 
 	private RenovationViewHolder holder;
@@ -153,6 +157,16 @@ public class RenovationListBean extends QDBaseBean {
 		this.bidState = bidState;
 	}
 
+	public void setOriginalPrice(String originalPrice){
+		this.originalPrice = originalPrice;
+	}
+
+	public String getOriginalPrice(){return originalPrice;}
+
+	public void setActivePrice(String activePrice){this.activePrice = activePrice;}
+
+	public String getActivePrice(){return activePrice;}
+
 	public RenovationViewHolder getHolder() {
 		return holder;
 	}
@@ -176,21 +190,24 @@ public class RenovationListBean extends QDBaseBean {
 	@Override
 	public void fillDatas() {
 		if (bidState == 1) {
-			holder.knock.setImageResource(R.drawable.t_bid_gone);
+			//holder.knock.setImageResource(R.drawable.t_bid_gone);
+			holder.knock.setBackgroundColor(RenovationListBean.this.context.getResources().getColor(R.color.whitedark));
 			holder.knock.setClickable(false);//避免setListener已经设置了,bean被复用了，导致不可抢时也可以点击
+			holder.knock.setText("已抢完");
 		}
 		else {
-			holder.knock.setImageResource(R.drawable.t_knock);
-			holder.knock.setClickable(true);
-			holder.knock.setOnClickListener(new OnClickListener() {
+			try {
+				BDMob.getBdMobInstance().onMobEvent(RenovationListBean.this.context, BDEventConstans.EVENT_ID_BIDDING_DETAIL_PAGE_BIDDING);
+				holder.knock.setClickable(true);
+				holder.knock.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					RenovationListBean.this.adapter.itemClicked(holder.knock.getId(), toPopPassBean());
-					MDUtils.servicePageMD(RenovationListBean.this.context, "" + cateId, "" + bidId,
-							MDConstans.ACTION_QIANG_DAN);
-
+					MDUtils.servicePageMD(RenovationListBean.this.context, "" + cateId, "" + bidId, MDConstans.ACTION_QIANG_DAN);
 				}
 			});
+			} catch (Exception e) {
+			}
 		}
 		holder.title.setText(this.getTitle());
 		holder.time.setText(this.getTime());
@@ -248,7 +265,11 @@ public class RenovationListBean extends QDBaseBean {
 		holder.budget = (TextView) convertView.findViewById(R.id.tv_grab_budget_title);
 		holder.decorate_type = (TextView) convertView.findViewById(R.id.tv_grab_type_title);
 		holder.location = (TextView) convertView.findViewById(R.id.tv_grab_location_title);
-		holder.knock = (ImageView) convertView.findViewById(R.id.grab_renovation_knock);
+		holder.knock = (TextView) convertView.findViewById(R.id.grab_renovation_knock);
+		holder.tvActivePrice = (TextView) convertView.findViewById(R.id.tv_grab_curprice);
+		holder.tvOriginalPrice = (TextView) convertView.findViewById(R.id.tv_grab_oldprice);
+
+		holder.tvOriginalPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
 		convertView.setTag(holder);
 		return convertView;
 	}

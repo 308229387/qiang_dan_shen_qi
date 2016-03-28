@@ -6,10 +6,13 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -257,6 +260,11 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 		//如果活动价与原价一样，那么就只显示原价不显示活动价，原价也不划横线
 		if(TextUtils.equals(bottom.getPrevilage(),bottom.getOriginFee())){//活动价为空,不显示活动价
 			discountFee.setText(bottom.getPrevilage());
+			//discountFee的marginTop为15dp,ui好看 shenzhixin add 2016.3.28
+			RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) discountFee.getLayoutParams();
+			params.topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,15,getResources().getDisplayMetrics());
+			discountFee.setLayoutParams(params);
+			//shenzhixin add 2016.3.28 end
 			fee.setVisibility(View.GONE);
 		}else {
 			//fee是原价

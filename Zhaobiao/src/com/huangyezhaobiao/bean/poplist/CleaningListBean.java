@@ -2,11 +2,11 @@ package com.huangyezhaobiao.bean.poplist;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
@@ -172,18 +172,20 @@ public class CleaningListBean extends QDBaseBean{
         });
         switch (bidState){
             case 1://不可抢
-                cleaningBidHolder.grab_cleaning_knock.setImageResource(R.drawable.t_bid_gone);
-                cleaningBidHolder.grab_cleaning_knock.setClickable(false);
+                cleaningBidHolder.grab_cleaning_knock.setBackgroundColor(CleaningListBean.this.context.getResources().getColor(R.color.whitedark));
+                cleaningBidHolder.grab_cleaning_knock.setClickable(false);//避免setListener已经设置了,bean被复用了，导致不可抢时也可以点击
+                cleaningBidHolder.grab_cleaning_knock.setText("已抢完");
+//              cleaningBidHolder.grab_cleaning_knock.setImageResource(R.drawable.t_bid_gone);
+//              cleaningBidHolder.grab_cleaning_knock.setClickable(false);
                 break;
             default:
-                cleaningBidHolder.grab_cleaning_knock.setImageResource(R.drawable.t_knock);
+//              cleaningBidHolder.grab_cleaning_knock.setImageResource(R.drawable.t_knock);
                 cleaningBidHolder.grab_cleaning_knock.setClickable(true);
                 cleaningBidHolder.grab_cleaning_knock.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         adapter.itemClicked(cleaningBidHolder.grab_cleaning_knock.getId(), toPopPassBean());
-                        MDUtils.servicePageMD(CleaningListBean.this.context, cateId, String.valueOf(bidId),
-                                MDConstans.ACTION_QIANG_DAN);
+                        MDUtils.servicePageMD(CleaningListBean.this.context, cateId, String.valueOf(bidId), MDConstans.ACTION_QIANG_DAN);
                     }
                 });
                 break;
@@ -198,14 +200,15 @@ public class CleaningListBean extends QDBaseBean{
         cleaningBidHolder                                  = new CleaningBidHolder();
         convertView                                        = inflater.inflate(getLayoutId(),parent,false);
         cleaningBidHolder.cleaning_item                    = convertView.findViewById(R.id.cleaning_item);
-        cleaningBidHolder.grab_cleaning_knock              = (ImageView) convertView.findViewById(R.id.grab_cleaning_knock);
+        cleaningBidHolder.grab_cleaning_knock              = (TextView) convertView.findViewById(R.id.grab_cleaning_knock);
         cleaningBidHolder.grab_cleaning_time               = (TextView) convertView.findViewById(R.id.grab_cleaning_time);
         cleaningBidHolder.grab_cleaning_title              = (TextView) convertView.findViewById(R.id.grab_cleaning_title);
         cleaningBidHolder.tv_cleaning_location_content     = (TextView) convertView.findViewById(R.id.tv_cleaning_location);
         cleaningBidHolder.tv_cleaning_service_time_content = (TextView) convertView.findViewById(R.id.tv_cleaning_service_time);
         cleaningBidHolder.tv_cleaning_size_content         = (TextView) convertView.findViewById(R.id.tv_cleaning_size);
-
-
+        cleaningBidHolder.tv_cleaning_orignalprice         = (TextView) convertView.findViewById(R.id.tv_grab_cleaning_originalprice);
+        cleaningBidHolder.getTv_cleaning_activeprice        = (TextView) convertView.findViewById(R.id.tv_grab_cleaning_activeprice);
+        cleaningBidHolder.tv_cleaning_orignalprice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         convertView.setTag(cleaningBidHolder);
         return convertView;
     }

@@ -23,4 +23,13 @@
 	<!-- 司机列表页-->
 
     <dimen name="shadow_width">0dp</dimen>
+
+
+	<!-- fontsize edited by chenguangming-->
+	<dimen name="textsize_xxlarge">20sp</dimen>
+	<dimen name="textsize_xlarge">18sp</dimen>
+	<dimen name="textsize_large">16sp</dimen>
+	<dimen name="textsize_normal">14sp</dimen>
+	<dimen name="textsize_small">12sp</dimen>
+	<dimen name="textsize_tiny">10sp</dimen>
 </resources>
