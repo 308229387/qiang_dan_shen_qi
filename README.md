@@ -26,3 +26,7 @@
             应用宝本地:yingyongbao_local
             360:360
             本地:fir
+            
+            
+6.每次打完包后的工具上线前要使用android sdk中的zipalign工具进行apk的优化
+http://www.cnblogs.com/xirihanlin/archive/2010/04/12/1710164.html
