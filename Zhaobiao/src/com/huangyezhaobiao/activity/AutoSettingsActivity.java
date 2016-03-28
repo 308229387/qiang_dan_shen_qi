@@ -32,13 +32,13 @@ import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 public class AutoSettingsActivity extends QBBaseActivity implements View.OnClickListener {
     private WebView        webView_auto_settings;
     private ProgressBar    progress;
-private View           back_layout;
-private TextView       txt_head;
-private WebViewClient  baseWebClient;
-private WebChromeBaseClient webChromeBaseClient;
-private ZhaoBiaoDialog dialog;
-private LinearLayout ll_webview_container;
-private TextView       tv_no_internet;
+    private View           back_layout;
+    private TextView       txt_head;
+    private WebViewClient  baseWebClient;
+    private WebChromeBaseClient webChromeBaseClient;
+    private ZhaoBiaoDialog dialog;
+    private LinearLayout ll_webview_container;
+    private TextView       tv_no_internet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

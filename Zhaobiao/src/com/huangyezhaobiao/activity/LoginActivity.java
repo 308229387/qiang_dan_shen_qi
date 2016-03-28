@@ -223,10 +223,10 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 					return;
 				}
 				startLoading();
-				//test
+				/*//test
 				name = "琼nl";
 				passwords = "qwer123";
-				//test
+				//test*/
 				loginViewModel.login(name, passwords);
 			}
 		});
