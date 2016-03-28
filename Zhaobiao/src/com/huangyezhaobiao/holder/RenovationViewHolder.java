@@ -1,8 +1,6 @@
 package com.huangyezhaobiao.holder;
 
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public final class RenovationViewHolder {
@@ -14,5 +12,9 @@ public final class RenovationViewHolder {
 	public TextView decorate_type;
 	public TextView text4;
 	public TextView location;
-	public ImageView knock;
+	public TextView knock;
+
+	// edited by chenguangming
+	public TextView tvOriginalPrice;
+	public TextView tvActivePrice;
 }
