@@ -1,90 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    android:id="@+id/renovation_item"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/renovation_item"
     android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
     android:layout_marginTop="5dp"
-    android:layout_height="wrap_content"
     android:background="@drawable/grap_list_selector"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
-   <!-- <RelativeLayout
+    <View
+        android:id="@+id/v_grab_divider1"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/divider" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:background="@color/divider" />
+
+    <TextView
+        android:id="@+id/grab_renovation_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="14dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:paddingTop="14dp" >-->
-  <!--  <View
-        android:layout_width="1px"
-        android:layout_height="match_parent"
-        android:background="@color/divider"
-        />
-    <View
-        android:layout_width="1px"
-        android:layout_height="match_parent"
-        android:background="@color/divider"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:text="ss"
+        android:layout_below="@+id/v_grab_divider1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textsize_xlarge" />
+
+    <TextView
+        android:id="@+id/grab_renovation_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/grab_renovation_title"
         android:layout_alignParentRight="true"
-        />-->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/divider"
-        />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/divider"
-        android:layout_alignParentBottom="true"
-        />
-        <TextView
-            android:id="@+id/grab_renovation_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:text="ss"
-            android:textColor="#000000"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/grab_renovation_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:text="qq"
-            android:layout_alignBaseline="@id/grab_renovation_title"
-            android:textColor="#000000"
-            android:textSize="12sp" />
-  <!--  </RelativeLayout>-->
+        android:layout_marginRight="10dp"
+        android:text="pp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/t_gray"
+        android:textSize="@dimen/textsize_small" />
 
     <View
         android:id="@+id/view_deal"
-        android:layout_below="@id/grab_renovation_time"
-        android:layout_marginTop="10dp"
         android:layout_width="fill_parent"
         android:layout_height="1px"
+        android:layout_below="@id/grab_renovation_title"
+        android:layout_marginTop="10dp"
         android:background="@color/divider" />
-<include
-    android:id="@+id/view_root"
-    layout="@layout/decorate_bottom"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/view_deal"
-    />
+
+    <include
+        android:id="@+id/view_root"
+        layout="@layout/decorate_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_deal" />
+
     <View
         android:id="@+id/view_deal_s"
-        android:layout_below="@id/view_root"
-        android:layout_marginTop="10dp"
         android:layout_width="fill_parent"
         android:layout_height="1px"
+        android:layout_below="@id/view_root"
+        android:layout_marginTop="6dp"
         android:background="@color/divider" />
 </RelativeLayout>

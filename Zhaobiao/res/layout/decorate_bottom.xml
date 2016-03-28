@@ -1,99 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:minHeight="100dp"
+    android:layout_height="wrap_content"
     android:background="@android:color/transparent"
-    android:layout_height="wrap_content">
+    android:minHeight="100dp">
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="7"-->
+    <!--android:orientation="horizontal">-->
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="0dp"
-        android:layout_weight="7"
-        android:layout_height="fill_parent"
-        >
-        <LinearLayout
+        android:id="@+id/ll_lay1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_grab_budget_title"
             android:layout_width="0dp"
-            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:layout_height="fill_parent">
-               <TextView
-                   android:layout_centerVertical="true"
-                   android:id="@+id/tv_grab_budget_title"
-                   android:layout_marginLeft="10dp"
-                   android:layout_width="fill_parent"
-                   android:layout_height="0dp"
-                   android:layout_weight="1"
-                   android:singleLine="true"
-                   android:gravity="center_vertical"
-                   android:text="预算:"
-                   android:textColor="#808080"
-                   />
-                <TextView
-                    android:layout_centerVertical="true"
-                    android:id="@+id/tv_grab_location_title"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="fill_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:textColor="#808080"
-                    android:singleLine="true"
-                    android:gravity="center_vertical"
-                    android:text="区域:"
-                    />
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="预算:"
+            android:textColor="#808080" />
 
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/tv_grab_location_title"
             android:layout_width="0dp"
-            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:layout_height="fill_parent">
-                <TextView
-                    android:layout_centerVertical="true"
-                    android:id="@+id/tv_grab_area_title"
-                    android:textColor="#808080"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="fill_parent"
-                    android:singleLine="true"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:text="面积:"
-                    />
-                <TextView
-                    android:textColor="#808080"
-                    android:id="@+id/tv_grab_type_title"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="fill_parent"
-                    android:layout_height="0dp"
-                    android:gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:singleLine="true"
-                    android:text="装修方式:"
-                    />
-
-        </LinearLayout>
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="区域:"
+            android:textColor="#808080" />
 
     </LinearLayout>
 
-    <View
-        android:layout_width="1px"
-        android:layout_height="fill_parent"
-        android:background="@color/gray"
-        />
+    <LinearLayout
+        android:id="@+id/ll_lay2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_lay1"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
 
-    <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_weight="2"
-        android:layout_height="fill_parent"
-        >
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+        <TextView
+            android:id="@+id/tv_grab_area_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="面积:"
+            android:textColor="#808080" />
+
+        <TextView
+            android:id="@+id/tv_grab_type_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="装修方式:"
+            android:textColor="#808080" />
+
+    </LinearLayout>
+
+    <!--</LinearLayout>-->
+
+    <View
+        android:id="@+id/v_divider2"
+        android:layout_width="match_parent"
+        android:layout_marginTop="12dp"
+        android:layout_height="1px"
+        android:layout_below="@+id/ll_lay2"
+        android:background="@color/gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/v_divider2"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_grab_curprice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:paddingRight="3dp"
+            android:text="$34.9"
+            android:textColor="#E12F37"
+            android:textSize="@dimen/textsize_large"
+            android:gravity="center|right" />
+
+        <TextView
+            android:id="@+id/tv_grab_oldprice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:paddingLeft="3dp"
+            android:textColor="@color/t_gray"
+            android:gravity="center|left"
+            android:textSize="@dimen/textsize_small"
+            android:text="34.9"/>
+
+        <View
+            android:layout_width="1px"
+            android:layout_marginTop="10dp"
+            android:layout_height="match_parent"
+            android:background="@color/divider"/>
+
+        <TextView
             android:id="@+id/grab_renovation_knock"
-            android:layout_centerInParent="true"
-            android:src="@drawable/t_knock"
-            />
-        </RelativeLayout>
-</LinearLayout>
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:background="@drawable/t_redbuttonselector"
+            android:text="抢单"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+</RelativeLayout>
