@@ -32,10 +32,17 @@ dependencies {
     compile files('libs/GetuiExt-2.0.3.jar')
     compile 'com.android.support:cardview-v7:23.0.1'
     compile files('libs/GetuiSDK2.8.1.0.jar')
-
 }
 
 android {
+    signingConfigs {
+        release_key {
+            keyAlias 'hyzhaobiao'
+            keyPassword 'lly5432lly'
+            storeFile file('E:/签名/hyzhaobiao.keystore')
+            storePassword 'lly5432lly'
+        }
+    }
     compileSdkVersion 22
     buildToolsVersion '22.0.1'
     sourceSets {
@@ -66,13 +73,32 @@ android {
     lintOptions {
         abortOnError false
     }
-
-    buildTypes{
-        release{
-            minifyEnabled true
+    buildTypes {
+        release {
+            minifyEnabled false
             shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+            signingConfig signingConfigs.release_key
+            zipAlignEnabled true
         }
-    }
 
+    }
+    productFlavors {
+
+        yingyongbao {
+            manifestPlaceholders = [BAIDU_CHANNEL_VALUE: "yingyongbao"]
+        }
+
+        baidu {
+            manifestPlaceholders = [BAIDU_CHANNEL_VALUE: "baidu"]
+        }
+
+        yingyongbao_local {
+            manifestPlaceholders = [BAIDU_CHANNEL_VALUE: "yingyongbao_local"]
+        }
+
+        fir {
+            manifestPlaceholders = [BAIDU_CHANNEL_VALUE: "fir"]
+        }
+
+    }
 }

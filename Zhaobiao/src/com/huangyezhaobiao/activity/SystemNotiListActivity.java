@@ -36,7 +36,7 @@ public class SystemNotiListActivity extends  QBBaseActivity implements View.OnCl
     private View                    rl_no_unread;
     private SystemNotiListVM        systemNotiListVM;
     private SystemNotiListPresenter systemNotiListPresenter;
-    private List<SysListBean>       sysListBeans = new ArrayList<>();
+    private List<SysListBean>       sysListBeans = new ArrayList<SysListBean>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

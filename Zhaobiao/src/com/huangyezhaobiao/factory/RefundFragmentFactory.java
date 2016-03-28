@@ -14,7 +14,7 @@ import java.util.Map;
  * Created by shenzhixin on 2015/12/9.
  */
 public class RefundFragmentFactory extends BaseFactory{
-    private static Map<String,Class<? extends RefundBaseFragment>> sources = new HashMap<>();
+    private static Map<String,Class<? extends RefundBaseFragment>> sources = new HashMap<String,Class<? extends RefundBaseFragment>>();
     static{
         sources.put(RefundMediator.VALUE_TYPE_TIME_CLOSE, RefundTimeCloseFragment.class);
         sources.put(RefundMediator.VALUE_TYPE_FIRST_REFUND, FirstRefundCommitFragment.class);

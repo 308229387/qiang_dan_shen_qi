@@ -37,7 +37,7 @@ public class ConsumptionActivity extends QBBaseActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
-        itemBeans = new ArrayList<>();
+        itemBeans = new ArrayList<ConsumeItemBean>();
         consumeListVM = new ConsumeListVM(this,this);
         initView();
         initSwipeRefreshLayout();

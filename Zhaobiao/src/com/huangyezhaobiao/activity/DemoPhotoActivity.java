@@ -31,7 +31,7 @@ public class DemoPhotoActivity extends QBBaseActivity implements PhotoDialog.OnP
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EventbusAgent.getInstance().register(this);
-        beans = new ArrayList<>();
+        beans = new ArrayList<BaseMediaBean>();
         photoDialog = new PhotoDialog(this);
         photoDialog.setPPViewListener(this);
         initView();
@@ -100,7 +100,7 @@ public class DemoPhotoActivity extends QBBaseActivity implements PhotoDialog.OnP
     }
 
     private ArrayList<MediaPicBean> transformBaseToPic(List<BaseMediaBean> picBeans){
-        ArrayList<MediaPicBean> baseMediaBeans = new ArrayList<>();
+        ArrayList<MediaPicBean> baseMediaBeans = new ArrayList<MediaPicBean>();
         for(BaseMediaBean picBean : picBeans){
             MediaPicBean baseMediaBean = new MediaPicBean();
             baseMediaBean.setType(picBean.getType());
@@ -115,7 +115,7 @@ public class DemoPhotoActivity extends QBBaseActivity implements PhotoDialog.OnP
 
 
     private ArrayList<BaseMediaBean> transformPicToBase(List<MediaPicBean> picBeans){
-        ArrayList<BaseMediaBean> baseMediaBeans = new ArrayList<>();
+        ArrayList<BaseMediaBean> baseMediaBeans = new ArrayList<BaseMediaBean>();
         for(MediaPicBean picBean : picBeans){
             BaseMediaBean baseMediaBean = new BaseMediaBean();
             baseMediaBean.setType(picBean.getType());

@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class RefundReasonAdapter extends BaseAdapter {
     private Context context;
-    private List<RefundFirstReasonEntity> reasonEntities = new ArrayList<>();
+    private List<RefundFirstReasonEntity> reasonEntities = new ArrayList<RefundFirstReasonEntity>();
     public RefundReasonAdapter(Context context,List<RefundFirstReasonEntity> reasonEntities){
         this.context = context;
         this.reasonEntities.clear();

@@ -755,12 +755,16 @@ public class MainActivity extends CommonFragmentActivity implements
 		List<QDBaseBean> list = (List<QDBaseBean>)t;
 		adapter.refreshSuccess(list);
 		mPullToRefreshListView.onRefreshComplete();
-		if(null==list || list.size()==0){
+		if(null==list || list.size()==0 ){
 			//加载ViewStub
 			if(root==null) {
 				root = viewStub_no_data.inflate();
-				rl_no_bid = (RelativeLayout) root.findViewById(R.id.rl_no_bid);
-				rl_no_bid.setOnClickListener(this);
+				root.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						listViewModel.refresh();
+					}
+				});
 			}
 				root.setVisibility(View.VISIBLE);
 

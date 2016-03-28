@@ -19,7 +19,7 @@ import java.util.List;
  * Created by shenzhixin on 2015/12/15.
  */
 public class SystemNotiAdapter extends BaseAdapter{
-    private List<SysListBean> listBeans = new ArrayList<>();
+    private List<SysListBean> listBeans = new ArrayList<SysListBean>();
     private Context context;
     public SystemNotiAdapter(List<SysListBean> listBeans,Context context){
         this.listBeans = listBeans;

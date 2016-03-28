@@ -142,7 +142,7 @@
         <!-- 渠道商编号 -->
         <meta-data
             android:name="BaiduMobAd_CHANNEL"
-            android:value="fir" />
+            android:value="${BAIDU_CHANNEL_VALUE}" />
 
 
        <!--开启错误日志的统计-->
