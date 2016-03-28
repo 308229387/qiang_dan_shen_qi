@@ -104,14 +104,18 @@
     <string name="not_upload_pic">您补交证据还没有上传图片,请上传图片</string>
     <string name="confirm_add_evidence">您只有一次补交证据的机会,确定提交?</string>
 
-    <!-- 登录_ edited by cheng guangming-->
+    <!-- 登录_ edited by chenguangming-->
     <string name="native_login_softwareusage">抢单神器使用协议</string>
     <string name="native_login_raiders">攻略&#058;&#160;2步成为抢单神器会员</string>
-
     <string name="h5_login_softwareusage">软件使用协议</string>
     <string name="h5_login_raiders">2步申请抢单神器会员</string>
     <string name="h5_register_success">注册成功，去进行下一步吧</string>
 
-
+    <!-- 装修 careated by chenguangming -->
+    <string name="service_renovation_budget">预算&#058;&#160;%1$s</string>
+    <string name="service_renovation_location">区域&#058;&#160;%1$s</string>
+    <string name="service_renovation_area">面积&#058;&#160;%1$s</string>
+    <string name="service_renovation_type">方式&#058;&#160;%1$s</string>
+    <string name="grab_list">抢单</string>
 
 </resources>
