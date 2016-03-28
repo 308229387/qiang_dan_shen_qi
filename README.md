@@ -18,3 +18,11 @@
         各自界面的Adapter进行了各自业务类型到adapter类型的转化----PopAdapter进行了主列表也的业务类型到adapter的类型的转化
         
 4.以后每个线上版本都打一个branch,方便回溯
+
+5.打包渠道
+    目前分为
+            百度市场:baidu
+            应用宝高速:yingyongbao
+            应用宝本地:yingyongbao_local
+            360:360
+            本地:fir
