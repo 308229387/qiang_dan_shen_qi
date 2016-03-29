@@ -39,7 +39,7 @@
         />
 
     <Button
-        android:id="@+id/grab_nanny_knock"
+        android:id="@+id/grab_main_knock"
         android:layout_width="137dp"
         android:layout_height="42dp"
         android:layout_centerVertical="true"

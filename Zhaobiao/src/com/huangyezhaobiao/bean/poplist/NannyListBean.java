@@ -233,7 +233,7 @@ public class NannyListBean extends QDBaseBean{
         this.adapter                              = adapter;
         convertView                               = inflater.inflate(getLayoutId(),parent,false);
         nannyBidHolder                            = new NannyBidHolder();
-        nannyBidHolder.grab_nanny_knock           = (Button) convertView.findViewById(R.id.grab_nanny_knock);
+        nannyBidHolder.grab_nanny_knock           = (Button) convertView.findViewById(R.id.grab_main_knock);
         nannyBidHolder.grab_nanny_time            = (TextView) convertView.findViewById(R.id.grab_nanny_time);
         nannyBidHolder.grab_nanny_title           = (TextView) convertView.findViewById(R.id.grab_nanny_title);
         nannyBidHolder.tv_nanny_budget_content    = (TextView) convertView.findViewById(R.id.tv_nanny_budget);
