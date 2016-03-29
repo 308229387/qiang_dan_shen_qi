@@ -1,39 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:minHeight="100dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:minHeight="86dp">
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_weight="7"
+        android:layout_weight="1"
+        android:layout_marginLeft="15dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_height="fill_parent"
         >
 
-            <TextView
-                android:id="@+id/tv_location_title"
-                android:layout_width="fill_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:singleLine="true"
-                android:text="注册区域:"
-                android:textColor="#8f8f8f"
-                />
+    <TextView
+        android:id="@+id/tv_location_title"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:text="注册区域:"
+        android:textColor="#8f8f8f" />
+
+    <TextView
+        android:id="@+id/tv_business_title"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:text="经营业务:"
+        android:textColor="#8f8f8f" />
+
+    </LinearLayout>
+
+    <!--
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_marginTop="5dip"
+        android:background="@color/gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:layout_marginTop="5dip"
+        android:layout_marginBottom="5dip"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
 
             <TextView
-                android:id="@+id/tv_business_title"
-                android:layout_width="fill_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:singleLine="true"
-                android:gravity="center_vertical"
-                android:textColor="#8f8f8f"
-                android:text="经营业务:"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="费用"
+                android:textColor="#E12F37"
+                android:textSize="@dimen/textsize_normal" />
+
+            <TextView
+                android:id="@+id/tv_personalregister_discountFee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥29.0"
+                android:textColor="#E12F37"
+                android:textSize="@dimen/textsize_large" />
+
+            <TextView
+                android:id="@+id/tv_personalregister_OriginFee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="59.0"
+                android:textColor="#808080"
+                android:textSize="@dimen/textsize_normal" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="fill_parent"
+            android:background="@color/gray" />
+
+        <Button
+            android:id="@+id/grab_personalregister_knock"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dip"
+            android:layout_marginLeft="6dip"
+            android:layout_weight="1"
+            android:background="@drawable/t_redbuttonselector"
+            android:gravity="center"
+            android:text="抢单"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_xlarge" />
     </LinearLayout>
+
+    -->
+
+
+    <!--
 
     <View
         android:layout_width="1px"
@@ -53,4 +124,6 @@
             />
 
     </RelativeLayout>
+
+    -->
 </LinearLayout>
