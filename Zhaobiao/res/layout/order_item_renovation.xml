@@ -10,7 +10,8 @@
     android:layout_marginRight="20dp"
     android:layout_marginTop="5dp"
     android:background="@drawable/grap_list_selector"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    app:cardElevation="2dp">
 
     <View
         android:id="@+id/v_grab_divider1"
@@ -61,13 +62,18 @@
         layout="@layout/decorate_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_below="@id/view_deal" />
 
     <View
-        android:id="@+id/view_deal_s"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_below="@id/view_root"
-        android:layout_marginTop="6dp"
         android:background="@color/divider" />
+
+    <include
+        layout="@layout/bottom_main_list"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_below="@id/view_root" />
 </RelativeLayout>

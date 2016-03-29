@@ -1,94 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-        android:id="@+id/nanny_item"
-        android:background="@drawable/grap_list_selector"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="fill_parent"
-        android:layout_marginBottom="5dp"
-        android:layout_marginRight="20dp"
-        app:cardElevation="2dp"
-        android:layout_marginTop="5dp"
-        android:layout_height="wrap_content"
-         >
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nanny_item"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginTop="5dp"
+    android:background="@drawable/grap_list_selector"
+    app:cardElevation="2dp">
+
     <View
+        android:id="@+id/v_nanny_divider1"
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/divider"
-        />
+        android:background="@color/divider" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/divider"
         android:layout_alignParentBottom="true"
-        />
-        <!--<RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="15dp"
-            android:paddingBottom="14dp"
-            android:paddingRight="15dp"
-            android:paddingTop="14dp" >-->
+        android:background="@color/divider" />
+    <!--<RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="15dp"
+        android:paddingBottom="14dp"
+        android:paddingRight="15dp"
+        android:paddingTop="14dp" >-->
 
-            <TextView
-                android:id="@+id/grab_nanny_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"
-                android:text="ss"
-                android:textColor="#000000"
-                android:textSize="18sp" />
+    <TextView
+        android:id="@+id/grab_nanny_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/v_nanny_divider1"
+        android:text="ss"
+        android:textColor="#000000"
+        android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/grab_nanny_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="10dp"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="a"
-                android:layout_alignBaseline="@id/grab_nanny_title"
-                android:textColor="#000000"
-                android:textSize="12sp" />
-      <!--  </RelativeLayout>-->
+    <TextView
+        android:id="@+id/grab_nanny_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/grab_nanny_title"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="a"
+        android:textColor="#000000"
+        android:textSize="12sp" />
+    <!--  </RelativeLayout>-->
 
-        <View
-            android:id="@+id/grab_line"
-            android:layout_below="@id/grab_nanny_time"
-            android:layout_marginTop="10dp"
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:background="@color/divider" />
+    <View
+        android:id="@+id/grab_line"
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:layout_below="@id/grab_nanny_title"
+        android:layout_marginTop="10dp"
+        android:background="@color/divider" />
 
 
-        <include
-            android:id="@+id/item_nanny"
-            layout="@layout/item_nanny_body"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/grab_line"
-            />
+    <include
+        android:id="@+id/item_nanny"
+        layout="@layout/item_nanny_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/grab_line"
+        android:layout_marginTop="10dp" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_below="@id/item_nanny"
-        android:background="@color/divider"
-        />
+        android:background="@color/divider" />
 
-        <include
-            layout="@layout/bottom_main_list"
-            android:layout_below="@id/item_nanny"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            />
+    <include
+        layout="@layout/bottom_main_list"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_below="@id/item_nanny" />
 
-    </RelativeLayout>
+</RelativeLayout>
 

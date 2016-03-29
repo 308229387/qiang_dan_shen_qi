@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
@@ -46,6 +47,33 @@ public class CleaningListBean extends QDBaseBean{
     private String location;
     private String serveTime;
     private int    bidState;
+
+    /**
+     *  edited by chemguangming =====start
+     * */
+    private String fee;//活动价
+    private String originFee;//原价
+
+    public String getFee() {
+        return fee;
+    }
+
+    public void setFee(String fee) {
+        this.fee = fee;
+    }
+
+    public String getOriginFee() {
+        return originFee;
+    }
+
+    public void setOriginFee(String originFee) {
+        this.originFee = originFee;
+    }
+
+    /**
+     * ==============================end
+     * */
+
     private CleaningBidHolder cleaningBidHolder;
     @Override
     public String getCateId() {
@@ -148,6 +176,14 @@ public class CleaningListBean extends QDBaseBean{
 
     @Override
     public void fillDatas() {
+        /**
+         *  edited by chemguangming =====start
+         * */
+        cleaningBidHolder.tv_cleaning_activeprice.setText("￥" + fee);
+        cleaningBidHolder.tv_cleaning_orignalprice.setText(originFee);
+        /**
+         * ==============================end
+         * */
         cleaningBidHolder.tv_cleaning_size_content.setText("清洁面积:"+cleanSpace);
         cleaningBidHolder.tv_cleaning_service_time_content.setText("服务时间:"+serveTime);
         cleaningBidHolder.tv_cleaning_location_content.setText("服务区域:"+location);
@@ -172,14 +208,15 @@ public class CleaningListBean extends QDBaseBean{
         });
         switch (bidState){
             case 1://不可抢
-                cleaningBidHolder.grab_cleaning_knock.setBackgroundColor(CleaningListBean.this.context.getResources().getColor(R.color.whitedark));
-                cleaningBidHolder.grab_cleaning_knock.setClickable(false);//避免setListener已经设置了,bean被复用了，导致不可抢时也可以点击
+                cleaningBidHolder.grab_cleaning_knock.setBackgroundResource(R.drawable.t_not_bid_bg);
+                cleaningBidHolder.grab_cleaning_knock.setClickable(false);//避免setListener已经设置了,bean被复用了，
+                cleaningBidHolder.grab_cleaning_knock.setTextColor(context.getResources().getColor(R.color.transparent));
                 cleaningBidHolder.grab_cleaning_knock.setText("已抢完");
-//              cleaningBidHolder.grab_cleaning_knock.setImageResource(R.drawable.t_bid_gone);
-//              cleaningBidHolder.grab_cleaning_knock.setClickable(false);
                 break;
             default:
-//              cleaningBidHolder.grab_cleaning_knock.setImageResource(R.drawable.t_knock);
+                cleaningBidHolder.grab_cleaning_knock.setBackgroundResource(R.drawable.t_redbuttonselector);
+                cleaningBidHolder.grab_cleaning_knock.setTextColor(context.getResources().getColor(R.color.white));
+                cleaningBidHolder.grab_cleaning_knock.setText("抢单");
                 cleaningBidHolder.grab_cleaning_knock.setClickable(true);
                 cleaningBidHolder.grab_cleaning_knock.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -200,14 +237,18 @@ public class CleaningListBean extends QDBaseBean{
         cleaningBidHolder                                  = new CleaningBidHolder();
         convertView                                        = inflater.inflate(getLayoutId(),parent,false);
         cleaningBidHolder.cleaning_item                    = convertView.findViewById(R.id.cleaning_item);
-        cleaningBidHolder.grab_cleaning_knock              = (TextView) convertView.findViewById(R.id.grab_cleaning_knock);
+
+        cleaningBidHolder.grab_cleaning_knock              = (Button) convertView.findViewById(R.id.grab_main_knock);
+
         cleaningBidHolder.grab_cleaning_time               = (TextView) convertView.findViewById(R.id.grab_cleaning_time);
         cleaningBidHolder.grab_cleaning_title              = (TextView) convertView.findViewById(R.id.grab_cleaning_title);
         cleaningBidHolder.tv_cleaning_location_content     = (TextView) convertView.findViewById(R.id.tv_cleaning_location);
         cleaningBidHolder.tv_cleaning_service_time_content = (TextView) convertView.findViewById(R.id.tv_cleaning_service_time);
         cleaningBidHolder.tv_cleaning_size_content         = (TextView) convertView.findViewById(R.id.tv_cleaning_size);
-        cleaningBidHolder.tv_cleaning_orignalprice         = (TextView) convertView.findViewById(R.id.tv_grab_cleaning_originalprice);
-        cleaningBidHolder.getTv_cleaning_activeprice        = (TextView) convertView.findViewById(R.id.tv_grab_cleaning_activeprice);
+
+        cleaningBidHolder.tv_cleaning_activeprice        = (TextView) convertView.findViewById(R.id.tv_main_fee);
+        cleaningBidHolder.tv_cleaning_orignalprice         = (TextView) convertView.findViewById(R.id.tv_main_origin_fee);
+
         cleaningBidHolder.tv_cleaning_orignalprice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         convertView.setTag(cleaningBidHolder);
         return convertView;
