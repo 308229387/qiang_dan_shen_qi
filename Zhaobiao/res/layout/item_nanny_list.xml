@@ -40,7 +40,7 @@
         android:layout_marginTop="5dp"
         android:layout_below="@+id/v_nanny_divider1"
         android:text="ss"
-        android:textColor="#000000"
+        android:textColor="@color/t_gray"
         android:textSize="18sp" />
 
     <TextView
