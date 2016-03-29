@@ -1,129 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:minHeight="100dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:minHeight="86dp">
+
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_weight="7"
+        android:layout_weight="1"
         android:orientation="vertical"
+        android:layout_marginLeft="15dp"
         android:layout_height="fill_parent"
         >
-        <!--<RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            >-->
-            <TextView
-                android:id="@+id/tv_location_title"
-                android:text="注册区域:"
-                android:layout_width="fill_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:textColor="#8f8f8f"
-                android:gravity="center_vertical"
-                android:singleLine="true"
-                />
-           <!-- <TextView
-                android:id="@+id/grab_domesticregister_location"
-                android:layout_toRightOf="@id/tv_location_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:textColor="@color/black"
-                android:singleLine="true"
-                />
-            </RelativeLayout>-->
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:orientation="horizontal"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+    <!--<RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >-->
+    <TextView
+        android:id="@+id/tv_location_title"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:text="注册区域:"
+        android:textColor="#8f8f8f" />
+    <!-- <TextView
+         android:id="@+id/grab_domesticregister_location"
+         android:layout_toRightOf="@id/tv_location_title"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_centerVertical="true"
+         android:textColor="@color/black"
+         android:singleLine="true"
+         />
+     </RelativeLayout>-->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:orientation="horizontal">
         <!--<RelativeLayout
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_marginTop="5dp"
             android:layout_height="wrap_content"
             >-->
+        <TextView
+            android:id="@+id/tv_delegate_budget"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="代理记账:"
+            android:textColor="#8f8f8f" />
+        <!-- <TextView
+             android:id="@+id/grab_domesticregister_time_delegate"
+             android:layout_toRightOf="@id/tv_delegate_budget"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerVertical="true"
+             android:textColor="@color/black"
+             android:singleLine="true"
+             />
+     </RelativeLayout>-->
+
+        <!--<RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content"
+            >-->
+        <TextView
+            android:id="@+id/tv_delegate_address_title"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="代理地址:"
+            android:textColor="#8f8f8f" />
+        <!--<TextView
+            android:id="@+id/grab_domesticregister_need_location_delegate"
+            android:layout_toRightOf="@id/tv_delegate_address_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:singleLine="true"
+            />
+    </RelativeLayout>-->
+
+    </LinearLayout>
+
+    <!--<RelativeLayout
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="5dp"
+        >-->
+    <TextView
+        android:id="@+id/tv_business_title"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:text="经营业务:"
+        android:textColor="#8f8f8f" />
+    <!-- <TextView
+         android:id="@+id/tv_business_content"
+         android:layout_toRightOf="@id/tv_business_title"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:singleLine="true"
+         android:text="未填写"
+         android:textColor="@color/black"
+         />
+ </RelativeLayout>-->
+    </LinearLayout>
+    <!--
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_marginTop="5dip"
+        android:background="@color/gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:layout_marginTop="5dip"
+        android:layout_marginBottom="5dip"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
+
             <TextView
-                android:id="@+id/tv_delegate_budget"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:textColor="#8f8f8f"
-                android:gravity="center_vertical"
-                android:singleLine="true"
-                android:text="代理记账:"
-                />
-           <!-- <TextView
-                android:id="@+id/grab_domesticregister_time_delegate"
-                android:layout_toRightOf="@id/tv_delegate_budget"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:textColor="@color/black"
-                android:singleLine="true"
-                />
-        </RelativeLayout>-->
+                android:text="费用"
+                android:textColor="#E12F37"
+                android:textSize="@dimen/textsize_normal" />
 
-            <!--<RelativeLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_marginTop="5dp"
+
+            <TextView
+                android:id="@+id/tv_domesticregister_discountFee"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                >-->
-                <TextView
-                    android:id="@+id/tv_delegate_address_title"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:singleLine="true"
-                    android:text="代理地址:"
-                    android:textColor="#8f8f8f"
-                    />
-                <!--<TextView
-                    android:id="@+id/grab_domesticregister_need_location_delegate"
-                    android:layout_toRightOf="@id/tv_delegate_address_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:singleLine="true"
-                    />
-            </RelativeLayout>-->
+                android:text="￥29.0"
+                android:textColor="#E12F37"
+                android:textSize="@dimen/textsize_large" />
+
+            <TextView
+                android:id="@+id/tv_domesticregister_originFee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="59.0"
+                android:textColor="#808080"
+                android:textSize="@dimen/textsize_normal" />
 
         </LinearLayout>
 
-        <!--<RelativeLayout
-            android:layout_height="0dp"
+        <Button
+            android:id="@+id/grab_domesticregister_knock"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dip"
+            android:layout_marginLeft="6dip"
             android:layout_weight="1"
-            android:layout_width="fill_parent"
-            android:layout_marginTop="5dp"
-            >-->
-            <TextView
-                android:id="@+id/tv_business_title"
-                android:layout_width="fill_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:textColor="#8f8f8f"
-                android:gravity="center_vertical"
-                android:singleLine="true"
-                android:text="经营业务:"
-                />
-           <!-- <TextView
-                android:id="@+id/tv_business_content"
-                android:layout_toRightOf="@id/tv_business_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:text="未填写"
-                android:textColor="@color/black"
-                />
-        </RelativeLayout>-->
+            android:background="@drawable/t_redbuttonselector"
+            android:gravity="center"
+            android:text="抢单"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_xlarge" />
     </LinearLayout>
+  -->
 
+    <!--
     <View
         android:layout_width="1px"
         android:layout_height="fill_parent"
@@ -142,4 +202,5 @@
             />
 
     </RelativeLayout>
+    -->
 </LinearLayout>

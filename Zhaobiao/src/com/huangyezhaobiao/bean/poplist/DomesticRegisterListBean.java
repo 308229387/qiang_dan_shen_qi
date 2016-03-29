@@ -3,6 +3,7 @@ package com.huangyezhaobiao.bean.poplist;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,7 +28,7 @@ import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.MDUtils;
 
 /**
- * 抢单信息的模型类----注册
+ * 抢单信息的模型类----工商注册
  * 
  * @author linyueyang
  *
@@ -42,12 +44,18 @@ public class DomesticRegisterListBean extends QDBaseBean {
 	private String time;
 	private String endTime;
 	private String location;
-	private String fee;// 系统扣费
+
 	private String agencyTime;// 3个月代理记账
 	private String agencyLocation;// 代理注册区域
 	//2015.10.21 add
 	private String business;//经营业务
 	//2015.10.21 add end
+
+	//2016.03.29 add　for O2O-709
+	private String fee;//活动价
+	private String originFee; //原价
+
+
 
 	private DomesticRegisterViewHolder holder;
 
@@ -177,11 +185,17 @@ public class DomesticRegisterListBean extends QDBaseBean {
 	@Override
 	public void fillDatas() {
 		if (bidState == 1) {
-			holder.knock.setImageResource(R.drawable.t_bid_gone);
+//			holder.knock.setImageResource(R.drawable.t_bid_gone);
+			holder.knock.setBackgroundResource(R.drawable.t_not_bid_bg);
+			holder.knock.setTextColor(context.getResources().getColor(R.color.transparent));
+			holder.knock.setText(R.string.bidding_finish);
 			holder.knock.setClickable(false);
 		}
 		else {
-			holder.knock.setImageResource(R.drawable.t_knock);
+//			holder.knock.setImageResource(R.drawable.t_knock);
+			holder.knock.setBackgroundResource(R.drawable.t_redbuttonselector);
+			holder.knock.setTextColor(context.getResources().getColor(R.color.white));
+			holder.knock.setText("抢单");
 			holder.knock.setClickable(true);
 			holder.knock.setOnClickListener(new OnClickListener() {
 				@Override
@@ -202,6 +216,18 @@ public class DomesticRegisterListBean extends QDBaseBean {
 		holder.tv_business_content.setText("经营业务");
 		if(!TextUtils.isEmpty(business)) {
 			holder.tv_business_content.setText("经营业务"+business);
+		}
+
+		//2016.03.29 add for O2O-709
+		if(TextUtils.equals(fee,originFee)){
+			holder.tv_main_fee.setText("￥" + fee);
+			holder.tv_main_origin_fee.setVisibility(View.INVISIBLE);
+
+		}else {
+			holder.tv_main_fee.setText("￥" + fee);
+			holder.tv_main_origin_fee.setVisibility(View.VISIBLE);
+			holder.tv_main_origin_fee.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+			holder.tv_main_origin_fee.setText(originFee);
 		}
 		holder.item.setOnClickListener(new OnClickListener() {
 			@Override
@@ -240,7 +266,12 @@ public class DomesticRegisterListBean extends QDBaseBean {
 		holder.grab_domesticregister_need_location_delegate = (TextView) convertView.findViewById(R.id.tv_delegate_address_title);
 		holder.tv_business_content  = (TextView) convertView.findViewById(R.id.tv_business_title);
 		holder.location = (TextView) convertView.findViewById(R.id.tv_location_title);
-		holder.knock = (ImageView) convertView.findViewById(R.id.grab_domesticregister_knock);
+
+		holder.tv_main_fee                = (TextView) convertView.findViewById(R.id.tv_main_fee);
+		holder.tv_main_origin_fee         = (TextView) convertView.findViewById(R.id.tv_main_origin_fee);
+		holder.knock = (Button) convertView.findViewById(R.id.grab_main_knock);
+
+
 		convertView.setTag(holder);
 		
 		return convertView;
@@ -284,6 +315,7 @@ public class DomesticRegisterListBean extends QDBaseBean {
 				", endTime='" + endTime + '\'' +
 				", location='" + location + '\'' +
 				", fee='" + fee + '\'' +
+				", originFee='" + originFee + '\'' +
 				", agencyTime='" + agencyTime + '\'' +
 				", agencyLocation='" + agencyLocation + '\'' +
 				'}';

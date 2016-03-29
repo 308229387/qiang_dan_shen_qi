@@ -8,6 +8,7 @@
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:layout_marginTop="5dp"
+    app:cardElevation="2dp"
     android:background="@drawable/grap_list_selector"
     android:layout_height="wrap_content"
    >
@@ -61,15 +62,29 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:layout_marginTop="10dp"
-        android:layout_below="@id/grab_personalregister_time"
+        android:layout_below="@id/grab_personalregister_title"
         android:background="@color/divider" />
 
     <include
+        android:id="@+id/item_personalregister"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
         android:layout_below="@id/view"
         android:layout_marginTop="10dp"
         layout="@layout/can_fetch_list_personal_domestic_item"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@id/item_personalregister"
+        android:background="@color/divider"
+        />
+
+    <include
+        layout="@layout/bottom_main_list"
+        android:layout_below="@id/item_personalregister"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
         />
 </RelativeLayout>
