@@ -76,6 +76,12 @@
             android:layout_marginTop="10dp"
             android:layout_below="@id/grab_line"
             />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@id/item_nanny"
+        android:background="@color/divider"
+        />
 
         <include
             layout="@layout/bottom_main_list"

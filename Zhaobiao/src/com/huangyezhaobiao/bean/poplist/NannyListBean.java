@@ -207,7 +207,7 @@ public class NannyListBean extends QDBaseBean{
             case 1://不可抢
                 nannyBidHolder.grab_nanny_knock.setBackgroundResource(R.drawable.t_not_bid_bg);
                 nannyBidHolder.grab_nanny_knock.setText("已抢完");
-                nannyBidHolder.grab_nanny_knock.setTextColor(context.getResources().getColor(R.color.black));
+                nannyBidHolder.grab_nanny_knock.setTextColor(context.getResources().getColor(R.color.transparent));
                 nannyBidHolder.grab_nanny_knock.setClickable(false);
                 break;
             default://可抢
