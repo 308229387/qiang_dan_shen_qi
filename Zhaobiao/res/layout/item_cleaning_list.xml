@@ -66,15 +66,21 @@
         layout="@layout/item_cleaning_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/v_grab_cleaning_divider" />
+        android:layout_below="@id/v_grab_cleaning_divider"
+        android:layout_marginTop="10dp" />
+
 
     <View
-        android:id="@+id/view_deal_s"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_below="@+id/grab_cleaning_layout"
-        android:layout_marginTop="6dp"
+        android:layout_below="@id/grab_cleaning_layout"
         android:background="@color/divider" />
+
+    <include
+        layout="@layout/bottom_main_list"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_below="@id/grab_cleaning_layout" />
 </RelativeLayout>
 
 

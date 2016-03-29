@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
@@ -46,8 +47,8 @@ public class RenovationListBean extends QDBaseBean {
 	private String space;
 
 	// edited by guangming
-	private String originalPrice; //原价
-	private String activePrice;//活动价
+	private String fee;//活动价
+	private String originFee;//原价
 
 	private int bidState;
 
@@ -157,15 +158,15 @@ public class RenovationListBean extends QDBaseBean {
 		this.bidState = bidState;
 	}
 
-	public void setOriginalPrice(String originalPrice){
-		this.originalPrice = originalPrice;
+	public void setOriginFee(String originFee){
+		this.originFee = originFee;
 	}
 
-	public String getOriginalPrice(){return originalPrice;}
+	public String getOriginFee(){return originFee;}
 
-	public void setActivePrice(String activePrice){this.activePrice = activePrice;}
+	public void setFee(String fee){this.fee = fee;}
 
-	public String getActivePrice(){return activePrice;}
+	public String getFee(){return fee;}
 
 	public RenovationViewHolder getHolder() {
 		return holder;
@@ -189,29 +190,17 @@ public class RenovationListBean extends QDBaseBean {
 
 	@Override
 	public void fillDatas() {
-		if (bidState == 1) {
-			//holder.knock.setImageResource(R.drawable.t_bid_gone);
-			holder.knock.setBackgroundColor(RenovationListBean.this.context.getResources().getColor(R.color.whitedark));
-			holder.knock.setClickable(false);//避免setListener已经设置了,bean被复用了，导致不可抢时也可以点击
-			holder.knock.setText("已抢完");
-		}
-		else {
-			try {
-				BDMob.getBdMobInstance().onMobEvent(RenovationListBean.this.context, BDEventConstans.EVENT_ID_BIDDING_DETAIL_PAGE_BIDDING);
-				holder.knock.setClickable(true);
-				holder.knock.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					RenovationListBean.this.adapter.itemClicked(holder.knock.getId(), toPopPassBean());
-					MDUtils.servicePageMD(RenovationListBean.this.context, "" + cateId, "" + bidId, MDConstans.ACTION_QIANG_DAN);
-				}
-			});
-			} catch (Exception e) {
-			}
-		}
+
 		holder.title.setText(this.getTitle());
 		holder.time.setText(this.getTime());
-		
+		/**
+		 * edited by chenguangming ==== start
+		 * */
+		holder.tvActivePrice.setText("￥"+fee);
+		holder.tvOriginalPrice.setText(originFee);
+		/**
+		 * ============================ end
+		 * */
 		if(null!=space&&space.length()>11)
 			space = space.substring(0,10)+"...";
 		if(null!=budget&&budget.length()>11)
@@ -247,6 +236,35 @@ public class RenovationListBean extends QDBaseBean {
 			}
 		});
 
+		/**
+		 * edited by chenguangming ==== start
+		 * */
+		switch (bidState){
+			case 1://不可抢
+				holder.knock.setBackgroundResource(R.drawable.t_not_bid_bg);
+				holder.knock.setText("已抢完");
+				holder.knock.setTextColor(context.getResources().getColor(R.color.transparent));
+				holder.knock.setClickable(false);
+				break;
+			default://可抢
+				holder.knock.setBackgroundResource(R.drawable.t_redbuttonselector);
+				holder.knock.setTextColor(context.getResources().getColor(R.color.white));
+				holder.knock.setText("抢单");
+				holder.knock.setClickable(true);
+				holder.knock.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						adapter.itemClicked(holder.knock.getId(), toPopPassBean());
+						MDUtils.servicePageMD(RenovationListBean.this.context, cateId, String.valueOf(bidId),
+								MDConstans.ACTION_QIANG_DAN);
+					}
+				});
+				break;
+		}
+		/**
+		 * ==============================end
+		 * */
+
 	}
 
 	@SuppressLint("NewApi")
@@ -265,9 +283,10 @@ public class RenovationListBean extends QDBaseBean {
 		holder.budget = (TextView) convertView.findViewById(R.id.tv_grab_budget_title);
 		holder.decorate_type = (TextView) convertView.findViewById(R.id.tv_grab_type_title);
 		holder.location = (TextView) convertView.findViewById(R.id.tv_grab_location_title);
-		holder.knock = (TextView) convertView.findViewById(R.id.grab_renovation_knock);
-		holder.tvActivePrice = (TextView) convertView.findViewById(R.id.tv_grab_curprice);
-		holder.tvOriginalPrice = (TextView) convertView.findViewById(R.id.tv_grab_oldprice);
+
+		holder.knock = (Button) convertView.findViewById(R.id.grab_main_knock);
+		holder.tvActivePrice = (TextView) convertView.findViewById(R.id.tv_main_fee);
+		holder.tvOriginalPrice = (TextView) convertView.findViewById(R.id.tv_main_origin_fee);
 
 		holder.tvOriginalPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
 		convertView.setTag(holder);

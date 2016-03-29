@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:minHeight="100dp"
+    android:layout_height="match_parent"
+    android:minHeight="86dp"
+    android:layout_marginLeft="15dp"
+    android:background="@android:color/transparent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:orientation="vertical">
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginLeft="15dp"-->
+        <!--android:orientation="vertical">-->
 
         <TextView
             android:id="@+id/tv_cleaning_size"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
             android:gravity="center_vertical"
-            android:layout_marginTop="12dp"
+            android:layout_weight="1.0"
             android:singleLine="true"
             android:text="清洁面积:"
             android:textColor="#808080" />
@@ -24,78 +27,80 @@
         <TextView
             android:id="@+id/tv_cleaning_location"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:layout_marginTop="12dp"
+            android:layout_weight="1.0"
             android:text="服务区域:"
             android:textColor="#808080" />
 
         <TextView
             android:id="@+id/tv_cleaning_service_time"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:layout_marginTop="12dp"
+            android:layout_weight="1.0"
             android:text="服务时间:"
             android:textColor="#808080" />
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_marginTop="12dp"
-        android:layout_height="1px"
-        android:background="@color/gray" />
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_marginTop="12dp"-->
+        <!--android:layout_height="1px"-->
+        <!--android:background="@color/gray" />-->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
 
-        <TextView
-            android:id="@+id/tv_grab_cleaning_activeprice"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:paddingRight="3dp"
-            android:text="$34.9"
-            android:textColor="#E12F37"
-            android:textSize="@dimen/textsize_large"
-            android:gravity="center|right" />
+        <!--<TextView-->
+            <!--android:id="@+id/tv_grab_cleaning_activeprice"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="0.5"-->
+            <!--android:paddingRight="3dp"-->
+            <!--android:text="$34.9"-->
+            <!--android:textColor="#E12F37"-->
+            <!--android:textSize="@dimen/textsize_xlarge"-->
+            <!--android:gravity="center|right" />-->
 
-        <TextView
-            android:id="@+id/tv_grab_cleaning_originalprice"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:paddingLeft="3dp"
-            android:textColor="@color/t_gray"
-            android:gravity="center|left"
-            android:textSize="@dimen/textsize_small"
-            android:text="34.9"/>
+        <!--<TextView-->
+            <!--android:id="@+id/tv_grab_cleaning_originalprice"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="0.5"-->
+            <!--android:paddingLeft="3dp"-->
+            <!--android:textColor="@color/t_gray"-->
+            <!--android:gravity="center|left"-->
+            <!--android:textSize="@dimen/textsize_normal"-->
+            <!--android:text="34.9"/>-->
 
-        <View
-            android:layout_width="1px"
-            android:layout_marginTop="10dp"
-            android:layout_height="match_parent"
-            android:background="@color/divider"/>
+        <!--<View-->
+            <!--android:layout_width="1px"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@color/divider"/>-->
 
-        <TextView
-            android:id="@+id/grab_cleaning_knock"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.0"
-            android:layout_marginTop="6dp"
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="6dp"
-            android:background="@drawable/t_redbuttonselector"
-            android:text="抢单"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+        <!--<Button-->
+            <!--android:id="@+id/grab_cleaning_knock"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1.0"-->
+            <!--android:layout_marginTop="6dp"-->
+            <!--android:layout_marginLeft="6dp"-->
+            <!--android:layout_marginRight="6dp"-->
+            <!--android:background="@drawable/t_redbuttonselector"-->
+            <!--android:text="抢单"-->
+            <!--android:gravity="center"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textSize="@dimen/textsize_xlarge" />-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
     <!--<RelativeLayout-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content">-->

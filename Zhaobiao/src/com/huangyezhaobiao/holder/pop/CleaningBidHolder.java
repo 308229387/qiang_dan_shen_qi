@@ -1,6 +1,7 @@
 package com.huangyezhaobiao.holder.pop;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -15,6 +16,6 @@ public class CleaningBidHolder {
     public TextView tv_cleaning_location_content;
     public TextView tv_cleaning_service_time_content;
     public TextView tv_cleaning_orignalprice;
-    public TextView getTv_cleaning_activeprice;
-    public TextView grab_cleaning_knock;
+    public TextView tv_cleaning_activeprice;
+    public Button grab_cleaning_knock;
 }
