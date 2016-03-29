@@ -51,3 +51,21 @@
 6.每次打完包后的工具上线前要使用android sdk中的zipalign工具进行apk的优化
 
 http://www.cnblogs.com/xirihanlin/archive/2010/04/12/1710164.html
+
+7.
+  1)修改versionName和versionCode
+  
+  2)管产品chenyuxian要新版本更新文案
+  
+  
+  3)特殊情况下要去掉一进入主界面就重新登录的功能(视上一个版本而定)
+  
+  4)将base_url改成线上版本
+  
+  5)多渠道打包
+  
+  6)应用市场的包交给产品
+  
+  7)服务器的包交给zhangqi05,按照 版本号_zhaobiao.apk 的命名规范
+  
+  如此次是2.4.0的版本,那么命名为2.4.0_zhaobiao.apk
