@@ -93,7 +93,6 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jniLibs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifests" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/pre-dexed" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/proguard-rules" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/res" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/rs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
@@ -110,8 +109,8 @@
     <orderEntry type="library" exported="" name="Msc" level="project" />
     <orderEntry type="library" exported="" name="nineoldandroids-2.4.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-22.2.0" level="project" />
-    <orderEntry type="library" exported="" name="jg_filter_sdk_1.1" level="project" />
     <orderEntry type="library" exported="" name="eventbus-20150901" level="project" />
+    <orderEntry type="library" exported="" name="jg_filter_sdk_1.1" level="project" />
     <orderEntry type="library" exported="" name="haha-1.1" level="project" />
     <orderEntry type="library" exported="" name="Xg_sdk_v2.38_20150616_1057" level="project" />
     <orderEntry type="library" exported="" name="cardview-v7-23.0.1" level="project" />
@@ -122,8 +121,8 @@
     <orderEntry type="library" exported="" name="universal-image-loader-1.9.4" level="project" />
     <orderEntry type="library" exported="" name="wup-1.0.0-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-22.2.0" level="project" />
-    <orderEntry type="library" exported="" name="leakcanary-analyzer-1.3" level="project" />
     <orderEntry type="library" exported="" name="Sunflower" level="project" />
+    <orderEntry type="library" exported="" name="leakcanary-analyzer-1.3" level="project" />
     <orderEntry type="library" exported="" name="MiPush_SDK_Client_2_2_16" level="project" />
     <orderEntry type="library" exported="" name="bugly_1.2.0.1_release" level="project" />
     <orderEntry type="module" module-name="Commonlib" exported="" />
