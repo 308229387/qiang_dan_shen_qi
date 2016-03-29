@@ -78,8 +78,6 @@ public class SystemActiveActivity extends QBBaseActivity implements View.OnClick
         webView_introduce.setFocusable(true);
         webView_introduce.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView_introduce.refreshDrawableState();
-
-
         webView_introduce.clearView();
         webView_introduce.clearHistory();
         webView_introduce.removeAllViews();
@@ -88,7 +86,6 @@ public class SystemActiveActivity extends QBBaseActivity implements View.OnClick
         webView_introduce.setMapTrackballToArrowKeys(false); // use trackball directly
         webView_introduce.setWebViewClient(new TJWebViewClient());
         webView_introduce.setWebChromeClient(new TJWebChromeClient());
-
         WebSettings webSettings = webView_introduce.getSettings();
         syncStaticSettings(webSettings);
         webView_introduce.loadUrl(url);

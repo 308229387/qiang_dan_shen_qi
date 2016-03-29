@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rl_no_bid"
-    android:layout_width="fill_parent"
-    android:visibility="gone"
-    android:layout_height="fill_parent">
-    <ImageView
-        android:id="@+id/tv_io"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/grabresult_hint"
-        android:layout_centerInParent="true"
-        />
-    <TextView
-        android:layout_below="@id/tv_io"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"
-        android:text="               暂无订单数据\n别着急，新订单实时刷新中~"
-        />
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/rl_no_bid"
+android:layout_width="fill_parent"
+android:visibility="gone"
+android:layout_height="fill_parent">
+<ImageView
+    android:id="@+id/tv_io"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/grabresult_hint"
+    android:layout_centerInParent="true"
+    />
+<TextView
+    android:layout_below="@id/tv_io"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="@color/black"
+    android:layout_centerHorizontal="true"
+    android:id="@+id/tv_ios"
+    android:layout_margin="20dp"
+    android:text="               暂无订单数据\n别着急，新订单实时刷新中~"
+    />
 </RelativeLayout>

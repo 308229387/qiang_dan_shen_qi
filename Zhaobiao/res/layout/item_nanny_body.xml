@@ -7,6 +7,69 @@
     android:minHeight="100dp">
     <LinearLayout
         android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="15dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/tv_nanny_time"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:text="雇佣时间:"
+            android:gravity="center_vertical"
+            android:textColor="#8f8f8f"
+            />
+
+        <TextView
+            android:id="@+id/tv_nanny_location"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:gravity="center_vertical"
+            android:text="区域:"
+            android:textColor="#8f8f8f"
+            />
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="15dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        >
+        <TextView
+            android:id="@+id/tv_nanny_budget"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:gravity="center_vertical"
+            android:textColor="#8f8f8f"
+            android:text="预算:"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_nanny_startTime"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:gravity="center_vertical"
+            android:text="开始时间:"
+            android:textColor="#8f8f8f"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/tv_nanny_budget"
+            />
+    </LinearLayout>
+   <!-- <LinearLayout
+        android:layout_width="0dp"
         android:layout_weight="7"
         android:orientation="vertical"
         android:layout_marginLeft="15dp"
@@ -69,8 +132,8 @@
     <View
         android:layout_width="1px"
         android:layout_height="fill_parent"
-        android:background="@color/gray"/>
-    <RelativeLayout
+        android:background="@color/gray"/>-->
+  <!--  <RelativeLayout
         android:layout_weight="2"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
@@ -82,5 +145,5 @@
             android:layout_centerInParent="true"
             android:src="@drawable/t_knock"
             />
-        </RelativeLayout>
+        </RelativeLayout>-->
 </LinearLayout>

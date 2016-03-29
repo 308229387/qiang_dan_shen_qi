@@ -1,6 +1,7 @@
 package com.huangyezhaobiao.holder.pop;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +16,11 @@ public class NannyBidHolder {
     public TextView  tv_nanny_location_content;
     public TextView  tv_nanny_budget_content;
     public TextView  tv_nanny_startTime_content;
-    public ImageView grab_nanny_knock;
+    public Button grab_nanny_knock;
     public View      nanny_item;
+    //RD shenzhixin 2016.3.29 add for o2o 709
+    public TextView  tv_main_fee;
+    public TextView  tv_main_origin_fee;
+    //RD shenzhixin 2016.3.29 add for o2o 709 end
+
 }

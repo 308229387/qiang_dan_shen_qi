@@ -193,7 +193,6 @@ public class BiddingApplication extends Application {
             SqlUtils.initDB(this, new SqlUpgradeCallback() {
                 @Override
                 public void onUpgrade(DbUtils dbUtils) {
-                    LogUtils.LogE("shenzhixinDB", "onUpgrade");
                     updateDb(dbUtils,"PushToStorageBean");
                 }
             });

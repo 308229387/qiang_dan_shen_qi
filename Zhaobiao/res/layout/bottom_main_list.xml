@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tv_main_fee_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="费用"
+        android:textColor="#e12f37"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:textSize="@dimen/textsize_normal"
+        />
+
+    <TextView
+        android:id="@+id/tv_main_fee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:textColor="#e12f37"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/textsize_xlarge"
+        android:layout_toRightOf="@id/tv_main_fee_title"
+        />
+
+    <TextView
+        android:id="@+id/tv_main_origin_fee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_main_fee"
+        android:textColor="#808080"
+        android:layout_marginLeft="3dp"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/textsize_normal"
+        android:layout_toRightOf="@id/tv_main_fee"
+        />
+
+    <Button
+        android:id="@+id/grab_nanny_knock"
+        android:layout_width="137dp"
+        android:layout_height="42dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:text="抢单"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize_xlarge"
+        android:background="@drawable/t_redbuttonselector"
+        />
+</RelativeLayout>

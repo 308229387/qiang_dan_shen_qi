@@ -69,11 +69,20 @@
 
 
         <include
+            android:id="@+id/item_nanny"
             layout="@layout/item_nanny_body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_below="@id/grab_line"
             />
+
+        <include
+            layout="@layout/bottom_main_list"
+            android:layout_below="@id/item_nanny"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            />
+
     </RelativeLayout>
 

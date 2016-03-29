@@ -12,7 +12,6 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -87,12 +86,8 @@ import com.huangyezhaobiao.vm.LogoutViewModel;
 import com.huangyezhaobiao.vm.UpdateViewModel;
 import com.huangyezhaobiao.vm.YuEViewModel;
 import com.xiaomi.mipush.sdk.MiPushClient;
-
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.locks.Lock;
-
-import de.greenrobot.event.EventBus;
 
 /**
  * 主页面
@@ -106,7 +101,7 @@ public class MainActivity extends CommonFragmentActivity implements
 	private ZhaoBiaoDialog exitDialog;
 	private ZhaoBiaoDialog confirmExitDialog;
 	private ZhaoBiaoDialog yueNotEnoughDialog;
-	private ZhaoBiaoDialog updateMessageDialog;
+	 private ZhaoBiaoDialog updateMessageDialog;
 	private ZhaoBiaoDialog autoSettingDialog;
 	private ZhaoBiaoDialog accountExpireDialog;
 	//由于更新所导致的强制退出对话框
@@ -755,7 +750,7 @@ public class MainActivity extends CommonFragmentActivity implements
 		List<QDBaseBean> list = (List<QDBaseBean>)t;
 		adapter.refreshSuccess(list);
 		mPullToRefreshListView.onRefreshComplete();
-		if(null==list || list.size()==0 ){
+		if(null==list || list.size()==0){
 			//加载ViewStub
 			if(root==null) {
 				root = viewStub_no_data.inflate();
