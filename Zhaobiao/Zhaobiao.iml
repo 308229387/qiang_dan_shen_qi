@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id=":Zhaobiao" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$/.." external.system.id="GRADLE" external.system.module.group="V2.2.0" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+<module external.linked.project.id=":Zhaobiao" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$/.." external.system.id="GRADLE" external.system.module.group="hy_android_zb" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="android-gradle" name="Android-Gradle">
       <configuration>
@@ -109,8 +109,8 @@
     <orderEntry type="library" exported="" name="Msc" level="project" />
     <orderEntry type="library" exported="" name="nineoldandroids-2.4.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-22.2.0" level="project" />
-    <orderEntry type="library" exported="" name="jg_filter_sdk_1.1" level="project" />
     <orderEntry type="library" exported="" name="eventbus-20150901" level="project" />
+    <orderEntry type="library" exported="" name="jg_filter_sdk_1.1" level="project" />
     <orderEntry type="library" exported="" name="haha-1.1" level="project" />
     <orderEntry type="library" exported="" name="Xg_sdk_v2.38_20150616_1057" level="project" />
     <orderEntry type="library" exported="" name="cardview-v7-23.0.1" level="project" />
@@ -121,9 +121,9 @@
     <orderEntry type="library" exported="" name="universal-image-loader-1.9.4" level="project" />
     <orderEntry type="library" exported="" name="wup-1.0.0-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-22.2.0" level="project" />
-    <orderEntry type="library" exported="" name="MiPush_SDK_Client_2_2_16" level="project" />
     <orderEntry type="library" exported="" name="Sunflower" level="project" />
     <orderEntry type="library" exported="" name="leakcanary-analyzer-1.3" level="project" />
+    <orderEntry type="library" exported="" name="MiPush_SDK_Client_2_2_16" level="project" />
     <orderEntry type="library" exported="" name="bugly_1.2.0.1_release" level="project" />
     <orderEntry type="module" module-name="Commonlib" exported="" />
     <orderEntry type="module" module-name="library" exported="" />
