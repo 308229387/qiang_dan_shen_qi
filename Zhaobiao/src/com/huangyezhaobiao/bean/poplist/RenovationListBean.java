@@ -214,7 +214,7 @@ public class RenovationListBean extends QDBaseBean {
 		Log.e("shenzhixin", "zhuangxiu,space:" + getSpace() + ",budget:" + getBudget() + ",type:" + getType() + ",endTime:" + getEndTime() + ",location:" + getLocation());
 		holder.space.setText("面积:"+this.getSpace());
 		holder.budget.setText("预算:"+this.getBudget());
-		holder.decorate_type.setText("装修方式:"+this.getType());
+		holder.decorate_type.setText("方式:"+this.getType());
 		holder.location.setText("区域:"+this.getLocation());
 
 		holder.item.setOnClickListener(new OnClickListener() {
