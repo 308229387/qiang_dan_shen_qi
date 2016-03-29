@@ -331,7 +331,7 @@ public class MainActivity extends CommonFragmentActivity implements
 		}
 		app.setCurrentNotificationListener(this);
 		NetStateManager.getNetStateManagerInstance().setINetStateChangedListener(this);
-		tbl.setVisibility(View.GONE);	
+		tbl.setVisibility(View.GONE);
 		if(NetUtils.isNetworkConnected(this)){
 			NetConnected();
 		}else{
@@ -520,7 +520,7 @@ public class MainActivity extends CommonFragmentActivity implements
 			}
 		});
 	}
-	
+
 	public void configListViewCannotLoadMore(){
 		mPullToRefreshListView
 		.setOnRefreshListener(new OnRefreshListener<ListView>() {
@@ -678,7 +678,7 @@ public class MainActivity extends CommonFragmentActivity implements
 		}
 		if (t instanceof Integer){
 			int status = (Integer) t;
-			Toast.makeText(MainActivity.this,"status:"+status,0).show();
+			Toast.makeText(MainActivity.this,"status:"+status,Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent();
 			Bundle bundle = new Bundle();
 			bundle.putSerializable("passBean", passBean);
@@ -689,7 +689,7 @@ public class MainActivity extends CommonFragmentActivity implements
 			if(status==3){//抢单成功
 				intent.setClass(MainActivity.this, BidSuccessActivity.class);
 				startActivity(intent);
-				Toast.makeText(MainActivity.this,"抢单成功",0).show();
+				Toast.makeText(MainActivity.this,"抢单成功",Toast.LENGTH_SHORT).show();
 			}
 			else if(status==1){
 				Log.e("shenzhixin","bidGOne");
@@ -718,7 +718,7 @@ public class MainActivity extends CommonFragmentActivity implements
 			}else if(status==5){//抢单失败
 				intent.setClass(MainActivity.this, BidFailureActivity.class);
 				startActivity(intent);
-				Toast.makeText(MainActivity.this,"抢单并没有成功",0).show();
+				Toast.makeText(MainActivity.this,"抢单并没有成功",Toast.LENGTH_SHORT).show();
 			}else{
 				Toast.makeText(MainActivity.this, getString(R.string.bidding_exception), Toast.LENGTH_SHORT).show();
 			}
@@ -784,7 +784,7 @@ public class MainActivity extends CommonFragmentActivity implements
 			canLoad();
 		}
 	}
-	
+
 	public void canLoad() {
 		PullToRefreshListViewUtils.PullToListViewCanLoadMore(mPullToRefreshListView);
 		configListViewRefreshListener();
@@ -926,7 +926,7 @@ public class MainActivity extends CommonFragmentActivity implements
 		}
 		readNumbers();
 	}
-	
+
 	/**
 	 * 加载效果
 	 */
@@ -951,8 +951,8 @@ public class MainActivity extends CommonFragmentActivity implements
 			loading = null;
 		}
 	}
-	
-	
+
+
 
 
 
