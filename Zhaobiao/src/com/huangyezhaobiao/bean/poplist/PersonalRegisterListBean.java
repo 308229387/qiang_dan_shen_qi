@@ -139,6 +139,22 @@ public class PersonalRegisterListBean extends QDBaseBean {
 		this.holder = holder;
 	}
 
+	public String getFee() {
+		return fee;
+	}
+
+	public void setFee(String fee) {
+		this.fee = fee;
+	}
+
+	public String getOriginFee() {
+		return originFee;
+	}
+
+	public void setOriginFee(String originFee) {
+		this.originFee = originFee;
+	}
+
 	private PersonalRegisterViewHolder holder;
 
 	@Override

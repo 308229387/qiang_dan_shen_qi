@@ -155,6 +155,14 @@ public class DomesticRegisterListBean extends QDBaseBean {
 		this.fee = fee;
 	}
 
+	public String getOriginFee() {
+		return originFee;
+	}
+
+	public void setOriginFee(String originFee) {
+		this.originFee = originFee;
+	}
+
 	public String getAgencyTime() {
 		return agencyTime;
 	}
