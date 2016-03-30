@@ -29,4 +29,10 @@ public class UpdateViewModel extends SourceViewModel{
 		t.type = TAG.CHECKVERSION;
 		t.getDatas();
 	}
+
+	@Override
+	public void onLoadingStart() {
+
+	}
+
 }

@@ -30,6 +30,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -55,7 +56,6 @@ import com.huangyezhaobiao.netmodel.NetStateManager;
 import com.huangyezhaobiao.presenter.MainPresenter;
 import com.huangyezhaobiao.service.MyService;
 import com.huangyezhaobiao.utils.ActivityUtils;
-import com.huangyezhaobiao.utils.AnimationController;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.BidListUtils;
@@ -72,7 +72,6 @@ import com.huangyezhaobiao.utils.UpdateManager;
 import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.view.LoadingProgress;
 import com.huangyezhaobiao.view.MyCustomDialog;
-import com.huangyezhaobiao.view.MyListView;
 import com.huangyezhaobiao.view.QDWaitDialog;
 import com.huangyezhaobiao.view.SegmentControl;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
@@ -86,6 +85,7 @@ import com.huangyezhaobiao.vm.LogoutViewModel;
 import com.huangyezhaobiao.vm.UpdateViewModel;
 import com.huangyezhaobiao.vm.YuEViewModel;
 import com.xiaomi.mipush.sdk.MiPushClient;
+
 import java.util.List;
 import java.util.Map;
 
@@ -125,7 +125,9 @@ public class MainActivity extends CommonFragmentActivity implements
 	private TextView tv_yue;
 	private YuEViewModel yuEViewModel;
 	private BiddingApplication app;
+
 	private UpdateViewModel updateViewModel;
+
 	private UpdateManager updateManager;
 	private TextView tv_unread;
 	private TextView smallred;
@@ -145,7 +147,9 @@ public class MainActivity extends CommonFragmentActivity implements
 	private ProgressDialog progressDialog;
 	private MainPresenter  mainPresenter;
 	private View           rl_qd;
+
 	private AccountExpireVM accountExpireVM;
+
 	private ViewStub       viewStub_no_data;
 	private View root;
 	private MyCustomDialog popDialog;
@@ -179,6 +183,7 @@ public class MainActivity extends CommonFragmentActivity implements
 		ListView mListView = mPullToRefreshListView.getRefreshableView();
 		mListView.setDividerHeight((int) TypedValue.applyDimension(
 				TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics()));
+
 		registerScreenOffReceiver();
 		configExitDialog();
 		getWindow().setBackgroundDrawable(null);
@@ -645,7 +650,7 @@ public class MainActivity extends CommonFragmentActivity implements
 	@SuppressLint("ShowToast")
 	@Override
 	public void onLoadingSuccess(Object t) {
-		stopLoading();
+
 		if(t instanceof AccountExpireBean){
 			AccountExpireBean accountExpireBean = (AccountExpireBean) t;
 			String expireState = accountExpireBean.getExpireState();
@@ -747,6 +752,7 @@ public class MainActivity extends CommonFragmentActivity implements
 	@Override
 	public void onRefreshSuccess(Object t) {
 		srl.setRefreshing(false);
+		stopLoading();
 		List<QDBaseBean> list = (List<QDBaseBean>)t;
 		adapter.refreshSuccess(list);
 		mPullToRefreshListView.onRefreshComplete();
@@ -800,6 +806,7 @@ public class MainActivity extends CommonFragmentActivity implements
 		List<QDBaseBean> list = (List<QDBaseBean>)t;
 		adapter.loadMoreSuccess(list);
 		mPullToRefreshListView.onRefreshComplete();
+		stopLoading();
 		//为获取下一页列表数据添加方法
 		QDBaseBean bean;
 		if(null!=list&&list.size()>0){
@@ -935,6 +942,8 @@ public class MainActivity extends CommonFragmentActivity implements
 			loading = new LoadingProgress(MainActivity.this,
 					R.style.loading);
 		}
+
+
 		try {
 			loading.show();
 		} catch (RuntimeException e) {
