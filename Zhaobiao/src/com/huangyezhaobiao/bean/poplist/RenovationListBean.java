@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -196,8 +197,9 @@ public class RenovationListBean extends QDBaseBean {
 		/**
 		 * edited by chenguangming ==== start
 		 * */
-		holder.tvActivePrice.setText("￥"+fee);
-		if(Float.parseFloat(fee) == Float.parseFloat(originFee)){
+		holder.tvActivePrice.setText("￥" + fee);
+
+		if(TextUtils.equals(fee, originFee)){
 			holder.tvOriginalPrice.setVisibility(View.GONE);
 		} else {
 			holder.tvOriginalPrice.setVisibility(View.VISIBLE);

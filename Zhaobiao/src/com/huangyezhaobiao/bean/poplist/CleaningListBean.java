@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -180,7 +181,7 @@ public class CleaningListBean extends QDBaseBean{
          *  edited by chemguangming =====start
          * */
         cleaningBidHolder.tv_cleaning_activeprice.setText("￥" + fee);
-        if(Float.parseFloat(fee) == Float.parseFloat(originFee)){
+        if(TextUtils.equals(fee, originFee)){
             cleaningBidHolder.tv_cleaning_orignalprice.setVisibility(View.GONE);
         } else {
             cleaningBidHolder.tv_cleaning_orignalprice.setVisibility(View.VISIBLE);
