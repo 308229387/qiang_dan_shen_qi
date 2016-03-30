@@ -180,6 +180,13 @@ public class CleaningListBean extends QDBaseBean{
          *  edited by chemguangming =====start
          * */
         cleaningBidHolder.tv_cleaning_activeprice.setText("￥" + fee);
+        if(Float.parseFloat(fee) == Float.parseFloat(originFee)){
+            cleaningBidHolder.tv_cleaning_orignalprice.setVisibility(View.GONE);
+        } else {
+            cleaningBidHolder.tv_cleaning_orignalprice.setVisibility(View.VISIBLE);
+            cleaningBidHolder.tv_cleaning_orignalprice.setText(originFee);
+        }
+
         cleaningBidHolder.tv_cleaning_orignalprice.setText(originFee);
         /**
          * ==============================end

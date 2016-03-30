@@ -197,7 +197,13 @@ public class RenovationListBean extends QDBaseBean {
 		 * edited by chenguangming ==== start
 		 * */
 		holder.tvActivePrice.setText("￥"+fee);
-		holder.tvOriginalPrice.setText(originFee);
+		if(Float.parseFloat(fee) == Float.parseFloat(originFee)){
+			holder.tvOriginalPrice.setVisibility(View.GONE);
+		} else {
+			holder.tvOriginalPrice.setVisibility(View.VISIBLE);
+			holder.tvOriginalPrice.setText(originFee);
+		}
+
 		/**
 		 * ============================ end
 		 * */
