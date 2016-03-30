@@ -165,9 +165,9 @@ public class MainActivity extends CommonFragmentActivity implements
 		keyguardManager = (KeyguardManager)getApplication().getSystemService(KEYGUARD_SERVICE);
 		keyguardLock = keyguardManager.newKeyguardLock("");
 		//检查第一次登陆有这个提示，dialog
-		if(isFirstLogin()){
+		/*if(isFirstLogin()){
 			exitForUpdateDialog.show();
-	 	}
+	 	}*/
 		app = (BiddingApplication) getApplication();
 		app.registerNetStateListener();
 		setContentView(R.layout.activity_main);
