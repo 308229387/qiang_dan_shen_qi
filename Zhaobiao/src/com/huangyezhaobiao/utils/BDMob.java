@@ -62,7 +62,7 @@ public class BDMob {
      * @return
      */
     private boolean notNeedMob(Context context){
-        return userIds.contains(UserUtils.getUserId(context)) || TextUtils.isEmpty(UserUtils.getUserId(context));
+        return false;
     }
 
 
