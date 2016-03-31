@@ -83,6 +83,10 @@ android {
             manifestPlaceholders = [BAIDU_CHANNEL_VALUE: "yingyongbao"]
         }
 
+        tsz {
+            manifestPlaceholders = [BAIDU_CHANNEL_VALUE: "360"]
+        }
+
         baidu {
             manifestPlaceholders = [BAIDU_CHANNEL_VALUE: "baidu"]
         }
