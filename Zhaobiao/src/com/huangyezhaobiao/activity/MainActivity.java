@@ -1115,7 +1115,7 @@ public class MainActivity extends CommonFragmentActivity implements
 	 */
 	private void showFirst(){
 		boolean flag = false;
-		if (flag) {//需要弹窗
+		if (SPUtils.isFirstUpdate(this)) {//需要弹窗
 			//弹对话框
 			updateMessageDialog = new ZhaoBiaoDialog(this, getString(R.string.update_hint), getString(R.string.update_message));
 			updateMessageDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {

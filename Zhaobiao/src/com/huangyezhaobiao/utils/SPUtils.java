@@ -11,7 +11,7 @@ import android.content.SharedPreferences;
 public class SPUtils {
     private static final String BACKGROUND ="background" ;
     private static String SP_NAME = "zhaobiao";
-    private static String KEY_FIRST_MAIN = "isFirstMain_haha";
+    private static String KEY_FIRST_MAIN = "isFirstMain_haha1";
     private static String KEY_FIRST_UPDATE = "isFirstUpdate";
     private static String KEY_NEED_AUTO_SETTING = "isAutoSetting";
     private static String KEY_SERVICE_STATE     = "serviceState";
@@ -93,7 +93,7 @@ public class SPUtils {
      */
     public static boolean isFirstUpdate(Context context) {
         //以spName和版本号来保存
-        SharedPreferences sp = context.getSharedPreferences(SP_NAME+"23", 0);
+        SharedPreferences sp = context.getSharedPreferences(SP_NAME+"24", 0);
         return sp.getBoolean(KEY_FIRST_UPDATE, true);
     }
 
@@ -102,7 +102,7 @@ public class SPUtils {
      * @param context
      */
     public static void saveAlreadyFirstUpdate(Context context){
-        SharedPreferences sp = context.getSharedPreferences(SP_NAME+"23", 0);
+        SharedPreferences sp = context.getSharedPreferences(SP_NAME+"24", 0);
         sp.edit().putBoolean(KEY_FIRST_UPDATE, false).commit();
     }
 
