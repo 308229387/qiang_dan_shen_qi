@@ -36,7 +36,7 @@ public class AppExitService extends Service{
     public void onCreate() {
         super.onCreate();
         //开启悬浮窗
-        Toast.makeText(this,"service open",0).show();
+        //Toast.makeText(this,"service open",0).show();
         openFloatWindow();
     }
 
