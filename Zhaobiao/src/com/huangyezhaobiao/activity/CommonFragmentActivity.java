@@ -80,7 +80,7 @@ public class CommonFragmentActivity extends FragmentActivity{
         if(!BiddingApplication.getBiddingApplication().isAppOnForeground()){//到后台了
             Log.e("shenzhiixn","to background");
             SPUtils.toBackground(this);
-           // openAppExitService();
+            openAppExitService();
         }else{
             Log.e("shenzhiixn","not to background");
         }
