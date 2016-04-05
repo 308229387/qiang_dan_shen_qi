@@ -665,6 +665,7 @@ public class MainActivity extends CommonFragmentActivity implements
 			String balance = maps.get("balance");
 			if(!TextUtils.isEmpty(balance)){
 				tv_yue.setText(balance);
+				stopLoading();//RD.shenzhixin add for bug
 			}else{
 				updateManager = UpdateManager.getUpdateManager();
 				String currentVersion = maps.get("currentVersion");
