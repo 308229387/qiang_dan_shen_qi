@@ -1,172 +1,82 @@
-# To enable ProGuard in your project, edit project.properties
-# to define the proguard.config property as described in that file.
-#
-# Add project specific ProGuard rules here.
-# By default, the flags in this file are appended to flags specified
-# in ${sdk.dir}/tools/proguard/proguard-android.txt
-# You can edit the include path and order by changing the ProGuard
-# include property in project.properties.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+-optimizationpasses 5          # 指定代码的压缩级别
+-dontusemixedcaseclassnames   # 是否使用大小写混合
+-dontpreverify           # 混淆时是否做预校验
+-verbose                # 混淆时是否记录日志
+-ignorewarnings         #忽略警告
+-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*  # 混淆时所采用的算法
+-keep public class * extends android.app.Activity      # 保持哪些类不被混淆
+-keep public class * extends android.app.Application   # 保持哪些类不被混淆
+-keep public class * extends android.app.Service       # 保持哪些类不被混淆
+-keep public class * extends android.content.BroadcastReceiver  # 保持哪些类不被混淆
+-keep public class * extends android.content.ContentProvider    # 保持哪些类不被混淆
+-keep public class * extends android.app.backup.BackupAgentHelper # 保持哪些类不被混淆
+-keep public class * extends android.preference.Preference        # 保持哪些类不被混淆
+-keep public class com.android.vending.licensing.ILicensingService    # 保持哪些类不被混淆
+-keepclasseswithmembernames class * {  # 保持 native 方法不被混淆
+    native <methods>;
+}
+-keepclasseswithmembers class * {   # 保持自定义控件类不被混淆
+    public <init>(android.content.Context, android.util.AttributeSet);
+}
+-keepclasseswithmembers class * {# 保持自定义控件类不被混淆
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
+-keepclassmembers class * extends android.app.Activity { # 保持自定义控件类不被混淆
+    public void *(android.view.View);
+}
+-keepclassmembers enum * {     # 保持枚举 enum 类不被混淆
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+-keep class * implements android.os.Parcelable { # 保持 Parcelable 不被混淆
+    public static final android.os.Parcelable$Creator *;
+}
+#这里需要keep小米推送的混淆
+-keep class com.huangyezhaobiao.push.BiddingMessageReceiver {*;}
 
-# Add any project specific keep options here:
-
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
-
-# -------------------------------------
-# android 原始混淆模板
-# -------------------------------------
-
-# ----------------------------------
-# 通过指定数量的优化能执行
-# -optimizationpasses n
-# ----------------------------------
--optimizationpasses 5
-
-# ----------------------------------
-# 混淆时不会产生形形色色的类名
-# -dontusemixedcaseclassnames
-# ----------------------------------
-#-dontusemixedcaseclassnames
-# ----------------------------------
-# 指定不去忽略非公共的库类
-# -dontskipnonpubliclibraryclasses
-# ----------------------------------
-#-dontskipnonpubliclibraryclasses
-
-# ----------------------------------
-# 不预校验
-# -dontpreverify
-# ----------------------------------
-# -dontpreverify
-
-# ----------------------------------
-# 输出生成信息
-# -verbose
-# ----------------------------------
--verbose
-
-# ----------------------------------
-# 优化选项
-# optimizations {optimization_filter}
-# ----------------------------------
--optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
-
--keep public class * extends android.app.Activity
--keep public class * extends android.app.Application
--keep public class * extends android.app.Service
--keep public class * extends android.content.BroadcastReceiver
--keep public class * extends android.content.ContentProvider
--keep public class * extends android.app.backup.BackupAgentHelper
--keep public class * extends android.preference.Preference
--keep public class com.android.vending.licensing.ILicensingService
-#科大讯飞的混淆
+#确保个推的sdk不被混淆
+-dontwarn com.igexin.**
+-keep class com.igexin.**{*;}
+#科大讯飞的sdk不被混淆
 -keep class com.iflytek.**{*;}
-#科大讯飞的混淆
 
-#百度统计的混淆
--keep class com.baidu.kirin.**{*;}
--keep class com.baidu.mobstat.**{*;}
--keep class com.baidu.bottom.**{*;}
-#百度统计的混淆
+#所有的jar包
+#-libraryjars jniLibs/android_api_3.7.0.5.jar
+#-libraryjars jniLibs/bugly_1.2.0.1_release.jar
+#-libraryjars jniLibs/eventbus-20150901.jar
+#-libraryjars jniLibs/GetuiExt-2.0.3.jar
+#-libraryjars jniLibs/GetuiSDK2.8.1.0.jar
+#-libraryjars jniLibs/jg_filter_sdk_1.1.jar
+#-libraryjars jniLibs/mid-sdk-2.20.jar
+##-libraryjars jniLibs/MiPush_SDK_Client_2_2_16.jar
+#-libraryjars jniLibs/Msc.jar
+#-libraryjars jniLibs/nineoldandroids-2.4.0.jar
+#-libraryjars jniLibs/Sunflower.jar
+#-libraryjars jniLibs/universal-image-loader-1.9.4.jar
+#-libraryjars jniLibs/wup-1.0.0-SNAPSHOT.jar
+#-libraryjars jniLibs/Xg_sdk_v2.38_20150616_1057.jar
+#-libraryjars jniLibs/armeabi/libbangbangdeamon.so
+#-libraryjars jniLibs/armeabi/libgetuiext.so
+#-libraryjars jniLibs/armeabi/libmsc.so
+#-libraryjars jniLibs/armeabi-v7a/libbangbangdeamon.so
+#-libraryjars jniLibs/armeabi-v7a/libgetuiext.so
+#-libraryjars jniLibs/armeabi-v7a/libmsc.so
+#-libraryjars jniLibs/x86/libbangbangdeamon.so
+#-libraryjars jniLibs/x86/libgetuiext.so
+#-libraryjars jniLibs/x86/libmsc.so
+#-libraryjars jniLibs/mips/libbangbangdeamon.so
+#-libraryjars jniLibs/mips/libmsc.so
 
-#bugly的混淆
--keep public class com.tencent.bugly.**{*;}
-#bugly的混淆
--keepclasseswithmembernames class * {
-native <methods>;
-}
-# -----------------
-# modify 修改合并
-# -----------------
--keep public class * extends android.view.View {
-public <init>(android.content.Context);
-public <init>(android.content.Context, android.util.AttributeSet);
-public <init>(android.content.Context, android.util.AttributeSet, int);
-public void set*(...);
-}
 
--keepclassmembers enum * {
-public static **[] values();
-public static ** valueOf(java.lang.String);
-}
+#实体bean避免混淆
+-keep class com.huangyezhaobiao.bean.**{*;}
 
--keep class * implements android.os.Parcelable {
-public static final android.os.Parcelable$Creator *;
-}
-
-#--------------------------
-# 保护类型 -keepattributes 说明
-# Exceptions, Signature, Deprecated, SourceFile, SourceDir, LineNumberTable, LocalVariableTable,
-# LocalVariableTypeTable, Synthetic, EnclosingMethod, RuntimeVisibleAnnotations, RuntimeInvisibleAnnotations,
-# RuntimeVisibleParameterAnnotations, RuntimeInvisibleParameterAnnotations, and AnnotationDefault
-# --------------------
--keepattributes **
--libraryjars <java.home>/lib/rt.jar
-
-# ----------------------
-# 不压缩指定的文件
-# -dontshrink
-# ----------------------
--dontshrink
-
-# ----------------------
-# 不优化指定的文件
-# -dontoptimize
-# -----------------------
--dontoptimize
-
-# -----------------------
-# 不混淆指定的文件
-# -dontobfuscate
-# -----------------------
-
-# ----- 混淆包路径 -------
--repackageclasses ''
--flattenpackagehierarchy ''
--target 1.6
-
-# -------- 以下是使用了 roboguice-1.1.2.jar 以及 guice-2.0-no_app.jar 功能需要保护的字段及类相关 --------
--keep class com.google.inject.Binder
--keepclassmembers class * {
-@com.google.inject.Inject <init>(...);
-}
--keepclassmembers class * {
-void *(**On*Event);
-}
--keepclassmembers class **.R$* {
-public static <fields>;
+#eventbus
+-keepclassmembers class ** {
+    public void onEvent*(**);
 }
 
-# ------ 编译时需要用到的 jar 包
-#
-#-libraryjars D:/dev_rc/android-sdk-windows/add-ons/addon_google_apis_google_inc_11/libs/maps.jar
--libraryjars D:/ssss/hy_android_zb/Commonlib/libs/fastjson-1.2.5.jar
--libraryjars D:/ssss/hy_android_zb/Commonlib/libs/xUtils-2.6.14.jar
-# ------ 保护 谷歌第三方 jar 包，界面特效 ----------
--keep class android.support.v4.**
--dontwarn android.support.v4.**
-
-# ------ 保护百度地址jar包 --------
--keep class com.baidu.mapapi.** { *; }
--dontwarn com.baidu.mapapi.**
--dontwarn com.alibaba.fastjson.**
-
-
-#-keepnames class * implements java.io.Serializable
-# ---------保护所有实体中的字段名称----------
--keepclassmembers class * implements java.io.Serializable {
-<fields>;
+# Only required if you use AsyncExecutor
+-keepclassmembers class * extends de.greenrobot.event.util.ThrowableFailureEvent {
+    <init>(java.lang.Throwable);
 }
-
-# --------- 保护类中的所有方法名 ------------
--keepclassmembers class * {
-public <methods>;
-}
-

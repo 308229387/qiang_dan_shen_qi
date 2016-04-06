@@ -38,7 +38,7 @@ android {
             storePassword 'lly5432lly'
         }
     }
-    compileSdkVersion 22
+    compileSdkVersion 21
     buildToolsVersion '22.0.1'
     sourceSets {
         main {
@@ -70,9 +70,10 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             shrinkResources true
             signingConfig signingConfigs.release_key
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-project.txt"
             zipAlignEnabled true
         }
 
