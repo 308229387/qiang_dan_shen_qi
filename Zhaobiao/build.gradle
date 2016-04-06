@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'bugly'
 buildscript {
     repositories {
         mavenCentral()
@@ -7,12 +8,17 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:1.5.0'
 
+
     }
 }
 repositories {
     mavenCentral()
 }
 
+bugly {
+    appId = '900004313'
+    appKey = 'S9RwoAyOW3kknbMJ'
+}
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
     compile project(':library')

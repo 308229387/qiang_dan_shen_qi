@@ -41,7 +41,9 @@
 -keep class com.igexin.**{*;}
 #科大讯飞的sdk不被混淆
 -keep class com.iflytek.**{*;}
-
+#腾讯bugly
+-dontwarn com.tencent.bugly.**
+-keep public class com.tencent.bugly.**{*;}
 
 #所有的jar包
 #-libraryjars jniLibs/android_api_3.7.0.5.jar
@@ -83,3 +85,5 @@
 -keepclassmembers class * extends de.greenrobot.event.util.ThrowableFailureEvent {
     <init>(java.lang.Throwable);
 }
+
+-printmapping build/outputs/mapping/release/mapping.txt
