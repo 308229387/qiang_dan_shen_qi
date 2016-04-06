@@ -4,6 +4,8 @@
 -verbose                # 混淆时是否记录日志
 -ignorewarnings         #忽略警告
 -optimizations !code/simplification/arithmetic,!field/*,!class/merging/*  # 混淆时所采用的算法
+# keep 泛型
+-keepattributes Signature
 -keep public class * extends android.app.Activity      # 保持哪些类不被混淆
 -keep public class * extends android.app.Application   # 保持哪些类不被混淆
 -keep public class * extends android.app.Service       # 保持哪些类不被混淆
@@ -39,6 +41,7 @@
 -keep class com.igexin.**{*;}
 #科大讯飞的sdk不被混淆
 -keep class com.iflytek.**{*;}
+
 
 #所有的jar包
 #-libraryjars jniLibs/android_api_3.7.0.5.jar
