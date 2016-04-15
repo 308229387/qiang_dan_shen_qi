@@ -14,6 +14,10 @@
 -keep public class * extends android.app.backup.BackupAgentHelper # 保持哪些类不被混淆
 -keep public class * extends android.preference.Preference        # 保持哪些类不被混淆
 -keep public class com.android.vending.licensing.ILicensingService    # 保持哪些类不被混淆
+#如果有引用v4包可以添加下面这行
+-keep public class * extends android.support.v4.app.Fragment
+#我是以libaray的形式引用了一个图片加载框架,如果不想混淆 keep 掉
+-keep class com.nostra13.universalimageloader.** { *; }
 -keepclasseswithmembernames class * {  # 保持 native 方法不被混淆
     native <methods>;
 }
@@ -44,6 +48,19 @@
 #腾讯bugly
 -dontwarn com.tencent.bugly.**
 -keep public class com.tencent.bugly.**{*;}
+#保持 Serializable 不被混淆
+-keepnames class * implements java.io.Serializable
+#如果引用了v4或者v7包
+-dontwarn android.support.**
+
+#不混淆资源类
+-keepclassmembers class **.R$* {
+    public static <fields>;
+}
+
+# webview + js
+-keepattributes *JavascriptInterface*
+
 
 #所有的jar包
 #-libraryjars jniLibs/android_api_3.7.0.5.jar

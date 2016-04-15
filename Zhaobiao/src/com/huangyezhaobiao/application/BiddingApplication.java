@@ -9,7 +9,6 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.os.Process;
 import android.os.StrictMode;
@@ -20,7 +19,6 @@ import com.huangye.commonlib.sql.SqlUpgradeCallback;
 import com.huangye.commonlib.utils.UserConstans;
 import com.huangyezhaobiao.bean.AppBean;
 import com.huangyezhaobiao.bean.push.PushToStorageBean;
-import com.huangyezhaobiao.constans.AppConstants;
 import com.huangyezhaobiao.inter.INotificationListener;
 import com.huangyezhaobiao.log.LogHandler;
 import com.huangyezhaobiao.notification.GePushNotify;
@@ -29,7 +27,6 @@ import com.huangyezhaobiao.notification.MiPushNotify;
 import com.huangyezhaobiao.notification.NotificationExecutor;
 import com.huangyezhaobiao.push.BiddingMessageReceiver.PushHandler;
 import com.huangyezhaobiao.receiver.NetworkChangedReceiver;
-import com.huangyezhaobiao.utils.FileUtils;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.voice.VoiceManager;
@@ -40,15 +37,11 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.tencent.bugly.crashreport.CrashReport;
-import com.xiaomi.channel.commonutils.logger.LoggerInterface;
-import com.xiaomi.mipush.sdk.Logger;
-import com.xiaomi.mipush.sdk.MiPushClient;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * 1、为了打开客户端的日志，便于在开发过程中调试，需要自定义一个Application。
@@ -186,19 +179,25 @@ public class BiddingApplication extends Application {
             }).start();*/
             Log.e("Thread", Thread.currentThread().getName());
             // 接入腾讯Bugly
-            Context appContext = this.getApplicationContext();
-            String appId = "900004313"; // 上Bugly(bugly.qq.com)注册产品获取的AppId
-            boolean isDebug = true; // true代表App处于调试阶段，false代表App发布阶段
-            CrashReport.initCrashReport(appContext, appId, isDebug); // 初始化SDK
-            SqlUtils.initDB(this, new SqlUpgradeCallback() {
+            final Context appContext = this.getApplicationContext();
+            final String appId = "900004313"; // 上Bugly(bugly.qq.com)注册产品获取的AppId
+            final boolean isDebug = true; // true代表App处于调试阶段，false代表App发布阶段
+            new Thread(new Runnable() {
                 @Override
-                public void onUpgrade(DbUtils dbUtils) {
-                    updateDb(dbUtils,"PushToStorageBean");
+                public void run() {
+                    CrashReport.initCrashReport(appContext, appId, isDebug); // 初始化SDK
+                    SqlUtils.initDB(getApplicationContext(), new SqlUpgradeCallback() {
+                        @Override
+                        public void onUpgrade(DbUtils dbUtils) {
+                            updateDb(dbUtils,"PushToStorageBean");
+                        }
+                    });
+                    initImageLoader();
+                    manager = VoiceManager.getVoiceManagerInstance(getApplicationContext());
+                    manager.initVoiceManager(getApplicationContext());//初始化科大讯飞
                 }
-            });
-            initImageLoader();
-            manager = VoiceManager.getVoiceManagerInstance(this);
-            manager.initVoiceManager(this);//初始化科大讯飞
+            }).start();
+
         }
 
 

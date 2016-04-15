@@ -6,11 +6,13 @@ buildscript {
         maven { url 'https://maven.fabric.io/public' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.5.0'
+        classpath 'com.android.tools.build:gradle:2.0.0'
 
 
     }
 }
+
+
 repositories {
     mavenCentral()
 }
@@ -33,6 +35,9 @@ dependencies {
     compile files('libs/GetuiExt-2.0.3.jar')
     compile 'com.android.support:cardview-v7:23.0.1'
     compile files('libs/GetuiSDK2.8.1.0.jar')
+    compile files('libs/bugly_crash_release__2.1.jar')
+
+
 }
 
 android {
@@ -76,7 +81,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             shrinkResources true
             signingConfig signingConfigs.release_key
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-project.txt"

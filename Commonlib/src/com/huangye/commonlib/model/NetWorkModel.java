@@ -168,7 +168,7 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
 				});
 			}else {//合法
 				Log.e("shenzhixin","json string:"+jsonObject.toJSONString());
-				if (TextUtils.isEmpty(jsonObject.getString("result"))) {
+				if (TextUtils.isEmpty(jsonObject.getString("result")) || "1".equals(jsonObject.getString("status"))) {
 					baseSourceModelCallBack.onLoadingFailure(jsonObject.getString("msg"));
 				} else {
 					baseSourceModelCallBack.onLoadingSuccess(transformJsonToNetBean(result), this);
