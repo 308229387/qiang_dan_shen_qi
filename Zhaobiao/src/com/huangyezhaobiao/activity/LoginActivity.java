@@ -372,7 +372,6 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 		}
 		EventbusAgent.getInstance().unregister(this);
 		releaseSources();
-		System.gc();
 	}
 
 	private void releaseSources() {

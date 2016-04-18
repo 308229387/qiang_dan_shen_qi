@@ -15,7 +15,9 @@ import java.util.List;
  */
 public class StateUtils {
 
-	
+	public static void setState(int inputStatr){
+		state = inputStatr;
+	}
 	
 	
 	public static int state = 0; //服务模式为1 休息模式为2  后台运行为0

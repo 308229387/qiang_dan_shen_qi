@@ -148,7 +148,6 @@ public class LockActivity extends Activity implements NetWorkVMCallBack, View.On
     private  VoiceManager.OnVoiceManagerPlayFinished listener;
 
     private void show() {
-        String size =  "size:" + PushUtils.pushList.size() + ",voiceManager:" + (voiceManager == null) + ",";
         if(PushUtils.pushList.size()==0) {
             Toast.makeText(this, "并不能从后台进入,请从主界面进入", Toast.LENGTH_SHORT).show();
         }
@@ -286,7 +285,6 @@ public class LockActivity extends Activity implements NetWorkVMCallBack, View.On
 
     @Override
     public void onLoadingSuccess(Object t) {
-        Intent intent = new Intent();
         qdDialog.dismiss();
      //   backToKeyguard();
         voiceManager.closeOrdersDialog();

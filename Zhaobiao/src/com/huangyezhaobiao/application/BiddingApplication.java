@@ -8,8 +8,6 @@ import android.content.Context;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Message;
 import android.os.Process;
 import android.os.StrictMode;
 import android.util.Log;
@@ -73,6 +71,11 @@ public class BiddingApplication extends Application {
     private VoiceManager manager;
     private static BiddingApplication app;
     private ImageLoader imageLoader;
+
+
+    private void setApp(BiddingApplication context){
+        app = context;
+    }
 
     public void setCurrentNotificationListener(INotificationListener listener) {
         this.listener = listener;
@@ -139,7 +142,7 @@ public class BiddingApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        app = this;
+       setApp(BiddingApplication.this);
         refWatcher = LeakCanary.install(this);
         initNotificationExecutor();
         initGeTuiNotificationExecutor();
@@ -148,8 +151,7 @@ public class BiddingApplication extends Application {
             StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().penaltyLog().build());
         }
         AppBean.getAppBean().setApp(this);
-        UserConstans.USER_ID = UserUtils.getUserId(this);
-
+        UserConstans.setUserId(UserUtils.getUserId(this));
         // 注册push服务，注册成功后会向DemoMessageReceiver发送广播
         // 可以从DemoMessageReceiver的onCommandResult方法中MiPushCommandMessage对'象参数中获取注册信息
         // 因为推送服务XMPushService在AndroidManifest.xml中设置为运行在另外一个进程，这导致本Application会被实例化两次，所以我们需要让应用的主进程初始化。
@@ -371,13 +373,13 @@ public class BiddingApplication extends Application {
         return loghandler;
     }
 
-    private class MyDemoHandler extends Handler {
+   /* private  static class MyDemoHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             // baseActivity.showDialog();
         }
 
-    }
+    }*/
 
 }

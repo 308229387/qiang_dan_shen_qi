@@ -413,7 +413,7 @@
         <activity android:name=".activity.ConsumptionActivity"
             android:screenOrientation="portrait"
             />
-        <!--<activity android:name=".activity.TestActivity">
+       <!-- <activity android:name=".activity.TestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -424,6 +424,9 @@
             android:name="com.xiaomi.push.service.XMPushService"
             android:enabled="true"
             android:process=":pushservice" />
+
+        <service android:name=".service.TestService"/>
+        <service android:name=".service.TestService$TestInnerService"/>
         <service
             android:name="com.xiaomi.mipush.sdk.PushMessageHandler"
             android:enabled="true"

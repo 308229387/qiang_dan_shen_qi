@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.windowf.AppExitService;
+import com.huangyezhaobiao.service.TestService;
 
 /**
  * Created by 58 on 2016/3/8.
@@ -26,8 +26,8 @@ public class TestActivity extends Activity{
 
 
     public void floatButton(View view){
-        Intent intent = new Intent(this, AppExitService.class);
+        Intent intent = new Intent(this, TestService.class);
         startService(intent);
-        onBackPressed();
+
     }
 }

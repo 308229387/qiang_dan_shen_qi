@@ -71,7 +71,6 @@ import com.huangyezhaobiao.utils.UnreadUtils;
 import com.huangyezhaobiao.utils.UpdateManager;
 import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.view.LoadingProgress;
-import com.huangyezhaobiao.view.MyCustomDialog;
 import com.huangyezhaobiao.view.QDWaitDialog;
 import com.huangyezhaobiao.view.SegmentControl;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
@@ -119,7 +118,6 @@ public class MainActivity extends CommonFragmentActivity implements
 	private RelativeLayout mywallet;//我的钱包
 	private ImageView iv_refresh;// 刷新按钮
 	private RelativeLayout help;
-	private RelativeLayout rl_no_bid;//没有标地时的提示
 	private View about;
 	private View rl_exit;
 	private TextView tv_yue;
@@ -152,7 +150,7 @@ public class MainActivity extends CommonFragmentActivity implements
 
 	private ViewStub       viewStub_no_data;
 	private View root;
-	private MyCustomDialog popDialog;
+	//private MyCustomDialog popDialog;
 
 
 	@Override
@@ -310,7 +308,6 @@ public class MainActivity extends CommonFragmentActivity implements
 		unregisterScreenOffReceiver();
 		super.onDestroy();
 		releaseSource();
-		System.gc();
 	}
 
 	private void releaseSource() {
@@ -364,7 +361,7 @@ public class MainActivity extends CommonFragmentActivity implements
 		mSegmentControl = (SegmentControl) findViewById(R.id.segment_control);
 		mywallet          = (RelativeLayout) findViewById(R.id.mywallet);
 		//初始化服务模式
-		StateUtils.state = 1;
+		StateUtils.setState(1);
 		tbl.setVisibility(View.GONE);
 		tbl.setTitleBarListener(this);
 		refreshbutton = (ImageView) this.findViewById(R.id.refreshbutton);
@@ -418,6 +415,9 @@ public class MainActivity extends CommonFragmentActivity implements
 								break;
 							case 1:
 								BDMob.getBdMobInstance().onMobEvent(MainActivity.this,BDEventConstans.EVENT_ID_REST_MODE);
+								break;
+							default:
+								BDMob.getBdMobInstance().onMobEvent(MainActivity.this,BDEventConstans.EVENT_ID_SERVICE_MODE);
 								break;
 						}
 						onChangeView(index);
@@ -600,10 +600,7 @@ public class MainActivity extends CommonFragmentActivity implements
 			case R.id.mywallet://点击了我的钱包
 				ActivityUtils.goToActivity(this, MyWalletActivity.class);
 				break;
-			case R.id.rl_no_bid://点击刷新
-				listViewModel.refresh();
-				break;
-		case R.id.help:// 跳到帮助
+			case R.id.help:// 跳到帮助
 			ActivityUtils.goToActivity(this, HelpActivity.class);
 			break;
 		case R.id.about:// 关于
@@ -638,6 +635,9 @@ public class MainActivity extends CommonFragmentActivity implements
 			case R.id.sliding_settings://设置,跳转到Settings页面
 				Intent intent = SettingsActivity.onNewIntent(this);
 				startActivity(intent);
+				break;
+			default:
+				//do nothing
 				break;
 		}
 	}
@@ -690,8 +690,8 @@ public class MainActivity extends CommonFragmentActivity implements
 			bundle.putSerializable("passBean", passBean);
 			intent.putExtras(bundle);
 			dismissQDWaitDialog();
-			if(null!=popDialog)
-				popDialog.dismiss();
+			//if(null!=popDialog)
+			//	popDialog.dismiss();
 			if(status==3){//抢单成功
 				intent.setClass(MainActivity.this, BidSuccessActivity.class);
 				startActivity(intent);
@@ -1019,9 +1019,10 @@ public class MainActivity extends CommonFragmentActivity implements
 	private class ScreenReceiver extends BroadcastReceiver {
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			LogUtils.LogE("shenzhixin", "action:" + intent.getAction());
+
 			//getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
 			if (intent == null) return;
+			LogUtils.LogE("shenzhixin", "action:" + intent.getAction());
 			if ("android.intent.action.SCREEN_ON".equals(intent.getAction())) {
 				KeyguardUtils.SCREEN_ON = true;
 				KeyguardUtils.need_lock = false;
