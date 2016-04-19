@@ -19,6 +19,8 @@
     <com.huangyezhaobiao.view.StretchScrollView
         android:layout_below="@id/tbl"
         android:layout_width="match_parent"
+        android:fadingEdge="none"
+        android:fadingEdgeLength="1px"
         android:layout_height="match_parent" >
 
         <LinearLayout

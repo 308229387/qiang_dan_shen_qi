@@ -1,28 +1,21 @@
 package com.huangyezhaobiao.service;
 
         import android.app.IntentService;
-        import android.content.Context;
-        import android.content.Intent;
+import android.content.Context;
+import android.content.Intent;
         import android.util.Log;
 
         import com.huangye.commonlib.delegate.HttpRequestCallBack;
-        import com.huangye.commonlib.network.HTTPTools;
-        import com.huangye.commonlib.utils.JsonUtils;
-        import com.huangyezhaobiao.activity.LockActivity;
-        import com.huangyezhaobiao.application.BiddingApplication;
-        import com.huangyezhaobiao.bean.push.PushBean;
-        import com.huangyezhaobiao.deal.IDealWithBean;
-        import com.huangyezhaobiao.gtui.AppStateFactory;
-        import com.huangyezhaobiao.notification.NotificationExecutor;
-        import com.huangyezhaobiao.push.BiddingMessageReceiver;
-        import com.huangyezhaobiao.url.URLConstans;
-        import com.huangyezhaobiao.url.UrlSuffix;
-        import com.huangyezhaobiao.utils.KeyguardUtils;
-        import com.huangyezhaobiao.utils.PushUtils;
-        import com.huangyezhaobiao.utils.SPUtils;
-        import com.huangyezhaobiao.utils.UserUtils;
-        import com.huangyezhaobiao.vm.LoginViewModel;
-        import com.huangyezhaobiao.voice.VoiceManager;
+import com.huangye.commonlib.network.HTTPTools;
+import com.huangyezhaobiao.application.BiddingApplication;
+import com.huangyezhaobiao.bean.push.PushBean;
+import com.huangyezhaobiao.deal.IDealWithBean;
+import com.huangyezhaobiao.gtui.AppStateFactory;
+import com.huangyezhaobiao.notification.NotificationExecutor;
+import com.huangyezhaobiao.push.BiddingMessageReceiver;
+import com.huangyezhaobiao.url.URLConstans;
+import com.huangyezhaobiao.url.UrlSuffix;
+import com.huangyezhaobiao.utils.PushUtils;
 
 /**
  * Created by 58 on 2016/1/7.
@@ -86,6 +79,7 @@ public class GPushService extends IntentService {
         String bidId   = pushBean.toPushPassBean().getBidId()+"";
         String bidType = pushBean.getTag()+"";
         String url     = URLConstans.URL_RECEIVE_GE_PUSH + UrlSuffix.getGePushSuffix(this,bidId,bidType);
+        Log.e("shenzhixinsss","url:"+url);
         try {
             HTTPTools.newHttpUtilsInstance().doGet(url, new HttpRequestCallBack() {
                 @Override
