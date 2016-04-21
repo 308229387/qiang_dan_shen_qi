@@ -118,4 +118,23 @@
     <string name="service_renovation_type">方式&#058;&#160;%1$s</string>
     <string name="grab_list">抢单</string>
 
+    <!-- 登录需要的一些常量可修改,edited by chenguangming-->
+    <string-array name="passport_request_param">
+        <item>source</item>
+        <item>rsakeyversion</item>
+        <item>isapp</item>
+        <item>isremember</item>
+        <item>validcode</item>
+        <item>vcodekey</item>
+        <item>validcodetype</item>
+    </string-array>
+    <string-array name="passport_request_paramvalue">
+        <item>58app-android</item>
+        <item>1</item>
+        <item>1</item>
+        <item>true</item>
+        <item></item>
+        <item></item>
+        <item>200</item>
+    </string-array>
 </resources>

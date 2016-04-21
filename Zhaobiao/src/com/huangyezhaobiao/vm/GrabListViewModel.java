@@ -34,16 +34,12 @@ public class GrabListViewModel extends ZBBaseListViewModel<QDBaseBean>{
 		sourcesDir.put("3", DomesticRegisterListBean.class);
 		//2015.8.17 add
 		sourcesDir.put("4", AffiliatesListBean.class);
-
 		//sourcesDir.put("1044", zhuche.class);
 		//2015.12.4 add 保姆月嫂
 		sourcesDir.put("5", NannyListBean.class);
 		//2015.12.5 add 保洁清洗
 		sourcesDir.put("6", CleaningListBean.class);
 	}
-	
-	
-	
 
 	@Override
 	protected NetWorkModel initListNetworkModel(Context context) {

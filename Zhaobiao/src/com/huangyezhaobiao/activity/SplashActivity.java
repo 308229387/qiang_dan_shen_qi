@@ -1,6 +1,5 @@
 package com.huangyezhaobiao.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.eventbus.EventAction;
 import com.huangyezhaobiao.eventbus.EventbusAgent;
@@ -33,7 +33,6 @@ import air.com.wuba.bangbang.common.impush.DeamonService;
  * ---没登录 LoginActivity
  * else
  * ---登录了 MainActivity
- *
  * @author shenzhixin
  * 
  */
@@ -55,9 +54,8 @@ public class SplashActivity extends CommonBaseActivity {
 		//个推的注册
 		GePushProxy.initliazePush(this.getApplicationContext());
 		//strictmode for develop
-		/*StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog()
+		/*StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());
 				 ////打印logcat，当然也可以定位到dropbox，通过文件保存相应的log
-				.build());
 		StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll()
 				.penaltyLog()
 				.build());*/

@@ -67,6 +67,7 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 	private View        ll_root;
 	private ImageView   iv_icon;
 	private LoginViewModel loginViewModel;
+//	private CheckLoginViewModel checkLoginViewModel;
 	private ZhaoBiaoDialog dialog;
 	private LoadingProgress loading;
 	private AnimationController animationController;
@@ -74,8 +75,8 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 	private TextInputLayout textInputLayout_username;
 	private TextInputLayout textInputLayout_password;
 
-
 	private int hasValidated;
+	private static final String OLD_PASSPORT = "oldpassport";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -84,6 +85,7 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 		initView();
 		initListener();
 		loginViewModel = new LoginViewModel(this, this);
+//		checkLoginViewModel = new CheckLoginViewModel(this, this);
 		dialog = new ZhaoBiaoDialog(this, "提示", "登录失败，您输入的账户名和密码不符!");
 		dialog.setCancelButtonGone();
 		dialog.setOnDialogClickListener(this);
@@ -99,10 +101,6 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 	}
 
 	//百度统计
-
-
-
-
 	@Override
 	public void initView() {
 		ll_root					= findViewById(R.id.ll_root);
@@ -139,6 +137,7 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 		tv_how_to_become_vip = (TextView) findViewById(R.id.tv_login_raiders);
 		tv_how_to_become_vip.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 	}
+
 	@Override
 	public void initListener() {
 		nCloseBtn.setOnClickListener(new OnClickListener() {
@@ -202,7 +201,6 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 			public void onClick(View arg0) {
 				//登录按钮
 				BDMob.getBdMobInstance().onMobEvent(LoginActivity.this,BDEventConstans.EVENT_ID_LOGIN);
-				//
 				String name = username.getText().toString();
 				userName = name;
 				String passwords = password.getText().toString();
@@ -217,7 +215,7 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 					dialog.show();
 					return;
 				}
-				if(!cb_usage.isChecked()){//没有被选中
+				if(!cb_usage.isChecked()){
 					dialog.setMessage("接受抢单神器协议方可使用软件!");
 					dialog.show();
 					return;
@@ -227,6 +225,7 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 				//name = "琼nl";
 				//passwords = "qwer123";
 				//test
+//				checkLoginViewModel.login(name, passwords);
 				loginViewModel.login(name, passwords);
 			}
 		});
@@ -281,6 +280,7 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 
 	}
 
+	private static final String TAG ="LoginActivity.onLoadingSuccess";
 	@Override
 	public void onLoadingSuccess(Object t) {
 		stopLoading();
@@ -395,8 +395,8 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 					R.style.loading);
 		}
 
-		if(loading!=null && !this.isFinishing())
-			loading.show();
+		//if(loading!=null && !this.isFinishing())
+			//loading.show();
 	}
 
 	/**

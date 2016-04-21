@@ -182,4 +182,21 @@ public class AppConstants {
     public static final String H5_WEBURL = "url";
     public static final String H5_FAST_LOGIN = "http://m.m.58.com/reg/?from=qdsq";
     public static final String H5_FAST_SUCCESSREG= "http://m.m.58.com/";
+
+
+
+    /**  added by chenguangming, the header's of http request params */
+    public static final String PBI_APPVERSION = "PBI-AppVersion";
+    public static final String PBI_PROTOCOLVERSION = "PBI-ProtocolVersion";
+    public static final String PBI_REQUESTTIME = "PBI-RequestTime";
+    public static final String PBI_SYSTEMPLATFORM = "PBI-SystemPlatform";
+    public static final String PBI_NETTYPE = "PBI-NetType";
+    public static final String PBI_NETCOMPANY = "PBI-NetCompany";
+    public static final String PBI_SYSTEMMODEL = "PBI-SystemModel";
+    public static final String PBI_SYSTEMVERSION = "PBI-SystemVersion";
+    public static final String PBI_DEVICETOKEN = "PBI-DeviceToken";
+    public static final String PBI_IMEI = "PBI-IMEI";
+    public static final String PBI_IDENTIFIERFORVENDOR = "PBI-IdentifierForVendor";
+    public static final String PBI_RELEASEMARKET = "PBI-ReleaseMarket";
+    public static final String PBI_PPU ="ppu";
 }

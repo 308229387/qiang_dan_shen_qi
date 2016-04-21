@@ -97,6 +97,7 @@ import java.util.Map;
 public class MainActivity extends CommonFragmentActivity implements
 		ActivityInterface, OnClickListener, ListNetWorkVMCallBack,
 		INotificationListener, OnTitleBarClickListener,INetStateChangedListener, AdapterListener, onDialogClickListener {
+
 	//当用户被挤掉时,显示这个对话框
 	private ZhaoBiaoDialog exitDialog;
 	private ZhaoBiaoDialog confirmExitDialog;
@@ -290,7 +291,7 @@ public class MainActivity extends CommonFragmentActivity implements
 	 * @return
 	 */
 	private boolean isUpdateFirst(){
-		Log.e("shenzhixinUI","is:"+SPUtils.isFirstUpdate(this));
+		Log.e("shenzhixinUI", "is:" + SPUtils.isFirstUpdate(this));
 		return SPUtils.isFirstUpdate(this);
 	}
 	public void loadDatas() {
@@ -663,8 +664,10 @@ public class MainActivity extends CommonFragmentActivity implements
 		if (t instanceof Map<?, ?>) {
 			Map<String, String> maps = (Map<String, String>) t;
 			String balance = maps.get("balance");
+
 			if(!TextUtils.isEmpty(balance)){
 				tv_yue.setText(balance);
+				stopLoading();
 			}else{
 				updateManager = UpdateManager.getUpdateManager();
 				String currentVersion = maps.get("currentVersion");
