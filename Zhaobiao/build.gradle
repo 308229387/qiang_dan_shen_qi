@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'bugly'
+
 buildscript {
     repositories {
         mavenCentral()
@@ -21,6 +22,7 @@ bugly {
     appId = '900004313'
     appKey = 'S9RwoAyOW3kknbMJ'
 }
+
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
     compile project(':library')
@@ -36,8 +38,7 @@ dependencies {
     compile 'com.android.support:cardview-v7:23.0.1'
     compile files('libs/GetuiSDK2.8.1.0.jar')
     compile files('libs/bugly_crash_release__2.1.jar')
-
-
+    compile 'com.facebook.stetho:stetho:1.1.0'
 }
 
 android {

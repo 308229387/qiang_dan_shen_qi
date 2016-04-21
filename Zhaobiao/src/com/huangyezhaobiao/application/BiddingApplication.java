@@ -12,6 +12,7 @@ import android.os.Process;
 import android.os.StrictMode;
 import android.util.Log;
 
+import com.facebook.stetho.Stetho;
 import com.huangye.commonlib.file.SqlUtils;
 import com.huangye.commonlib.sql.SqlUpgradeCallback;
 import com.huangye.commonlib.utils.UserConstans;
@@ -156,6 +157,14 @@ public class BiddingApplication extends Application {
         // 可以从DemoMessageReceiver的onCommandResult方法中MiPushCommandMessage对'象参数中获取注册信息
         // 因为推送服务XMPushService在AndroidManifest.xml中设置为运行在另外一个进程，这导致本Application会被实例化两次，所以我们需要让应用的主进程初始化。
         if (shouldInit()) {
+            //数据库的可视化工具
+            Stetho.initialize(
+                    Stetho.newInitializerBuilder(this)
+                            .enableDumpapp(
+                                    Stetho.defaultDumperPluginsProvider(this))
+                            .enableWebKitInspector(
+                                    Stetho.defaultInspectorModulesProvider(this))
+                            .build());
            // MiPushClient.registerPush(this, APP_ID, APP_KEY); //for test
 
            /* // 上传日志定时任务
