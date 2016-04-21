@@ -69,6 +69,14 @@ public class HttpRequest<T> {
 	public void configParams(HashMap<String, String> params_map){
 		map = params_map;
 		this.params = new RequestParams();
+		/**
+		 * Header 里面添加参数;
+		 * ppu：登录之后passport返回的
+		 * appversion:
+		 * */
+		params.addHeader("ppu","");
+
+
 		Set<Entry<String, String>> entrySet = params_map.entrySet();
 		Iterator<Entry<String, String>> iterator = entrySet.iterator();
 		while (iterator.hasNext()) {
@@ -88,8 +96,7 @@ public class HttpRequest<T> {
 		if(method == METHOD_GET){
 			get();
 			LogUtils.LogE("stestUrl", "get....url:" + url);
-		}
-		else {
+		}else {
 			post();
 			LogUtils.LogE("stestUrl", "post....url:" + url);
 			if(map!=null){
@@ -102,9 +109,7 @@ public class HttpRequest<T> {
 					  LogUtils.LogE("stestUrl", "key.." + key + ",value:" + value + "\n");
 				}
 			}
-			
 		}
-		
 	}
 	
 	

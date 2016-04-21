@@ -6,7 +6,6 @@ import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.huangye.commonlib.MyLoginBean.MineBean;
 import com.huangye.commonlib.constans.ResponseConstans;
 import com.huangye.commonlib.constans.URLConstans;
 import com.huangye.commonlib.delegate.HttpRequestCallBack;
@@ -18,6 +17,7 @@ import com.huangye.commonlib.utils.JsonUtils;
 import com.huangye.commonlib.utils.NetBean;
 import com.huangye.commonlib.utils.NetworkTools;
 import com.huangye.commonlib.utils.UserConstans;
+import com.lidroid.xutils.http.ResponseInfo;
 
 import java.util.HashMap;
 
@@ -33,6 +33,9 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
 	protected NetworkModelCallBack baseSourceModelCallBack;
 	private HttpRequest<String> request;
 	protected Context context;
+	protected JSONObject jsonResult;
+	protected String jsonString;
+	private static final String TAG = NetWorkModel.class.getName();
 	//@SuppressWarnings("unchecked")
 	//Class<T> entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]; 
 	public TAG type;
@@ -80,66 +83,30 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
 		if(request != null)
 			request.getDatas();
 	}
+
 	@Override
-	public void onLoadingSuccess(String result) {
-		Log.e("httpRequestResult", "result:"+result);
-		boolean isLoginValidate = true;//登录是否合法，默认为是
+	public void onLoadingSuccess(ResponseInfo<String> result) {
+		Log.e("httpRequestResult", "result:" + result.result);
+		jsonResult = JSON.parseObject(result.result);
+		int loginflag = 0;
+		//登录是否合法，默认为是
+		boolean isLoginValidate = true;
+		String token  = jsonResult.getString("token");
+		//获得请求的flag
 		try {
-			//这块需要做的是解析loginflag和token,如果loginflag为null，则表示是登录,存储token
-			//如果loginflag不为null,则表示不是登录，就把token和存储出来的token进行比对
-			//两个token一致,就表示正常,如果不一致,则表示退出登录,登录异常
-			JSONObject jsonObject = JSON.parseObject(result);
-			int loginflag = 0;
-			//获得请求的flag
-			try {
-				loginflag = jsonObject.getInteger("loginFlag");
-			}catch(Exception e){
-				loginflag = -1;//如果解析不成功，不让他掉线
+			loginflag = jsonResult.getInteger("loginFlag");
+		}catch(Exception e){
+			loginflag = -1;//如果解析不成功，不让他掉线
+		}
+		try {
+			if (loginflag == 0) {
+				isLoginValidate = SharedPreferencesUtils.isLoginValidate(context, ResponseConstans.SP_NAME, token);
 			}
-			//获得返回的token
-			String token     = jsonObject.getString("token");
-			Log.e("shenzhixinHAHAHA","loginFlag:"+loginflag+",token:"+token);
-			if(loginflag==1){//登录
-				NetBean netBean = transformJsonToNetBean(result);
-				MineBean mineBean = JsonUtils.jsonToObject(netBean.getData(), MineBean.class);
-				UserConstans.USER_ID = mineBean.getUserId()+"";
-				SharedPreferencesUtils.saveUserToken(context,ResponseConstans.SP_NAME,token);
-				///api/testToken?userId=&apiType=&clientToken=&serverToken=&token=
-				String suffix_url = "api/testToken?userId="+UserConstans.USER_ID+"&apiType="+LOGIN_TYPE+"&clientToken="+token+"&serverToken="+token+"&platform=1";
-				HTTPTools.newHttpUtilsInstance().doGet(URLConstans.BASE_URL + suffix_url, new HttpRequestCallBack() {
-					@Override
-					public void onLoadingFailure(String err) {
 
-					}
-
-					@Override
-					public void onLoadingSuccess(String result) {
-
-					}
-
-					@Override
-					public void onLoadingStart() {
-
-					}
-
-					@Override
-					public void onLoadingCancelled() {
-
-					}
-
-					@Override
-					public void onLoading(long total, long current) {
-
-					}
-				});
-			}else if(loginflag == 0){//其他请求
-				isLoginValidate = SharedPreferencesUtils.isLoginValidate(context,ResponseConstans.SP_NAME,token);
-			}//-1就是退出登录，什么都不做
-
-			if(!isLoginValidate){
-			//	不合法
+			if (!isLoginValidate) {
+				//	不合法
 				baseSourceModelCallBack.onModelLoginInvalidate();
-				String suffix_url = "api/testToken?userId="+UserConstans.USER_ID+"&apiType="+OTHER_TYPE+"&clientToken="+SharedPreferencesUtils.getUserToken(context)+"&serverToken="+token+"&platform=1";
+				String suffix_url = "api/testToken?userId=" + UserConstans.USER_ID + "&apiType=" + OTHER_TYPE + "&clientToken=" + SharedPreferencesUtils.getUserToken(context) + "&serverToken=" + token + "&platform=1";
 				HTTPTools.newHttpUtilsInstance().doGet(URLConstans.BASE_URL + suffix_url, new HttpRequestCallBack() {
 					@Override
 					public void onLoadingFailure(String err) {
@@ -147,7 +114,7 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
 					}
 
 					@Override
-					public void onLoadingSuccess(String result) {
+					public void onLoadingSuccess(ResponseInfo<String> result) {
 
 					}
 
@@ -166,20 +133,117 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
 
 					}
 				});
-			}else {//合法
-				Log.e("shenzhixin","json string:"+jsonObject.toJSONString());
-				if (TextUtils.isEmpty(jsonObject.getString("result"))) {
-					baseSourceModelCallBack.onLoadingFailure(jsonObject.getString("msg"));
+			} else {//合法
+				if (TextUtils.isEmpty(jsonResult.getString("result"))) {
+					baseSourceModelCallBack.onLoadingFailure(jsonResult.getString("msg"));
 				} else {
-					baseSourceModelCallBack.onLoadingSuccess(transformJsonToNetBean(result), this);
+					baseSourceModelCallBack.onLoadingSuccess(transformJsonToNetBean(result.result), this);
 				}
 			}
-		}catch(Exception e){//fix bug 185 on bugly
+		} catch (Exception e) {
 			baseSourceModelCallBack.onLoadingFailure("服务器出现了问题，稍后再试呢");
 			e.printStackTrace();
 			//上传异常信息
-			uploadException(e,result);
+			uploadException(e,result.result);
 		}
+
+//		boolean isLoginValidate = true;//登录是否合法，默认为是
+//		try {
+//			//这块需要做的是解析loginflag和token,如果loginflag为null，则表示是登录,存储token
+//			//如果loginflag不为null,则表示不是登录，就把token和存储出来的token进行比对
+//			//两个token一致,就表示正常,如果不一致,则表示退出登录,登录异常
+//			JSONObject jsonObject = JSON.parseObject(result.result);
+//			int loginflag = 0;
+//			//获得请求的flag
+//			try {
+//				loginflag = jsonObject.getInteger("loginFlag");
+//			}catch(Exception e){
+//				loginflag = -1;//如果解析不成功，不让他掉线
+//			}
+//			//获得返回的token
+//			String token     = jsonObject.getString("token");
+//			Log.e("shenzhixinHAHAHA","loginFlag:"+loginflag+",token:"+token);
+//			if(loginflag==1){//登录
+//				NetBean netBean = transformJsonToNetBean(result.result);
+//				MineBean mineBean = JsonUtils.jsonToObject(netBean.getData(), MineBean.class);
+//				UserConstans.USER_ID = mineBean.getUserId()+"";
+//				SharedPreferencesUtils.saveUserToken(context,ResponseConstans.SP_NAME,token);
+//				///api/testToken?userId=&apiType=&clientToken=&serverToken=&token=
+//				String suffix_url = "api/testToken?userId="+UserConstans.USER_ID+"&apiType="+LOGIN_TYPE+"&clientToken="+token+"&serverToken="+token+"&platform=1";
+//				HTTPTools.newHttpUtilsInstance().doGet(URLConstans.BASE_URL + suffix_url, new HttpRequestCallBack() {
+//					@Override
+//					public void onLoadingFailure(String err) {
+//
+//					}
+//
+//					@Override
+//					public void onLoadingSuccess(ResponseInfo<String> result) {
+//
+//					}
+//
+//					@Override
+//					public void onLoadingStart() {
+//
+//					}
+//
+//					@Override
+//					public void onLoadingCancelled() {
+//
+//					}
+//
+//					@Override
+//					public void onLoading(long total, long current) {
+//
+//					}
+//				});
+//			}else if(loginflag == 0){//其他请求
+//				isLoginValidate = SharedPreferencesUtils.isLoginValidate(context,ResponseConstans.SP_NAME,token);
+//			}//-1就是退出登录，什么都不做
+//
+//			if(!isLoginValidate){
+//			//	不合法
+//				baseSourceModelCallBack.onModelLoginInvalidate();
+//				String suffix_url = "api/testToken?userId="+UserConstans.USER_ID+"&apiType="+OTHER_TYPE+"&clientToken="+SharedPreferencesUtils.getUserToken(context)+"&serverToken="+token+"&platform=1";
+//				HTTPTools.newHttpUtilsInstance().doGet(URLConstans.BASE_URL + suffix_url, new HttpRequestCallBack() {
+//					@Override
+//					public void onLoadingFailure(String err) {
+//
+//					}
+//
+//					@Override
+//					public void onLoadingSuccess(ResponseInfo<String> result) {
+//
+//					}
+//
+//					@Override
+//					public void onLoadingStart() {
+//
+//					}
+//
+//					@Override
+//					public void onLoadingCancelled() {
+//
+//					}
+//
+//					@Override
+//					public void onLoading(long total, long current) {
+//
+//					}
+//				});
+//			}else {//合法
+//				Log.e("shenzhixin","json string:"+jsonObject.toJSONString());
+//				if (TextUtils.isEmpty(jsonObject.getString("result"))) {
+//					baseSourceModelCallBack.onLoadingFailure(jsonObject.getString("msg"));
+//				} else {
+//					baseSourceModelCallBack.onLoadingSuccess(transformJsonToNetBean(result.result), this);
+//				}
+//			}
+//		}catch(Exception e){//fix bug 185 on bugly
+//			baseSourceModelCallBack.onLoadingFailure("服务器出现了问题，稍后再试呢");
+//			e.printStackTrace();
+//			//上传异常信息
+//			uploadException(e,result.result);
+//		}
 	}
 
 	private void uploadException(Exception e, String result) {
@@ -191,7 +255,7 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
 				}
 
 				@Override
-				public void onLoadingSuccess(String result) {
+				public void onLoadingSuccess(ResponseInfo<String> result) {
 
 				}
 
@@ -244,11 +308,11 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
 
 
 
-	
+
 	public enum TAG{
 		LOGIN,LOADMORE,REFRESH,CHECKVERSION
 	}
-	
-	
-	
+
+
+
 }

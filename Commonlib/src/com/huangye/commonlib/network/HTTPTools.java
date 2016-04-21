@@ -11,7 +11,7 @@ import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 
 /**
  * 网络的封装类
- * 
+ *
  * @author shenzhixin 还需要上传文件等东西
  */
 public class HTTPTools {
@@ -32,7 +32,7 @@ public class HTTPTools {
 		}
 	}
 	
-	
+
 	public static HTTPTools newHttpUtilsInstance() {
 		if (httpTools == null) {
 			synchronized (HTTPTools.class) {
@@ -58,7 +58,7 @@ public class HTTPTools {
 
 	private HttpHandler<String> doPostJson(String url, RequestParams params,
 			final HttpRequestCallBack iOAuthCallBack) {
-		
+
 		if (config && httpUtils!=null) {
 			httpUtils.configCurrentHttpCacheExpiry(1000 * 10);
 			config = false;
@@ -72,7 +72,7 @@ public class HTTPTools {
 
 					@Override
 					public void onSuccess(ResponseInfo<String> arg0) {
-						iOAuthCallBack.onLoadingSuccess(arg0.result);
+						iOAuthCallBack.onLoadingSuccess(arg0);
 					}
 
 					@Override
@@ -85,7 +85,7 @@ public class HTTPTools {
 					public void onLoading(long total, long current,
 							boolean isUploading) {
 						super.onLoading(total, current, isUploading);
-						
+
 					}
 
 					@Override
@@ -112,7 +112,7 @@ public class HTTPTools {
 					@Override
 					public void onSuccess(ResponseInfo<String> result) {
 						if(callBack!=null)
-							callBack.onLoadingSuccess(result.result);
+							callBack.onLoadingSuccess(result);
 					}
 
 					@Override

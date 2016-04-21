@@ -14,7 +14,18 @@ import java.util.Set;
 
 public class JsonUtils {
 
+
+	private boolean isJSON(String json){
+		try{
+			JSON.parseObject(json);
+		} catch(JSONException e){
+			return false;
+		}
+		return true;
+	}
+
 	public static NetBean jsonToNetBean(String json) throws JSONException {
+
 
 		JSONObject obj = JSON.parseObject(json);
 		// NetBean netBean = (NetBean)JSONObject.toBean(obj, NetBean.class);

@@ -18,7 +18,6 @@ public abstract class SourceViewModel implements NetworkModelCallBack{
 	protected NetWorkModel t;
 	protected Context context;
 	public SourceViewModel(NetWorkVMCallBack callBack,Context context){
-		
 		this.callBack = callBack;
 		t = initListNetworkModel(context);
 		this.context = context;
@@ -50,7 +49,6 @@ public abstract class SourceViewModel implements NetworkModelCallBack{
 		int status = bean.getStatus();
 		if(callBack!=null) {
 			if (status == 0) {
-
 				callBack.onLoadingSuccess(jsonTransferToMap(bean));
 			} else {
 				String msg = bean.getMsg();
@@ -70,8 +68,6 @@ public abstract class SourceViewModel implements NetworkModelCallBack{
 		}
 	}
 	
-
-	
 	/**
 	 * 把json转化成map
 	 * @param bean
@@ -79,7 +75,6 @@ public abstract class SourceViewModel implements NetworkModelCallBack{
 	 */
 	protected Map<String,String> jsonTransferToMap(NetBean bean){
 		Log.e("adsss", "balance:"+bean.getData());
-		
 		return JsonUtils.jsonToMap(bean.getData());
 	}
 	

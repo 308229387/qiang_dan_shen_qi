@@ -1,5 +1,7 @@
 package com.huangye.commonlib.delegate;
 
+import com.lidroid.xutils.http.ResponseInfo;
+
 /**
  * 这个是model层和net层的接口
  * @author 58
@@ -18,7 +20,7 @@ public interface HttpRequestCallBack {
 	 * 加载成功
 	 * @param result
 	 */
-	void onLoadingSuccess(String result);
+	void onLoadingSuccess(ResponseInfo<String> result);
 
 	/**
 	 * 加载开始
