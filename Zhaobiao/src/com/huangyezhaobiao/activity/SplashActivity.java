@@ -41,8 +41,8 @@ public class SplashActivity extends CommonBaseActivity {
 	private SharedPreferences sp;
 	private Handler handler = new Handler();
 	private Context context;
-	private boolean isTime = false;//到3秒钟了
-	private boolean isRegisterSuccess = false;//注册推送是否成功
+	//private boolean isTime = false;//到3秒钟了
+	// boolean isRegisterSuccess = false;//注册推送是否成功
 	private View      rl_splash;
 	private ImageView iv_splash;
 	@Override
@@ -76,10 +76,10 @@ public class SplashActivity extends CommonBaseActivity {
 		handler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				isTime = true;
+				//isTime = true;
 			//	if (isTime && isRegisterSuccess) {
 					goLogic();
-					isTime = false;
+					//isTime = false;
 			//	}
 				return;
 			}
@@ -159,7 +159,7 @@ public class SplashActivity extends CommonBaseActivity {
 		EventbusAgent.getInstance().unregister(this);
 		rl_splash.setBackgroundResource(0);
 		iv_splash.setImageResource(0);
-		System.gc();
+
 	}
 
 	public void onEventMainThread(EventAction action){

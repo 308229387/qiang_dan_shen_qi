@@ -126,7 +126,6 @@ public class SystemActiveActivity extends QBBaseActivity implements View.OnClick
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, final String url) {
             Uri uri = Uri.parse(url);
-            String scheme = uri.getScheme();
             return super.shouldOverrideUrlLoading(view, url);
         }
 

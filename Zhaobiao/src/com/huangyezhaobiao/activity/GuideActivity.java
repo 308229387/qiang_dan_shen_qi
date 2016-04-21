@@ -1,32 +1,31 @@
 package com.huangyezhaobiao.activity;
 
 		import android.content.SharedPreferences;
-		import android.os.Build;
-		import android.os.Bundle;
-		import android.support.v4.view.PagerAdapter;
-		import android.support.v4.view.ViewPager;
-		import android.support.v4.view.ViewPager.OnPageChangeListener;
-		import android.text.TextUtils;
-		import android.util.DisplayMetrics;
-		import android.util.TypedValue;
-		import android.view.LayoutInflater;
-		import android.view.View;
-		import android.view.View.OnClickListener;
-		import android.view.ViewGroup;
-		import android.view.WindowManager;
-		import android.widget.ImageView;
-		import android.widget.RelativeLayout;
-		import android.widget.RelativeLayout.LayoutParams;
+import android.os.Build;
+import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.text.TextUtils;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 
-		import com.huangye.commonlib.activity.BaseActivity;
-		import com.huangyezhaobiao.R;
-		import com.huangyezhaobiao.inter.Constans;
-		import com.huangyezhaobiao.utils.ActivityUtils;
-		import com.huangyezhaobiao.utils.LogUtils;
-		import com.huangyezhaobiao.utils.UserUtils;
+import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.inter.Constans;
+import com.huangyezhaobiao.utils.ActivityUtils;
+import com.huangyezhaobiao.utils.LogUtils;
+import com.huangyezhaobiao.utils.UserUtils;
 
-		import java.util.ArrayList;
-		import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 引导界面
@@ -201,7 +200,6 @@ public class GuideActivity extends CommonBaseActivity {
 		super.onDestroy();
 		//释放图片背景资源
 		releaseSources();
-		System.gc();
 	}
 
 	private void releaseSources() {

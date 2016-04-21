@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.huangyezhaobiao"
     android:installLocation="auto"
-    android:versionCode="20"
-    android:versionName="2.4.0">
+    android:versionCode="21"
+    android:versionName="2.5.0">
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -39,7 +39,7 @@
     <!--==================================================================-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
+  <!--  <uses-permission android:name="android.permission.INTERNET" />-->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -49,7 +49,7 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
+   <!-- <uses-permission android:name="android.permission.INTERNET" />-->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -57,7 +57,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <!-- 连接网络权限，用于执行云端语音能力 -->
-    <uses-permission android:name="android.permission.INTERNET" />
+  <!--  <uses-permission android:name="android.permission.INTERNET" />-->
     <!-- 获取手机录音机使用权限，听写、识别、语义理解需要用到此权限 -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <!-- 读取网络信息状态 -->
@@ -81,7 +81,7 @@
     <!-- 必须的权限： -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- 获取设备信息 -->
-    <uses-permission android:name="android.permission.INTERNET" />
+   <!-- <uses-permission android:name="android.permission.INTERNET" />-->
     <!-- 网络通信 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 获取网络状态 -->
@@ -95,7 +95,7 @@
 
 
     <!-- 【必须】 信鸽SDK所需权限 -->
-    <uses-permission android:name="android.permission.INTERNET" />
+    <!--<uses-permission android:name="android.permission.INTERNET" />-->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -119,7 +119,7 @@
     <!--may be fix bug android could not open the database in read/write mode-->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
+   <!-- <uses-permission android:name="android.permission.INTERNET" />-->
     <application
         android:name="com.huangyezhaobiao.application.BiddingApplication"
         android:persistent="true"
@@ -413,7 +413,7 @@
         <activity android:name=".activity.ConsumptionActivity"
             android:screenOrientation="portrait"
             />
-        <!--<activity android:name=".activity.TestActivity">
+       <!-- <activity android:name=".activity.TestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -424,6 +424,9 @@
             android:name="com.xiaomi.push.service.XMPushService"
             android:enabled="true"
             android:process=":pushservice" />
+
+        <service android:name=".service.TestService"/>
+        <service android:name=".service.TestService$TestInnerService"/>
         <service
             android:name="com.xiaomi.mipush.sdk.PushMessageHandler"
             android:enabled="true"

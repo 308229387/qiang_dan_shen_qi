@@ -16,7 +16,7 @@ import com.huangyezhaobiao.utils.VersionUtils;
  * 关于页面activity
  */
 public class AboutActivity extends QBBaseActivity implements OnClickListener {
-	private LinearLayout back_layout;
+	private LinearLayout back_layout;//haha
 	private TextView     txt_head,tv_version;
 	private String name;
 	private RelativeLayout rl_gongneng,rl_check_version;
@@ -24,6 +24,7 @@ public class AboutActivity extends QBBaseActivity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		setContentView(R.layout.activity_about);
 		initView();
 		initListener();

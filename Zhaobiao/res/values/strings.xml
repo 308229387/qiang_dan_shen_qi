@@ -47,7 +47,9 @@
     <string name="update_hint">更新提示</string>
     <string name="network_error_message">当前网络慢,请您稍后重试奥</string>
     <string name="update_message">
-        【重要更新】安卓版抢单神器升级啦！优化提升订单到达率，抢单体验更流畅~
+        1、列表页全新改版，展示订单价格，抢单更清晰\n
+        2、自定义接单设置区域精确匹配，订单更靠谱\n
+        3、修复了一些bug，体验更流畅
     </string>
     <string name="logout_now">退出了当前的账号</string>
     <string name="logout_make_sure">确定要退出当前账号么?</string>

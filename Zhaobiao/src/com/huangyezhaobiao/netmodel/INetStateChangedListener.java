@@ -5,6 +5,6 @@ package com.huangyezhaobiao.netmodel;
  *
  */
 public interface INetStateChangedListener {
-	public void NetConnected();
-	public void NetDisConnected();
+	 void NetConnected();
+	 void NetDisConnected();
 }

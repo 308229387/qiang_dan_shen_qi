@@ -21,6 +21,8 @@ import com.huangyezhaobiao.fragment.QiangDanBaseFragment;
 import com.huangyezhaobiao.inter.Constans;
 import com.huangyezhaobiao.inter.MDConstans;
 import com.huangyezhaobiao.utils.ActivityUtils;
+import com.huangyezhaobiao.utils.BDEventConstans;
+import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.DetailsLogBeanUtils;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.MDUtils;
@@ -55,7 +57,7 @@ public class ServiceTypeBean extends QDDetailBaseBean{
 	}
 
 	@Override
-	public View initView(Context context) {
+	public View initView(final Context context) {
 		this.context = context;
 		initDialog(context);
 		View view 			 = LayoutInflater.from(context).inflate(R.layout.layout_qiangdan_first, null);
@@ -70,6 +72,8 @@ public class ServiceTypeBean extends QDDetailBaseBean{
 			public void onClick(View v) {
 				EventAction action = new EventAction(EventType.EVENT_TELEPHONE_FROM_DETAIL,new TelephoneBean(orderId+"",TelephoneBean.SOURCE_DETAIL));
 				EventbusAgent.getInstance().post(action);
+				//加埋点
+				BDMob.getBdMobInstance().onMobEvent(context, BDEventConstans.EVENT_ID_ORDER_DETAIL_PAGE_PHONE);
 				initDialog(ServiceTypeBean.this.context);
 				dialog.show();
 			}

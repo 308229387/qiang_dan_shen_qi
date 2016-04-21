@@ -103,9 +103,9 @@ public class BidSuccessActivity extends QBBaseActivity {
 	private class ScreenReceiver extends BroadcastReceiver {
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			LogUtils.LogE("shenzhixin", "action:" + intent.getAction());
 			//getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
 			if (intent == null) return;
+			LogUtils.LogE("shenzhixin", "action:" + intent.getAction());
 			if ("android.intent.action.SCREEN_ON".equals(intent.getAction())) {
 				Log.e("shenzhixinUI","line 103..");
 				KeyguardUtils.SCREEN_ON = true;
