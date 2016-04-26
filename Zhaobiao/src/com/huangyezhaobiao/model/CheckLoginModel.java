@@ -39,7 +39,8 @@ public class CheckLoginModel extends NetWorkModel {
 	@Override
     protected HttpRequest<String> createHttpRequest() {
         /** 登录招标 */
-        return new HttpRequest<String>(HttpRequest.METHOD_GET, URLConstans.BASE_URL+"api/login", this);
+        //return new HttpRequest<String>(HttpRequest.METHOD_POST, URLConstans.BASE_URL+"api/login", this);
+		return new HttpRequest<String>(HttpRequest.METHOD_POST, "http://10.252.158.8/api/login", this);
         /** 登录新版的passport */
         // return new HttpRequest<String>(HttpRequest.METHOD_POST,"https://passport.58.com/login/dologin",this);
     }

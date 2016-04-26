@@ -425,8 +425,8 @@
             android:enabled="true"
             android:process=":pushservice" />
 
-        <service android:name=".service.TestService"/>
-        <service android:name=".service.TestService$TestInnerService"/>
+        <!--<service android:name=".service.TestService"/>-->
+        <!--<service android:name=".service.TestService$TestInnerService"/>-->
         <service
             android:name="com.xiaomi.mipush.sdk.PushMessageHandler"
             android:enabled="true"
