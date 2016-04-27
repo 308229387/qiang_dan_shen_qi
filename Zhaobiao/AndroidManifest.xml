@@ -8,7 +8,7 @@
 
     <uses-sdk
         android:minSdkVersion="11"
-        android:targetSdkVersion="23" />
+        android:targetSdkVersion="22" />
     <!--===================================================Ma===============-->
     <!-- 个推SDK权限配置开始 -->
     <uses-permission android:name="android.permission.INTERNET" />
