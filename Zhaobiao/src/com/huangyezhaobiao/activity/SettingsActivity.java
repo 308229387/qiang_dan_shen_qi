@@ -5,17 +5,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
 import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.bean.GlobalConfigBean;
 import com.huangyezhaobiao.bean.MobileChangeBean;
 import com.huangyezhaobiao.constans.CommonValue;
 import com.huangyezhaobiao.presenter.SettingsPresenter;
+import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.ToastUtils;
-import com.huangyezhaobiao.vm.MobileChangeGetMobileVM;
 
 /**
  * Created by shenzhixin on 2015/11/12.
@@ -27,7 +27,7 @@ public class SettingsActivity extends QBBaseActivity implements View.OnClickList
     private View rl_change_mobile_settings;
     private View rl_auto_settings;
     private TextView tv_now_bind_mobile;
-    private MobileChangeGetMobileVM mobileChangeGetMobileVM;
+ //   private MobileChangeGetMobileVM mobileChangeGetMobileVM;
     private SettingsPresenter       presenter;
     private String mobile;
     public static Intent onNewIntent(Context context){
@@ -38,11 +38,13 @@ public class SettingsActivity extends QBBaseActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mobileChangeGetMobileVM = new MobileChangeGetMobileVM(this,this);
+    //    mobileChangeGetMobileVM = new MobileChangeGetMobileVM(this,this);
         presenter               = new SettingsPresenter(this);
         setContentView(getLayoutId());
         initView();
         initListener();
+        String mobile = SPUtils.getVByK(this, GlobalConfigBean.KEY_USERPHONE);
+        tv_now_bind_mobile.setText("已绑定" + mobile);
     }
 
     @Override
@@ -110,7 +112,8 @@ public class SettingsActivity extends QBBaseActivity implements View.OnClickList
     @Override
     protected void onResume() {
         super.onResume();
-        mobileChangeGetMobileVM.getOriMobile();
+
+     //   mobileChangeGetMobileVM.getOriMobile();
     }
 
     @Override

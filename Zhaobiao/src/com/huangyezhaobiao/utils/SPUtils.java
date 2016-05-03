@@ -15,7 +15,10 @@ public class SPUtils {
     private static String KEY_FIRST_UPDATE = "isFirstUpdate";
     private static String KEY_NEED_AUTO_SETTING = "isAutoSetting";
     private static String KEY_SERVICE_STATE     = "serviceState";
-
+    /**
+     * 全局初始化的时间戳
+     */
+    public final static String KEY_TIMELINE_GLOBAL = "global_timeline";
 
     /**
      * 设置服务状态
@@ -123,5 +126,25 @@ public class SPUtils {
         SharedPreferences sp = context.getSharedPreferences(SP_NAME,0);
         sp.edit().putBoolean(KEY_NEED_AUTO_SETTING,false).commit();
 
+    }
+
+
+    /**
+     * 存储kv
+     */
+    public static void saveKV(Context context,String key,String value){
+        SharedPreferences sp = context.getSharedPreferences(SP_NAME,0);
+        sp.edit().putString(UserUtils.getUserId(context)+key,value).commit();
+    }
+
+    /**
+     * 根据key得到v
+     * @param context
+     * @param key
+     * @return
+     */
+    public static String getVByK(Context context,String key){
+        SharedPreferences sp = context.getSharedPreferences(SP_NAME,0);
+        return sp.getString(key,"");
     }
 }

@@ -3,9 +3,15 @@ package com.huangyezhaobiao.vm;
 import android.content.Context;
 
 import com.huangye.commonlib.model.NetWorkModel;
+import com.huangye.commonlib.utils.JsonUtils;
+import com.huangye.commonlib.utils.NetBean;
 import com.huangye.commonlib.vm.SourceViewModel;
 import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
+import com.huangyezhaobiao.bean.GlobalConfigBean;
 import com.huangyezhaobiao.model.GlobalConfigModel;
+import com.huangyezhaobiao.utils.PhoneUtils;
+
+import java.util.HashMap;
 
 
 /**
@@ -26,6 +32,16 @@ public class GlobalConfigVM extends SourceViewModel{
      * 刷新用户的信息
      */
     public void refreshUsers(){
+        HashMap<String,String> params = new HashMap<>();
+        params.put("deviceId", PhoneUtils.getIMEI(context));
+        t.configParams(params);
         t.getDatas();
+    }
+
+
+    @Override
+    public void onLoadingSuccess(NetBean bean, NetWorkModel model) {
+        super.onLoadingSuccess(bean, model);
+        callBack.onLoadingSuccess(JsonUtils.jsonToObject(bean.getData(), GlobalConfigBean.class));
     }
 }

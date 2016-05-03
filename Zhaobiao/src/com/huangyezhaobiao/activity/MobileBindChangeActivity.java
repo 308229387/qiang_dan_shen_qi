@@ -14,16 +14,17 @@ import android.widget.Toast;
 
 import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
 import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.bean.GlobalConfigBean;
 import com.huangyezhaobiao.bean.MobileChangeBean;
 import com.huangyezhaobiao.iview.MobileChangeIView;
 import com.huangyezhaobiao.presenter.MobileBindChangePresenter;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
+import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import com.huangyezhaobiao.vm.MobileBindChangeViewModel;
-import com.huangyezhaobiao.vm.MobileChangeGetMobileVM;
 import com.huangyezhaobiao.vm.ValidateViewModel;
 
 import java.util.HashMap;
@@ -62,7 +63,7 @@ public class MobileBindChangeActivity extends QBBaseActivity implements View.OnC
     private ZhaoBiaoDialog            confirmChangeMobileDialog;
     private ValidateViewModel mobileChangeGetCodeVM;
     private MobileBindChangeViewModel mobileBindChangeViewModel;
-    private MobileChangeGetMobileVM   mobileChangeGetMobileVM;
+  //  private MobileChangeGetMobileVM   mobileChangeGetMobileVM;
     private MobileBindChangePresenter mobileBindChangePresenter;
     public static final String FAILURE = "1";
     public static final String SUCCESS = "0";//成功
@@ -83,7 +84,9 @@ public class MobileBindChangeActivity extends QBBaseActivity implements View.OnC
         initListener();
         onSubmitUnEnabled();
         if(TextUtils.isEmpty(mobile)) {
-            mobileChangeGetMobileVM.getOriMobile();
+            mobile = SPUtils.getVByK(this, GlobalConfigBean.KEY_USERPHONE);
+            et_now_bind_mobile.setText(mobile);
+          //  mobileChangeGetMobileVM.getOriMobile();
         }else{
             et_now_bind_mobile.setText(mobile);
         }
@@ -92,7 +95,7 @@ public class MobileBindChangeActivity extends QBBaseActivity implements View.OnC
     private void initViewModel() {
         mobileChangeGetCodeVM     = new ValidateViewModel(this,this);
         mobileBindChangeViewModel = new MobileBindChangeViewModel(this,this);
-        mobileChangeGetMobileVM   = new MobileChangeGetMobileVM(this,this);
+       // mobileChangeGetMobileVM   = new MobileChangeGetMobileVM(this,this);
         mobileBindChangePresenter = new MobileBindChangePresenter(this,this);
     }
 

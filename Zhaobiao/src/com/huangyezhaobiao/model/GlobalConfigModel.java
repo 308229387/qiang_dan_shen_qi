@@ -19,6 +19,8 @@ public class GlobalConfigModel extends NetWorkModel{
     @Override
     protected HttpRequest<String> createHttpRequest() {
         String url = URLConstans.URL_GLOBAL_CONFIG;
-        return new HttpRequest<>(HttpRequest.METHOD_GET,url,this);
+        return new HttpRequest<>(HttpRequest.METHOD_POST,url,this);
     }
+
+
 }

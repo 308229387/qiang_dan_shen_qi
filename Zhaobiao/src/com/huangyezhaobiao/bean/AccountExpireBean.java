@@ -31,4 +31,12 @@ public class AccountExpireBean {
     public void setMsg(String msg) {
         this.msg = msg;
     }
+
+    public AccountExpireBean(String expireState, String msg) {
+        this.expireState = expireState;
+        this.msg = msg;
+    }
+
+    public AccountExpireBean() {
+    }
 }

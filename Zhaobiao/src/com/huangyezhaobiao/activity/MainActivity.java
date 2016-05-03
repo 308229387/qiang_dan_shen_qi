@@ -40,6 +40,8 @@ import com.huangye.commonlib.vm.callback.ListNetWorkVMCallBack;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.adapter.PopAdapter;
 import com.huangyezhaobiao.application.BiddingApplication;
+import com.huangyezhaobiao.bean.AccountExpireBean;
+import com.huangyezhaobiao.bean.GlobalConfigBean;
 import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.bean.push.PushToPassBean;
 import com.huangyezhaobiao.constans.AppConstants;
@@ -77,8 +79,6 @@ import com.huangyezhaobiao.view.TitleMessageBarLayout;
 import com.huangyezhaobiao.view.TitleMessageBarLayout.OnTitleBarClickListener;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog.onDialogClickListener;
-import com.huangyezhaobiao.vm.AccountExpireVM;
-import com.huangyezhaobiao.vm.GlobalConfigVM;
 import com.huangyezhaobiao.vm.GrabListViewModel;
 import com.huangyezhaobiao.vm.KnockViewModel;
 import com.huangyezhaobiao.vm.LogoutViewModel;
@@ -97,7 +97,6 @@ import java.util.Map;
 public class MainActivity extends CommonFragmentActivity implements
 		ActivityInterface, OnClickListener, ListNetWorkVMCallBack,
 		INotificationListener, OnTitleBarClickListener,INetStateChangedListener, AdapterListener, onDialogClickListener {
-
 	//当用户被挤掉时,显示这个对话框
 	private ZhaoBiaoDialog exitDialog;
 	private ZhaoBiaoDialog confirmExitDialog;
@@ -149,20 +148,15 @@ public class MainActivity extends CommonFragmentActivity implements
 	private MainPresenter  mainPresenter;
 	private View           rl_qd;
 
-	private AccountExpireVM accountExpireVM;
+	//private AccountExpireVM accountExpireVM;
 
 	private ViewStub       viewStub_no_data;
 	private View root;
 	private MyCustomDialog popDialog;
 
-	private GlobalConfigVM globalConfigVM;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//shenzhixin add
-		globalConfigVM = new GlobalConfigVM(this,this);
-		globalConfigVM.refreshUsers();
-		//shenzhixin end
 		initExitForUpdateDialog();
 		//wjl
 		mainPresenter   = new MainPresenter();
@@ -181,7 +175,7 @@ public class MainActivity extends CommonFragmentActivity implements
 		initEvent();
 		listViewModel = new GrabListViewModel(this, this);
 		yuEViewModel = new YuEViewModel(this, this);
-		accountExpireVM = new AccountExpireVM(this,this);
+		//accountExpireVM = new AccountExpireVM(this,this);
 		updateViewModel = new UpdateViewModel(this, this);
 		lvm = new LogoutViewModel(this, this);
 		adapter = new PopAdapter(this, this);
@@ -194,6 +188,10 @@ public class MainActivity extends CommonFragmentActivity implements
 		getWindow().setBackgroundDrawable(null);
 		startBindService();
 		initAutoSettingDialog();
+		String expireState = SPUtils.getVByK(this, GlobalConfigBean.KEY_WLT_EXPIRE);
+		String expireMsg   = SPUtils.getVByK(this,GlobalConfigBean.KEY_WLT_EXPIRE_MSG);
+		onLoadingSuccess(new AccountExpireBean(expireState,expireMsg));
+
 	}
 
 	private void initExitForUpdateDialog() {
@@ -327,7 +325,7 @@ public class MainActivity extends CommonFragmentActivity implements
 
 		UserConstans.USER_ID = UserUtils.getUserId(this);
 		UserUtils.getUserCompany(this);
-		accountExpireVM.validateAccount();
+		//accountExpireVM.validateAccount();
 		//获得锁的权限
 	    LogUtils.LogE("ashen", "onResume...");
 		LogUtils.LogE("ashen", "lock...");
@@ -655,8 +653,7 @@ public class MainActivity extends CommonFragmentActivity implements
 	@SuppressLint("ShowToast")
 	@Override
 	public void onLoadingSuccess(Object t) {
-		//shenzhixin add annotation this start 2016.5.3
-	/*	if(t instanceof AccountExpireBean){
+		if(t instanceof AccountExpireBean){
 			AccountExpireBean accountExpireBean = (AccountExpireBean) t;
 			String expireState = accountExpireBean.getExpireState();
 			if("1".equals(expireState)){
@@ -664,8 +661,7 @@ public class MainActivity extends CommonFragmentActivity implements
 				accountExpireDialog.setMessage(accountExpireBean.getMsg());
 				accountExpireDialog.show();
 			}
-		}*/
-		//shenzhixin add annotation this end 2016.5.3
+		}
 		if (t instanceof Map<?, ?>) {
 			Map<String, String> maps = (Map<String, String>) t;
 			String balance = maps.get("balance");
