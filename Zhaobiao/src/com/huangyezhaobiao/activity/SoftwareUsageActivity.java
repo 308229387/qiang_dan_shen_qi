@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.constans.AppConstants;
+import com.huangyezhaobiao.url.URLConstans;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.NetUtils;

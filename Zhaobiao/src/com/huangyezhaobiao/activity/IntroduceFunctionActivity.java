@@ -55,7 +55,11 @@ public class IntroduceFunctionActivity extends QBBaseActivity implements OnClick
 		webView_introduce.setWebChromeClient(chromeBaseClient);
 		txt_head.setText(R.string.introduction);
 		removeJSInterface();
-		String url = URLConstans.INTRODUCTION_URL + UrlSuffix.getIntroductionSuffix();
+//		String url = URLConstans.INTRODUCTION_URL + UrlSuffix.getIntroductionSuffix();
+
+		//2016.5.3 add
+		String url = URLConstans.INTRODUCTION_PAGE_URL;
+        //2016.5.3 add end
 		LogUtils.LogE("ashenIntro", "url:" + url);
 		if(!NetUtils.isNetworkConnected(this)){
 			view_no_internet.setVisibility(View.VISIBLE);

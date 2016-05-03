@@ -162,7 +162,8 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 			public void onClick(View v) {
 				HashMap<String, String> map = new HashMap<String, String>();
 				map.put(AppConstants.H5_TITLE, getString(R.string.h5_login_softwareusage));
-				map.put(AppConstants.H5_WEBURL, URLConstans.SOFTWARE_USAGE);
+//				map.put(AppConstants.H5_WEBURL, URLConstans.SOFTWARE_USAGE);
+				map.put(AppConstants.H5_WEBURL, URLConstans.SOFTWARE_USEAGE_PROTOCOL);  //2016.5.3 add
 				ActivityUtils.goToActivityWithString(LoginActivity.this, SoftwareUsageActivity.class, map);
 //				ActivityUtils.goToActivity(LoginActivity.this,SoftwareUsageActivity.class);
 			}
@@ -184,7 +185,8 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 				BDMob.getBdMobInstance().onMobEvent(LoginActivity.this, BDEventConstans.EVENT_ID_BECOME_TO_VIP);
 				HashMap<String, String> map = new HashMap<String, String>();
 				map.put(AppConstants.H5_TITLE, getString(R.string.h5_login_raiders));
-				map.put(AppConstants.H5_WEBURL, URLConstans.HOW_TO_BECOME_VIP);
+//				map.put(AppConstants.H5_WEBURL, URLConstans.HOW_TO_BECOME_VIP);
+				map.put(AppConstants.H5_WEBURL, URLConstans.HOW_TO_BECOME_VIP_MEMBER); //2016.5.2 add
 				ActivityUtils.goToActivityWithString(LoginActivity.this, SoftwareUsageActivity.class, map);
 //				ActivityUtils.goToActivity(LoginActivity.this,SoftwareUsageActivity.class);
 			}

@@ -87,8 +87,10 @@ public class HelpActivity extends QBBaseActivity implements onDialogClickListene
 		webView.setWebViewClient(client);
 		webView.setWebChromeClient(webChromeBaseClient);
 		txt_head.setText(R.string.help);
-		String url = URLConstans.HELP_URL + UrlSuffix.getHelpSuffix();
-
+//		String url = URLConstans.HELP_URL + UrlSuffix.getHelpSuffix();
+		//2016.5.3 add
+		String url = URLConstans.HELP_PAGE_URL ;
+		//2016.5.3 add end
 		LogUtils.LogE("ashenTag", "url:" + url);
 		webView.loadUrl(url);
 	}
