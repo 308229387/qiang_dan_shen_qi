@@ -40,7 +40,6 @@ import com.huangye.commonlib.vm.callback.ListNetWorkVMCallBack;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.adapter.PopAdapter;
 import com.huangyezhaobiao.application.BiddingApplication;
-import com.huangyezhaobiao.bean.AccountExpireBean;
 import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.bean.push.PushToPassBean;
 import com.huangyezhaobiao.constans.AppConstants;
@@ -79,6 +78,7 @@ import com.huangyezhaobiao.view.TitleMessageBarLayout.OnTitleBarClickListener;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog.onDialogClickListener;
 import com.huangyezhaobiao.vm.AccountExpireVM;
+import com.huangyezhaobiao.vm.GlobalConfigVM;
 import com.huangyezhaobiao.vm.GrabListViewModel;
 import com.huangyezhaobiao.vm.KnockViewModel;
 import com.huangyezhaobiao.vm.LogoutViewModel;
@@ -155,10 +155,14 @@ public class MainActivity extends CommonFragmentActivity implements
 	private View root;
 	private MyCustomDialog popDialog;
 
-
+	private GlobalConfigVM globalConfigVM;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		//shenzhixin add
+		globalConfigVM = new GlobalConfigVM(this,this);
+		globalConfigVM.refreshUsers();
+		//shenzhixin end
 		initExitForUpdateDialog();
 		//wjl
 		mainPresenter   = new MainPresenter();
@@ -651,8 +655,8 @@ public class MainActivity extends CommonFragmentActivity implements
 	@SuppressLint("ShowToast")
 	@Override
 	public void onLoadingSuccess(Object t) {
-
-		if(t instanceof AccountExpireBean){
+		//shenzhixin add annotation this start 2016.5.3
+	/*	if(t instanceof AccountExpireBean){
 			AccountExpireBean accountExpireBean = (AccountExpireBean) t;
 			String expireState = accountExpireBean.getExpireState();
 			if("1".equals(expireState)){
@@ -660,7 +664,8 @@ public class MainActivity extends CommonFragmentActivity implements
 				accountExpireDialog.setMessage(accountExpireBean.getMsg());
 				accountExpireDialog.show();
 			}
-		}
+		}*/
+		//shenzhixin add annotation this end 2016.5.3
 		if (t instanceof Map<?, ?>) {
 			Map<String, String> maps = (Map<String, String>) t;
 			String balance = maps.get("balance");

@@ -5,6 +5,14 @@ package com.huangyezhaobiao.bean;
  * 网灵通过期的实体
  */
 public class AccountExpireBean {
+    /**
+     * 已到期
+     */
+    public static String ALREADY_EXPIRE = "1";
+    /**
+     * 未到期
+     */
+    public static String UNEXPIRE = "0";
     private String expireState;
     private String msg;
 

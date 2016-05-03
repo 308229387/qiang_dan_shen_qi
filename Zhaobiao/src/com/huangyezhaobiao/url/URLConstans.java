@@ -136,14 +136,14 @@ public interface URLConstans {
 	String HELP_URL = BASE_URL_APP + APP_HELP ;
 
 	String HELP_PAGE_URL = URLConstans.BASE_HTML_URL + "help.html";
-	
+
 	/**
 	 * 功能介绍页面的url
 	 */
 	String INTRODUCTION_URL = BASE_URL_APP + APP_INTRODUCTION;
 
 	String INTRODUCTION_PAGE_URL = URLConstans.BASE_HTML_URL + "introduction.html";
-	
+
 	/**
 	 * 查询余额的url "http://192.168.118.41/app/order/balance?userid=24454277549825&token=1"
 	 */
@@ -191,7 +191,6 @@ public interface URLConstans {
 
 	String LOGOUT_API_URL = BASE_URL_API+"logout?";
 
-	
 	
 	String SOFTWARE_USAGE = BASE_URL_APP + "usageProtocol";
 
@@ -333,10 +332,14 @@ public interface URLConstans {
 	 */
 	String URL_RECEIVE_GE_PUSH = BASE_URL_APP + "receiveGetPush?";
 
+
+	String URL_GLOBAL_CONFIG = BASE_URL_APP +"global/params";
+
 	//2016.05.03.add
 	/**
 	 * 静态页面公共URL
 	 */
 	String BASE_HTML_URL ="http://img.58cdn.com.cn/ds/zhaobiao/app_zhaobiao/html/";
 	//2016.05.03.add end
+}
 }

@@ -307,8 +307,6 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 				ActivityUtils.goToActivity(LoginActivity.this, MainActivity.class);
 			}
 			finish();
-			// UserUtils.getUserId(LoginActivity.this)
-			//ToastUtils.makeImgAndTextToast(getApplicationContext(),"正在设置别名，请稍后",R.drawable.validate_load,1).show();
 		}
 	}
 
