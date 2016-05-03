@@ -4,9 +4,8 @@ import android.content.Context;
 
 import com.huangye.commonlib.model.NetWorkModel;
 import com.huangye.commonlib.model.callback.NetworkModelCallBack;
-import com.huangye.commonlib.network.HttpRequest;
+import com.huangyezhaobiao.request.ZhaoBiaoRequest;
 import com.huangyezhaobiao.url.URLConstans;
-import com.huangyezhaobiao.url.UrlSuffix;
 
 public class LogoutModel extends NetWorkModel {
 
@@ -16,10 +15,10 @@ public class LogoutModel extends NetWorkModel {
 	}
 
 	@Override
-	protected HttpRequest<String> createHttpRequest() {
+	protected ZhaoBiaoRequest<String> createHttpRequest() {
 		//2016.5.3 add
-//		return new HttpRequest<String>(HttpRequest.METHOD_GET, URLConstans.LOGOUT_API_URL+ UrlSuffix.getLogoutSuffix(context),this);
-		return new HttpRequest<String>(HttpRequest.METHOD_GET, URLConstans.LOGOUT_API_URL,this);
+//		return new ZhaoBiaoRequest<String>(ZhaoBiaoRequest.METHOD_GET, URLConstans.LOGOUT_API_URL+ UrlSuffix.getLogoutSuffix(context),this);
+		return new ZhaoBiaoRequest<String>(ZhaoBiaoRequest.METHOD_GET, URLConstans.LOGOUT_API_URL,this);
 		//2016.5.3 add end
 	}
 

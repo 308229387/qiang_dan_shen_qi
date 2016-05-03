@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.huangye.commonlib.model.NetWorkModel;
 import com.huangye.commonlib.model.callback.NetworkModelCallBack;
-import com.huangye.commonlib.network.HttpRequest;
+import com.huangyezhaobiao.request.ZhaoBiaoRequest;
 import com.huangyezhaobiao.url.URLConstans;
 import com.huangyezhaobiao.url.UrlSuffix;
 import com.huangyezhaobiao.utils.LogUtils;
@@ -32,7 +32,7 @@ public class FetchDetailsModel extends NetWorkModel{
 
 
 	@Override
-	protected HttpRequest<String> createHttpRequest() {
+	protected ZhaoBiaoRequest<String> createHttpRequest() {
 		/**
 		 * http://192.168.118.41/app/order/orderdetail?orderid=3088047252787691809&token=1
 		 */
@@ -40,7 +40,7 @@ public class FetchDetailsModel extends NetWorkModel{
 		String url = URLConstans.MESSAGE_CENTER_DETEAILS_URL+UrlSuffix.getAppCenterDetailsSuffix(orderId);
 		//2016.5.3 add end
 		LogUtils.LogE("ashenDetail", "url:" + url);
-		return new HttpRequest<String>(HttpRequest.METHOD_GET, url,this);
+		return new ZhaoBiaoRequest<String>(ZhaoBiaoRequest.METHOD_GET, url,this);
 	}
 
 

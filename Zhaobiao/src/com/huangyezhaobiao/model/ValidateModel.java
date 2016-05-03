@@ -1,10 +1,10 @@
 package com.huangyezhaobiao.model;
 
+import android.content.Context;
+
 import com.huangye.commonlib.model.NetWorkModel;
 import com.huangye.commonlib.model.callback.NetworkModelCallBack;
-import com.huangye.commonlib.network.HttpRequest;
-
-import android.content.Context;
+import com.huangyezhaobiao.request.ZhaoBiaoRequest;
 
 public class ValidateModel extends NetWorkModel {
 
@@ -23,9 +23,8 @@ public class ValidateModel extends NetWorkModel {
 //	}
 
 	@Override
-	protected HttpRequest<String> createHttpRequest() {
-
-		return new HttpRequest<String>(HttpRequest.METHOD_GET, "", this);
+	protected ZhaoBiaoRequest<String> createHttpRequest() {
+		return new ZhaoBiaoRequest<String>(ZhaoBiaoRequest.METHOD_GET, "", this);
 	}
 
 }

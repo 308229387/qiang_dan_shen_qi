@@ -5,6 +5,7 @@ import android.content.Context;
 import com.huangye.commonlib.model.NetWorkModel;
 import com.huangye.commonlib.model.callback.NetworkModelCallBack;
 import com.huangye.commonlib.network.HttpRequest;
+import com.huangyezhaobiao.request.ZhaoBiaoRequest;
 import com.huangyezhaobiao.url.URLConstans;
 import com.huangyezhaobiao.url.UrlSuffix;
 
@@ -17,7 +18,7 @@ public class AccountExpireModel extends NetWorkModel{
     }
 
     @Override
-    protected HttpRequest<String> createHttpRequest() {
-        return new HttpRequest<>(HttpRequest.METHOD_GET, URLConstans.URL_APP_ACCOUNT_EXPIRE+ UrlSuffix.getAccountExpireSuffix(context),this);
+    protected ZhaoBiaoRequest<String> createHttpRequest() {
+        return new ZhaoBiaoRequest<>(HttpRequest.METHOD_GET, URLConstans.URL_APP_ACCOUNT_EXPIRE+ UrlSuffix.getAccountExpireSuffix(context),this);
     }
 }

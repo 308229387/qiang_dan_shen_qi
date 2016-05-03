@@ -17,6 +17,7 @@ import com.huangye.commonlib.network.HttpRequest;
 import com.huangye.commonlib.utils.JsonUtils;
 import com.huangye.commonlib.utils.NetBean;
 import com.huangye.commonlib.utils.UserConstans;
+import com.huangyezhaobiao.request.ZhaoBiaoRequest;
 import com.huangyezhaobiao.url.URLConstans;
 import com.lidroid.xutils.http.ResponseInfo;
 
@@ -39,10 +40,10 @@ public class CheckLoginModel extends NetWorkModel {
 	@Override
     protected HttpRequest<String> createHttpRequest() {
         /** 登录招标 */
-        //return new HttpRequest<String>(HttpRequest.METHOD_POST, URLConstans.BASE_URL+"api/login", this);
-		return new HttpRequest<String>(HttpRequest.METHOD_POST, "http://10.252.158.8/api/login", this);
+        return new ZhaoBiaoRequest<String>(ZhaoBiaoRequest.METHOD_POST, URLConstans.BASE_URL+"api/login", this);
+//		return new ZhaoBiaoRequest<String>(ZhaoBiaoRequest.METHOD_POST, "http://10.252.158.8/api/login", this);
         /** 登录新版的passport */
-        // return new HttpRequest<String>(HttpRequest.METHOD_POST,"https://passport.58.com/login/dologin",this);
+        // return new ZhaoBiaoRequest<String>(ZhaoBiaoRequest.METHOD_POST,"https://passport.58.com/login/dologin",this);
     }
 
     @Override

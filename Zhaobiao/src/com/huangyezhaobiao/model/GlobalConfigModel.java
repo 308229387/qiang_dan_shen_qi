@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.huangye.commonlib.model.NetWorkModel;
 import com.huangye.commonlib.model.callback.NetworkModelCallBack;
-import com.huangye.commonlib.network.HttpRequest;
+import com.huangyezhaobiao.request.ZhaoBiaoRequest;
 import com.huangyezhaobiao.url.URLConstans;
 
 /**
@@ -17,9 +17,9 @@ public class GlobalConfigModel extends NetWorkModel{
     }
 
     @Override
-    protected HttpRequest<String> createHttpRequest() {
+    protected ZhaoBiaoRequest<String> createHttpRequest() {
         String url = URLConstans.URL_GLOBAL_CONFIG;
-        return new HttpRequest<>(HttpRequest.METHOD_POST,url,this);
+        return new ZhaoBiaoRequest<>(ZhaoBiaoRequest.METHOD_POST,url,this);
     }
 
 

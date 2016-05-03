@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.huangye.commonlib.model.NetWorkModel;
 import com.huangye.commonlib.model.callback.NetworkModelCallBack;
-import com.huangye.commonlib.network.HttpRequest;
+import com.huangyezhaobiao.request.ZhaoBiaoRequest;
 
 public class PopDetailModel extends NetWorkModel {
 
@@ -13,8 +13,8 @@ public class PopDetailModel extends NetWorkModel {
 	}
 
 	@Override
-	protected HttpRequest<String> createHttpRequest() {
-		return new HttpRequest<String>(HttpRequest.METHOD_GET, "", this);
+	protected ZhaoBiaoRequest<String> createHttpRequest() {
+		return new ZhaoBiaoRequest<String>(ZhaoBiaoRequest.METHOD_GET, "", this);
 	}
 
 }

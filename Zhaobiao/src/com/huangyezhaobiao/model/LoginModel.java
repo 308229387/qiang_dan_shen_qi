@@ -5,8 +5,8 @@ import android.util.Log;
 
 import com.huangye.commonlib.model.NetWorkModel;
 import com.huangye.commonlib.model.callback.NetworkModelCallBack;
-import com.huangye.commonlib.network.HttpRequest;
 import com.huangyezhaobiao.bean.PassportBean;
+import com.huangyezhaobiao.request.ZhaoBiaoRequest;
 import com.lidroid.xutils.http.ResponseInfo;
 
 import org.apache.http.Header;
@@ -20,12 +20,12 @@ public class LoginModel extends NetWorkModel{
 	}
 	
 	@Override
-	protected HttpRequest<String> createHttpRequest() {
+	protected ZhaoBiaoRequest<String> createHttpRequest() {
 		/** 登录旧版的passport */
 		Log.v(TAG,"createHttpRequest()");
-		return new HttpRequest<String>(HttpRequest.METHOD_POST,"https://passport.58.com/pso/domclientlogin",this);
+		return new ZhaoBiaoRequest<String>(ZhaoBiaoRequest.METHOD_POST,"https://passport.58.com/pso/domclientlogin",this);
 		/** 登录新版的passport */
-		// return new HttpRequest<String>(HttpRequest.METHOD_POST,"https://passport.58.com/login/dologin",this);
+		// return new ZhaoBiaoRequest<String>(ZhaoBiaoRequest.METHOD_POST,"https://passport.58.com/login/dologin",this);
 	}
 
 	@Override

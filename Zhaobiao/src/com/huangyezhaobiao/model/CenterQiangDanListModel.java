@@ -4,8 +4,8 @@ import android.content.Context;
 
 import com.huangye.commonlib.model.ListNetWorkModel;
 import com.huangye.commonlib.model.callback.NetworkModelCallBack;
-import com.huangye.commonlib.network.HttpRequest;
 import com.huangyezhaobiao.fragment.QiangDanBaseFragment;
+import com.huangyezhaobiao.request.ZhaoBiaoRequest;
 import com.huangyezhaobiao.url.URLConstans;
 import com.huangyezhaobiao.url.UrlSuffix;
 import com.huangyezhaobiao.utils.LogUtils;
@@ -67,8 +67,8 @@ public class CenterQiangDanListModel extends ListNetWorkModel{
 	}
 
 	@Override
-	protected HttpRequest<String> createHttpRequest() {
-		return new HttpRequest<String>(HttpRequest.METHOD_GET,"",this);
+	protected ZhaoBiaoRequest<String> createHttpRequest() {
+		return new ZhaoBiaoRequest<String>(ZhaoBiaoRequest.METHOD_GET,"",this);
 	}
 
 	/**

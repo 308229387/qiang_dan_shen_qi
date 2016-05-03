@@ -1,4 +1,5 @@
 package com.huangye.commonlib.network;
+
 import com.huangye.commonlib.delegate.HttpRequestCallBack;
 import com.huangye.commonlib.utils.LogUtils;
 import com.lidroid.xutils.http.HttpHandler;
@@ -13,7 +14,7 @@ import java.util.Set;
  * @author shenzhixin
  *
  */
-public class HttpRequest<T> {
+public abstract class HttpRequest<T> {
 	private HashMap<String, String> map = new HashMap<String, String>();
 	/**
 	 * 以get方式进行请求
@@ -27,11 +28,11 @@ public class HttpRequest<T> {
 	
 	//应该有一个缓存的策略对象----数据库----manager也得有自己的callBack，并且实现http的callBack---也得把结果转成Json
 	//cache policy----
-	private int timeout = DEFAULT_CONN_TIMEOUT;
+	protected int timeout = DEFAULT_CONN_TIMEOUT;
 	private int method;//请求的方式
 	private String url;//请求的路径
-	private RequestParams params;//post时请求传递的参数;
-	private HTTPTools httpTools;//第三方的封装tools
+	protected RequestParams params;//post时请求传递的参数;
+	protected HTTPTools httpTools;//第三方的封装tools
 	private HttpRequestCallBack callBack;//网络层的协议回调，回调到model层
 	//超时时间
 	private HttpHandler<String> handler;//网路请求返回的控制器，可以控制网络的取消
@@ -74,8 +75,6 @@ public class HttpRequest<T> {
 		 * ppu：登录之后passport返回的
 		 * appversion:
 		 * */
-		params.addHeader("ppu","");
-
 
 		Set<Entry<String, String>> entrySet = params_map.entrySet();
 		Iterator<Entry<String, String>> iterator = entrySet.iterator();
@@ -117,8 +116,7 @@ public class HttpRequest<T> {
 	 * 取消这一次的网络请求
 	 */
 	public void cancelWork(){
-		if(handler!=null && handler.supportCancel())
-				handler.cancel();
+		if(handler!=null && handler.supportCancel()) handler.cancel();
 	}
 	
 
@@ -134,10 +132,5 @@ public class HttpRequest<T> {
 	/**
 	 * 必须要初始化的东西
 	 */
-	private void initEnv() {
-		this.params = new RequestParams();
-		httpTools = HTTPTools.newHttpUtilsInstance();
-		setRequestTimeOut(timeout);
-	}
-	
+	protected abstract void initEnv();
 }

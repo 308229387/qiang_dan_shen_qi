@@ -1,0 +1,34 @@
+package com.huangyezhaobiao.request;
+
+import com.huangye.commonlib.delegate.HttpRequestCallBack;
+import com.huangye.commonlib.network.HTTPTools;
+import com.huangye.commonlib.network.HttpRequest;
+import com.huangye.commonlib.utils.PhoneUtils;
+import com.huangyezhaobiao.application.BiddingApplication;
+import com.huangyezhaobiao.utils.UserUtils;
+import com.lidroid.xutils.http.RequestParams;
+
+/**
+ * author keyes
+ * time 2016/5/3 20:15
+ * email：1175426782@qq.com
+ * param：
+ * descript：
+ */
+public class ZhaoBiaoRequest<T> extends HttpRequest {
+
+    public ZhaoBiaoRequest(int method,String url,HttpRequestCallBack callBack){
+       super(method,url,callBack);
+    }
+
+    @Override
+    protected void initEnv() {
+        this.params = new RequestParams();
+        params.addHeader("ppu", UserUtils.getUserPPU(BiddingApplication.getAppInstanceContext()));
+        params.addHeader("userId",UserUtils.getUserId(BiddingApplication.getAppInstanceContext()));
+        params.addHeader("version",UserUtils.getUserId(BiddingApplication.getAppInstanceContext()));
+        params.addHeader("UUID", PhoneUtils.getIMEI(BiddingApplication.getAppInstanceContext()));
+        httpTools = HTTPTools.newHttpUtilsInstance();
+        setRequestTimeOut(timeout);
+    }
+}

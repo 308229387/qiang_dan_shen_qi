@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.huangye.commonlib.model.NetWorkModel;
 import com.huangye.commonlib.model.callback.NetworkModelCallBack;
-import com.huangye.commonlib.network.HttpRequest;
+import com.huangyezhaobiao.request.ZhaoBiaoRequest;
 import com.huangyezhaobiao.url.URLConstans;
 import com.huangyezhaobiao.url.UrlSuffix;
 /**
@@ -18,18 +18,10 @@ public class YuEModel extends NetWorkModel{
 		super(baseSourceModelCallBack, context);
 	}
 
-
-	
-	
-
 	@Override
-	protected HttpRequest<String> createHttpRequest() {
+	protected ZhaoBiaoRequest<String> createHttpRequest() {
 		String aa = URLConstans.GET_BALANCE_API + UrlSuffix.getApiBalance(context);
-		HttpRequest<String> request = new HttpRequest<String>(HttpRequest.METHOD_GET, aa, this);
+		ZhaoBiaoRequest<String> request = new ZhaoBiaoRequest<String>(ZhaoBiaoRequest.METHOD_GET, aa, this);
 		return request;
 	}
-	
-	
-	
-
 }
