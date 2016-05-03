@@ -17,7 +17,10 @@ public class LogoutModel extends NetWorkModel {
 
 	@Override
 	protected HttpRequest<String> createHttpRequest() {
-		return new HttpRequest<String>(HttpRequest.METHOD_GET, URLConstans.LOGOUT_API_URL+ UrlSuffix.getLogoutSuffix(context),this);
+		//2016.5.3 add
+//		return new HttpRequest<String>(HttpRequest.METHOD_GET, URLConstans.LOGOUT_API_URL+ UrlSuffix.getLogoutSuffix(context),this);
+		return new HttpRequest<String>(HttpRequest.METHOD_GET, URLConstans.LOGOUT_API_URL,this);
+		//2016.5.3 add end
 	}
 
 }

@@ -24,7 +24,9 @@ public class TelephoneVModel extends SourceViewModel{
 
 
     public void telephone(String orderId,String source){
-        String url = URLConstans.URL_APP_TELEPHONE + UrlSuffix.getTelephoneSuffix(context,orderId,source);
+        //2016.5.3 add
+        String url = URLConstans.URL_APP_TELEPHONE + UrlSuffix.getTelephoneSuffix(orderId);
+        //2016.5.3 add end
         t.setRequestURL(url);
         t.getDatas();
     }

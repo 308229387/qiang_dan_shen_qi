@@ -35,7 +35,9 @@ public class CenterQiangDanListModel extends ListNetWorkModel{
 	public void loadMore() {
 		current_load_page++;
 		LogUtils.LogE("ashen", "loadmore..page" + current_load_page);
-		String url = URLConstans.MESSAGE_CENTER_URL + UrlSuffix.getAppCenterSuffix(context,""+current_load_page);
+		//2016.5.3 add
+		String url = URLConstans.MESSAGE_CENTER_URL + UrlSuffix.getAppCenterSuffix(""+current_load_page);
+		//2016.5.3 add end
 		setRequestURL(url);
 		LogUtils.LogE("ashenTest", "loadmore url:" + "http://192.168.118.41/app/order/orderlist?userid=32904878844161&orderstate=" + QiangDanBaseFragment.orderState + "&pageNum=1&token=1");
 		getDatas();
@@ -46,7 +48,9 @@ public class CenterQiangDanListModel extends ListNetWorkModel{
 		//根据m
 		current_load_page = 1;
 		LogUtils.LogE("ashen", "refresh..page" + current_load_page);
-		String url = URLConstans.MESSAGE_CENTER_URL + UrlSuffix.getAppCenterSuffix(context,"1");
+		//2016.5.3 add
+		String url = URLConstans.MESSAGE_CENTER_URL + UrlSuffix.getAppCenterSuffix("1");
+		//2016.5.3 add end
 		LogUtils.LogE("shenzhixintest", "url:" + url);
 		//::http://192.168.118.41/app/order/orderlist?userid/27353503259910&orderstate/1&&pageNum=1&token=1
 		//"http://192.168.118.41/app/order/orderlist?userid=24454277549826&orderstate="+QiangDanBaseFragment.orderState+"&pageNum=1&token=1"
