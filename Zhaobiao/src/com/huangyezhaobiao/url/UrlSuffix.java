@@ -83,21 +83,37 @@ public class UrlSuffix {
 	}
 	
 	
-	public static String getAppCenterDetailsSuffix(Context context ,String orderId){
-		return getAppOrderId(orderId) + URLConstans.AND + getCommonSuffix(context);
+//	public static String getAppCenterDetailsSuffix(Context context ,String orderId){
+//		return getAppOrderId(orderId) + URLConstans.AND + getCommonSuffix(context);
+//	}
+
+	public static String getAppCenterDetailsSuffix(String orderId){
+		return getAppOrderId(orderId) ;
 	}
-	
-	
+
+
+
+//	/**
+//	 * 得到订单中心的后缀
+//	 *
+//	 * @return
+//	 */
+//	public static String getAppCenterSuffix(Context context,String pageNum) {
+//		return getAppUserId() + URLConstans.AND + getAppCenterOrderState()
+//				+ URLConstans.AND + getPageNum(pageNum) + URLConstans.AND
+//				+ getCommonSuffix(context);
+//	}
+
+	//2016.5.3 add
 	/**
 	 * 得到订单中心的后缀
-	 * 
+	 * @param pageNum
 	 * @return
 	 */
-	public static String getAppCenterSuffix(Context context,String pageNum) {
-		return getAppUserId() + URLConstans.AND + getAppCenterOrderState()
-				+ URLConstans.AND + getPageNum(pageNum) + URLConstans.AND
-				+ getCommonSuffix(context);
+	public static String getAppCenterSuffix(String pageNum) {
+		return  getAppCenterOrderState()+ URLConstans.AND + getPageNum(pageNum);
 	}
+	//2016.5.3 add end
 	
 	/**
 	 * 得到余额的后缀
@@ -287,15 +303,27 @@ public class UrlSuffix {
 		return URLConstans.TELPHONE_SOURCE + URLConstans.APP_CHA_EQUALS + source;
 	}
 
+//	/**
+//	 * userId= &orderId= &source=
+//	 * 打电话的url的后缀
+//	 * @param context
+//	 * @return
+//	 */
+//	public static String getTelephoneSuffix(Context context,String orderId,String source){
+//		return getUserId(context) + URLConstans.AND + getApiOrderId(orderId) + URLConstans.AND + getSourceSuffix(source) + URLConstans.AND + getCommonSuffix(context);
+//	}
+
+	//2016.5.3 add
 	/**
-	 * userId= &orderId= &source=
-	 * 打电话的url的后缀
-	 * @param context
+	 * *打电话的url的后缀
+	 * orderId=
+	 * @param orderId
 	 * @return
 	 */
-	public static String getTelephoneSuffix(Context context,String orderId,String source){
-		return getUserId(context) + URLConstans.AND + getApiOrderId(orderId) + URLConstans.AND + getSourceSuffix(source) + URLConstans.AND + getCommonSuffix(context);
+	public static String getTelephoneSuffix(String orderId){
+		return  getApiOrderId(orderId);
 	}
+	//2016.5.3 add end
 
 	/**userId= &platform= &UUID= &version= &token=
 	 * 从后台到前台的后缀
@@ -308,15 +336,33 @@ public class UrlSuffix {
 	}
 
 
+//	/**
+//	 * 得到个推的后缀名
+//	 * userId= & bidId= & bidType = & platform= &UUID= &version= &token=
+//	 * @param context
+//	 * @return
+//	 */
+//	public static String getGePushSuffix(Context context,String bidId,String bidType){
+//		return getUserId(context) + URLConstans.AND + getBidId(bidId) + URLConstans.AND + getBidType(bidType) + URLConstans.AND + getCommonSuffix(context);
+//
+//	}
+
+    //2015.5.3.add
 	/**
 	 * 得到个推的后缀名
-	 * userId= & bidId= & bidType = & platform= &UUID= &version= &token=
-	 * @param context
+	 * bidId= & bidType =
+	 * @param bidId
+	 * @param bidType
 	 * @return
 	 */
-	public static String getGePushSuffix(Context context,String bidId,String bidType){
-		return getUserId(context) + URLConstans.AND + getBidId(bidId) + URLConstans.AND + getBidType(bidType) + URLConstans.AND + getCommonSuffix(context);
+	public static String getGePushSuffix(String bidId,String bidType){
+
+		return  getBidType(bidType) + URLConstans.AND + getBidId(bidId) ;
+
 	}
+
+	//2015.5.3.add end
+
 
 	public static String getBidId(String bidId){
 		return URLConstans.BID_ID + URLConstans.APP_CHA_EQUALS +bidId;

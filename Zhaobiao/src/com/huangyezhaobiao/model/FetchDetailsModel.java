@@ -22,7 +22,9 @@ public class FetchDetailsModel extends NetWorkModel{
 	 */
 	public void setOrderId(String orderId){
 		this.orderId = orderId;
-		String url = URLConstans.MESSAGE_CENTER_DETEAILS_URL+UrlSuffix.getAppCenterDetailsSuffix(context,orderId);
+		//2016.5.3 add
+		String url = URLConstans.MESSAGE_CENTER_DETEAILS_URL+UrlSuffix.getAppCenterDetailsSuffix(orderId);
+		//2015.5.3 add end
 		LogUtils.LogE("ashenDetail", "url:" + url);
 		setRequestURL(url);
 		LogUtils.LogE("ashenFetch", "model......orderId:" + orderId);
@@ -34,7 +36,9 @@ public class FetchDetailsModel extends NetWorkModel{
 		/**
 		 * http://192.168.118.41/app/order/orderdetail?orderid=3088047252787691809&token=1
 		 */
-		String url = URLConstans.MESSAGE_CENTER_DETEAILS_URL+UrlSuffix.getAppCenterDetailsSuffix(context,orderId);
+		//2016.5.3 add
+		String url = URLConstans.MESSAGE_CENTER_DETEAILS_URL+UrlSuffix.getAppCenterDetailsSuffix(orderId);
+		//2016.5.3 add end
 		LogUtils.LogE("ashenDetail", "url:" + url);
 		return new HttpRequest<String>(HttpRequest.METHOD_GET, url,this);
 	}

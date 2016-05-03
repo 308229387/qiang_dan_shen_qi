@@ -76,9 +76,9 @@ public interface URLConstans {
 	String API_USER_ID = "userId";
 
 	/**
-	 * app前缀的orderstate
+	 * app前缀的orderState
 	 */
-	String APP_ORDER_STATE = "orderstate";
+	String APP_ORDER_STATE = "orderState";
 
 	/**
 	 * app前缀的token
@@ -93,7 +93,7 @@ public interface URLConstans {
 	/**
 	 * app前缀的pageNum
 	 */
-	String APP_PAGE_NUM = "pagenum";
+	String APP_PAGE_NUM = "pageNum";
 
 	String APP_NORMAL_PAGE_NUM = "pageNum";
 

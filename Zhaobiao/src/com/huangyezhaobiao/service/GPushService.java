@@ -78,7 +78,9 @@ public class GPushService extends IntentService {
             return;
         String bidId   = pushBean.toPushPassBean().getBidId()+"";
         String bidType = pushBean.getTag()+"";
-        String url     = URLConstans.URL_RECEIVE_GE_PUSH + UrlSuffix.getGePushSuffix(this,bidId,bidType);
+        //2016.5.3 add
+        String url     = URLConstans.URL_RECEIVE_GE_PUSH + UrlSuffix.getGePushSuffix(bidId,bidType);
+        //2016.5.3 add end
         try {
             HTTPTools.newHttpUtilsInstance().doGet(url, new HttpRequestCallBack() {
                 @Override
