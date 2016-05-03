@@ -80,7 +80,15 @@ public class DoneServiceFragment extends QiangDanBaseFragment {
 
 	@Override
 	public void onLoadingMoreSuccess(Object res) {
+<<<<<<< Updated upstream
 		List<QDBaseBean> beans = (List<QDBaseBean>) res;
+=======
+		List<QDBaseBean> addBeans = (List<QDBaseBean>) res;
+		if(addBeans == null || addBeans.size() ==0 ){
+			ToastUtils.makeText(getActivity(), "没有更多数据了", Toast.LENGTH_SHORT).show();
+		}
+		beans.addAll(addBeans);
+>>>>>>> Stashed changes
 		adapter.loadMoreSuccess(beans);
 		lv_all_fragment.onRefreshComplete();
 		
@@ -154,9 +162,21 @@ public class DoneServiceFragment extends QiangDanBaseFragment {
 		if(lv_all_fragment!=null && lv_all_fragment.isRefreshing())
 			lv_all_fragment.onRefreshComplete();
 		stopLoading();
+<<<<<<< Updated upstream
 		if(layout_no_internets!=null) {
 			layout_no_internets.setVisibility(View.VISIBLE);
 		}
+=======
+//		if(layout_no_internets!=null) {
+//			layout_no_internets.setVisibility(View.VISIBLE);
+//		}
+
+		ToastUtils.makeText(getActivity(), "当前没有网络", Toast.LENGTH_SHORT).show();
+
+		page = 1;
+		List<OrderBean> list = sqlUtils.findDatas(OrderBean.class,sort,page,limit,"userId",userId,"orderState","1",null);
+		onRefreshSuccess(list);
+>>>>>>> Stashed changes
 	}
 
 	@Override
