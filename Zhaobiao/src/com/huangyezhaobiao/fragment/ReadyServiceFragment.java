@@ -28,6 +28,7 @@ import java.util.List;
 public class ReadyServiceFragment extends QiangDanBaseFragment {
 	private View root_fragment_all;
 	private PullToRefreshListView lv_all_fragment;
+	private String a ;
 	private ListView lv;
 	private View layout_no_internet,layout_no_internet_click;
 	private SwipeRefreshLayout srl;
