@@ -44,7 +44,7 @@ public class LoginViewModel extends SourceViewModel{
 		this.username = username;
 		this.password = p3;
 		params_map.put("username", username);
-		params_map.put("p3", password);
+		params_map.put("p3", p3);
 		params_map.put("ctype", "2");
 		// 获取设备号
 		String mid = PhoneUtils.getIMEI(context);

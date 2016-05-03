@@ -42,6 +42,7 @@ import com.huangyezhaobiao.vm.YuEViewModel;
  */
 public abstract class QiangDanBaseFragment extends Fragment implements
 		ListNetWorkVMCallBack, OnItemClickListener, AdapterListener {
+	private String a ;
 	protected QiangDanListViewModel lvm;
 	protected boolean isLoadFirst;
 	private View emptyView;

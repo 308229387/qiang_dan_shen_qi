@@ -8,7 +8,7 @@
 
     <uses-sdk
         android:minSdkVersion="11"
-        android:targetSdkVersion="23" />
+        android:targetSdkVersion="22" />
     <!--===================================================Ma===============-->
     <!-- 个推SDK权限配置开始 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -425,8 +425,8 @@
             android:enabled="true"
             android:process=":pushservice" />
 
-        <service android:name=".service.TestService"/>
-        <service android:name=".service.TestService$TestInnerService"/>
+        <!--<service android:name=".service.TestService"/>-->
+        <!--<service android:name=".service.TestService$TestInnerService"/>-->
         <service
             android:name="com.xiaomi.mipush.sdk.PushMessageHandler"
             android:enabled="true"

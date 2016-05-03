@@ -27,6 +27,7 @@ import java.util.List;
  *
  */
 public class OnServiceFragment extends QiangDanBaseFragment {
+	private String a ;
 	private View root_fragment_all;
 	private PullToRefreshListView lv_all_fragment;
 	private ListView lv;
