@@ -148,7 +148,7 @@ public interface URLConstans {
 	 * 查询余额的url "http://192.168.118.41/app/order/balance?userid=24454277549825&token=1"
 	 * /app/userinfo?queryKey=balance|userinfo
 	 */
-	String APP_USERINFO = "app/userinfo";
+	String APP_USERINFO = "userinfo";
 	String GET_BALANCE_API = BASE_URL_APP + LINE + APP_USERINFO + CHA_ASK;
 	
 
