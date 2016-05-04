@@ -49,8 +49,12 @@ public class HTTPTools {
 		return httpTools;
 	}
 
+	public HttpHandler<String> doGet(String url, RequestParams params,HttpRequestCallBack callBack) {// 外部接口函数
+		return doGetJson(url,params, callBack);
+	}
+
 	public HttpHandler<String> doGet(String url, HttpRequestCallBack callBack) {// 外部接口函数
-		return doGetJson(url, callBack);
+		return doGetJson(url,callBack);
 	}
 
 	public HttpHandler<String> doPost(String url, RequestParams params,
@@ -104,9 +108,54 @@ public class HTTPTools {
 
 	}
 
+
 	private HttpHandler<String> doGetJson(String url,
-			final HttpRequestCallBack callBack) {
+										  final HttpRequestCallBack callBack) {
 		return httpUtils.send(HttpMethod.GET, url,
+				new RequestCallBack<String>() {
+
+					@Override
+					public void onFailure(HttpException exception, String err) {
+						Log.v("HttpRequestCallBack","onFailure");
+						if(callBack!=null)
+							callBack.onLoadingFailure(err);
+					}
+
+					@Override
+					public void onSuccess(ResponseInfo<String> result) {
+						Log.v("HttpRequestCallBack","onSuccess");
+						if(callBack!=null)
+							callBack.onLoadingSuccess(result);
+					}
+
+					@Override
+					public void onStart() {
+						super.onStart();
+						if(callBack!=null)
+							callBack.onLoadingStart();
+					}
+
+					@Override
+					public void onCancelled() {
+						super.onCancelled();
+						if(callBack!=null)
+							callBack.onLoadingCancelled();
+					}
+
+					@Override
+					public void onLoading(long total, long current,
+										  boolean isUploading) {
+						super.onLoading(total, current, isUploading);
+						if(callBack!=null)
+							callBack.onLoading(total,current);
+					}
+				});
+
+	}
+
+	private HttpHandler<String> doGetJson(String url,RequestParams params,
+			final HttpRequestCallBack callBack) {
+		return httpUtils.send(HttpMethod.GET, url,params,
 				new RequestCallBack<String>() {
 
 					@Override
