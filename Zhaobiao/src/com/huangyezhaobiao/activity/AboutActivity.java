@@ -24,7 +24,6 @@ public class AboutActivity extends QBBaseActivity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.activity_about);
 		initView();
 		initListener();

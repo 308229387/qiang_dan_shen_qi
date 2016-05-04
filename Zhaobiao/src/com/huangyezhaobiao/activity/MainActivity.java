@@ -125,9 +125,7 @@ public class MainActivity extends CommonFragmentActivity implements
 	private TextView tv_yue;
 	private YuEViewModel yuEViewModel;
 	private BiddingApplication app;
-
 	private UpdateViewModel updateViewModel;
-
 	private UpdateManager updateManager;
 	private TextView tv_unread;
 	private TextView smallred;
@@ -188,9 +186,7 @@ public class MainActivity extends CommonFragmentActivity implements
 		getWindow().setBackgroundDrawable(null);
 		startBindService();
 		initAutoSettingDialog();
-		String expireState = SPUtils.getVByK(this, GlobalConfigBean.KEY_WLT_EXPIRE);
-		String expireMsg   = SPUtils.getVByK(this,GlobalConfigBean.KEY_WLT_EXPIRE_MSG);
-		onLoadingSuccess(new AccountExpireBean(expireState,expireMsg));
+
 
 	}
 
@@ -322,7 +318,7 @@ public class MainActivity extends CommonFragmentActivity implements
 
 	@Override
 	protected void onResume() {
-
+		getExpireState();
 		UserConstans.USER_ID = UserUtils.getUserId(this);
 		UserUtils.getUserCompany(this);
 		//accountExpireVM.validateAccount();
@@ -347,6 +343,12 @@ public class MainActivity extends CommonFragmentActivity implements
 		}
 
 		super.onResume();
+	}
+
+	private void getExpireState() {
+		String expireState = SPUtils.getVByK(this, GlobalConfigBean.KEY_WLT_EXPIRE);
+		String expireMsg   = SPUtils.getVByK(this,GlobalConfigBean.KEY_WLT_EXPIRE_MSG);
+		onLoadingSuccess(new AccountExpireBean(expireState,expireMsg));
 	}
 
 	@Override
@@ -613,6 +615,8 @@ public class MainActivity extends CommonFragmentActivity implements
 			ActivityUtils.goToActivity(this, AboutActivity.class);
 			break;
 		case R.id.rl_exit:// 退出
+			//进行数据同步化的操作;
+			globalConfigVM.refreshUsers();
 			BDMob.getBdMobInstance().onMobEvent(this,BDEventConstans.EVENT_ID_LOGOUT);
 			confirmExitDialog = new ZhaoBiaoDialog(this, getString(R.string.hint), getString(R.string.logout_make_sure));
 			confirmExitDialog.setOnDialogClickListener(new onDialogClickListener() {
