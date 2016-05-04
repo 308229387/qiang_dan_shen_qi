@@ -12,7 +12,7 @@ public interface URLConstans {
     //http://10.252.152.201:8888/
     //基类Url
 //    public static final String BASE_URL = "http://zhaobiao.58.com/";
-    public static final String BASE_URL = "http://192.168.118.132:9090/";
+    public static final String BASE_URL = "http://zhaobiao.58.com/";
 
 
 }
