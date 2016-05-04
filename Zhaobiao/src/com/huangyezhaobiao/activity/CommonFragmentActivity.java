@@ -23,7 +23,7 @@ import com.huangyezhaobiao.windowf.AppExitService;
  */
 public class CommonFragmentActivity extends FragmentActivity{
     private BackToForeVM backToForeVM;
-    private GlobalConfigVM globalConfigVM;
+    protected GlobalConfigVM globalConfigVM;
 
     /**
      * 需要同步
