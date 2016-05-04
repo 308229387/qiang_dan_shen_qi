@@ -1,5 +1,7 @@
 package com.huangye.commonlib.network;
 
+import android.util.Log;
+
 import com.huangye.commonlib.delegate.HttpRequestCallBack;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -67,11 +69,15 @@ public class HTTPTools {
 				new RequestCallBack<String>() {
 					@Override
 					public void onFailure(HttpException arg0, String arg1) {
+						Log.v("HttpRequestCallBackPost","onFailure");
+						Log.v("HttpException",arg0.getMessage());
+						Log.v("HttpException",arg1);
 						iOAuthCallBack.onLoadingFailure(arg1);
 					}
 
 					@Override
 					public void onSuccess(ResponseInfo<String> arg0) {
+						Log.v("HttpRequestCallBackPost","onSuccess");
 						iOAuthCallBack.onLoadingSuccess(arg0);
 					}
 
@@ -105,12 +111,14 @@ public class HTTPTools {
 
 					@Override
 					public void onFailure(HttpException exception, String err) {
+						Log.v("HttpRequestCallBack","onFailure");
 						if(callBack!=null)
 							callBack.onLoadingFailure(err);
 					}
 
 					@Override
 					public void onSuccess(ResponseInfo<String> result) {
+						Log.v("HttpRequestCallBack","onSuccess");
 						if(callBack!=null)
 							callBack.onLoadingSuccess(result);
 					}

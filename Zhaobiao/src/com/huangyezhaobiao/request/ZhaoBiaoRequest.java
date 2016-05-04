@@ -6,7 +6,6 @@ import com.huangye.commonlib.network.HttpRequest;
 import com.huangye.commonlib.utils.PhoneUtils;
 import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.utils.UserUtils;
-import com.lidroid.xutils.http.RequestParams;
 
 /**
  * author keyes
@@ -23,9 +22,8 @@ public class ZhaoBiaoRequest<T> extends HttpRequest {
 
     @Override
     protected void initEnv() {
-        this.params = new RequestParams();
         params.addHeader("ppu", UserUtils.getUserPPU(BiddingApplication.getAppInstanceContext()));
-        params.addHeader("userId",UserUtils.getUserId(BiddingApplication.getAppInstanceContext()));
+        params.addHeader("userId",UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
 //        try {
 //            params.addHeader("version", VersionUtils.getVersionCode(BiddingApplication.getAppInstanceContext()));
             params.addHeader("version", "5");

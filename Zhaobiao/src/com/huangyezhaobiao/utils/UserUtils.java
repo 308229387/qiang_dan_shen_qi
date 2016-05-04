@@ -22,8 +22,11 @@ public class UserUtils {
 	public static String userName;
 	private static String ppu;
 	public static int hasValidate = 1; //默认未认证，0代表已经认证
+
+	private static String PPU_SP_NAME = "ppu_f";
+
 	public static void saveUser(Context context,String userId,String companyName,String userName){
-		SharedPreferences sp = context.getSharedPreferences(USER_SP_NAME, 0);//用userId，来区分
+		SharedPreferences sp = context.getSharedPreferences(PPU_SP_NAME, 0);//用userId，来区分
 		UserUtils.userId = userId;
 		UserUtils.companyName = companyName;
 		UserUtils.userName = userName;
@@ -32,9 +35,16 @@ public class UserUtils {
 		sp.edit().putString(USER_NAME, userName).commit();
 	}
 
-	public static void setPPU(Context context,String ppu){
-		SharedPreferences sp = context.getSharedPreferences(USER_SP_NAME, 0);//用userId，来区分
-		sp.edit().putString(USER_PPU, ppu).commit();
+	public static void setPassportUserId(Context context,String ppu){
+		SharedPreferences sp = context.getSharedPreferences(PPU_SP_NAME, 0);//用userId，来区分
+		sp.edit().putString(USER_ID, ppu).commit();
+	}
+
+	public static String getPassportUserId(Context context){
+		if(TextUtils.isEmpty(userId)){
+			userId = context.getSharedPreferences(PPU_SP_NAME, 0).getString(USER_ID, "");
+		}
+		return userId;
 	}
 
 	public static void setUserId(Context context,String userId){
@@ -65,15 +75,21 @@ public class UserUtils {
 		return userId;
 	}
 
+
+	public static void setPPU(Context context,String ppu){
+		SharedPreferences sp = context.getSharedPreferences(PPU_SP_NAME, 0);//用userId，来区分
+		sp.edit().putString(USER_PPU, ppu).commit();
+	}
+
 	/**
 	 * 得到用戶PPU
 	 * @param context
 	 * @return
 	 * */
 	public static String getUserPPU(Context context){
-		if(TextUtils.isEmpty(ppu)){
-			ppu = context.getSharedPreferences(USER_SP_NAME, 0).getString(USER_PPU, "");
-		}
+//		if(TextUtils.isEmpty(ppu)){
+			ppu = context.getSharedPreferences(PPU_SP_NAME, 0).getString(USER_PPU, "");
+//		}
 		return ppu;
 	}
 

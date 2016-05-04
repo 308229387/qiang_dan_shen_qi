@@ -10,7 +10,6 @@ import com.huangye.commonlib.vm.SourceViewModel;
 import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
 import com.huangyezhaobiao.model.ValidateModel;
 import com.huangyezhaobiao.url.URLConstans;
-import com.huangyezhaobiao.url.UrlSuffix;
 
 import java.util.Map;
 
@@ -30,9 +29,9 @@ public class ValidateViewModel extends SourceViewModel {
 		// t.configParams(params_map);
 		t.type = TAG.REFRESH;
 		if(!rebind) {
-			t.setRequestURL(URLConstans.BASE_URL + "api/sendCode?mobile=" + mobile + "&userId=" + userId +"&"+ UrlSuffix.getCommonSuffix(context));
+			t.setRequestURL(URLConstans.BASE_URL + "api/sendCode?mobile=" + mobile);
 		}else{
-			t.setRequestURL(URLConstans.BASE_URL + "api/sendCode?mobile=" + mobile + "&userId=" + userId + "&"+UrlSuffix.getCommonSuffix(context)/*+"&rebind=1"*/);
+			t.setRequestURL(URLConstans.BASE_URL + "api/sendCode?mobile=" + mobile);
 		}
 		t.getDatas();
 
@@ -49,8 +48,7 @@ public class ValidateViewModel extends SourceViewModel {
 		// params_map.put("token",new Date().getTime()+"");
 		// t.configParams(params_map);
 		t.type = TAG.LOGIN;
-		t.setRequestURL(URLConstans.BASE_URL+"api/validate?mobile=" + mobile + "&userId=" + userId + "&code=" + code
-				+ "&"+UrlSuffix.getCommonSuffix(context));
+		t.setRequestURL(URLConstans.BASE_URL+"api/validate?mobile=" + mobile + "&code=" + code);
 		t.getDatas();
 	}
 

@@ -40,7 +40,7 @@ public abstract class HttpRequest<T> {
 		this.method = method;
 		this.url    = url;
 		this.callBack = callBack;
-		initEnv();
+		this.params = new RequestParams();
 	}
 	
 	public void setRequestTimeOut(int timeout){
@@ -69,7 +69,7 @@ public abstract class HttpRequest<T> {
 
 	public void configParams(HashMap<String, String> params_map){
 		map = params_map;
-		this.params = new RequestParams();
+		//this.params = new RequestParams();
 		/**
 		 * Header 里面添加参数;
 		 * ppu：登录之后passport返回的
@@ -121,10 +121,13 @@ public abstract class HttpRequest<T> {
 	
 
 	private void get(){
-		handler =  httpTools.doGet(url, callBack);
+		initEnv();
+//		handler =  httpTools.doGet(url, callBack);
+		handler =  httpTools.doPost(url, params, callBack);
 	}
 	
 	private void post(){
+		initEnv();
 		LogUtils.LogE("login", "toString:" + params.toString());
 		handler =  httpTools.doPost(url, params, callBack);
 	}

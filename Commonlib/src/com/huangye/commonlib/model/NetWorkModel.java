@@ -88,13 +88,19 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
 	public void onLoadingSuccess(ResponseInfo<String> result) {
 		Log.e("httpRequestResult", "result:" + result.result);
 		jsonResult = JSON.parseObject(result.result);
-		int loginflag = 0;
+		int loginflag = -1;
 		//登录是否合法，默认为是
 		boolean isLoginValidate = true;
-		String token  = jsonResult.getString("token");
+		String token = "";
+		if(jsonResult.containsKey("token")){
+			token  = jsonResult.getString("token");
+		}
+
 		//获得请求的flag
 		try {
-			loginflag = jsonResult.getInteger("loginFlag");
+			if(jsonResult.containsKey("loginFlag")){
+				loginflag = jsonResult.getInteger("loginFlag");
+			}
 		}catch(Exception e){
 			loginflag = -1;//如果解析不成功，不让他掉线
 		}

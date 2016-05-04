@@ -12,6 +12,7 @@ import com.huangyezhaobiao.model.LoginModel;
 import com.huangyezhaobiao.utils.Encrypt;
 import com.huangyezhaobiao.utils.PasswordEncrypt;
 import com.huangyezhaobiao.utils.PhoneUtils;
+import com.huangyezhaobiao.utils.UserUtils;
 
 import java.util.HashMap;
 
@@ -72,11 +73,12 @@ public class LoginViewModel extends SourceViewModel{
 
 	@Override
 	public void onLoadingSuccess(NetBean bean, NetWorkModel model) {
-		Log.v(TAG,"onLoadingSuccess(NetBean bean, NetWorkModel model)===>" + bean);
 		PassportBean passportBean = (PassportBean) bean;
 		checkLoginViewModel = new CheckLoginViewModel(callBack,context);
 		/** 存userid ppu*/
-
+		UserUtils.setPassportUserId(context,passportBean.getUserId());
+		UserUtils.setPPU(context,passportBean.getPpu());
+		Log.v("PPu",passportBean.getPpu().toString());
 //		checkLoginViewModel.login(passportBean.getUserId(),passportBean.getPpu());
 		checkLoginViewModel.login();
 	}
