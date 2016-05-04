@@ -28,7 +28,7 @@ public class QiangDanListModel extends ListNetWorkModel{
 		//String userId = UserUtils.userId;
 		setRequestURL(URLConstans.BASE_URL+"api/getBids?" +
 //						"userId="+ UserUtils.userId+
-				"&pushId="+BidListUtils.pushId+
+				"pushId="+BidListUtils.pushId+
 				"&bidId="+BidListUtils.bidId+
 				"&bidState="+BidListUtils.bidState
 //						+URLConstans.AND  + UrlSuffix.getCommonSuffix(context)
@@ -45,7 +45,7 @@ public class QiangDanListModel extends ListNetWorkModel{
 		//Log.e("ashen", "refresh..page"+current_load_page);
 		setRequestURL(URLConstans.BASE_URL+"api/getBids?" +
 //				"userId="+UserUtils.userId+
-				"&pushId="+-1+
+				"pushId="+-1+
 				"&bidId="+-1+
 				"&bidState="+-1
 //				+URLConstans.AND  + UrlSuffix.getCommonSuffix(context)
