@@ -14,6 +14,7 @@ import com.huangyezhaobiao.bean.UserPhoneBean;
 import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.TimeUtils;
+import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.vm.BackToForeVM;
 import com.huangyezhaobiao.vm.GlobalConfigVM;
 import com.huangyezhaobiao.windowf.AppExitService;
@@ -142,7 +143,7 @@ public abstract class CommonBaseActivity extends BaseActivity{
             SPUtils.toForeground(this);//现在应用到前台了
             backToForeVM.report();
 
-            if(needAsync()){
+            if(needAsync() && !TextUtils.isEmpty(UserUtils.getUserId(this))){
                 globalConfigVM.refreshUsers();
             }
         }else{
