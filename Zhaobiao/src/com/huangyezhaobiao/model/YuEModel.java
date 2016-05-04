@@ -13,14 +13,13 @@ import com.huangyezhaobiao.url.UrlSuffix;
  *
  */
 public class YuEModel extends NetWorkModel{
-	public YuEModel(NetworkModelCallBack baseSourceModelCallBack,
-			Context context) {
+	public YuEModel(NetworkModelCallBack baseSourceModelCallBack, Context context) {
 		super(baseSourceModelCallBack, context);
 	}
 
 	@Override
 	protected ZhaoBiaoRequest<String> createHttpRequest() {
-		String aa = URLConstans.GET_BALANCE_API + UrlSuffix.getApiBalance(context);
+		String aa = URLConstans.GET_BALANCE_API + UrlSuffix.getApiBalance();
 		ZhaoBiaoRequest<String> request = new ZhaoBiaoRequest<String>(ZhaoBiaoRequest.METHOD_GET, aa, this);
 		return request;
 	}

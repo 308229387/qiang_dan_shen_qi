@@ -44,7 +44,7 @@ import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.view.LoadingProgress;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog.onDialogClickListener;
-import com.huangyezhaobiao.vm.LoginViewModel;
+import com.huangyezhaobiao.vm.CheckLoginViewModel;
 import com.xiaomi.mipush.sdk.MiPushClient;
 
 import java.util.HashMap;
@@ -66,8 +66,8 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 	private Button loginbutton;
 	private View        ll_root;
 	private ImageView   iv_icon;
-	private LoginViewModel loginViewModel;
-//	private CheckLoginViewModel checkLoginViewModel;
+//	private LoginViewModel loginViewModel;
+	private CheckLoginViewModel checkLoginViewModel;
 	private ZhaoBiaoDialog dialog;
 	private LoadingProgress loading;
 	private AnimationController animationController;
@@ -84,8 +84,8 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 		EventbusAgent.getInstance().register(this);
 		initView();
 		initListener();
-		loginViewModel = new LoginViewModel(this, this);
-//		checkLoginViewModel = new CheckLoginViewModel(this, this);
+//		loginViewModel = new LoginViewModel(this, this);
+		checkLoginViewModel = new CheckLoginViewModel(this, this);
 		dialog = new ZhaoBiaoDialog(this, "提示", "登录失败，您输入的账户名和密码不符!");
 		dialog.setCancelButtonGone();
 		dialog.setOnDialogClickListener(this);
@@ -227,8 +227,8 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 				//name = "琼nl";
 				//passwords = "qwer123";
 				//test
-//				checkLoginViewModel.login(name, passwords);
-				loginViewModel.login(name, passwords);
+//				loginViewModel.login(name, passwords);
+				checkLoginViewModel.login(name, passwords);
 			}
 		});
 
@@ -279,7 +279,7 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 
 	@Override
 	public void onLoadingStart() {
-
+		startLoading();
 	}
 
 	private static final String TAG ="LoginActivity.onLoadingSuccess";
@@ -394,8 +394,8 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 					R.style.loading);
 		}
 
-		//if(loading!=null && !this.isFinishing())
-			//loading.show();
+		if(loading!=null && !this.isFinishing())
+			loading.show();
 	}
 
 	/**

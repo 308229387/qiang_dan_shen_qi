@@ -84,7 +84,13 @@ public abstract class CommonBaseActivity extends BaseActivity{
         //当前时间戳
         long currentTimeLine  = System.currentTimeMillis();
         //从sp取时间戳
-        long latTimeLine     = Long.valueOf(SPUtils.getVByK(CommonBaseActivity.this,SPUtils.KEY_TIMELINE_GLOBAL));
+        long latTimeLine     = 0;
+        try {
+            latTimeLine = Long.valueOf(SPUtils.getVByK(CommonBaseActivity.this,SPUtils.KEY_TIMELINE_GLOBAL));
+        } catch (NumberFormatException e) {
+            latTimeLine = 0;
+            e.printStackTrace();
+        }
         return TimeUtils.beyond24Hour(currentTimeLine,latTimeLine);//没有在时间戳范围内
 
     }

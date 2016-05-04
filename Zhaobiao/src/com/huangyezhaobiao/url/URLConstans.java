@@ -146,8 +146,10 @@ public interface URLConstans {
 
 	/**
 	 * 查询余额的url "http://192.168.118.41/app/order/balance?userid=24454277549825&token=1"
+	 * /app/userinfo?queryKey=balance|userinfo
 	 */
-	String GET_BALANCE_API = BASE_URL_APP + APP_ORDER + LINE + APP_GET_BALANCE + CHA_ASK;
+	String APP_USERINFO = "app/userinfo";
+	String GET_BALANCE_API = BASE_URL_APP + LINE + APP_USERINFO + CHA_ASK;
 	
 
 	/**
@@ -341,5 +343,4 @@ public interface URLConstans {
 	 */
 	String BASE_HTML_URL ="http://img.58cdn.com.cn/ds/zhaobiao/app_zhaobiao/html/";
 	//2016.05.03.add end
-}
 }

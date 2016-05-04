@@ -13,12 +13,14 @@ public class UserUtils {
 	//static String TEST_USERID ="19833833741319";// "54765741"19833833741319;
 	private static final String USER_SP_NAME = "user";
 	private static final String USER_ID = "userId";
+	private static final String USER_PPU = "ppu";
 	private static final String COMPANY_NAME = "companyName";
 	private static final String USER_NAME = "companyName";
 	private static final String HASVALIDATE = "hasValidate";
 	public static String userId = "";//"30620951766535";
 	private static String companyName;
 	public static String userName;
+	private static String ppu;
 	public static int hasValidate = 1; //默认未认证，0代表已经认证
 	public static void saveUser(Context context,String userId,String companyName,String userName){
 		SharedPreferences sp = context.getSharedPreferences(USER_SP_NAME, 0);//用userId，来区分
@@ -28,6 +30,17 @@ public class UserUtils {
 		sp.edit().putString(USER_ID, userId).commit();
 		sp.edit().putString(COMPANY_NAME, companyName).commit();
 		sp.edit().putString(USER_NAME, userName).commit();
+	}
+
+	public static void setPPU(Context context,String ppu){
+		SharedPreferences sp = context.getSharedPreferences(USER_SP_NAME, 0);//用userId，来区分
+		sp.edit().putString(USER_PPU, ppu).commit();
+	}
+
+	public static void setUserId(Context context,String userId){
+		SharedPreferences sp = context.getSharedPreferences(USER_SP_NAME, 0);//用userId，来区分
+		UserUtils.userId = userId;
+		sp.edit().putString(USER_ID, userId).commit();
 	}
 
 	public static void hasValidate(Context context){
@@ -51,7 +64,19 @@ public class UserUtils {
 		}
 		return userId;
 	}
-	
+
+	/**
+	 * 得到用戶PPU
+	 * @param context
+	 * @return
+	 * */
+	public static String getUserPPU(Context context){
+		if(TextUtils.isEmpty(ppu)){
+			ppu = context.getSharedPreferences(USER_SP_NAME, 0).getString(USER_PPU, "");
+		}
+		return ppu;
+	}
+
 	/**
 	 * 得到用户公司名
 	 * @param context

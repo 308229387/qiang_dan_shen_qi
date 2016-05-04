@@ -29,6 +29,7 @@ public class LoginViewModel extends SourceViewModel{
 	public void login(String param1,String param2){
 		loginOldPassport(param1,param2);
 	}
+
 	String password;
 	String username;
 	/***
@@ -74,11 +75,10 @@ public class LoginViewModel extends SourceViewModel{
 		Log.v(TAG,"onLoadingSuccess(NetBean bean, NetWorkModel model)===>" + bean);
 		PassportBean passportBean = (PassportBean) bean;
 		checkLoginViewModel = new CheckLoginViewModel(callBack,context);
-		checkLoginViewModel.login(passportBean.getUserId(),passportBean.getPpu());
-//		checkLoginViewModel.login(username,password);
+		/** 存userid ppu*/
+
+//		checkLoginViewModel.login(passportBean.getUserId(),passportBean.getPpu());
+		checkLoginViewModel.login();
 	}
 
-
-
 }
-;

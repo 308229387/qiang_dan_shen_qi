@@ -91,8 +91,6 @@ public class UrlSuffix {
 		return getAppOrderId(orderId) ;
 	}
 
-
-
 //	/**
 //	 * 得到订单中心的后缀
 //	 *
@@ -123,7 +121,9 @@ public class UrlSuffix {
 		return getAppUserId() + URLConstans.AND + getCommonSuffix(context);
 	}
 
-	
+	public static String getApiBalance(){
+		return "queryKey=";
+	}
 	
 	
 	/**
@@ -246,8 +246,8 @@ public class UrlSuffix {
 	 * userId=&pageNum=&token=
 	 * @return
 	 */
-	public static String getConsumptionSuffix(Context context,String pageNum){
-		return getUserId(context) + URLConstans.AND + getNormalPageNum(pageNum) + URLConstans.AND +getCommonSuffix(context);
+	public static String getConsumptionSuffix(String pageNum){
+		return getNormalPageNum(pageNum);
 	}
 
 	/**
@@ -266,8 +266,8 @@ public class UrlSuffix {
 	 * @param pageNum
 	 * @return
 	 */
-	public static String getSysListSuffix(Context context,String pageNum){
-		return getConsumptionSuffix(context, pageNum);
+	public static String getSysListSuffix(String pageNum){
+		return getConsumptionSuffix(pageNum);
 	}
 
 	/**

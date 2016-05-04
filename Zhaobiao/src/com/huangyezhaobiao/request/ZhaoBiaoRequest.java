@@ -26,7 +26,13 @@ public class ZhaoBiaoRequest<T> extends HttpRequest {
         this.params = new RequestParams();
         params.addHeader("ppu", UserUtils.getUserPPU(BiddingApplication.getAppInstanceContext()));
         params.addHeader("userId",UserUtils.getUserId(BiddingApplication.getAppInstanceContext()));
-        params.addHeader("version",UserUtils.getUserId(BiddingApplication.getAppInstanceContext()));
+//        try {
+//            params.addHeader("version", VersionUtils.getVersionCode(BiddingApplication.getAppInstanceContext()));
+            params.addHeader("version", "5");
+//        } catch (PackageManager.NameNotFoundException e) {
+//            e.printStackTrace();
+//        }
+        params.addHeader("platform","1");
         params.addHeader("UUID", PhoneUtils.getIMEI(BiddingApplication.getAppInstanceContext()));
         httpTools = HTTPTools.newHttpUtilsInstance();
         setRequestTimeOut(timeout);
