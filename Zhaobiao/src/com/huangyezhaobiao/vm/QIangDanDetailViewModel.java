@@ -57,8 +57,13 @@ public class QIangDanDetailViewModel extends ZBBaseDetailViewModel<QDDetailBaseB
 		long bidId = passBean.getBidId();
 		long pushId = passBean.getPushId();
 		int pushTurn = passBean.getPushTurn();
-		t.setRequestURL(URLConstans.BASE_URL+"api/getBidDetail?" +"userId="+ UserUtils.getUserId(context)+"&bidId=" + bidId + "&pushId=" + pushId
-				+ "&pushTurn=" + pushTurn + "&"+ UrlSuffix.getCommonSuffix(context));
+		t.setRequestURL(URLConstans.BASE_URL+"api/getBidDetail?"
+//				+"userId="+ UserUtils.getUserId(context)
+				+"&bidId=" + bidId + "&pushId=" + pushId
+				+ "&pushTurn=" + pushTurn
+//				+ "&"+ UrlSuffix.getCommonSuffix(context)
+		);
+
 		t.getDatas();
 	}
 

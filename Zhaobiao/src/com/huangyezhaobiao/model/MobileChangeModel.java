@@ -20,8 +20,10 @@ public class MobileChangeModel extends NetWorkModel{
 
     @Override
     protected ZhaoBiaoRequest<String> createHttpRequest() {
-        //http://serverdomain/api/getUserMobile?token=&userId=
-        String url = URLConstans.MOBILE_CHANGE_GET_CODE_URL + UrlSuffix.getMobileChangeOriMobileSuffix(context);
+        //http://serverdomain/api/getUserMobile?token=
+        //2016.5.4 add
+        String url = URLConstans.MOBILE_CHANGE_GET_CODE_URL + UrlSuffix.getMobileChangeOriMobileSuffix();
+        //2016.5.4 add
         Log.e("shenzhixinUrl","url:"+url);
         return new ZhaoBiaoRequest(ZhaoBiaoRequest.METHOD_GET,url,this);
     }

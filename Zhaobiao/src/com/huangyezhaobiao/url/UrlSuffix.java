@@ -187,15 +187,24 @@ public class UrlSuffix {
 		return URLConstans.LOGIN_TOKEN+URLConstans.APP_CHA_EQUALS+SharedPreferencesUtils.getUserToken(context);
 	}
 
+//	/**
+//	 *获得手机绑定号码改变页面的初始电话的后缀名
+//	* @param context
+//	* @return
+//			*/
+//	public static String getMobileChangeOriMobileSuffix(Context context){
+//		return getToken() + URLConstans.AND + getUserId(context) + URLConstans.AND + getCommonSuffix(context);
+//	}
+
+	//2016.5.4 add
 	/**
 	 *获得手机绑定号码改变页面的初始电话的后缀名
-	 * @param context
 	 * @return
 	 */
-	public static String getMobileChangeOriMobileSuffix(Context context){
-		return getToken() + URLConstans.AND + getUserId(context) + URLConstans.AND + getCommonSuffix(context);
+	public static String getMobileChangeOriMobileSuffix(){
+		return getToken();
 	}
-
+   //2016.5.4 add end
 
 	private static String getUserId(Context context){
 		return URLConstans.API_USER_ID + URLConstans.APP_CHA_EQUALS + UserUtils.getUserId(context);
@@ -213,16 +222,25 @@ public class UrlSuffix {
 	private static String getCode(String code){
 		return URLConstans.CODE + URLConstans.APP_CHA_EQUALS + code;
 	}
+//	/**
+//	 * 手机绑定页面的提交
+//	 * 	http://serverdomain/api/updatePhoneNumber
+//	 * ?userId=  &mobile=&newPhone=&code=&token=
+//	 * @return
+//	 */
+//	public static String getMobileChangeSubmitSuffix(Context context,String mobile,String newPhone,String code){
+//		return getUserId(context) + URLConstans.AND + getMobile(mobile) + URLConstans.AND + getNewPhone(newPhone) + URLConstans.AND +getCode(code) + URLConstans.AND + getCommonSuffix(context) ;
+//	}
+    //2016.5.4 add
 	/**
 	 * 手机绑定页面的提交
-	 * 	http://serverdomain/api/updatePhoneNumber
-	 * ?userId=  &mobile=&newPhone=&code=&token=
+	 * 	http://serverdomain/api/updatePhoneNumber?&mobile=&newPhone=&code=&token=
 	 * @return
 	 */
-	public static String getMobileChangeSubmitSuffix(Context context,String mobile,String newPhone,String code){
-		return getUserId(context) + URLConstans.AND + getMobile(mobile) + URLConstans.AND + getNewPhone(newPhone) + URLConstans.AND +getCode(code) + URLConstans.AND + getCommonSuffix(context) ;
+	public static String getMobileChangeSubmitSuffix(String mobile,String newPhone,String code){
+		return getMobile(mobile) + URLConstans.AND + getNewPhone(newPhone) + URLConstans.AND +getCode(code) ;
 	}
-
+    //2016.5.4 add end
 
 	/**
 	 * 自定义设置界面的后缀名

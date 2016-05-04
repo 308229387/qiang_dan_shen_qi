@@ -31,7 +31,9 @@ public class MobileBindChangeViewModel extends SourceViewModel{
      * @param validateCode
      */
     public void submit(String mobile,String newPhoneNumber,String validateCode){
-        String url = URLConstans.MOBILE_CHANGE_SUBMIT_URK + UrlSuffix.getMobileChangeSubmitSuffix(context,mobile,newPhoneNumber,validateCode);
+        //2016.5.4 add
+        String url = URLConstans.MOBILE_CHANGE_SUBMIT_URK + UrlSuffix.getMobileChangeSubmitSuffix(mobile,newPhoneNumber,validateCode);
+        //2016.5.4 add end
         t.setRequestURL(url);
         t.getDatas();
     }

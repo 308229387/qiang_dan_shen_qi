@@ -41,14 +41,14 @@ public class KnockViewModel extends SourceViewModel {
 		long bidId = bean.getBidId();// bean.getBidId();//3088606247077150811L;//3089019022954856539L
 		long pushId = bean.getPushId();// bean.getPushId();//3087873205681979483L;//3089020612659380315L
 		int pushTurn = bean.getPushTurn();// 1;//bean.getPushTurn();
-		params_map.put("userid", "" + userId);
+//		params_map.put("userid", "" + userId);
 		params_map.put("bidid", "" + bidId);
 		params_map.put("pushid", "" + pushId);
 		params_map.put("pushturn", "" + pushTurn);
 		params_map.put("token", new Date().getTime() + "");
-		params_map.put("UUID", PhoneUtils.getIMEI(context));
-		params_map.put("platform","1");
-		params_map.put("version","2");
+//		params_map.put("UUID", PhoneUtils.getIMEI(context));
+//		params_map.put("platform","1");
+//		params_map.put("version","2");
 		//2016.2.23 RD shenzhixin add params userState and bidSource
 		String serviceState = SPUtils.getServiceState(context);
 		switch (serviceState){
