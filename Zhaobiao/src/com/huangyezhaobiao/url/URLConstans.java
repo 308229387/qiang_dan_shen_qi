@@ -149,7 +149,7 @@ public interface URLConstans {
 	 * /app/userinfo?queryKey=balance|userinfo
 	 */
 	String APP_USERINFO = "userinfo";
-	String GET_BALANCE_API = BASE_URL_APP + LINE + APP_USERINFO + CHA_ASK;
+	String GET_BALANCE_API = BASE_URL_APP + APP_USERINFO;
 	
 
 	/**
