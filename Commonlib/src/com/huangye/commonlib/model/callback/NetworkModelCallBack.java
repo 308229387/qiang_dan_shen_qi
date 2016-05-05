@@ -44,4 +44,9 @@ public interface NetworkModelCallBack {
 	 * 登录异常
 	 */
 	public void onModelLoginInvalidate();
+
+	/**
+	 * 版本号返回
+	 */
+	public void onVersionBack(String value);
 }

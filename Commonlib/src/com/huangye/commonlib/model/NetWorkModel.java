@@ -19,6 +19,8 @@ import com.huangye.commonlib.utils.NetworkTools;
 import com.huangye.commonlib.utils.UserConstans;
 import com.lidroid.xutils.http.ResponseInfo;
 
+import org.apache.http.Header;
+
 import java.util.HashMap;
 
 /**
@@ -76,7 +78,8 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
 
     public void getDatas() {
         if (!NetworkTools.isNetworkConnected(context)) {
-            baseSourceModelCallBack.noInternetConnect();
+            if(baseSourceModelCallBack!=null)
+                baseSourceModelCallBack.noInternetConnect();
             return;
         }
         if (request != null)
@@ -86,6 +89,24 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
     @Override
     public void onLoadingSuccess(ResponseInfo<String> result) {
         Log.e("httpRequestResult", "result:" + result.result);
+        //add for header shenzhixin
+        Header[] allHeaders = result.getAllHeaders();
+        if(allHeaders!=null){
+            int size = allHeaders.length;
+            for(int index = 0;index<size;index++){
+                Header header = allHeaders[index];
+                if(header!=null){
+                    String name = header.getName();
+                    String value = header.getValue();
+                    Log.e("shenss","headerName:"+name+",headerValue:"+value);
+                    if(TextUtils.equals(name,"version") && baseSourceModelCallBack!=null){
+                        //处理value
+                        baseSourceModelCallBack.onVersionBack(value);
+                    }
+                }
+            }
+        }
+        //add for header shenzhixin
         int loginflag = -1;
         //登录是否合法，默认为是
         boolean isLoginValidate = true;
@@ -109,7 +130,8 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
 
             if (!isLoginValidate) {
                 //	不合法
-                baseSourceModelCallBack.onModelLoginInvalidate();
+                if(baseSourceModelCallBack!=null)
+                    baseSourceModelCallBack.onModelLoginInvalidate();
                 String suffix_url = "api/testToken?userId=" + UserConstans.USER_ID + "&apiType=" + OTHER_TYPE + "&clientToken=" + SharedPreferencesUtils.getUserToken(context) + "&serverToken=" + token + "&platform=1";
                 HTTPTools.newHttpUtilsInstance().doGet(URLConstans.BASE_URL + suffix_url, new HttpRequestCallBack() {
                     @Override
@@ -139,13 +161,16 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
                 });
             } else {//合法
                 if (TextUtils.isEmpty(jsonResult.getString("result"))) {
-                    baseSourceModelCallBack.onLoadingFailure(jsonResult.getString("msg"));
+                    if(baseSourceModelCallBack!=null)
+                        baseSourceModelCallBack.onLoadingFailure(jsonResult.getString("msg"));
                 } else {
-                    baseSourceModelCallBack.onLoadingSuccess(transformJsonToNetBean(result.result), this);
+                    if(baseSourceModelCallBack!=null)
+                        baseSourceModelCallBack.onLoadingSuccess(transformJsonToNetBean(result.result), this);
                 }
             }
         } catch (Exception e) {
-            baseSourceModelCallBack.onLoadingFailure("服务器出现了问题，稍后再试呢");
+            if(baseSourceModelCallBack!=null)
+                baseSourceModelCallBack.onLoadingFailure("服务器出现了问题，稍后再试呢");
             e.printStackTrace();
             //上传异常信息
             uploadException(e, result.result);
@@ -293,12 +318,14 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
 
     @Override
     public void onLoadingStart() {
-        baseSourceModelCallBack.onLoadingStart();
+        if(baseSourceModelCallBack!=null)
+            baseSourceModelCallBack.onLoadingStart();
     }
 
     @Override
     public void onLoadingCancelled() {
-        baseSourceModelCallBack.onLoadingCancell();
+        if(baseSourceModelCallBack!=null)
+            baseSourceModelCallBack.onLoadingCancell();
     }
 
     @Override
@@ -308,7 +335,8 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
 
     @Override
     public void onLoadingFailure(String err) {
-        baseSourceModelCallBack.onLoadingFailure("当前网络慢，请稍后重试");
+        if(baseSourceModelCallBack!=null)
+            baseSourceModelCallBack.onLoadingFailure("当前网络慢，请稍后重试");
     }
 
     public enum TAG {

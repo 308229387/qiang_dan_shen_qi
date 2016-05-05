@@ -8,4 +8,5 @@ public interface NetWorkVMCallBack {
 	 void onLoadingCancel();
 	 void onNoInterNetError();
 	 void onLoginInvalidate();
+	 void onVersionBack(String version);
 }

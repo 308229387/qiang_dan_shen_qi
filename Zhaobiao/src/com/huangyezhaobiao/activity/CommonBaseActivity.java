@@ -22,7 +22,7 @@ import com.huangyezhaobiao.windowf.AppExitService;
 /**
  * Created by 58 on 2016/2/24.
  */
-public abstract class CommonBaseActivity extends BaseActivity{
+public abstract class CommonBaseActivity extends BaseActivity implements NetWorkVMCallBack{
     private BackToForeVM backToForeVM;
     private GlobalConfigVM globalConfigVM;
     private NetWorkVMCallBack globalConfigCallBack = new NetWorkVMCallBack() {
@@ -77,6 +77,11 @@ public abstract class CommonBaseActivity extends BaseActivity{
         public void onLoginInvalidate() {
 
         }
+
+        @Override
+        public void onVersionBack(String version) {
+
+        }
     };
 
     /**
@@ -101,37 +106,7 @@ public abstract class CommonBaseActivity extends BaseActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         globalConfigVM = new GlobalConfigVM(globalConfigCallBack,this);
-        backToForeVM = new BackToForeVM(new NetWorkVMCallBack() {
-            @Override
-            public void onLoadingStart() {
-
-            }
-
-            @Override
-            public void onLoadingSuccess(Object t) {
-
-            }
-
-            @Override
-            public void onLoadingError(String msg) {
-
-            }
-
-            @Override
-            public void onLoadingCancel() {
-
-            }
-
-            @Override
-            public void onNoInterNetError() {
-
-            }
-
-            @Override
-            public void onLoginInvalidate() {
-
-            }
-        },this);
+        backToForeVM = new BackToForeVM(null,this);
     }
 
     @Override
@@ -185,5 +160,39 @@ public abstract class CommonBaseActivity extends BaseActivity{
         BDMob.getBdMobInstance().onPauseActivity(this);
     }
 
+    @Override
+    public void onLoadingStart() {
 
+    }
+
+    @Override
+    public void onLoadingSuccess(Object t) {
+
+    }
+
+    @Override
+    public void onLoadingError(String msg) {
+
+    }
+
+    @Override
+    public void onLoadingCancel() {
+
+    }
+
+    @Override
+    public void onNoInterNetError() {
+
+    }
+
+    @Override
+    public void onLoginInvalidate() {
+
+    }
+
+    @Override
+    public void onVersionBack(String version) {
+        //检查
+        Log.e("shenyy","versionBACK:"+version);
+    }
 }

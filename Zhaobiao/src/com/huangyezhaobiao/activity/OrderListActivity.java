@@ -136,37 +136,7 @@ public class OrderListActivity extends CommonFragmentActivity implements
 	}
 
 	private void initTeleVm() {
-		tViewModel = new TelephoneVModel(new NetWorkVMCallBack() {
-			@Override
-			public void onLoadingStart() {
-
-			}
-
-			@Override
-			public void onLoadingSuccess(Object t) {
-
-			}
-
-			@Override
-			public void onLoadingError(String msg) {
-
-			}
-
-			@Override
-			public void onLoadingCancel() {
-
-			}
-
-			@Override
-			public void onNoInterNetError() {
-
-			}
-
-			@Override
-			public void onLoginInvalidate() {
-
-			}
-		}, this);
+		tViewModel = new TelephoneVModel(null, this);
 	}
 
 	/**

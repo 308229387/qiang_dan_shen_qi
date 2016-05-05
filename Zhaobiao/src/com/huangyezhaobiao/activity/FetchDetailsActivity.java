@@ -58,37 +58,7 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 	}
 
 	private void initTeleVModel() {
-		tvm = new TelephoneVModel(new NetWorkVMCallBack() {
-			@Override
-			public void onLoadingStart() {
-
-			}
-
-			@Override
-			public void onLoadingSuccess(Object t) {
-
-			}
-
-			@Override
-			public void onLoadingError(String msg) {
-
-			}
-
-			@Override
-			public void onLoadingCancel() {
-
-			}
-
-			@Override
-			public void onNoInterNetError() {
-
-			}
-
-			@Override
-			public void onLoginInvalidate() {
-
-			}
-		},this);
+		tvm = new TelephoneVModel(null,this);
 	}
 
 	public void initListener() {
@@ -164,6 +134,11 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 	@Override
 	public void onLoginInvalidate() {
 		showExitDialog();
+	}
+
+	@Override
+	public void onVersionBack(String version) {
+
 	}
 
 

@@ -100,4 +100,10 @@ public abstract class SourceViewModel implements NetworkModelCallBack{
 	public void onModelLoginInvalidate() {
 		callBack.onLoginInvalidate();
 	}
+
+
+	@Override
+	public void onVersionBack(String value) {
+		callBack.onVersionBack(value);
+	}
 }

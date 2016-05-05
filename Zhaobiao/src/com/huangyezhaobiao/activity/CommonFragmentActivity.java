@@ -22,7 +22,7 @@ import com.huangyezhaobiao.windowf.AppExitService;
 /**
  * Created by 58 on 2016/2/24.
  */
-public class CommonFragmentActivity extends FragmentActivity{
+public class CommonFragmentActivity extends FragmentActivity implements NetWorkVMCallBack{
     private BackToForeVM backToForeVM;
     protected GlobalConfigVM globalConfigVM;
 
@@ -96,6 +96,11 @@ public class CommonFragmentActivity extends FragmentActivity{
         public void onLoginInvalidate() {
 
         }
+
+        @Override
+        public void onVersionBack(String version) {
+
+        }
     };
 
     @Override
@@ -106,37 +111,7 @@ public class CommonFragmentActivity extends FragmentActivity{
     }
 
     private void initVM() {
-        backToForeVM = new BackToForeVM(new NetWorkVMCallBack() {
-            @Override
-            public void onLoadingStart() {
-
-            }
-
-            @Override
-            public void onLoadingSuccess(Object t) {
-
-            }
-
-            @Override
-            public void onLoadingError(String msg) {
-
-            }
-
-            @Override
-            public void onLoadingCancel() {
-
-            }
-
-            @Override
-            public void onNoInterNetError() {
-
-            }
-
-            @Override
-            public void onLoginInvalidate() {
-
-            }
-        },this);
+        backToForeVM = new BackToForeVM(null,this);
 
         globalConfigVM = new GlobalConfigVM(globalConfigCallBack,this);
     }
@@ -189,5 +164,40 @@ public class CommonFragmentActivity extends FragmentActivity{
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    public void onLoadingStart() {
+
+    }
+
+    @Override
+    public void onLoadingSuccess(Object t) {
+
+    }
+
+    @Override
+    public void onLoadingError(String msg) {
+
+    }
+
+    @Override
+    public void onLoadingCancel() {
+
+    }
+
+    @Override
+    public void onNoInterNetError() {
+
+    }
+
+    @Override
+    public void onLoginInvalidate() {
+
+    }
+
+    @Override
+    public void onVersionBack(String version) {
+        Log.e("ashenyy","version:"+version);
     }
 }

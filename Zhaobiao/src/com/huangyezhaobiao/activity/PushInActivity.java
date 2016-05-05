@@ -308,6 +308,11 @@ public class PushInActivity extends BaseActivity implements NetWorkVMCallBack, V
     }
 
     @Override
+    public void onVersionBack(String version) {
+
+    }
+
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.dialog_cancel://取消,回到锁屏界面

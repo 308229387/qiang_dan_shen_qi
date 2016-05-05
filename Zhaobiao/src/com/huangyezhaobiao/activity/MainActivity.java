@@ -82,7 +82,6 @@ import com.huangyezhaobiao.view.ZhaoBiaoDialog.onDialogClickListener;
 import com.huangyezhaobiao.vm.GrabListViewModel;
 import com.huangyezhaobiao.vm.KnockViewModel;
 import com.huangyezhaobiao.vm.LogoutViewModel;
-import com.huangyezhaobiao.vm.UpdateViewModel;
 import com.huangyezhaobiao.vm.YuEViewModel;
 import com.xiaomi.mipush.sdk.MiPushClient;
 
@@ -125,7 +124,7 @@ public class MainActivity extends CommonFragmentActivity implements
 	private TextView tv_yue;
 	private YuEViewModel yuEViewModel;
 	private BiddingApplication app;
-	private UpdateViewModel updateViewModel;
+	//private UpdateViewModel updateViewModel;
 	private UpdateManager updateManager;
 	private TextView tv_unread;
 	private TextView smallred;
@@ -174,7 +173,7 @@ public class MainActivity extends CommonFragmentActivity implements
 		listViewModel = new GrabListViewModel(this, this);
 		yuEViewModel = new YuEViewModel(this, this);
 		//accountExpireVM = new AccountExpireVM(this,this);
-		updateViewModel = new UpdateViewModel(this, this);
+	//	updateViewModel = new UpdateViewModel(this, this);
 		lvm = new LogoutViewModel(this, this);
 		adapter = new PopAdapter(this, this);
 		ListView mListView = mPullToRefreshListView.getRefreshableView();
@@ -327,12 +326,12 @@ public class MainActivity extends CommonFragmentActivity implements
 		LogUtils.LogE("ashen", "lock...");
 		listViewModel.refresh();
 		readNumbers();
-		if(updateManager==null){
+	/*	if(updateManager==null){
 			updateViewModel.checkVersion();
 		}
 		if(updateManager!=null && !updateManager.isDownloadDialogShowing()){
 			updateViewModel.checkVersion();
-		}
+		}*/
 		app.setCurrentNotificationListener(this);
 		NetStateManager.getNetStateManagerInstance().setINetStateChangedListener(this);
 		tbl.setVisibility(View.GONE);

@@ -41,17 +41,23 @@ public abstract class ListSourceViewModel<T> extends SourceViewModel implements 
 	
 	@Override
 	public void onLoadingCancell() {
-		callBack.onLoadingCancel();
+		if(callBack!=null) {
+			callBack.onLoadingCancel();
+		}
 	}
 
 	@Override
 	public void onLoadingStart() {
-		callBack.onLoadingStart();
+		if(callBack!=null) {
+			callBack.onLoadingStart();
+		}
 	}
 
 	@Override
 	public void onLoadingFailure(String err) {
-		callBack.onLoadingError(err);
+		if(callBack!=null) {
+			callBack.onLoadingError(err);
+		}
 	}
 
 	@Override
@@ -63,20 +69,22 @@ public abstract class ListSourceViewModel<T> extends SourceViewModel implements 
 		List<T> ts = transferToListBean(bean.getData());
 		
 		LogUtils.LogE("asdfggg", "list size:" + ts.size());
-		callBack.onLoadingSuccess(ts);
-		if(model.type==TAG.REFRESH){
-			allDatas = ts;
-			callBack.onRefreshSuccess(allDatas);
-			callBack.canLoadMore();
-		}else if(model.type == TAG.LOADMORE){
-			allDatas.addAll(ts);
-			callBack.onLoadingMoreSuccess(allDatas);
-		}
-		pageCount = getPageCount(bean);
-		if(canListLoadMore()){
-			callBack.canLoadMore();
-		}else{
-			callBack.loadMoreEnd();
+		if(callBack!=null) {
+			callBack.onLoadingSuccess(ts);
+			if (model.type == TAG.REFRESH) {
+				allDatas = ts;
+				callBack.onRefreshSuccess(allDatas);
+				callBack.canLoadMore();
+			} else if (model.type == TAG.LOADMORE) {
+				allDatas.addAll(ts);
+				callBack.onLoadingMoreSuccess(allDatas);
+			}
+			pageCount = getPageCount(bean);
+			if (canListLoadMore()) {
+				callBack.canLoadMore();
+			} else {
+				callBack.loadMoreEnd();
+			}
 		}
 	}
 

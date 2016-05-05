@@ -392,4 +392,9 @@ public abstract class QiangDanBaseFragment extends Fragment implements
 //		swingRightInAnimationAdapter.setAbsListView(lv);
 		lv.setAdapter(adapter);
 	}
+
+	@Override
+	public void onVersionBack(String version) {
+
+	}
 }

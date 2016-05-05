@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.eventbus.EventAction;
 import com.huangyezhaobiao.inter.ICamera;
@@ -19,7 +20,7 @@ import de.greenrobot.event.EventBus;
  * Created by shenzhixin on 2015/12/9.
  * 退单的基类fragment
  */
-public abstract class RefundBaseFragment extends Fragment implements ICamera{
+public abstract class RefundBaseFragment extends Fragment implements ICamera,NetWorkVMCallBack{
     protected View rootView;//根布局view
     private LoadingProgress dialog;
     protected String orderId;//订单编号
@@ -100,5 +101,10 @@ public abstract class RefundBaseFragment extends Fragment implements ICamera{
 
 
     protected abstract void getDatas();
+
+    @Override
+    public void onVersionBack(String version) {
+
+    }
 }
 

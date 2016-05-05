@@ -85,6 +85,11 @@ public abstract class QBBaseActivity extends CommonBaseActivity implements INoti
 		}
 
 		@Override
+		public void onVersionBack(String version) {
+
+		}
+
+		@Override
 		public void onLoadingSuccess(Object t) {
 			if (t instanceof Integer) {
 				dismissQDWaitDialog();
@@ -370,7 +375,6 @@ public abstract class QBBaseActivity extends CommonBaseActivity implements INoti
 			}
 		}
 	}
-
 
 
 }
