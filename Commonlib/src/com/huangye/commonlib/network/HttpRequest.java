@@ -5,8 +5,11 @@ import com.huangye.commonlib.utils.LogUtils;
 import com.lidroid.xutils.http.HttpHandler;
 import com.lidroid.xutils.http.RequestParams;
 
+import org.apache.http.NameValuePair;
+
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 /**
@@ -68,6 +71,10 @@ public abstract class HttpRequest<T> {
 	}
 
 	public void configParams(HashMap<String, String> params_map){
+		List<NameValuePair> list = params.getQueryStringParams();
+		if(list != null && list.size() != 0){
+			list.clear();
+		}
 		map = params_map;
 		//this.params = new RequestParams();
 		/**

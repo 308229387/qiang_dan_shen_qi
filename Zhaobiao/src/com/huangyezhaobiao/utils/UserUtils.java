@@ -44,9 +44,9 @@ public class UserUtils {
 	}
 
 	public static String getPassportUserId(Context context){
-		if(TextUtils.isEmpty(userId)){
+//		if(TextUtils.isEmpty(userId)){
 			userId = context.getSharedPreferences(PPU_SP_NAME, 0).getString(USER_ID, "");
-		}
+//		}
 		return userId;
 	}
 

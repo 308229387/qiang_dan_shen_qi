@@ -3,9 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Commonlib/Commonlib.iml" filepath="$PROJECT_DIR$/Commonlib/Commonlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/V2.2.0.iml" filepath="$PROJECT_DIR$/V2.2.0.iml" />
       <module fileurl="file://$PROJECT_DIR$/Zhaobiao/Zhaobiao.iml" filepath="$PROJECT_DIR$/Zhaobiao/Zhaobiao.iml" />
       <module fileurl="file://$PROJECT_DIR$/designpatterndemo/designpatterndemo.iml" filepath="$PROJECT_DIR$/designpatterndemo/designpatterndemo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hy_android_zb.iml" filepath="$PROJECT_DIR$/hy_android_zb.iml" />
       <module fileurl="file://$PROJECT_DIR$/leakcanary/leakcanary.iml" filepath="$PROJECT_DIR$/leakcanary/leakcanary.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
       <module fileurl="file://$PROJECT_DIR$/myapplication/myapplication.iml" filepath="$PROJECT_DIR$/myapplication/myapplication.iml" />
