@@ -1,5 +1,7 @@
 package com.huangye.commonlib.network;
 
+import android.util.Log;
+
 import com.huangye.commonlib.delegate.HttpRequestCallBack;
 import com.huangye.commonlib.utils.LogUtils;
 import com.lidroid.xutils.http.HttpHandler;
@@ -130,6 +132,10 @@ public abstract class HttpRequest<T> {
 	private void get(){
 		initEnv();
 //		handler =  httpTools.doGet(url, callBack);
+		List<RequestParams.HeaderItem> headers = params.getHeaders();
+		for (int index=0;index<headers.size();index++){
+			Log.e("shenzhixin","sss:"+headers.get(index).header.getName()+",value:"+headers.get(index).header.getValue());
+		}
 		handler =  httpTools.doPost(url, params, callBack);
 	}
 	

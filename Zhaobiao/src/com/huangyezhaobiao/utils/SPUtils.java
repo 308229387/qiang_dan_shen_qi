@@ -134,7 +134,7 @@ public class SPUtils {
      */
     public static void saveKV(Context context,String key,String value){
         SharedPreferences sp = context.getSharedPreferences(SP_NAME,0);
-        sp.edit().putString(UserUtils.getUserId(context)+key,value).commit();
+        sp.edit().putString(UserUtils.getUserId(context.getApplicationContext())+key,value).commit();
     }
 
     /**
@@ -145,6 +145,6 @@ public class SPUtils {
      */
     public static String getVByK(Context context,String key){
         SharedPreferences sp = context.getSharedPreferences(SP_NAME,0);
-        return sp.getString(key,"");
+        return sp.getString(UserUtils.getUserId(context.getApplicationContext())+key,"");
     }
 }

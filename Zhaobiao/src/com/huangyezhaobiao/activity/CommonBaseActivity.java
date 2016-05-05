@@ -53,6 +53,7 @@ public abstract class CommonBaseActivity extends BaseActivity{
                 SPUtils.saveKV(CommonBaseActivity.this,GlobalConfigBean.KEY_WLT_EXPIRE,expireState);
                 SPUtils.saveKV(CommonBaseActivity.this,GlobalConfigBean.KEY_WLT_EXPIRE_MSG,msg);
                 //更新时间戳
+                Log.e("ashen","current:"+System.currentTimeMillis()+",userId:"+UserUtils.getUserId(CommonBaseActivity.this));
                 SPUtils.saveKV(CommonBaseActivity.this,SPUtils.KEY_TIMELINE_GLOBAL,System.currentTimeMillis()+"");
             }
         }
