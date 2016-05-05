@@ -12,6 +12,7 @@ import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -287,6 +288,7 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 	public void onLoadingSuccess(Object t) {
 		stopLoading();
 		if (t instanceof LoginBean) {
+			Log.e("shenss","login...");
 			LoginBean loginBean = (LoginBean)t;
 			long userId = loginBean.getUserId();
 			String companyName = loginBean.getCompanyName();

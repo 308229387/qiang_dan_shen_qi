@@ -48,7 +48,8 @@ public class CheckLoginModel extends NetWorkModel {
 
     @Override
     public void onLoadingSuccess(ResponseInfo<String> result) {
-        super.onLoadingSuccess(result);
+		//shenzhixin remove for twice;
+        //super.onLoadingSuccess(result);
         Log.v(TAG,"onLoadingSuccess = " + jsonResult);
         boolean isLoginValidate = true;//登录是否合法，默认为是
 		try {

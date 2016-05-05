@@ -78,8 +78,9 @@ public class LoginViewModel extends SourceViewModel{
 		/** 存userid ppu*/
 		UserUtils.setPassportUserId(context,passportBean.getUserId());
 		UserUtils.setPPU(context,passportBean.getPpu());
-		Log.v("PPu",passportBean.getPpu().toString());
+	//	Log.v("PPu",passportBean.getPpu().toString());
 //		checkLoginViewModel.login(passportBean.getUserId(),passportBean.getPpu());
+		Log.e("shenss","LoginViewModel success");
 		checkLoginViewModel.login();
 	}
 
