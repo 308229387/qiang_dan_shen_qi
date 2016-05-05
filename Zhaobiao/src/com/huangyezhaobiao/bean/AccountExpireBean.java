@@ -39,4 +39,12 @@ public class AccountExpireBean {
 
     public AccountExpireBean() {
     }
+
+    @Override
+    public String toString() {
+        return "AccountExpireBean{" +
+                "expireState='" + expireState + '\'' +
+                ", msg='" + msg + '\'' +
+                '}';
+    }
 }

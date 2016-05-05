@@ -27,6 +27,9 @@ public class UserUtils {
 
 	public static void saveUser(Context context,String userId,String companyName,String userName){
 		SharedPreferences sp = context.getSharedPreferences(PPU_SP_NAME, 0);//用userId，来区分
+		//shenzhixin add
+		setUserId(context,userId);
+		//shenzhixin add
 		UserUtils.userId = userId;
 		UserUtils.companyName = companyName;
 		UserUtils.userName = userName;

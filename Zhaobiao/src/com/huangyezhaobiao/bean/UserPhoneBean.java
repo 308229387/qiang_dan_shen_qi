@@ -24,4 +24,12 @@ public class UserPhoneBean {
     public void setUserPhone(String userPhone) {
         this.userPhone = userPhone;
     }
+
+    @Override
+    public String toString() {
+        return "UserPhoneBean{" +
+                "status='" + status + '\'' +
+                ", userPhone='" + userPhone + '\'' +
+                '}';
+    }
 }

@@ -23,4 +23,13 @@ public class UploadTokenBean {
     public void setMsg(String msg) {
         this.msg = msg;
     }
+
+
+    @Override
+    public String toString() {
+        return "UploadTokenBean{" +
+                "status='" + status + '\'' +
+                ", msg='" + msg + '\'' +
+                '}';
+    }
 }

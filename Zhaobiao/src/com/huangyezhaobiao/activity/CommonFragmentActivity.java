@@ -55,6 +55,7 @@ public class CommonFragmentActivity extends FragmentActivity{
             //进行存储操作
             if(t instanceof GlobalConfigBean){
                 GlobalConfigBean globalConfigBean = (GlobalConfigBean) t;
+                Log.e("shenzhixinww","global:"+globalConfigBean.toString());
                 //首先判断是不是需要增量拉取信息，存到SP中
                 String isIncrementalPull = globalConfigBean.getIsIncrementalPull();
                 SPUtils.saveKV(CommonFragmentActivity.this,GlobalConfigBean.KEY_isIncrementalPull,isIncrementalPull);
@@ -70,6 +71,7 @@ public class CommonFragmentActivity extends FragmentActivity{
                 String msg = wltAlertResult.getMsg();
                 SPUtils.saveKV(CommonFragmentActivity.this,GlobalConfigBean.KEY_WLT_EXPIRE,expireState);
                 SPUtils.saveKV(CommonFragmentActivity.this,GlobalConfigBean.KEY_WLT_EXPIRE_MSG,msg);
+                Log.e("ashen","current:"+System.currentTimeMillis()+",userId:"+UserUtils.getUserId(CommonFragmentActivity.this));
                 //更新时间戳
                 SPUtils.saveKV(CommonFragmentActivity.this,SPUtils.KEY_TIMELINE_GLOBAL,System.currentTimeMillis()+"");
             }

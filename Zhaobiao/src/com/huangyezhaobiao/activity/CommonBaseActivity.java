@@ -36,6 +36,7 @@ public abstract class CommonBaseActivity extends BaseActivity{
             //进行存储操作
             if(t instanceof GlobalConfigBean){
                 GlobalConfigBean globalConfigBean = (GlobalConfigBean) t;
+                Log.e("shenzhixinww","global:"+globalConfigBean.toString());
                 //首先判断是不是需要增量拉取信息，存到SP中
                 String isIncrementalPull = globalConfigBean.getIsIncrementalPull();
                 SPUtils.saveKV(CommonBaseActivity.this,GlobalConfigBean.KEY_isIncrementalPull,isIncrementalPull);

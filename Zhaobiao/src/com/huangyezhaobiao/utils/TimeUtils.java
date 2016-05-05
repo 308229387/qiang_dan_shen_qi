@@ -1,5 +1,7 @@
 package com.huangyezhaobiao.utils;
 
+import android.util.Log;
+
 import java.util.Date;
 
 /**
@@ -12,9 +14,12 @@ public final class TimeUtils {
      * @return
      */
     public static boolean beyond24Hour(long currentTime,long lastTime){
+        Log.e("ashen","currentTime:"+currentTime+",lastTime:"+lastTime);
         Date currentDate = new Date(currentTime);
         Date lastDate    = new Date(lastTime);
+        Log.e("ashen","ct:"+currentDate.getTime()+",lt:"+lastDate.getTime());
         long hour = (currentDate.getTime()-lastDate.getTime())/1000/60/60;
+        Log.e("ashen","hour:"+hour);
         return hour>24;
     }
 }

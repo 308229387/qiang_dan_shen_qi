@@ -61,4 +61,14 @@ public class GlobalConfigBean {
     public void setUploadTokenMap(UploadTokenBean uploadTokenMap) {
         this.uploadTokenMap = uploadTokenMap;
     }
+
+    @Override
+    public String toString() {
+        return "GlobalConfigBean{" +
+                "wltAlertResult=" + wltAlertResult +
+                ", userPhoneResult=" + userPhoneResult +
+                ", uploadTokenMap=" + uploadTokenMap +
+                ", isIncrementalPull='" + isIncrementalPull + '\'' +
+                '}';
+    }
 }
