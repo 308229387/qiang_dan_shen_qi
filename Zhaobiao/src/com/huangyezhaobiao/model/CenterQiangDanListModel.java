@@ -59,7 +59,7 @@ public class CenterQiangDanListModel extends ListNetWorkModel{
 		getDatas();
 	}
 
-	
+
 
 	@Override
 	public void loadCache() {

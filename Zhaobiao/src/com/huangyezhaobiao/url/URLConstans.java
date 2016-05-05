@@ -63,12 +63,12 @@ public interface URLConstans {
 	/**
 	 * app前缀的orderid的字段
 	 */
-	String APP_ORDER_ID = "orderid";
+	String APP_ORDER_ID = "orderId";
 
 	/**
 	 * app前缀的userid
 	 */
-	String APP_USER_ID = "userid";
+	String APP_USER_ID = "userId";
 
 	/**
 	 * api前缀的userId
