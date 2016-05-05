@@ -9,7 +9,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.GravityCompat;
@@ -45,6 +44,7 @@ import com.huangyezhaobiao.bean.GlobalConfigBean;
 import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.bean.push.PushToPassBean;
 import com.huangyezhaobiao.constans.AppConstants;
+import com.huangyezhaobiao.constans.VersionConstans;
 import com.huangyezhaobiao.enums.TitleBarType;
 import com.huangyezhaobiao.gtui.GePushProxy;
 import com.huangyezhaobiao.inter.ActivityInterface;
@@ -150,6 +150,10 @@ public class MainActivity extends CommonFragmentActivity implements
 	private ViewStub       viewStub_no_data;
 	private View root;
 	private MyCustomDialog popDialog;
+	/**
+	 * 是否强制更新
+	 */
+	private boolean forceUpdate;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -673,7 +677,7 @@ public class MainActivity extends CommonFragmentActivity implements
 				tv_yue.setText(balance);
 				stopLoading();
 			}else{
-				updateManager = UpdateManager.getUpdateManager();
+				/*updateManager = UpdateManager.getUpdateManager();
 				String currentVersion = maps.get("currentVersion");
 				String url = maps.get("url");
 				try {
@@ -685,7 +689,7 @@ public class MainActivity extends CommonFragmentActivity implements
 				} catch (NameNotFoundException e) {
 					e.printStackTrace();
 					finish();
-				}
+				}*/
 			}
 		}
 		if (t instanceof Integer){
@@ -1154,5 +1158,42 @@ public class MainActivity extends CommonFragmentActivity implements
 				autoSettingDialog.show();
 			}
 		}
+	}
+
+
+	public void onVersionBack(String version) {
+		String versionCode = "";
+		Log.e("shenyy","MainActivity version:"+version);
+		int currentVersion = -1;
+		int versionNum = -1;
+		try {
+			currentVersion = Integer.parseInt(VersionConstans.CURRENT_VERSION);
+		}catch (Exception e){
+
+		}
+		if(currentVersion == -1) return;
+		//当前是MainActivity
+		if(version!=null){
+			if(version.contains("F")){
+				forceUpdate = true;
+			}
+			String[] fs = version.split("F");
+			versionCode = fs[0];
+			try {
+				versionNum = Integer.parseInt(versionCode);
+			}catch (Exception e){
+
+			}
+			if(versionNum==-1){return ;}
+				boolean needUpdate = UpdateManager.getUpdateManager().isUpdateNow(this,versionCode,VersionConstans.CURRENT_VERSION,"",forceUpdate);
+				if(!needUpdate){
+					//判断是不是第一次进入主界面
+					showFirst();
+				}
+
+
+
+		}
+
 	}
 }

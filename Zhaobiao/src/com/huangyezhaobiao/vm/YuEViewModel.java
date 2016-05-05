@@ -20,6 +20,12 @@ public class YuEViewModel extends SourceViewModel{
 	}
 
 	public void getBalance(){
+
 		t.getDatas();
+	}
+
+	@Override
+	public void onVersionBack(String value) {
+
 	}
 }

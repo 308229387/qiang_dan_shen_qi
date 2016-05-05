@@ -13,7 +13,6 @@ import com.huangyezhaobiao.bean.push.PushToPassBean;
 import com.huangyezhaobiao.model.KnockModel;
 import com.huangyezhaobiao.utils.BidUtils;
 import com.huangyezhaobiao.utils.LogUtils;
-import com.huangyezhaobiao.utils.PhoneUtils;
 import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.UserUtils;
 
@@ -93,4 +92,8 @@ public class KnockViewModel extends SourceViewModel {
 		}
 	}
 
+	@Override
+	public void onVersionBack(String value) {
+		//doNothing
+	}
 }

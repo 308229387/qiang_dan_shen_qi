@@ -357,7 +357,7 @@ public class LockActivity extends Activity implements NetWorkVMCallBack, View.On
 
     @Override
     public void onVersionBack(String version) {
-
+        //do nothing
     }
 
     @Override

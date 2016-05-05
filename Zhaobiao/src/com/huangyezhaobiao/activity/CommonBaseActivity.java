@@ -192,7 +192,6 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
 
     @Override
     public void onVersionBack(String version) {
-        //检查
-        Log.e("shenyy","versionBACK:"+version);
+
     }
 }

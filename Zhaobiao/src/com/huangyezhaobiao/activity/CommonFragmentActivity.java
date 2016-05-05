@@ -198,6 +198,7 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
 
     @Override
     public void onVersionBack(String version) {
-        Log.e("ashenyy","version:"+version);
+        Log.e("shenyy","version:"+version);
+
     }
 }

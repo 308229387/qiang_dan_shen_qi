@@ -138,7 +138,6 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 
 	@Override
 	public void onVersionBack(String version) {
-
 	}
 
 

@@ -86,7 +86,7 @@ public abstract class QBBaseActivity extends CommonBaseActivity implements INoti
 
 		@Override
 		public void onVersionBack(String version) {
-
+			Log.e("shenyy","version:"+version);
 		}
 
 		@Override

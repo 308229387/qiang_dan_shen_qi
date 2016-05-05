@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.activity.MainActivity;
+import com.huangyezhaobiao.constans.VersionConstans;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog.onDialogClickListener;
 /**
@@ -113,7 +114,9 @@ public class UpdateManager {
 				@Override
 				public void onDialogCancelClick() {
 					dismissConfirmDownloadDialog();
-					((MainActivity)context).finish();//退出应用
+					if(forceUpdate) {
+						((MainActivity) context).finish();//退出应用
+					}
 				}
 			});
 		}
@@ -223,6 +226,31 @@ public class UpdateManager {
 	{
 		if(version==null || url == null) return false;
 		String currentVersion = VersionUtils.getVersionName(context);
+		if(currentVersion.contains(".") )
+			currentVersion = currentVersion.replace(".", "");
+		if(version.contains("."))
+			version        = version.replace(".", "");
+		if(CommonUtils.compareTwoNumbers(version, currentVersion)){
+			showConfirmDownloadDialog(context, url);
+			needUpdate  = true;
+		}else{
+			needUpdate = false;
+		}
+		return needUpdate;
+	}
+
+
+	boolean forceUpdate = true;
+	/**
+	 * 新版本的检查是否需要更新
+	 * @return
+	 * @throws NameNotFoundException
+	 */
+	public boolean isUpdateNow( Context context,String version,String currentVersion,String url,boolean forceUpdate)
+	{
+		this.forceUpdate = forceUpdate;
+		if(version==null || url == null) return false;
+		//String currentVersion = VersionConstans.CURRENT_VERSION;
 		if(currentVersion.contains(".") )
 			currentVersion = currentVersion.replace(".", "");
 		if(version.contains("."))

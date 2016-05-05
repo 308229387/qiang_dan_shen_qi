@@ -395,6 +395,6 @@ public abstract class QiangDanBaseFragment extends Fragment implements
 
 	@Override
 	public void onVersionBack(String version) {
-
+		Log.e("shenzhixin","version");
 	}
 }

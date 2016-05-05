@@ -27,4 +27,9 @@ public class LogoutViewModel extends SourceViewModel {
 	public void onLoadingSuccess(NetBean bean, NetWorkModel model) {
 		//do nothing
 	}
+
+	@Override
+	public void onVersionBack(String value) {
+		//do nothing
+	}
 }

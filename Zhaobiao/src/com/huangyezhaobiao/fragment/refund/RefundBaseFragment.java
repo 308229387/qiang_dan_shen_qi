@@ -3,6 +3,7 @@ package com.huangyezhaobiao.fragment.refund;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -104,7 +105,7 @@ public abstract class RefundBaseFragment extends Fragment implements ICamera,Net
 
     @Override
     public void onVersionBack(String version) {
-
+        Log.e("shenyy","version:"+version);
     }
 }
 
