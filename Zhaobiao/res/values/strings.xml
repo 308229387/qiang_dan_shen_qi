@@ -25,6 +25,7 @@
     <string name="order_number">订单编号</string>
     <string name="bidding_success">抢单成功</string>
     <string name="get_validate_exception">获取验证码异常</string>
+    <string name="get_validate_exception_times">24小时内只能获得5次验证码!</string>
     <string name="my_bidding">我的抢单</string>
     <string name="bidding_exception">抢单异常</string>
     <string name="validate_code_already_send">验证码已发送,请耐心等待</string>

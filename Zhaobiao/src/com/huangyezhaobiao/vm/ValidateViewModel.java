@@ -67,7 +67,7 @@ public class ValidateViewModel extends SourceViewModel {
 		String msgs       = map.get("msg");
 		if (status == 0) {
 			if (model.type == TAG.REFRESH) {
-				if("0".equals(msgStatus)){
+				if("0".equals(msgStatus) || "1".equals(msgStatus)){
 					callBack.onLoadingSuccess(jsonTransferToMap(bean).get("status"));
 				}else{
 					callBack.onLoadingSuccess(msgs);

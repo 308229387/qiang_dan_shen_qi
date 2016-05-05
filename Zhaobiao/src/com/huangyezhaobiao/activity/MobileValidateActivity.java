@@ -194,6 +194,9 @@ public class MobileValidateActivity extends CommonBaseActivity implements NetWor
 				ToastUtils.makeImgAndTextToast(MobileValidateActivity.this, getString(R.string.validate_code_already_send), R.drawable.validate_done, Toast.LENGTH_SHORT).show();
 				countdown();
 			}
+			else if(status.equals("1")){
+				ToastUtils.makeImgAndTextToast(MobileValidateActivity.this, getString(R.string.get_validate_exception_times), R.drawable.validate_done, Toast.LENGTH_SHORT).show();
+			}
 			else{
 				ToastUtils.makeImgAndTextToast(MobileValidateActivity.this, getString(R.string.get_validate_exception), R.drawable.validate_done, Toast.LENGTH_SHORT).show();
 			}
@@ -228,7 +231,7 @@ public class MobileValidateActivity extends CommonBaseActivity implements NetWor
 
 	@Override
 	public void onNoInterNetError() {
-		Toast.makeText(this,getString(R.string.no_network),0).show();
+		Toast.makeText(this,getString(R.string.no_network),Toast.LENGTH_SHORT).show();
 	}
 
 	@Override

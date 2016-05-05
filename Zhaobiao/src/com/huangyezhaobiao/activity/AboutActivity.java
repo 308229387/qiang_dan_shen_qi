@@ -10,8 +10,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.constans.AppConstants;
+import com.huangyezhaobiao.url.URLConstans;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.VersionUtils;
+
+import java.util.HashMap;
+
 /**
  * 关于页面activity
  */
@@ -69,7 +74,10 @@ public class AboutActivity extends QBBaseActivity implements OnClickListener {
 			ActivityUtils.goToActivity(this, IntroduceFunctionActivity.class);
 			break;
 			case R.id.software_usage://使用协议
-				ActivityUtils.goToActivity(this, SoftwareUsageActivity.class);
+				HashMap<String, String> map = new HashMap<String, String>();
+				map.put(AppConstants.H5_TITLE, getString(R.string.h5_login_softwareusage));
+				map.put(AppConstants.H5_WEBURL, URLConstans.SOFTWARE_USEAGE_PROTOCOL);  //2016.5.3 add
+				ActivityUtils.goToActivityWithString(this, SoftwareUsageActivity.class,map);
 				break;
 		}
 	}
