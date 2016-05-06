@@ -86,6 +86,11 @@ public abstract class CommonBaseActivity extends BaseActivity{
         public void onLoginInvalidate() {
 
         }
+
+        @Override
+        public void onVersionBack(String version) {
+
+        }
     };
 
     /**
@@ -138,6 +143,11 @@ public abstract class CommonBaseActivity extends BaseActivity{
 
             @Override
             public void onLoginInvalidate() {
+
+            }
+
+            @Override
+            public void onVersionBack(String version) {
 
             }
         },this);
@@ -234,6 +244,11 @@ public abstract class CommonBaseActivity extends BaseActivity{
         @Override
         public void onLoginInvalidate() {
             Toast.makeText(CommonBaseActivity.this, getString(R.string.login_login_invalidate),Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onVersionBack(String version) {
+
         }
     };
     /** added by chenguangming end */
