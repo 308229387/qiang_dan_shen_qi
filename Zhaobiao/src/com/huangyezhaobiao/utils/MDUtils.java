@@ -6,12 +6,7 @@ import android.os.Message;
 
 import com.huangyezhaobiao.application.BiddingApplication;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * 埋点协议的实现工具
@@ -272,10 +267,10 @@ public class MDUtils {
     
     
     public static void writeJsonString(String json){
-    	/*Bundle data = new Bundle();
+    	Bundle data = new Bundle();
     	data.putString("json", json);
     	Message msg =   BiddingApplication.getLogHandler().obtainMessage();
     	msg.setData(data);
-    	BiddingApplication.getLogHandler().sendMessage(msg);*/
+    	BiddingApplication.getLogHandler().sendMessage(msg);
     }
 }

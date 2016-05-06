@@ -257,7 +257,8 @@ public class UrlSuffix {
 	 * @return
 	 */
 	public static String getRefundCloseTimeSuffix(Context context,String orderId){
-		return getApiOrderId(orderId);
+		return getApiOrderId(orderId) ;
+
 	}
 
 	/**
@@ -350,7 +351,7 @@ public class UrlSuffix {
 	 * @return
 	 */
 	public static String getBackToForeSuffix(Context context){
-		return getUserId(context) + URLConstans.AND + getCommonSuffix(context);
+		return "";
 	}
 
 

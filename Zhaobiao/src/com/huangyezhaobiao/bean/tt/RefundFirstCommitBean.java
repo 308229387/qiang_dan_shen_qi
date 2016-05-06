@@ -8,7 +8,6 @@ import java.util.List;
  */
 public class RefundFirstCommitBean extends RefundBaseBean{
     private String orderId;
-    private String cancelOrderId;
     private List<RefundFirstReasonEntity> cancelReasons;
 
     public String getOrderId() {
@@ -19,13 +18,6 @@ public class RefundFirstCommitBean extends RefundBaseBean{
         this.orderId = orderId;
     }
 
-    public String getCancelOrderId() {
-        return cancelOrderId;
-    }
-
-    public void setCancelOrderId(String cancelOrderId) {
-        this.cancelOrderId = cancelOrderId;
-    }
 
     public List<RefundFirstReasonEntity> getCancelReasons() {
         return cancelReasons;
@@ -39,7 +31,6 @@ public class RefundFirstCommitBean extends RefundBaseBean{
     public String toString() {
         return "RefundFirstCommitBean{" +
                 "orderId='" + orderId + '\'' +
-                ", cancelOrderId='" + cancelOrderId + '\'' +
                 ", cancelReasons=" + cancelReasons +
                 '}';
     }

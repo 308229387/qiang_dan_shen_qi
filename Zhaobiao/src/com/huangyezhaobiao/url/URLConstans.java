@@ -309,7 +309,7 @@ public interface URLConstans {
 	 * 应用从后台到前台的链接
 	 * http://serverdomain/app/appEnterForeground?userId= &platform= &UUID= &version= &token=
 	 */
-	String URL_BACKGROUND_TO_FOREGROUND = BASE_URL_APP + "appEnterForeground?";
+	String URL_BACKGROUND_TO_FOREGROUND = BASE_URL_APP + "appEnterForeground";
 
 	/**
 	 * source字段，表示来源

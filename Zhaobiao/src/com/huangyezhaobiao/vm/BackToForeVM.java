@@ -21,6 +21,6 @@ public class BackToForeVM extends SourceViewModel{
     }
 
     public void report(){
-        /*t.getDatas();*/
+        t.getDatas();
     }
 }

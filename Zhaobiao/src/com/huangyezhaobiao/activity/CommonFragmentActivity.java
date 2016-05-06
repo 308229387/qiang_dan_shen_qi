@@ -216,6 +216,11 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
         public void onLoginInvalidate() {
             Toast.makeText(CommonFragmentActivity.this, getString(R.string.login_login_invalidate),Toast.LENGTH_SHORT).show();
         }
+
+        @Override
+        public void onVersionBack(String version) {
+
+        }
     };
     /** added by chenguangming end */
 

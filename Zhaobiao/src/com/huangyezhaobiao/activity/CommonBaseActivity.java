@@ -31,7 +31,7 @@ import com.xiaomi.mipush.sdk.MiPushClient;
 /**
  * Created by 58 on 2016/2/24.
  */
-public abstract class CommonBaseActivity extends BaseActivity{
+public abstract class CommonBaseActivity extends BaseActivity implements NetWorkVMCallBack{
     private BackToForeVM backToForeVM;
     private GlobalConfigVM globalConfigVM;
     private NetWorkVMCallBack globalConfigCallBack = new NetWorkVMCallBack() {
@@ -86,6 +86,11 @@ public abstract class CommonBaseActivity extends BaseActivity{
         public void onLoginInvalidate() {
 
         }
+
+        @Override
+        public void onVersionBack(String version) {
+
+        }
     };
 
     /**
@@ -138,6 +143,11 @@ public abstract class CommonBaseActivity extends BaseActivity{
 
             @Override
             public void onLoginInvalidate() {
+
+            }
+
+            @Override
+            public void onVersionBack(String version) {
 
             }
         },this);
@@ -235,6 +245,11 @@ public abstract class CommonBaseActivity extends BaseActivity{
         public void onLoginInvalidate() {
             Toast.makeText(CommonBaseActivity.this, getString(R.string.login_login_invalidate),Toast.LENGTH_SHORT).show();
         }
+
+        @Override
+        public void onVersionBack(String version) {
+
+        }
     };
     /** added by chenguangming end */
 
@@ -265,5 +280,38 @@ public abstract class CommonBaseActivity extends BaseActivity{
         //封装了的百度统计
         BDMob.getBdMobInstance().onPauseActivity(this);
     }
+    @Override
+    public void onVersionBack(String version) {
 
+    }
+
+    @Override
+    public void onLoadingStart() {
+
+    }
+
+    @Override
+    public void onLoadingSuccess(Object t) {
+
+    }
+
+    @Override
+    public void onLoadingError(String msg) {
+
+    }
+
+    @Override
+    public void onLoadingCancel() {
+
+    }
+
+    @Override
+    public void onNoInterNetError() {
+
+    }
+
+    @Override
+    public void onLoginInvalidate() {
+
+    }
 }

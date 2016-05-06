@@ -21,7 +21,7 @@ public abstract class SourceViewModel implements NetworkModelCallBack{
 		this.callBack = callBack;
 		t = initListNetworkModel(context);
 		this.context = context;
-		
+
 	}
 	protected abstract NetWorkModel initListNetworkModel(Context context);
 
@@ -35,7 +35,7 @@ public abstract class SourceViewModel implements NetworkModelCallBack{
 	public void onLoadingStart() {
 		if(callBack!=null)
 			callBack.onLoadingStart();
-		
+
 	}
 
 	@Override
@@ -60,14 +60,14 @@ public abstract class SourceViewModel implements NetworkModelCallBack{
 			}
 		}
 	}
-	
+
 	@Override
 	public void noInternetConnect() {
 		if(callBack!=null) {
 			callBack.onNoInterNetError();
 		}
 	}
-	
+
 	/**
 	 * 把json转化成map
 	 * @param bean
@@ -77,7 +77,7 @@ public abstract class SourceViewModel implements NetworkModelCallBack{
 		Log.e("adsss", "balance:"+bean.getData());
 		return JsonUtils.jsonToMap(bean.getData());
 	}
-	
+
 	/**
 	 * 把json转化成list<Map>
 	 * @param bean
@@ -86,7 +86,7 @@ public abstract class SourceViewModel implements NetworkModelCallBack{
 	protected List<Map<String,String>> jsonTransferToListMap(NetBean bean){
 		return JsonUtils.jsonToListMap(bean.getData());
 	}
-	
+
 	/**
 	 * 详情页的转化，把Json转化成list<map>
 	 * @param bean
