@@ -1,5 +1,7 @@
 package com.huangyezhaobiao.request;
 
+import android.util.Log;
+
 import com.huangye.commonlib.delegate.HttpRequestCallBack;
 import com.huangye.commonlib.network.HTTPTools;
 import com.huangye.commonlib.network.HttpRequest;
@@ -29,8 +31,11 @@ public class ZhaoBiaoRequest<T> extends HttpRequest {
         if(list!= null && list.size() != 0){
             list.clear();
         }
+
         params.addHeader("ppu", UserUtils.getUserPPU(BiddingApplication.getAppInstanceContext()));
         params.addHeader("userId",UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
+        Log.e("sdf", "ppu:" + UserUtils.getUserPPU(BiddingApplication.getAppInstanceContext()));
+        Log.e("sdf", "userId:" +UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
 //        try {
 //            params.addHeader("version", VersionUtils.getVersionCode(BiddingApplication.getAppInstanceContext()));
             params.addHeader("version", "5");

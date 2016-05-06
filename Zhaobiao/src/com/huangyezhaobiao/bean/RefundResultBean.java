@@ -11,7 +11,7 @@ package com.huangyezhaobiao.bean;
  */
 public class RefundResultBean {
     private String orderId;
-    private String cancelOrderId;
+   // private String cancelOrderId;
     private String cancelResult;
     private String cancelReason;
     private String detailDesc;
@@ -34,13 +34,13 @@ public class RefundResultBean {
         this.orderId = orderId;
     }
 
-    public String getCancelOrderId() {
+   /* public String getCancelOrderId() {
         return cancelOrderId;
     }
-
-    public void setCancelOrderId(String cancelOrderId) {
+*/
+  /*//  public void setCancelOrderId(String cancelOrderId) {
         this.cancelOrderId = cancelOrderId;
-    }
+    }*/
 
     public String getCancelResult() {
         return cancelResult;

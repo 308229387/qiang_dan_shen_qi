@@ -35,14 +35,14 @@ public class KnockViewModel extends SourceViewModel {
 	public void knock(PushToPassBean bean,String bidSource) {
 		t.setRequestMethodPost();
 		HashMap<String, String> params_map = new HashMap<String, String>();
-		String userId = UserUtils.userId; // UserUtils.getUserId(context);//
+//		String userId = UserUtils.userId; // UserUtils.getUserId(context);//
 											// 24454277549825L;//Long.parseLong(UserUtils.getUserId(context));//27353503259910L
 		long bidId = bean.getBidId();// bean.getBidId();//3088606247077150811L;//3089019022954856539L
 		long pushId = bean.getPushId();// bean.getPushId();//3087873205681979483L;//3089020612659380315L
 		int pushTurn = bean.getPushTurn();// 1;//bean.getPushTurn();
 //		params_map.put("userid", "" + userId);
-		params_map.put("bidid", "" + bidId);
-		params_map.put("pushid", "" + pushId);
+		params_map.put("bidId", "" + bidId);
+		params_map.put("pushId", "" + pushId);
 		params_map.put("pushturn", "" + pushTurn);
 		params_map.put("token", new Date().getTime() + "");
 //		params_map.put("UUID", PhoneUtils.getIMEI(context));

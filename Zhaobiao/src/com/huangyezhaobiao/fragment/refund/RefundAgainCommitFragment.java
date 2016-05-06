@@ -124,7 +124,7 @@ public class RefundAgainCommitFragment extends RefundBaseFragment implements Net
                 if(rl_submit!=null) {
                     rl_submit.setVisibility(View.VISIBLE);
                 }
-                refundPresenter.submitAddRefund(getActivity(), UserUtils.getUserId(getActivity()), refundResultBean.getOrderId(), refundResultBean.getCancelOrderId(), ((MediaAdapter) refundPresenter.getMediaAdapter()).getDataSources(), new UICallback() {
+                refundPresenter.submitAddRefund(getActivity(), UserUtils.getUserId(getActivity()), refundResultBean.getOrderId(),"", ((MediaAdapter) refundPresenter.getMediaAdapter()).getDataSources(), new UICallback() {
                     @Override
                     public void onUploadPicSuccess(String msg) {
                         uploadPicDialog.dismiss();

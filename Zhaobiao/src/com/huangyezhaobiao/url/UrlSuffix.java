@@ -257,7 +257,7 @@ public class UrlSuffix {
 	 * @return
 	 */
 	public static String getRefundCloseTimeSuffix(Context context,String orderId){
-		return getUserId(context) + URLConstans.AND + getApiOrderId(orderId) +  URLConstans.AND + UrlSuffix.getCommonSuffix(context);
+		return getApiOrderId(orderId);
 	}
 
 	/**

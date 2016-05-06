@@ -12,7 +12,9 @@ import android.widget.BaseAdapter;
 import com.huangye.commonlib.constans.ResponseConstans;
 import com.huangye.commonlib.utils.JsonUtils;
 import com.huangye.commonlib.utils.NetBean;
+import com.huangye.commonlib.utils.PhoneUtils;
 import com.huangyezhaobiao.adapter.RefundReasonAdapter;
+import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.bean.tt.RefundFirstReasonEntity;
 import com.huangyezhaobiao.constans.AppConstants;
 import com.huangyezhaobiao.mediator.RefundMediator;
@@ -103,7 +105,7 @@ public class RefundPresenter {
     }
 
     public void goToViewSinglePhotoActivity(Context context,int index,ArrayList<MediaPicBean> mediaPicBeans) {
-        Intent intent = ViewSinglePhotoActivity.newIntent(context,index,mediaPicBeans);
+        Intent intent = ViewSinglePhotoActivity.newIntent(context, index, mediaPicBeans);
         context.startActivity(intent);
     }
 
@@ -127,7 +129,7 @@ public class RefundPresenter {
         List<MediaPicBean> mediaPicBeans       = getSubmitBeans(dataSources);
         final List<File>         imgFiles      = transferToFiles(mediaPicBeans);
         final HashMap<String,String> refundMaps    = new HashMap<>();
-        refundMaps.put("userId",UserUtils.getUserId(context));
+       // refundMaps.put("userId",UserUtils.getUserId(context));
         refundMaps.put("orderId",orderId);
         refundMaps.put("cancelReasons",refundReasonId);
         refundMaps.put("detailDesc",refundDesc);
@@ -176,8 +178,8 @@ public class RefundPresenter {
             @Override
             public void onLoading(long total, long current, boolean isUploading) {
                 super.onLoading(total, current, isUploading);
-                if(listener!=null){
-                    listener.onUploadPrecent("已上传:"+((current/total)*100)+"%");
+                if (listener != null) {
+                    listener.onUploadPrecent("已上传:" + ((current / total) * 100) + "%");
                 }
             }
 
@@ -191,17 +193,17 @@ public class RefundPresenter {
                 }
                 NetBean netBean = JsonUtils.jsonToNetBean(responseInfo.result);
                 Map<String, String> map = JsonUtils.jsonToMap(netBean.getData());
-                if("0".equals(map.get("status"))){
+                if ("0".equals(map.get("status"))) {
                     listener.onUploadPicSuccess(map.get("msg"));
                     RefundMediator.checkedId.clear();
-                }else{
+                } else {
                     listener.onUploadPicFailure(map.get("msg"));
                 }
             }
 
             @Override
             public void onFailure(HttpException e, String s) {
-                Log.e("shenzhixin","upload error:"+s);
+                Log.e("shenzhixin", "upload error:" + s);
                 if (listener != null) {
                     if (!TextUtils.isEmpty(s)) {
                         listener.onUploadPicFailure(s);
@@ -213,9 +215,35 @@ public class RefundPresenter {
         });
     }
 
+    /**
+     * 添加通用headder
+     * @return
+     */
+    private static RequestParams getRequestParams(){
+        RequestParams params = new RequestParams();
+        List<RequestParams.HeaderItem> list = params.getHeaders();
+        if(list!= null && list.size() != 0){
+            list.clear();
+        }
+
+        params.addHeader("ppu", UserUtils.getUserPPU(BiddingApplication.getAppInstanceContext()));
+        params.addHeader("userId",UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
+        Log.e("sdf", "ppu:" + UserUtils.getUserPPU(BiddingApplication.getAppInstanceContext()));
+        Log.e("sdf", "userId:" + UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
+//        try {
+//            params.addHeader("version", VersionUtils.getVersionCode(BiddingApplication.getAppInstanceContext()));
+        params.addHeader("version", "5");
+//        } catch (PackageManager.NameNotFoundException e) {
+//            e.printStackTrace();
+//        }
+        params.addHeader("platform", "1");
+        params.addHeader("UUID", PhoneUtils.getIMEI(BiddingApplication.getAppInstanceContext()));
+        return params;
+    }
+
 
     private static RequestParams getAddCommentRequestParams(final Context context, HashMap<String, String> map, List<File> files, final UICallback listener) {
-        RequestParams params = new RequestParams();
+        RequestParams params = getRequestParams();
         Set<Map.Entry<String, String>> entries = map.entrySet();
         Iterator<Map.Entry<String, String>> iterator = entries.iterator();
         while (iterator.hasNext()) {
@@ -287,9 +315,9 @@ public class RefundPresenter {
         List<MediaPicBean> mediaPicBeans       = getSubmitBeans(dataSources);
         final List<File>         imgFiles      = transferToFiles(mediaPicBeans);
         final HashMap<String,String> refundMaps    = new HashMap<>();
-        refundMaps.put("userId",userId);
+       // refundMaps.put("userId",userId);
         refundMaps.put("orderId",orderId);
-        refundMaps.put("cancelOrderId",cancelOrderId);
+       // refundMaps.put("cancelOrderId",cancelOrderId);
         SharedPreferences sharedPreferences = context.getSharedPreferences(ResponseConstans.SP_NAME, Context.MODE_PRIVATE);
         String myToken = sharedPreferences.getString(ResponseConstans.KEY_LOGIN_TOKEN, "");
         refundMaps.put("loginToken", myToken);
