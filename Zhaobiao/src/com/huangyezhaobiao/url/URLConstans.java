@@ -189,17 +189,11 @@ public interface URLConstans {
 	 */
 	String UPDATE_APP_URL = BASE_URL_APP+"getversion/apk?appId=1";
 
-
-
 	String LOGOUT_API_URL = BASE_URL_API+"logout?";
 
-	
 	String SOFTWARE_USAGE = BASE_URL_APP + "usageProtocol";
 
-
 	String SOFTWARE_USEAGE_PROTOCOL = URLConstans.BASE_HTML_URL + "usageProtocol.html";
-
-
 	/**
 	 * created by chenguangming 2016/03/14
 	 * 申请成为抢单神器会员
@@ -305,13 +299,11 @@ public interface URLConstans {
 	 */
 	String URL_APP_ACCOUNT_EXPIRE = BASE_URL_APP + "expire?";
 
-
 	/**
 	 * 订单列表页和详情页打电话的接口
 	 * http://serverdomain/app/callPhone?userId= &platform= &UUID= &version= &token= &orderId= &source=
 	 */
 	String URL_APP_TELEPHONE = BASE_URL_APP + "order/callPhone?";
-
 
 	/**
 	 * 应用从后台到前台的链接
@@ -333,7 +325,6 @@ public interface URLConstans {
 	 * platform= &UUID= &version= &token=
 	 */
 	String URL_RECEIVE_GE_PUSH = BASE_URL_APP + "receiveGetPush?";
-
 
 	String URL_GLOBAL_CONFIG = BASE_URL_APP +"global/params";
 

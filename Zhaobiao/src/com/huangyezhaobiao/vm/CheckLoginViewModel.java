@@ -2,7 +2,6 @@ package com.huangyezhaobiao.vm;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.huangye.commonlib.model.NetWorkModel;
 import com.huangye.commonlib.utils.JsonUtils;
@@ -36,8 +35,6 @@ public class CheckLoginViewModel extends SourceViewModel{
 
 	/** 登录到招标 */
 	private void loginZhaobiao(String param1,String param2){
-		Log.e("shenss","haha 39");
-		callBack.onLoadingStart();
 		t.setRequestMethodPost();
 		HashMap<String, String> params_map = new HashMap<String, String>();
 		LogUtils.LogE("ashenlogin", "username:" + param1 + ",password:" + param2);
@@ -75,13 +72,11 @@ public class CheckLoginViewModel extends SourceViewModel{
 
 	/** 登录到招标 */
 	public void login(){
-
 		loginZhaobiao();
 	}
 
 	/** 登录到招标 */
 	private void loginZhaobiao(){
-		Log.e("shenss","haha 83");
 		t.setRequestMethodPost();
 		HashMap<String, String> params_map = new HashMap<String, String>();
 		params_map.put("deviceId", PhoneUtils.getIMEI(context));
@@ -98,7 +93,6 @@ public class CheckLoginViewModel extends SourceViewModel{
 	@Override
 	public void onLoadingSuccess(NetBean bean, NetWorkModel model) {
 		int status = bean.getStatus();
-		Log.e("shenss","checkLoginView..success");
 		if(status==0){
 			callBack.onLoadingSuccess(JsonUtils.jsonToObject(bean.getData(), LoginBean.class));
 		}else{

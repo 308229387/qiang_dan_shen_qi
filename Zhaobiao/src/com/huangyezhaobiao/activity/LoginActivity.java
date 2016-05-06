@@ -68,7 +68,6 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 	private View        ll_root;
 	private ImageView   iv_icon;
 	private LoginViewModel loginViewModel;
-//	private CheckLoginViewModel checkLoginViewModel;
 	private ZhaoBiaoDialog dialog;
 	private LoadingProgress loading;
 	private AnimationController animationController;
@@ -86,7 +85,6 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 		initView();
 		initListener();
 		loginViewModel = new LoginViewModel(this, this);
-//		checkLoginViewModel = new CheckLoginViewModel(this, this);
 		dialog = new ZhaoBiaoDialog(this, "提示", "登录失败，您输入的账户名和密码不符!");
 		dialog.setCancelButtonGone();
 		dialog.setOnDialogClickListener(this);
@@ -119,8 +117,7 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 		filters[0] = new LoginEditFilter(this,"");
 		username.setFilters(filters);
 		password.setFilters(filters);
-		if(!TextUtils.isEmpty(UserUtils.getUserName(LoginActivity.this)))
-		{
+		if(!TextUtils.isEmpty(UserUtils.getUserName(LoginActivity.this))) {
 			username.setText(UserUtils.getUserName(LoginActivity.this));
 		}
 		//	password = (EditText) findViewById(R.id.password);
@@ -134,7 +131,6 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 		cb_usage   			 = (CheckBox) findViewById(R.id.cb_usage);
 		tv_accept_text_usage = (TextView) findViewById(R.id.tv_accept_text_usage);
 		tv_accept_text_usage.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
-
 		tv_how_to_become_vip = (TextView) findViewById(R.id.tv_login_raiders);
 		tv_how_to_become_vip.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 	}
@@ -179,7 +175,6 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 		 * 申请成为抢单神器会员start
 		 * created by chenguangming
 		 */
-
 		tv_how_to_become_vip.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -192,12 +187,10 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 //				ActivityUtils.goToActivity(LoginActivity.this,SoftwareUsageActivity.class);
 			}
 		});
-
 		/**
 		 * 申请成为抢单神器会员end
 		 * created by chenguangming
 		 */
-
 
 		loginbutton.setOnClickListener(new OnClickListener() {
 			@Override
@@ -224,12 +217,7 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 					return;
 				}
 				startLoading();
-				//test
-				//name = "琼nl";
-				//passwords = "qwer123";
-				//test
-				loginViewModel.login(name, passwords);
-//				checkLoginViewModel.login(name, passwords);
+				loginViewModel.login(name, passwords,false);
 			}
 		});
 
@@ -251,7 +239,6 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 			@Override
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
 			}
-
 		});
 
 		password.addTextChangedListener(new TextWatcher() {
@@ -272,15 +259,13 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 			@Override
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
 			}
-
 		});
 	}
 
 	//网络层回调
-
 	@Override
 	public void onLoadingStart() {
-		startLoading();
+		//startLoading();
 	}
 
 	private static final String TAG ="LoginActivity.onLoadingSuccess";
@@ -299,12 +284,11 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 			//个推注册别名
 			boolean result = GePushProxy.bindPushAlias(getApplicationContext(),userId+"_"+ PhoneUtils.getIMEI(this));
 			Toast.makeText(this,"注册别名结果:"+result,Toast.LENGTH_SHORT).show();
-			startLoading();
+
 			//判断是否验证过手机
 			if(hasValidated==1) {
 				ActivityUtils.goToActivity(LoginActivity.this, MobileValidateActivity.class);
-			}
-			else{
+			} else{
 				UserUtils.hasValidate(getApplicationContext());
 				ActivityUtils.goToActivity(LoginActivity.this, MainActivity.class);
 			}
@@ -315,7 +299,6 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 	@SuppressLint("ShowToast")
 	@Override
 	public void onLoadingError(String msg) {
-
 		stopLoading();
 		//TODO:判断一下是不是在当前界面
 		try {
@@ -383,7 +366,6 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 		loginbutton.setBackgroundResource(0);
 		iv_icon.setImageResource(0);
 		ll_root.setBackgroundResource(0);
-
 	}
 
 
@@ -392,10 +374,8 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 	 */
 	public void startLoading() {
 		if (loading == null) {
-			loading = new LoadingProgress(LoginActivity.this,
-					R.style.loading);
+			loading = new LoadingProgress(LoginActivity.this, R.style.loading);
 		}
-
 		if(loading!=null && !this.isFinishing())
 			loading.show();
 	}

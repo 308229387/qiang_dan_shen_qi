@@ -322,7 +322,7 @@
             />
         <activity android:name="com.huangyezhaobiao.activity.MobileValidateActivity"
             android:screenOrientation="portrait"
-            >
+            android:launchMode="singleInstance">
         </activity>
         <activity android:name="com.huangyezhaobiao.activity.BidFailureActivity"
             android:screenOrientation="portrait"

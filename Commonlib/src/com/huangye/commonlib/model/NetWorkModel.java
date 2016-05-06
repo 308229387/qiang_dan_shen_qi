@@ -19,8 +19,6 @@ import com.huangye.commonlib.utils.NetworkTools;
 import com.huangye.commonlib.utils.UserConstans;
 import com.lidroid.xutils.http.ResponseInfo;
 
-import org.apache.http.Header;
-
 import java.util.HashMap;
 
 /**
@@ -78,8 +76,7 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
 
     public void getDatas() {
         if (!NetworkTools.isNetworkConnected(context)) {
-            if(baseSourceModelCallBack!=null)
-                baseSourceModelCallBack.noInternetConnect();
+            baseSourceModelCallBack.noInternetConnect();
             return;
         }
         if (request != null)
@@ -89,24 +86,6 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
     @Override
     public void onLoadingSuccess(ResponseInfo<String> result) {
         Log.e("httpRequestResult", "result:" + result.result);
-        //add for header shenzhixin
-        Header[] allHeaders = result.getAllHeaders();
-        if(allHeaders!=null){
-            int size = allHeaders.length;
-            for(int index = 0;index<size;index++){
-                Header header = allHeaders[index];
-                if(header!=null){
-                    String name = header.getName();
-                    String value = header.getValue();
-                    Log.e("shenss","headerName:"+name+",headerValue:"+value);
-                    if(TextUtils.equals(name,"version") && baseSourceModelCallBack!=null){
-                        //处理value
-                        baseSourceModelCallBack.onVersionBack(value);
-                    }
-                }
-            }
-        }
-        //add for header shenzhixin
         int loginflag = -1;
         //登录是否合法，默认为是
         boolean isLoginValidate = true;
@@ -127,50 +106,45 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
             if (loginflag == 0) {
                 isLoginValidate = SharedPreferencesUtils.isLoginValidate(context, ResponseConstans.SP_NAME, token);
             }
-
             if (!isLoginValidate) {
                 //	不合法
-                if(baseSourceModelCallBack!=null)
-                    baseSourceModelCallBack.onModelLoginInvalidate();
-                String suffix_url = "api/testToken?userId=" + UserConstans.USER_ID + "&apiType=" + OTHER_TYPE + "&clientToken=" + SharedPreferencesUtils.getUserToken(context) + "&serverToken=" + token + "&platform=1";
-                HTTPTools.newHttpUtilsInstance().doGet(URLConstans.BASE_URL + suffix_url, new HttpRequestCallBack() {
-                    @Override
-                    public void onLoadingFailure(String err) {
-
-                    }
-
-                    @Override
-                    public void onLoadingSuccess(ResponseInfo<String> result) {
-
-                    }
-
-                    @Override
-                    public void onLoadingStart() {
-
-                    }
-
-                    @Override
-                    public void onLoadingCancelled() {
-
-                    }
-
-                    @Override
-                    public void onLoading(long total, long current) {
-
-                    }
-                });
+                baseSourceModelCallBack.onModelLoginInvalidate();
+//                String suffix_url = "api/testToken?userId=" + UserConstans.USER_ID + "&apiType=" + OTHER_TYPE + "&clientToken=" + SharedPreferencesUtils.getUserToken(context) + "&serverToken=" + token + "&platform=1";
+//                HTTPTools.newHttpUtilsInstance().doGet(URLConstans.BASE_URL + suffix_url, new HttpRequestCallBack() {
+//                    @Override
+//                    public void onLoadingFailure(String err) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onLoadingSuccess(ResponseInfo<String> result) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onLoadingStart() {
+//
+//                    }
+//
+//                    @Override
+//                    public void onLoadingCancelled() {
+//
+//                    }
+//
+//                    @Override
+//                    public void onLoading(long total, long current) {
+//
+//                    }
+//                });
             } else {//合法
                 if (TextUtils.isEmpty(jsonResult.getString("result"))) {
-                    if(baseSourceModelCallBack!=null)
-                        baseSourceModelCallBack.onLoadingFailure(jsonResult.getString("msg"));
+                    baseSourceModelCallBack.onLoadingFailure(jsonResult.getString("msg"));
                 } else {
-                    if(baseSourceModelCallBack!=null)
-                        baseSourceModelCallBack.onLoadingSuccess(transformJsonToNetBean(result.result), this);
+                    baseSourceModelCallBack.onLoadingSuccess(transformJsonToNetBean(result.result), this);
                 }
             }
         } catch (Exception e) {
-            if(baseSourceModelCallBack!=null)
-                baseSourceModelCallBack.onLoadingFailure("服务器出现了问题，稍后再试呢");
+            baseSourceModelCallBack.onLoadingFailure("服务器出现了问题，稍后再试呢");
             e.printStackTrace();
             //上传异常信息
             uploadException(e, result.result);
@@ -318,14 +292,12 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
 
     @Override
     public void onLoadingStart() {
-        if(baseSourceModelCallBack!=null)
-            baseSourceModelCallBack.onLoadingStart();
+        // baseSourceModelCallBack.onLoadingStart();
     }
 
     @Override
     public void onLoadingCancelled() {
-        if(baseSourceModelCallBack!=null)
-            baseSourceModelCallBack.onLoadingCancell();
+        baseSourceModelCallBack.onLoadingCancell();
     }
 
     @Override
@@ -335,8 +307,7 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
 
     @Override
     public void onLoadingFailure(String err) {
-        if(baseSourceModelCallBack!=null)
-            baseSourceModelCallBack.onLoadingFailure("当前网络慢，请稍后重试");
+        baseSourceModelCallBack.onLoadingFailure("当前网络慢，请稍后重试");
     }
 
     public enum TAG {

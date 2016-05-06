@@ -11,11 +11,8 @@ public interface URLConstans {
     //adhttp://10.252.156.46/
     //http://10.252.152.201:8888/
     //基类Url
-//        public static final String BASE_URL = "http://zhaobiao.58.com/";
-//        public static final String BASE_URL = "http://192.168.118.132:9090/";
-//    public static final String BASE_URL = "http://10.252.152.201/"; //昌军电脑
-//public static final String BASE_URL = "http://10.252.22.181/"; //吉哥电脑
-public static final String BASE_URL = "http://10.252.153.172/"; //琪哥电脑
+//    public static final String BASE_URL = "http://zhaobiao.58.com/";
+    public static final String BASE_URL = "http://192.168.118.132:9090/";
 
 
 }

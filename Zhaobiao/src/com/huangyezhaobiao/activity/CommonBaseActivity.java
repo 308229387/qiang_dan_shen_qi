@@ -4,25 +4,34 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.huangye.commonlib.activity.BaseActivity;
+import com.huangye.commonlib.file.SharedPreferencesUtils;
 import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
+import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.bean.AccountExpireBean;
 import com.huangyezhaobiao.bean.GlobalConfigBean;
 import com.huangyezhaobiao.bean.UserPhoneBean;
+import com.huangyezhaobiao.gtui.GePushProxy;
+import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.TimeUtils;
 import com.huangyezhaobiao.utils.UserUtils;
+import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import com.huangyezhaobiao.vm.BackToForeVM;
 import com.huangyezhaobiao.vm.GlobalConfigVM;
+import com.huangyezhaobiao.vm.LoginViewModel;
+import com.huangyezhaobiao.vm.LogoutViewModel;
 import com.huangyezhaobiao.windowf.AppExitService;
+import com.xiaomi.mipush.sdk.MiPushClient;
 
 /**
  * Created by 58 on 2016/2/24.
  */
-public abstract class CommonBaseActivity extends BaseActivity implements NetWorkVMCallBack{
+public abstract class CommonBaseActivity extends BaseActivity{
     private BackToForeVM backToForeVM;
     private GlobalConfigVM globalConfigVM;
     private NetWorkVMCallBack globalConfigCallBack = new NetWorkVMCallBack() {
@@ -77,11 +86,6 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
         public void onLoginInvalidate() {
 
         }
-
-        @Override
-        public void onVersionBack(String version) {
-
-        }
     };
 
     /**
@@ -106,7 +110,37 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         globalConfigVM = new GlobalConfigVM(globalConfigCallBack,this);
-        backToForeVM = new BackToForeVM(null,this);
+        backToForeVM = new BackToForeVM(new NetWorkVMCallBack() {
+            @Override
+            public void onLoadingStart() {
+
+            }
+
+            @Override
+            public void onLoadingSuccess(Object t) {
+
+            }
+
+            @Override
+            public void onLoadingError(String msg) {
+
+            }
+
+            @Override
+            public void onLoadingCancel() {
+
+            }
+
+            @Override
+            public void onNoInterNetError() {
+
+            }
+
+            @Override
+            public void onLoginInvalidate() {
+
+            }
+        },this);
     }
 
     @Override
@@ -119,17 +153,90 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
             Log.e("shenzhiixn", "fromBackground");
             SPUtils.toForeground(this);//现在应用到前台了
             backToForeVM.report();
-
             if(needAsync() && !TextUtils.isEmpty(UserUtils.getUserId(this))){
                 globalConfigVM.refreshUsers();
             }
+            dialog = new ZhaoBiaoDialog(this, "提示", "登录失败，您输入的账户名和密码不符!");
+            dialog.setCancelButtonGone();
+            dialog.setOnDialogClickListener(dialogClickListener);
+            loginViewModel = new LoginViewModel(vmCallBack,this);
+            Log.v("从后台进来的",UserUtils.getAccountName(this) + "===" +UserUtils.getAccountEncrypt(this));
+            loginViewModel.login(UserUtils.getAccountName(this), UserUtils.getAccountEncrypt(this),true);
         }else{
             Log.e("shenzhiixn","not fromBackground");
         }
     }
 
+    /** added by chenguangming start**/
+    private LogoutViewModel lvm;
+    private ZhaoBiaoDialog.onDialogClickListener dialogClickListener = new ZhaoBiaoDialog.onDialogClickListener() {
+        @Override
+        public void onDialogOkClick() {
+            dialog.dismiss();
+            /** 跳转到登录的界面*/
+            lvm = new LogoutViewModel(vmCallBack, CommonBaseActivity.this);
+            lvm.logout();
+            SharedPreferencesUtils.clearLoginToken(getApplicationContext());
+            //退出时注销个推
+            GePushProxy.unBindPushAlias(getApplicationContext(), UserUtils.getUserId(getApplicationContext()));
+            //退出时注销小米推送
+            MiPushClient.unsetAlias(getApplicationContext(), UserUtils.getUserId(getApplicationContext()), null);
+            UserUtils.clearUserInfo(getApplicationContext());
+            ActivityUtils.goToActivity(CommonBaseActivity.this, LoginActivity.class);
+            finish();
+        }
 
+        @Override
+        public void onDialogCancelClick() {
 
+        }
+    };
+
+    /**
+     * created by chenguangming 自动登录
+     *  */
+    private LoginViewModel loginViewModel;
+    private ZhaoBiaoDialog dialog;
+
+    private NetWorkVMCallBack vmCallBack = new NetWorkVMCallBack() {
+        @Override
+        public void onLoadingStart() {
+
+        }
+
+        @Override
+        public void onLoadingSuccess(Object t) {
+
+        }
+
+        @Override
+        public void onLoadingError(String msg) {
+            try {
+                if(dialog!=null && !TextUtils.isEmpty(msg)){
+                    dialog.setMessage(msg);
+                    dialog.show();
+                }
+            } catch (Exception e) {
+                Toast.makeText(CommonBaseActivity.this, msg, Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        @Override
+        public void onLoadingCancel() {
+
+        }
+
+        @Override
+        public void onNoInterNetError() {
+            Toast.makeText(CommonBaseActivity.this, getString(R.string.no_network),Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onLoginInvalidate() {
+            Toast.makeText(CommonBaseActivity.this, getString(R.string.login_login_invalidate),Toast.LENGTH_SHORT).show();
+        }
+    };
+    /** added by chenguangming end */
 
     /**
      * 开启appexitService
@@ -152,7 +259,6 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
         }
     }
 
-
     @Override
     protected void onPause() {
         super.onPause();
@@ -160,38 +266,4 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
         BDMob.getBdMobInstance().onPauseActivity(this);
     }
 
-    @Override
-    public void onLoadingStart() {
-
-    }
-
-    @Override
-    public void onLoadingSuccess(Object t) {
-
-    }
-
-    @Override
-    public void onLoadingError(String msg) {
-
-    }
-
-    @Override
-    public void onLoadingCancel() {
-
-    }
-
-    @Override
-    public void onNoInterNetError() {
-
-    }
-
-    @Override
-    public void onLoginInvalidate() {
-
-    }
-
-    @Override
-    public void onVersionBack(String version) {
-
-    }
 }

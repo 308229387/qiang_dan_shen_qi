@@ -48,8 +48,6 @@ public class CheckLoginModel extends NetWorkModel {
 
     @Override
     public void onLoadingSuccess(ResponseInfo<String> result) {
-		//shenzhixin remove for twice;
-        //super.onLoadingSuccess(result);
         Log.v(TAG,"onLoadingSuccess = " + jsonResult);
         boolean isLoginValidate = true;//登录是否合法，默认为是
 		try {
@@ -64,6 +62,8 @@ public class CheckLoginModel extends NetWorkModel {
 			}catch(Exception e){
 				loginflag = -1;//如果解析不成功，不让他掉线
 			}
+//			setRequestURL(URLConstans.BASE_URL+"app/timestamp/sync");
+//			getDatas();
 			//获得返回的token
 			String token     = jsonObject.getString("token");
 			Log.e("shenzhixinHAHAHA","loginFlag:"+loginflag+",token:"+token);
@@ -73,68 +73,68 @@ public class CheckLoginModel extends NetWorkModel {
 				UserConstans.USER_ID = mineBean.getUserId()+"";
 				SharedPreferencesUtils.saveUserToken(context, ResponseConstans.SP_NAME,token);
 				///api/testToken?userId=&apiType=&clientToken=&serverToken=&token=
-				String suffix_url = "api/testToken?userId="+UserConstans.USER_ID+"&apiType="+LOGIN_TYPE+"&clientToken="+token+"&serverToken="+token+"&platform=1";
-				HTTPTools.newHttpUtilsInstance().doGet(URLConstans.BASE_URL + suffix_url, new HttpRequestCallBack() {
-					@Override
-					public void onLoadingFailure(String err) {
-
-					}
-
-					@Override
-					public void onLoadingSuccess(ResponseInfo<String> result) {
-
-					}
-
-					@Override
-					public void onLoadingStart() {
-
-					}
-
-					@Override
-					public void onLoadingCancelled() {
-
-					}
-
-					@Override
-					public void onLoading(long total, long current) {
-
-					}
-				});
-			}else if(loginflag == 0){//其他请求
+//				String suffix_url = "api/testToken?userId="+UserConstans.USER_ID+"&apiType="+LOGIN_TYPE+"&clientToken="+token+"&serverToken="+token+"&platform=1";
+//				HTTPTools.newHttpUtilsInstance().doGet(URLConstans.BASE_URL + suffix_url, new HttpRequestCallBack() {
+//					@Override
+//					public void onLoadingFailure(String err) {
+//
+//					}
+//
+//					@Override
+//					public void onLoadingSuccess(ResponseInfo<String> result) {
+//
+//					}
+//
+//					@Override
+//					public void onLoadingStart() {
+//
+//					}
+//
+//					@Override
+//					public void onLoadingCancelled() {
+//
+//					}
+//
+//					@Override
+//					public void onLoading(long total, long current) {
+//
+//					}
+//				});
+			}else if(loginflag == 0){
+				//其他请求
 				isLoginValidate = SharedPreferencesUtils.isLoginValidate(context,ResponseConstans.SP_NAME,token);
 			}//-1就是退出登录，什么都不做
-
 			if(!isLoginValidate){
-			//	不合法
+				//	不合法
 				baseSourceModelCallBack.onModelLoginInvalidate();
-				String suffix_url = "api/testToken?userId="+UserConstans.USER_ID+"&apiType="+OTHER_TYPE+"&clientToken="+SharedPreferencesUtils.getUserToken(context)+"&serverToken="+token+"&platform=1";
-				HTTPTools.newHttpUtilsInstance().doGet(URLConstans.BASE_URL + suffix_url, new HttpRequestCallBack() {
-					@Override
-					public void onLoadingFailure(String err) {
-
-					}
-
-					@Override
-					public void onLoadingSuccess(ResponseInfo<String> result) {
-
-					}
-
-					@Override
-					public void onLoadingStart() {
-
-					}
-
-					@Override
-					public void onLoadingCancelled() {
-
-					}
-
-					@Override
-					public void onLoading(long total, long current) {
-
-					}
-				});
-			}else {//合法
+//				String suffix_url = "api/testToken?userId="+UserConstans.USER_ID+"&apiType="+OTHER_TYPE+"&clientToken="+SharedPreferencesUtils.getUserToken(context)+"&serverToken="+token+"&platform=1";
+//				HTTPTools.newHttpUtilsInstance().doGet(URLConstans.BASE_URL + suffix_url, new HttpRequestCallBack() {
+//					@Override
+//					public void onLoadingFailure(String err) {
+//
+//					}
+//
+//					@Override
+//					public void onLoadingSuccess(ResponseInfo<String> result) {
+//
+//					}
+//
+//					@Override
+//					public void onLoadingStart() {
+//
+//					}
+//
+//					@Override
+//					public void onLoadingCancelled() {
+//
+//					}
+//
+//					@Override
+//					public void onLoading(long total, long current) {
+//
+//					}
+//				});
+			}else {
 				Log.e("shenzhixin","json string:"+jsonObject.toJSONString());
 				if (TextUtils.isEmpty(jsonObject.getString("result"))) {
 					baseSourceModelCallBack.onLoadingFailure(jsonObject.getString("msg"));
@@ -194,6 +194,7 @@ public class CheckLoginModel extends NetWorkModel {
     public void onLoadingStart() {
         baseSourceModelCallBack.onLoadingStart();
     }
+
     @Override
     public void onLoadingCancelled() {
         baseSourceModelCallBack.onLoadingCancell();
@@ -203,11 +204,7 @@ public class CheckLoginModel extends NetWorkModel {
     public void onLoading(long total, long current) {}
 
     @Override
-    public void onLoadingFailure(String err) {
-        baseSourceModelCallBack.onLoadingFailure("当前网络慢，请稍后重试");
-    }
+    public void onLoadingFailure(String err) { baseSourceModelCallBack.onLoadingFailure("当前网络慢，请稍后重试"); }
 
-    public enum TAG{
-        LOGIN,LOADMORE,REFRESH,CHECKVERSION
-    }
+    public enum TAG{ LOGIN,LOADMORE,REFRESH,CHECKVERSION }
 }

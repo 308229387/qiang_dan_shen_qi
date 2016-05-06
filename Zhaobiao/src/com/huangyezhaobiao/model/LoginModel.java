@@ -3,6 +3,7 @@ package com.huangyezhaobiao.model;
 import android.content.Context;
 import android.util.Log;
 
+import com.alibaba.fastjson.JSON;
 import com.huangye.commonlib.model.NetWorkModel;
 import com.huangye.commonlib.model.callback.NetworkModelCallBack;
 import com.huangyezhaobiao.bean.PassportBean;
@@ -13,6 +14,8 @@ import org.apache.http.Header;
 import org.apache.http.HeaderElement;
 
 public class LoginModel extends NetWorkModel{
+
+	private static final String PASSPORT_RESULT0 = "0";
 
 	private static final String TAG = LoginModel.class.getName();
 	public LoginModel(NetworkModelCallBack baseSourceModelCallBack, Context context) {
@@ -30,25 +33,33 @@ public class LoginModel extends NetWorkModel{
 
 	@Override
 	public void onLoadingSuccess(ResponseInfo<String> result) {
-		super.onLoadingSuccess(result);
-		Log.v(TAG,"onLoadingSuccess = " + jsonResult);
-
-		PassportBean passportBean = new PassportBean();
-		passportBean.setCode(jsonResult.getString("code"));
-		passportBean.setErrorMsg(jsonResult.getString("errorMsg"));
-		passportBean.setUserId(jsonResult.getString("userId"));
-
-		Header[] headers = result.getAllHeaders();
-		for (Header h:headers){
-			if(h.getValue().startsWith("PPU")){
-				HeaderElement[] headerElement = h.getElements();
-				for (HeaderElement element:headerElement){
-					Log.v(TAG,element.getValue());
-					passportBean.setPpu(element.getValue());
+//		super.onLoadingSuccess(result);
+		jsonResult = JSON.parseObject(result.result);
+		String resultCode = jsonResult.getString("code");
+		String resultMsg = jsonResult.getString("errorMsg");
+		if(resultCode.equals(PASSPORT_RESULT0)){
+			PassportBean passportBean = new PassportBean();
+			passportBean.setCode(resultCode);
+			passportBean.setErrorMsg(resultMsg);
+			passportBean.setUserId(jsonResult.getString("userId"));
+			Header[] headers = result.getAllHeaders();
+			for (Header h:headers){
+				if(h.getValue().startsWith("PPU")){
+					HeaderElement[] headerElement = h.getElements();
+					for (HeaderElement element:headerElement){
+						passportBean.setPpu(element.getValue());
+					}
+					break;
 				}
-				break;
 			}
+			Log.v(TAG,"<==========>");
+			baseSourceModelCallBack.onLoadingSuccess(passportBean,this);
+		} else if(resultCode.equals("9") || resultCode.equals("11")){
+			resultMsg = "您的账户存在异常，请至58同城网页登录并验证您的账号后，才能继续登录抢单神器。";
+			baseSourceModelCallBack.onLoadingFailure(resultMsg);
+		} else {
+			baseSourceModelCallBack.onLoadingFailure(resultMsg);
 		}
-		baseSourceModelCallBack.onLoadingSuccess(passportBean,this);
 	}
+
 }

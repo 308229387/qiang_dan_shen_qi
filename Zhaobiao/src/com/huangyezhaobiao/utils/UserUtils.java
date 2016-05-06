@@ -22,8 +22,15 @@ public class UserUtils {
 	public static String userName;
 	private static String ppu;
 	public static int hasValidate = 1; //默认未认证，0代表已经认证
-
+	/** 与passport 相关的用户信息*/
 	private static String PPU_SP_NAME = "ppu_f";
+	private static String SESSION_TIME = "sessionTime";
+	private static long sessionTime = 0L;
+
+	private static String ACCOUNT_NAME = "accountName";
+	private static String ACCOUNT_ENCRYPT = "accountEncrypt";
+	private static String accountName;
+	private static String accountEncrypt;
 
 	public static void saveUser(Context context,String userId,String companyName,String userName){
 		SharedPreferences sp = context.getSharedPreferences(PPU_SP_NAME, 0);//用userId，来区分
@@ -38,16 +45,43 @@ public class UserUtils {
 		sp.edit().putString(USER_NAME, userName).commit();
 	}
 
-	public static void setPassportUserId(Context context,String ppu){
+	public static void setAccountName(Context context,String accountName){
 		SharedPreferences sp = context.getSharedPreferences(PPU_SP_NAME, 0);//用userId，来区分
-		sp.edit().putString(USER_ID, ppu).commit();
+		sp.edit().putString(ACCOUNT_NAME, accountName).commit();
+	}
+
+	public static String getAccountName(Context context){
+		accountName = context.getSharedPreferences(PPU_SP_NAME, 0).getString(ACCOUNT_NAME, "");
+		return accountName;
+	}
+
+	public static void setAccountEncrypt(Context context,String accountEncrypt){
+		SharedPreferences sp = context.getSharedPreferences(PPU_SP_NAME, 0);//用userId，来区分
+		sp.edit().putString(ACCOUNT_ENCRYPT, accountEncrypt).commit();
+	}
+
+	public static String getAccountEncrypt(Context context){
+		accountEncrypt = context.getSharedPreferences(PPU_SP_NAME, 0).getString(ACCOUNT_ENCRYPT, "");
+		return accountEncrypt;
+	}
+
+	public static void setPassportUserId(Context context,String userId){
+		SharedPreferences sp = context.getSharedPreferences(PPU_SP_NAME, 0);
+		sp.edit().putString(USER_ID, userId).commit();
 	}
 
 	public static String getPassportUserId(Context context){
-//		if(TextUtils.isEmpty(userId)){
-			userId = context.getSharedPreferences(PPU_SP_NAME, 0).getString(USER_ID, "");
-//		}
-		return userId;
+		return context.getSharedPreferences(PPU_SP_NAME, 0).getString(USER_ID, "");
+	}
+
+	public static void setSessionTime(Context context,long sessionTime){
+		SharedPreferences sp = context.getSharedPreferences(PPU_SP_NAME, 0);
+		sp.edit().putLong(SESSION_TIME, sessionTime).commit();
+	}
+
+	public static long getSessionTime(Context context){
+		sessionTime = context.getSharedPreferences(PPU_SP_NAME,0).getLong(SESSION_TIME,0);
+		return sessionTime;
 	}
 
 	public static void setUserId(Context context,String userId){
@@ -68,16 +102,11 @@ public class UserUtils {
 	 * @return
 	 */
 	public static String getUserId(Context context){
-		/*boolean flag = true;
-		if(flag){
-			return "36374346077713";
-		}*/
 		if(TextUtils.isEmpty(userId)){
 			userId = context.getSharedPreferences(USER_SP_NAME, 0).getString(USER_ID, "");
 		}
 		return userId;
 	}
-
 
 	public static void setPPU(Context context,String ppu){
 		SharedPreferences sp = context.getSharedPreferences(PPU_SP_NAME, 0);//用userId，来区分
@@ -136,8 +165,6 @@ public class UserUtils {
 		return false;
 	}
 	
-	
-	
 	public static void clearUserInfo(Context context){
 		context.getSharedPreferences(USER_SP_NAME, 0).edit().putString(USER_ID, "").commit();
 		context.getSharedPreferences(USER_SP_NAME, 0).edit().putString(COMPANY_NAME, "").commit();
@@ -145,5 +172,12 @@ public class UserUtils {
 		userId = "";
 		companyName = "";
 		hasValidate= 1;
+
+		/** clear ppu configurtaion ,added by chenguangming*/
+		context.getSharedPreferences(PPU_SP_NAME, 0).edit().putString(USER_ID, "").commit();
+		context.getSharedPreferences(PPU_SP_NAME, 0).edit().putString(ACCOUNT_NAME, "").commit();
+		context.getSharedPreferences(PPU_SP_NAME, 0).edit().putString(accountEncrypt, "").commit();
+		context.getSharedPreferences(PPU_SP_NAME, 0).edit().putString(SESSION_TIME, "").commit();
+		context.getSharedPreferences(PPU_SP_NAME, 0).edit().putString(COMPANY_NAME, "").commit();
 	}
 }

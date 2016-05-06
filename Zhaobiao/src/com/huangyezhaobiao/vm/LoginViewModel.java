@@ -1,7 +1,6 @@
 package com.huangyezhaobiao.vm;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.huangye.commonlib.model.NetWorkModel;
 import com.huangye.commonlib.utils.NetBean;
@@ -22,31 +21,37 @@ public class LoginViewModel extends SourceViewModel{
 	/** added by chenguangming*/
 	private Context context;
 	private CheckLoginViewModel checkLoginViewModel;
+	private NetWorkVMCallBack vmCallBack;
 	public LoginViewModel(NetWorkVMCallBack callBack, Context context) {
 		super(callBack, context);
+		this.vmCallBack = callBack;
 		this.context = context;
 	}
 
-	public void login(String param1,String param2){
-		loginOldPassport(param1,param2);
+	public void login(String param1,String param2,boolean isBackground){
+		loginOldPassport(param1,param2,isBackground);
 	}
 
-	String password;
-	String username;
+	/** 存储在SharedPrefrences中的用户名和密码*/
+	private String accountencrypt;
+	private String username;
 	/***
 	 * 登录到旧版passport
 	 * */
-	private void loginOldPassport(String username,String password){
-		Log.v(TAG,"loginOldPassport.................");
+	private void loginOldPassport(String username,String password,boolean isBackground){
 		// 设置请求方式:Post
 		t.setRequestMethodPost();
 		HashMap<String, String> params_map = new HashMap<String, String>();
 		// 对密码加密
 		String p3 = PasswordEncrypt.encryptPassword(password);
 		this.username = username;
-		this.password = p3;
+		this.accountencrypt = p3;
 		params_map.put("username", username);
-		params_map.put("p3", p3);
+		if(!isBackground){
+			params_map.put("p3", p3);
+		} else {
+			params_map.put("p3", password);
+		}
 		params_map.put("ctype", "2");
 		// 获取设备号
 		String mid = PhoneUtils.getIMEI(context);
@@ -65,7 +70,6 @@ public class LoginViewModel extends SourceViewModel{
 		t.getDatas();
 	}
 
-
 	@Override
 	protected NetWorkModel initListNetworkModel(Context context) {
 		return new LoginModel(this, context);
@@ -78,10 +82,14 @@ public class LoginViewModel extends SourceViewModel{
 		/** 存userid ppu*/
 		UserUtils.setPassportUserId(context,passportBean.getUserId());
 		UserUtils.setPPU(context,passportBean.getPpu());
-	//	Log.v("PPu",passportBean.getPpu().toString());
-//		checkLoginViewModel.login(passportBean.getUserId(),passportBean.getPpu());
-		Log.e("shenss","LoginViewModel success");
+		UserUtils.setSessionTime(context,System.currentTimeMillis());
+		UserUtils.setAccountName(context,username);
+		UserUtils.setAccountEncrypt(context,accountencrypt);
 		checkLoginViewModel.login();
 	}
 
+	@Override
+	public void onLoadingFailure(String err) {
+		vmCallBack.onLoadingError(err);
+	}
 }

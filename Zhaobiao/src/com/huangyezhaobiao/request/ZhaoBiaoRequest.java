@@ -31,14 +31,12 @@ public class ZhaoBiaoRequest<T> extends HttpRequest {
         if(list!= null && list.size() != 0){
             list.clear();
         }
-
+        Log.v("zhaobiaorequest//////","header userid = " + UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
         params.addHeader("ppu", UserUtils.getUserPPU(BiddingApplication.getAppInstanceContext()));
         params.addHeader("userId",UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
-        Log.e("sdf", "ppu:" + UserUtils.getUserPPU(BiddingApplication.getAppInstanceContext()));
-        Log.e("sdf", "userId:" +UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
 //        try {
 //            params.addHeader("version", VersionUtils.getVersionCode(BiddingApplication.getAppInstanceContext()));
-            params.addHeader("version", "5");
+            params.addHeader("version", "6");
 //        } catch (PackageManager.NameNotFoundException e) {
 //            e.printStackTrace();
 //        }

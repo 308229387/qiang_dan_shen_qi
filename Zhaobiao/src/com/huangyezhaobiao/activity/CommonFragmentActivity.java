@@ -5,19 +5,28 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.huangye.commonlib.file.SharedPreferencesUtils;
 import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
+import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.bean.AccountExpireBean;
 import com.huangyezhaobiao.bean.GlobalConfigBean;
 import com.huangyezhaobiao.bean.UserPhoneBean;
+import com.huangyezhaobiao.gtui.GePushProxy;
+import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.TimeUtils;
 import com.huangyezhaobiao.utils.UserUtils;
+import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import com.huangyezhaobiao.vm.BackToForeVM;
 import com.huangyezhaobiao.vm.GlobalConfigVM;
+import com.huangyezhaobiao.vm.LoginViewModel;
+import com.huangyezhaobiao.vm.LogoutViewModel;
 import com.huangyezhaobiao.windowf.AppExitService;
+import com.xiaomi.mipush.sdk.MiPushClient;
 
 /**
  * Created by 58 on 2016/2/24.
@@ -127,12 +136,88 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
             if(needAsync() && !TextUtils.isEmpty(UserUtils.getUserId(this))){
                 globalConfigVM.refreshUsers();
             }
+            dialog = new ZhaoBiaoDialog(this, "提示", "登录失败，您输入的账户名和密码不符!");
+            dialog.setCancelButtonGone();
+            dialog.setOnDialogClickListener(dialogClickListener);
+            loginViewModel = new LoginViewModel(vmCallBack,this);
+            Log.v("从后台进来的",UserUtils.getAccountName(this) + "===" +UserUtils.getAccountEncrypt(this));
+            loginViewModel.login(UserUtils.getAccountName(this), UserUtils.getAccountEncrypt(this),true);
         }else{
             Log.e("shenzhiixn","not fromBackground");
         }
         BDMob.getBdMobInstance().onResumeActivity(this);
     }
 
+    /** added by chenguangming start**/
+    private LogoutViewModel lvm;
+    private ZhaoBiaoDialog.onDialogClickListener dialogClickListener = new ZhaoBiaoDialog.onDialogClickListener() {
+        @Override
+        public void onDialogOkClick() {
+            dialog.dismiss();
+            /** 跳转到登录的界面*/
+            lvm = new LogoutViewModel(vmCallBack, CommonFragmentActivity.this);
+            lvm.logout();
+            SharedPreferencesUtils.clearLoginToken(getApplicationContext());
+            //退出时注销个推
+            GePushProxy.unBindPushAlias(getApplicationContext(), UserUtils.getUserId(getApplicationContext()));
+            //退出时注销小米推送
+            MiPushClient.unsetAlias(getApplicationContext(), UserUtils.getUserId(getApplicationContext()), null);
+            UserUtils.clearUserInfo(getApplicationContext());
+            ActivityUtils.goToActivity(CommonFragmentActivity.this, LoginActivity.class);
+            finish();
+        }
+
+        @Override
+        public void onDialogCancelClick() {
+
+        }
+    };
+
+    /**
+     * created by chenguangming 自动登录
+     *  */
+    private LoginViewModel loginViewModel;
+    private ZhaoBiaoDialog dialog;
+
+    private NetWorkVMCallBack vmCallBack = new NetWorkVMCallBack() {
+        @Override
+        public void onLoadingStart() {
+
+        }
+
+        @Override
+        public void onLoadingSuccess(Object t) {
+
+        }
+
+        @Override
+        public void onLoadingError(String msg) {
+            try {
+                if(dialog!=null && !TextUtils.isEmpty(msg)){
+                    dialog.setMessage(msg);
+                    dialog.show();
+                }
+            } catch (Exception e) {
+                Toast.makeText(CommonFragmentActivity.this, msg, Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        @Override
+        public void onLoadingCancel() {
+
+        }
+
+        @Override
+        public void onNoInterNetError() {
+            Toast.makeText(CommonFragmentActivity.this, getString(R.string.no_network),Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onLoginInvalidate() {
+            Toast.makeText(CommonFragmentActivity.this, getString(R.string.login_login_invalidate),Toast.LENGTH_SHORT).show();
+        }
+    };
+    /** added by chenguangming end */
 
     @Override
     protected void onStop() {
