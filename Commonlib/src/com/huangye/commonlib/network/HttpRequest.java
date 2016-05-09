@@ -84,7 +84,10 @@ public abstract class HttpRequest<T> {
 		 * ppu：登录之后passport返回的
 		 * appversion:
 		 * */
-
+		List<NameValuePair> bodyParams = params.getQueryStringParams();
+		if(bodyParams!=null){
+			bodyParams.clear();
+		}
 		Set<Entry<String, String>> entrySet = params_map.entrySet();
 		Iterator<Entry<String, String>> iterator = entrySet.iterator();
 		while (iterator.hasNext()) {

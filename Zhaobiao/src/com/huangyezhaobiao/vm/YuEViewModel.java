@@ -20,7 +20,6 @@ public class YuEViewModel extends SourceViewModel{
 	}
 
 	public void getBalance(){
-
 		t.getDatas();
 	}
 

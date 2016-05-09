@@ -33,7 +33,7 @@ public class UserUtils {
 	private static String accountEncrypt;
 
 	public static void saveUser(Context context,String userId,String companyName,String userName){
-		SharedPreferences sp = context.getSharedPreferences(PPU_SP_NAME, 0);//用userId，来区分
+		SharedPreferences sp = context.getSharedPreferences(USER_SP_NAME, 0);//用userId，来区分
 		//shenzhixin add
 		setUserId(context,userId);
 		//shenzhixin add
@@ -176,7 +176,7 @@ public class UserUtils {
 		/** clear ppu configurtaion ,added by chenguangming*/
 		context.getSharedPreferences(PPU_SP_NAME, 0).edit().putString(USER_ID, "").commit();
 		context.getSharedPreferences(PPU_SP_NAME, 0).edit().putString(ACCOUNT_NAME, "").commit();
-		context.getSharedPreferences(PPU_SP_NAME, 0).edit().putString(accountEncrypt, "").commit();
+		context.getSharedPreferences(PPU_SP_NAME, 0).edit().putString(ACCOUNT_ENCRYPT, "").commit();
 		context.getSharedPreferences(PPU_SP_NAME, 0).edit().putString(SESSION_TIME, "").commit();
 		context.getSharedPreferences(PPU_SP_NAME, 0).edit().putString(COMPANY_NAME, "").commit();
 	}

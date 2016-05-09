@@ -22,6 +22,8 @@ public class LoginViewModel extends SourceViewModel{
 	private Context context;
 	private CheckLoginViewModel checkLoginViewModel;
 	private NetWorkVMCallBack vmCallBack;
+
+	private boolean isBackground;
 	public LoginViewModel(NetWorkVMCallBack callBack, Context context) {
 		super(callBack, context);
 		this.vmCallBack = callBack;
@@ -29,6 +31,7 @@ public class LoginViewModel extends SourceViewModel{
 	}
 
 	public void login(String param1,String param2,boolean isBackground){
+		this.isBackground = isBackground;
 		loginOldPassport(param1,param2,isBackground);
 	}
 
@@ -45,13 +48,14 @@ public class LoginViewModel extends SourceViewModel{
 		// 对密码加密
 		String p3 = PasswordEncrypt.encryptPassword(password);
 		this.username = username;
-		this.accountencrypt = p3;
+
 		params_map.put("username", username);
 		if(!isBackground){
-			params_map.put("p3", p3);
+			this.accountencrypt = p3;
 		} else {
-			params_map.put("p3", password);
+			this.accountencrypt = password;
 		}
+		params_map.put("p3", accountencrypt);
 		params_map.put("ctype", "2");
 		// 获取设备号
 		String mid = PhoneUtils.getIMEI(context);
@@ -85,7 +89,9 @@ public class LoginViewModel extends SourceViewModel{
 		UserUtils.setSessionTime(context,System.currentTimeMillis());
 		UserUtils.setAccountName(context,username);
 		UserUtils.setAccountEncrypt(context,accountencrypt);
-		checkLoginViewModel.login();
+		if(!isBackground){
+			checkLoginViewModel.login();
+		}
 	}
 
 	@Override

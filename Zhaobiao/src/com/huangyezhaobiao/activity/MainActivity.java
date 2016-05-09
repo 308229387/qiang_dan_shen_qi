@@ -549,11 +549,8 @@ public class MainActivity extends CommonFragmentActivity implements
 					String label = DateUtils.formatDateTime(
 							getApplicationContext(),
 							System.currentTimeMillis(),
-							DateUtils.FORMAT_SHOW_TIME
-									| DateUtils.FORMAT_SHOW_DATE
-									| DateUtils.FORMAT_ABBREV_ALL);
-					refreshView.getLoadingLayoutProxy()
-							.setLastUpdatedLabel(label);
+							DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
+					refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
 					listViewModel.refresh();
 					MDUtils.servicePageMD(MainActivity.this, "0", "0", MDConstans.ACTION_PULL_TO_REFRESH);
 				} else {
@@ -954,16 +951,17 @@ public class MainActivity extends CommonFragmentActivity implements
 	 * 加载效果
 	 */
 	public void startLoading() {
-		if (loading == null) {
-			loading = new LoadingProgress(MainActivity.this,
-					R.style.loading);
-		}
-
-
 		try {
+			if (loading == null) {
+				loading = new LoadingProgress(MainActivity.this, R.style.loading);
+			}
 			loading.show();
 		} catch (RuntimeException e) {
-			loading = null;
+			if (!this.isFinishing() && loading != null && loading.isShowing()) {
+				loading.dismiss();
+				loading = null;
+			}
+//			loading = null;
 		}
 	}
 
@@ -976,9 +974,6 @@ public class MainActivity extends CommonFragmentActivity implements
 			loading = null;
 		}
 	}
-
-
-
 
 
 

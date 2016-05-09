@@ -34,6 +34,8 @@ import com.xiaomi.mipush.sdk.MiPushClient;
 public abstract class CommonBaseActivity extends BaseActivity implements NetWorkVMCallBack{
     private BackToForeVM backToForeVM;
     private GlobalConfigVM globalConfigVM;
+    private static final String TAG = CommonBaseActivity.class.getName();
+
     private NetWorkVMCallBack globalConfigCallBack = new NetWorkVMCallBack() {
         @Override
         public void onLoadingStart() {
@@ -45,7 +47,7 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
             //进行存储操作
             if(t instanceof GlobalConfigBean){
                 GlobalConfigBean globalConfigBean = (GlobalConfigBean) t;
-                Log.e("shenzhixinww","global:"+globalConfigBean.toString());
+                Log.e(TAG,"global:"+globalConfigBean.toString());
                 //首先判断是不是需要增量拉取信息，存到SP中
                 String isIncrementalPull = globalConfigBean.getIsIncrementalPull();
                 SPUtils.saveKV(CommonBaseActivity.this,GlobalConfigBean.KEY_isIncrementalPull,isIncrementalPull);
@@ -62,7 +64,7 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
                 SPUtils.saveKV(CommonBaseActivity.this,GlobalConfigBean.KEY_WLT_EXPIRE,expireState);
                 SPUtils.saveKV(CommonBaseActivity.this,GlobalConfigBean.KEY_WLT_EXPIRE_MSG,msg);
                 //更新时间戳
-                Log.e("ashen","current:"+System.currentTimeMillis()+",userId:"+UserUtils.getUserId(CommonBaseActivity.this));
+                Log.e(TAG,"current:"+System.currentTimeMillis()+",userId:"+UserUtils.getUserId(CommonBaseActivity.this));
                 SPUtils.saveKV(CommonBaseActivity.this,SPUtils.KEY_TIMELINE_GLOBAL,System.currentTimeMillis()+"");
             }
         }
@@ -160,20 +162,23 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
         BDMob.getBdMobInstance().onResumeActivity(this);
         if(SPUtils.fromBackground(this)){
             //从后台进来的,加接口
-            Log.e("shenzhiixn", "fromBackground");
+            Log.e(TAG, "fromBackground");
             SPUtils.toForeground(this);//现在应用到前台了
             backToForeVM.report();
             if(needAsync() && !TextUtils.isEmpty(UserUtils.getUserId(this))){
                 globalConfigVM.refreshUsers();
             }
-            dialog = new ZhaoBiaoDialog(this, "提示", "登录失败，您输入的账户名和密码不符!");
-            dialog.setCancelButtonGone();
-            dialog.setOnDialogClickListener(dialogClickListener);
-            loginViewModel = new LoginViewModel(vmCallBack,this);
-            Log.v("从后台进来的",UserUtils.getAccountName(this) + "===" +UserUtils.getAccountEncrypt(this));
-            loginViewModel.login(UserUtils.getAccountName(this), UserUtils.getAccountEncrypt(this),true);
+            Log.v(TAG,"=>" + UserUtils.getAccountName(this));
+            Log.v(TAG,">>" + UserUtils.getAccountEncrypt(this));
+            if(!"".equals(UserUtils.getAccountName(this)) && !"".equals(UserUtils.getAccountEncrypt(this))) {
+                dialog = new ZhaoBiaoDialog(this, "提示", "登录失败，您输入的账户名和密码不符!");
+                dialog.setCancelButtonGone();
+                dialog.setOnDialogClickListener(dialogClickListener);
+                loginViewModel = new LoginViewModel(vmCallBack, this);
+                loginViewModel.login(UserUtils.getAccountName(this), UserUtils.getAccountEncrypt(this), true);
+            }
         }else{
-            Log.e("shenzhiixn","not fromBackground");
+            Log.e(TAG,"not fromBackground");
         }
     }
 
@@ -266,11 +271,11 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
     protected void onStop() {
         super.onStop();
         if(!BiddingApplication.getBiddingApplication().isAppOnForeground()){//到后台了
-            Log.e("shenzhiixn","to background");
+            Log.e(TAG,"to background");
             SPUtils.toBackground(this);
            // openAppExitService();
         }else{
-            Log.e("shenzhiixn","not to background");
+            Log.e(TAG,"not to background");
         }
     }
 
