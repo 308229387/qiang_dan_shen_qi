@@ -1,5 +1,6 @@
 package com.huangyezhaobiao.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,6 +21,7 @@ import com.huangyezhaobiao.eventbus.EventbusAgent;
 import com.huangyezhaobiao.gtui.GePushProxy;
 import com.huangyezhaobiao.inter.Constans;
 import com.huangyezhaobiao.utils.ActivityUtils;
+import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.CommonUtils;
 import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.utils.VersionUtils;
@@ -36,7 +38,7 @@ import air.com.wuba.bangbang.common.impush.DeamonService;
  * @author shenzhixin
  * 
  */
-public class SplashActivity extends CommonBaseActivity {
+public class SplashActivity extends Activity {
 	private static final long DELAYED_TIMES = 3 * 1000;
 	private SharedPreferences sp;
 	private Handler handler = new Handler();
@@ -131,19 +133,19 @@ public class SplashActivity extends CommonBaseActivity {
 	@Override
 	protected void onPause() {
 		super.onPause();
+		BDMob.getBdMobInstance().onPauseActivity(this);
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
+		BDMob.getBdMobInstance().onResumeActivity(this);
 	}
 
-	@Override
 	public void initView() {
 
 	}
 
-	@Override
 	public void initListener() {
 
 	}
