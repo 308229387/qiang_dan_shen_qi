@@ -52,6 +52,7 @@ import com.huangyezhaobiao.inter.INotificationListener;
 import com.huangyezhaobiao.inter.MDConstans;
 import com.huangyezhaobiao.lib.QDBaseBean;
 import com.huangyezhaobiao.lib.ZBBaseAdapter.AdapterListener;
+import com.huangyezhaobiao.log.LogInvocation;
 import com.huangyezhaobiao.netmodel.INetStateChangedListener;
 import com.huangyezhaobiao.netmodel.NetStateManager;
 import com.huangyezhaobiao.presenter.MainPresenter;
@@ -311,13 +312,16 @@ public class MainActivity extends CommonFragmentActivity implements
 			updateManager.cancelDownloading(this);
 		}
 		unregisterScreenOffReceiver();
+
+
 		super.onDestroy();
 		releaseSource();
 		System.gc();
 	}
 
 	private void releaseSource() {
-
+		//释放数据
+		LogInvocation.destroy();
 	}
 
 	@Override

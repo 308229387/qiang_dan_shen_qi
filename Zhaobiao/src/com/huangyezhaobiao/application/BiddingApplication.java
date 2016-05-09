@@ -19,7 +19,10 @@ import com.huangye.commonlib.utils.UserConstans;
 import com.huangyezhaobiao.bean.AppBean;
 import com.huangyezhaobiao.bean.push.PushToStorageBean;
 import com.huangyezhaobiao.inter.INotificationListener;
+import com.huangyezhaobiao.log.ILogExecutor;
+import com.huangyezhaobiao.log.LogExecutor;
 import com.huangyezhaobiao.log.LogHandler;
+import com.huangyezhaobiao.log.LogInvocation;
 import com.huangyezhaobiao.notification.GePushNotify;
 import com.huangyezhaobiao.notification.INotify;
 import com.huangyezhaobiao.notification.MiPushNotify;
@@ -72,7 +75,7 @@ public class BiddingApplication extends Application {
     private VoiceManager manager;
     private static BiddingApplication app;
     private ImageLoader imageLoader;
-
+    private ILogExecutor logExecutor;
 
     private void setApp(BiddingApplication context){
         app = context;
@@ -143,6 +146,7 @@ public class BiddingApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        //生成
        setApp(BiddingApplication.this);
         refWatcher = LeakCanary.install(this);
         initNotificationExecutor();
@@ -157,6 +161,9 @@ public class BiddingApplication extends Application {
         // 可以从DemoMessageReceiver的onCommandResult方法中MiPushCommandMessage对'象参数中获取注册信息
         // 因为推送服务XMPushService在AndroidManifest.xml中设置为运行在另外一个进程，这导致本Application会被实例化两次，所以我们需要让应用的主进程初始化。
         if (shouldInit()) {
+            //shenzhixin add 日志上传者
+            logExecutor = new LogExecutor();
+            //shenzhixin add 日志上传者end
             //数据库的可视化工具
             Stetho.initialize(
                     Stetho.newInitializerBuilder(this)
@@ -196,6 +203,10 @@ public class BiddingApplication extends Application {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
+                    //初始化Log信息 shenzhixin add
+                    LogInvocation.registerExecutorListener(logExecutor);
+                    LogInvocation.initDatas(getApplicationContext());
+                    //初始化Log信息 shenzhixin add end
                     CrashReport.initCrashReport(appContext, appId, isDebug); // 初始化SDK
                     SqlUtils.initDB(getApplicationContext(), new SqlUpgradeCallback() {
                         @Override

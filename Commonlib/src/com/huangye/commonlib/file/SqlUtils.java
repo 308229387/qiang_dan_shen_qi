@@ -49,9 +49,13 @@ public class SqlUtils {
 			public void save(Object o, StorageCallBack callback) {
 				try {
 					dbUtils.save(o);
-					callback.insertDataSuccess();
+					if(callback!=null) {
+						callback.insertDataSuccess();
+					}
 				} catch (DbException e) {
-					callback.insertDataFailure();
+					if(callback!=null) {
+						callback.insertDataFailure();
+					}
 					e.printStackTrace();
 				}
 			}
@@ -59,9 +63,13 @@ public class SqlUtils {
 			public void saveList(List<Object> list, StorageCallBack callback) {
 				try {
 					dbUtils.saveAll(list);
-					callback.insertDataSuccess();
+					if(callback!=null) {
+						callback.insertDataSuccess();
+					}
 				} catch (DbException e) {
-					callback.insertDataFailure();
+					if(callback!=null) {
+						callback.insertDataFailure();
+					}
 					e.printStackTrace();
 				}
 			}
@@ -80,9 +88,13 @@ public class SqlUtils {
 					} else {
 						bean = (T) dbUtils.findFirst(clazz);
 					}
-					callback.getDataSuccess(bean);
+					if(callback!=null) {
+						callback.getDataSuccess(bean);
+					}
 				} catch (DbException e) {
-					callback.getDataFailure();
+					if(callback!=null) {
+						callback.getDataFailure();
+					}
 					e.printStackTrace();
 				}
 
@@ -101,9 +113,13 @@ public class SqlUtils {
 					} else {
 						list = dbUtils.findAll(clazz);
 					}
-					callback.getDataSuccess(list);
+					if(callback!=null) {
+						callback.getDataSuccess(list);
+					}
 				} catch (DbException e) {
-					callback.getDataFailure();
+					if(callback!=null) {
+						callback.getDataFailure();
+					}
 					e.printStackTrace();
 				}
 
@@ -129,9 +145,13 @@ public class SqlUtils {
 
 					}
 					list = dbUtils.findAll(select);
-					callback.getDataSuccess(list);
+					if(callback!=null) {
+						callback.getDataSuccess(list);
+					}
 				} catch (DbException e) {
-					callback.getDataFailure();
+					if(callback!=null) {
+						callback.getDataFailure();
+					}
 					e.printStackTrace();
 				}
 
@@ -148,9 +168,13 @@ public class SqlUtils {
 				Selector select = Selector.from(clazz).orderBy(orderBy).limit(pageSize).offset(pageSize * pageNum);
 				try {
 					list = dbUtils.findAll(select);
-					callback.getDataSuccess(list);
+					if(callback!=null) {
+						callback.getDataSuccess(list);
+					}
 				} catch (DbException e) {
-					callback.getDataFailure();
+					if(callback!=null) {
+						callback.getDataFailure();
+					}
 					e.printStackTrace();
 				}
 
@@ -161,9 +185,13 @@ public class SqlUtils {
 			public <T> void delete(Class<T> clazz, String key, String value, StorageCallBack callback) {
 				try {
 					dbUtils.delete(clazz, WhereBuilder.b(key, "==", value));
-					callback.deleteDataSuccess();
+					if(callback!=null) {
+						callback.deleteDataSuccess();
+					}
 				} catch (DbException e) {
-					callback.deleteDataFailure();
+					if(callback!=null) {
+						callback.deleteDataFailure();
+					}
 					e.printStackTrace();
 				}
 			}
@@ -185,9 +213,13 @@ public class SqlUtils {
 					}
 
 					dbUtils.delete(clazz, where);
-					callback.deleteDataSuccess();
+					if(callback!=null) {
+						callback.deleteDataSuccess();
+					}
 				} catch (DbException e) {
-					callback.deleteDataFailure();
+					if(callback!=null) {
+						callback.deleteDataFailure();
+					}
 					e.printStackTrace();
 				}
 

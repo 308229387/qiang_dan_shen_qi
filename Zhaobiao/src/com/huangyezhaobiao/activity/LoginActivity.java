@@ -34,6 +34,7 @@ import com.huangyezhaobiao.constans.AppConstants;
 import com.huangyezhaobiao.eventbus.EventAction;
 import com.huangyezhaobiao.eventbus.EventbusAgent;
 import com.huangyezhaobiao.gtui.GePushProxy;
+import com.huangyezhaobiao.log.LogInvocation;
 import com.huangyezhaobiao.service.MyService;
 import com.huangyezhaobiao.url.URLConstans;
 import com.huangyezhaobiao.utils.ActivityUtils;
@@ -360,6 +361,9 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 	}
 
 	private void releaseSources() {
+		//销毁数据
+		LogInvocation.destroy();
+		//销毁数据
 		nCloseBtn.setBackgroundResource(0);
 		pCloseBtn.setBackgroundResource(0);
 		cb_usage.setBackgroundResource(0);
