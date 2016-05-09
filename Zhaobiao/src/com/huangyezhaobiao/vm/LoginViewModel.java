@@ -48,7 +48,6 @@ public class LoginViewModel extends SourceViewModel{
 		// 对密码加密
 		String p3 = PasswordEncrypt.encryptPassword(password);
 		this.username = username;
-
 		params_map.put("username", username);
 		if(!isBackground){
 			this.accountencrypt = p3;

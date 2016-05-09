@@ -32,6 +32,8 @@ public class UserUtils {
 	private static String accountName;
 	private static String accountEncrypt;
 
+	/** 24小时*/
+	private static long AFTER_A_DAY = 24 * 60 * 60 * 1000l;
 	public static void saveUser(Context context,String userId,String companyName,String userName){
 		SharedPreferences sp = context.getSharedPreferences(USER_SP_NAME, 0);//用userId，来区分
 		//shenzhixin add
@@ -180,4 +182,17 @@ public class UserUtils {
 		context.getSharedPreferences(PPU_SP_NAME, 0).edit().putString(SESSION_TIME, "").commit();
 		context.getSharedPreferences(PPU_SP_NAME, 0).edit().putString(COMPANY_NAME, "").commit();
 	}
+
+	/** 判断举例上次登录是否有24小时*/
+	public static boolean isOutOfDate(Context context){
+		boolean outofdate = false;
+		long curTime = System.currentTimeMillis();
+		if(Math.abs(getSessionTime(context) - curTime) > AFTER_A_DAY){
+			outofdate = true;
+		} else {
+			outofdate = false;
+		}
+		return outofdate;
+	}
+
 }

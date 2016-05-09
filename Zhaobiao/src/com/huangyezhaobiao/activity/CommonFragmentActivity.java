@@ -140,7 +140,7 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
             }
             Log.v(TAG, "=>" + UserUtils.getAccountName(this));
             Log.v(TAG, ">>" + UserUtils.getAccountEncrypt(this));
-            if (!"".equals(UserUtils.getAccountName(this)) && !"".equals(UserUtils.getAccountEncrypt(this))) {
+            if (!"".equals(UserUtils.getAccountName(this)) && !"".equals(UserUtils.getAccountEncrypt(this)) && UserUtils.isOutOfDate(this)) {
                 dialog = new ZhaoBiaoDialog(this, "提示", "登录失败，您输入的账户名和密码不符!");
                 dialog.setCancelButtonGone();
                 dialog.setOnDialogClickListener(dialogClickListener);
