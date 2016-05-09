@@ -1,6 +1,7 @@
 package com.huangye.commonlib.file;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.huangye.commonlib.delegate.StorageCallBack;
 import com.huangye.commonlib.sql.SqlUpgradeCallback;
@@ -48,6 +49,7 @@ public class SqlUtils {
 
 			public void save(Object o, StorageCallBack callback) {
 				try {
+					Log.e("shenzhixin","aaa:"+(o==null)+"dbutil:"+(dbUtils==null));
 					dbUtils.save(o);
 					if(callback!=null) {
 						callback.insertDataSuccess();
@@ -166,6 +168,7 @@ public class SqlUtils {
 
 				List<T> list = null;
 				Selector select = Selector.from(clazz).orderBy(orderBy).limit(pageSize).offset(pageSize * pageNum);
+
 				try {
 					list = dbUtils.findAll(select);
 					if(callback!=null) {

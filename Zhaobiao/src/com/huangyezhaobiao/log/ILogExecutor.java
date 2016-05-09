@@ -1,5 +1,7 @@
 package com.huangyezhaobiao.log;
 
+import android.content.Context;
+
 import java.util.List;
 
 /**
@@ -11,7 +13,7 @@ public interface ILogExecutor {
     /**
      * 上传
      */
-    void upload(List<LogBean> logBeans);
+    void upload(List<LogBean> logBeans, Context context);
 
 
 

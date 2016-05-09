@@ -12,14 +12,14 @@
         android:text="upload"
         />
 
-    <!--<Button
-        android:onClick="update"
+    <Button
+        android:onClick="createData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="update"
+        android:text="createData"
         />
 
-    <Button
+   <!-- <Button
         android:onClick="replaceAll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,6 +30,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="find"
-        />-->
+        />&ndash;&gt;-->
 
 </LinearLayout>

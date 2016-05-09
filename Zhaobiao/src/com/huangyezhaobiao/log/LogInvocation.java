@@ -3,6 +3,7 @@ package com.huangyezhaobiao.log;
 import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
+import android.util.Log;
 
 import com.huangye.commonlib.file.SqlUtils;
 
@@ -15,7 +16,7 @@ import java.util.List;
  * log的中转站，在这里面实现了
  */
 public class LogInvocation{
-    private static final int DEFAULT_LOG_COUNTS = 60;
+    private static final int DEFAULT_LOG_COUNTS = 5;
     private static int logCount = 0;
     private static List<ILogExecutor> executorListener = new ArrayList<>();
 
@@ -25,8 +26,10 @@ public class LogInvocation{
     public static void initDatas(Context context){
         //取出logCount的值
         List<LogBean> logBeen = readAllLogs(context);
-        logCount = logBeen.size();
-        notifyAllListeners(context);
+        if(logBeen!=null) {
+            logCount = logBeen.size();
+            notifyAllListeners(context);
+        }
     }
 
     /**
@@ -47,6 +50,7 @@ public class LogInvocation{
 
     public static void saveLog(Context context,LogBean logBean){
         checkContext(context);
+        Log.e("shenzhixin","sql:"+(SqlUtils.getInstance(context)==null));
         SqlUtils.getInstance(context).save(logBean,null);
         //logCount+1
         logCount++;
@@ -70,6 +74,9 @@ public class LogInvocation{
     }
 
 
+
+
+
     /**
      * 唤醒所有用户
      */
@@ -79,12 +86,28 @@ public class LogInvocation{
             for (int index = 0; index < size; index++) {
                 ILogExecutor iLogExecutor = executorListener.get(index);
                 if (iLogExecutor != null) {
-                    iLogExecutor.upload(readAllLogs(context));
+                    iLogExecutor.upload(readAllLogs(context),context);
                 }
             }
         }
     }
 
 
+    /**
+     * 清空数据重新开始
+     * @param context
+     */
+    public static void startAgain(Context context){
+        Log.e("shenzhixin","uploadFinish...");
+        SqlUtils.getInstance(context).delete(LogBean.class,"","",null);
+        logCount=0;
+        List<LogBean> logBeen = readAllLogs(context);
+        if(logBeen!=null){
+            int size = logBeen.size();
+            Log.e("shenzhixin","uploadFinish..."+size);
+        }
+
+
+    }
 
 }

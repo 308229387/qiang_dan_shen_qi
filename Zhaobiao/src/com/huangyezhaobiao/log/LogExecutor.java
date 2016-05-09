@@ -1,5 +1,8 @@
 package com.huangyezhaobiao.log;
 
+import android.content.Context;
+import android.util.Log;
+
 import java.util.List;
 
 /**
@@ -9,8 +12,14 @@ import java.util.List;
  */
 public class LogExecutor implements ILogExecutor{
     @Override
-    public void upload(List<LogBean> beans) {
+    public void upload(List<LogBean> beans,final Context context) {
+        Log.e("shenzhixin","upload");
+        LogInvocation.startAgain(context);
+        if(beans!=null) {
+            Log.e("shenzhixin", "haha size:" + beans.size());
 
+            //上传成功后,回调中如果成功就调用LogInvacator.startAgain();
+        }
     }
 
 
