@@ -8,10 +8,8 @@ import android.support.annotation.Nullable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.huangyezhaobiao.R;
 
@@ -37,7 +35,7 @@ public class AppExitService extends Service{
         super.onCreate();
         //开启悬浮窗
         //Toast.makeText(this,"service open",0).show();
-        openFloatWindow();
+      //  openFloatWindow();
     }
 
     /**
@@ -74,7 +72,7 @@ public class AppExitService extends Service{
     public void onDestroy() {
         super.onDestroy();
         //关闭悬浮窗
-        closeFloatWindow();
+       // closeFloatWindow();
     }
 
     /**

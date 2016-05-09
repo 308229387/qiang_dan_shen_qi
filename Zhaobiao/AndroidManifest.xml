@@ -346,10 +346,10 @@
             android:noHistory="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme3">
-          <!--  <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>-->
+             </intent-filter>
         </activity>
         <activity
             android:name=".activity.LockActivity"
@@ -413,12 +413,12 @@
         <activity android:name=".activity.ConsumptionActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".activity.TestActivity">
-            <intent-filter>
+        <!--<activity android:name=".activity.TestActivity">
+            &lt;!&ndash;<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            </activity>
+            </intent-filter>&ndash;&gt;
+            </activity>-->
         <!-- 小米推送需要注册的这个服务和广播 -->
         <service
             android:name="com.xiaomi.push.service.XMPushService"
