@@ -180,10 +180,7 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
     private ZhaoBiaoDialog dialog;
 
     private NetWorkVMCallBack vmCallBack = new NetWorkVMCallBack() {
-        @Override
-        public void onVersionBack(String version) {
 
-        }
 
         @Override
         public void onLoadingStart() {

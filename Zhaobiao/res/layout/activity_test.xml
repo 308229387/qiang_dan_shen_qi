@@ -6,13 +6,13 @@
     android:layout_height="match_parent">
 
     <Button
-        android:onClick="create"
+        android:onClick="upload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="create"
+        android:text="upload"
         />
 
-    <Button
+    <!--<Button
         android:onClick="update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,6 +30,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="find"
-        />
+        />-->
 
 </LinearLayout>
