@@ -11,6 +11,7 @@ import com.huangyezhaobiao.bean.HYEventBean.DataBean;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +21,12 @@ import java.util.Map;
  */
 public class HYMob {
 
-    public static List<DataBean> list = new ArrayList<>();
+
+    /**
+     * 埋点data数据的list
+     */
+    public static List<DataBean> dataList= Collections.synchronizedList(new ArrayList<DataBean>());
+
     public static HashMap<String, String> params_map; //日志上传的参数信息
     /**
      * commonBean转换成json
@@ -78,10 +84,11 @@ public class HYMob {
 //        return JSON.toJSONString(object,filter);
 //    }
 
-    public static DataBean getBaseDataBean(Context context){
+    public static DataBean getBaseDataBean(Context context,String co){
         String userId =UserUtils.getUserId(context);
         String time = String.valueOf(System.currentTimeMillis());
         DataBean bean = new DataBean();
+        bean.setCo(co);
         bean.setSa(userId);
         bean.setCq(time);
         return bean;
@@ -118,6 +125,7 @@ public class HYMob {
         params_map.put("common",commonBeanToJson(context));
         params_map.put("data", data);
         params_map.put("t", t);
+        LogUtils.LogV("wjl", HYMob.createLogger(context, data, "0"));
         return params_map;
     }
 
