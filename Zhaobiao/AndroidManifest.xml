@@ -22,24 +22,23 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <!-- ibeancon 需要蓝牙权限 -->
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <!-- 支持个推3.0 电子围栏功能 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!-- 浮动通知权限 -->
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <!-- 自定义权限 -->
     <uses-permission android:name="getui.permission.GetuiService.com.huangyezhaobiao" />
     <permission
         android:name="getui.permission.GetuiService.com.huangyezhaobiao"
-        android:protectionLevel="normal" >
-    </permission>
+        android:protectionLevel="normal"></permission>
     <!-- 个推SDK权限配置结束 -->
     <!--==================================================================-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-  <!--  <uses-permission android:name="android.permission.INTERNET" />-->
+    <!--  <uses-permission android:name="android.permission.INTERNET" />-->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -49,7 +48,7 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-   <!-- <uses-permission android:name="android.permission.INTERNET" />-->
+    <!-- <uses-permission android:name="android.permission.INTERNET" />-->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -57,7 +56,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <!-- 连接网络权限，用于执行云端语音能力 -->
-  <!--  <uses-permission android:name="android.permission.INTERNET" />-->
+    <!--  <uses-permission android:name="android.permission.INTERNET" />-->
     <!-- 获取手机录音机使用权限，听写、识别、语义理解需要用到此权限 -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <!-- 读取网络信息状态 -->
@@ -81,7 +80,7 @@
     <!-- 必须的权限： -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- 获取设备信息 -->
-   <!-- <uses-permission android:name="android.permission.INTERNET" />-->
+    <!-- <uses-permission android:name="android.permission.INTERNET" />-->
     <!-- 网络通信 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 获取网络状态 -->
@@ -119,13 +118,13 @@
     <!--may be fix bug android could not open the database in read/write mode-->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-   <!-- <uses-permission android:name="android.permission.INTERNET" />-->
+    <!-- <uses-permission android:name="android.permission.INTERNET" />-->
     <application
         android:name="com.huangyezhaobiao.application.BiddingApplication"
-        android:persistent="true"
         android:icon="@drawable/launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
+        android:persistent="true"
         android:theme="@style/Base.AppTheme">
 
         <!--Fabric-->
@@ -145,19 +144,17 @@
             android:value="${BAIDU_CHANNEL_VALUE}" />
 
 
-       <!--开启错误日志的统计-->
+        <!--开启错误日志的统计-->
         <meta-data
-        android:name="BaiduMobAd_EXCEPTION_LOG"
-        android:value="false"
-        />
+            android:name="BaiduMobAd_EXCEPTION_LOG"
+            android:value="false" />
 
         <!--错误日志的发送策略，此时选择一段间隔就发送-->
         <meta-data
             android:name="BaiduMobAd_SEND_STRATEGY"
-            android:value="SET_TIME_INTERVAL"
-        />
+            android:value="SET_TIME_INTERVAL" />
 
-<!--=====================================================================================-->
+        <!--=====================================================================================-->
         <!--个推SDK配置开始-->
         <!-- 配置的第三方参数属性 -->
         <meta-data
@@ -172,7 +169,7 @@
         <!-- 配置第三方Receiver -->
         <receiver
             android:name="com.huangyezhaobiao.push.GPushReceiver"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.igexin.sdk.action.otNMzfOiCaAfiPCC1MVne9" />
             </intent-filter>
@@ -184,12 +181,13 @@
             android:label="NotificationCenter"
             android:process=":pushservice" />
 
-        <service android:name=".service.GPushService"/>
+        <service android:name=".service.GPushService" />
         <service
             android:name="com.igexin.sdk.PushServiceUser"
             android:exported="true"
             android:label="NotificationCenterUser" />
-        <receiver android:name="com.igexin.sdk.PushReceiver" >
+
+        <receiver android:name="com.igexin.sdk.PushReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
@@ -204,11 +202,12 @@
 
         <receiver
             android:name="com.igexin.sdk.PushManagerReceiver"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.igexin.sdk.action.pushmanager" />
             </intent-filter>
         </receiver>
+
         <activity
             android:name="com.igexin.sdk.PushActivity"
             android:excludeFromRecents="true"
@@ -222,13 +221,13 @@
             android:exported="true"
             android:process=":pushservice"
             android:taskAffinity="com.igexin.sdk.PushActivityTask"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <service
             android:name="com.igexin.download.DownloadService"
             android:process=":pushservice" />
 
-        <receiver android:name="com.igexin.download.DownloadReceiver" >
+        <receiver android:name="com.igexin.download.DownloadReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
@@ -236,8 +235,8 @@
 
         <provider
             android:name="com.igexin.download.DownloadProvider"
-            android:exported="true"
             android:authorities="downloads.com.huangyezhaobiao"
+            android:exported="true"
             android:process=":pushservice" />
 
         <activity
@@ -251,7 +250,7 @@
 
         <receiver
             android:name="com.igexin.getuiext.service.PayloadReceiver"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.igexin.sdk.action.7fjUl2Z3LH6xYy7NQK4ni4" />
                 <action android:name="com.igexin.sdk.action.otNMzfOiCaAfiPCC1MVne9" />
@@ -272,75 +271,75 @@
         </activity>
         <activity
             android:name="com.huangyezhaobiao.activity.MainActivity"
-            android:screenOrientation="portrait"
             android:label="@string/app_name"
-            android:launchMode="singleTask"></activity>
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name="com.huangyezhaobiao.activity.OrderDetailActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"></activity>
 
-        <activity android:name=".activity.SystemNotiListActivity"
-            android:screenOrientation="portrait"
-            />
+        <activity
+            android:name=".activity.SystemNotiListActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.huangyezhaobiao.activity.HelpActivity"
-            android:screenOrientation="portrait"
+            android:label="@string/app_name"
             android:process=":webhelp"
-            android:label="@string/app_name"></activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name="com.huangyezhaobiao.activity.AboutActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name="com.huangyezhaobiao.activity.OrderListActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name"></activity>
-        <activity android:name=".activity.SystemActiveActivity"
-            android:screenOrientation="portrait"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".activity.SystemActiveActivity"
             android:process=":webhelp"
-            />
-        <activity android:name=".activity.SystemNotiDetailActivity"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SystemNotiDetailActivity"
+            android:screenOrientation="portrait" />
 
-        <activity android:name="com.huangyezhaobiao.activity.MessageCenterActivity"
-            android:screenOrientation="portrait"
-            ></activity>
-        <activity android:name="com.huangyezhaobiao.activity.YuEDetailActivity"
-            android:screenOrientation="portrait"
-            ></activity>
-        <activity android:name="com.huangyezhaobiao.activity.OtherDetailActivity"
-            android:screenOrientation="portrait"
-            />
+        <activity
+            android:name="com.huangyezhaobiao.activity.MessageCenterActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.huangyezhaobiao.activity.YuEDetailActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.huangyezhaobiao.activity.OtherDetailActivity"
+            android:screenOrientation="portrait" />
 
-        <activity android:name="com.huangyezhaobiao.activity.UserFeedBackActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name="com.huangyezhaobiao.activity.FetchDetailsActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name="com.huangyezhaobiao.activity.MobileValidateActivity"
-            android:screenOrientation="portrait"
-            android:launchMode="singleInstance">
-        </activity>
-        <activity android:name="com.huangyezhaobiao.activity.BidFailureActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name="com.huangyezhaobiao.activity.BidGoneActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name="com.huangyezhaobiao.activity.BidLoadingActivity"
+        <activity
+            android:name="com.huangyezhaobiao.activity.UserFeedBackActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.huangyezhaobiao.activity.FetchDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.huangyezhaobiao.activity.MobileValidateActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.huangyezhaobiao.activity.BidFailureActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.huangyezhaobiao.activity.BidGoneActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.huangyezhaobiao.activity.BidLoadingActivity"
             android:noHistory="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.huangyezhaobiao.activity.BidSuccessActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.RefundActivity"
             android:screenOrientation="portrait"
-            />
-        <activity android:name="com.huangyezhaobiao.activity.BidSuccessActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".activity.RefundActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateUnchanged|adjustPan"
-            />
+            android:windowSoftInputMode="stateUnchanged|adjustPan" />
         <activity
             android:name="com.huangyezhaobiao.activity.SplashActivity"
             android:noHistory="true"
@@ -349,70 +348,69 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
+            </intent-filter>
         </activity>
         <activity
             android:name=".activity.LockActivity"
-            android:theme="@android:style/Theme.Wallpaper.NoTitleBar"
             android:launchMode="singleInstance"
-            android:screenOrientation="portrait"
             android:noHistory="true"
-            />
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Wallpaper.NoTitleBar" />
 
-        <activity android:name="com.huangyezhaobiao.activity.GuideActivity"
-            android:screenOrientation="portrait"
-            ></activity>
-        <activity android:name=".activity.MyWalletActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name="com.huangyezhaobiao.activity.IntroduceFunctionActivity"
-            android:screenOrientation="portrait"
+        <activity
+            android:name="com.huangyezhaobiao.activity.GuideActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".activity.MyWalletActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.huangyezhaobiao.activity.IntroduceFunctionActivity"
             android:process=":webhelp"
-            />
-        <activity android:name=".activity.AutoSettingsActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.AutoSettingsActivity"
             android:process=":webhelp"
-            >
-           <!-- <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-            </activity>
-        <activity android:name=".activity.SoftwareUsageActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="portrait">
+            <!-- <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>-->
+        </activity>
+        <activity
+            android:name=".activity.SoftwareUsageActivity"
             android:process=":webhelp"
-            />
-        <activity android:name=".activity.PushInActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/myTransparent"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.PushInActivity"
             android:noHistory="true"
-            />
-        <activity android:name=".photomodule.SinglePhotoActivity"
             android:screenOrientation="portrait"
-            />
-        <activity android:name=".photomodule.ViewSinglePhotoActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".activity.DemoPhotoActivity"
-            android:screenOrientation="portrait"
-            >
+            android:theme="@style/myTransparent" />
+        <activity
+            android:name=".photomodule.SinglePhotoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".photomodule.ViewSinglePhotoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.DemoPhotoActivity"
+            android:screenOrientation="portrait">
             <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>-->
         </activity>
-        <activity android:name=".photomodule.GalleryActivity"
-            android:screenOrientation="portrait"
-            >
+        <activity
+            android:name=".photomodule.GalleryActivity"
+            android:screenOrientation="portrait">
 
-           <!-- <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-            </activity>
-        <activity android:name=".activity.ConsumptionActivity"
-            android:screenOrientation="portrait"
-            />
+            <!-- <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>-->
+        </activity>
+        <activity
+            android:name=".activity.ConsumptionActivity"
+            android:screenOrientation="portrait" />
         <!--<activity android:name=".activity.TestActivity">
             &lt;!&ndash;<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -432,16 +430,13 @@
             android:enabled="true"
             android:exported="true" />
 
-        <service android:name=".service.MyService"
-            >
+        <service android:name=".service.MyService">
             <intent-filter android:priority="1000">
-                <action
-                    android:name="hahah"
-                    />
+                <action android:name="hahah" />
             </intent-filter>
-                </service>
+        </service>
 
-        <service android:name=".windowf.AppExitService"/>
+        <service android:name=".windowf.AppExitService" />
         <service
             android:name="com.xiaomi.mipush.sdk.MessageHandleService"
             android:enabled="true" />
@@ -499,34 +494,34 @@
             </intent-filter>&ndash;&gt;
         </activity>-->
 
-        <activity android:name=".activity.MobileBindChangeActivity"
-            android:theme="@style/Mobile.AppTheme"
+        <activity
+            android:name=".activity.MobileBindChangeActivity"
             android:screenOrientation="portrait"
-            >
-         <!--   <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            android:theme="@style/Mobile.AppTheme">
+            <!--   <intent-filter>
+                   <action android:name="android.intent.action.MAIN" />
+                   <category android:name="android.intent.category.LAUNCHER" />
+               </intent-filter>-->
         </activity>
-        <activity android:name=".activity.SettingsActivity"
-            android:screenOrientation="portrait"
-            >
-
-
+        <activity
+            android:name=".activity.SettingsActivity"
+            android:screenOrientation="portrait">
         </activity>
+
         <receiver android:name=".receiver.BatteryReceiver">
             <intent-filter>
-                <action
-                    android:name="android.intent.action.BATTERY_CHANGED"
-                    />
+                <action android:name="android.intent.action.BATTERY_CHANGED" />
             </intent-filter>
         </receiver>
         <service
             android:name="air.com.wuba.bangbang.common.impush.DeamonService"
-
             android:process=":pushservice" />
 
-
+        <service android:name="com.huangyezhaobiao.service.MobService">
+            <intent-filter>
+                <action android:name="MobService"></action>
+            </intent-filter>
+        </service>
     </application>
 
 
