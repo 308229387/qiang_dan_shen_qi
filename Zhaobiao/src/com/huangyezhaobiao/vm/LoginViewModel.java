@@ -1,6 +1,7 @@
 package com.huangyezhaobiao.vm;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.huangye.commonlib.model.NetWorkModel;
 import com.huangye.commonlib.utils.NetBean;
@@ -8,6 +9,7 @@ import com.huangye.commonlib.vm.SourceViewModel;
 import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
 import com.huangyezhaobiao.bean.PassportBean;
 import com.huangyezhaobiao.model.LoginModel;
+import com.huangyezhaobiao.service.MobService;
 import com.huangyezhaobiao.utils.Encrypt;
 import com.huangyezhaobiao.utils.PasswordEncrypt;
 import com.huangyezhaobiao.utils.PhoneUtils;
@@ -63,6 +65,7 @@ public class LoginViewModel extends SourceViewModel{
 		String midSource = username + mid + "2" + "58V5";
 		String vcode = Encrypt.MD532(midSource).substring(8, 16);
 		params_map.put("vcode", vcode);
+		params_map.put("source", "58app-android");
 		// 公钥版本
 		params_map.put("rsakeyversion", "1");
 		// 加密类型
@@ -91,6 +94,9 @@ public class LoginViewModel extends SourceViewModel{
 		if(!isBackground){
 			checkLoginViewModel.login();
 		}
+		/** 启动Service */
+		Intent mobService = new Intent(context, MobService.class);
+		context.startService(mobService);
 	}
 
 	@Override

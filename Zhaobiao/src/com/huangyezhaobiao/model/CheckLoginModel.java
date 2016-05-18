@@ -16,10 +16,16 @@ import com.huangye.commonlib.network.HTTPTools;
 import com.huangye.commonlib.network.HttpRequest;
 import com.huangye.commonlib.utils.JsonUtils;
 import com.huangye.commonlib.utils.NetBean;
+import com.huangye.commonlib.utils.PhoneUtils;
 import com.huangye.commonlib.utils.UserConstans;
+import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.request.ZhaoBiaoRequest;
 import com.huangyezhaobiao.url.URLConstans;
+import com.huangyezhaobiao.utils.UserUtils;
+import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
+
+import java.util.List;
 
 /**
  * author keyes
@@ -150,9 +156,30 @@ public class CheckLoginModel extends NetWorkModel {
 		}
     }
 
+    private RequestParams getRequestParams(){
+        RequestParams params = new RequestParams();
+        List<RequestParams.HeaderItem> list = params.getHeaders();
+        if(list!= null && list.size() != 0){
+            list.clear();
+        }
+        params.addHeader("ppu", UserUtils.getUserPPU(BiddingApplication.getAppInstanceContext()));
+        params.addHeader("userId",UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
+        Log.e("sdf", "ppu:" + UserUtils.getUserPPU(BiddingApplication.getAppInstanceContext()));
+        Log.e("sdf", "userId:" + UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
+//        try {
+//            params.addHeader("version", VersionUtils.getVersionCode(BiddingApplication.getAppInstanceContext()));
+        params.addHeader("version", "6");
+//        } catch (PackageManager.NameNotFoundException e) {
+//            e.printStackTrace();
+//        }
+        params.addHeader("platform", "1");
+        params.addHeader("UUID", PhoneUtils.getIMEI(BiddingApplication.getAppInstanceContext()));
+        return params;
+    }
+
     private void uploadException(Exception e, String result) {
         String url = com.huangye.commonlib.constans.URLConstans.BASE_URL + "app/exception/parseData?json="+result+"&exception="+e.getMessage()+"&userId="+UserConstans.USER_ID+"&token="+System.currentTimeMillis()+"&platform=1";
-        HTTPTools.newHttpUtilsInstance().doGet(url, new HttpRequestCallBack() {
+        HTTPTools.newHttpUtilsInstance().doGet(url, getRequestParams(), new HttpRequestCallBack() {
             @Override
             public void onLoadingFailure(String err) {
 

@@ -27,6 +27,7 @@ public class LoginModel extends NetWorkModel{
 		/** 登录旧版的passport */
 		Log.v(TAG,"createHttpRequest()");
 		return new ZhaoBiaoRequest<String>(ZhaoBiaoRequest.METHOD_POST,"http://192.168.120.3:8193/pso/domclientunionlogin",this);
+//		return new ZhaoBiaoRequest<String>(ZhaoBiaoRequest.METHOD_POST,"https://passport.58.com/pso/domclientunionlogin",this);
 		/** 登录新版的passport */
 		// return new ZhaoBiaoRequest<String>(ZhaoBiaoRequest.METHOD_POST,"https://passport.58.com/login/dologin",this);
 	}

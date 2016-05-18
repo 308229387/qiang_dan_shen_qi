@@ -42,6 +42,7 @@ import com.tencent.bugly.crashreport.CrashReport;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Timer;
 
@@ -63,6 +64,7 @@ public class BiddingApplication extends Application {
     // user your appid the key.
     //public static final String APP_KEY = "5471735123320";
     public static final String APP_KEY = "5321736232207";
+
 
     // 此TAG在adb logcat中检索自己所需要的信息， 只需在命令行终端输入 adb logcat | grep
     // com.xiaomi.mipushdemo
@@ -253,8 +255,6 @@ public class BiddingApplication extends Application {
         imageLoader = ImageLoader.getInstance();
         imageLoader.init(
                 ImageLoaderConfiguration.createDefault(getApplicationContext()));
-
-
     }
 
     public NotificationExecutor getNotificationExecutor(){
@@ -405,5 +405,7 @@ public class BiddingApplication extends Application {
         }
 
     }*/
+
+
 
 }

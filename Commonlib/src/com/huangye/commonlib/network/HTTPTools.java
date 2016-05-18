@@ -109,8 +109,7 @@ public class HTTPTools {
 	}
 
 
-	private HttpHandler<String> doGetJson(String url,
-										  final HttpRequestCallBack callBack) {
+	private HttpHandler<String> doGetJson(String url, final HttpRequestCallBack callBack) {
 		return httpUtils.send(HttpMethod.GET, url,
 				new RequestCallBack<String>() {
 

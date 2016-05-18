@@ -37,7 +37,7 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
     protected String jsonString;
     private static final String TAG = NetWorkModel.class.getName();
     //@SuppressWarnings("unchecked")
-    //Class<T> entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+    // Class<T> entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     public TAG type;
 
     public void setBaseSourceModelCallBack(
@@ -292,7 +292,7 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
 
     @Override
     public void onLoadingStart() {
-        // baseSourceModelCallBack.onLoadingStart();
+         baseSourceModelCallBack.onLoadingStart();
     }
 
     @Override

@@ -219,7 +219,7 @@ public class RefundPresenter {
      * 添加通用headder
      * @return
      */
-    private static RequestParams getRequestParams(){
+    public static RequestParams getRequestParams(){
         RequestParams params = new RequestParams();
         List<RequestParams.HeaderItem> list = params.getHeaders();
         if(list!= null && list.size() != 0){
@@ -232,7 +232,7 @@ public class RefundPresenter {
         Log.e("sdf", "userId:" + UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
 //        try {
 //            params.addHeader("version", VersionUtils.getVersionCode(BiddingApplication.getAppInstanceContext()));
-        params.addHeader("version", "5");
+        params.addHeader("version", "6");
 //        } catch (PackageManager.NameNotFoundException e) {
 //            e.printStackTrace();
 //        }

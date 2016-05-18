@@ -32,9 +32,10 @@ import com.xiaomi.mipush.sdk.MiPushClient;
  * Created by 58 on 2016/2/24.
  */
 public abstract class CommonBaseActivity extends BaseActivity implements NetWorkVMCallBack{
+    private static final String TAG = "ActivityBackGround." + CommonBaseActivity.class.getName();
     private BackToForeVM backToForeVM;
     private GlobalConfigVM globalConfigVM;
-    private static final String TAG = CommonBaseActivity.class.getName();
+//    private static final String TAG = CommonBaseActivity.class.getName();
 
     private NetWorkVMCallBack globalConfigCallBack = new NetWorkVMCallBack() {
         @Override
@@ -179,6 +180,7 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
             }
         }else{
             Log.e(TAG,"not fromBackground");
+
         }
     }
 

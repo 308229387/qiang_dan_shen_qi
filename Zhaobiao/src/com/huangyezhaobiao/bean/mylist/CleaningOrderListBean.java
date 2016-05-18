@@ -30,8 +30,6 @@ import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import java.util.HashMap;
 import java.util.Map;
 
-import de.greenrobot.event.EventBus;
-
 /**
  * Created by shenzhixin on 2015/12/7.
  * "cateId":"1111",    //区分标的的业务类型 装修和工商注册
@@ -59,10 +57,28 @@ public class CleaningOrderListBean extends QDBaseBean{
     //2015.12.8 add
     private String customerName;
     private String refundText;
+
     //2015.12.8 add end
     private String orderState;
     private CleanindOrderHolder cleanindOrderHolder;
     private ZhaoBiaoDialog dialog;
+
+
+    public String getCustomerName(){
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName){
+        this.customerName = customerName;
+    }
+
+    public String getRefundText(){
+        return refundText;
+    }
+
+    public void setRefundText(){
+        this.refundText = refundText;
+    }
 
     public void setDisplayType(int displayType) {
         this.displayType = displayType;

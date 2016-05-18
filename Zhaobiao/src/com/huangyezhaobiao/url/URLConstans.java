@@ -334,4 +334,7 @@ public interface URLConstans {
 	 */
 	String BASE_HTML_URL ="http://img.58cdn.com.cn/ds/zhaobiao/app_zhaobiao/html/";
 	//2016.05.03.add end
+
+	//  上传logger
+	String UPLOAD_URL = BASE_URL + "log/upload?";
 }

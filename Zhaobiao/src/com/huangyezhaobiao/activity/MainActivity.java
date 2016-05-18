@@ -304,7 +304,6 @@ public class MainActivity extends CommonFragmentActivity implements
 
 	@Override
 	protected void onDestroy() {
-
 		app.unRegisterNetStateListener();//解除网络的变化Listener
 		app.stopTimer();//停止文件的上传
 		if(updateManager!=null){//bug:防止activity被无故杀死时dialog造成内存泄露
@@ -312,7 +311,6 @@ public class MainActivity extends CommonFragmentActivity implements
 			updateManager.cancelDownloading(this);
 		}
 		unregisterScreenOffReceiver();
-
 
 		super.onDestroy();
 		releaseSource();
@@ -382,8 +380,7 @@ public class MainActivity extends CommonFragmentActivity implements
 		tbl.setTitleBarListener(this);
 		refreshbutton = (ImageView) this.findViewById(R.id.refreshbutton);
 		userbutton = (ImageView) this.findViewById(R.id.userbutton);
-		mPullToRefreshListView = (PullToRefreshListView) this
-				.findViewById(R.id.mainlist);
+		mPullToRefreshListView = (PullToRefreshListView) this.findViewById(R.id.mainlist);
 		myOrder = (RelativeLayout) this.findViewById(R.id.myorder);
 		help = (RelativeLayout) findViewById(R.id.help);
 		about = findViewById(R.id.about);
@@ -405,15 +402,11 @@ public class MainActivity extends CommonFragmentActivity implements
 		ViewGroup.LayoutParams layoutParams = navigation_rl.getLayoutParams();
 		layoutParams.height = screenHeight-50;
 		navigation_rl.setLayoutParams(layoutParams);
-
 	}
-
-
 
 	// 初始化事件监听
 	public void initEvent() {
-		srl.setColorSchemeResources
-				(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
+		srl.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
 		srl.setProgressBackgroundColor(R.color.red);
 		srl.setProgressViewEndTarget(true, 150);
 		if("1".equals(SPUtils.getServiceState(this))) {
@@ -695,6 +688,7 @@ public class MainActivity extends CommonFragmentActivity implements
 			}
 		}
 		if (t instanceof Integer){
+			stopLoading();
 			int status = (Integer) t;
 			Toast.makeText(MainActivity.this,"status:"+status,Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent();

@@ -369,11 +369,11 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
         }
 
         refundPresenter.submitRefund(getActivity(), refundFirstCommitBean.getOrderId(), RefundMediator.checkedId.get(0), et_refund_desc.getText().toString(), ((MediaAdapter) refundPresenter.getMediaAdapter()).getDataSources(), new UICallback() {
-            @Override
-            public void onUploadPicSuccess(String msg) {
-                uploadPicDialog.dismiss();
-                resultDialog_success.show();
-                rl_submit.setVisibility(View.GONE);
+                    @Override
+                    public void onUploadPicSuccess(String msg) {
+                        uploadPicDialog.dismiss();
+                        resultDialog_success.show();
+                        rl_submit.setVisibility(View.GONE);
             }
 
             @Override

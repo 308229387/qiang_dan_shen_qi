@@ -3,10 +3,12 @@ package com.huangyezhaobiao.service;
         import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
+        import android.util.Log;
 
-import com.huangye.commonlib.delegate.HttpRequestCallBack;
+        import com.huangye.commonlib.delegate.HttpRequestCallBack;
 import com.huangye.commonlib.network.HTTPTools;
-import com.huangyezhaobiao.application.BiddingApplication;
+        import com.huangye.commonlib.utils.PhoneUtils;
+        import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.deal.IDealWithBean;
 import com.huangyezhaobiao.gtui.AppStateFactory;
@@ -15,7 +17,11 @@ import com.huangyezhaobiao.push.BiddingMessageReceiver;
 import com.huangyezhaobiao.url.URLConstans;
 import com.huangyezhaobiao.url.UrlSuffix;
 import com.huangyezhaobiao.utils.PushUtils;
-import com.lidroid.xutils.http.ResponseInfo;
+        import com.huangyezhaobiao.utils.UserUtils;
+        import com.lidroid.xutils.http.RequestParams;
+        import com.lidroid.xutils.http.ResponseInfo;
+
+        import java.util.List;
 
 /**
  * Created by 58 on 2016/1/7.
@@ -68,6 +74,26 @@ public class GPushService extends IntentService {
         reportToServerForGeTuiArrived(pushBean);
     }
 
+    private RequestParams getRequestParams(){
+        RequestParams params = new RequestParams();
+        List<RequestParams.HeaderItem> list = params.getHeaders();
+        if(list!= null && list.size() != 0){
+            list.clear();
+        }
+        params.addHeader("ppu", UserUtils.getUserPPU(BiddingApplication.getAppInstanceContext()));
+        params.addHeader("userId",UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
+        Log.e("sdf", "ppu:" + UserUtils.getUserPPU(BiddingApplication.getAppInstanceContext()));
+        Log.e("sdf", "userId:" + UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
+//        try {
+//            params.addHeader("version", VersionUtils.getVersionCode(BiddingApplication.getAppInstanceContext()));
+        params.addHeader("version", "6");
+//        } catch (PackageManager.NameNotFoundException e) {
+//            e.printStackTrace();
+//        }
+        params.addHeader("platform", "1");
+        params.addHeader("UUID", PhoneUtils.getIMEI(BiddingApplication.getAppInstanceContext()));
+        return params;
+    }
     /**
      * 回调到这个方法时表示收到了推送，传递给服务端一条消息
      * userId= & bidId= & bidType = & platform= &UUID= &version= &token=
@@ -80,9 +106,11 @@ public class GPushService extends IntentService {
         String bidType = pushBean.getTag()+"";
         //2016.5.3 add
         String url     = URLConstans.URL_RECEIVE_GE_PUSH + UrlSuffix.getGePushSuffix(bidId,bidType);
+        RequestParams params = new RequestParams();
+
         //2016.5.3 add end
         try {
-            HTTPTools.newHttpUtilsInstance().doGet(url, new HttpRequestCallBack() {
+            HTTPTools.newHttpUtilsInstance().doGet(url, getRequestParams(), new HttpRequestCallBack() {
                 @Override
                 public void onLoadingFailure(String err) {
 
