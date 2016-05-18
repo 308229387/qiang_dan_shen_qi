@@ -162,9 +162,10 @@ public class MainActivity extends CommonFragmentActivity implements
 	 */
 	private boolean forceUpdate;
 
-//	private String message; //日志上传的参数信息
 
-	private HashMap<String,String> param_map;//日志上传的参数信息
+	private String data; //日志上传的data数据
+
+	private DataBean bean;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -431,29 +432,24 @@ public class MainActivity extends CommonFragmentActivity implements
 							case 0://服务模式
 								BDMob.getBdMobInstance().onMobEvent(MainActivity.this, BDEventConstans.EVENT_ID_SERVICE_MODE);
 
-								DataBean bean1 = HYMob.getBaseDataBean(MainActivity.this);
-								bean1.setCo(HYEventConstans.EVENT_ID_CHANGE_MODE);
-								bean1.setModelState("1");
 
-								HYMob.list.add(bean1);
+								bean = HYMob.getBaseDataBean(MainActivity.this,HYEventConstans.EVENT_ID_CHANGE_MODE);
+								bean.setModelState("1");
+								HYMob.dataList.add(bean);
+								data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "modelState", "cq");
+								HYMob.params_map =HYMob.createMap(MainActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
 
-								String data1 = HYMob.dataBeanToJson(HYMob.list, "co", "sa", "modelState", "cq");
-								param_map =HYMob.createMap(MainActivity.this, data1, "0") ; //0表示正常日志，1表示崩溃日志
-								LogUtils.LogV("wjl",HYMob.createLogger(MainActivity.this, data1, "0"));
 
 								break;
 							case 1:
 								BDMob.getBdMobInstance().onMobEvent(MainActivity.this, BDEventConstans.EVENT_ID_REST_MODE);
 
-								DataBean bean2 = HYMob.getBaseDataBean(MainActivity.this);
-								bean2.setCo(HYEventConstans.EVENT_ID_CHANGE_MODE);
-								bean2.setModelState("2");
+								bean = HYMob.getBaseDataBean(MainActivity.this,HYEventConstans.EVENT_ID_CHANGE_MODE);
+								bean.setModelState("2");
+								HYMob.dataList.add(bean);
+								data = HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "modelState", "cq");
+								HYMob.params_map = HYMob.createMap(MainActivity.this, data, "0");//0表示正常日志，1表示崩溃日志
 
-								HYMob.list.add(bean2);
-
-								String data2 = HYMob.dataBeanToJson(HYMob.list, "co", "sa", "modelState", "cq");
-								param_map = HYMob.createMap(MainActivity.this, data2, "0");//0表示正常日志，1表示崩溃日志
-								LogUtils.LogV("wjl", HYMob.createLogger(MainActivity.this, data2, "0"));
 								break;
 						}
 						onChangeView(index);
@@ -463,12 +459,30 @@ public class MainActivity extends CommonFragmentActivity implements
 			public void onClick(View v) {
 				//跳转到我的订单中心
 				BDMob.getBdMobInstance().onMobEvent(MainActivity.this,BDEventConstans.EVENT_ID_MY_BIDDING);
+
+
+				bean = HYMob.getBaseDataBean(MainActivity.this,HYEventConstans.EVENT_ID_MY_BIDDING);
+				HYMob.dataList.add(bean);
+				data = HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
+				HYMob.params_map = HYMob.createMap(MainActivity.this, data, "0");//0表示正常日志，1表示崩溃日志
+
+
+
 				ActivityUtils.goToActivity(MainActivity.this, OrderListActivity.class);
 			}
 		});
 		userbutton.setOnClickListener(new OnClickListener() {// 创建监听对象
 			public void onClick(View v) {
+
+
+				bean = HYMob.getBaseDataBean(MainActivity.this,HYEventConstans.EVENT_ID_BIDDINGLIST_TO_PERSONAL);
+				HYMob.dataList.add(bean);
+				data = HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
+				HYMob.params_map = HYMob.createMap(MainActivity.this, data, "0");//0表示正常日志，1表示崩溃日志
+
+
 				dl_main_drawer.openDrawer(GravityCompat.START);
+
 			}
 		});
 		configListViewRefreshListener();
@@ -488,6 +502,14 @@ public class MainActivity extends CommonFragmentActivity implements
 			public void onClick(View v) {
 				//获取余额
 				BDMob.getBdMobInstance().onMobEvent(MainActivity.this, BDEventConstans.EVENT_ID_MANUAL_REFRESH_BALANCE);
+
+
+				bean= HYMob.getBaseDataBean(MainActivity.this,HYEventConstans.EVENT_ID_MANUAL_REFRESH_BALANCE);
+				HYMob.dataList.add(bean);
+				data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
+				HYMob.params_map =HYMob.createMap(MainActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
+
+
 				yuEViewModel.getBalance();
 				tv_yue.setText(R.string.fetching);
 				// 要判断是否在刷新中，如果已经在刷新中就不要在刷新了，出一个提示就可以
