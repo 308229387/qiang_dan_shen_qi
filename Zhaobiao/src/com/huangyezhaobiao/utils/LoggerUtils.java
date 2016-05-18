@@ -1,6 +1,7 @@
 package com.huangyezhaobiao.utils;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
@@ -8,7 +9,6 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.telephony.TelephonyManager;
-import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
@@ -17,6 +17,60 @@ import android.view.WindowManager;
  * Created by 58 on 2016/5/16.
  */
 public class LoggerUtils {
+
+    /**
+     * 检查当前网络是否可用
+     *
+     * @param context
+     * @return
+     */
+
+    public static boolean isNetworkAvailable(Context context)
+    {
+        // 获取手机所有连接管理对象（包括对wi-fi,net等连接的管理）
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if (connectivityManager == null)
+        {
+            return false;
+        }
+        else
+        {
+            // 获取NetworkInfo对象
+            NetworkInfo[] networkInfo = connectivityManager.getAllNetworkInfo();
+
+            if (networkInfo != null && networkInfo.length > 0)
+            {
+                for (int i = 0; i < networkInfo.length; i++)
+                {
+                    // 判断当前网络状态是否为连接状态
+                    if (networkInfo[i].getState() == NetworkInfo.State.CONNECTED)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 获取渠道号
+     * @param context
+     * @return
+     */
+    public static String getChannelId(Context context){
+        String channel= "";
+        try {
+            ApplicationInfo appInfo = context.getPackageManager().getApplicationInfo(context.getPackageName(),
+                    PackageManager.GET_META_DATA);
+             channel=appInfo.metaData.getString("BaiduMobAd_CHANNEL");
+
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+         return channel == null ? "-" : channel;
+    }
 
 
     /**
@@ -30,13 +84,10 @@ public class LoggerUtils {
             PackageManager packageManager = context.getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(),0);
             versionName =packageInfo.versionName;
-            if (TextUtils.isEmpty(versionName)){
-                return "";
-            }
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        return versionName;
+        return versionName == null ? "-" : versionName;
 
     }
 
@@ -46,12 +97,13 @@ public class LoggerUtils {
      * @return
      */
     public static String getScreenPixels(Context context){
+        String screenPixels ="";
         DisplayMetrics dm = new DisplayMetrics();
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
         display.getMetrics(dm);
-
-       return dm.widthPixels+"*"+dm.heightPixels;
+        screenPixels = dm.widthPixels + "*" +dm.heightPixels;
+       return screenPixels == null ? "-" : screenPixels;
     }
 
     /**
@@ -60,8 +112,10 @@ public class LoggerUtils {
      * @return
      */
     public static String getIMEI(Context context){
+        String IMEINumber = "";
         TelephonyManager TelephonyMgr = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
-        return TelephonyMgr.getDeviceId();
+        IMEINumber = TelephonyMgr.getDeviceId();
+        return IMEINumber == null ? "-" :IMEINumber;
     }
 
     /**
@@ -69,9 +123,11 @@ public class LoggerUtils {
      * @param context
      * @return
      */
-    public static String getPHoneNumber(Context context){
+    public static String getPhoneNumber(Context context){
+        String phoneNumber = "";
         TelephonyManager TelephonyMgr = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
-        return TelephonyMgr.getLine1Number();
+        phoneNumber = TelephonyMgr.getLine1Number();
+        return phoneNumber == null ? "-": phoneNumber;
     }
 
     /**
@@ -79,7 +135,9 @@ public class LoggerUtils {
      * @return
      */
     public static String getPhoneType(){
-        return android.os.Build.MODEL;
+        String phoneType= "";
+        phoneType = android.os.Build.MODEL;
+        return  phoneType == null ? "-": phoneType;
     }
 
     /**
@@ -87,26 +145,31 @@ public class LoggerUtils {
      * @return
      */
     public static String getPhoneBrand(){
-        return android.os.Build.BRAND;
+        String phoneBrand ="";
+        phoneBrand=android.os.Build.BRAND;
+        return phoneBrand == null ? "-": phoneBrand;
     }
 
     /**
      * 获取手机MAC地址
      * 只有手机开启wifi才能获取到mac地址
      */
-    private String getMacAddress(Context context){
+    public static String getMacAddress(Context context){
         String result = "";
-        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-        result = wifiInfo.getMacAddress();
-        return result;
+        if(isNetworkAvailable(context)) {
+            WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+            result = wifiInfo.getMacAddress();
+            return result == null ? "-": result;
+        }
+        return "-";
     }
 
     /**
      * 获取手机网络类型
      * @return
      */
-    public static String GetNetworkType(Context context)
+    public static String getNetworkType(Context context)
     {
         String strNetworkType = "";
         ConnectivityManager mConnectivityManager = (ConnectivityManager) context
@@ -165,7 +228,7 @@ public class LoggerUtils {
         }
 
 
-        return strNetworkType;
+        return strNetworkType == null? "-":strNetworkType;
     }
 
 }
