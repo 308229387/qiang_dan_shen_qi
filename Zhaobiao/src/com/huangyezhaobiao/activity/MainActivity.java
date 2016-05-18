@@ -41,6 +41,7 @@ import com.huangyezhaobiao.adapter.PopAdapter;
 import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.bean.AccountExpireBean;
 import com.huangyezhaobiao.bean.GlobalConfigBean;
+import com.huangyezhaobiao.bean.HYEventBean.DataBean;
 import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.bean.push.PushToPassBean;
 import com.huangyezhaobiao.constans.AppConstants;
@@ -61,6 +62,8 @@ import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.BidListUtils;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.KeyguardUtils;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.MDUtils;
@@ -86,6 +89,8 @@ import com.huangyezhaobiao.vm.LogoutViewModel;
 import com.huangyezhaobiao.vm.YuEViewModel;
 import com.xiaomi.mipush.sdk.MiPushClient;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -156,6 +161,10 @@ public class MainActivity extends CommonFragmentActivity implements
 	 * 是否强制更新
 	 */
 	private boolean forceUpdate;
+
+//	private String message; //日志上传的参数信息
+
+	private HashMap<String,String> param_map;//日志上传的参数信息
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -420,10 +429,31 @@ public class MainActivity extends CommonFragmentActivity implements
 					public void onSegmentControlClick(int index) {
 						switch (index){
 							case 0://服务模式
-								BDMob.getBdMobInstance().onMobEvent(MainActivity.this,BDEventConstans.EVENT_ID_SERVICE_MODE);
+								BDMob.getBdMobInstance().onMobEvent(MainActivity.this, BDEventConstans.EVENT_ID_SERVICE_MODE);
+
+								DataBean bean1 = HYMob.getBaseDataBean(MainActivity.this);
+								bean1.setCo(HYEventConstans.EVENT_ID_CHANGE_MODE);
+								bean1.setModelState("1");
+
+								HYMob.list.add(bean1);
+
+								String data1 = HYMob.dataBeanToJson(HYMob.list, "co", "sa", "modelState", "cq");
+								param_map =HYMob.createMap(MainActivity.this, data1, "0") ; //0表示正常日志，1表示崩溃日志
+								LogUtils.LogV("wjl",HYMob.createLogger(MainActivity.this, data1, "0"));
+
 								break;
 							case 1:
-								BDMob.getBdMobInstance().onMobEvent(MainActivity.this,BDEventConstans.EVENT_ID_REST_MODE);
+								BDMob.getBdMobInstance().onMobEvent(MainActivity.this, BDEventConstans.EVENT_ID_REST_MODE);
+
+								DataBean bean2 = HYMob.getBaseDataBean(MainActivity.this);
+								bean2.setCo(HYEventConstans.EVENT_ID_CHANGE_MODE);
+								bean2.setModelState("2");
+
+								HYMob.list.add(bean2);
+
+								String data2 = HYMob.dataBeanToJson(HYMob.list, "co", "sa", "modelState", "cq");
+								param_map = HYMob.createMap(MainActivity.this, data2, "0");//0表示正常日志，1表示崩溃日志
+								LogUtils.LogV("wjl", HYMob.createLogger(MainActivity.this, data2, "0"));
 								break;
 						}
 						onChangeView(index);
