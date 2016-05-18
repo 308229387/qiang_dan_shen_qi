@@ -21,7 +21,7 @@ import java.util.Map;
 public class HYMob {
 
     public static List<DataBean> list = new ArrayList<>();
-
+    public static HashMap<String, String> params_map; //日志上传的参数信息
     /**
      * commonBean转换成json
      * @return
@@ -105,9 +105,16 @@ public class HYMob {
         return builder.toString();
     }
 
+    /**
+     * 生成url参数map
+     * @param context
+     * @param data
+     * @param t
+     * @return
+     */
     public static HashMap createMap(Context context,String data,String t){
 
-        HashMap<String, String> params_map = new HashMap<String, String>();
+        params_map = new HashMap<String, String>();
         params_map.put("common",commonBeanToJson(context));
         params_map.put("data", data);
         params_map.put("t", t);
