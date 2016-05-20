@@ -23,6 +23,8 @@ import com.huangyezhaobiao.inter.Constans;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.CommonUtils;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.utils.VersionUtils;
 
@@ -140,6 +142,11 @@ public class SplashActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		BDMob.getBdMobInstance().onResumeActivity(this);
+
+		HYMob.getDataList(this, HYEventConstans.EVENT_ID_APP_OPEND);
+		String data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
+		HYMob.createMap(this, data, "0") ; //0表示正常日志，1表示崩溃日志
+
 	}
 
 	public void initView() {

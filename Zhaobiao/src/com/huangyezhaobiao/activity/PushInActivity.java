@@ -23,6 +23,8 @@ import com.huangyezhaobiao.inter.MDConstans;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.MDUtils;
 import com.huangyezhaobiao.utils.PushUtils;
@@ -52,6 +54,8 @@ public class PushInActivity extends BaseActivity implements NetWorkVMCallBack, V
     private VoiceManager voiceManager;
     private BiddingApplication app;
     private android.app.ProgressDialog qdDialog;
+
+    private String data; //埋点打他数据
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -277,7 +281,7 @@ public class PushInActivity extends BaseActivity implements NetWorkVMCallBack, V
 
     @Override
     public void onLoadingError(String msg) {
-        Toast.makeText(this,"失败了",0).show();
+        Toast.makeText(this,"失败了",Toast.LENGTH_SHORT).show();
         if(qdDialog!=null && qdDialog.isShowing()) {
             qdDialog.dismiss();
         }
@@ -317,6 +321,11 @@ public class PushInActivity extends BaseActivity implements NetWorkVMCallBack, V
         switch (view.getId()) {
             case R.id.dialog_cancel://取消,回到锁屏界面
                 BDMob.getBdMobInstance().onMobEvent(this, BDEventConstans.EVENT_ID_WINDOW_PAGE_CLOSE);
+
+                HYMob.getDataList(this, HYEventConstans.EVENT_ID_WINDOW_PAGE_CLOSE);
+                data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
+                HYMob.createMap(this, data, "0") ; //0表示正常日志，1表示崩溃日志
+
                 backToKeyguard();
                 voiceManager.closeOrdersDialog();
                 PushUtils.pushList.clear();
@@ -324,6 +333,11 @@ public class PushInActivity extends BaseActivity implements NetWorkVMCallBack, V
                 break;
             case R.id.dialog_voice://声音按钮，关闭或打开声音
                 BDMob.getBdMobInstance().onMobEvent(this, BDEventConstans.EVENT_ID_WINDOW_PAGE_VOLUME);
+
+                HYMob.getDataList(this, HYEventConstans.EVENT_ID_WINDOW_PAGE_VOLUME);
+                data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
+                HYMob.createMap(this, data, "0") ; //0表示正常日志，1表示崩溃日志
+
                 voiceManager.clickVolumeButton();
                 MDUtils.pushWindowPageMD(this, bean.getCateId() + "", bean.toPushStorageBean() + "", yuyin_op);
                 if (MDConstans.ACTION_CLOSE_VOLUMN.equals(yuyin_op)) {
@@ -338,6 +352,11 @@ public class PushInActivity extends BaseActivity implements NetWorkVMCallBack, V
             case R.id.dialog_knock://抢单按钮，抢单，然后进入首列表
                 //弹窗点击抢单
                 BDMob.getBdMobInstance().onMobEvent(this, BDEventConstans.EVENT_ID_WINDOW_PAGE_BIDDING);
+
+                HYMob.getDataListByTanChuang(this, HYEventConstans.EVENT_ID_WINDOW_PAGE_BIDDING, String.valueOf(bean.toPushPassBean().getBidId()),"1","4");
+                data= HYMob.dataBeanToJson(HYMob.dataList, "co","sl","lockScreenState","grabOrderStyle", "sa", "cq");
+                HYMob.createMap(this, data, "0") ; //0表示正常日志，1表示崩溃日志
+
                 kvm.knock(bean.toPushPassBean(),AppConstants.BIDSOURCE_WINDOW);
                 voiceManager.clickQDButton();
                 cancelAllWorks();
@@ -346,6 +365,11 @@ public class PushInActivity extends BaseActivity implements NetWorkVMCallBack, V
                 break;
             case R.id.dialog_next://下一条
                 BDMob.getBdMobInstance().onMobEvent(this, BDEventConstans.EVENT_ID_WINDOW_PAGE_NEXT);
+
+                HYMob.getDataList(this, HYEventConstans.EVENT_ID_WINDOW_PAGE_NEXT);
+                data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
+                HYMob.createMap(this, data, "0") ; //0表示正常日志，1表示崩溃日志
+
                 //这时要把runnable去掉
                 handler.removeCallbacks(runnable);
                 showNext();

@@ -41,6 +41,8 @@ import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.AnimationController;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.PhoneUtils;
 import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.view.LoadingProgress;
@@ -180,6 +182,11 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 			@Override
 			public void onClick(View v) {
 				BDMob.getBdMobInstance().onMobEvent(LoginActivity.this, BDEventConstans.EVENT_ID_BECOME_TO_VIP);
+
+				HYMob.getDataList(LoginActivity.this, HYEventConstans.EVENT_ID_BECOME_TO_VIP);
+				String data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
+				HYMob.createMap(LoginActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
+
 				HashMap<String, String> map = new HashMap<String, String>();
 				map.put(AppConstants.H5_TITLE, getString(R.string.h5_login_raiders));
 //				map.put(AppConstants.H5_WEBURL, URLConstans.HOW_TO_BECOME_VIP);
@@ -197,9 +204,16 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 			@Override
 			public void onClick(View arg0) {
 				//登录按钮
-				BDMob.getBdMobInstance().onMobEvent(LoginActivity.this,BDEventConstans.EVENT_ID_LOGIN);
+				BDMob.getBdMobInstance().onMobEvent(LoginActivity.this, BDEventConstans.EVENT_ID_LOGIN);
+
 				String name = username.getText().toString();
 				userName = name;
+
+				HYMob.getDataListByLogin(LoginActivity.this, HYEventConstans.EVENT_ID_LOGIN, name);
+				String data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq", "userName");
+				HYMob.createMap(LoginActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
+
+
 				String passwords = password.getText().toString();
 				//需要加密
 				if (TextUtils.isEmpty(name)) {

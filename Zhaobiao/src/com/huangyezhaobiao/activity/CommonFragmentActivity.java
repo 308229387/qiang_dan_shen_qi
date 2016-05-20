@@ -17,6 +17,8 @@ import com.huangyezhaobiao.bean.UserPhoneBean;
 import com.huangyezhaobiao.gtui.GePushProxy;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.BDMob;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.TimeUtils;
 import com.huangyezhaobiao.utils.UserUtils;
@@ -133,9 +135,16 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
     protected void onResume() {
         super.onResume();
         if (SPUtils.fromBackground(this)) {
+
             //从后台进来的,加接口
             Log.e(TAG, "fromBackground");
             SPUtils.toForeground(this);//现在应用从后台到前台了
+
+            HYMob.getDataList(this, HYEventConstans.EVENT_ID_APP_OPEND);
+            String data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
+            HYMob.createMap(this, data, "0") ; //0表示正常日志，1表示崩溃日志
+
+
             backToForeVM.report();
             if (needAsync() && !TextUtils.isEmpty(UserUtils.getUserId(this))) {
                 globalConfigVM.refreshUsers();

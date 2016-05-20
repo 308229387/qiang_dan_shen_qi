@@ -20,6 +20,8 @@ import com.huangyezhaobiao.iview.MobileChangeIView;
 import com.huangyezhaobiao.presenter.MobileBindChangePresenter;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.utils.UserUtils;
@@ -69,6 +71,9 @@ public class MobileBindChangeActivity extends QBBaseActivity implements View.OnC
     public static final String SUCCESS = "0";//成功
     public static final String MOBILE = "mobile";
     private String mobile;
+
+    private String data; //埋点的数据
+
     public static Intent onNewIntent(Context context,String mobile){
         Intent intent = new Intent(context,MobileBindChangeActivity.class);
         intent.putExtra(MOBILE,mobile);
@@ -173,10 +178,20 @@ public class MobileBindChangeActivity extends QBBaseActivity implements View.OnC
                 break;
             case R.id.btn_getCode://获取验证码
                 BDMob.getBdMobInstance().onMobEvent(this, BDEventConstans.EVENT_ID_CHANGE_MOBILE_PAGE_GET_CODE);
+
+                HYMob.getDataList(this, HYEventConstans.EVENT_ID_CHANGE_MOBILE_PAGE_GET_CODE);
+                data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
+                HYMob.createMap(this, data, "0") ; //0表示正常日志，1表示崩溃日志
+
                 mobileChangeGetCodeVM.getCode(UserUtils.getUserId(this),et_now_bind_mobile.getText().toString(),true);
                 break;
             case R.id.btn_submit://提交
                 BDMob.getBdMobInstance().onMobEvent(this, BDEventConstans.EVENT_ID_CHANGE_MOBILE_PAGE_SUBMIT);
+
+                HYMob.getDataList(this, HYEventConstans.EVENT_ID_CHANGE_MOBILE_PAGE_SUBMIT);
+                data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
+                HYMob.createMap(this, data, "0") ; //0表示正常日志，1表示崩溃日志
+
                 //Toast.makeText(this,"submit",Toast.LENGTH_SHORT).show();
                 if(TextUtils.equals(et_now_bind_mobile.getText().toString(),et_new_validate_mobile.getText().toString())){
                     ToastUtils.makeImgAndTextToast(this,"两次修改的手机号不能一致",R.drawable.validate_error,0).show();

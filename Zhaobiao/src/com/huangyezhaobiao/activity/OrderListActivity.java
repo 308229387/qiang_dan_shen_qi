@@ -45,6 +45,8 @@ import com.huangyezhaobiao.netmodel.NetStateManager;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.MDUtils;
 import com.huangyezhaobiao.utils.NetUtils;
@@ -106,6 +108,8 @@ public class OrderListActivity extends CommonFragmentActivity implements
 	private String[] msg = {"待服务","服务中","已结束"};
 	private ProgressDialog progressDialog;
 	private TelephoneVModel tViewModel;
+
+	private String data;
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
@@ -232,12 +236,24 @@ public class OrderListActivity extends CommonFragmentActivity implements
 				switch (position){
 					case 0:
 						BDMob.getBdMobInstance().onMobEvent(OrderListActivity.this,BDEventConstans.EVENT_ID_UN_SERVICE_TAB);
+
+						HYMob.getDataListByServiceState(OrderListActivity.this, HYEventConstans.EVENT_ID_DONE_SERVICE_TAB);
+						data= HYMob.dataBeanToJson(HYMob.dataList, "co","serviceState", "sa", "cq");
+						HYMob.createMap(OrderListActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
 						break;
 					case 1:
 						BDMob.getBdMobInstance().onMobEvent(OrderListActivity.this,BDEventConstans.EVENT_ID_IN_SERVICE_TAB);
+
+						HYMob.getDataListByServiceState(OrderListActivity.this, HYEventConstans.EVENT_ID_DONE_SERVICE_TAB);
+						data= HYMob.dataBeanToJson(HYMob.dataList, "co","serviceState", "sa", "cq");
+						HYMob.createMap(OrderListActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
 						break;
 					case 2:
 						BDMob.getBdMobInstance().onMobEvent(OrderListActivity.this,BDEventConstans.EVENT_ID_DONE_SERVICE_TAB);
+
+						HYMob.getDataListByServiceState(OrderListActivity.this, HYEventConstans.EVENT_ID_DONE_SERVICE_TAB);
+						data= HYMob.dataBeanToJson(HYMob.dataList, "co","serviceState", "sa", "cq");
+						HYMob.createMap(OrderListActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
 						break;
 				}
 			}
@@ -391,14 +407,29 @@ public class OrderListActivity extends CommonFragmentActivity implements
 				index = CONTACT_INDEX;
 				fragment.fetchYuE();
 				BDMob.getBdMobInstance().onMobEvent(this, BDEventConstans.EVENT_ID_UN_SERVICE_TAB);
+
+				HYMob.getDataListByServiceState(OrderListActivity.this, HYEventConstans.EVENT_ID_DONE_SERVICE_TAB);
+				data= HYMob.dataBeanToJson(HYMob.dataList, "co","serviceState", "sa", "cq");
+				HYMob.createMap(OrderListActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
+
 				break;
 			case R.id.rl_done://已结束
 				BDMob.getBdMobInstance().onMobEvent(this, BDEventConstans.EVENT_ID_DONE_SERVICE_TAB);
+
+				HYMob.getDataListByServiceState(OrderListActivity.this, HYEventConstans.EVENT_ID_DONE_SERVICE_TAB);
+				data= HYMob.dataBeanToJson(HYMob.dataList, "co","serviceState", "sa", "cq");
+				HYMob.createMap(OrderListActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
+
 				index = DONE_INDEX;
 				fragment.fetchYuE();
 				break;
 			case R.id.rl_ensure://服务中
 				BDMob.getBdMobInstance().onMobEvent(this, BDEventConstans.EVENT_ID_IN_SERVICE_TAB);
+
+				HYMob.getDataListByServiceState(OrderListActivity.this, HYEventConstans.EVENT_ID_DONE_SERVICE_TAB);
+				data= HYMob.dataBeanToJson(HYMob.dataList, "co","serviceState", "sa", "cq");
+				HYMob.createMap(OrderListActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
+
 				index = ENSURE_INDEX;
 				fragment.fetchYuE();
 				break;

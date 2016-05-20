@@ -20,6 +20,8 @@ import com.huangyezhaobiao.gtui.GePushProxy;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
@@ -83,6 +85,11 @@ public class MobileValidateActivity extends CommonBaseActivity implements NetWor
 			public void onClick(View arg0) {
 				//获取验证码
 				BDMob.getBdMobInstance().onMobEvent(MobileValidateActivity.this, BDEventConstans.EVENT_ID_MOBILE_BIND_PAGE_GETCODE);
+
+				HYMob.getDataList(MobileValidateActivity.this, HYEventConstans.EVENT_ID_MOBILE_BIND_PAGE_GETCODE);
+				String data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
+				HYMob.createMap(MobileValidateActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
+
 				String mobiletext = mobile.getText().toString();
 				if (isMobile(mobiletext)) {
 					viewModel.getCode(UserUtils.userId, mobiletext,false);
@@ -96,7 +103,12 @@ public class MobileValidateActivity extends CommonBaseActivity implements NetWor
 			@Override
 			public void onClick(View v) {
 				//点击了提交
-				BDMob.getBdMobInstance().onMobEvent(MobileValidateActivity.this,BDEventConstans.EVENT_ID_MOBILE_BIND_PAGE_SUBMIT);
+				BDMob.getBdMobInstance().onMobEvent(MobileValidateActivity.this, BDEventConstans.EVENT_ID_MOBILE_BIND_PAGE_SUBMIT);
+
+				HYMob.getDataList(MobileValidateActivity.this, HYEventConstans.EVENT_ID_MOBILE_BIND_PAGE_SUBMIT);
+				String data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
+				HYMob.createMap(MobileValidateActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
+
 				String mobiletext = mobile.getText().toString();
 				String codetext = code.getText().toString();
 				if (!isMobile(mobiletext)) {

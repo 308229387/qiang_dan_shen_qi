@@ -165,8 +165,6 @@ public class MainActivity extends CommonFragmentActivity implements
 
 	private String data; //日志上传的data数据
 
-	private DataBean bean;
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -428,31 +426,32 @@ public class MainActivity extends CommonFragmentActivity implements
 				.setmOnSegmentControlClickListener(new SegmentControl.OnSegmentControlClickListener() {
 					@Override
 					public void onSegmentControlClick(int index) {
+
+						onChangeView(index);
+
 						switch (index){
+
+
 							case 0://服务模式
 								BDMob.getBdMobInstance().onMobEvent(MainActivity.this, BDEventConstans.EVENT_ID_SERVICE_MODE);
 
 
-								bean = HYMob.getBaseDataBean(MainActivity.this,HYEventConstans.EVENT_ID_CHANGE_MODE);
-								bean.setModelState("1");
-								HYMob.dataList.add(bean);
+								HYMob.getDataListByModel(MainActivity.this, HYEventConstans.EVENT_ID_CHANGE_MODE);
 								data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "modelState", "cq");
-								HYMob.params_map =HYMob.createMap(MainActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
+								HYMob.createMap(MainActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
 
 
 								break;
 							case 1:
 								BDMob.getBdMobInstance().onMobEvent(MainActivity.this, BDEventConstans.EVENT_ID_REST_MODE);
 
-								bean = HYMob.getBaseDataBean(MainActivity.this,HYEventConstans.EVENT_ID_CHANGE_MODE);
-								bean.setModelState("2");
-								HYMob.dataList.add(bean);
+								HYMob.getDataListByModel(MainActivity.this, HYEventConstans.EVENT_ID_CHANGE_MODE);
 								data = HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "modelState", "cq");
-								HYMob.params_map = HYMob.createMap(MainActivity.this, data, "0");//0表示正常日志，1表示崩溃日志
+								HYMob.createMap(MainActivity.this, data, "0");//0表示正常日志，1表示崩溃日志
 
 								break;
 						}
-						onChangeView(index);
+
 					}
 				});
 		refreshbutton.setOnClickListener(new OnClickListener() {// 创建监听对象
@@ -461,10 +460,9 @@ public class MainActivity extends CommonFragmentActivity implements
 				BDMob.getBdMobInstance().onMobEvent(MainActivity.this,BDEventConstans.EVENT_ID_MY_BIDDING);
 
 
-				bean = HYMob.getBaseDataBean(MainActivity.this,HYEventConstans.EVENT_ID_MY_BIDDING);
-				HYMob.dataList.add(bean);
+				HYMob.getDataList(MainActivity.this,HYEventConstans.EVENT_ID_MY_BIDDING);
 				data = HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
-				HYMob.params_map = HYMob.createMap(MainActivity.this, data, "0");//0表示正常日志，1表示崩溃日志
+				HYMob.createMap(MainActivity.this, data, "0");//0表示正常日志，1表示崩溃日志
 
 
 
@@ -475,10 +473,9 @@ public class MainActivity extends CommonFragmentActivity implements
 			public void onClick(View v) {
 
 
-				bean = HYMob.getBaseDataBean(MainActivity.this,HYEventConstans.EVENT_ID_BIDDINGLIST_TO_PERSONAL);
-				HYMob.dataList.add(bean);
+				HYMob.getDataList(MainActivity.this, HYEventConstans.EVENT_ID_BIDDINGLIST_TO_PERSONAL);
 				data = HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
-				HYMob.params_map = HYMob.createMap(MainActivity.this, data, "0");//0表示正常日志，1表示崩溃日志
+				HYMob.createMap(MainActivity.this, data, "0");//0表示正常日志，1表示崩溃日志
 
 
 				dl_main_drawer.openDrawer(GravityCompat.START);
@@ -504,10 +501,9 @@ public class MainActivity extends CommonFragmentActivity implements
 				BDMob.getBdMobInstance().onMobEvent(MainActivity.this, BDEventConstans.EVENT_ID_MANUAL_REFRESH_BALANCE);
 
 
-				bean= HYMob.getBaseDataBean(MainActivity.this,HYEventConstans.EVENT_ID_MANUAL_REFRESH_BALANCE);
-				HYMob.dataList.add(bean);
+				HYMob.getDataList(MainActivity.this, HYEventConstans.EVENT_ID_MANUAL_REFRESH_BALANCE);
 				data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
-				HYMob.params_map =HYMob.createMap(MainActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
+				HYMob.createMap(MainActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
 
 
 				yuEViewModel.getBalance();
@@ -560,7 +556,14 @@ public class MainActivity extends CommonFragmentActivity implements
 		srl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 			@Override
 			public void onRefresh() {
-				BDMob.getBdMobInstance().onMobEvent(MainActivity.this,BDEventConstans.EVENT_ID_BIDDING_LIAT_PAGE_MANUAL_REFRESH);
+				BDMob.getBdMobInstance().onMobEvent(MainActivity.this, BDEventConstans.EVENT_ID_BIDDING_LIAT_PAGE_MANUAL_REFRESH);
+
+
+				HYMob.getDataList(MainActivity.this, HYEventConstans.EVENT_ID_BIDDING_LIAT_PAGE_MANUAL_REFRESH);
+				data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
+				HYMob.createMap(MainActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
+
+
 				listViewModel.refresh();
 				MDUtils.servicePageMD(MainActivity.this, "0", "0", MDConstans.ACTION_PULL_TO_REFRESH);
 			}
@@ -668,6 +671,12 @@ public class MainActivity extends CommonFragmentActivity implements
 			//进行数据同步化的操作;
 			globalConfigVM.refreshUsers();
 			BDMob.getBdMobInstance().onMobEvent(this,BDEventConstans.EVENT_ID_LOGOUT);
+
+			HYMob.getDataList(MainActivity.this,HYEventConstans.EVENT_ID_LOGOUT);
+			data = HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
+			HYMob.createMap(MainActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
+
+
 			confirmExitDialog = new ZhaoBiaoDialog(this, getString(R.string.hint), getString(R.string.logout_make_sure));
 			confirmExitDialog.setOnDialogClickListener(new onDialogClickListener() {
 				@Override
@@ -964,7 +973,13 @@ public class MainActivity extends CommonFragmentActivity implements
 	@Override
 	public void onAdapterViewClick(int id,PushToPassBean bean) {
 		//点击了抢单
-		BDMob.getBdMobInstance().onMobEvent(this,BDEventConstans.EVENT_ID_BIDDING_LIST_PAGE_BIDDING);
+		BDMob.getBdMobInstance().onMobEvent(this, BDEventConstans.EVENT_ID_BIDDING_LIST_PAGE_BIDDING);
+
+		String bidId = String.valueOf(bean.getBidId());
+		HYMob.getDataList(MainActivity.this, HYEventConstans.EVENT_ID_BIDDING_LIST_PAGE_BIDDING,bidId,"1");
+		data= HYMob.dataBeanToJson(HYMob.dataList, "co","sl","modelState","grabOrderStyle", "sa", "cq");
+		HYMob.createMap(MainActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
+
 			passBean = bean;
 			knockViewModel = new KnockViewModel(MainActivity.this, MainActivity.this);
 			knockViewModel.knock(bean, AppConstants.BIDSOURCE_LIST);
