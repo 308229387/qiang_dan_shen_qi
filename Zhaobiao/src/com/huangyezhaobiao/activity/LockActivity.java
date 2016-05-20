@@ -403,7 +403,7 @@ public class LockActivity extends Activity implements NetWorkVMCallBack, View.On
                 BDMob.getBdMobInstance().onMobEvent(this, BDEventConstans.EVENT_ID_OUT_WINDOW_PAGE_BIDDING);
 
                 HYMob.getDataListByTanChuang(this, HYEventConstans.EVENT_ID_WINDOW_PAGE_BIDDING, String.valueOf(bean.toPushPassBean().getBidId()), "0", "4");
-                data= HYMob.dataBeanToJson(HYMob.dataList, "co","sl","lockScreenState","grabOrderStyle", "sa", "cq");
+                data= HYMob.dataBeanToJson(HYMob.dataList, "co","s1","lockScreenState","grabOrderStyle", "sa", "cq");
                 HYMob.createMap(this, data, "0") ; //0表示正常日志，1表示崩溃日志
 
                 kvm.knock(bean.toPushPassBean(), AppConstants.BIDSOURCE_WINDOW);

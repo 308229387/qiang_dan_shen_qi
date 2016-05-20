@@ -76,7 +76,7 @@ public class BidSuccessActivity extends QBBaseActivity {
 				BDMob.getBdMobInstance().onMobEvent(BidSuccessActivity.this, BDEventConstans.EVENT_ID_SUCCESS_PAGE_LOOK_BIDDING);
 
 				HYMob.getDataListByQiangDan(BidSuccessActivity.this, HYEventConstans.EVENT_ID_SUCCESS_PAGE_LOOK_BIDDING,String.valueOf(receivePassBean.getBidId()));
-				String data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "sl","cq");
+				String data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "s1","cq");
 				HYMob.createMap(BidSuccessActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
 
 				ActivityUtils.goToActivity(BidSuccessActivity.this, OrderListActivity.class);
@@ -90,7 +90,7 @@ public class BidSuccessActivity extends QBBaseActivity {
 				BDMob.getBdMobInstance().onMobEvent(BidSuccessActivity.this, BDEventConstans.EVENT_ID_SUCCESS_PAGE_CONTINUE_BIDDING);
 
 				HYMob.getDataListByQiangDan(BidSuccessActivity.this, HYEventConstans.EVENT_ID_SUCCESS_PAGE_CONTINUE_BIDDING,String.valueOf(receivePassBean.getBidId()));
-				String data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "sl","cq");
+				String data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "s1","cq");
 				HYMob.createMap(BidSuccessActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
 
 				ActivityUtils.goToActivity(BidSuccessActivity.this, MainActivity.class);

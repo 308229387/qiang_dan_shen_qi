@@ -246,7 +246,7 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 								BDMob.getBdMobInstance().onMobEvent(OrderDetailActivity.this, BDEventConstans.EVENT_ID_BIDDING_DETAIL_PAGE_BIDDING);
 
 								HYMob.getDataList(OrderDetailActivity.this,HYEventConstans.EVENT_ID_BIDDING_DETAIL_PAGE_BIDDING, String.valueOf(popPass.getBidId()), "2");
-								String data= HYMob.dataBeanToJson(HYMob.dataList, "co","sl","modelState","grabOrderStyle", "sa", "cq");
+								String data= HYMob.dataBeanToJson(HYMob.dataList, "co","s1","modelState","grabOrderStyle", "sa", "cq");
 								HYMob.createMap(OrderDetailActivity.this,data, "0") ; //0表示正常日志，1表示崩溃日志
 
 								rl_qd.setVisibility(View.VISIBLE);

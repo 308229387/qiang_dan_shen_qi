@@ -977,7 +977,7 @@ public class MainActivity extends CommonFragmentActivity implements
 
 		String bidId = String.valueOf(bean.getBidId());
 		HYMob.getDataList(MainActivity.this, HYEventConstans.EVENT_ID_BIDDING_LIST_PAGE_BIDDING,bidId,"1");
-		data= HYMob.dataBeanToJson(HYMob.dataList, "co","sl","modelState","grabOrderStyle", "sa", "cq");
+		data= HYMob.dataBeanToJson(HYMob.dataList, "co","s1","modelState","grabOrderStyle", "sa", "cq");
 		HYMob.createMap(MainActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
 
 			passBean = bean;
