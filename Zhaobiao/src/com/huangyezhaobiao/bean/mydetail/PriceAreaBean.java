@@ -15,6 +15,8 @@ import com.huangyezhaobiao.eventbus.EventType;
 import com.huangyezhaobiao.eventbus.EventbusAgent;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 
 /**
  * 订单详情的价格区间的bean
@@ -96,6 +98,11 @@ public class PriceAreaBean extends QDDetailBaseBean{
 			public void onClick(View v) {
 				//点击了退单入口按钮
 				BDMob.getBdMobInstance().onMobEvent(context, BDEventConstans.EVENT_ID_ORDER_DETAIL_REFUND);
+
+				HYMob.getDataListByRefund(context, HYEventConstans.EVENT_ID_ORDER_LIST_PHONE, String.valueOf(orderId));
+				String  data= HYMob.dataBeanToJson(HYMob.dataList, "co","orderId", "sa", "cq");
+				HYMob.createMap(context, data, "0") ; //0表示正常日志，1表示崩溃日志
+
 				Log.e("shenzhixin","hahahah state:"+refundState);
 				EventAction action = new EventAction(EventType.REGISTER_SUCCESS);
 				//用EventBus导出去
