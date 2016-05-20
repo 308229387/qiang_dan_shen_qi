@@ -24,6 +24,8 @@ import com.huangyezhaobiao.inter.MDConstans;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.MDUtils;
 import com.huangyezhaobiao.utils.UnreadUtils;
@@ -258,6 +260,11 @@ public class TitleMessageBarLayout extends RelativeLayout{
 			case R.id.title_root://根部信息
 				//点击了消息bar
 				BDMob.getBdMobInstance().onMobEvent(getContext(), BDEventConstans.EVENT_ID_MESSAGE_BAR);
+
+				HYMob.getDataList(getContext(), HYEventConstans.EVENT_ID_MESSAGE_BAR);
+				String data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
+				HYMob.createMap(getContext(), data, "0") ; //0表示正常日志，1表示崩溃日志
+
 				//点击了消息bar
 					if(isDefaultHandle){
 						switch (type) {

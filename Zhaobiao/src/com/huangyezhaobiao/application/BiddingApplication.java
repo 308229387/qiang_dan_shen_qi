@@ -17,6 +17,7 @@ import com.huangye.commonlib.file.SqlUtils;
 import com.huangye.commonlib.sql.SqlUpgradeCallback;
 import com.huangye.commonlib.utils.UserConstans;
 import com.huangyezhaobiao.bean.AppBean;
+import com.huangyezhaobiao.bean.HYEventBean.DataBean;
 import com.huangyezhaobiao.bean.push.PushToStorageBean;
 import com.huangyezhaobiao.inter.INotificationListener;
 import com.huangyezhaobiao.log.ILogExecutor;
@@ -100,7 +101,6 @@ public class BiddingApplication extends Application {
     public static Context getAppInstanceContext(){
         return app;
     }
-
 
 
     public static BiddingApplication getBiddingApplication(){

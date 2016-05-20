@@ -8,6 +8,12 @@ package com.huangyezhaobiao.utils;
  * descript：
  */
 public interface HYEventConstans {
+
+
+    /**
+     *抢单神器当日被打开
+     */
+    String EVENT_ID_APP_OPEND = "357";
     /**
      * 退单申诉：提交按钮
      */
@@ -63,17 +69,6 @@ public interface HYEventConstans {
      */
     String EVENT_ID_DONE_SERVICE_TAB = "315";
 
-    /**
-     * 点击了服务中的tab
-     */
-//    int EVENT_ID_IN_SERVICE_TAB = "InServiceTab";
-
-    /**
-     * 点击了待服务的tab
-     */
-//    int EVENT_ID_UN_SERVICE_TAB = "unServiceTab";
-
-
 
     /**
      * 抢单成功页面点击了查看抢单按钮
@@ -84,11 +79,6 @@ public interface HYEventConstans {
      * 抢单成功页面点击了继续抢单按钮
      */
     String EVENT_ID_SUCCESS_PAGE_CONTINUE_BIDDING = "313";
-
-    /**
-     * 锁屏或者在应用外点击了抢单按钮
-     */
-//    int EVENT_ID_OUT_WINDOW_PAGE_BIDDING = "biddingWindowOutPage";
 
     /**
      * 弹窗页点击关闭按钮
@@ -106,7 +96,7 @@ public interface HYEventConstans {
     String EVENT_ID_WINDOW_PAGE_VOLUME = "310";
 
     /**
-     * 弹窗抢单按钮（服务模式、推送）
+     * 弹窗抢单按钮（服务模式、推送） 锁屏或者在应用外点击了抢单按钮
      */
     String EVENT_ID_WINDOW_PAGE_BIDDING = "308";
 
@@ -115,11 +105,6 @@ public interface HYEventConstans {
      * 列表页item进入详情页（需分别记录是可抢状态下进去还是已抢完状态下进去）
      */
     String EVENT_ID_BIDDING_LIST_TO_DETAIL_UNABLE_BIDDING = "307";
-
-    /**
-     * 商机可抢的前提下由列表页进入详情页
-     */
-//    int EVENT_ID_BIDDING_LIST_TO_DETAIL_ENABLE_BIDDING = "goDetailCanBid";
 
     /**
      * 详情页抢单按钮（服务、休息模式下）
@@ -192,15 +177,6 @@ public interface HYEventConstans {
      */
     String EVENT_ID_LOGIN = "293";
 
-    /**
-     * 点击了服务模式按钮
-     */
-//    int EVENT_ID_SERVICE_MODE = "serviceMode";
-
-    /**
-     * 点击了休息模式按钮
-     */
-//    int EVENT_ID_REST_MODE = "restMode";
 
 
 }

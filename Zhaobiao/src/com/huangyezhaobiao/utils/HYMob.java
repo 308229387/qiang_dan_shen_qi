@@ -1,12 +1,13 @@
 package com.huangyezhaobiao.utils;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
-import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.bean.HYEventBean.CommonBean;
 import com.huangyezhaobiao.bean.HYEventBean.DataBean;
+import com.huangyezhaobiao.fragment.QiangDanBaseFragment;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -14,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * param：黄页埋点对应的操作以及值
@@ -73,20 +73,24 @@ public class HYMob {
         return null;
     }
 
-//    private String dataBeanToJson(Object object,String value1,String value2){
-//        SimplePropertyPreFilter filter = new SimplePropertyPreFilter(object.getClass(),value1,value2);
-//        return JSON.toJSONString(object,filter);
-//    }
-//
-//    private String dataBeanToJson(Object object,String value1,String value2,String value3){
-//
-//        SimplePropertyPreFilter filter = new SimplePropertyPreFilter(object.getClass(),value1,value2,value3);
-//        return JSON.toJSONString(object,filter);
-//    }
-
+    /**
+     * 共有字段DataBean
+     * @param context
+     * @param co
+     * @return
+     */
     public static DataBean getBaseDataBean(Context context,String co){
         String userId =UserUtils.getUserId(context);
         String time = String.valueOf(System.currentTimeMillis());
+        if(TextUtils.isEmpty(userId)){
+           userId ="-";
+        }
+        if (TextUtils.isEmpty(time)){
+            time = "-";
+        }
+        if (TextUtils.isEmpty(co)){
+            co = "-";
+        }
         DataBean bean = new DataBean();
         bean.setCo(co);
         bean.setSa(userId);
@@ -94,7 +98,238 @@ public class HYMob {
         return bean;
     }
 
+    /**
+     *
+     * @param context
+     * @param co
+     * @return
+     */
+    public static List<DataBean> getDataList(Context context,String co){
+        dataList.add(getBaseDataBean(context, co));
+        return dataList;
+    }
 
+    /**
+     *
+     * @param context
+     * @param co
+     * @param sl
+     * @return
+     */
+    public static List<DataBean> getDataListByQiangDan(Context context,String co,String sl){
+        if (TextUtils.isEmpty(sl)){
+            sl = "-";
+        }
+        DataBean bean = getBaseDataBean(context, co);
+        bean.setSl(sl);
+        dataList.add(bean);
+        return dataList;
+    }
+
+    /**
+     * 登录
+     * @param context
+     * @param co
+     * @param userName
+     * @return
+     */
+    public static List<DataBean> getDataListByLogin(Context context,String co,String userName){
+        if(TextUtils.isEmpty(userName)){
+            userName = "-";
+        }
+        DataBean bean = getBaseDataBean(context, co);
+        bean.setUserName(userName);
+        dataList.add(bean);
+        return dataList;
+    }
+
+
+
+
+    public static DataBean getBaseDataBeanByModel(Context context,String co){
+        int  state = StateUtils.state -1;
+        String modelState = String.valueOf(state); //模式状态 服务0、休息1
+        String userId =UserUtils.getUserId(context);
+        String time = String.valueOf(System.currentTimeMillis());
+
+        if(TextUtils.isEmpty(userId)){
+            userId ="-";
+        }
+        if (TextUtils.isEmpty(time)){
+            time = "-";
+        }
+        if (TextUtils.isEmpty(modelState) ){
+            modelState = "-";
+        }else if(state < 0 ){
+            modelState = "0";
+        }
+        if (TextUtils.isEmpty(co)){
+            co = "-";
+        }
+        DataBean bean = new DataBean();
+        bean.setCo(co);
+        bean.setSa(userId);
+        bean.setCq(time);
+        bean.setModelState(modelState);
+        return bean;
+    }
+
+
+    /**
+     *
+     * @param context
+     * @param co 埋点类别
+     * @return
+     */
+    public static List<DataBean> getDataListByModel(Context context,String co){
+        dataList.add(getBaseDataBeanByModel(context, co));
+        return dataList;
+    }
+
+    /**
+     * 列表页、详情页抢单
+     * @param context
+     * @param co
+     * @param sl  标地id
+     * @param grabOrderStyle 抢单入口 列表页1、详情页2、弹窗4
+     * @return
+     */
+    public static List<DataBean> getDataList(Context context,String co,String sl,String grabOrderStyle){
+        if (TextUtils.isEmpty(sl)){
+            sl = "-";
+        }
+        DataBean bean = getBaseDataBeanByModel(context, co);
+        bean.setSl(sl);
+        bean.setGrabOrderStyle(grabOrderStyle);
+        dataList.add(bean);
+        return dataList;
+    }
+
+    /**
+     * 弹窗抢单按钮
+     * @param context
+     * @param co
+     * @param sl
+     * @param lockScreenState 锁屏状态----安卓:锁屏0、未锁屏1
+     * @param grabOrderStyle  抢单入口 列表页1、详情页2、弹窗4
+     * @return
+     */
+    public static List<DataBean> getDataListByTanChuang(Context context,String co,String sl,String lockScreenState,String grabOrderStyle){
+        if (TextUtils.isEmpty(sl)){
+            sl = "-";
+        }
+        if (TextUtils.isEmpty(lockScreenState)){
+            lockScreenState = "-";
+        }
+        if (TextUtils.isEmpty(grabOrderStyle)){
+            grabOrderStyle = "-";
+        }
+        DataBean bean = getBaseDataBean(context, co);
+        bean.setSl(sl);
+        bean.setLockScreenState(lockScreenState);
+        bean.setGrabOrderStyle(grabOrderStyle);
+        dataList.add(bean);
+        return dataList;
+    }
+
+    /**
+     *
+     * @param context
+     * @param co
+     * @param sl 标地id
+     * @param grabOrderState 抢单状态 已抢0、可抢1
+     * @return
+     */
+    public static List<DataBean> getDataListByState(Context context,String co,String sl,String grabOrderState){
+        if (TextUtils.isEmpty(sl)){
+            sl = "-";
+        }
+        if (TextUtils.isEmpty(grabOrderState)){
+            grabOrderState ="-";
+        }
+        DataBean bean = getBaseDataBean(context, co);
+        bean.setSl(sl);
+        bean.setGrabOrderState(grabOrderState);
+        dataList.add(bean);
+        return dataList;
+    }
+
+
+    public static DataBean getBaseDataBeanByState(Context context,String co){
+        String userId =UserUtils.getUserId(context);
+        String time = String.valueOf(System.currentTimeMillis());
+        String serviceState = QiangDanBaseFragment.orderState;  //服务状态 待服务1/服务中2/已结束3
+        if(TextUtils.isEmpty(userId)){
+            userId ="-";
+        }
+        if (TextUtils.isEmpty(time)){
+            time = "-";
+        }
+        if (TextUtils.isEmpty(serviceState) ){
+            serviceState = "-";
+        }
+        if (TextUtils.isEmpty(co)){
+            co = "-";
+        }
+
+        DataBean bean = new DataBean();
+        bean.setCo(co);
+        bean.setSa(userId);
+        bean.setCq(time);
+        bean.setServiceState(serviceState);
+        return bean;
+    }
+
+    /**
+     *
+     * @param context
+     * @param co
+     * @return
+     */
+    public static List<DataBean> getDataListByServiceState(Context context,String co){
+        DataBean bean = getBaseDataBeanByState(context, co);
+        dataList.add(bean);
+        return dataList;
+    }
+
+    /**
+     * 电话
+     * @param context
+     * @param co
+     * @param orderId  订单id
+     * @param callStyle 电话入口 列表0、详情1
+     * @return
+     */
+    public static List<DataBean> getDataListByCall(Context context,String co,String orderId,String callStyle){
+        if (TextUtils.isEmpty(orderId)){
+            orderId = "-";
+        }
+        if (TextUtils.isEmpty(callStyle)){
+            callStyle = "-";
+        }
+        DataBean bean = getBaseDataBeanByState(context, co);
+        bean.setOrderId(orderId);
+        bean.setCallStyle(callStyle);
+        dataList.add(bean);
+        return dataList;
+    }
+
+    /**
+     * 退单
+     * @param context
+     * @param co
+     * @param orderId
+     * @return
+     */
+    public static List<DataBean> getDataListByRefund(Context context,String co,String orderId){
+        if (TextUtils.isEmpty(orderId)){
+            orderId = "-";
+        }
+        DataBean bean = getBaseDataBean(context, co);
+        bean.setOrderId(orderId);
+        dataList.add(bean);
+        return dataList;
+    }
 
     /**
      * 生成字符串

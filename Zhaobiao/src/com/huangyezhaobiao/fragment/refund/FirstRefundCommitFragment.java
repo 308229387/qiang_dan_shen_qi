@@ -37,6 +37,8 @@ import com.huangyezhaobiao.presenter.RefundPresenter;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.CharUtils;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.KeyboardUtil;
 import com.huangyezhaobiao.utils.NetUtils;
 import com.huangyezhaobiao.utils.StringUtils;
@@ -290,6 +292,11 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
                 break;
             case  EVENT_GRIDVIEW_ITEM_ADD://点击了+号
                 BDMob.getBdMobInstance().onMobEvent(getActivity(), BDEventConstans.EVENT_ID_REFUND_PAGE_ADD_PHOTO);
+
+                HYMob.getDataList(getActivity(), HYEventConstans.EVENT_ID_REFUND_PAGE_ADD_PHOTO);
+                String  data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
+                HYMob.createMap(getActivity(), data, "0") ; //0表示正常日志，1表示崩溃日志
+
                 KeyboardUtil.hideSoftInput(getActivity());
                 select_view.setVisibility(View.VISIBLE);
                 animatePresenter.showRotateTranslateAnimation(btn_toggle_select_pic, btn_toggle_gallery, btn_toggle_camera);
@@ -338,6 +345,11 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
     private void submit() {
         //点击了退单按钮
         BDMob.getBdMobInstance().onMobEvent(getActivity(),BDEventConstans.EVENT_ID_REFUND_PAGE_SUBMIT);
+
+        HYMob.getDataList(getActivity(), HYEventConstans.EVENT_ID_REFUND_PAGE_SUBMIT);
+        String  data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
+        HYMob.createMap(getActivity(), data, "0") ; //0表示正常日志，1表示崩溃日志
+
         //点击了退单按钮
         if(!NetUtils.isNetworkConnected(getActivity())){//没有网络
             Toast.makeText(getActivity(),"没有网络,请检查网络设置",0).show();

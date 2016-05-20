@@ -27,6 +27,8 @@ import com.huangyezhaobiao.lib.ZBBaseAdapter;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.MDUtils;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
@@ -232,6 +234,12 @@ public class QDZhuangXiuMessageBean extends QDBaseBean {
 				//
 				//点击了打电话按钮
 				BDMob.getBdMobInstance().onMobEvent(context, BDEventConstans.EVENT_ID_ORDER_LIST_PHONE);
+
+
+				HYMob.getDataListByCall(context, HYEventConstans.EVENT_ID_ORDER_DETAIL_REFUND, orderId, "0");
+				String  data= HYMob.dataBeanToJson(HYMob.dataList, "co","callStyle","orderId","serviceSate", "sa", "cq");
+				HYMob.createMap(context, data, "0") ; //0表示正常日志，1表示崩溃日志
+
 				initDialog(QDZhuangXiuMessageBean.this.context);
 				dialog.show();
 			}

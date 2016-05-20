@@ -18,6 +18,8 @@ import com.huangyezhaobiao.inter.MDConstans;
 import com.huangyezhaobiao.lib.QDBaseBean;
 import com.huangyezhaobiao.lib.ZBBaseAdapter;
 import com.huangyezhaobiao.utils.ActivityUtils;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.MDUtils;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
@@ -83,6 +85,11 @@ public class CenterAffiliateBean extends QDBaseBean {
         holder.btn_alreadry_contact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                HYMob.getDataListByCall(context, HYEventConstans.EVENT_ID_ORDER_DETAIL_REFUND, orderId, "0");
+                String  data= HYMob.dataBeanToJson(HYMob.dataList, "co","callStyle","orderId","serviceSate", "sa", "cq");
+                HYMob.createMap(context, data, "0") ; //0表示正常日志，1表示崩溃日志
+
                 initDialog(CenterAffiliateBean.this.context);
                 dialog.show();
             }

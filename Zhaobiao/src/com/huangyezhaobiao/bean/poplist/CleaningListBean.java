@@ -20,6 +20,8 @@ import com.huangyezhaobiao.lib.QDBaseBean;
 import com.huangyezhaobiao.lib.ZBBaseAdapter;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.MDUtils;
 
 /**
@@ -202,8 +204,17 @@ public class CleaningListBean extends QDBaseBean{
             public void onClick(View view) {
                 if(bidState==1){//不可抢
                     BDMob.getBdMobInstance().onMobEvent(context, BDEventConstans.EVENT_ID_BIDDING_LIST_TO_DETAIL_UNABLE_BIDDING);
+
+                    HYMob.getDataListByState(context, HYEventConstans.EVENT_ID_BIDDING_LIST_TO_DETAIL_UNABLE_BIDDING, String.valueOf(bidId), "0");
+                    String data= HYMob.dataBeanToJson(HYMob.dataList, "co","sl","grabOrderState", "sa", "cq");
+                    HYMob.createMap(context, data, "0") ; //0表示正常日志，1表示崩溃日志
+
                 }else{
                     BDMob.getBdMobInstance().onMobEvent(context, BDEventConstans.EVENT_ID_BIDDING_LIST_TO_DETAIL_ENABLE_BIDDING);
+
+                    HYMob.getDataListByState(context, HYEventConstans.EVENT_ID_BIDDING_LIST_TO_DETAIL_UNABLE_BIDDING, String.valueOf(bidId), "1");
+                    String data= HYMob.dataBeanToJson(HYMob.dataList, "co","sl","grabOrderState", "sa", "cq");
+                    HYMob.createMap(context, data, "0") ; //0表示正常日志，1表示崩溃日志
                 }
                 Intent intent = new Intent();
                 intent.setClass(context, OrderDetailActivity.class);
@@ -212,6 +223,8 @@ public class CleaningListBean extends QDBaseBean{
                 intent.putExtras(bundle);
                 context.startActivity(intent);
                 MDUtils.servicePageMD(context, cateId, String.valueOf(bidId), MDConstans.ACTION_DETAILS);
+
+
             }
         });
         switch (bidState){
@@ -231,6 +244,11 @@ public class CleaningListBean extends QDBaseBean{
                     public void onClick(View view) {
                         adapter.itemClicked(cleaningBidHolder.grab_cleaning_knock.getId(), toPopPassBean());
                         MDUtils.servicePageMD(CleaningListBean.this.context, cateId, String.valueOf(bidId), MDConstans.ACTION_QIANG_DAN);
+
+                        HYMob.getDataList(context, HYEventConstans.EVENT_ID_BIDDING_DETAIL_PAGE_BIDDING, String.valueOf(bidId), "2");
+                        String data= HYMob.dataBeanToJson(HYMob.dataList, "co","sl","modelState","grabOrderStyle", "sa", "cq");
+                        HYMob.createMap(context, data, "0") ; //0表示正常日志，1表示崩溃日志
+
                     }
                 });
                 break;
