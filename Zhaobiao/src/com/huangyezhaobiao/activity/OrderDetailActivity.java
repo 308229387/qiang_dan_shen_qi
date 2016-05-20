@@ -28,6 +28,8 @@ import com.huangyezhaobiao.inter.MDConstans;
 import com.huangyezhaobiao.inter.OrderDetailCallBack;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.MDUtils;
 import com.huangyezhaobiao.utils.PushUtils;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
@@ -212,7 +214,7 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 	public void onLoadingError(String msg) {
 		stopLoading();
 		if(!TextUtils.isEmpty(msg))
-			Toast.makeText(this, msg,0).show();
+			Toast.makeText(this, msg,Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
@@ -242,6 +244,11 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 				public void onClick(View arg0) {
 							try {
 								BDMob.getBdMobInstance().onMobEvent(OrderDetailActivity.this, BDEventConstans.EVENT_ID_BIDDING_DETAIL_PAGE_BIDDING);
+
+								HYMob.getDataList(OrderDetailActivity.this,HYEventConstans.EVENT_ID_BIDDING_DETAIL_PAGE_BIDDING, String.valueOf(popPass.getBidId()), "2");
+								String data= HYMob.dataBeanToJson(HYMob.dataList, "co","sl","modelState","grabOrderStyle", "sa", "cq");
+								HYMob.createMap(OrderDetailActivity.this,data, "0") ; //0表示正常日志，1表示崩溃日志
+
 								rl_qd.setVisibility(View.VISIBLE);
 								knockViewModel = new KnockViewModel(OrderDetailActivity.this, OrderDetailActivity.this);
 								knockViewModel.knock(popPass, AppConstants.BIDSOURCE_DETAIL);
