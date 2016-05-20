@@ -113,15 +113,15 @@ public class HYMob {
      *
      * @param context
      * @param co
-     * @param sl
+     * @param s1
      * @return
      */
-    public static List<DataBean> getDataListByQiangDan(Context context,String co,String sl){
-        if (TextUtils.isEmpty(sl)){
-            sl = "-";
+    public static List<DataBean> getDataListByQiangDan(Context context,String co,String s1){
+        if (TextUtils.isEmpty(s1)){
+            s1 = "-";
         }
         DataBean bean = getBaseDataBean(context, co);
-        bean.setSl(sl);
+        bean.setS1(s1);
         dataList.add(bean);
         return dataList;
     }
@@ -190,16 +190,16 @@ public class HYMob {
      * 列表页、详情页抢单
      * @param context
      * @param co
-     * @param sl  标地id
+     * @param s1 标地id
      * @param grabOrderStyle 抢单入口 列表页1、详情页2、弹窗4
      * @return
      */
-    public static List<DataBean> getDataList(Context context,String co,String sl,String grabOrderStyle){
-        if (TextUtils.isEmpty(sl)){
-            sl = "-";
+    public static List<DataBean> getDataList(Context context,String co,String s1,String grabOrderStyle){
+        if (TextUtils.isEmpty(s1)){
+            s1 = "-";
         }
         DataBean bean = getBaseDataBeanByModel(context, co);
-        bean.setSl(sl);
+        bean.setS1(s1);
         bean.setGrabOrderStyle(grabOrderStyle);
         dataList.add(bean);
         return dataList;
@@ -209,14 +209,14 @@ public class HYMob {
      * 弹窗抢单按钮
      * @param context
      * @param co
-     * @param sl
+     * @param s1
      * @param lockScreenState 锁屏状态----安卓:锁屏0、未锁屏1
      * @param grabOrderStyle  抢单入口 列表页1、详情页2、弹窗4
      * @return
      */
-    public static List<DataBean> getDataListByTanChuang(Context context,String co,String sl,String lockScreenState,String grabOrderStyle){
-        if (TextUtils.isEmpty(sl)){
-            sl = "-";
+    public static List<DataBean> getDataListByTanChuang(Context context,String co,String s1,String lockScreenState,String grabOrderStyle){
+        if (TextUtils.isEmpty(s1)){
+            s1 = "-";
         }
         if (TextUtils.isEmpty(lockScreenState)){
             lockScreenState = "-";
@@ -225,7 +225,7 @@ public class HYMob {
             grabOrderStyle = "-";
         }
         DataBean bean = getBaseDataBean(context, co);
-        bean.setSl(sl);
+        bean.setS1(s1);
         bean.setLockScreenState(lockScreenState);
         bean.setGrabOrderStyle(grabOrderStyle);
         dataList.add(bean);
@@ -236,19 +236,19 @@ public class HYMob {
      *
      * @param context
      * @param co
-     * @param sl 标地id
+     * @param s1 标地id
      * @param grabOrderState 抢单状态 已抢0、可抢1
      * @return
      */
-    public static List<DataBean> getDataListByState(Context context,String co,String sl,String grabOrderState){
-        if (TextUtils.isEmpty(sl)){
-            sl = "-";
+    public static List<DataBean> getDataListByState(Context context,String co,String s1,String grabOrderState){
+        if (TextUtils.isEmpty(s1)){
+            s1 = "-";
         }
         if (TextUtils.isEmpty(grabOrderState)){
             grabOrderState ="-";
         }
         DataBean bean = getBaseDataBean(context, co);
-        bean.setSl(sl);
+        bean.setS1(s1);
         bean.setGrabOrderState(grabOrderState);
         dataList.add(bean);
         return dataList;
