@@ -24,7 +24,7 @@ public class DataBean {
     /**
      * 标地id
      */
-    private String sl;
+    private String s1;
     /**
      * 抢单入口方式-----列表页、详情页、弹窗
      */
@@ -128,12 +128,12 @@ public class DataBean {
         this.modelState = modelState;
     }
 
-    public String getSl() {
-        return sl;
+    public String getS1() {
+        return s1;
     }
 
-    public void setSl(String sl) {
-        this.sl = sl;
+    public void setS1(String s1) {
+        this.s1 = s1;
     }
 
     public String getGrabOrderStyle() {
@@ -271,7 +271,7 @@ public class DataBean {
                 ", sa='" + sa + '\'' +
                 ", cq='" + cq + '\'' +
                 ", modelState='" + modelState + '\'' +
-                ", sl='" + sl + '\'' +
+                ", s1='" + s1 + '\'' +
                 ", grabOrderStyle='" + grabOrderStyle + '\'' +
                 ", grabOrderState='" + grabOrderState + '\'' +
                 ", lockScreenState='" + lockScreenState + '\'' +

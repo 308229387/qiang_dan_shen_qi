@@ -246,7 +246,7 @@ public class DomesticRegisterListBean extends QDBaseBean {
 					BDMob.getBdMobInstance().onMobEvent(context, BDEventConstans.EVENT_ID_BIDDING_LIST_TO_DETAIL_UNABLE_BIDDING);
 
 					HYMob.getDataListByState(context, HYEventConstans.EVENT_ID_BIDDING_LIST_TO_DETAIL_UNABLE_BIDDING, String.valueOf(bidId), "0");
-					String data= HYMob.dataBeanToJson(HYMob.dataList, "co","sl","grabOrderState", "sa", "cq");
+					String data= HYMob.dataBeanToJson(HYMob.dataList, "co","s1","grabOrderState", "sa", "cq");
 					HYMob.createMap(context, data, "0") ; //0表示正常日志，1表示崩溃日志
 
 
@@ -254,7 +254,7 @@ public class DomesticRegisterListBean extends QDBaseBean {
 					BDMob.getBdMobInstance().onMobEvent(context, BDEventConstans.EVENT_ID_BIDDING_LIST_TO_DETAIL_ENABLE_BIDDING);
 
 					HYMob.getDataListByState(context, HYEventConstans.EVENT_ID_BIDDING_LIST_TO_DETAIL_UNABLE_BIDDING, String.valueOf(bidId), "1");
-					String data= HYMob.dataBeanToJson(HYMob.dataList, "co","sl","grabOrderState", "sa", "cq");
+					String data= HYMob.dataBeanToJson(HYMob.dataList, "co","s1","grabOrderState", "sa", "cq");
 					HYMob.createMap(context, data, "0") ; //0表示正常日志，1表示崩溃日志
 				}
 				Intent intent = new Intent();
