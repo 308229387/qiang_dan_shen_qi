@@ -277,10 +277,6 @@ public class RenovationListBean extends QDBaseBean {
 						adapter.itemClicked(holder.knock.getId(), toPopPassBean());
 						MDUtils.servicePageMD(RenovationListBean.this.context, cateId, String.valueOf(bidId),
 								MDConstans.ACTION_QIANG_DAN);
-
-						HYMob.getDataList(context, HYEventConstans.EVENT_ID_BIDDING_DETAIL_PAGE_BIDDING, String.valueOf(bidId), "2");
-						String data= HYMob.dataBeanToJson(HYMob.dataList, "co","sl","modelState","grabOrderStyle", "sa", "cq");
-						HYMob.createMap(context, data, "0") ; //0表示正常日志，1表示崩溃日志
 					}
 				});
 				break;
