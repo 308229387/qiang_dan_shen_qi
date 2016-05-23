@@ -16,7 +16,8 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_below="@id/tbl"
-            android:layout_above="@+id/order_detail_bottom">
+            android:layout_above="@+id/order_detail_bottom"
+            android:fillViewport="false">
 
             <LinearLayout
 

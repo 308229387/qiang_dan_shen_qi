@@ -66,8 +66,6 @@ public class Utils {
 			return myView.getLeft() + getRelativeLeft((View) myView.getParent());
 	}
 
-
-
 	/**
 	 * 用于获取状态栏的高度。 使用Resource对象获取（推荐这种方式）
 	 *
@@ -82,5 +80,6 @@ public class Utils {
 		}
 		return result;
 	}
+
 
 }

@@ -1,7 +1,6 @@
 package com.huangyezhaobiao.vm;
 
 import android.content.Context;
-import android.content.Intent;
 
 import com.huangye.commonlib.model.NetWorkModel;
 import com.huangye.commonlib.utils.NetBean;
@@ -9,7 +8,6 @@ import com.huangye.commonlib.vm.SourceViewModel;
 import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
 import com.huangyezhaobiao.bean.PassportBean;
 import com.huangyezhaobiao.model.LoginModel;
-import com.huangyezhaobiao.service.MobService;
 import com.huangyezhaobiao.utils.Encrypt;
 import com.huangyezhaobiao.utils.PasswordEncrypt;
 import com.huangyezhaobiao.utils.PhoneUtils;
@@ -94,9 +92,7 @@ public class LoginViewModel extends SourceViewModel{
 		if(!isBackground){
 			checkLoginViewModel.login();
 		}
-		/** 启动Service */
-		Intent mobService = new Intent(context, MobService.class);
-		context.startService(mobService);
+
 	}
 
 	@Override

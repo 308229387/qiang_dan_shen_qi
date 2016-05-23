@@ -11,12 +11,12 @@ import com.huangye.commonlib.network.HTTPTools;
 import com.huangye.commonlib.utils.PhoneUtils;
 import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.url.URLConstans;
+import com.huangyezhaobiao.utils.HYMob;
+import com.huangyezhaobiao.utils.NetUtils;
 import com.huangyezhaobiao.utils.UserUtils;
 import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -30,7 +30,7 @@ import java.util.TimerTask;
  */
 public class MobService extends Service {
     private static final String TAG = MobService.class.getName();
-    private final long MINPostTime = 24 * 60 * 60 * 1000;
+    private final long MINPostTime = 5 * 60 * 1000;
     private Timer mTimer;
     @Nullable
     @Override
@@ -52,7 +52,7 @@ public class MobService extends Service {
             mTimer.cancel();
         }
         mTimer = new Timer();
-        mTimer.schedule(new UploadTask(), 0, MINPostTime);
+        mTimer.schedule(new UploadTask(), MINPostTime, MINPostTime);
     }
 
     @Override
@@ -86,6 +86,12 @@ public class MobService extends Service {
 //        }
         params.addHeader("platform", "1");
         params.addHeader("UUID", PhoneUtils.getIMEI(BiddingApplication.getAppInstanceContext()));
+//        if(HYMob.params_map != null && !HYMob.params_map.isEmpty()){
+//            for(Iterator it = HYMob.params_map.entrySet().iterator(); it.hasNext();){
+//                Map.Entry<String, String> e = (Map.Entry<String, String>) it.next();
+//                params.addBodyParameter(e.getKey().toString(), e.getValue());
+//            }
+//        }
         return params;
     }
 
@@ -93,43 +99,39 @@ public class MobService extends Service {
         @Override
         public void run() {
             Log.v(TAG,"UploadTask is running....");
-            String params = "common=&data=&t=0";
-            String common = null;
-            String data = null;
-            try {
-                common = URLEncoder.encode("H4sIAAAAAAAAAB3MSwrCQBAE0Lv0UjT0fDLT9gGEnEC38xFsNAkIriR3T3d29aqg/tAKMNQi/QdnaFXhh3FAQ1OUpX9X6canMns8OU/H/FI/pKyzmER1n26T5bfmEJmQa2DKPCYuzoaP3aOL5A7OSkrZx4g+uxATXa1etL7AtgPk8RlDnAAAAA==","UTF-8");
-                data = URLEncoder.encode("H4sIAAAAAAAAAIuuVkrOV7JSMjYwUNJRSi4EMg1NzIxNTY1MTM0tDMyAgrn5Kak5wSWJJakgSaBAcSJIg6mZgZmRiaGxsYmRubFSbSwAnEis90oAAAA=","UTF-8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
+            if(HYMob.dataList.size() < 10){
+                return;
             }
-            String uploadUrl = "common=" + common + "&data=" +data + "&t=0";
-            String url = URLConstans.UPLOAD_URL + uploadUrl;
-            HTTPTools.newHttpUtilsInstance().doGet(url, getRequestParams(), new HttpRequestCallBack() {
-                @Override
-                public void onLoadingFailure(String err) {
+            if(NetUtils.isNetworkConnected(MobService.this)){
+                HTTPTools.newHttpUtilsInstance().doGet(URLConstans.UPLOAD_URL +"?common=" + HYMob.params_map.get("common") + "&data=" + HYMob.params_map.get("data") +"&t=0", getRequestParams(), new HttpRequestCallBack() {
+                    @Override
+                    public void onLoadingFailure(String err) {
 
-                }
+                    }
 
-                @Override
-                public void onLoadingSuccess(ResponseInfo<String> result) {
-                    Log.v(TAG,result.result.toString());
-                }
+                    @Override
+                    public void onLoadingSuccess(ResponseInfo<String> result) {
+                        HYMob.dataList.clear();
+                        Log.v(TAG,result.result.toString());
+                    }
 
-                @Override
-                public void onLoadingStart() {
+                    @Override
+                    public void onLoadingStart() {
 
-                }
+                    }
 
-                @Override
-                public void onLoadingCancelled() {
+                    @Override
+                    public void onLoadingCancelled() {
 
-                }
+                    }
 
-                @Override
-                public void onLoading(long total, long current) {
+                    @Override
+                    public void onLoading(long total, long current) {
 
-                }
-            });
+                    }
+                });
+            }
+
         }
     }
 

@@ -1,6 +1,7 @@
 package com.huangyezhaobiao.activity;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -75,6 +76,7 @@ public class SplashActivity extends Activity {
 
 		Intent intent = new Intent(this, DeamonService.class);
 		startService(intent);
+
 		context = this;
 		// 等三秒
 		handler.postDelayed(new Runnable() {
@@ -96,6 +98,11 @@ public class SplashActivity extends Activity {
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 		}
 		getWindow().setBackgroundDrawable(null);
+		/** 启动Service */
+//		if(!isMobServiceRunning("com.huangyezhaobiao.service.MobService")){
+//			Intent mobService = new Intent(context, MobService.class);
+//			context.startService(mobService);
+//		}
 	}
 
 	private void goLogic() {
@@ -129,6 +136,17 @@ public class SplashActivity extends Activity {
 		//finish();
 		sp.edit().putString(Constans.VERSION_NAME,
 				currentVersionName).commit();
+	}
+
+	/** 判断Service是否在运行*/
+	private boolean isMobServiceRunning(String serviceName) {
+		ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+		for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+			if (serviceName.equals(service.service.getClassName())) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 

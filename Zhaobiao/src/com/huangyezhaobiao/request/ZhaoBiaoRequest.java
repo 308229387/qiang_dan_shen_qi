@@ -40,7 +40,7 @@ public class ZhaoBiaoRequest<T> extends HttpRequest {
 //        } catch (PackageManager.NameNotFoundException e) {
 //            e.printStackTrace();
 //        }
-        params.addHeader("platform","1");
+        params.addHeader("platform","1");// android=1;
         params.addHeader("UUID", PhoneUtils.getIMEI(BiddingApplication.getAppInstanceContext()));
         httpTools = HTTPTools.newHttpUtilsInstance();
         setRequestTimeOut(timeout);

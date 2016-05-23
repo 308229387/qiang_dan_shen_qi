@@ -37,10 +37,10 @@ public class CommonDecorateProjectBean extends QDDetailBaseBean {
     public View initView(Context context) {
 
         View view = LayoutInflater.from(context).inflate(R.layout.detail_item_common_decorate_project, null);
-        ((TextView) view.findViewById(R.id.detail_item_common_decorate_text_dec_type)).setText(decoraType);
+        ((TextView) view.findViewById(R.id.detail_item_common_decorate_text_dec_type)).setText(type);
         ((TextView) view.findViewById(R.id.detail_item_common_decorate_text_space)).setText(space);
         ((TextView) view.findViewById(R.id.detail_item_common_decorate_text_budget)).setText(budget);
-        ((TextView) view.findViewById(R.id.detail_item_common_decorate_text_type)).setText(type);
+        ((TextView) view.findViewById(R.id.detail_item_common_decorate_text_type)).setText(decoraType);
         ((TextView) view.findViewById(R.id.detail_item_common_decorate_text_measure_time)).setText(measureTime);
         ((TextView) view.findViewById(R.id.detail_item_common_decorate_text_dec_time)).setText(decorateTime);
         ((TextView) view.findViewById(R.id.detail_item_common_decorate_text_location)).setText(location);

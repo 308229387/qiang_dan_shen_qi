@@ -32,6 +32,15 @@ public class UserUtils {
 	private static String accountName;
 	private static String accountEncrypt;
 
+	/** 埋点的SharedPerfrencens*/
+	private static final String MOB_FILE_NAME = "hy_mob";
+	private static final String MOB_ITEM = "mobitems";
+	private static int mobItem;
+	private static final String MOB_COMMON = "mobcommon";
+	private static String mobCommon;
+	private static final String MOB_DATA = "mobdata";
+	private static String mobData;
+
 	/** 24小时*/
 	private static long AFTER_A_DAY = 24 * 60 * 60 * 1000l;
 	public static void saveUser(Context context,String userId,String companyName,String userName){
@@ -193,6 +202,43 @@ public class UserUtils {
 			outofdate = false;
 		}
 		return outofdate;
+	}
+
+	public static void setMobItem(Context context,int mobItem){
+		SharedPreferences sp = context.getSharedPreferences(MOB_FILE_NAME, 0);
+		sp.edit().putInt(MOB_ITEM, mobItem).commit();
+	}
+
+	public static int getMobItem(Context context){
+		mobItem = context.getSharedPreferences(MOB_FILE_NAME, 0).getInt(MOB_ITEM,0);
+		return mobItem;
+	}
+
+	public static void setMobCommon(Context context,String mobCommon){
+		SharedPreferences sp = context.getSharedPreferences(MOB_FILE_NAME, 0);
+		sp.edit().putString(MOB_COMMON, mobCommon).commit();
+	}
+
+	public static String getMobCommon(Context context){
+		mobCommon = context.getSharedPreferences(MOB_FILE_NAME, 0).getString(MOB_COMMON,"");
+		return mobCommon;
+	}
+
+	public static void setMobData(Context context,String mobData){
+		SharedPreferences sp = context.getSharedPreferences(MOB_FILE_NAME, 0);
+		sp.edit().putString(MOB_DATA, mobData).commit();
+	}
+
+	public static String getMobData(Context context){
+		mobData = context.getSharedPreferences(MOB_FILE_NAME, 0).getString(mobData,"");
+		return mobData;
+	}
+
+	public static void clearMob(Context context){
+		context.getSharedPreferences(MOB_FILE_NAME, 0).edit().putString(mobData, "").commit();
+		context.getSharedPreferences(MOB_FILE_NAME, 0).edit().putString(mobCommon, "").commit();
+		context.getSharedPreferences(MOB_FILE_NAME, 0).edit().putInt(MOB_ITEM, 0).commit();
+
 	}
 
 }

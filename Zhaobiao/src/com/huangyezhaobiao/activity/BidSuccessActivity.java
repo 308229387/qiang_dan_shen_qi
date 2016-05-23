@@ -77,7 +77,8 @@ public class BidSuccessActivity extends QBBaseActivity {
 
 				HYMob.getDataListByQiangDan(BidSuccessActivity.this, HYEventConstans.EVENT_ID_SUCCESS_PAGE_LOOK_BIDDING,String.valueOf(receivePassBean.getBidId()));
 				String data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "s1","cq");
-				HYMob.createMap(BidSuccessActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
+				//0表示正常日志，1表示崩溃日志
+				HYMob.createMap(BidSuccessActivity.this, data, "0");
 
 				ActivityUtils.goToActivity(BidSuccessActivity.this, OrderListActivity.class);
 			}

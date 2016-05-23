@@ -2,12 +2,18 @@ package com.huangyezhaobiao.utils;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
+import com.huangye.commonlib.delegate.HttpRequestCallBack;
+import com.huangye.commonlib.network.HTTPTools;
 import com.huangyezhaobiao.bean.HYEventBean.CommonBean;
 import com.huangyezhaobiao.bean.HYEventBean.DataBean;
 import com.huangyezhaobiao.fragment.QiangDanBaseFragment;
+import com.huangyezhaobiao.url.URLConstans;
+import com.lidroid.xutils.http.ResponseInfo;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -25,7 +31,7 @@ public class HYMob {
     /**
      * 埋点data数据的list
      */
-    public static List<DataBean> dataList= Collections.synchronizedList(new ArrayList<DataBean>());
+    public static List<DataBean> dataList = Collections.synchronizedList(new ArrayList<DataBean>());
 
     public static HashMap<String, String> params_map; //日志上传的参数信息
     /**
@@ -142,9 +148,6 @@ public class HYMob {
         dataList.add(bean);
         return dataList;
     }
-
-
-
 
     public static DataBean getBaseDataBeanByModel(Context context,String co){
         int  state = StateUtils.state -1;
@@ -355,6 +358,15 @@ public class HYMob {
      * @return
      */
     public static HashMap createMap(Context context,String data,String t){
+        if(UserUtils.getMobItem(context) > 0){
+            Log.v("Upload","sp upload");
+            uploadMob(context,UserUtils.getMobCommon(context),UserUtils.getMobData(context),0,"sp");
+        }
+
+        if(HYMob.dataList.size() > 6){
+            Log.v("Upload","uploadeing");
+            uploadMob(context,HYMob.params_map.get("common"),HYMob.params_map.get("data"),0,"");
+        }
 
         params_map = new HashMap<String, String>();
         params_map.put("common",commonBeanToJson(context));
@@ -364,5 +376,58 @@ public class HYMob {
         return params_map;
     }
 
+    // 这里只能定义成static
+    private synchronized static void uploadMob(final Context context,final String common,final String data,int t,final String from){
+        if(NetUtils.isNetworkConnected(context)){
+            HTTPTools.newHttpUtilsInstance().doGet(URLConstans.UPLOAD_URL +"?common=" + common + "&data=" + data +"&t=" + t, null, new HttpRequestCallBack() {
+                @Override
+                public void onLoadingFailure(String err) {
+                    UserUtils.setMobItem(context,HYMob.dataList.size());
+                    UserUtils.setMobCommon(context,common);
+                    UserUtils.setMobData(context,data);
+                }
 
+                @Override
+                public void onLoadingSuccess(ResponseInfo<String> result) {
+                    Log.v("Upload",result.result);
+                    try {
+                        JSONObject jsonResult = JSON.parseObject(result.result);
+                        if (jsonResult.containsKey("status") && "0".equals(jsonResult.getString("status"))) {
+                            if("sp".equals(from)){
+                                Log.v("Upload","sp上传成功");
+                                UserUtils.clearMob(context);
+                            } else {
+                                Log.v("Upload","上传成功");
+                                HYMob.dataList.clear();
+                            }
+                        }
+                    } catch (Exception e) {
+                        UserUtils.setMobItem(context,HYMob.dataList.size());
+                        UserUtils.setMobCommon(context,common);
+                        UserUtils.setMobData(context,data);
+                       e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onLoadingStart() {
+
+                }
+
+                @Override
+                public void onLoadingCancelled() {
+
+                }
+
+                @Override
+                public void onLoading(long total, long current) {
+
+                }
+            });
+        } else {
+            UserUtils.setMobItem(context,HYMob.dataList.size());
+            UserUtils.setMobCommon(context,common);
+            UserUtils.setMobData(context,data);
+        }
+    }
 }

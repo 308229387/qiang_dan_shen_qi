@@ -336,5 +336,5 @@ public interface URLConstans {
 	//2016.05.03.add end
 
 	//  上传logger
-	String UPLOAD_URL = BASE_URL + "log/upload?";
+	String UPLOAD_URL = BASE_URL + "log/upload";
 }
