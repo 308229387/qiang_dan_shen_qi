@@ -92,7 +92,6 @@ public class LoginViewModel extends SourceViewModel{
 		if(!isBackground){
 			checkLoginViewModel.login();
 		}
-
 	}
 
 	@Override

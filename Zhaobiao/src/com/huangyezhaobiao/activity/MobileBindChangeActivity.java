@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -65,7 +66,7 @@ public class MobileBindChangeActivity extends QBBaseActivity implements View.OnC
     private ZhaoBiaoDialog            confirmChangeMobileDialog;
     private ValidateViewModel mobileChangeGetCodeVM;
     private MobileBindChangeViewModel mobileBindChangeViewModel;
-  //  private MobileChangeGetMobileVM   mobileChangeGetMobileVM;
+//    private MobileChangeGetMobileVM   mobileChangeGetMobileVM;
     private MobileBindChangePresenter mobileBindChangePresenter;
     public static final String FAILURE = "1";
     public static final String SUCCESS = "0";//成功
@@ -73,6 +74,8 @@ public class MobileBindChangeActivity extends QBBaseActivity implements View.OnC
     private String mobile;
 
     private String data; //埋点的数据
+
+    private static final String TAG = MobileBindChangeActivity.class.getName();
 
     public static Intent onNewIntent(Context context,String mobile){
         Intent intent = new Intent(context,MobileBindChangeActivity.class);
@@ -100,7 +103,7 @@ public class MobileBindChangeActivity extends QBBaseActivity implements View.OnC
     private void initViewModel() {
         mobileChangeGetCodeVM     = new ValidateViewModel(this,this);
         mobileBindChangeViewModel = new MobileBindChangeViewModel(this,this);
-       // mobileChangeGetMobileVM   = new MobileChangeGetMobileVM(this,this);
+//        mobileChangeGetMobileVM   = new MobileChangeGetMobileVM(this,this);
         mobileBindChangePresenter = new MobileBindChangePresenter(this,this);
     }
 
@@ -211,14 +214,16 @@ public class MobileBindChangeActivity extends QBBaseActivity implements View.OnC
     @Override
     public void onLoadingSuccess(Object t) {
         stopLoading();
+        Log.v(TAG,"onLoadingSuccess=====》");
         if(t instanceof MobileChangeBean){//获取初始的手机号
+            Log.v(TAG,"t instanceof MobileChangeBean");
             MobileChangeBean mobileChangeBean = (MobileChangeBean) t;
             String status = mobileChangeBean.getStatus();
             if(TextUtils.equals(status,SUCCESS)){//获取初始手机号成功
+                Log.v(TAG,"status,SUCCESS");
                 String mobile = mobileChangeBean.getMobile();
                 //赋值后,去自动请求验证码
                 et_now_bind_mobile.setText(mobile);
-
             }else {//获取初始手机号失败
                ToastUtils.makeImgAndTextToast(this,"获取初始手机号失败",R.drawable.validate_wrong,Toast.LENGTH_SHORT).show();
             }

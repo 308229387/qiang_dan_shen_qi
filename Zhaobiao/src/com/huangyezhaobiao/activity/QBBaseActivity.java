@@ -10,7 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
-import com.huangye.commonlib.activity.BaseActivity;
+
 import com.huangye.commonlib.file.SharedPreferencesUtils;
 import com.huangye.commonlib.utils.UserConstans;
 import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
@@ -25,12 +25,10 @@ import com.huangyezhaobiao.inter.INotificationListener;
 import com.huangyezhaobiao.netmodel.INetStateChangedListener;
 import com.huangyezhaobiao.netmodel.NetStateManager;
 import com.huangyezhaobiao.utils.ActivityUtils;
-import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.MDUtils;
 import com.huangyezhaobiao.utils.NetUtils;
 import com.huangyezhaobiao.utils.PushUtils;
-import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.StateUtils;
 import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.utils.Utils;
@@ -43,7 +41,6 @@ import com.huangyezhaobiao.view.TitleMessageBarLayout.OnTitleBarClickListener;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog.onDialogClickListener;
 import com.huangyezhaobiao.vm.KnockViewModel;
-import com.huangyezhaobiao.vm.YuEViewModel;
 
 /**
  * 抢标的最基类activity,多一些这个项目的新东西
@@ -64,7 +61,7 @@ public abstract class QBBaseActivity extends CommonBaseActivity implements INoti
 	private PushToPassBean passBean;
 	private MyCustomDialog popDialog;
 	protected View layout_back_head;
-	private YuEViewModel    yuEViewModel;
+//	private YuEViewModel    yuEViewModel;
 	private ProgressDialog ProgressDialog;
 	protected void dismissQDWaitDialog(){
 		if(ProgressDialog!=null && ProgressDialog.isShowing()){
@@ -102,7 +99,7 @@ public abstract class QBBaseActivity extends CommonBaseActivity implements INoti
 					popDialog.dismiss();
 				}
 				if(status==3){//成功
-					Toast.makeText(QBBaseActivity.this,"成功",0).show();
+					Toast.makeText(QBBaseActivity.this,"成功",Toast.LENGTH_SHORT).show();
 					intent.setClass(QBBaseActivity.this, BidSuccessActivity.class);
 					startActivity(intent);
 				}
@@ -132,7 +129,7 @@ public abstract class QBBaseActivity extends CommonBaseActivity implements INoti
 				else if(status==4){
 					Toast.makeText(QBBaseActivity.this, getString(R.string.bidding_already_bid), Toast.LENGTH_SHORT).show();
 				}else if(status==5){
-					Toast.makeText(QBBaseActivity.this,"并没有抢到单",0).show();
+					Toast.makeText(QBBaseActivity.this,"并没有抢到单",Toast.LENGTH_SHORT).show();
 					intent.setClass(QBBaseActivity.this, BidFailureActivity.class);
 					startActivity(intent);
 				}
@@ -162,7 +159,7 @@ public abstract class QBBaseActivity extends CommonBaseActivity implements INoti
 			//透明状态栏
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 		}
-		yuEViewModel = new YuEViewModel(callBack,this);
+//		yuEViewModel = new YuEViewModel(callBack,this);
 		configExitDialog();
 		getWindow().setBackgroundDrawable(null);
 	}
@@ -207,8 +204,7 @@ public abstract class QBBaseActivity extends CommonBaseActivity implements INoti
 				layout_back_head.setPadding(0, height + more, 0, 0);
 			}
 		}
-		yuEViewModel.getBalance();
-
+//		yuEViewModel.getBalance();
 	}
 
 

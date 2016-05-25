@@ -53,7 +53,6 @@ public class LoginModel extends NetWorkModel{
 					break;
 				}
 			}
-			Log.v(TAG,"<==========>");
 			baseSourceModelCallBack.onLoadingSuccess(passportBean,this);
 		} else if(resultCode.equals("9") || resultCode.equals("11")){
 			resultMsg = "您的账户存在异常，请至58同城网页登录并验证您的账号后，才能继续登录抢单神器。";

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,9 @@ import com.huangyezhaobiao.constans.CommonValue;
 import com.huangyezhaobiao.presenter.SettingsPresenter;
 import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.ToastUtils;
+import com.huangyezhaobiao.vm.YuEViewModel;
+
+import java.util.Map;
 
 /**
  * Created by shenzhixin on 2015/11/12.
@@ -28,6 +32,7 @@ public class SettingsActivity extends QBBaseActivity implements View.OnClickList
     private View rl_auto_settings;
     private TextView tv_now_bind_mobile;
  //   private MobileChangeGetMobileVM mobileChangeGetMobileVM;
+ 	private YuEViewModel yuEViewModel;
     private SettingsPresenter       presenter;
     private String mobile;
     public static Intent onNewIntent(Context context){
@@ -38,14 +43,16 @@ public class SettingsActivity extends QBBaseActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    //    mobileChangeGetMobileVM = new MobileChangeGetMobileVM(this,this);
-        presenter               = new SettingsPresenter(this);
+        //    mobileChangeGetMobileVM = new MobileChangeGetMobileVM(this,this);
+        presenter = new SettingsPresenter(this);
         setContentView(getLayoutId());
         initView();
         initListener();
         String mobile = SPUtils.getVByK(this, GlobalConfigBean.KEY_USERPHONE);
         tv_now_bind_mobile.setText("已绑定" + mobile);
     }
+
+
 
     @Override
     public void initView() {
@@ -95,10 +102,13 @@ public class SettingsActivity extends QBBaseActivity implements View.OnClickList
     @Override
     public void onLoadingSuccess(Object t) {
         stopLoading();
+        Log.v("SettingActivity","t onLoadingSuccess");
         if(t instanceof MobileChangeBean){//获取初始的手机号
+            Log.v("SettingActivity","t instanceof MobileChangeBean");
             MobileChangeBean mobileChangeBean = (MobileChangeBean) t;
             String status = mobileChangeBean.getStatus();
             if(TextUtils.equals(status, CommonValue.SUCCESS)){//获取初始手机号成功
+                Log.v("SettingActivity","CommonValue.SUCCESS");
                 String mobile = mobileChangeBean.getMobile();
                 //赋值后,去自动请求验证码
                 tv_now_bind_mobile.setText("已绑定" + mobile);
@@ -107,13 +117,23 @@ public class SettingsActivity extends QBBaseActivity implements View.OnClickList
                 ToastUtils.makeImgAndTextToast(this, "获取初始手机号失败", R.drawable.validate_wrong, Toast.LENGTH_SHORT).show();
             }
         }
+
+        if (t instanceof Map<?, ?>) {
+            Map<String, String> maps = (Map<String, String>) t;
+            String balance = maps.get("balance");
+            String userPhone = maps.get("phone");
+            SPUtils.saveKV(SettingsActivity.this, GlobalConfigBean.KEY_USERPHONE, userPhone);
+            Log.v("SettingActivity","saveKV　userPhone　＝　" +userPhone);
+        }
+        mobile = SPUtils.getVByK(this, GlobalConfigBean.KEY_USERPHONE);
+        tv_now_bind_mobile.setText("已绑定" + mobile);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
-     //   mobileChangeGetMobileVM.getOriMobile();
+        yuEViewModel = new YuEViewModel(this,this);
+        yuEViewModel.getBalance();
     }
 
     @Override

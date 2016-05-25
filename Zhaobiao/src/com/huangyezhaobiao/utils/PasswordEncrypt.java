@@ -44,7 +44,6 @@ public class PasswordEncrypt {
 			System.out.println("encryptPassword = password" + data);
 			byte[] dataBytes = data.getBytes("UTF-8");
 			byte[] encryptData = encryptByPublicKey(dataBytes, PUBLIC_KEY_PASSWORD);
-			System.out.println("encryptPassword{}{}{}");
 			return hexEncode(encryptData);
 		} catch (Exception e) {
 			System.out.println("Exception:" + e.getMessage());
