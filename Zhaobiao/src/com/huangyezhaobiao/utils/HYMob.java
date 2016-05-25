@@ -139,12 +139,38 @@ public class HYMob {
      * @param userName
      * @return
      */
-    public static List<DataBean> getDataListByLogin(Context context,String co,String userName){
+    public static List<DataBean> getDataListByLoginSuccess(Context context,String co,String loginState,String userName){
+        if(TextUtils.isEmpty(loginState)){
+            loginState = "-";
+        }
         if(TextUtils.isEmpty(userName)){
             userName = "-";
         }
         DataBean bean = getBaseDataBean(context, co);
+        bean.setLoginState(loginState);
         bean.setUserName(userName);
+        dataList.add(bean);
+        return dataList;
+    }
+
+    /**
+     * 登录失败
+     * @param context
+     * @param co
+     * @param loginState
+     * @param failureReason
+     * @return
+     */
+    public static List<DataBean> getDataListByLoginError(Context context,String co,String loginState,String failureReason){
+        if(TextUtils.isEmpty(loginState)){
+            loginState = "-";
+        }
+        if(TextUtils.isEmpty(failureReason)){
+            failureReason = "-";
+        }
+        DataBean bean = getBaseDataBean(context, co);
+        bean.setLoginState(loginState);
+        bean.setFailureReason(failureReason);
         dataList.add(bean);
         return dataList;
     }

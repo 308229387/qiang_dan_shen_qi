@@ -89,6 +89,14 @@ public class DataBean {
      * 用户名
      */
     private String userName;
+    /**
+     * 登录状态
+     */
+    private String loginState;
+    /**
+     * 失败原因
+     */
+    private String failureReason;
 
     /**
      * 默认的构造方法必须不能省，不然不能解析
@@ -264,6 +272,22 @@ public class DataBean {
         this.userName = userName;
     }
 
+    public String getLoginState() {
+        return loginState;
+    }
+
+    public void setLoginState(String loginState) {
+        this.loginState = loginState;
+    }
+
+    public String getFailureReason() {
+        return failureReason;
+    }
+
+    public void setFailureReason(String failureReason) {
+        this.failureReason = failureReason;
+    }
+
     @Override
     public String toString() {
         return "DataBean{" +
@@ -288,6 +312,8 @@ public class DataBean {
                 ", agentAddress='" + agentAddress + '\'' +
                 ", agencyBookkeeping='" + agencyBookkeeping + '\'' +
                 ", userName='" + userName + '\'' +
+                ", loginState='" + loginState + '\'' +
+                ", failureReason='" + failureReason + '\'' +
                 '}';
     }
 }

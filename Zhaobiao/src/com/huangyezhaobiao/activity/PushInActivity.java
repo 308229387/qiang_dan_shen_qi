@@ -303,7 +303,7 @@ public class PushInActivity extends BaseActivity implements NetWorkVMCallBack, V
         backToKeyguard();
         voiceManager.closeOrdersDialog();
         PushUtils.pushList.clear();
-        Toast.makeText(this,"网络有问题",0).show();
+        Toast.makeText(this,"网络有问题",Toast.LENGTH_SHORT).show();
     }
 
     @Override
