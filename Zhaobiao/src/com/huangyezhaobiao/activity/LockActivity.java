@@ -254,6 +254,13 @@ public class LockActivity extends Activity implements NetWorkVMCallBack, View.On
         dialog_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                HYMob.getDataList(LockActivity.this, HYEventConstans.EVENT_ID_WINDOW_PAGE_NEXT);
+                data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
+                HYMob.createMap(LockActivity.this,data, "0") ; //0表示正常日志，1表示崩溃日志
+
+
                 //这时要把runnable去掉
                 handler.removeCallbacks(runnable);
                 showNext();
@@ -327,7 +334,7 @@ public class LockActivity extends Activity implements NetWorkVMCallBack, View.On
 
     @Override
     public void onLoadingError(String msg) {
-        Toast.makeText(this,"失败了",0).show();
+        Toast.makeText(this,"失败了",Toast.LENGTH_SHORT).show();
         try {
             qdDialog.dismiss();
         }catch (Exception e){
@@ -351,7 +358,7 @@ public class LockActivity extends Activity implements NetWorkVMCallBack, View.On
         backToKeyguard();
         voiceManager.closeOrdersDialog();
         PushUtils.pushList.clear();
-        Toast.makeText(this,"网络有问题",0).show();
+        Toast.makeText(this,"网络有问题",Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -414,11 +421,6 @@ public class LockActivity extends Activity implements NetWorkVMCallBack, View.On
                 break;
             case R.id.dialog_next://下一条
                 BDMob.getBdMobInstance().onMobEvent(this, BDEventConstans.EVENT_ID_WINDOW_PAGE_NEXT);
-
-                HYMob.getDataList(this, HYEventConstans.EVENT_ID_WINDOW_PAGE_NEXT);
-                data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
-                HYMob.createMap(this, data, "0") ; //0表示正常日志，1表示崩溃日志
-
 
                 //这时要把runnable去掉
                 handler.removeCallbacks(runnable);

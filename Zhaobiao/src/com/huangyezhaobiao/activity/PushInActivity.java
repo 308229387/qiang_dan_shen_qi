@@ -206,6 +206,11 @@ public class PushInActivity extends BaseActivity implements NetWorkVMCallBack, V
         dialog_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                HYMob.getDataList(PushInActivity.this, HYEventConstans.EVENT_ID_WINDOW_PAGE_NEXT);
+                data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
+                HYMob.createMap(PushInActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
+
                 //这时要把runnable去掉
                 handler.removeCallbacks(runnable);
                 showNext();
@@ -365,10 +370,6 @@ public class PushInActivity extends BaseActivity implements NetWorkVMCallBack, V
                 break;
             case R.id.dialog_next://下一条
                 BDMob.getBdMobInstance().onMobEvent(this, BDEventConstans.EVENT_ID_WINDOW_PAGE_NEXT);
-
-                HYMob.getDataList(this, HYEventConstans.EVENT_ID_WINDOW_PAGE_NEXT);
-                data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
-                HYMob.createMap(this, data, "0") ; //0表示正常日志，1表示崩溃日志
 
                 //这时要把runnable去掉
                 handler.removeCallbacks(runnable);
