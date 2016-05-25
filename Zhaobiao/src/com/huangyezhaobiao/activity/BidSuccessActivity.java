@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -41,6 +42,8 @@ public class BidSuccessActivity extends QBBaseActivity {
 	private PushToPassBean receivePassBean;
 	private BroadcastReceiver receiver;
 	KeyguardManager keyguardManager;
+
+	private String bidId;
 	KeyguardManager.KeyguardLock keyguardLock;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -74,8 +77,10 @@ public class BidSuccessActivity extends QBBaseActivity {
 			public void onClick(View v) {
 				//查看抢单
 				BDMob.getBdMobInstance().onMobEvent(BidSuccessActivity.this, BDEventConstans.EVENT_ID_SUCCESS_PAGE_LOOK_BIDDING);
-
-				HYMob.getDataListByQiangDan(BidSuccessActivity.this, HYEventConstans.EVENT_ID_SUCCESS_PAGE_LOOK_BIDDING,String.valueOf(receivePassBean.getBidId()));
+				if (receivePassBean != null ) {
+					bidId = String.valueOf(receivePassBean.getBidId());
+				}
+				HYMob.getDataListByQiangDan(BidSuccessActivity.this, HYEventConstans.EVENT_ID_SUCCESS_PAGE_LOOK_BIDDING,bidId);
 				String data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "s1","cq");
 				//0表示正常日志，1表示崩溃日志
 				HYMob.createMap(BidSuccessActivity.this, data, "0");
@@ -89,8 +94,10 @@ public class BidSuccessActivity extends QBBaseActivity {
 			public void onClick(View v) {
 				//继续抢单
 				BDMob.getBdMobInstance().onMobEvent(BidSuccessActivity.this, BDEventConstans.EVENT_ID_SUCCESS_PAGE_CONTINUE_BIDDING);
-
-				HYMob.getDataListByQiangDan(BidSuccessActivity.this, HYEventConstans.EVENT_ID_SUCCESS_PAGE_CONTINUE_BIDDING,String.valueOf(receivePassBean.getBidId()));
+				if (receivePassBean != null ) {
+					bidId = String.valueOf(receivePassBean.getBidId());
+				}
+				HYMob.getDataListByQiangDan(BidSuccessActivity.this, HYEventConstans.EVENT_ID_SUCCESS_PAGE_CONTINUE_BIDDING, bidId);
 				String data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "s1","cq");
 				HYMob.createMap(BidSuccessActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
 
