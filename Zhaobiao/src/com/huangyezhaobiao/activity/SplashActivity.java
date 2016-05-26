@@ -129,13 +129,14 @@ public class SplashActivity extends Activity {
         }else if(TextUtils.isEmpty(UserUtils.getUserId(context))){//如果没有登录过
             ActivityUtils.goToActivity(context, LoginActivity.class);
         }else if(!UserUtils.isValidate(context)){//还未验证，走验证界面
-            ActivityUtils.goToActivity(context, MobileValidateActivity.class);
+			// ActivityUtils.goToActivity(context, MobileValidateActivity.class);
+			// added by chenguangming
+            ActivityUtils.goToActivity(context, LoginActivity.class);
         }else{//走主界面
             ActivityUtils.goToActivity(context, MainActivity.class);
         }
 		//finish();
-		sp.edit().putString(Constans.VERSION_NAME,
-				currentVersionName).commit();
+		sp.edit().putString(Constans.VERSION_NAME, currentVersionName).commit();
 	}
 
 	/** 判断Service是否在运行*/

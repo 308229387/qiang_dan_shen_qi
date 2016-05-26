@@ -80,10 +80,12 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 
 	private int hasValidated;
 	private static final String OLD_PASSPORT = "oldpassport";
+	public static LoginActivity loginInstance;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		loginInstance = this;
 		EventbusAgent.getInstance().register(this);
 		initView();
 		initListener();
@@ -302,8 +304,10 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 			} else{
 				UserUtils.hasValidate(getApplicationContext());
 				ActivityUtils.goToActivity(LoginActivity.this, MainActivity.class);
+				// added by chenguangming
+				finish();
 			}
-			finish();
+			// finish();
 		}
 	}
 
@@ -355,7 +359,9 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 
 	@Override
 	public void onBackPressed() {
-		super.onBackPressed();
+		// super.onBackPressed();
+		// added by chenguangming
+		finish();
 	}
 
 

@@ -40,6 +40,8 @@ public class UserUtils {
 	private static String mobCommon;
 	private static final String MOB_DATA = "mobdata";
 	private static String mobData;
+	private static final String MOB_TIME = "mobtime";
+	private static long mobTime;
 
 	/** 24小时*/
 	private static long AFTER_A_DAY = 24 * 60 * 60 * 1000l;
@@ -230,15 +232,24 @@ public class UserUtils {
 	}
 
 	public static String getMobData(Context context){
-		mobData = context.getSharedPreferences(MOB_FILE_NAME, 0).getString(mobData,"");
+		mobData = context.getSharedPreferences(MOB_FILE_NAME, 0).getString(MOB_DATA,"");
 		return mobData;
+	}
+
+	public static void setMobTime(Context context,long mobTime){
+		SharedPreferences sp = context.getSharedPreferences(MOB_FILE_NAME, 0);
+		sp.edit().putLong(MOB_DATA, mobTime).commit();
+	}
+
+	public static long getMobTime(Context context){
+		mobTime = context.getSharedPreferences(MOB_FILE_NAME, 0).getLong(MOB_TIME,0);
+		return mobTime;
 	}
 
 	public static void clearMob(Context context){
 		context.getSharedPreferences(MOB_FILE_NAME, 0).edit().putString(mobData, "").commit();
 		context.getSharedPreferences(MOB_FILE_NAME, 0).edit().putString(mobCommon, "").commit();
 		context.getSharedPreferences(MOB_FILE_NAME, 0).edit().putInt(MOB_ITEM, 0).commit();
-
 	}
 
 }

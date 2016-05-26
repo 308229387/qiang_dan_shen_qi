@@ -321,7 +321,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.huangyezhaobiao.activity.MobileValidateActivity"
-            android:launchMode="singleInstance"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name="com.huangyezhaobiao.activity.BidFailureActivity"
@@ -344,6 +344,7 @@
             android:name="com.huangyezhaobiao.activity.SplashActivity"
             android:noHistory="true"
             android:screenOrientation="portrait"
+            android:launchMode="singleTask"
             android:theme="@style/AppTheme3">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -497,6 +498,7 @@
         <activity
             android:name=".activity.MobileBindChangeActivity"
             android:screenOrientation="portrait"
+            android:launchMode="singleTask"
             android:theme="@style/Mobile.AppTheme">
             <!--   <intent-filter>
                    <action android:name="android.intent.action.MAIN" />
@@ -517,11 +519,11 @@
             android:name="air.com.wuba.bangbang.common.impush.DeamonService"
             android:process=":pushservice" />
 
-        <service android:name="com.huangyezhaobiao.service.MobService">
-            <intent-filter>
-                <action android:name="MobService"></action>
-            </intent-filter>
-        </service>
+        <!--<service android:name="com.huangyezhaobiao.service.MobService">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="MobService"></action>-->
+            <!--</intent-filter>-->
+        <!--</service>-->
     </application>
 
 

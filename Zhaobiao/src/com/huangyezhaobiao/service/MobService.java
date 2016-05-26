@@ -1,11 +1,14 @@
 package com.huangyezhaobiao.service;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.huangye.commonlib.delegate.HttpRequestCallBack;
 import com.huangye.commonlib.network.HTTPTools;
 import com.huangye.commonlib.utils.PhoneUtils;
@@ -42,17 +45,23 @@ public class MobService extends Service {
     public void onCreate() {
         super.onCreate();
         Log.v(TAG,">=========== " + TAG + " is created ===========>");
+        if (null != mTimer) {
+            mTimer.cancel();
+        }
+        mTimer = new Timer();
+        mTimer.schedule(new UploadTask(), MINPostTime, MINPostTime);
     }
 
     @Override
     public void onStart(Intent intent, int startId) {
         super.onStart(intent, startId);
         Log.d(TAG, TAG + " onStart " + intent.getStringExtra("data"));
-        if (null != mTimer) {
-            mTimer.cancel();
+        if("sp".equals(intent.getStringExtra("from"))){
+            uploadMob(this,UserUtils.getMobCommon(this),UserUtils.getMobData(this),0,"sp");
         }
-        mTimer = new Timer();
-        mTimer.schedule(new UploadTask(), MINPostTime, MINPostTime);
+        if("sixitems".equals(intent.getStringExtra("from"))){
+            uploadMob(this,HYMob.params_map.get("common"),HYMob.params_map.get("data"),0,"");
+        }
     }
 
     @Override
@@ -76,22 +85,9 @@ public class MobService extends Service {
         }
         params.addHeader("ppu", UserUtils.getUserPPU(BiddingApplication.getAppInstanceContext()));
         params.addHeader("userId",UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
-        Log.e("sdf", "ppu:" + UserUtils.getUserPPU(BiddingApplication.getAppInstanceContext()));
-        Log.e("sdf", "userId:" + UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
-//        try {
-//            params.addHeader("version", VersionUtils.getVersionCode(BiddingApplication.getAppInstanceContext()));
         params.addHeader("version", "6");
-//        } catch (PackageManager.NameNotFoundException e) {
-//            e.printStackTrace();
-//        }
         params.addHeader("platform", "1");
         params.addHeader("UUID", PhoneUtils.getIMEI(BiddingApplication.getAppInstanceContext()));
-//        if(HYMob.params_map != null && !HYMob.params_map.isEmpty()){
-//            for(Iterator it = HYMob.params_map.entrySet().iterator(); it.hasNext();){
-//                Map.Entry<String, String> e = (Map.Entry<String, String>) it.next();
-//                params.addBodyParameter(e.getKey().toString(), e.getValue());
-//            }
-//        }
         return params;
     }
 
@@ -99,39 +95,67 @@ public class MobService extends Service {
         @Override
         public void run() {
             Log.v(TAG,"UploadTask is running....");
-            if(HYMob.dataList.size() < 10){
+            if(HYMob.dataList.size() < 5){
                 return;
             }
-            if(NetUtils.isNetworkConnected(MobService.this)){
-                HTTPTools.newHttpUtilsInstance().doGet(URLConstans.UPLOAD_URL +"?common=" + HYMob.params_map.get("common") + "&data=" + HYMob.params_map.get("data") +"&t=0", getRequestParams(), new HttpRequestCallBack() {
-                    @Override
-                    public void onLoadingFailure(String err) {
+            uploadMob(MobService.this,HYMob.params_map.get("common"),HYMob.params_map.get("data"),0,"");
+        }
+    }
 
+
+
+    // 这里只能定义成static
+    private synchronized void uploadMob(final Context context, final String common, final String data, int t, final String from){
+        if(NetUtils.isNetworkConnected(context)){
+            HTTPTools.newHttpUtilsInstance().doGet(URLConstans.UPLOAD_URL +"?common=" + common + "&data=" + data +"&t=" + t, null, new HttpRequestCallBack() {
+                @Override
+                public void onLoadingFailure(String err) {
+                    UserUtils.setMobItem(context,HYMob.dataList.size());
+                    UserUtils.setMobCommon(context,common);
+                    UserUtils.setMobData(context,data);
+                }
+
+                @Override
+                public void onLoadingSuccess(ResponseInfo<String> result) {
+                    Log.v("Upload",result.result);
+                    try {
+                        JSONObject jsonResult = JSON.parseObject(result.result);
+                        if (jsonResult.containsKey("status") && "0".equals(jsonResult.getString("status"))) {
+                            if("sp".equals(from)){
+                                Log.v("Upload","sp上传成功");
+                                UserUtils.clearMob(context);
+                            } else {
+                                Log.v("Upload","上传成功");
+                                HYMob.dataList.clear();
+                            }
+                        }
+                    } catch (Exception e) {
+                        UserUtils.setMobItem(context,HYMob.dataList.size());
+                        UserUtils.setMobCommon(context,common);
+                        UserUtils.setMobData(context,data);
+                        e.printStackTrace();
                     }
+                }
 
-                    @Override
-                    public void onLoadingSuccess(ResponseInfo<String> result) {
-                        HYMob.dataList.clear();
-                        Log.v(TAG,result.result.toString());
-                    }
+                @Override
+                public void onLoadingStart() {
 
-                    @Override
-                    public void onLoadingStart() {
+                }
 
-                    }
+                @Override
+                public void onLoadingCancelled() {
 
-                    @Override
-                    public void onLoadingCancelled() {
+                }
 
-                    }
+                @Override
+                public void onLoading(long total, long current) {
 
-                    @Override
-                    public void onLoading(long total, long current) {
-
-                    }
-                });
-            }
-
+                }
+            });
+        } else {
+            UserUtils.setMobItem(context,HYMob.dataList.size());
+            UserUtils.setMobCommon(context,common);
+            UserUtils.setMobData(context,data);
         }
     }
 

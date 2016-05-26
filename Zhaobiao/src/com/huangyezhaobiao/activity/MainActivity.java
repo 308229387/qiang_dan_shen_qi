@@ -166,6 +166,9 @@ public class MainActivity extends CommonFragmentActivity implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initExitForUpdateDialog();
+        if(LoginActivity.loginInstance != null){
+            LoginActivity.loginInstance.finish();
+        }
         //wjl
         mainPresenter = new MainPresenter();
         progressDialog = new QDWaitDialog(this);

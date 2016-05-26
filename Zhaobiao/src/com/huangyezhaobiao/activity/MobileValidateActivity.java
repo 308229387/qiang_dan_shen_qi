@@ -12,7 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.huangye.commonlib.activity.BaseActivity;
 import com.huangye.commonlib.file.SharedPreferencesUtils;
 import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
 import com.huangyezhaobiao.R;
@@ -123,7 +122,8 @@ public class MobileValidateActivity extends CommonBaseActivity implements NetWor
 		back_layout.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				ActivityUtils.goToActivity(MobileValidateActivity.this, LoginActivity.class);
+				finish();
+				//ActivityUtils.goToActivity(MobileValidateActivity.this, LoginActivity.class);
 			}
 		});
 
