@@ -184,7 +184,7 @@ public class HYMob {
         bean.setS1(s1);
         dataList.add(bean);
         //0表示正常日志，1表示崩溃日志
-        createMap(context, dataBeanToJson(dataList, "co", "sa", "s1","cq"), "0");
+        createMap(context, dataBeanToJson(dataList, "co", "sa", "s1", "cq"), "0");
     }
 
     /**
@@ -205,7 +205,7 @@ public class HYMob {
         bean.setLoginState(loginState);
         bean.setUserName(userName);
         dataList.add(bean);
-        createMap(context, dataBeanToJson(dataList, "co", "sa", "cq","loginState", "userName"), "0") ; //0表示正常日志，1表示崩溃日志
+        createMap(context, dataBeanToJson(dataList, "co", "sa", "cq", "loginState", "userName"), "0") ; //0表示正常日志，1表示崩溃日志
     }
 
     /**
@@ -283,7 +283,7 @@ public class HYMob {
         bean.setLockScreenState(lockScreenState);
         bean.setGrabOrderStyle(grabOrderStyle);
         dataList.add(bean);
-        createMap(context, dataBeanToJson(dataList, "co","s1","lockScreenState","grabOrderStyle", "sa", "cq"), "0") ; //0表示正常日志，1表示崩溃日志
+        createMap(context, dataBeanToJson(dataList, "co", "s1", "lockScreenState", "grabOrderStyle", "sa", "cq"), "0") ; //0表示正常日志，1表示崩溃日志
     }
 
     /**
@@ -318,7 +318,7 @@ public class HYMob {
     public static void getDataListByServiceState(Context context,String co){
         DataBean bean = getBaseDataBeanByState(context, co);
         dataList.add(bean);
-        createMap(context, dataBeanToJson(dataList, "co","serviceState", "sa", "cq"), "0") ; //0表示正常日志，1表示崩溃日志
+        createMap(context, dataBeanToJson(dataList, "co", "serviceState", "sa", "cq"), "0") ; //0表示正常日志，1表示崩溃日志
     }
 
     /**
@@ -340,7 +340,7 @@ public class HYMob {
         bean.setOrderId(orderId);
         bean.setCallStyle(callStyle);
         dataList.add(bean);
-        createMap(context, dataBeanToJson(dataList, "co","callStyle","orderId","serviceSate", "sa", "cq"), "0") ; //0表示正常日志，1表示崩溃日志
+        createMap(context, dataBeanToJson(dataList, "co", "callStyle", "orderId", "serviceSate", "sa", "cq"), "0") ; //0表示正常日志，1表示崩溃日志
     }
     /**
      * 退单
@@ -356,7 +356,7 @@ public class HYMob {
         DataBean bean = getBaseDataBean(context, co);
         bean.setOrderId(orderId);
         dataList.add(bean);
-        createMap(context, dataBeanToJson(dataList, "co","orderId", "sa", "cq"), "0") ; //0表示正常日志，1表示崩溃日志
+        createMap(context, dataBeanToJson(dataList, "co", "orderId", "sa", "cq"), "0") ; //0表示正常日志，1表示崩溃日志
     }
 
     /**
@@ -414,12 +414,12 @@ public class HYMob {
      */
     public static HashMap createMap(Context context,String data,String t){
         if(UserUtils.getMobItem(context) > 0){
-            Log.v("Upload","sp upload");
+            LogUtils.LogV("Upload", "sp upload");
             uploadMob(context,UserUtils.getMobCommon(context),UserUtils.getMobData(context),0,"sp");
         }
 
         if(dataList.size() > 6){
-            Log.v("Upload","uploadeing");
+            LogUtils.LogV("Upload", "uploadeing");
             uploadMob(context,params_map.get("common"),params_map.get("data"),0,"");
         }
 
@@ -449,10 +449,10 @@ public class HYMob {
                         JSONObject jsonResult = JSON.parseObject(result.result);
                         if (jsonResult.containsKey("status") && "0".equals(jsonResult.getString("status"))) {
                             if("sp".equals(from)){
-                                Log.v("Upload","sp上传成功");
+                                LogUtils.LogV("Upload", "sp上传成功");
                                 UserUtils.clearMob(context);
                             } else {
-                                Log.v("Upload","上传成功");
+                                LogUtils.LogV("Upload", "上传成功");
                                 dataList.clear();
                             }
                         }
