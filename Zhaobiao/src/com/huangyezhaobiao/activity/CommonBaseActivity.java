@@ -19,6 +19,7 @@ import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
+import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.TimeUtils;
 import com.huangyezhaobiao.utils.UserUtils;
@@ -58,6 +59,7 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
                 String status = globalConfigBean.getUserPhoneResult().getStatus();
                 if(TextUtils.equals(UserPhoneBean.SUCCESS,status)){
                     String userPhone = globalConfigBean.getUserPhoneResult().getUserPhone();
+                    LogUtils.LogV("wjl", "CommonBaseActivity +userPhone:" + userPhone);
                     SPUtils.saveKV(CommonBaseActivity.this,GlobalConfigBean.KEY_USERPHONE,userPhone);
                 }
                 //网灵通信息

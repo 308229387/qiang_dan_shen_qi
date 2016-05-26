@@ -6,7 +6,7 @@ package com.huangyezhaobiao.bean.HYEventBean;
 public class DataBean {
 
     /**
-     * 埋点类型
+     * 埋点类型(统计事件的)
      */
     protected String co;
     /**
@@ -97,6 +97,14 @@ public class DataBean {
      * 失败原因
      */
     private String failureReason;
+    /**
+     * 埋点类型(统计页面停留时间的)
+     */
+    private String cr;
+    /**
+     * 页面停留时间
+     */
+    private String cs;
 
     /**
      * 默认的构造方法必须不能省，不然不能解析
@@ -288,6 +296,22 @@ public class DataBean {
         this.failureReason = failureReason;
     }
 
+    public String getCs() {
+        return cs;
+    }
+
+    public void setCs(String cs) {
+        this.cs = cs;
+    }
+
+    public String getCr() {
+        return cr;
+    }
+
+    public void setCr(String cr) {
+        this.cr = cr;
+    }
+
     @Override
     public String toString() {
         return "DataBean{" +
@@ -314,6 +338,8 @@ public class DataBean {
                 ", userName='" + userName + '\'' +
                 ", loginState='" + loginState + '\'' +
                 ", failureReason='" + failureReason + '\'' +
+                ", cr='" + cr + '\'' +
+                ", cs='" + cs + '\'' +
                 '}';
     }
 }

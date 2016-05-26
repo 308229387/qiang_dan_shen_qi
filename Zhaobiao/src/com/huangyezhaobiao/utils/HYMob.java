@@ -104,6 +104,7 @@ public class HYMob {
         return bean;
     }
 
+
     /**
      *
      * @param context
@@ -356,6 +357,32 @@ public class HYMob {
         }
         DataBean bean = getBaseDataBean(context, co);
         bean.setOrderId(orderId);
+        dataList.add(bean);
+        return dataList;
+    }
+
+    /**
+     * 页面停留 共有字段DataBean
+     * @param context
+     * @param co
+     * @param cs
+     * @return
+     */
+    public static List<DataBean> getBaseDataListForPage(Context context,String co,String cs){
+        String userId =UserUtils.getUserId(context);
+        if(TextUtils.isEmpty(userId)){
+            userId ="-";
+        }
+        if (TextUtils.isEmpty(co)){
+            co = "-";
+        }
+        if (TextUtils.isEmpty(cs)){
+            cs = "-";
+        }
+        DataBean bean = new DataBean();
+        bean.setCo(co);
+        bean.setSa(userId);
+        bean.setCs(cs);
         dataList.add(bean);
         return dataList;
     }

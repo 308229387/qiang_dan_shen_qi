@@ -19,6 +19,7 @@ import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
+import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.TimeUtils;
 import com.huangyezhaobiao.utils.UserUtils;
@@ -78,6 +79,7 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
                 String status = globalConfigBean.getUserPhoneResult().getStatus();
                 if (TextUtils.equals(UserPhoneBean.SUCCESS, status)) {
                     String userPhone = globalConfigBean.getUserPhoneResult().getUserPhone();
+                    LogUtils.LogV("wjl","CommonFragmentActivity + userPhone:" + userPhone);
                     SPUtils.saveKV(CommonFragmentActivity.this, GlobalConfigBean.KEY_USERPHONE, userPhone);
                 }
                 //网灵通信息

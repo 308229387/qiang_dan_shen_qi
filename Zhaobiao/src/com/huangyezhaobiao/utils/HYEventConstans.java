@@ -8,8 +8,26 @@ package com.huangyezhaobiao.utils;
  * descript：
  */
 public interface HYEventConstans {
-
-
+    /**
+     * 我的定单详情页---（不用切换）
+     */
+    String PAGE_MY_ORDER_DETAIL = "369";
+    /**
+     * 我的订单列表页---（不用切换）
+     */
+    String PAGE_MY_ORDER_LIST = "368";
+    /**
+     * 抢单详情页（可抢/已抢完）
+     */
+    String PAGE_BINDING_DETAIL = "367";
+    /**
+     * 抢单列表页（休息）
+     */
+    String PAGE_BINDING_LIST_REST = "366";
+    /**
+     * 抢单列表页（服务）
+     */
+    String PAGE_BINGING_LIST_SERVICE ="365";
     /**
      *抢单神器当日被打开
      */
