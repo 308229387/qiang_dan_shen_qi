@@ -312,15 +312,6 @@ public class MainActivity extends CommonFragmentActivity implements
 
     @Override
     protected void onDestroy() {
-
-		if("1".equals(SPUtils.getServiceState(this)) && current_rest_time == 0 ){
-			HYMob.getBaseDataListForPage(MainActivity.this, HYEventConstans.PAGE_BINGING_LIST_SERVICE, stop_time - resume_time);
-		}else if("1".equals(SPUtils.getServiceState(this)) && current_service_time != 0){
-			HYMob.getBaseDataListForPage(MainActivity.this, HYEventConstans.PAGE_BINGING_LIST_SERVICE, stop_time - current_service_time);
-		}else if("2".equals(SPUtils.getServiceState(this)) && current_rest_time != 0){
-			HYMob.getBaseDataListForPage(MainActivity.this, HYEventConstans.PAGE_BINDING_LIST_REST, stop_time - current_rest_time);
-		}
-
         app.unRegisterNetStateListener();//解除网络的变化Listener
         app.stopTimer();//停止文件的上传
         if (updateManager != null) {//bug:防止activity被无故杀死时dialog造成内存泄露
@@ -1259,7 +1250,5 @@ public class MainActivity extends CommonFragmentActivity implements
 		}else if("2".equals(SPUtils.getServiceState(this)) && current_rest_time != 0){
 			HYMob.getBaseDataListForPage(MainActivity.this, HYEventConstans.PAGE_BINDING_LIST_REST, stop_time - current_rest_time);
 		}
-
-
 	}
 }

@@ -285,8 +285,6 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        destory_time = System.currentTimeMillis();
     }
 
     @Override

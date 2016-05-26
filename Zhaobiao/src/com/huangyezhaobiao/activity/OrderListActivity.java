@@ -166,7 +166,6 @@ public class OrderListActivity extends CommonFragmentActivity implements
 		super.onDestroy();
 		//解绑EventBus
 		EventbusAgent.getInstance().unregister(this);
-		HYMob.getBaseDataListForPage(OrderListActivity.this, HYEventConstans.PAGE_MY_ORDER_LIST, stop_time - resume_time);
 	}
 
 	@Override

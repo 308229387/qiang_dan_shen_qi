@@ -282,8 +282,8 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 
 
 	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		HYMob.getBaseDataListForPage(OrderDetailActivity.this, HYEventConstans.PAGE_BINDING_DETAIL, destory_time- resume_time);
+	protected void onStop() {
+		super.onStop();
+		HYMob.getBaseDataListForPage(OrderDetailActivity.this, HYEventConstans.PAGE_BINDING_DETAIL, destory_time - resume_time);
 	}
 }

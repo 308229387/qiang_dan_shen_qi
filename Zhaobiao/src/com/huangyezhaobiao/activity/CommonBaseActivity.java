@@ -306,7 +306,6 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        destory_time = System.currentTimeMillis();
     }
 
     @Override

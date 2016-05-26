@@ -147,8 +147,8 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 	protected void onDestroy() {
 		super.onDestroy();
 		EventbusAgent.getInstance().unregister(this);
-		HYMob.getBaseDataListForPage(FetchDetailsActivity.this, HYEventConstans.PAGE_MY_ORDER_DETAIL, stop_time - resume_time);
 	}
+
 
 	@Override
 	protected void onStop() {
