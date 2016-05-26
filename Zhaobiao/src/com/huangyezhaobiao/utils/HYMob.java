@@ -165,7 +165,8 @@ public class HYMob {
      * @return
      */
     public static void getDataList(Context context,String co){
-        dataList.add(getBaseDataBean(context, co));
+        DataBean bean = getBaseDataBean(context, co);
+        dataList.add(bean);
         createMap(context, dataBeanToJson(dataList, "co", "sa", "cq"), "0") ; //0表示正常日志，1表示崩溃日志
     }
 
@@ -237,7 +238,8 @@ public class HYMob {
      * @return
      */
     public static void getDataListByModel(Context context,String co){
-        dataList.add(getBaseDataBeanByModel(context, co));
+        DataBean bean = getBaseDataBeanByModel(context, co);
+        dataList.add(bean);
         createMap(context, dataBeanToJson(dataList, "co", "sa", "modelState", "cq"), "0"); //0表示正常日志，1表示崩溃日志
     }
 
