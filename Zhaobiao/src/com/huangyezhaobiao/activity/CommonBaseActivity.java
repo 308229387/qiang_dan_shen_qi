@@ -40,7 +40,7 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
     private GlobalConfigVM globalConfigVM;
 //    private static final String TAG = CommonBaseActivity.class.getName();
 
-    protected long resume_time,stop_time,destory_time;
+    protected long resume_time,stop_time;
 
     private NetWorkVMCallBack globalConfigCallBack = new NetWorkVMCallBack() {
         @Override

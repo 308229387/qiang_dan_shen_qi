@@ -41,7 +41,7 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
     protected GlobalConfigVM globalConfigVM;
 //    private static final String TAG = CommonFragmentActivity.class.getName();
 
-    protected long resume_time,stop_time,destory_time;
+    protected long resume_time,stop_time;
     /**
      * 需要同步
      *
