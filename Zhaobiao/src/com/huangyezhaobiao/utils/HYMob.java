@@ -364,23 +364,23 @@ public class HYMob {
     /**
      * 页面停留 共有字段DataBean
      * @param context
-     * @param co
+     * @param cr
      * @param cs
      * @return
      */
-    public static List<DataBean> getBaseDataListForPage(Context context,String co,String cs){
+    public static List<DataBean> getBaseDataListForPage(Context context,String cr,String cs){
         String userId =UserUtils.getUserId(context);
         if(TextUtils.isEmpty(userId)){
             userId ="-";
         }
-        if (TextUtils.isEmpty(co)){
-            co = "-";
+        if (TextUtils.isEmpty(cr)){
+            cr = "-";
         }
         if (TextUtils.isEmpty(cs)){
             cs = "-";
         }
         DataBean bean = new DataBean();
-        bean.setCo(co);
+        bean.setCr(cr);
         bean.setSa(userId);
         bean.setCs(cs);
         dataList.add(bean);
