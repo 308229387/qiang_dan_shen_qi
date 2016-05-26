@@ -105,77 +105,6 @@ public class HYMob {
     }
 
 
-    /**
-     *
-     * @param context
-     * @param co
-     * @return
-     */
-    public static List<DataBean> getDataList(Context context,String co){
-        dataList.add(getBaseDataBean(context, co));
-        return dataList;
-    }
-
-    /**
-     *
-     * @param context
-     * @param co
-     * @param s1
-     * @return
-     */
-    public static List<DataBean> getDataListByQiangDan(Context context,String co,String s1){
-        if (TextUtils.isEmpty(s1)){
-            s1 = "-";
-        }
-        DataBean bean = getBaseDataBean(context, co);
-        bean.setS1(s1);
-        dataList.add(bean);
-        return dataList;
-    }
-
-    /**
-     * 登录
-     * @param context
-     * @param co
-     * @param userName
-     * @return
-     */
-    public static List<DataBean> getDataListByLoginSuccess(Context context,String co,String loginState,String userName){
-        if(TextUtils.isEmpty(loginState)){
-            loginState = "-";
-        }
-        if(TextUtils.isEmpty(userName)){
-            userName = "-";
-        }
-        DataBean bean = getBaseDataBean(context, co);
-        bean.setLoginState(loginState);
-        bean.setUserName(userName);
-        dataList.add(bean);
-        return dataList;
-    }
-
-    /**
-     * 登录失败
-     * @param context
-     * @param co
-     * @param loginState
-     * @param failureReason
-     * @return
-     */
-    public static List<DataBean> getDataListByLoginError(Context context,String co,String loginState,String failureReason){
-        if(TextUtils.isEmpty(loginState)){
-            loginState = "-";
-        }
-        if(TextUtils.isEmpty(failureReason)){
-            failureReason = "-";
-        }
-        DataBean bean = getBaseDataBean(context, co);
-        bean.setLoginState(loginState);
-        bean.setFailureReason(failureReason);
-        dataList.add(bean);
-        return dataList;
-    }
-
     public static DataBean getBaseDataBeanByModel(Context context,String co){
         int  state = StateUtils.state -1;
         String modelState = String.valueOf(state); //模式状态 服务0、休息1
@@ -203,87 +132,6 @@ public class HYMob {
         bean.setModelState(modelState);
         return bean;
     }
-
-
-    /**
-     *
-     * @param context
-     * @param co 埋点类别
-     * @return
-     */
-    public static List<DataBean> getDataListByModel(Context context,String co){
-        dataList.add(getBaseDataBeanByModel(context, co));
-        return dataList;
-    }
-
-    /**
-     * 列表页、详情页抢单
-     * @param context
-     * @param co
-     * @param s1 标地id
-     * @param grabOrderStyle 抢单入口 列表页1、详情页2、弹窗4
-     * @return
-     */
-    public static List<DataBean> getDataList(Context context,String co,String s1,String grabOrderStyle){
-        if (TextUtils.isEmpty(s1)){
-            s1 = "-";
-        }
-        DataBean bean = getBaseDataBeanByModel(context, co);
-        bean.setS1(s1);
-        bean.setGrabOrderStyle(grabOrderStyle);
-        dataList.add(bean);
-        return dataList;
-    }
-
-    /**
-     * 弹窗抢单按钮
-     * @param context
-     * @param co
-     * @param s1
-     * @param lockScreenState 锁屏状态----安卓:锁屏0、未锁屏1
-     * @param grabOrderStyle  抢单入口 列表页1、详情页2、弹窗4
-     * @return
-     */
-    public static List<DataBean> getDataListByTanChuang(Context context,String co,String s1,String lockScreenState,String grabOrderStyle){
-        if (TextUtils.isEmpty(s1)){
-            s1 = "-";
-        }
-        if (TextUtils.isEmpty(lockScreenState)){
-            lockScreenState = "-";
-        }
-        if (TextUtils.isEmpty(grabOrderStyle)){
-            grabOrderStyle = "-";
-        }
-        DataBean bean = getBaseDataBean(context, co);
-        bean.setS1(s1);
-        bean.setLockScreenState(lockScreenState);
-        bean.setGrabOrderStyle(grabOrderStyle);
-        dataList.add(bean);
-        return dataList;
-    }
-
-    /**
-     *
-     * @param context
-     * @param co
-     * @param s1 标地id
-     * @param grabOrderState 抢单状态 已抢0、可抢1
-     * @return
-     */
-    public static List<DataBean> getDataListByState(Context context,String co,String s1,String grabOrderState){
-        if (TextUtils.isEmpty(s1)){
-            s1 = "-";
-        }
-        if (TextUtils.isEmpty(grabOrderState)){
-            grabOrderState ="-";
-        }
-        DataBean bean = getBaseDataBean(context, co);
-        bean.setS1(s1);
-        bean.setGrabOrderState(grabOrderState);
-        dataList.add(bean);
-        return dataList;
-    }
-
 
     public static DataBean getBaseDataBeanByState(Context context,String co){
         String userId =UserUtils.getUserId(context);
@@ -316,10 +164,161 @@ public class HYMob {
      * @param co
      * @return
      */
-    public static List<DataBean> getDataListByServiceState(Context context,String co){
+    public static void getDataList(Context context,String co){
+        dataList.add(getBaseDataBean(context, co));
+        createMap(context, dataBeanToJson(dataList, "co", "sa", "cq"), "0") ; //0表示正常日志，1表示崩溃日志
+    }
+
+    /**
+     *
+     * @param context
+     * @param co
+     * @param s1
+     * @return
+     */
+    public static void getDataListByQiangDan(Context context,String co,String s1){
+        if (TextUtils.isEmpty(s1)){
+            s1 = "-";
+        }
+        DataBean bean = getBaseDataBean(context, co);
+        bean.setS1(s1);
+        dataList.add(bean);
+        //0表示正常日志，1表示崩溃日志
+        createMap(context, dataBeanToJson(dataList, "co", "sa", "s1","cq"), "0");
+    }
+
+    /**
+     * 登录
+     * @param context
+     * @param co
+     * @param userName
+     * @return
+     */
+    public static void getDataListByLoginSuccess(Context context,String co,String loginState,String userName){
+        if(TextUtils.isEmpty(loginState)){
+            loginState = "-";
+        }
+        if(TextUtils.isEmpty(userName)){
+            userName = "-";
+        }
+        DataBean bean = getBaseDataBean(context, co);
+        bean.setLoginState(loginState);
+        bean.setUserName(userName);
+        dataList.add(bean);
+        createMap(context, dataBeanToJson(dataList, "co", "sa", "cq","loginState", "userName"), "0") ; //0表示正常日志，1表示崩溃日志
+    }
+
+    /**
+     * 登录失败
+     * @param context
+     * @param co
+     * @param loginState
+     * @param failureReason
+     * @return
+     */
+    public static void getDataListByLoginError(Context context,String co,String loginState,String failureReason){
+        if(TextUtils.isEmpty(loginState)){
+            loginState = "-";
+        }
+        if(TextUtils.isEmpty(failureReason)){
+            failureReason = "-";
+        }
+        DataBean bean = getBaseDataBean(context, co);
+        bean.setLoginState(loginState);
+        bean.setFailureReason(failureReason);
+        dataList.add(bean);
+        createMap(context, dataBeanToJson(dataList, "co", "sa", "cq", "loginState", "failureReason"), "0") ; //0表示正常日志，1表示崩溃日志
+    }
+
+    /**
+     *
+     * @param context
+     * @param co 埋点类别
+     * @return
+     */
+    public static void getDataListByModel(Context context,String co){
+        dataList.add(getBaseDataBeanByModel(context, co));
+        createMap(context, dataBeanToJson(dataList, "co", "sa", "modelState", "cq"), "0"); //0表示正常日志，1表示崩溃日志
+    }
+
+    /**
+     * 列表页、详情页抢单
+     * @param context
+     * @param co
+     * @param s1 标地id
+     * @param grabOrderStyle 抢单入口 列表页1、详情页2、弹窗4
+     * @return
+     */
+    public static void getDataListForQiangdan(Context context,String co,String s1,String grabOrderStyle){
+        if (TextUtils.isEmpty(s1)){
+            s1 = "-";
+        }
+        DataBean bean = getBaseDataBeanByModel(context, co);
+        bean.setS1(s1);
+        bean.setGrabOrderStyle(grabOrderStyle);
+        dataList.add(bean);
+        createMap(context, dataBeanToJson(dataList, "co", "s1", "modelState", "grabOrderStyle", "sa", "cq"), "0"); //0表示正常日志，1表示崩溃日志
+    }
+    /**
+     * 弹窗抢单按钮
+     * @param context
+     * @param co
+     * @param s1
+     * @param lockScreenState 锁屏状态----安卓:锁屏0、未锁屏1
+     * @param grabOrderStyle  抢单入口 列表页1、详情页2、弹窗4
+     * @return
+     */
+    public static void getDataListByTanChuang(Context context,String co,String s1,String lockScreenState,String grabOrderStyle){
+        if (TextUtils.isEmpty(s1)){
+            s1 = "-";
+        }
+        if (TextUtils.isEmpty(lockScreenState)){
+            lockScreenState = "-";
+        }
+        if (TextUtils.isEmpty(grabOrderStyle)){
+            grabOrderStyle = "-";
+        }
+        DataBean bean = getBaseDataBean(context, co);
+        bean.setS1(s1);
+        bean.setLockScreenState(lockScreenState);
+        bean.setGrabOrderStyle(grabOrderStyle);
+        dataList.add(bean);
+        createMap(context, dataBeanToJson(dataList, "co","s1","lockScreenState","grabOrderStyle", "sa", "cq"), "0") ; //0表示正常日志，1表示崩溃日志
+    }
+
+    /**
+     *
+     * @param context
+     * @param co
+     * @param s1 标地id
+     * @param grabOrderState 抢单状态 已抢0、可抢1
+     * @return
+     */
+    public static void getDataListByState(Context context,String co,String s1,String grabOrderState){
+        if (TextUtils.isEmpty(s1)){
+            s1 = "-";
+        }
+        if (TextUtils.isEmpty(grabOrderState)){
+            grabOrderState ="-";
+        }
+        DataBean bean = getBaseDataBean(context, co);
+        bean.setS1(s1);
+        bean.setGrabOrderState(grabOrderState);
+        dataList.add(bean);
+        createMap(context, dataBeanToJson(dataList, "co", "s1", "grabOrderState", "sa", "cq"), "0") ; //0表示正常日志，1表示崩溃日志
+    }
+
+
+    /**
+     * 订单列表
+     * @param context
+     * @param co
+     * @return
+     */
+    public static void getDataListByServiceState(Context context,String co){
         DataBean bean = getBaseDataBeanByState(context, co);
         dataList.add(bean);
-        return dataList;
+        createMap(context, dataBeanToJson(dataList, "co","serviceState", "sa", "cq"), "0") ; //0表示正常日志，1表示崩溃日志
     }
 
     /**
@@ -330,7 +329,7 @@ public class HYMob {
      * @param callStyle 电话入口 列表0、详情1
      * @return
      */
-    public static List<DataBean> getDataListByCall(Context context,String co,String orderId,String callStyle){
+    public static void getDataListByCall(Context context,String co,String orderId,String callStyle){
         if (TextUtils.isEmpty(orderId)){
             orderId = "-";
         }
@@ -341,9 +340,8 @@ public class HYMob {
         bean.setOrderId(orderId);
         bean.setCallStyle(callStyle);
         dataList.add(bean);
-        return dataList;
+        createMap(context, dataBeanToJson(dataList, "co","callStyle","orderId","serviceSate", "sa", "cq"), "0") ; //0表示正常日志，1表示崩溃日志
     }
-
     /**
      * 退单
      * @param context
@@ -351,14 +349,14 @@ public class HYMob {
      * @param orderId
      * @return
      */
-    public static List<DataBean> getDataListByRefund(Context context,String co,String orderId){
+    public static void getDataListByRefund(Context context,String co,String orderId){
         if (TextUtils.isEmpty(orderId)){
             orderId = "-";
         }
         DataBean bean = getBaseDataBean(context, co);
         bean.setOrderId(orderId);
         dataList.add(bean);
-        return dataList;
+        createMap(context, dataBeanToJson(dataList, "co","orderId", "sa", "cq"), "0") ; //0表示正常日志，1表示崩溃日志
     }
 
     /**
@@ -368,23 +366,27 @@ public class HYMob {
      * @param cs
      * @return
      */
-    public static List<DataBean> getBaseDataListForPage(Context context,String cr,String cs){
+    public static void getBaseDataListForPage(Context context,String cr,long cs){
+        if(cs <=0)cs =0;
         String userId =UserUtils.getUserId(context);
+        String time = String.valueOf(cs);
         if(TextUtils.isEmpty(userId)){
             userId ="-";
         }
         if (TextUtils.isEmpty(cr)){
             cr = "-";
         }
-        if (TextUtils.isEmpty(cs)){
-            cs = "-";
+
+        if (TextUtils.isEmpty(time)){
+            time = "-";
         }
+
         DataBean bean = new DataBean();
         bean.setCr(cr);
         bean.setSa(userId);
-        bean.setCs(cs);
+        bean.setCs(time);
         dataList.add(bean);
-        return dataList;
+        createMap(context, dataBeanToJson(dataList, "cr", "sa", "cs"), "0"); //0表示正常日志，1表示崩溃日志
     }
 
     /**
@@ -397,7 +399,7 @@ public class HYMob {
     public static String createLogger(Context context,String data,String t){
 
         StringBuilder builder = new StringBuilder();
-        builder.append("common=").append(HYMob.commonBeanToJson(context));
+        builder.append("common=").append(commonBeanToJson(context));
         builder.append("&data=").append(data);
         builder.append("&t=").append(t);
         return builder.toString();
@@ -416,16 +418,16 @@ public class HYMob {
             uploadMob(context,UserUtils.getMobCommon(context),UserUtils.getMobData(context),0,"sp");
         }
 
-        if(HYMob.dataList.size() > 6){
+        if(dataList.size() > 6){
             Log.v("Upload","uploadeing");
-            uploadMob(context,HYMob.params_map.get("common"),HYMob.params_map.get("data"),0,"");
+            uploadMob(context,params_map.get("common"),params_map.get("data"),0,"");
         }
 
         params_map = new HashMap<String, String>();
         params_map.put("common",commonBeanToJson(context));
         params_map.put("data", data);
         params_map.put("t", t);
-        LogUtils.LogV("wjl", HYMob.createLogger(context, data, "0"));
+        LogUtils.LogV("wjl", createLogger(context, data, "0"));
         return params_map;
     }
 
@@ -435,7 +437,7 @@ public class HYMob {
             HTTPTools.newHttpUtilsInstance().doGet(URLConstans.UPLOAD_URL +"?common=" + common + "&data=" + data +"&t=" + t, null, new HttpRequestCallBack() {
                 @Override
                 public void onLoadingFailure(String err) {
-                    UserUtils.setMobItem(context,HYMob.dataList.size());
+                    UserUtils.setMobItem(context,dataList.size());
                     UserUtils.setMobCommon(context,common);
                     UserUtils.setMobData(context,data);
                 }
@@ -451,11 +453,11 @@ public class HYMob {
                                 UserUtils.clearMob(context);
                             } else {
                                 Log.v("Upload","上传成功");
-                                HYMob.dataList.clear();
+                                dataList.clear();
                             }
                         }
                     } catch (Exception e) {
-                        UserUtils.setMobItem(context,HYMob.dataList.size());
+                        UserUtils.setMobItem(context,dataList.size());
                         UserUtils.setMobCommon(context,common);
                         UserUtils.setMobData(context,data);
                        e.printStackTrace();
@@ -478,7 +480,7 @@ public class HYMob {
                 }
             });
         } else {
-            UserUtils.setMobItem(context,HYMob.dataList.size());
+            UserUtils.setMobItem(context,dataList.size());
             UserUtils.setMobCommon(context,common);
             UserUtils.setMobData(context,data);
         }

@@ -40,6 +40,8 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
     private GlobalConfigVM globalConfigVM;
 //    private static final String TAG = CommonBaseActivity.class.getName();
 
+    protected long resume_time,stop_time,destory_time;
+
     private NetWorkVMCallBack globalConfigCallBack = new NetWorkVMCallBack() {
         @Override
         public void onLoadingStart() {
@@ -163,6 +165,9 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
     @Override
     protected void onResume() {
         super.onResume();
+
+        resume_time = System.currentTimeMillis();
+
         //封装了的百度统计
         BDMob.getBdMobInstance().onResumeActivity(this);
         if(SPUtils.fromBackground(this)){
@@ -171,9 +176,6 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
             SPUtils.toForeground(this);//现在应用到前台了
 
             HYMob.getDataList(this, HYEventConstans.EVENT_ID_APP_OPEND);
-            String data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
-            HYMob.createMap(this, data, "0") ; //0表示正常日志，1表示崩溃日志
-
 
             backToForeVM.report();
             if(needAsync() && !TextUtils.isEmpty(UserUtils.getUserId(this))){
@@ -282,6 +284,9 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
     @Override
     protected void onStop() {
         super.onStop();
+
+        stop_time = System.currentTimeMillis();
+
         if(!BiddingApplication.getBiddingApplication().isAppOnForeground()){//到后台了
             Log.e(TAG,"to background");
             SPUtils.toBackground(this);
@@ -297,6 +302,13 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
         //封装了的百度统计
         BDMob.getBdMobInstance().onPauseActivity(this);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        destory_time = System.currentTimeMillis();
+    }
+
     @Override
     public void onVersionBack(String version) {
 

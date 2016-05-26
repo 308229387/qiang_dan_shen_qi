@@ -236,7 +236,7 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
         stopLoading();
         rl_submit.setVisibility(View.GONE);
         layout_no_internet.setVisibility(View.GONE);
-        Toast.makeText(getActivity(),msg,0).show();
+        Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -249,7 +249,7 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
     public void onNoInterNetError() {
         stopLoading();
         layout_no_internet.setVisibility(View.VISIBLE);
-        Toast.makeText(getActivity(),"没有网络",0).show();
+        Toast.makeText(getActivity(),"没有网络",Toast.LENGTH_SHORT).show();
     }
 
 
@@ -294,8 +294,6 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
                 BDMob.getBdMobInstance().onMobEvent(getActivity(), BDEventConstans.EVENT_ID_REFUND_PAGE_ADD_PHOTO);
 
                 HYMob.getDataList(getActivity(), HYEventConstans.EVENT_ID_REFUND_PAGE_ADD_PHOTO);
-                String  data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
-                HYMob.createMap(getActivity(), data, "0") ; //0表示正常日志，1表示崩溃日志
 
                 KeyboardUtil.hideSoftInput(getActivity());
                 select_view.setVisibility(View.VISIBLE);
@@ -344,15 +342,13 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
     //校验:原因/描述/图片
     private void submit() {
         //点击了退单按钮
-        BDMob.getBdMobInstance().onMobEvent(getActivity(),BDEventConstans.EVENT_ID_REFUND_PAGE_SUBMIT);
+        BDMob.getBdMobInstance().onMobEvent(getActivity(), BDEventConstans.EVENT_ID_REFUND_PAGE_SUBMIT);
 
         HYMob.getDataList(getActivity(), HYEventConstans.EVENT_ID_REFUND_PAGE_SUBMIT);
-        String  data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
-        HYMob.createMap(getActivity(), data, "0") ; //0表示正常日志，1表示崩溃日志
 
         //点击了退单按钮
         if(!NetUtils.isNetworkConnected(getActivity())){//没有网络
-            Toast.makeText(getActivity(),"没有网络,请检查网络设置",0).show();
+            Toast.makeText(getActivity(),"没有网络,请检查网络设置",Toast.LENGTH_SHORT).show();
             return;
         }
         rl_submit.setVisibility(View.VISIBLE);
@@ -370,7 +366,7 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
         if(java.nio.charset.Charset.forName("GBK").newEncoder().canEncode(et_refund_desc.getText().toString())){
 
         }else{
-            Toast.makeText(getActivity(),"请不要输入例如表情等特殊字符",1).show();
+            Toast.makeText(getActivity(),"请不要输入例如表情等特殊字符",Toast.LENGTH_SHORT).show();
             return;
         }
 

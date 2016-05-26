@@ -162,8 +162,6 @@ public class SplashActivity extends Activity {
 		BDMob.getBdMobInstance().onResumeActivity(this);
 
 		HYMob.getDataList(this, HYEventConstans.EVENT_ID_APP_OPEND);
-		String data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
-		HYMob.createMap(this, data, "0") ; //0表示正常日志，1表示崩溃日志
 
 	}
 

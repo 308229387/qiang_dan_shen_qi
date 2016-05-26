@@ -245,9 +245,7 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 							try {
 								BDMob.getBdMobInstance().onMobEvent(OrderDetailActivity.this, BDEventConstans.EVENT_ID_BIDDING_DETAIL_PAGE_BIDDING);
 
-								HYMob.getDataList(OrderDetailActivity.this,HYEventConstans.EVENT_ID_BIDDING_DETAIL_PAGE_BIDDING, String.valueOf(popPass.getBidId()), "2");
-								String data= HYMob.dataBeanToJson(HYMob.dataList, "co","s1","modelState","grabOrderStyle", "sa", "cq");
-								HYMob.createMap(OrderDetailActivity.this,data, "0") ; //0表示正常日志，1表示崩溃日志
+								HYMob.getDataListForQiangdan(OrderDetailActivity.this,HYEventConstans.EVENT_ID_BIDDING_DETAIL_PAGE_BIDDING, String.valueOf(popPass.getBidId()), "2");
 
 								rl_qd.setVisibility(View.VISIBLE);
 								knockViewModel = new KnockViewModel(OrderDetailActivity.this, OrderDetailActivity.this);
@@ -282,4 +280,10 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 		}
 	}
 
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		HYMob.getBaseDataListForPage(OrderDetailActivity.this, HYEventConstans.PAGE_BINDING_DETAIL, destory_time- resume_time);
+	}
 }

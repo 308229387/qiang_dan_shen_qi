@@ -100,8 +100,7 @@ public class PriceAreaBean extends QDDetailBaseBean{
 				BDMob.getBdMobInstance().onMobEvent(context, BDEventConstans.EVENT_ID_ORDER_DETAIL_REFUND);
 
 				HYMob.getDataListByRefund(context, HYEventConstans.EVENT_ID_ORDER_LIST_PHONE, String.valueOf(orderId));
-				String  data= HYMob.dataBeanToJson(HYMob.dataList, "co","orderId", "sa", "cq");
-				HYMob.createMap(context, data, "0") ; //0表示正常日志，1表示崩溃日志
+
 
 				Log.e("shenzhixin","hahahah state:"+refundState);
 				EventAction action = new EventAction(EventType.REGISTER_SUCCESS);

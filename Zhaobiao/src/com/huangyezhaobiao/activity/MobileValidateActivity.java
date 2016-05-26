@@ -87,8 +87,6 @@ public class MobileValidateActivity extends CommonBaseActivity implements NetWor
 				BDMob.getBdMobInstance().onMobEvent(MobileValidateActivity.this, BDEventConstans.EVENT_ID_MOBILE_BIND_PAGE_GETCODE);
 
 				HYMob.getDataList(MobileValidateActivity.this, HYEventConstans.EVENT_ID_MOBILE_BIND_PAGE_GETCODE);
-				String data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
-				HYMob.createMap(MobileValidateActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
 
 				String mobiletext = mobile.getText().toString();
 				if (isMobile(mobiletext)) {
@@ -106,8 +104,6 @@ public class MobileValidateActivity extends CommonBaseActivity implements NetWor
 				BDMob.getBdMobInstance().onMobEvent(MobileValidateActivity.this, BDEventConstans.EVENT_ID_MOBILE_BIND_PAGE_SUBMIT);
 
 				HYMob.getDataList(MobileValidateActivity.this, HYEventConstans.EVENT_ID_MOBILE_BIND_PAGE_SUBMIT);
-				String data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
-				HYMob.createMap(MobileValidateActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
 
 				String mobiletext = mobile.getText().toString();
 				String codetext = code.getText().toString();

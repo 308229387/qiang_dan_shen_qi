@@ -79,10 +79,8 @@ public class BidSuccessActivity extends QBBaseActivity {
 				if (receivePassBean != null ) {
 					bidId = String.valueOf(receivePassBean.getBidId());
 				}
+
 				HYMob.getDataListByQiangDan(BidSuccessActivity.this, HYEventConstans.EVENT_ID_SUCCESS_PAGE_LOOK_BIDDING,bidId);
-				String data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "s1","cq");
-				//0表示正常日志，1表示崩溃日志
-				HYMob.createMap(BidSuccessActivity.this, data, "0");
 
 				ActivityUtils.goToActivity(BidSuccessActivity.this, OrderListActivity.class);
 			}
@@ -96,9 +94,8 @@ public class BidSuccessActivity extends QBBaseActivity {
 				if (receivePassBean != null ) {
 					bidId = String.valueOf(receivePassBean.getBidId());
 				}
+
 				HYMob.getDataListByQiangDan(BidSuccessActivity.this, HYEventConstans.EVENT_ID_SUCCESS_PAGE_CONTINUE_BIDDING, bidId);
-				String data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "s1","cq");
-				HYMob.createMap(BidSuccessActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
 
 				ActivityUtils.goToActivity(BidSuccessActivity.this, MainActivity.class);
 			}

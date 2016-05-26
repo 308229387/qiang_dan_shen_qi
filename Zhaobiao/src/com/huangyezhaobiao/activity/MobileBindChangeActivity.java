@@ -183,8 +183,6 @@ public class MobileBindChangeActivity extends QBBaseActivity implements View.OnC
                 BDMob.getBdMobInstance().onMobEvent(this, BDEventConstans.EVENT_ID_CHANGE_MOBILE_PAGE_GET_CODE);
 
                 HYMob.getDataList(this, HYEventConstans.EVENT_ID_CHANGE_MOBILE_PAGE_GET_CODE);
-                data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
-                HYMob.createMap(this, data, "0") ; //0表示正常日志，1表示崩溃日志
 
                 mobileChangeGetCodeVM.getCode(UserUtils.getUserId(this),et_now_bind_mobile.getText().toString(),true);
                 break;
@@ -192,8 +190,6 @@ public class MobileBindChangeActivity extends QBBaseActivity implements View.OnC
                 BDMob.getBdMobInstance().onMobEvent(this, BDEventConstans.EVENT_ID_CHANGE_MOBILE_PAGE_SUBMIT);
 
                 HYMob.getDataList(this, HYEventConstans.EVENT_ID_CHANGE_MOBILE_PAGE_SUBMIT);
-                data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
-                HYMob.createMap(this, data, "0") ; //0表示正常日志，1表示崩溃日志
 
                 //Toast.makeText(this,"submit",Toast.LENGTH_SHORT).show();
                 if(TextUtils.equals(et_now_bind_mobile.getText().toString(),et_new_validate_mobile.getText().toString())){

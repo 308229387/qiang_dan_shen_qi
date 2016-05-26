@@ -225,8 +225,6 @@ public class RefundAgainCommitFragment extends RefundBaseFragment implements Net
                 BDMob.getBdMobInstance().onMobEvent(getActivity(), BDEventConstans.EVENT_ID_REFUND_PAGE_ADD_PHOTO);
 
                 HYMob.getDataList(getActivity(), HYEventConstans.EVENT_ID_REFUND_PAGE_ADD_PHOTO);
-                String  data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
-                HYMob.createMap(getActivity(), data, "0") ; //0表示正常日志，1表示崩溃日志
 
                 KeyboardUtil.hideSoftInput(getActivity());
                 //TODO:展示dialog是照相还是相册
@@ -296,7 +294,7 @@ public class RefundAgainCommitFragment extends RefundBaseFragment implements Net
         stopLoading();
         layout_no_internet.setVisibility(View.GONE);
         rl_submit.setVisibility(View.GONE);
-        Toast.makeText(getActivity(),msg,0).show();
+        Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -309,7 +307,7 @@ public class RefundAgainCommitFragment extends RefundBaseFragment implements Net
     public void onNoInterNetError() {
         stopLoading();
         layout_no_internet.setVisibility(View.VISIBLE);
-        Toast.makeText(getActivity(),"没有网络",0).show();
+        Toast.makeText(getActivity(),"没有网络",Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -347,12 +345,10 @@ public class RefundAgainCommitFragment extends RefundBaseFragment implements Net
         BDMob.getBdMobInstance().onMobEvent(getActivity(),BDEventConstans.EVENT_ID_REFUND_PAGE_SUBMIT);
 
         HYMob.getDataList(getActivity(), HYEventConstans.EVENT_ID_REFUND_PAGE_SUBMIT);
-        String  data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
-        HYMob.createMap(getActivity(), data, "0") ; //0表示正常日志，1表示崩溃日志
 
         //点击了退单按钮
         if(!NetUtils.isNetworkConnected(getActivity())){//没有网络
-            Toast.makeText(getActivity(),"没有网络,请检查网络设置",0).show();
+            Toast.makeText(getActivity(),"没有网络,请检查网络设置",Toast.LENGTH_SHORT).show();
             return;
         }
 

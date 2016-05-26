@@ -21,8 +21,6 @@ public class StateUtils {
 	
 	
 	public static int state = 0; //服务模式为1 休息模式为2  后台运行为0
-	
-	
 	/**
 	 * 判断程序是否在后台运行
 	 * @param context

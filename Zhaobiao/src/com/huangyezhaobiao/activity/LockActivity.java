@@ -66,7 +66,6 @@ public class LockActivity extends Activity implements NetWorkVMCallBack, View.On
     private ProgressDialog qdDialog;
     private ZhaoBiaoDialog resultDialog;
 
-    private String data; //埋点data数据
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -255,11 +254,7 @@ public class LockActivity extends Activity implements NetWorkVMCallBack, View.On
             @Override
             public void onClick(View v) {
 
-
                 HYMob.getDataList(LockActivity.this, HYEventConstans.EVENT_ID_WINDOW_PAGE_NEXT);
-                data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
-                HYMob.createMap(LockActivity.this,data, "0") ; //0表示正常日志，1表示崩溃日志
-
 
                 //这时要把runnable去掉
                 handler.removeCallbacks(runnable);
@@ -378,8 +373,6 @@ public class LockActivity extends Activity implements NetWorkVMCallBack, View.On
                 BDMob.getBdMobInstance().onMobEvent(this, BDEventConstans.EVENT_ID_WINDOW_PAGE_CLOSE);
 
                 HYMob.getDataList(this, HYEventConstans.EVENT_ID_WINDOW_PAGE_CLOSE);
-                data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
-                HYMob.createMap(this, data, "0") ; //0表示正常日志，1表示崩溃日志
 
                 backToKeyguard();
                 voiceManager.closeOrdersDialog();
@@ -390,9 +383,6 @@ public class LockActivity extends Activity implements NetWorkVMCallBack, View.On
                 BDMob.getBdMobInstance().onMobEvent(this, BDEventConstans.EVENT_ID_WINDOW_PAGE_VOLUME);
 
                 HYMob.getDataList(this, HYEventConstans.EVENT_ID_WINDOW_PAGE_VOLUME);
-                data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
-                HYMob.createMap(this, data, "0") ; //0表示正常日志，1表示崩溃日志
-
 
                 voiceManager.clickVolumeButton();
                 MDUtils.pushWindowPageMD(this, bean.getCateId() + "", bean.toPushStorageBean() + "", yuyin_op);
@@ -410,8 +400,6 @@ public class LockActivity extends Activity implements NetWorkVMCallBack, View.On
                 BDMob.getBdMobInstance().onMobEvent(this, BDEventConstans.EVENT_ID_OUT_WINDOW_PAGE_BIDDING);
 
                 HYMob.getDataListByTanChuang(this, HYEventConstans.EVENT_ID_WINDOW_PAGE_BIDDING, String.valueOf(bean.toPushPassBean().getBidId()), "0", "4");
-                data= HYMob.dataBeanToJson(HYMob.dataList, "co","s1","lockScreenState","grabOrderStyle", "sa", "cq");
-                HYMob.createMap(this, data, "0") ; //0表示正常日志，1表示崩溃日志
 
                 kvm.knock(bean.toPushPassBean(), AppConstants.BIDSOURCE_WINDOW);
                 voiceManager.clickQDButton();

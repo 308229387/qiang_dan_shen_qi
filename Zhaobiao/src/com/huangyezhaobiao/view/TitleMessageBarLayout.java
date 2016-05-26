@@ -262,8 +262,6 @@ public class TitleMessageBarLayout extends RelativeLayout{
 				BDMob.getBdMobInstance().onMobEvent(getContext(), BDEventConstans.EVENT_ID_MESSAGE_BAR);
 
 				HYMob.getDataList(getContext(), HYEventConstans.EVENT_ID_MESSAGE_BAR);
-				String data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
-				HYMob.createMap(getContext(), data, "0") ; //0表示正常日志，1表示崩溃日志
 
 				//点击了消息bar
 					if(isDefaultHandle){

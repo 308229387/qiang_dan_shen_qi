@@ -159,7 +159,8 @@ public class MainActivity extends CommonFragmentActivity implements
     private boolean forceUpdate;
 
 
-    private String data; //日志上传的data数据
+	long current_rest_time,current_service_time; //点击休息和服务按钮的事件
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -251,16 +252,16 @@ public class MainActivity extends CommonFragmentActivity implements
         accountExpireDialog = new ZhaoBiaoDialog(this, "提示", "");
         accountExpireDialog.setCancelButtonGone();
         accountExpireDialog.setOnDialogClickListener(new onDialogClickListener() {
-            @Override
-            public void onDialogOkClick() {
-                accountExpireDialog.dismiss();
-            }
+			@Override
+			public void onDialogOkClick() {
+				accountExpireDialog.dismiss();
+			}
 
-            @Override
-            public void onDialogCancelClick() {
+			@Override
+			public void onDialogCancelClick() {
 
-            }
-        });
+			}
+		});
     }
 
     /**
@@ -311,6 +312,15 @@ public class MainActivity extends CommonFragmentActivity implements
 
     @Override
     protected void onDestroy() {
+
+		if("1".equals(SPUtils.getServiceState(this)) && current_rest_time == 0 ){
+			HYMob.getBaseDataListForPage(MainActivity.this, HYEventConstans.PAGE_BINGING_LIST_SERVICE, stop_time - resume_time);
+		}else if("1".equals(SPUtils.getServiceState(this)) && current_service_time != 0){
+			HYMob.getBaseDataListForPage(MainActivity.this, HYEventConstans.PAGE_BINGING_LIST_SERVICE, stop_time - current_service_time);
+		}else if("2".equals(SPUtils.getServiceState(this)) && current_rest_time != 0){
+			HYMob.getBaseDataListForPage(MainActivity.this, HYEventConstans.PAGE_BINDING_LIST_REST, stop_time - current_rest_time);
+		}
+
         app.unRegisterNetStateListener();//解除网络的变化Listener
         app.stopTimer();//停止文件的上传
         if (updateManager != null) {//bug:防止activity被无故杀死时dialog造成内存泄露
@@ -416,53 +426,45 @@ public class MainActivity extends CommonFragmentActivity implements
         srl.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
         srl.setProgressBackgroundColor(R.color.red);
         srl.setProgressViewEndTarget(true, 150);
+
         if ("1".equals(SPUtils.getServiceState(this))) {
-            mSegmentControl.service(0);
+            mSegmentControl.service(0); //选中服务模式
         } else {
-            mSegmentControl.service(1);
-        }
+            mSegmentControl.service(1); //选中休息模式
+		}
         mSegmentControl
                 .setmOnSegmentControlClickListener(new SegmentControl.OnSegmentControlClickListener() {
-                    @Override
-                    public void onSegmentControlClick(int index) {
+					@Override
+					public void onSegmentControlClick(int index) {
 
-                        onChangeView(index);
+						onChangeView(index);
 
-                        switch (index) {
+						switch (index) {
 
+							case 0://服务模式
+								BDMob.getBdMobInstance().onMobEvent(MainActivity.this, BDEventConstans.EVENT_ID_SERVICE_MODE);
 
-                            case 0://服务模式
-                                BDMob.getBdMobInstance().onMobEvent(MainActivity.this, BDEventConstans.EVENT_ID_SERVICE_MODE);
-
-
-                                HYMob.getDataListByModel(MainActivity.this, HYEventConstans.EVENT_ID_CHANGE_MODE);
-                                data = HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "modelState", "cq");
-                                HYMob.createMap(MainActivity.this, data, "0"); //0表示正常日志，1表示崩溃日志
+								HYMob.getDataListByModel(MainActivity.this, HYEventConstans.EVENT_ID_CHANGE_MODE);
 
 
-                                break;
-                            case 1:
-                                BDMob.getBdMobInstance().onMobEvent(MainActivity.this, BDEventConstans.EVENT_ID_REST_MODE);
+								break;
+							case 1://休息模式
+								BDMob.getBdMobInstance().onMobEvent(MainActivity.this, BDEventConstans.EVENT_ID_REST_MODE);
 
-                                HYMob.getDataListByModel(MainActivity.this, HYEventConstans.EVENT_ID_CHANGE_MODE);
-                                data = HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "modelState", "cq");
-                                HYMob.createMap(MainActivity.this, data, "0");//0表示正常日志，1表示崩溃日志
+								//点击事件埋点
+								HYMob.getDataListByModel(MainActivity.this, HYEventConstans.EVENT_ID_CHANGE_MODE);
 
-                                break;
-                        }
+								break;
+						}
 
-                    }
-                });
+					}
+				});
         refreshbutton.setOnClickListener(new OnClickListener() {// 创建监听对象
             public void onClick(View v) {
                 //跳转到我的订单中心
                 BDMob.getBdMobInstance().onMobEvent(MainActivity.this, BDEventConstans.EVENT_ID_MY_BIDDING);
 
-
                 HYMob.getDataList(MainActivity.this, HYEventConstans.EVENT_ID_MY_BIDDING);
-                data = HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
-                HYMob.createMap(MainActivity.this, data, "0");//0表示正常日志，1表示崩溃日志
-
 
                 ActivityUtils.goToActivity(MainActivity.this, OrderListActivity.class);
             }
@@ -472,9 +474,6 @@ public class MainActivity extends CommonFragmentActivity implements
 
 
                 HYMob.getDataList(MainActivity.this, HYEventConstans.EVENT_ID_BIDDINGLIST_TO_PERSONAL);
-                data = HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
-                HYMob.createMap(MainActivity.this, data, "0");//0表示正常日志，1表示崩溃日志
-
 
                 dl_main_drawer.openDrawer(GravityCompat.START);
 
@@ -498,11 +497,7 @@ public class MainActivity extends CommonFragmentActivity implements
                 //获取余额
                 BDMob.getBdMobInstance().onMobEvent(MainActivity.this, BDEventConstans.EVENT_ID_MANUAL_REFRESH_BALANCE);
 
-
                 HYMob.getDataList(MainActivity.this, HYEventConstans.EVENT_ID_MANUAL_REFRESH_BALANCE);
-                data = HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
-                HYMob.createMap(MainActivity.this, data, "0"); //0表示正常日志，1表示崩溃日志
-
 
                 yuEViewModel.getBalance();
                 tv_yue.setText(R.string.fetching);
@@ -540,27 +535,23 @@ public class MainActivity extends CommonFragmentActivity implements
     private void configListViewRefreshListener() {
         mPullToRefreshListView
                 .setOnRefreshListener(new OnRefreshListener<ListView>() {
-                    @Override
-                    public void onRefresh(
-                            PullToRefreshBase<ListView> refreshView) {
-                        if (refreshView.isHeaderShown()) {
-                        } else {
-                            listViewModel.loadMore();
-                            MDUtils.servicePageMD(MainActivity.this, "0", "0", MDConstans.ACTION_LOAD_MORE_REFRESH);
-                        }
-                    }
-                });
+					@Override
+					public void onRefresh(
+							PullToRefreshBase<ListView> refreshView) {
+						if (refreshView.isHeaderShown()) {
+						} else {
+							listViewModel.loadMore();
+							MDUtils.servicePageMD(MainActivity.this, "0", "0", MDConstans.ACTION_LOAD_MORE_REFRESH);
+						}
+					}
+				});
         ListView listView = mPullToRefreshListView.getRefreshableView();
         srl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 BDMob.getBdMobInstance().onMobEvent(MainActivity.this, BDEventConstans.EVENT_ID_BIDDING_LIAT_PAGE_MANUAL_REFRESH);
 
-
                 HYMob.getDataList(MainActivity.this, HYEventConstans.EVENT_ID_BIDDING_LIAT_PAGE_MANUAL_REFRESH);
-                data = HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
-                HYMob.createMap(MainActivity.this, data, "0"); //0表示正常日志，1表示崩溃日志
-
 
                 listViewModel.refresh();
                 MDUtils.servicePageMD(MainActivity.this, "0", "0", MDConstans.ACTION_PULL_TO_REFRESH);
@@ -588,29 +579,29 @@ public class MainActivity extends CommonFragmentActivity implements
     public void configListViewCannotLoadMore() {
         mPullToRefreshListView
                 .setOnRefreshListener(new OnRefreshListener<ListView>() {
-                    @Override
-                    public void onRefresh(
-                            PullToRefreshBase<ListView> refreshView) {
-                        if (refreshView.isHeaderShown()) {
-                            String label = DateUtils.formatDateTime(
-                                    getApplicationContext(),
-                                    System.currentTimeMillis(),
-                                    DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
-                            refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                            listViewModel.refresh();
-                            MDUtils.servicePageMD(MainActivity.this, "0", "0", MDConstans.ACTION_PULL_TO_REFRESH);
-                        } else {
-                            if (handler == null)
-                                handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    mPullToRefreshListView.onRefreshComplete();
-                                }
-                            }, 500);
-                        }
-                    }
-                });
+					@Override
+					public void onRefresh(
+							PullToRefreshBase<ListView> refreshView) {
+						if (refreshView.isHeaderShown()) {
+							String label = DateUtils.formatDateTime(
+									getApplicationContext(),
+									System.currentTimeMillis(),
+									DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
+							refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+							listViewModel.refresh();
+							MDUtils.servicePageMD(MainActivity.this, "0", "0", MDConstans.ACTION_PULL_TO_REFRESH);
+						} else {
+							if (handler == null)
+								handler = new Handler();
+							handler.postDelayed(new Runnable() {
+								@Override
+								public void run() {
+									mPullToRefreshListView.onRefreshComplete();
+								}
+							}, 500);
+						}
+					}
+				});
     }
 
     //侧滑栏小红点，头像小红点
@@ -638,9 +629,17 @@ public class MainActivity extends CommonFragmentActivity implements
             switch (index) {
                 case 0:
                     StateUtils.state = 1;
+                    if (current_rest_time != 0){
+                        current_service_time = System.currentTimeMillis();
+
+                        HYMob.getBaseDataListForPage(MainActivity.this, HYEventConstans.PAGE_BINDING_LIST_REST, current_service_time - current_rest_time);
+
+                    }
                     break;
                 case 1:
                     StateUtils.state = 2;
+                    current_rest_time = System.currentTimeMillis();
+                    HYMob.getBaseDataListForPage(MainActivity.this, HYEventConstans.PAGE_BINGING_LIST_SERVICE,current_rest_time - resume_time);
                     break;
                 default:
                     break;
@@ -672,9 +671,6 @@ public class MainActivity extends CommonFragmentActivity implements
                 BDMob.getBdMobInstance().onMobEvent(this, BDEventConstans.EVENT_ID_LOGOUT);
 
                 HYMob.getDataList(MainActivity.this, HYEventConstans.EVENT_ID_LOGOUT);
-                data = HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
-                HYMob.createMap(MainActivity.this, data, "0"); //0表示正常日志，1表示崩溃日志
-
 
                 confirmExitDialog = new ZhaoBiaoDialog(this, getString(R.string.hint), getString(R.string.logout_make_sure));
                 confirmExitDialog.setOnDialogClickListener(new onDialogClickListener() {
@@ -973,9 +969,8 @@ public class MainActivity extends CommonFragmentActivity implements
         BDMob.getBdMobInstance().onMobEvent(this, BDEventConstans.EVENT_ID_BIDDING_LIST_PAGE_BIDDING);
 
         String bidId = String.valueOf(bean.getBidId());
-        HYMob.getDataList(MainActivity.this, HYEventConstans.EVENT_ID_BIDDING_LIST_PAGE_BIDDING, bidId, "1");
-        data = HYMob.dataBeanToJson(HYMob.dataList, "co", "s1", "modelState", "grabOrderStyle", "sa", "cq");
-        HYMob.createMap(MainActivity.this, data, "0"); //0表示正常日志，1表示崩溃日志
+
+        HYMob.getDataListForQiangdan(MainActivity.this, HYEventConstans.EVENT_ID_BIDDING_LIST_PAGE_BIDDING, bidId, "1");
 
         passBean = bean;
         knockViewModel = new KnockViewModel(MainActivity.this, MainActivity.this);
@@ -1253,4 +1248,18 @@ public class MainActivity extends CommonFragmentActivity implements
         }
 
     }
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		if("1".equals(SPUtils.getServiceState(this)) && current_rest_time ==0){
+			HYMob.getBaseDataListForPage(MainActivity.this, HYEventConstans.PAGE_BINGING_LIST_SERVICE, stop_time - resume_time);
+		}else if("1".equals(SPUtils.getServiceState(this)) && current_service_time != 0){
+			HYMob.getBaseDataListForPage(MainActivity.this, HYEventConstans.PAGE_BINGING_LIST_SERVICE, stop_time - current_service_time);
+		}else if("2".equals(SPUtils.getServiceState(this)) && current_rest_time != 0){
+			HYMob.getBaseDataListForPage(MainActivity.this, HYEventConstans.PAGE_BINDING_LIST_REST, stop_time - current_rest_time);
+		}
+
+
+	}
 }

@@ -201,8 +201,6 @@ public class CenterAffiliateDetailBean extends QDDetailBaseBean {
             public void onClick(View view) {
 
                 HYMob.getDataListByCall(mContext, HYEventConstans.EVENT_ID_ORDER_DETAIL_REFUND, String.valueOf(orderId), "1");
-                String  data= HYMob.dataBeanToJson(HYMob.dataList, "co","callStyle","orderId","serviceSate", "sa", "cq");
-                HYMob.createMap(mContext, data, "0") ; //0表示正常日志，1表示崩溃日志
 
                 initDialog(mContext);
                 dialog.show();

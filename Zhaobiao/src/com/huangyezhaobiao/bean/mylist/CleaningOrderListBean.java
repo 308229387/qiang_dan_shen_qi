@@ -231,10 +231,7 @@ public class CleaningOrderListBean extends QDBaseBean{
                 //点击了打电话按钮
                 BDMob.getBdMobInstance().onMobEvent(context, BDEventConstans.EVENT_ID_ORDER_LIST_PHONE);
 
-
                 HYMob.getDataListByCall(context, HYEventConstans.EVENT_ID_ORDER_DETAIL_REFUND,orderId,"0");
-                String  data= HYMob.dataBeanToJson(HYMob.dataList, "co","callStyle","orderId","serviceSate", "sa", "cq");
-                HYMob.createMap(context, data, "0") ; //0表示正常日志，1表示崩溃日志
 
                 initDialog(CleaningOrderListBean.this.context);
                 dialog.show();

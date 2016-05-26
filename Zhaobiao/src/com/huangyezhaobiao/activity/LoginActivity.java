@@ -184,8 +184,6 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 				BDMob.getBdMobInstance().onMobEvent(LoginActivity.this, BDEventConstans.EVENT_ID_BECOME_TO_VIP);
 
 				HYMob.getDataList(LoginActivity.this, HYEventConstans.EVENT_ID_BECOME_TO_VIP);
-				String data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq");
-				HYMob.createMap(LoginActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
 
 				HashMap<String, String> map = new HashMap<String, String>();
 				map.put(AppConstants.H5_TITLE, getString(R.string.h5_login_raiders));
@@ -290,11 +288,7 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 			 hasValidated =  loginBean.getHasValidated();
 			UserUtils.saveUser(this, userId + "", companyName, userName);
 
-
 			HYMob.getDataListByLoginSuccess(LoginActivity.this, HYEventConstans.EVENT_ID_LOGIN,"1", userName);
-			String data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq","loginState", "userName");
-			HYMob.createMap(LoginActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
-
 
 			// 用于测试，写死数据"24454277549825",实际用UserUtils.getUserId(LoginActivity.this)
 			MiPushClient.setAlias(getApplicationContext(), UserUtils.getUserId(getApplicationContext()), null);
@@ -322,9 +316,6 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 			if(dialog!=null && !TextUtils.isEmpty(msg)){
 
 				HYMob.getDataListByLoginError(LoginActivity.this, HYEventConstans.EVENT_ID_LOGIN, "0",msg);
-				String data= HYMob.dataBeanToJson(HYMob.dataList, "co", "sa", "cq", "loginState","failureReason");
-				HYMob.createMap(LoginActivity.this, data, "0") ; //0表示正常日志，1表示崩溃日志
-
 
 				dialog.setMessage(msg);
 				dialog.show();

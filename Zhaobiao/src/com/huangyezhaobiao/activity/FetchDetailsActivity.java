@@ -17,6 +17,8 @@ import com.huangyezhaobiao.eventbus.EventbusAgent;
 import com.huangyezhaobiao.inter.Constans;
 import com.huangyezhaobiao.mediator.RefundMediator;
 import com.huangyezhaobiao.presenter.FetchDetailsPresenter;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
 import com.huangyezhaobiao.vm.FetchDetailsVM;
 import com.huangyezhaobiao.vm.TelephoneVModel;
@@ -145,9 +147,15 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 	protected void onDestroy() {
 		super.onDestroy();
 		EventbusAgent.getInstance().unregister(this);
+		HYMob.getBaseDataListForPage(FetchDetailsActivity.this, HYEventConstans.PAGE_MY_ORDER_DETAIL, stop_time - resume_time);
 	}
 
-
+	@Override
+	protected void onStop() {
+		super.onStop();
+		EventbusAgent.getInstance().unregister(this);
+		HYMob.getBaseDataListForPage(FetchDetailsActivity.this, HYEventConstans.PAGE_MY_ORDER_DETAIL, stop_time - resume_time);
+	}
 
 	public void onEventMainThread(EventAction action){
 		switch (action.type){
