@@ -1234,7 +1234,7 @@ public class MainActivity extends CommonFragmentActivity implements
                 return;
             }
             // 如果当前版本号小于Server端版本号
-            if(currentVersion <= versionNum) return;
+            if(currentVersion >= versionNum) return;
             boolean needUpdate = false;
                 needUpdate = UpdateManager.getUpdateManager().isUpdateNow(this, versionCode, VersionConstans.CURRENT_VERSION, URLConstans.DOWNLOAD_ZHAOBIAO_ADDRESS, forceUpdate);
             if (!needUpdate) {
