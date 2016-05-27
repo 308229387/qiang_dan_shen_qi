@@ -153,9 +153,9 @@ public class OnServiceFragment extends QiangDanBaseFragment {
 		stopLoading();
 		if(lv_all_fragment!=null && lv_all_fragment.isRefreshing())
 			lv_all_fragment.onRefreshComplete();
-		if(layout_no_internets!=null) {
-			layout_no_internets.setVisibility(View.VISIBLE);
-		}
+//		if(layout_no_internets!=null) {
+//			layout_no_internets.setVisibility(View.VISIBLE);
+//		}
 	}
 
 

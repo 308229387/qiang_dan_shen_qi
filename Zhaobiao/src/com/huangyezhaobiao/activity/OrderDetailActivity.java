@@ -62,6 +62,7 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 	private int bidState;
 	private PushToPassBean receivePassBean;
 	private View           rl_qd;
+	private RelativeLayout order_detail_bottom;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -81,6 +82,7 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 		discountFee      = getView(R.id.discountFee);
 		layout_back_head = getView(R.id.layout_head);
 		back_layout = (LinearLayout) this.findViewById(R.id.back_layout);
+		order_detail_bottom = (RelativeLayout) this.findViewById(R.id.order_detail_bottom);
 		done = (Button) this.findViewById(R.id.done);
 		tbl = (TitleMessageBarLayout) findViewById(R.id.tbl);
 		linear = (LinearLayout) findViewById(R.id.llll);
@@ -224,7 +226,9 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 
 	@Override
 	public void onNoInterNetError() {
-
+		if (order_detail_bottom != null) {
+			order_detail_bottom.setVisibility(View.GONE);
+		}
 	}
 
 	@Override

@@ -49,7 +49,7 @@ public class ReadyServiceFragment extends QiangDanBaseFragment {
 			srl             = (SwipeRefreshLayout) root_fragment_all.findViewById(R.id.srl);
 			srl.setRefreshing(true);
 			layout_no_internets = root_fragment_all.findViewById(R.id.layout_no_internets);
-			layout_no_internets.setVisibility(View.GONE);
+			layout_no_internets.setVisibility(View.INVISIBLE);
 			lv_all_fragment = (PullToRefreshListView) root_fragment_all.findViewById(R.id.lv_all_fragment);
 			lv = lv_all_fragment.getRefreshableView();
 			layout_no_internet = root_fragment_all.findViewById(R.id.layout_no_internet);
@@ -71,9 +71,7 @@ public class ReadyServiceFragment extends QiangDanBaseFragment {
 
 	@Override
 	public void onRefreshSuccess(Object t) {
-		if(layout_no_internets!=null){
-			layout_no_internets.setVisibility(View.GONE);
-		}
+
 		List<QDBaseBean> beans = (List<QDBaseBean>) t;
 		LogUtils.LogE("ashensssss", "sizeeeee:" + beans.size());
 		adapter.refreshSuccess(beans);
@@ -86,9 +84,7 @@ public class ReadyServiceFragment extends QiangDanBaseFragment {
 
 	@Override
 	public void onLoadingMoreSuccess(Object res) {
-		if(layout_no_internets!=null){
-			layout_no_internets.setVisibility(View.GONE);
-		}
+
 		List<QDBaseBean> beans = (List<QDBaseBean>) res;
 		adapter.loadMoreSuccess(beans);
 		lv_all_fragment.onRefreshComplete();
@@ -107,9 +103,7 @@ public class ReadyServiceFragment extends QiangDanBaseFragment {
 	@Override
 	public void onLoadingError(String msg) {
 		stopLoading();
-		if(layout_no_internets!=null){
-			layout_no_internets.setVisibility(View.GONE);
-		}
+
 		if(lv_all_fragment!=null &&lv_all_fragment.isRefreshing())
 			lv_all_fragment.onRefreshComplete();
 	}
@@ -174,11 +168,14 @@ public class ReadyServiceFragment extends QiangDanBaseFragment {
 	@Override
 	public void onNoInterNetError() {
 		stopLoading();
+//		LogUtils.LogV("wjl","SSSSSS1");
+//		if(layout_no_internets!=null) {
+//			LogUtils.LogV("wjl","SSSSSS2");
+//			layout_no_internets.setVisibility(View.VISIBLE);
+//		}
 		if(lv_all_fragment!=null &&lv_all_fragment.isRefreshing())
 			lv_all_fragment.onRefreshComplete();
-		if(layout_no_internets!=null) {
-			layout_no_internets.setVisibility(View.VISIBLE);
-		}
+
 	}
 
 	@Override
