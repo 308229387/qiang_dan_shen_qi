@@ -49,7 +49,7 @@ public class ReadyServiceFragment extends QiangDanBaseFragment {
 			srl             = (SwipeRefreshLayout) root_fragment_all.findViewById(R.id.srl);
 			srl.setRefreshing(true);
 			layout_no_internets = root_fragment_all.findViewById(R.id.layout_no_internets);
-			layout_no_internets.setVisibility(View.VISIBLE);
+			layout_no_internets.setVisibility(View.GONE);
 			lv_all_fragment = (PullToRefreshListView) root_fragment_all.findViewById(R.id.lv_all_fragment);
 			lv = lv_all_fragment.getRefreshableView();
 			layout_no_internet = root_fragment_all.findViewById(R.id.layout_no_internet);
