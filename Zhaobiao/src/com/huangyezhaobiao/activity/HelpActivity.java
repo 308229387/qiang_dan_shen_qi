@@ -40,6 +40,7 @@ public class HelpActivity extends QBBaseActivity implements onDialogClickListene
 	private ProgressBar pb;
 	private View rl_help_tel;
 	private WebChromeBaseClient webChromeBaseClient;
+	private View          view_no_internet;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -55,6 +56,7 @@ public class HelpActivity extends QBBaseActivity implements onDialogClickListene
 	public void initView() {
 		ll_webview_container = getView(R.id.ll_webview_container);
 		layout_back_head = getView(R.id.layout_head);
+		view_no_internet = getView(R.id.view_no_internet);
 		pb          = getView(R.id.pb);
 		rl_help_tel = getView(R.id.rl_help_tel);
 		//webView 	= getView(R.id.webview);
@@ -92,6 +94,9 @@ public class HelpActivity extends QBBaseActivity implements onDialogClickListene
 		String url = URLConstans.HELP_PAGE_URL ;
 		//2016.5.3 add end
 		LogUtils.LogE("ashenTag", "url:" + url);
+		if(!NetUtils.isNetworkConnected(this)){
+			view_no_internet.setVisibility(View.VISIBLE);
+		}
 		webView.loadUrl(url);
 	}
 

@@ -17,6 +17,12 @@
          layout="@layout/layout_order_hint"
          />
         -->
+
+        <include
+            layout="@layout/no_internet_layout"
+            android:id="@+id/view_no_internet"
+            android:visibility="gone"
+            />
         <ProgressBar
             android:id="@+id/pb"
             android:layout_width="fill_parent"
