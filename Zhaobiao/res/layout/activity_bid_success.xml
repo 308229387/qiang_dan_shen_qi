@@ -68,9 +68,9 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:background="@color/white"
+                android:background="@drawable/t_redbuttonselector"
                 android:text="查看抢单"
-                android:textColor="@color/tab_red"
+                android:textColor="@color/white"
                 android:textSize="18dp" />
 
             <Button
@@ -80,7 +80,7 @@
                 android:layout_gravity="center"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:background="@color/tab_red"
+                android:background="@drawable/t_redbuttonselector"
                 android:text="继续抢单"
                 android:textColor="@color/white"
                 android:textSize="18dp" />

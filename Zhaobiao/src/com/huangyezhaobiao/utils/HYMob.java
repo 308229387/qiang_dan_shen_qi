@@ -420,7 +420,7 @@ public class HYMob {
             uploadMob(context,UserUtils.getMobCommon(context),UserUtils.getMobData(context),0,"sp");
         }
 
-        if(dataList.size() > 6){
+        if(dataList.size() > 5){
             LogUtils.LogV("Upload", "uploadeing");
             uploadMob(context,params_map.get("common"),params_map.get("data"),0,"");
         }

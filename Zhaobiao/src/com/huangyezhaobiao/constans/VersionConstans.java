@@ -9,5 +9,5 @@ public class VersionConstans {
     /**
      * 当前版本号
      */
-    public static final String CURRENT_VERSION = "20";
+    public static final String CURRENT_VERSION = "22";
 }

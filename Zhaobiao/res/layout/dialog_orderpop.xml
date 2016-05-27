@@ -42,13 +42,15 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="5dp"
             android:orientation="vertical" >
-
+            <!--android:background="@color/tab_red"-->
             <Button
                 android:id="@+id/dialog_knock"
                 android:layout_width="fill_parent"
-                android:layout_height="30dp"
-                android:background="@color/tab_red"
+                android:layout_height="42dp"
                 android:text="抢单"
+                android:gravity="center"
+                android:textSize="@dimen/textsize_xlarge"
+                android:background="@drawable/t_redbuttonselector"
                 android:textColor="@color/white" />
 
             <LinearLayout
@@ -87,9 +89,10 @@
             <Button
                 android:id="@+id/dialog_next"
                 android:layout_width="fill_parent"
-                android:layout_height="30dp"
-                android:background="@color/white"
+                android:layout_height="42dp"
                 android:text="下一条"
+                android:textSize="@dimen/textsize_xlarge"
+                android:background="@drawable/t_redbuttonselector"
                 android:layout_marginTop="20dp"
                 android:visibility="invisible"
                 android:textColor="@color/tab_red"

@@ -57,6 +57,7 @@ import com.huangyezhaobiao.netmodel.INetStateChangedListener;
 import com.huangyezhaobiao.netmodel.NetStateManager;
 import com.huangyezhaobiao.presenter.MainPresenter;
 import com.huangyezhaobiao.service.MyService;
+import com.huangyezhaobiao.url.URLConstans;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
@@ -1232,13 +1233,14 @@ public class MainActivity extends CommonFragmentActivity implements
             if (versionNum == -1) {
                 return;
             }
-            boolean needUpdate = UpdateManager.getUpdateManager().isUpdateNow(this, versionCode, VersionConstans.CURRENT_VERSION, "", forceUpdate);
+            // 如果当前版本号小于Server端版本号
+            if(currentVersion <= versionNum) return;
+            boolean needUpdate = false;
+                needUpdate = UpdateManager.getUpdateManager().isUpdateNow(this, versionCode, VersionConstans.CURRENT_VERSION, URLConstans.DOWNLOAD_ZHAOBIAO_ADDRESS, forceUpdate);
             if (!needUpdate) {
                 //判断是不是第一次进入主界面
                 showFirst();
             }
-
-
         }
 
     }

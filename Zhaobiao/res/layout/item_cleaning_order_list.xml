@@ -32,11 +32,12 @@
                 <TextView
                     android:id="@+id/tv_cleaning_qd_time_content"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:gravity="center"
                     android:layout_alignTop="@+id/tv_times"
                     android:layout_alignBottom="@+id/tv_times"
                     android:layout_toRightOf="@id/tv_times"
+                    android:text="2016-04-26 19:00"
                     android:textColor="@color/timeline_color" />
 
                 <View

@@ -337,4 +337,7 @@ public interface URLConstans {
 
 	//  上传logger
 	String UPLOAD_URL = BASE_URL + "log/upload";
+
+	// apk 下载路径
+	String DOWNLOAD_ZHAOBIAO_ADDRESS = BASE_URL_APP + "update/apk";
 }
