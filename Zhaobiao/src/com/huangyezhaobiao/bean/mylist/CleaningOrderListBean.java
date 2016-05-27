@@ -78,7 +78,7 @@ public class CleaningOrderListBean extends QDBaseBean{
         return refundText;
     }
 
-    public void setRefundText(){
+    public void setRefundText(String refundText){
         this.refundText = refundText;
     }
 
@@ -200,7 +200,6 @@ public class CleaningOrderListBean extends QDBaseBean{
                 cleanindOrderHolder.tv_message.setText(R.string.over_done_unservice);
             }
         }
-
         if(TextUtils.isEmpty(refundText) || TextUtils.equals("未退单",refundText)){
             //如果是done的话还是要显示
             if(TextUtils.equals(QiangDanBaseFragment.orderState, Constans.DONE_FRAGMENT)){//已完成
