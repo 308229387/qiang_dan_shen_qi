@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.constans.VersionConstans;
 import com.huangyezhaobiao.eventbus.EventAction;
 import com.huangyezhaobiao.eventbus.EventbusAgent;
 import com.huangyezhaobiao.gtui.GePushProxy;
@@ -101,6 +102,7 @@ public class SplashActivity extends Activity {
 		/** 启动Service */
 //		if(!isMobServiceRunning("com.huangyezhaobiao.service.MobService")){
 //			Intent mobService = new Intent(context, MobService.class);
+//			mobService.putExtra("from","");
 //			context.startService(mobService);
 //		}
 	}
@@ -122,7 +124,6 @@ public class SplashActivity extends Activity {
                 "isFirst:" + sp.getBoolean("isFirst", true));
 		Log.e("lly",
 				"isFirst:" + UserUtils.hasValidate);
-
 		if (sp.getBoolean("isFirst", true) || !CommonUtils.compareTwoNumbersGuide(saveVersionName,
 				mCurrentVersionName) ){//进入引导界面
             ActivityUtils.goToActivity(context, GuideActivity.class);
@@ -132,7 +133,9 @@ public class SplashActivity extends Activity {
 			// ActivityUtils.goToActivity(context, MobileValidateActivity.class);
 			// added by chenguangming
             ActivityUtils.goToActivity(context, LoginActivity.class);
-        }else{//走主界面
+		} else if(UserUtils.getAppVersion(this) != null && !UserUtils.getAppVersion(this).equals("") &&!UserUtils.getAppVersion(this).equals(VersionConstans.CURRENT_VERSION)){
+			ActivityUtils.goToActivity(context, LoginActivity.class);
+		} else{//走主界面
             ActivityUtils.goToActivity(context, MainActivity.class);
         }
 		//finish();
