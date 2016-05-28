@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.SystemClock;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.BaseAdapter;
 
 import com.huangye.commonlib.constans.ResponseConstans;
@@ -36,6 +35,8 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -132,7 +133,11 @@ public class RefundPresenter {
        // refundMaps.put("userId",UserUtils.getUserId(context));
         refundMaps.put("orderId",orderId);
         refundMaps.put("cancelReasons",refundReasonId);
-        refundMaps.put("detailDesc",refundDesc);
+        try {
+            refundMaps.put("detailDesc", URLEncoder.encode(refundDesc,"UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         SharedPreferences sharedPreferences = context.getSharedPreferences(ResponseConstans.SP_NAME, Context.MODE_PRIVATE);
         String myToken = sharedPreferences.getString(ResponseConstans.KEY_LOGIN_TOKEN, "");
         refundMaps.put("loginToken", myToken);
@@ -203,7 +208,6 @@ public class RefundPresenter {
 
             @Override
             public void onFailure(HttpException e, String s) {
-                Log.e("shenzhixin", "upload error:" + s);
                 if (listener != null) {
                     if (!TextUtils.isEmpty(s)) {
                         listener.onUploadPicFailure(s);
@@ -228,14 +232,7 @@ public class RefundPresenter {
 
         params.addHeader("ppu", UserUtils.getUserPPU(BiddingApplication.getAppInstanceContext()));
         params.addHeader("userId",UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
-        Log.e("sdf", "ppu:" + UserUtils.getUserPPU(BiddingApplication.getAppInstanceContext()));
-        Log.e("sdf", "userId:" + UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
-//        try {
-//            params.addHeader("version", VersionUtils.getVersionCode(BiddingApplication.getAppInstanceContext()));
         params.addHeader("version", "6");
-//        } catch (PackageManager.NameNotFoundException e) {
-//            e.printStackTrace();
-//        }
         params.addHeader("platform", "1");
         params.addHeader("UUID", PhoneUtils.getIMEI(BiddingApplication.getAppInstanceContext()));
         return params;

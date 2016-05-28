@@ -167,11 +167,16 @@ public class MainActivity extends CommonFragmentActivity implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initExitForUpdateDialog();
+//        if(UserUtils.getAppVersion(this) != null && !UserUtils.getAppVersion(this).equals("")){
+//            Log.v("MainActivity","getAppVersion()");
+//            if(!UserUtils.getAppVersion(this).equals(VersionConstans.CURRENT_VERSION)){
+//                ActivityUtils.goToActivity(this, LoginActivity.class);
+//            }
+//        }
         if(LoginActivity.loginInstance != null){
             LoginActivity.loginInstance.finish();
         }
-        //wjl
-        mainPresenter = new MainPresenter();
+        //wjl        mainPresenter = new MainPresenter();
         progressDialog = new QDWaitDialog(this);
         keyguardManager = (KeyguardManager) getApplication().getSystemService(KEYGUARD_SERVICE);
         keyguardLock = keyguardManager.newKeyguardLock("");
@@ -1137,7 +1142,6 @@ public class MainActivity extends CommonFragmentActivity implements
                 SharedPreferencesUtils.clearLoginToken(this);
                 UserUtils.clearUserInfo(this);
             }
-
         }
     }
 
@@ -1210,6 +1214,7 @@ public class MainActivity extends CommonFragmentActivity implements
     public void onVersionBack(String version) {
         String versionCode = "";
         Log.e("shenyy", "MainActivity version:" + version);
+        Log.e("cgm",VersionConstans.CURRENT_VERSION + "{}{}{}");
         int currentVersion = -1;
         int versionNum = -1;
         try {
@@ -1236,7 +1241,7 @@ public class MainActivity extends CommonFragmentActivity implements
             // 如果当前版本号小于Server端版本号
             if(currentVersion >= versionNum) return;
             boolean needUpdate = false;
-                needUpdate = UpdateManager.getUpdateManager().isUpdateNow(this, versionCode, VersionConstans.CURRENT_VERSION, URLConstans.DOWNLOAD_ZHAOBIAO_ADDRESS, forceUpdate);
+            needUpdate = UpdateManager.getUpdateManager().isUpdateNow(this, versionCode, VersionConstans.CURRENT_VERSION, URLConstans.DOWNLOAD_ZHAOBIAO_ADDRESS, forceUpdate);
             if (!needUpdate) {
                 //判断是不是第一次进入主界面
                 showFirst();

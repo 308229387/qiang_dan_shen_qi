@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/white"
-    android:layout_height="match_parent">
-    <include layout="@layout/layout_backhead"
+    android:orientation="vertical">
+
+    <include
         android:id="@+id/layout_back"
-        />
+        layout="@layout/layout_backhead" />
+
     <com.huangyezhaobiao.view.TitleMessageBarLayout
         android:id="@+id/tbl"
         android:layout_width="fill_parent"
         android:layout_height="45dp"
-        android:visibility="gone"
-        />
+        android:visibility="gone" />
 
     <FrameLayout
         android:id="@+id/refund_framelayout"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        />
+        android:layout_height="fill_parent" />
 </LinearLayout>

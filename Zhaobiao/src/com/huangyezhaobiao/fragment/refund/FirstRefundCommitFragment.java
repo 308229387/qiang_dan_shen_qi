@@ -11,8 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +34,6 @@ import com.huangyezhaobiao.presenter.AnimatePresenter;
 import com.huangyezhaobiao.presenter.RefundPresenter;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
-import com.huangyezhaobiao.utils.CharUtils;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.KeyboardUtil;
@@ -362,7 +359,6 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
             refund_desc_dialog.show();
             return;
         }
-
         if(java.nio.charset.Charset.forName("GBK").newEncoder().canEncode(et_refund_desc.getText().toString())){
 
         }else{
@@ -375,38 +371,37 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
             confirmDialog_upload.show();
             return;
         }
-
-        refundPresenter.submitRefund(getActivity(), refundFirstCommitBean.getOrderId(), RefundMediator.checkedId.get(0), et_refund_desc.getText().toString(), ((MediaAdapter) refundPresenter.getMediaAdapter()).getDataSources(), new UICallback() {
-                    @Override
-                    public void onUploadPicSuccess(String msg) {
-                        uploadPicDialog.dismiss();
-                        resultDialog_success.show();
-                        rl_submit.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onUploadPicFailure(final String err) {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        uploadPicDialog.dismiss();
-                        resultDialog_failure.show();
-                        rl_submit.setVisibility(View.GONE);
-                    }
-                });
-
-            }
-
-            @Override
-            public void onUploadPrecent(String precent) {
-                Log.e("shenzhixin",precent);
-                if(!uploadPicDialog.isShowing()) {
-                    uploadPicDialog.show();
+            refundPresenter.submitRefund(getActivity(), refundFirstCommitBean.getOrderId(), RefundMediator.checkedId.get(0), et_refund_desc.getText().toString(), ((MediaAdapter) refundPresenter.getMediaAdapter()).getDataSources(), new UICallback() {
+                        @Override
+                        public void onUploadPicSuccess(String msg) {
+                            uploadPicDialog.dismiss();
+                            resultDialog_success.show();
+                            rl_submit.setVisibility(View.GONE);
                 }
-                uploadPicDialog.setUploadProgress(precent);
 
-            }
-        });
+                @Override
+                public void onUploadPicFailure(final String err) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            uploadPicDialog.dismiss();
+                            resultDialog_failure.show();
+                            rl_submit.setVisibility(View.GONE);
+                        }
+                    });
+
+                }
+
+                @Override
+                public void onUploadPrecent(String precent) {
+                    Log.e("shenzhixin",precent);
+                    if(!uploadPicDialog.isShowing()) {
+                        uploadPicDialog.show();
+                    }
+                    uploadPicDialog.setUploadProgress(precent);
+
+                }
+            });
     }
 
     @Override

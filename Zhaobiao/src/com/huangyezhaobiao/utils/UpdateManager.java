@@ -248,6 +248,7 @@ public class UpdateManager {
 	 */
 	public boolean isUpdateNow( Context context,String version,String currentVersion,String url,boolean forceUpdate)
 	{
+		Log.e("cgm isUpdateNow",VersionConstans.CURRENT_VERSION + "{}{}{}");
 		this.forceUpdate = forceUpdate;
 		if(version==null || url == null) return false;
 		//String currentVersion = VersionConstans.CURRENT_VERSION;
@@ -255,6 +256,9 @@ public class UpdateManager {
 			currentVersion = currentVersion.replace(".", "");
 		if(version.contains("."))
 			version        = version.replace(".", "");
+
+		UserUtils.setAppVersion(context,version);
+		Log.v("isUpdateNow",version);
 		if(CommonUtils.compareTwoNumbers(version, currentVersion)){
 			showConfirmDownloadDialog(context, url);
 			needUpdate  = true;
