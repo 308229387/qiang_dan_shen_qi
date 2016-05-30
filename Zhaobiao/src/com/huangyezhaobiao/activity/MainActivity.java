@@ -160,7 +160,7 @@ public class MainActivity extends CommonFragmentActivity implements
     private boolean forceUpdate;
 
 
-	long current_rest_time,current_service_time; //点击休息和服务按钮的事件
+    long current_rest_time,current_service_time; //点击休息和服务按钮的事件
 
 
     @Override
@@ -261,16 +261,16 @@ public class MainActivity extends CommonFragmentActivity implements
         accountExpireDialog = new ZhaoBiaoDialog(this, "提示", "");
         accountExpireDialog.setCancelButtonGone();
         accountExpireDialog.setOnDialogClickListener(new onDialogClickListener() {
-			@Override
-			public void onDialogOkClick() {
-				accountExpireDialog.dismiss();
-			}
+            @Override
+            public void onDialogOkClick() {
+                accountExpireDialog.dismiss();
+            }
 
-			@Override
-			public void onDialogCancelClick() {
+            @Override
+            public void onDialogCancelClick() {
 
-			}
-		});
+            }
+        });
     }
 
     /**
@@ -431,34 +431,34 @@ public class MainActivity extends CommonFragmentActivity implements
             mSegmentControl.service(0); //选中服务模式
         } else {
             mSegmentControl.service(1); //选中休息模式
-		}
+        }
         mSegmentControl
                 .setmOnSegmentControlClickListener(new SegmentControl.OnSegmentControlClickListener() {
-					@Override
-					public void onSegmentControlClick(int index) {
+                    @Override
+                    public void onSegmentControlClick(int index) {
 
-						onChangeView(index);
+                        onChangeView(index);
 
-						switch (index) {
+                        switch (index) {
 
-							case 0://服务模式
-								BDMob.getBdMobInstance().onMobEvent(MainActivity.this, BDEventConstans.EVENT_ID_SERVICE_MODE);
+                            case 0://服务模式
+                                BDMob.getBdMobInstance().onMobEvent(MainActivity.this, BDEventConstans.EVENT_ID_SERVICE_MODE);
 
-								HYMob.getDataListByModel(MainActivity.this, HYEventConstans.EVENT_ID_CHANGE_MODE);
+                                HYMob.getDataListByModel(MainActivity.this, HYEventConstans.EVENT_ID_CHANGE_MODE);
 
 
-								break;
-							case 1://休息模式
-								BDMob.getBdMobInstance().onMobEvent(MainActivity.this, BDEventConstans.EVENT_ID_REST_MODE);
+                                break;
+                            case 1://休息模式
+                                BDMob.getBdMobInstance().onMobEvent(MainActivity.this, BDEventConstans.EVENT_ID_REST_MODE);
 
-								//点击事件埋点
-								HYMob.getDataListByModel(MainActivity.this, HYEventConstans.EVENT_ID_CHANGE_MODE);
+                                //点击事件埋点
+                                HYMob.getDataListByModel(MainActivity.this, HYEventConstans.EVENT_ID_CHANGE_MODE);
 
-								break;
-						}
+                                break;
+                        }
 
-					}
-				});
+                    }
+                });
         refreshbutton.setOnClickListener(new OnClickListener() {// 创建监听对象
             public void onClick(View v) {
                 //跳转到我的订单中心
@@ -535,16 +535,16 @@ public class MainActivity extends CommonFragmentActivity implements
     private void configListViewRefreshListener() {
         mPullToRefreshListView
                 .setOnRefreshListener(new OnRefreshListener<ListView>() {
-					@Override
-					public void onRefresh(
-							PullToRefreshBase<ListView> refreshView) {
-						if (refreshView.isHeaderShown()) {
-						} else {
-							listViewModel.loadMore();
-							MDUtils.servicePageMD(MainActivity.this, "0", "0", MDConstans.ACTION_LOAD_MORE_REFRESH);
-						}
-					}
-				});
+                    @Override
+                    public void onRefresh(
+                            PullToRefreshBase<ListView> refreshView) {
+                        if (refreshView.isHeaderShown()) {
+                        } else {
+                            listViewModel.loadMore();
+                            MDUtils.servicePageMD(MainActivity.this, "0", "0", MDConstans.ACTION_LOAD_MORE_REFRESH);
+                        }
+                    }
+                });
         ListView listView = mPullToRefreshListView.getRefreshableView();
         srl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -579,29 +579,29 @@ public class MainActivity extends CommonFragmentActivity implements
     public void configListViewCannotLoadMore() {
         mPullToRefreshListView
                 .setOnRefreshListener(new OnRefreshListener<ListView>() {
-					@Override
-					public void onRefresh(
-							PullToRefreshBase<ListView> refreshView) {
-						if (refreshView.isHeaderShown()) {
-							String label = DateUtils.formatDateTime(
-									getApplicationContext(),
-									System.currentTimeMillis(),
-									DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
-							refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-							listViewModel.refresh();
-							MDUtils.servicePageMD(MainActivity.this, "0", "0", MDConstans.ACTION_PULL_TO_REFRESH);
-						} else {
-							if (handler == null)
-								handler = new Handler();
-							handler.postDelayed(new Runnable() {
-								@Override
-								public void run() {
-									mPullToRefreshListView.onRefreshComplete();
-								}
-							}, 500);
-						}
-					}
-				});
+                    @Override
+                    public void onRefresh(
+                            PullToRefreshBase<ListView> refreshView) {
+                        if (refreshView.isHeaderShown()) {
+                            String label = DateUtils.formatDateTime(
+                                    getApplicationContext(),
+                                    System.currentTimeMillis(),
+                                    DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
+                            refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                            listViewModel.refresh();
+                            MDUtils.servicePageMD(MainActivity.this, "0", "0", MDConstans.ACTION_PULL_TO_REFRESH);
+                        } else {
+                            if (handler == null)
+                                handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    mPullToRefreshListView.onRefreshComplete();
+                                }
+                            }, 500);
+                        }
+                    }
+                });
     }
 
     //侧滑栏小红点，头像小红点
@@ -1247,18 +1247,17 @@ public class MainActivity extends CommonFragmentActivity implements
                 showFirst();
             }
         }
-
     }
 
-	@Override
-	protected void onStop() {
-		super.onStop();
-		if("1".equals(SPUtils.getServiceState(this)) && current_rest_time ==0){
-			HYMob.getBaseDataListForPage(MainActivity.this, HYEventConstans.PAGE_BINGING_LIST_SERVICE, stop_time - resume_time);
-		}else if("1".equals(SPUtils.getServiceState(this)) && current_service_time != 0){
-			HYMob.getBaseDataListForPage(MainActivity.this, HYEventConstans.PAGE_BINGING_LIST_SERVICE, stop_time - current_service_time);
-		}else if("2".equals(SPUtils.getServiceState(this)) && current_rest_time != 0){
-			HYMob.getBaseDataListForPage(MainActivity.this, HYEventConstans.PAGE_BINDING_LIST_REST, stop_time - current_rest_time);
-		}
-	}
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if("1".equals(SPUtils.getServiceState(this)) && current_rest_time ==0){
+            HYMob.getBaseDataListForPage(MainActivity.this, HYEventConstans.PAGE_BINGING_LIST_SERVICE, stop_time - resume_time);
+        }else if("1".equals(SPUtils.getServiceState(this)) && current_service_time != 0){
+            HYMob.getBaseDataListForPage(MainActivity.this, HYEventConstans.PAGE_BINGING_LIST_SERVICE, stop_time - current_service_time);
+        }else if("2".equals(SPUtils.getServiceState(this)) && current_rest_time != 0){
+            HYMob.getBaseDataListForPage(MainActivity.this, HYEventConstans.PAGE_BINDING_LIST_REST, stop_time - current_rest_time);
+        }
+    }
 }

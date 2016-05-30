@@ -34,12 +34,12 @@ import com.huangyezhaobiao.view.ZhaoBiaoDialog.onDialogClickListener;
  *						2.弹出是否下载对话框的方法，以及点击事件的回调函数
  *						3.下载功能，以及下载的dialog，以及下载界面的回调，下载中的取消
  *						4.下载成功，下载失败
- *						
+ *
  *
  * 1.确认对话框及其控件
  * 2.下载对话框及其控件
- * 
- */		
+ *
+ */
 public class UpdateManager {
 	public static final int DOWNLOADING = 1;
 	public static final int DOWNLOAD_FINISH = 2;
@@ -49,22 +49,22 @@ public class UpdateManager {
 	private Handler handler = new Handler(){
 		public void handleMessage(android.os.Message msg) {
 			switch (msg.what) {
-			case DOWNLOADING:
-				pb_downloading.setProgress(progress);
-				LogUtils.LogE("ashenashenUpdate", "progress:"+progress+",total:"+pb_downloading.getMax());
-				break;
-			case DOWNLOAD_FINISH:
-				//去安装
-				dismissDownloadingDialog(context);
-				installApk(context);
-				break;
+				case DOWNLOADING:
+					pb_downloading.setProgress(progress);
+					LogUtils.LogE("ashenashenUpdate", "progress:"+progress+",total:"+pb_downloading.getMax());
+					break;
+				case DOWNLOAD_FINISH:
+					//去安装
+					dismissDownloadingDialog(context);
+					installApk(context);
+					break;
 			}
-			
+
 		};
 	};
 	private static UpdateManager manager = new UpdateManager();
 	private UpdateManager(){};
-	
+
 	/**
 	 * 安装apk
 	 */
@@ -94,7 +94,7 @@ public class UpdateManager {
 	public static UpdateManager getUpdateManager(){
 		return manager;
 	}
-	
+
 	/**
 	 * 显示是否下载的对话框
 	 * @param context
@@ -122,7 +122,7 @@ public class UpdateManager {
 		}
 		confirmUpdateDialog.show();
 	}
-	
+
 	/**
 	 * 开始下载
 	 * 			1.展示dialog
@@ -180,7 +180,7 @@ public class UpdateManager {
 		//对话框取消
 		dismissDownloadingDialog(context);
 		//interceptFlag = true;
-		
+
 	}
 
 	/**
@@ -197,7 +197,7 @@ public class UpdateManager {
 				downloadDialog = null;
 				((MainActivity) context).finish();//退出
 			}
-			
+
 		}
 	}
 
@@ -210,17 +210,17 @@ public class UpdateManager {
 			confirmUpdateDialog = null;
 		}
 	}
-	
+
 	public boolean isDownloadDialogShowing(){
 		if(downloadDialog!=null && downloadDialog.isShowing())
 			return true;
 		return false;
 	}
-	
+
 	/**
 	 * 检查是否需要更新
 	 * @return
-	 * @throws NameNotFoundException 
+	 * @throws NameNotFoundException
 	 */
 	public boolean isUpdateNow( Context context,String version,String url) throws NameNotFoundException
 	{
@@ -246,16 +246,14 @@ public class UpdateManager {
 	 * @return
 	 * @throws NameNotFoundException
 	 */
-	public boolean isUpdateNow( Context context,String version,String currentVersion,String url,boolean forceUpdate)
-	{
-		Log.e("cgm isUpdateNow",VersionConstans.CURRENT_VERSION + "{}{}{}");
+	public boolean isUpdateNow( Context context,String version,String currentVersion,String url,boolean forceUpdate) {
 		this.forceUpdate = forceUpdate;
 		if(version==null || url == null) return false;
-		//String currentVersion = VersionConstans.CURRENT_VERSION;
-		if(currentVersion.contains(".") )
-			currentVersion = currentVersion.replace(".", "");
-		if(version.contains("."))
-			version        = version.replace(".", "");
+//		//String currentVersion = VersionConstans.CURRENT_VERSION;
+//		if(currentVersion.contains(".") )
+//			currentVersion = currentVersion.replace(".", "");
+//		if(version.contains("."))
+//			version        = version.replace(".", "");
 
 		UserUtils.setAppVersion(context,version);
 		Log.v("isUpdateNow",version);
@@ -267,7 +265,7 @@ public class UpdateManager {
 		}
 		return needUpdate;
 	}
-	
+
 	/**
 	 * 下载的任务
 	 * @author shenzhixin
@@ -286,51 +284,51 @@ public class UpdateManager {
 			URL url;
 			try {
 				LogUtils.LogE("ashendownload", "line...252");
-			  LogUtils.LogE("ashendownload", "url:"+apkUrl);
-			  url = new URL(apkUrl);
-			  HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			  conn.connect();
-			  LogUtils.LogE("ashendownload", "after connection");
-			  int length = conn.getContentLength();
-			  max = length;
-			  handler.post(new Runnable() {
-				@Override
-				public void run() {
-					pb_downloading.setMax(100);
-				}
-			});
-			  InputStream ins = conn.getInputStream();
-			  ApkFile  = new File(Environment.getExternalStorageDirectory(),
-					  saveFileName);
-			 
-			  FileOutputStream outStream = new FileOutputStream(ApkFile);
-			  int count = 0;
-			  byte buf[] = new byte[1024];
-			  do {
-			    int numread = ins.read(buf);
-			    count += numread;
-			    LogUtils.LogE("ashendownload", "count..."+count+",length:"+length);
-			    progress = (int) (((float) count / length) * 100);
-			    LogUtils.LogE("ashendownload", "progress..."+progress);
-			    // 下载进度
-			    handler.sendEmptyMessage(DOWNLOADING);
-			    if (numread <= 0) {
-			     // 下载完成通知安装
-			     handler.sendEmptyMessage(DOWNLOAD_FINISH);
-			     break;
-			   }
-			     outStream.write(buf, 0, numread);
-			     LogUtils.LogE("ashendownload", "interceptFlag:"+interceptFlag);
-			    } while (!interceptFlag);// 点击取消停止下载
-			  	  LogUtils.LogE("ashenssss", "cancel");
-				  outStream.close();
-				  ins.close();
-			   } catch (Exception e) {
-			    e.printStackTrace();
-			    ((MainActivity)context).finish();
-			    //Toast.makeText(context, "出现异常，请重新打开app", 0).show(); 不能在非uiThread进行
-	         }
-	  }
-   };
-	
+				LogUtils.LogE("ashendownload", "url:"+apkUrl);
+				url = new URL(apkUrl);
+				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+				conn.connect();
+				LogUtils.LogE("ashendownload", "after connection");
+				int length = conn.getContentLength();
+				max = length;
+				handler.post(new Runnable() {
+					@Override
+					public void run() {
+						pb_downloading.setMax(100);
+					}
+				});
+				InputStream ins = conn.getInputStream();
+				ApkFile  = new File(Environment.getExternalStorageDirectory(),
+						saveFileName);
+
+				FileOutputStream outStream = new FileOutputStream(ApkFile);
+				int count = 0;
+				byte buf[] = new byte[1024];
+				do {
+					int numread = ins.read(buf);
+					count += numread;
+					LogUtils.LogE("ashendownload", "count..."+count+",length:"+length);
+					progress = (int) (((float) count / length) * 100);
+					LogUtils.LogE("ashendownload", "progress..."+progress);
+					// 下载进度
+					handler.sendEmptyMessage(DOWNLOADING);
+					if (numread <= 0) {
+						// 下载完成通知安装
+						handler.sendEmptyMessage(DOWNLOAD_FINISH);
+						break;
+					}
+					outStream.write(buf, 0, numread);
+					LogUtils.LogE("ashendownload", "interceptFlag:"+interceptFlag);
+				} while (!interceptFlag);// 点击取消停止下载
+				LogUtils.LogE("ashenssss", "cancel");
+				outStream.close();
+				ins.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+				((MainActivity)context).finish();
+				//Toast.makeText(context, "出现异常，请重新打开app", 0).show(); 不能在非uiThread进行
+			}
+		}
+	};
+
 }
