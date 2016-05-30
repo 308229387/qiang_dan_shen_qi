@@ -1242,7 +1242,7 @@ public class MainActivity extends CommonFragmentActivity implements
             if(currentVersion >= versionNum) return;
             boolean needUpdate = false;
             needUpdate = UpdateManager.getUpdateManager().isUpdateNow(this, versionCode, VersionConstans.CURRENT_VERSION, URLConstans.DOWNLOAD_ZHAOBIAO_ADDRESS, forceUpdate);
-            if (!needUpdate) {
+            if (needUpdate) {
                 //判断是不是第一次进入主界面
                 showFirst();
             }
