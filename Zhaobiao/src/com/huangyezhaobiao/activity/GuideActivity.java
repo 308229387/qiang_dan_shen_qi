@@ -119,9 +119,11 @@ public class GuideActivity extends CommonBaseActivity {
 			@Override
 			public void onClick(View v) {
 				if (TextUtils.isEmpty(UserUtils.getUserId(GuideActivity.this)) || TextUtils.isEmpty(UserUtils.getAppVersion(GuideActivity.this))) {// 如果没登录过
-					ActivityUtils.goToActivity(GuideActivity.this, LoginActivity.class);
+					ActivityUtils.goToActivity(GuideActivity.this,
+							LoginActivity.class);
 				} else {
-					ActivityUtils.goToActivity(GuideActivity.this, MainActivity.class);
+					ActivityUtils.goToActivity(GuideActivity.this,
+							MainActivity.class);
 				}
 				sp.edit().putBoolean("isFirst", false).commit();
 				finish();

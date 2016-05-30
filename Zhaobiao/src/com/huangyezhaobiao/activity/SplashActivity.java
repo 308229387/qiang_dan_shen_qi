@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.constans.VersionConstans;
 import com.huangyezhaobiao.eventbus.EventAction;
 import com.huangyezhaobiao.eventbus.EventbusAgent;
 import com.huangyezhaobiao.gtui.GePushProxy;
@@ -132,7 +133,7 @@ public class SplashActivity extends Activity {
 			// ActivityUtils.goToActivity(context, MobileValidateActivity.class);
 			// added by chenguangming
             ActivityUtils.goToActivity(context, LoginActivity.class);
-		} else{//走主界面
+		}else{//走主界面
             ActivityUtils.goToActivity(context, MainActivity.class);
         }
 		//finish();
