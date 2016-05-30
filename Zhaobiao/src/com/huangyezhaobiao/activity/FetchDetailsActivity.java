@@ -47,7 +47,6 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 		setContentView(R.layout.activity_fetch_details);
 		fetchDetailsPresenter = new FetchDetailsPresenter(this);
 		orderId = getIntent().getStringExtra(Constans.ORDER_ID);
-		EventbusAgent.getInstance().register(this);
 		initView();
 		initListener();
 		if(TextUtils.isEmpty(orderId)){//orderId如果为空
@@ -179,14 +178,13 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 				TelephoneBean bean = (TelephoneBean) action.getData();
 				tvm.telephone(orderId,bean.getSource());
 				break;
-
 		}
-
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
+		EventbusAgent.getInstance().register(this);
 		vm.fetchDetailDatas();
 	}
 }
