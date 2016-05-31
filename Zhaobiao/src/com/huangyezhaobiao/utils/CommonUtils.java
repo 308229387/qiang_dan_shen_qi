@@ -49,6 +49,11 @@ public class CommonUtils {
 		return n1 > n2;
 	}
 
+	/**  比较两个Version的大小*/
+	public static boolean compareVersions(String version,String curVersion){
+		return Integer.parseInt(version) > Integer.parseInt(curVersion);
+	}
+
 
 	/**
 	 * 比较两个字符串大小的，如果第一个比第二个大，就返回true,引导界面用的

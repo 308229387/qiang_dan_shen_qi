@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.GravityCompat;
@@ -44,7 +45,6 @@ import com.huangyezhaobiao.bean.GlobalConfigBean;
 import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.bean.push.PushToPassBean;
 import com.huangyezhaobiao.constans.AppConstants;
-import com.huangyezhaobiao.constans.VersionConstans;
 import com.huangyezhaobiao.enums.TitleBarType;
 import com.huangyezhaobiao.gtui.GePushProxy;
 import com.huangyezhaobiao.inter.ActivityInterface;
@@ -57,7 +57,6 @@ import com.huangyezhaobiao.netmodel.INetStateChangedListener;
 import com.huangyezhaobiao.netmodel.NetStateManager;
 import com.huangyezhaobiao.presenter.MainPresenter;
 import com.huangyezhaobiao.service.MyService;
-import com.huangyezhaobiao.url.URLConstans;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
@@ -75,6 +74,7 @@ import com.huangyezhaobiao.utils.StateUtils;
 import com.huangyezhaobiao.utils.UnreadUtils;
 import com.huangyezhaobiao.utils.UpdateManager;
 import com.huangyezhaobiao.utils.UserUtils;
+import com.huangyezhaobiao.utils.VersionUtils;
 import com.huangyezhaobiao.view.LoadingProgress;
 import com.huangyezhaobiao.view.MyCustomDialog;
 import com.huangyezhaobiao.view.QDWaitDialog;
@@ -1174,10 +1174,8 @@ public class MainActivity extends CommonFragmentActivity implements
     /**
      * 第一次登录时的提示
      */
-    private void showFirst() {
-        boolean flag = false;
-        if (flag) {//需要弹窗
-            //弹对话框
+    private void showFirst(boolean flag) {
+        if (!flag) {//需要弹窗
             updateMessageDialog = new ZhaoBiaoDialog(this, getString(R.string.update_hint), getString(R.string.update_message));
             updateMessageDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
@@ -1203,10 +1201,9 @@ public class MainActivity extends CommonFragmentActivity implements
             });
             updateMessageDialog.show();
 
-        } else {//直接弹自定义设置那块几面
-            if (SPUtils.isAutoSetting(this)) {
-                autoSettingDialog.show();
-            }
+        }
+        if (SPUtils.isAutoSetting(this)) {
+            autoSettingDialog.show();
         }
     }
 
@@ -1214,11 +1211,10 @@ public class MainActivity extends CommonFragmentActivity implements
     public void onVersionBack(String version) {
         String versionCode = "";
         Log.e("shenyy", "MainActivity version:" + version);
-        Log.e("cgm",VersionConstans.CURRENT_VERSION + "{}{}{}");
         int currentVersion = -1;
         int versionNum = -1;
         try {
-            currentVersion = Integer.parseInt(VersionConstans.CURRENT_VERSION);
+            currentVersion = Integer.parseInt(VersionUtils.getVersionCode(this));
         } catch (Exception e) {
 
         }
@@ -1238,13 +1234,18 @@ public class MainActivity extends CommonFragmentActivity implements
             if (versionNum == -1) {
                 return;
             }
+            showFirst(currentVersion >= versionNum);
             // 如果当前版本号小于Server端版本号
             if(currentVersion >= versionNum) return;
             boolean needUpdate = false;
-            needUpdate = UpdateManager.getUpdateManager().isUpdateNow(this, versionCode, VersionConstans.CURRENT_VERSION, URLConstans.DOWNLOAD_ZHAOBIAO_ADDRESS, forceUpdate);
-            if (needUpdate) {
-                //判断是不是第一次进入主界面
-                showFirst();
+            try {
+                needUpdate = UpdateManager.getUpdateManager().isUpdateNow(this, versionCode, VersionUtils.getVersionCode(this),"http://10.252.159.75:8001/2.7.0_zhaobiao.apk", forceUpdate);
+//                if (!needUpdate) {
+                    //判断是不是第一次进入主界面
+
+//                }
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
             }
         }
     }
