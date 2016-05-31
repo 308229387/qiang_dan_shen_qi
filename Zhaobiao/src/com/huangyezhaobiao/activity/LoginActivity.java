@@ -32,7 +32,6 @@ import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.bean.LoginBean;
 import com.huangyezhaobiao.constans.AppConstants;
 import com.huangyezhaobiao.eventbus.EventAction;
-import com.huangyezhaobiao.eventbus.EventbusAgent;
 import com.huangyezhaobiao.gtui.GePushProxy;
 import com.huangyezhaobiao.log.LogInvocation;
 import com.huangyezhaobiao.service.MyService;
@@ -85,8 +84,17 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-		loginInstance = this;
-		EventbusAgent.getInstance().register(this);
+//		loginInstance = this;
+//		EventbusAgent.getInstance().register(this);
+
+		getWindow().setBackgroundDrawable(null);
+		//关掉service
+		stopService(new Intent(LoginActivity.this, MyService.class));
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
 		initView();
 		initListener();
 		loginViewModel = new LoginViewModel(this, this);
@@ -99,9 +107,6 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 			//透明导航栏
 			// getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 		}
-		getWindow().setBackgroundDrawable(null);
-		//关掉service
-		stopService(new Intent(LoginActivity.this, MyService.class));
 	}
 
 	//百度统计
@@ -364,10 +369,9 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 		finish();
 	}
 
-
 	@Override
-	protected void onDestroy() {
-		super.onDestroy();
+	protected void onStop() {
+		super.onStop();
 		if(dialog!=null && dialog.isShowing()){
 			dialog.dismiss();
 			dialog = null;
@@ -375,7 +379,19 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 		if(loading!=null){
 			loading = null;
 		}
-		EventbusAgent.getInstance().unregister(this);
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+//		if(dialog!=null && dialog.isShowing()){
+//			dialog.dismiss();
+//			dialog = null;
+//		}
+//		if(loading!=null){
+//			loading = null;
+//		}
+//		EventbusAgent.getInstance().unregister(this);
 		releaseSources();
 	}
 
