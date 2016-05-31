@@ -14,6 +14,7 @@ import com.huangye.commonlib.model.callback.NetworkModelCallBack;
 import com.huangye.commonlib.network.HTTPTools;
 import com.huangye.commonlib.network.HttpRequest;
 import com.huangye.commonlib.utils.JsonUtils;
+import com.huangye.commonlib.utils.LogUtils;
 import com.huangye.commonlib.utils.NetBean;
 import com.huangye.commonlib.utils.NetworkTools;
 import com.huangye.commonlib.utils.UserConstans;
@@ -98,6 +99,11 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
             }
             if (jsonResult.containsKey("loginFlag")) {
                 loginflag = jsonResult.getInteger("loginFlag");
+            }
+            // 获取app version
+            if(result != null && result.getHeaders("version") != null){
+                LogUtils.LogV("commonversion"," name = " + result.getHeaders("version")[0].getName() +",value = " + result.getHeaders("version")[0].getValue());
+                baseSourceModelCallBack.onVersionBack(result.getHeaders("version")[0].getValue());
             }
         } catch (Exception e) {
             loginflag = -1;//如果解析不成功，不让他掉线
