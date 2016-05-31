@@ -8,7 +8,7 @@
         android:layout_width="fill_parent"
         android:background="@drawable/qiangdan_bg_item"
         android:layout_centerVertical="true"
-        android:layout_height="180dp" >
+        android:layout_height="200dp" >
 
         <TextView
             android:id="@+id/dialog_tv_title"
@@ -25,7 +25,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/dialog_tv_title"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
+            android:lineSpacingExtra="2dp"
             android:text="确定要进行退出么"
             android:textColor="@color/black" />
 

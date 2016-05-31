@@ -43,7 +43,9 @@ public class UserUtils {
 	private static final String MOB_TIME = "mobtime";
 	private static long mobTime;
 	private static final String USER_APP_VERSION = "appVersion";
+	private static final String USER_APP_UPDATE= "appUpdate";
 	private static String appVersion;
+	public  static Boolean appUpdate;
 
 	/** 24小时*/
 	private static long AFTER_A_DAY = 24 * 60 * 60 * 1000l;
@@ -149,7 +151,7 @@ public class UserUtils {
 		if(TextUtils.isEmpty(companyName)){
 			companyName = context.getSharedPreferences(USER_SP_NAME, 0).getString(COMPANY_NAME, "");
 		}
-		LogUtils.LogE("shenzhixinui","companyName:"+companyName+",userName:"+getUserName(context));
+		LogUtils.LogE("shenzhixinui", "companyName:" + companyName + ",userName:" + getUserName(context));
 		return companyName;
 	}
 	
@@ -224,7 +226,7 @@ public class UserUtils {
 	}
 
 	public static String getMobCommon(Context context){
-		mobCommon = context.getSharedPreferences(MOB_FILE_NAME, 0).getString(MOB_COMMON,"");
+		mobCommon = context.getSharedPreferences(MOB_FILE_NAME, 0).getString(MOB_COMMON, "");
 		return mobCommon;
 	}
 
@@ -244,13 +246,23 @@ public class UserUtils {
 	}
 
 	public static long getMobTime(Context context){
-		mobTime = context.getSharedPreferences(MOB_FILE_NAME, 0).getLong(MOB_TIME,0);
+		mobTime = context.getSharedPreferences(MOB_FILE_NAME, 0).getLong(MOB_TIME, 0);
 		return mobTime;
 	}
 
 	public static void setAppVersion(Context context,String appVersionCode){
 		SharedPreferences sp = context.getSharedPreferences(USER_SP_NAME, 0);
 		sp.edit().putString(USER_APP_VERSION, appVersionCode).commit();
+	}
+
+	public static boolean getAppUpdate(Context context){
+		appUpdate = context.getSharedPreferences(USER_SP_NAME, 0).getBoolean(USER_APP_UPDATE, false);
+		return appUpdate;
+	}
+
+	public static void setAppUpdate(Context context,Boolean isUpdated){
+		SharedPreferences sp = context.getSharedPreferences(USER_SP_NAME, 0);
+		sp.edit().putBoolean(USER_APP_UPDATE, isUpdated).commit();
 	}
 
 	public static String getAppVersion(Context context){

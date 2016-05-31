@@ -57,6 +57,7 @@ import com.huangyezhaobiao.netmodel.INetStateChangedListener;
 import com.huangyezhaobiao.netmodel.NetStateManager;
 import com.huangyezhaobiao.presenter.MainPresenter;
 import com.huangyezhaobiao.service.MyService;
+import com.huangyezhaobiao.url.URLConstans;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
@@ -1172,10 +1173,10 @@ public class MainActivity extends CommonFragmentActivity implements
 
 
     /**
-     * 第一次登录时的提示
+     * 第一次登录时的提示(局限于2.5升级2.6)
      */
-    private void showFirst(boolean flag) {
-        if (!flag) {//需要弹窗
+    private void showFirst(Boolean flag) {
+        if (flag) {//需要弹窗
             updateMessageDialog = new ZhaoBiaoDialog(this, getString(R.string.update_hint), getString(R.string.update_message));
             updateMessageDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
@@ -1201,25 +1202,32 @@ public class MainActivity extends CommonFragmentActivity implements
             });
             updateMessageDialog.show();
 
+        }else{
+            if (SPUtils.isAutoSetting(this)) {
+                autoSettingDialog.show();
+            }
         }
-        if (SPUtils.isAutoSetting(this)) {
-            autoSettingDialog.show();
-        }
-    }
 
+
+    }
 
     public void onVersionBack(String version) {
         String versionCode = "";
         Log.e("shenyy", "MainActivity version:" + version);
-        int currentVersion = -1;
+        int currentVersion = -1; //当前版本号
+
         int versionNum = -1;
+
+        //获取当前系统版本号
         try {
             currentVersion = Integer.parseInt(VersionUtils.getVersionCode(this));
         } catch (Exception e) {
 
         }
         if (currentVersion == -1) return;
-        //当前是MainActivity
+
+
+        //当前是MainActivity，获取服务器header返回的版本号
         if (version != null) {
             if (version.contains("F")) {
                 forceUpdate = true;
@@ -1234,19 +1242,16 @@ public class MainActivity extends CommonFragmentActivity implements
             if (versionNum == -1) {
                 return;
             }
-            showFirst(currentVersion >= versionNum);
-            // 如果当前版本号小于Server端版本号
-            if(currentVersion >= versionNum) return;
-            boolean needUpdate = false;
-            try {
-                needUpdate = UpdateManager.getUpdateManager().isUpdateNow(this, versionCode, VersionUtils.getVersionCode(this),"http://10.252.159.75:8001/2.7.0_zhaobiao.apk", forceUpdate);
-//                if (!needUpdate) {
-                    //判断是不是第一次进入主界面
 
-//                }
-            } catch (PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
+            UpdateManager.getUpdateManager().isUpdateNow(this, versionNum, currentVersion, URLConstans.DOWNLOAD_ZHAOBIAO_ADDRESS, forceUpdate);
+//          UpdateManager.getUpdateManager().isUpdateNow(this, versionNum, currentVersion, "http://10.252.159.75:8001/2.7.0_zhaobiao.apk", forceUpdate);
+            if(currentVersion <= 22){
+                Boolean flag = UserUtils.getAppUpdate(this);
+                //判断是不是第一次进入主界面
+                showFirst(flag);
             }
+
+
         }
     }
 

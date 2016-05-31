@@ -17,7 +17,6 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.constans.VersionConstans;
 import com.huangyezhaobiao.eventbus.EventAction;
 import com.huangyezhaobiao.eventbus.EventbusAgent;
 import com.huangyezhaobiao.gtui.GePushProxy;

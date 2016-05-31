@@ -10,6 +10,8 @@ import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.utils.UserUtils;
 import com.lidroid.xutils.http.RequestParams;
 
+import org.apache.http.NameValuePair;
+
 import java.util.List;
 
 /**
@@ -31,6 +33,12 @@ public class ZhaoBiaoRequest<T> extends HttpRequest {
         if(list!= null && list.size() != 0){
             list.clear();
         }
+
+        List<NameValuePair> bodyParams = params.getQueryStringParams();
+        if(bodyParams!= null && bodyParams.size() != 0){
+            bodyParams.clear();
+        }
+
         Log.v("zhaobiaorequest//////","header userid = " + UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
         params.addHeader("ppu", UserUtils.getUserPPU(BiddingApplication.getAppInstanceContext()));
         params.addHeader("userId",UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));

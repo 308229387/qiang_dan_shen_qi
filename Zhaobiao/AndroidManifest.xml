@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.huangyezhaobiao"
     android:installLocation="auto"
-    android:versionCode="23"
-    android:versionName="2.7.0">
+    android:versionCode="22"
+    android:versionName="2.6.0">
 
     <uses-sdk
         android:minSdkVersion="11"

@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
@@ -102,18 +103,21 @@ public class UpdateManager {
 	public void showConfirmDownloadDialog(final Context context,final String url){
 		this.context = context;
 		if(confirmUpdateDialog==null){
-			confirmUpdateDialog = new ZhaoBiaoDialog(context, "app更新", "是否进行新版本的更新");
+//			confirmUpdateDialog = new ZhaoBiaoDialog(context, "app更新", "是否进行新版本的更新");
+			confirmUpdateDialog = new ZhaoBiaoDialog(context, context.getString(R.string.update_hint), context.getString(R.string.update_message));
 			confirmUpdateDialog.setCancelable(false);
 			confirmUpdateDialog.setOnDialogClickListener(new onDialogClickListener() {
 				@Override
 				public void onDialogOkClick() {
 					dismissConfirmDownloadDialog();
-					startDownloading(context,url);
+					SPUtils.saveAlreadyFirstUpdate(context);
+					startDownloading(context, url);
 				}
+
 				@Override
 				public void onDialogCancelClick() {
 					dismissConfirmDownloadDialog();
-					if(forceUpdate) {
+					if (forceUpdate) {
 						((MainActivity) context).finish();//退出应用
 					}
 				}
@@ -132,11 +136,11 @@ public class UpdateManager {
 	protected void startDownloading(final Context context,String url) {
 		if (!Environment.getExternalStorageState().equals(
 				Environment.MEDIA_MOUNTED)) {
-			Toast.makeText(context, "未安装sd卡", 0).show();
+			Toast.makeText(context, "未安装sd卡", Toast.LENGTH_SHORT).show();
 			return;
 		}
 		if (!NetUtils.isNetworkConnected(context)) {
-			Toast.makeText(context, "网络未连接", 0).show();
+			Toast.makeText(context, "网络未连接", Toast.LENGTH_SHORT).show();
 			return;
 		}
 		interceptFlag = false;
@@ -159,7 +163,7 @@ public class UpdateManager {
 					downloadDialog.show();
 				}catch(Exception e){
 					((Activity)context).finish();
-					Toast.makeText(context, "出现异常，请重新打开app", 0).show();
+					Toast.makeText(context, "出现异常，请重新打开app", Toast.LENGTH_SHORT).show();
 				}
 			}
 			downloadDialog.getWindow().setContentView(view);
@@ -216,27 +220,27 @@ public class UpdateManager {
 		return false;
 	}
 
-	/**
-	 * 检查是否需要更新
-	 * @return
-	 * @throws NameNotFoundException
-	 */
-	public boolean isUpdateNow( Context context,String version,String url) throws NameNotFoundException
-	{
-		if(version==null || url == null) return false;
-		String currentVersion = VersionUtils.getVersionName(context);
-		if(currentVersion.contains(".") )
-			currentVersion = currentVersion.replace(".", "");
-		if(version.contains("."))
-			version        = version.replace(".", "");
-		if(CommonUtils.compareTwoNumbers(version, currentVersion)){
-			showConfirmDownloadDialog(context, url);
-			needUpdate  = true;
-		}else{
-			needUpdate = false;
-		}
-		return needUpdate;
-	}
+//	/**
+//	 * 检查是否需要更新
+//	 * @return
+//	 * @throws NameNotFoundException
+//	 */
+//	public boolean isUpdateNow( Context context,String version,String url) throws NameNotFoundException
+//	{
+//		if(version==null || url == null) return false;
+//		String currentVersion = VersionUtils.getVersionName(context);
+//		if(currentVersion.contains(".") )
+//			currentVersion = currentVersion.replace(".", "");
+//		if(version.contains("."))
+//			version        = version.replace(".", "");
+//		if(CommonUtils.compareTwoNumbers(version, currentVersion)){
+//			showConfirmDownloadDialog(context, url);
+//			needUpdate  = true;
+//		}else{
+//			needUpdate = false;
+//		}
+//		return needUpdate;
+//	}
 
 
 	boolean forceUpdate = true;
@@ -245,20 +249,17 @@ public class UpdateManager {
 	 * @return
 	 * @throws NameNotFoundException
 	 */
-	public boolean isUpdateNow( Context context,String version,String currentVersion,String url,boolean forceUpdate) {
+	public boolean isUpdateNow( Context context,int updateVersion,int currentVersion,String url,boolean forceUpdate) {
 		this.forceUpdate = forceUpdate;
-		if(version==null || url == null) return false;
-//		//String currentVersion = VersionConstans.CURRENT_VERSION;
-//		if(currentVersion.contains(".") )
-//			currentVersion = currentVersion.replace(".", "");
-//		if(version.contains("."))
-//			version        = version.replace(".", "");
-
-		UserUtils.setAppVersion(context,version);
-		Log.v("isUpdateNow",version);
-		if(CommonUtils.compareVersions(version, currentVersion)){
+        // 如果当前版本号小于Server端版本号
+        if(currentVersion >= updateVersion) return false;
+		if( url == null) return false;
+		UserUtils.setAppVersion(context, String.valueOf(updateVersion));
+		Log.v("isUpdateNow",String.valueOf(updateVersion));
+		if(CommonUtils.compareVersions(updateVersion, currentVersion)){
 			showConfirmDownloadDialog(context, url);
 			needUpdate  = true;
+			UserUtils.setAppUpdate(context,needUpdate);
 		}else{
 			needUpdate = false;
 		}

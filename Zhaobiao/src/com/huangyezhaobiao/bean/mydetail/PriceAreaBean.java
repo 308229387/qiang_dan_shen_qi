@@ -101,7 +101,6 @@ public class PriceAreaBean extends QDDetailBaseBean{
 
 				HYMob.getDataListByRefund(context, HYEventConstans.EVENT_ID_ORDER_LIST_PHONE, String.valueOf(orderId));
 
-
 				Log.e("shenzhixin","hahahah state:"+refundState);
 				EventAction action = new EventAction(EventType.REGISTER_SUCCESS);
 				//用EventBus导出去

@@ -88,7 +88,7 @@ public abstract class HttpRequest<T> {
 		if(bodyParams!=null){
 			bodyParams.clear();
 		}
-		Set<Entry<String, String>> entrySet = params_map.entrySet();
+		Set<Entry<String, String>> entrySet = map.entrySet();
 		Iterator<Entry<String, String>> iterator = entrySet.iterator();
 		while (iterator.hasNext()) {
 			  Entry<String, String> next = iterator.next();
