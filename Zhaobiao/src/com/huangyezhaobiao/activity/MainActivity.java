@@ -1177,30 +1177,34 @@ public class MainActivity extends CommonFragmentActivity implements
      */
     private void showFirst(Boolean flag) {
         if (flag) {//需要弹窗
-            updateMessageDialog = new ZhaoBiaoDialog(this, getString(R.string.update_hint), getString(R.string.update_message));
-            updateMessageDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-                    //弹自定义界面的弹
-                    if (SPUtils.isAutoSetting(MainActivity.this)) {
-                        autoSettingDialog.show();
-                    }
-                }
-            });
-            updateMessageDialog.setCancelable(false);
-            updateMessageDialog.setCancelButtonGone();
-            updateMessageDialog.setOnDialogClickListener(new onDialogClickListener() {
-                @Override
-                public void onDialogOkClick() {
-                    updateMessageDialog.dismiss();
-                    SPUtils.saveAlreadyFirstUpdate(MainActivity.this);
-                }
+           if(!SPUtils.getAppUpdate(this)){
+               updateMessageDialog = new ZhaoBiaoDialog(this, getString(R.string.update_hint), getString(R.string.update_message));
+               updateMessageDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                   @Override
+                   public void onDismiss(DialogInterface dialog) {
+                       SPUtils.setAppUpdate(MainActivity.this,true);
+                       //弹自定义界面的弹
+                       if (SPUtils.isAutoSetting(MainActivity.this)) {
+                           autoSettingDialog.show();
+                       }
+                   }
+               });
+               updateMessageDialog.setCancelable(false);
+               updateMessageDialog.setCancelButtonGone();
+               updateMessageDialog.setOnDialogClickListener(new onDialogClickListener() {
+                   @Override
+                   public void onDialogOkClick() {
+                       updateMessageDialog.dismiss();
+                       SPUtils.saveAlreadyFirstUpdate(MainActivity.this);
+                       SPUtils.setAppUpdate(MainActivity.this, true);
+                   }
 
-                @Override
-                public void onDialogCancelClick() {
-                }
-            });
-            updateMessageDialog.show();
+                   @Override
+                   public void onDialogCancelClick() {
+                   }
+               });
+               updateMessageDialog.show();
+           }
 
         }else{
             if (SPUtils.isAutoSetting(this)) {
@@ -1242,14 +1246,12 @@ public class MainActivity extends CommonFragmentActivity implements
             if (versionNum == -1) {
                 return;
             }
-
             UpdateManager.getUpdateManager().isUpdateNow(this, versionNum, currentVersion, URLConstans.DOWNLOAD_ZHAOBIAO_ADDRESS, forceUpdate);
 //          UpdateManager.getUpdateManager().isUpdateNow(this, versionNum, currentVersion, "http://10.252.159.75:8001/2.7.0_zhaobiao.apk", forceUpdate);
-            if(currentVersion <= 22){
-                Boolean flag = UserUtils.getAppUpdate(this);
-                //判断是不是第一次进入主界面
-                showFirst(flag);
-            }
+            Boolean flag = UpdateManager.needUpdate;
+            Log.v("www","flag:" + flag);
+            //判断是不是第一次进入主界面
+            showFirst(!flag);
 
 
         }

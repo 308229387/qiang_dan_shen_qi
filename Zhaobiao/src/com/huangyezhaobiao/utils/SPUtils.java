@@ -15,6 +15,8 @@ public class SPUtils {
     private static String KEY_FIRST_UPDATE = "isFirstUpdate";
     private static String KEY_NEED_AUTO_SETTING = "isAutoSetting";
     private static String KEY_SERVICE_STATE     = "serviceState";
+    private static final String USER_APP_UPDATE= "appUpdate";
+    public  static Boolean appUpdate;
     /**
      * 全局初始化的时间戳
      */
@@ -107,6 +109,16 @@ public class SPUtils {
     public static void saveAlreadyFirstUpdate(Context context){
         SharedPreferences sp = context.getSharedPreferences(SP_NAME+"24", 0);
         sp.edit().putBoolean(KEY_FIRST_UPDATE, false).commit();
+    }
+
+    public static boolean getAppUpdate(Context context){
+        appUpdate = context.getSharedPreferences(SP_NAME, 0).getBoolean(USER_APP_UPDATE, false);
+        return appUpdate;
+    }
+
+    public static void setAppUpdate(Context context,Boolean isUpdated){
+        SharedPreferences sp = context.getSharedPreferences(SP_NAME, 0);
+        sp.edit().putBoolean(USER_APP_UPDATE, isUpdated).commit();
     }
 
     /**

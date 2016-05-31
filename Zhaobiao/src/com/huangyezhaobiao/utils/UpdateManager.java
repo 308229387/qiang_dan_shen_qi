@@ -259,7 +259,6 @@ public class UpdateManager {
 		if(CommonUtils.compareVersions(updateVersion, currentVersion)){
 			showConfirmDownloadDialog(context, url);
 			needUpdate  = true;
-			UserUtils.setAppUpdate(context,needUpdate);
 		}else{
 			needUpdate = false;
 		}

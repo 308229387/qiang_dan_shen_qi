@@ -43,9 +43,7 @@ public class UserUtils {
 	private static final String MOB_TIME = "mobtime";
 	private static long mobTime;
 	private static final String USER_APP_VERSION = "appVersion";
-	private static final String USER_APP_UPDATE= "appUpdate";
 	private static String appVersion;
-	public  static Boolean appUpdate;
 
 	/** 24小时*/
 	private static long AFTER_A_DAY = 24 * 60 * 60 * 1000l;
@@ -255,15 +253,6 @@ public class UserUtils {
 		sp.edit().putString(USER_APP_VERSION, appVersionCode).commit();
 	}
 
-	public static boolean getAppUpdate(Context context){
-		appUpdate = context.getSharedPreferences(USER_SP_NAME, 0).getBoolean(USER_APP_UPDATE, false);
-		return appUpdate;
-	}
-
-	public static void setAppUpdate(Context context,Boolean isUpdated){
-		SharedPreferences sp = context.getSharedPreferences(USER_SP_NAME, 0);
-		sp.edit().putBoolean(USER_APP_UPDATE, isUpdated).commit();
-	}
 
 	public static String getAppVersion(Context context){
 		appVersion = context.getSharedPreferences(USER_SP_NAME, 0).getString(USER_APP_VERSION,"");
