@@ -24,7 +24,6 @@ import android.widget.Toast;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.activity.MainActivity;
-import com.huangyezhaobiao.constans.VersionConstans;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog.onDialogClickListener;
 /**
@@ -257,7 +256,7 @@ public class UpdateManager {
 
 		UserUtils.setAppVersion(context,version);
 		Log.v("isUpdateNow",version);
-		if(CommonUtils.compareTwoNumbers(version, currentVersion)){
+		if(CommonUtils.compareVersions(version, currentVersion)){
 			showConfirmDownloadDialog(context, url);
 			needUpdate  = true;
 		}else{

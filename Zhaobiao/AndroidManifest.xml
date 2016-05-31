@@ -3,14 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.huangyezhaobiao"
     android:installLocation="auto"
-    android:versionCode="22"
-    android:versionName="2.6.0">
+    android:versionCode="23"
+    android:versionName="2.7.0">
 
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="22" />
     <!--===================================================Ma===============-->
-    <!-- 个推SDK权限配置开始 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

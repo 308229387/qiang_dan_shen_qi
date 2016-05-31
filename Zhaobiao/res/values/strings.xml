@@ -48,9 +48,10 @@
     <string name="update_hint">更新提示</string>
     <string name="network_error_message">当前网络慢,请您稍后重试奥</string>
     <string name="update_message">
-        1、列表页全新改版，展示订单价格，抢单更清晰\n
-        2、自定义接单设置区域精确匹配，订单更靠谱\n
-        3、修复了一些bug，体验更流畅
+        1、登录安全升级，账号安全性更高\n
+        2、系统深层优化，操作流畅度更好\n
+        3、360°无死角兼容了更多手机系统版本\n
+        4、修复了一些bug
     </string>
     <string name="logout_now">退出了当前的账号</string>
     <string name="logout_make_sure">确定要退出当前账号么?</string>
