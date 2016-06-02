@@ -232,7 +232,13 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 					return;
 				}
 				startLoading();
-				loginViewModel.login(name, passwords,false);
+
+				if (loginViewModel != null){
+					loginViewModel = null;
+					System.gc();
+				}
+				loginViewModel = new LoginViewModel(LoginActivity.this, LoginActivity.this);
+				loginViewModel.login(name, passwords, false);
 			}
 		});
 

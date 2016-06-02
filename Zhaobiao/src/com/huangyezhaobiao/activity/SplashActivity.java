@@ -27,6 +27,7 @@ import com.huangyezhaobiao.utils.CommonUtils;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.UserUtils;
+import com.huangyezhaobiao.utils.Utils;
 import com.huangyezhaobiao.utils.VersionUtils;
 
 import air.com.wuba.bangbang.common.impush.DeamonService;
@@ -126,7 +127,7 @@ public class SplashActivity extends Activity {
 		if (sp.getBoolean("isFirst", true) || !CommonUtils.compareTwoNumbersGuide(saveVersionName,
 				mCurrentVersionName) ){//进入引导界面
             ActivityUtils.goToActivity(context, GuideActivity.class);
-        }else if(TextUtils.isEmpty(UserUtils.getUserId(context))){//如果没有登录过
+        }else if(TextUtils.isEmpty(UserUtils.getUserId(context)) || TextUtils.isEmpty(UserUtils.getUserPPU(context))){//如果没有登录过
             ActivityUtils.goToActivity(context, LoginActivity.class);
         }else if(!UserUtils.isValidate(context)){//还未验证，走验证界面
 			// ActivityUtils.goToActivity(context, MobileValidateActivity.class);
