@@ -125,7 +125,10 @@ public class YuEDetailActivity extends QBBaseActivity implements OnClickListener
 	@Override
 	public void getDataSuccess(Object o) {
 		beans = (List<MessageBean>) o;
-		adapter.setSources(beans);
+		if (beans != null && beans.size() > 0){
+			adapter.setSources(beans);
+		}
+
 	}
 
 

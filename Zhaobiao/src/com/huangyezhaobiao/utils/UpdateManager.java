@@ -103,14 +103,13 @@ public class UpdateManager {
 	public void showConfirmDownloadDialog(final Context context,final String url){
 		this.context = context;
 		if(confirmUpdateDialog==null){
-//			confirmUpdateDialog = new ZhaoBiaoDialog(context, "app更新", "是否进行新版本的更新");
-			confirmUpdateDialog = new ZhaoBiaoDialog(context, context.getString(R.string.update_hint), context.getString(R.string.update_message));
+			confirmUpdateDialog = new ZhaoBiaoDialog(context, "app更新", "是否进行新版本的更新");
+//			confirmUpdateDialog = new ZhaoBiaoDialog(context, context.getString(R.string.update_hint), context.getString(R.string.update_message));
 			confirmUpdateDialog.setCancelable(false);
 			confirmUpdateDialog.setOnDialogClickListener(new onDialogClickListener() {
 				@Override
 				public void onDialogOkClick() {
 					dismissConfirmDownloadDialog();
-					SPUtils.saveAlreadyFirstUpdate(context);
 					startDownloading(context, url);
 				}
 
@@ -257,6 +256,7 @@ public class UpdateManager {
 		UserUtils.setAppVersion(context, String.valueOf(updateVersion));
 		Log.v("isUpdateNow",String.valueOf(updateVersion));
 		if(CommonUtils.compareVersions(updateVersion, currentVersion)){
+			SPUtils.saveAlreadyFirstUpdate(context,true);
 			showConfirmDownloadDialog(context, url);
 			needUpdate  = true;
 		}else{

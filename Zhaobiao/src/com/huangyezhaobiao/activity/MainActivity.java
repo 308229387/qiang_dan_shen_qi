@@ -177,7 +177,7 @@ public class MainActivity extends CommonFragmentActivity implements
         if(LoginActivity.loginInstance != null){
             LoginActivity.loginInstance.finish();
         }
-        //wjl        mainPresenter = new MainPresenter();
+        mainPresenter = new MainPresenter();
         progressDialog = new QDWaitDialog(this);
         keyguardManager = (KeyguardManager) getApplication().getSystemService(KEYGUARD_SERVICE);
         keyguardLock = keyguardManager.newKeyguardLock("");
@@ -311,7 +311,6 @@ public class MainActivity extends CommonFragmentActivity implements
      * @return
      */
     private boolean isUpdateFirst() {
-        Log.e("shenzhixinUI", "is:" + SPUtils.isFirstUpdate(this));
         return SPUtils.isFirstUpdate(this);
     }
 
@@ -1173,45 +1172,43 @@ public class MainActivity extends CommonFragmentActivity implements
 
 
     /**
-     * 第一次登录时的提示(局限于2.5升级2.6)
+     * 第一次登录时的提示(有个逻辑bug,2.6.0版---需要确定一下？？？？)
      */
-    private void showFirst(Boolean flag) {
-        if (flag) {//需要弹窗
-           if(!SPUtils.getAppUpdate(this)){
-               updateMessageDialog = new ZhaoBiaoDialog(this, getString(R.string.update_hint), getString(R.string.update_message));
-               updateMessageDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                   @Override
-                   public void onDismiss(DialogInterface dialog) {
-                       SPUtils.setAppUpdate(MainActivity.this,true);
-                       //弹自定义界面的弹
-                       if (SPUtils.isAutoSetting(MainActivity.this)) {
-                           autoSettingDialog.show();
-                       }
-                   }
-               });
-               updateMessageDialog.setCancelable(false);
-               updateMessageDialog.setCancelButtonGone();
-               updateMessageDialog.setOnDialogClickListener(new onDialogClickListener() {
-                   @Override
-                   public void onDialogOkClick() {
-                       updateMessageDialog.dismiss();
-                       SPUtils.saveAlreadyFirstUpdate(MainActivity.this);
-                       SPUtils.setAppUpdate(MainActivity.this, true);
-                   }
+    private void showFirst() {
+//      if(!SPUtils.getAppUpdate(this)){
+        if (isUpdateFirst() || !TextUtils.isEmpty(UserUtils.getAppVersion(this))) {//需要弹窗
+            updateMessageDialog = new ZhaoBiaoDialog(this, getString(R.string.update_hint), getString(R.string.update_message));
+            updateMessageDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    //弹自定义界面的弹
+                    if (SPUtils.isAutoSetting(MainActivity.this)) {
+                        autoSettingDialog.show();
+                    }
+                }
+            });
+            updateMessageDialog.setCancelable(false);
+            updateMessageDialog.setCancelButtonGone();
+            updateMessageDialog.setOnDialogClickListener(new onDialogClickListener() {
+                @Override
+                public void onDialogOkClick() {
+                    updateMessageDialog.dismiss();
+                    SPUtils.saveAlreadyFirstUpdate(MainActivity.this, false);
+                    UserUtils.setAppVersion(MainActivity.this, ""); //2.7升级可删
+//                       SPUtils.setAppUpdate(MainActivity.this, true);
+                }
 
-                   @Override
-                   public void onDialogCancelClick() {
-                   }
-               });
-               updateMessageDialog.show();
-           }
+                @Override
+                public void onDialogCancelClick() {
+                }
+            });
+            updateMessageDialog.show();
 
-        }else{
+        } else {
             if (SPUtils.isAutoSetting(this)) {
                 autoSettingDialog.show();
             }
         }
-
 
     }
 
@@ -1246,12 +1243,15 @@ public class MainActivity extends CommonFragmentActivity implements
             if (versionNum == -1) {
                 return;
             }
+
             UpdateManager.getUpdateManager().isUpdateNow(this, versionNum, currentVersion, URLConstans.DOWNLOAD_ZHAOBIAO_ADDRESS, forceUpdate);
-//          UpdateManager.getUpdateManager().isUpdateNow(this, versionNum, currentVersion, "http://10.252.159.75:8001/2.7.0_zhaobiao.apk", forceUpdate);
+//          UpdateManager.getUpdateManager().isUpdateNow(this, versionNum, currentVersion, "http://10.252.23.45:8001/2.7.0_zhaobiao.apk", forceUpdate);
             Boolean flag = UpdateManager.needUpdate;
-            Log.v("www","flag:" + flag);
-            //判断是不是第一次进入主界面
-            showFirst(!flag);
+            Log.v("www", "flag:" + flag);
+            if(!flag){
+                //判断是不是第一次进入主界面
+                showFirst();
+            }
 
 
         }

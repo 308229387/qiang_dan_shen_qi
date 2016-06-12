@@ -141,19 +141,17 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 	public void onVersionBack(String version) {
 	}
 
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		EventbusAgent.getInstance().unregister(this);
-	}
-
-
 	@Override
 	protected void onStop() {
 		super.onStop();
-		EventbusAgent.getInstance().unregister(this);
+//		EventbusAgent.getInstance().unregister(this);
 		HYMob.getBaseDataListForPage(FetchDetailsActivity.this, HYEventConstans.PAGE_MY_ORDER_DETAIL, stop_time - resume_time);
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		EventbusAgent.getInstance().unregister(this);
 	}
 
 	public void onEventMainThread(EventAction action){

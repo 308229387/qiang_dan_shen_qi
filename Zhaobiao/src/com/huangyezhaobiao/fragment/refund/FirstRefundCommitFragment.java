@@ -233,7 +233,9 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
         stopLoading();
         rl_submit.setVisibility(View.GONE);
         layout_no_internet.setVisibility(View.GONE);
-        Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
+        if(!TextUtils.isEmpty(msg)) {
+            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -381,14 +383,16 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
 
                 @Override
                 public void onUploadPicFailure(final String err) {
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            uploadPicDialog.dismiss();
-                            resultDialog_failure.show();
-                            rl_submit.setVisibility(View.GONE);
-                        }
-                    });
+                    if(isAdded()) { //getActivity（）！= null
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                uploadPicDialog.dismiss();
+                                resultDialog_failure.show();
+                                rl_submit.setVisibility(View.GONE);
+                            }
+                        });
+                    }
 
                 }
 

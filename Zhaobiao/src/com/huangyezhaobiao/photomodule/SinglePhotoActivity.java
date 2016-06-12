@@ -74,7 +74,9 @@ public class SinglePhotoActivity extends BaseActivity {
         viewPager.setAdapter(adapter);
         viewPager.setOffscreenPageLimit(3);
         viewPager.setCurrentItem(index, false);
-        updateUI(PhotoHelper.current_photo_infos.get(index));
+        if(PhotoHelper.current_photo_infos != null && PhotoHelper.current_photo_infos.size() >0) {
+            updateUI(PhotoHelper.current_photo_infos.get(index));
+        }
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

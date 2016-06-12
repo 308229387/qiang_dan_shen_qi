@@ -59,33 +59,68 @@ public class PushUtils {
 	private static JSONObject info;
 	
 	private static PushBean pushBean;
-	
 
-	public static void initJson(MiPushMessage message) {
+
+
+	private static void init(String content){
 		try {
-			Log.e("miui","content:"+message.getContent());
-			obj = JSON.parseObject(message.getContent());
-			extMap = JSON.parseObject(obj.getString("extMap"));
+			if(content != null){
+				obj = JSON.parseObject(content);
+			}
 
-			detail = JSON.parseObject(extMap.getString("detail"));
-			info = JSON.parseObject(detail.getString("info"));
+			if(obj.getString("extMap") != null){
+				extMap = JSON.parseObject(obj.getString("extMap"));
+			}
+
+			if(extMap.getString("detail") != null){
+				detail = JSON.parseObject(extMap.getString("detail"));
+			}
+
+			if (detail.getString("info") != null){
+				info = JSON.parseObject(detail.getString("info"));
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
+
+	public static void initJson(MiPushMessage message) {
+
+		if(message != null){
+			Log.e("miui","content:"+message.getContent());
+			init(message.getContent());
+		}
+//		try {
+//			Log.e("miui","content:"+message.getContent());
+//			obj = JSON.parseObject(message.getContent());
+//			extMap = JSON.parseObject(obj.getString("extMap"));
+//
+//			detail = JSON.parseObject(extMap.getString("detail"));
+//			info = JSON.parseObject(detail.getString("info"));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+	}
 
 
 	public static void initGPushJson(String gePushJson){
-		try {
-			Log.e("miui","content:"+gePushJson);
-			obj = JSON.parseObject(gePushJson);
-			extMap = JSON.parseObject(obj.getString("extMap"));
 
-			detail = JSON.parseObject(extMap.getString("detail"));
-			info = JSON.parseObject(detail.getString("info"));
-		} catch (Exception e) {
-			e.printStackTrace();
+		if(gePushJson != null){
+			Log.e("miui","content:"+gePushJson);
+			init(gePushJson);
 		}
+//		try {
+//			Log.e("miui","content:"+gePushJson);
+//			obj = JSON.parseObject(gePushJson);
+//			extMap = JSON.parseObject(obj.getString("extMap"));
+//
+//			detail = JSON.parseObject(extMap.getString("detail"));
+//			info = JSON.parseObject(detail.getString("info"));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	public static PushBean dealGePushMessage(Context context,String gePushContent){
@@ -112,13 +147,27 @@ public class PushUtils {
 
 		// 这里拿到Push的基本信息 类型和推送时间
 		int type = 0;
-		type = extMap.getInteger("type");//推送类型，新订单/推送结果...
-		Log.e("GetuiSdkDemo","type:"+type);
-		String pushTime = extMap.getString("pushTime");//推送时间
-		long pushId = extMap.getLong("id");//推送id
+		String pushTime = null;
+		long pushId = 0;
 		int pushTurn = 0;
-		if("0".equals(info.getString("displayType"))){
-			return null;
+
+		try {
+
+			if (extMap.getInteger("type") != null) {
+                type = extMap.getInteger("type");//推送类型，新订单/推送结果...
+                Log.e("GetuiSdkDemo", "type:" + type);
+            }
+			if (extMap.getString("pushTime") != null){
+                pushTime = extMap.getString("pushTime");//推送时间
+             }
+			if( extMap.getLong("id") != null){
+                pushId = extMap.getLong("id");//推送id
+            }
+			if("0".equals(info.getString("displayType"))){
+                return null;
+            }
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		// 100:新标的 101:抢单结果,成功or失败在detail中体现 102:倒计时提醒 103:系统消息
 		switch (PopTypeEnum.getPopType(type)) {
@@ -203,7 +252,12 @@ public class PushUtils {
 
 	public static void notify(Context context, MiPushMessage message) {
 
-		int type = Integer.parseInt(extMap.getString("type"));
+		int type = 0;
+		try {
+			type = Integer.parseInt(extMap.getString("type"));
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
 		switch (PopTypeEnum.getPopType(type)) {
 
 		case NEW_ORDER:

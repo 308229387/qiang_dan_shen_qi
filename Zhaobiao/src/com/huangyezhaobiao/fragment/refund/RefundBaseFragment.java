@@ -73,7 +73,7 @@ public abstract class RefundBaseFragment extends Fragment implements ICamera,Net
      * 加载效果
      */
     public void startLoading() {
-        if (dialog == null) {
+        if (dialog == null && getActivity() != null) {
             dialog = new LoadingProgress(getActivity(),
                     R.style.loading);
         }

@@ -98,18 +98,19 @@ public class SPUtils {
      */
     public static boolean isFirstUpdate(Context context) {
         //以spName和版本号来保存
-        SharedPreferences sp = context.getSharedPreferences(SP_NAME+"24", 0);
-        return sp.getBoolean(KEY_FIRST_UPDATE, true);
+        SharedPreferences sp = context.getSharedPreferences(SP_NAME, 0);
+        return sp.getBoolean(KEY_FIRST_UPDATE, false);
     }
 
     /**
      * 更新后已经进入
      * @param context
      */
-    public static void saveAlreadyFirstUpdate(Context context){
-        SharedPreferences sp = context.getSharedPreferences(SP_NAME+"24", 0);
-        sp.edit().putBoolean(KEY_FIRST_UPDATE, false).commit();
+    public static void saveAlreadyFirstUpdate(Context context,Boolean flag){
+        SharedPreferences sp = context.getSharedPreferences(SP_NAME, 0);
+        sp.edit().putBoolean(KEY_FIRST_UPDATE, flag).commit();
     }
+
 
     public static boolean getAppUpdate(Context context){
         appUpdate = context.getSharedPreferences(SP_NAME, 0).getBoolean(USER_APP_UPDATE, false);

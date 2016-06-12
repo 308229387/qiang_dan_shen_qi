@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.eventbus.EventAction;
 import com.huangyezhaobiao.eventbus.EventbusAgent;
 import com.huangyezhaobiao.gtui.GePushProxy;
@@ -161,7 +162,7 @@ public class SplashActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		BDMob.getBdMobInstance().onResumeActivity(this);
+		BDMob.getBdMobInstance().onResumeActivity(BiddingApplication.getBiddingApplication());
 
 		HYMob.getDataList(this, HYEventConstans.EVENT_ID_APP_OPEND);
 

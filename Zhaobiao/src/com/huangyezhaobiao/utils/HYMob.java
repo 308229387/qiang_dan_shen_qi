@@ -415,7 +415,8 @@ public class HYMob {
      * @return
      */
     public static HashMap createMap(Context context,String data,String t){
-        if(UserUtils.getMobItem(context) > 0){
+        int num = UserUtils.getMobItem(context);
+        if( num > 0){
             LogUtils.LogV("Upload", "sp upload");
             uploadMob(context,UserUtils.getMobCommon(context),UserUtils.getMobData(context),0,"sp");
         }

@@ -39,7 +39,6 @@ public class ZhaoBiaoRequest<T> extends HttpRequest {
             bodyParams.clear();
         }
 
-        Log.v("zhaobiaorequest//////","header userid = " + UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
         params.addHeader("ppu", UserUtils.getUserPPU(BiddingApplication.getAppInstanceContext()));
         params.addHeader("userId",UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
 //        try {

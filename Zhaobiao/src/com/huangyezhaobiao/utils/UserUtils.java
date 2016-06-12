@@ -62,7 +62,7 @@ public class UserUtils {
 
 	public static void setAccountName(Context context,String accountName){
 		SharedPreferences sp = context.getSharedPreferences(PPU_SP_NAME, 0);//用userId，来区分
-		sp.edit().putString(ACCOUNT_NAME, accountName).commit();
+		sp.edit().putString(ACCOUNT_NAME, accountName).apply();
 	}
 
 	public static String getAccountName(Context context){
@@ -72,7 +72,7 @@ public class UserUtils {
 
 	public static void setAccountEncrypt(Context context,String accountEncrypt){
 		SharedPreferences sp = context.getSharedPreferences(PPU_SP_NAME, 0);//用userId，来区分
-		sp.edit().putString(ACCOUNT_ENCRYPT, accountEncrypt).commit();
+		sp.edit().putString(ACCOUNT_ENCRYPT, accountEncrypt).apply();
 	}
 
 	public static String getAccountEncrypt(Context context){
@@ -82,7 +82,7 @@ public class UserUtils {
 
 	public static void setPassportUserId(Context context,String userId){
 		SharedPreferences sp = context.getSharedPreferences(PPU_SP_NAME, 0);
-		sp.edit().putString(USER_ID, userId).commit();
+		sp.edit().putString(USER_ID, userId).apply();
 	}
 
 	public static String getPassportUserId(Context context){
@@ -91,7 +91,7 @@ public class UserUtils {
 
 	public static void setSessionTime(Context context,long sessionTime){
 		SharedPreferences sp = context.getSharedPreferences(PPU_SP_NAME, 0);
-		sp.edit().putLong(SESSION_TIME, sessionTime).commit();
+		sp.edit().putLong(SESSION_TIME, sessionTime).apply();
 	}
 
 	public static long getSessionTime(Context context){
@@ -208,9 +208,10 @@ public class UserUtils {
 		return outofdate;
 	}
 
+	/** added by chenguangming*/
 	public static void setMobItem(Context context,int mobItem){
 		SharedPreferences sp = context.getSharedPreferences(MOB_FILE_NAME, 0);
-		sp.edit().putInt(MOB_ITEM, mobItem).commit();
+		sp.edit().putInt(MOB_ITEM, mobItem).apply();
 	}
 
 	public static int getMobItem(Context context){
@@ -220,7 +221,7 @@ public class UserUtils {
 
 	public static void setMobCommon(Context context,String mobCommon){
 		SharedPreferences sp = context.getSharedPreferences(MOB_FILE_NAME, 0);
-		sp.edit().putString(MOB_COMMON, mobCommon).commit();
+		sp.edit().putString(MOB_COMMON, mobCommon).apply();
 	}
 
 	public static String getMobCommon(Context context){
@@ -230,7 +231,7 @@ public class UserUtils {
 
 	public static void setMobData(Context context,String mobData){
 		SharedPreferences sp = context.getSharedPreferences(MOB_FILE_NAME, 0);
-		sp.edit().putString(MOB_DATA, mobData).commit();
+		sp.edit().putString(MOB_DATA, mobData).apply();
 	}
 
 	public static String getMobData(Context context){

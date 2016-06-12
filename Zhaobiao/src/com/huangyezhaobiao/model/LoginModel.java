@@ -26,8 +26,8 @@ public class LoginModel extends NetWorkModel{
 	protected ZhaoBiaoRequest<String> createHttpRequest() {
 		/** 登录旧版的passport */
 		Log.v(TAG,"createHttpRequest()");
-		return new ZhaoBiaoRequest<String>(ZhaoBiaoRequest.METHOD_POST,"http://192.168.120.3:8193/pso/domclientunionlogin",this);//线下passport地址
-//		return new ZhaoBiaoRequest<String>(ZhaoBiaoRequest.METHOD_POST,"https://passport.58.com/pso/domclientunionlogin",this); //正式passport地址
+//		return new ZhaoBiaoRequest<String>(ZhaoBiaoRequest.METHOD_POST,"http://192.168.120.3:8193/pso/domclientunionlogin",this);//线下passport地址
+		return new ZhaoBiaoRequest<String>(ZhaoBiaoRequest.METHOD_POST,"https://passport.58.com/pso/domclientunionlogin",this); //正式passport地址
 		/** 登录新版的passport */
 		// return new ZhaoBiaoRequest<String>(ZhaoBiaoRequest.METHOD_POST,"https://passport.58.com/login/dologin",this);
 	}
@@ -35,9 +35,15 @@ public class LoginModel extends NetWorkModel{
 	@Override
 	public void onLoadingSuccess(ResponseInfo<String> result) {
 //		super.onLoadingSuccess(result);
-		jsonResult = JSON.parseObject(result.result);
-		String resultCode = jsonResult.getString("code");
-		String resultMsg = jsonResult.getString("errorMsg");
+		String resultCode = null;
+		String resultMsg = null;
+		try {
+			jsonResult = JSON.parseObject(result.result);
+			resultCode = jsonResult.getString("code");
+			resultMsg = jsonResult.getString("errorMsg");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		if(resultCode.equals(PASSPORT_RESULT0)){
 			PassportBean passportBean = new PassportBean();
 			passportBean.setCode(resultCode);
