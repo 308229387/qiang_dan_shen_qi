@@ -1,6 +1,7 @@
 package com.huangyezhaobiao.vm;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 
 import com.huangye.commonlib.model.NetWorkModel;
 import com.huangye.commonlib.utils.NetBean;
@@ -12,6 +13,7 @@ import com.huangyezhaobiao.utils.Encrypt;
 import com.huangyezhaobiao.utils.PasswordEncrypt;
 import com.huangyezhaobiao.utils.PhoneUtils;
 import com.huangyezhaobiao.utils.UserUtils;
+import com.huangyezhaobiao.utils.VersionUtils;
 
 import java.util.HashMap;
 
@@ -23,17 +25,27 @@ public class LoginViewModel extends SourceViewModel{
 	private CheckLoginViewModel checkLoginViewModel;
 	private NetWorkVMCallBack vmCallBack;
 
-	private boolean isBackground;
+//	private boolean isBackground;
+//    private boolean isNeedVerifyCode;
 	public LoginViewModel(NetWorkVMCallBack callBack, Context context) {
 		super(callBack, context);
 		this.vmCallBack = callBack;
 		this.context = context;
 	}
 
-	public void login(String param1,String param2,boolean isBackground){
-		this.isBackground = isBackground;
-		loginOldPassport(param1,param2,isBackground);
-	}
+//	public void login(String param1,String param2,boolean isBackground){
+//		this.isBackground = isBackground;
+//		loginOldPassport(param1,param2,isBackground);
+//	}
+//	public void login(String param1,String param2,String param3,boolean isNeedVerifyCode) throws Exception {
+//		this.isNeedVerifyCode = isNeedVerifyCode;
+//		if(isNeedVerifyCode){
+//			loginOldPassport(param1,param2,param3); //有验证码
+//		}else{
+//			loginOldPassport(param1,param2);//无验证码
+//		}
+//
+//	}
 
 	/** 存储在SharedPrefrences中的用户名和密码*/
 	private String accountencrypt;
@@ -41,7 +53,7 @@ public class LoginViewModel extends SourceViewModel{
 	/***
 	 * 登录到旧版passport
 	 * */
-	private void loginOldPassport(String username,String password,boolean isBackground){
+	public void loginOldPassport(String username,String password){
 		// 设置请求方式:Post
 		t.setRequestMethodPost();
 		HashMap<String, String> params_map = new HashMap<String, String>();
@@ -49,12 +61,8 @@ public class LoginViewModel extends SourceViewModel{
 		String p3 = PasswordEncrypt.encryptPassword(password);
 		this.username = username;
 		params_map.put("username", username);
-		if(!isBackground){
-			this.accountencrypt = p3;
-		} else {
-			this.accountencrypt = password;
-		}
-		params_map.put("p3", accountencrypt);
+		params_map.put("needpiccheck", "true");
+		params_map.put("p3", p3);
 		params_map.put("ctype", "2");
 		// 获取设备号
 		String mid = PhoneUtils.getIMEI(context);
@@ -63,7 +71,48 @@ public class LoginViewModel extends SourceViewModel{
 		String midSource = username + mid + "2" + "58V5";
 		String vcode = Encrypt.MD532(midSource).substring(8, 16);
 		params_map.put("vcode", vcode);
-		params_map.put("source", "58app-android");
+		params_map.put("source", "hyzb-android");
+		// 公钥版本
+		params_map.put("rsakeyversion", "1");
+		// 加密类型
+		params_map.put("vptype", "RSA2");
+		// 登录类型标识，0表示默认由passport判断登录方式，1表示用户名登录，2表示认证手机登录，3表示邮箱登录
+		params_map.put("loginflag", "0");
+		t.configParams(params_map);
+		t.getDatas();
+	}
+
+	/***
+	 * 登录到旧版passport
+	 * */
+	public void loginOldPassport(String username,String password,String validcode) throws Exception {
+		// 设置请求方式:Post
+		t.setRequestMethodPost();
+		HashMap<String, String> params_map = new HashMap<String, String>();
+		// 对密码加密
+		String p3 = PasswordEncrypt.encryptPassword(password);
+		this.username = username;
+		params_map.put("username", username);
+
+		String version = VersionUtils.getVersionCode(context);
+		String vcodekey = LoginModel.vcodekey;
+		if (vcodekey != null) {
+			params_map.put("vcodekey", vcodekey);
+		}
+		params_map.put("validcode", validcode);
+		params_map.put("needpiccheck", "true");
+		params_map.put("version", version);
+
+		params_map.put("p3", p3);
+		params_map.put("ctype", "2");
+		// 获取设备号
+		String mid = PhoneUtils.getIMEI(context);
+		params_map.put("mid", mid);
+		// 加密串
+		String midSource = username + mid + "2" + "58V5";
+		String vcode = Encrypt.MD532(midSource).substring(8, 16);
+		params_map.put("vcode", vcode);
+		params_map.put("source", "hyzb-android");
 		// 公钥版本
 		params_map.put("rsakeyversion", "1");
 		// 加密类型
@@ -89,9 +138,9 @@ public class LoginViewModel extends SourceViewModel{
 		UserUtils.setSessionTime(context,System.currentTimeMillis());
 		UserUtils.setAccountName(context,username);
 		UserUtils.setAccountEncrypt(context,accountencrypt);
-		if(!isBackground){
+//		if(!isBackground){
 			checkLoginViewModel.login();
-		}
+//		}
 	}
 
 	@Override

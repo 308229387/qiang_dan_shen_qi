@@ -9,7 +9,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
@@ -24,7 +23,6 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.activity.MainActivity;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog.onDialogClickListener;
 /**
@@ -117,7 +115,7 @@ public class UpdateManager {
 				public void onDialogCancelClick() {
 					dismissConfirmDownloadDialog();
 					if (forceUpdate) {
-						((MainActivity) context).finish();//退出应用
+						((Activity) context).finish();//退出应用
 					}
 				}
 			});
@@ -157,7 +155,7 @@ public class UpdateManager {
 			});
 			downloadDialog = builder.create();
 			downloadDialog.setCancelable(false);
-			if(downloadDialog!=null && !((MainActivity)context).isFinishing()){
+			if(downloadDialog!=null && !((Activity)context).isFinishing()){
 				try{
 					downloadDialog.show();
 				}catch(Exception e){
@@ -197,7 +195,7 @@ public class UpdateManager {
 
 			} finally {
 				downloadDialog = null;
-				((MainActivity) context).finish();//退出
+				((Activity) context).finish();//退出
 			}
 
 		}
@@ -207,7 +205,7 @@ public class UpdateManager {
 	 * 取消确认对话框
 	 */
 	public void dismissConfirmDownloadDialog(){
-		if(confirmUpdateDialog!=null && confirmUpdateDialog.isShowing() &&!((MainActivity)context).isFinishing()){
+		if(confirmUpdateDialog!=null && confirmUpdateDialog.isShowing() &&!((Activity)context).isFinishing()){
 			confirmUpdateDialog.dismiss();
 			confirmUpdateDialog = null;
 		}
@@ -324,7 +322,7 @@ public class UpdateManager {
 				ins.close();
 			} catch (Exception e) {
 				e.printStackTrace();
-				((MainActivity)context).finish();
+				((Activity)context).finish();
 				//Toast.makeText(context, "出现异常，请重新打开app", 0).show(); 不能在非uiThread进行
 			}
 		}

@@ -174,19 +174,28 @@ public class PushUtils {
 
 		case NEW_ORDER:
 			try {
-				pushTurn = detail.getInteger("pushTurn");//推送轮次
+
+				if(detail.getInteger("pushTurn") != null) {
+					pushTurn = detail.getInteger("pushTurn");//推送轮次
+				}
+
+				if( detail.getString("voice")!= null) {
+					String voice = detail.getString("voice");
+					info.put("voice", voice);//声音播报内容
+				}
+
+				if(info.getString("displayType")!= null && popMap.containsKey(info.getString("displayType"))) {
+					Class clazz0 = popMap.get(info.getString("displayType"));//PopBaseBean
+					PopBaseBean popBean0 = (PopBaseBean) JsonUtils.jsonToObject(info.toString(), clazz0);
+					pushList.add(popBean0);//加到队列中，弹窗啊啥的用
+					//	}
+					bean = popBean0;
+				}
 
 			} catch (Exception e) {
+
 			}
-			String voice = detail.getString("voice");
-			info.put("voice", voice);//声音播报内容
-			if(popMap.containsKey(info.getString("displayType"))) {
-				Class clazz0 = popMap.get(info.getString("displayType"));//PopBaseBean
-				PopBaseBean popBean0 = (PopBaseBean) JsonUtils.jsonToObject(info.toString(), clazz0);
-				pushList.add(popBean0);//加到队列中，弹窗啊啥的用
-				//	}
-				bean = popBean0;
-			}
+
 			break;
 		case ORDERRESULT:
 			String status = detail.getString("status");

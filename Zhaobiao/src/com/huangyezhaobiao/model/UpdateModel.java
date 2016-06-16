@@ -16,7 +16,8 @@ public class UpdateModel extends NetWorkModel{
 
 	@Override
 	protected ZhaoBiaoRequest<String> createHttpRequest() {
-		return new ZhaoBiaoRequest<String>(ZhaoBiaoRequest.METHOD_GET, URLConstans.BASE_URL_APP+"getversion/apk?appId=1", this);
+		return new ZhaoBiaoRequest<String>(ZhaoBiaoRequest.METHOD_GET, URLConstans.BASE_URL_APP+"getversion/apk?platform=1", this);
+//		return new ZhaoBiaoRequest<String>(ZhaoBiaoRequest.METHOD_GET, "http://10.252.153.172/app/getversion/apk?platform=1", this);
 	}
 
 }

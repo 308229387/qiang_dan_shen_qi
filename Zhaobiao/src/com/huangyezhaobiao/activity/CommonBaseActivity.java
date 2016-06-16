@@ -183,13 +183,13 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
             }
             Log.v(TAG,"=>" + UserUtils.getAccountName(this));
             Log.v(TAG,">>" + UserUtils.getAccountEncrypt(this));
-            if(!"".equals(UserUtils.getAccountName(this)) && !"".equals(UserUtils.getAccountEncrypt(this)) && UserUtils.isOutOfDate(this)) {
-                dialog = new ZhaoBiaoDialog(this, "提示", "登录失败，您输入的账户名和密码不符!");
-                dialog.setCancelButtonGone();
-                dialog.setOnDialogClickListener(dialogClickListener);
-                loginViewModel = new LoginViewModel(vmCallBack, this);
-                loginViewModel.login(UserUtils.getAccountName(this), UserUtils.getAccountEncrypt(this), true);
-            }
+//            if(!"".equals(UserUtils.getAccountName(this)) && !"".equals(UserUtils.getAccountEncrypt(this)) && UserUtils.isOutOfDate(this)) {
+//                dialog = new ZhaoBiaoDialog(this, "提示", "登录失败，您输入的账户名和密码不符!");
+//                dialog.setCancelButtonGone();
+//                dialog.setOnDialogClickListener(dialogClickListener);
+//                loginViewModel = new LoginViewModel(vmCallBack, this);
+//                loginViewModel.login(UserUtils.getAccountName(this), UserUtils.getAccountEncrypt(this), true);
+//            }
         }else{
             Log.e(TAG,"not fromBackground");
 

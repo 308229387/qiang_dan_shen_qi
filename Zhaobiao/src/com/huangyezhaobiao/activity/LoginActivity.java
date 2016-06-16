@@ -2,6 +2,7 @@ package com.huangyezhaobiao.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Build;
@@ -23,6 +24,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,22 +36,31 @@ import com.huangyezhaobiao.constans.AppConstants;
 import com.huangyezhaobiao.eventbus.EventAction;
 import com.huangyezhaobiao.gtui.GePushProxy;
 import com.huangyezhaobiao.log.LogInvocation;
+import com.huangyezhaobiao.model.LoginModel;
 import com.huangyezhaobiao.service.MyService;
 import com.huangyezhaobiao.url.URLConstans;
+import com.huangyezhaobiao.url.UrlSuffix;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.AnimationController;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
+import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.PhoneUtils;
+import com.huangyezhaobiao.utils.SPUtils;
+import com.huangyezhaobiao.utils.UpdateManager;
 import com.huangyezhaobiao.utils.UserUtils;
+import com.huangyezhaobiao.utils.VersionUtils;
 import com.huangyezhaobiao.view.LoadingProgress;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog.onDialogClickListener;
 import com.huangyezhaobiao.vm.LoginViewModel;
+import com.huangyezhaobiao.vm.UpdateViewModel;
+import com.lidroid.xutils.BitmapUtils;
 import com.xiaomi.mipush.sdk.MiPushClient;
 
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -60,8 +71,11 @@ import java.util.HashMap;
 public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBack, onDialogClickListener {
 	private EditText username;
 	private EditText password;
+	private EditText verifycode;
 	private ImageButton nCloseBtn;
 	private ImageButton pCloseBtn;
+	private ImageView verifyCodeBtn;
+
 	private CheckBox    cb_usage;
 	private TextView    tv_accept_text_usage;
 
@@ -76,10 +90,30 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 	private String userName;
 	private TextInputLayout textInputLayout_username;
 	private TextInputLayout textInputLayout_password;
+	private TextInputLayout textInputLayout_verifyCode;
+
+	private RelativeLayout rl_login_vcode;
+
+	private BitmapUtils  bitmapUtils;
+
+	/**
+	 * 是否需要输入验证码
+	 */
+	Boolean flag = false;
 
 	private int hasValidated;
 	private static final String OLD_PASSPORT = "oldpassport";
 	public static LoginActivity loginInstance;
+
+	/**
+	 * 是否强制更新
+	 */
+	private boolean forceUpdate;
+
+	private ZhaoBiaoDialog updateMessageDialog;
+
+	private UpdateViewModel updateViewModel;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -90,6 +124,14 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 		getWindow().setBackgroundDrawable(null);
 		//关掉service
 		stopService(new Intent(LoginActivity.this, MyService.class));
+
+		bitmapUtils = new BitmapUtils(LoginActivity.this);
+		bitmapUtils.configDefaultLoadingImage(R.drawable.vcode_failure);
+		bitmapUtils.configDefaultLoadFailedImage(R.drawable.vcode_failure);
+
+		updateViewModel = new UpdateViewModel(this, this);
+
+
 	}
 
 	@Override
@@ -107,6 +149,8 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 			//透明导航栏
 			// getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 		}
+       if(updateViewModel != null)
+		updateViewModel.checkVersion();
 	}
 
 	//百度统计
@@ -121,12 +165,22 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 
 		textInputLayout_password = (TextInputLayout) findViewById(R.id.textInputLayout_password);
 		textInputLayout_password.setHint("请输入密码");
+
+		textInputLayout_verifyCode = (TextInputLayout) findViewById(R.id.textInputLayout_verifyCode);
+		textInputLayout_verifyCode.setHint("请输入验证码");
+
+		rl_login_vcode = (RelativeLayout) findViewById(R.id.rl_login_vcode);
+
 		username = textInputLayout_username.getEditText();
 		password = textInputLayout_password.getEditText();
+		verifycode = textInputLayout_verifyCode.getEditText();
+
 		InputFilter[] filters = new InputFilter[1];
 		filters[0] = new LoginEditFilter(this,"");
 		username.setFilters(filters);
 		password.setFilters(filters);
+		verifycode.setFilters(filters);
+
 		if(!TextUtils.isEmpty(UserUtils.getUserName(LoginActivity.this))) {
 			username.setText(UserUtils.getUserName(LoginActivity.this));
 		}
@@ -134,6 +188,8 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 		//	username.clearFocus();
 		nCloseBtn = (ImageButton) findViewById(R.id.nCloseBtn);
 		pCloseBtn = (ImageButton) findViewById(R.id.pCloseBtn);
+		verifyCodeBtn = (ImageView) findViewById(R.id.verifyCodeBtn);
+
 		loginbutton = (Button) findViewById(R.id.loginbutton);
 		//	userIcon = (ImageView) findViewById(R.id.userIcon);
 		//passwordIcon = (ImageView) findViewById(R.id.passwordIcon);
@@ -143,6 +199,17 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 		tv_accept_text_usage.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 		tv_how_to_become_vip = (TextView) findViewById(R.id.tv_login_raiders);
 		tv_how_to_become_vip.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
+	}
+
+	public static String appendUrlTimestamp(String url) {
+		long timestamp = new Date().getTime();
+		String newUrl;
+		if (url.indexOf("?") > -1) {
+			newUrl = url + "&tamp=" + timestamp;
+		} else {
+			newUrl = url + "?timestamp=" + timestamp;
+		}
+		return newUrl;
 	}
 
 	@Override
@@ -159,6 +226,14 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 				password.setText("");
 			}
 		});
+
+		verifyCodeBtn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				getVerifyCode();
+			}
+		});
+
 
 		/**
 		 * 抢单神器使用协议start
@@ -215,6 +290,8 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 				userName = name;
 
 				String passwords = password.getText().toString();
+
+				String verifyCodes = verifycode.getText().toString();
 				//需要加密
 				if (TextUtils.isEmpty(name)) {
 					dialog.setMessage("请输入用户名！");
@@ -223,6 +300,12 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 				}
 				if (TextUtils.isEmpty(passwords)) {
 					dialog.setMessage("请输入密码!");
+					dialog.show();
+					return;
+				}
+
+				if (flag && TextUtils.isEmpty(verifyCodes)) {
+					dialog.setMessage("请输入验证码!");
 					dialog.show();
 					return;
 				}
@@ -238,7 +321,16 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 					System.gc();
 				}
 				loginViewModel = new LoginViewModel(LoginActivity.this, LoginActivity.this);
-				loginViewModel.login(name, passwords, false);
+				try {
+					if(flag){
+						loginViewModel.loginOldPassport(name, passwords, verifyCodes);
+					}else{
+						loginViewModel.loginOldPassport(name, passwords);
+					}
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		});
 
@@ -283,6 +375,16 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 		});
 	}
 
+	private void getVerifyCode(){
+
+		String vCodeKey = LoginModel.vcodekey;
+		String url = "";
+		if (vCodeKey != null) {
+			url = "http://passport.58.com/validcode/get?" + UrlSuffix.getVerifyCodeSuffix("hyzb-android", vCodeKey);
+		}
+		bitmapUtils.display(verifyCodeBtn, appendUrlTimestamp(url));
+	}
+
 	//网络层回调
 	@Override
 	public void onLoadingStart() {
@@ -293,6 +395,7 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 	@Override
 	public void onLoadingSuccess(Object t) {
 		stopLoading();
+
 		if (t instanceof LoginBean) {
 			Log.e("shenss","login...");
 			LoginBean loginBean = (LoginBean)t;
@@ -309,15 +412,16 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 			boolean result = GePushProxy.bindPushAlias(getApplicationContext(),userId+"_"+ PhoneUtils.getIMEI(this));
 			Toast.makeText(this,"注册别名结果:"+result,Toast.LENGTH_SHORT).show();
 
-			//判断是否验证过手机
-			if(hasValidated==1) {
-				ActivityUtils.goToActivity(LoginActivity.this, MobileValidateActivity.class);
-			} else{
-				UserUtils.hasValidate(getApplicationContext());
-				ActivityUtils.goToActivity(LoginActivity.this, MainActivity.class);
-				// added by chenguangming
-				finish();
-			}
+			 //判断是否验证过手机
+			 if(hasValidated==1) {
+				 ActivityUtils.goToActivity(LoginActivity.this, MobileValidateActivity.class);
+			 } else{
+				 UserUtils.hasValidate(getApplicationContext());
+				 ActivityUtils.goToActivity(LoginActivity.this, MainActivity.class);
+				 // added by chenguangming
+				 finish();
+			 }
+
 			// finish();
 		}
 	}
@@ -328,9 +432,38 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 		stopLoading();
 		//TODO:判断一下是不是在当前界面
 		try {
-			if(dialog!=null && !TextUtils.isEmpty(msg)){
 
+			HYMob.getDataListByLoginError(LoginActivity.this, HYEventConstans.EVENT_ID_LOGIN, "0",msg);
+
+			if(dialog!=null &&!TextUtils.isEmpty(msg) && msg.equals("785")) {
+				flag = true;
+
+				String resultMsg = "请输入正确的验证码";
+
+				dialog.setMessage(resultMsg);
+				dialog.show();
+
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						rl_login_vcode.setVisibility(View.VISIBLE);
+						String vCodeKey = LoginModel.vcodekey;
+						String url = "";
+						if (vCodeKey != null) {
+							url = "http://passport.58.com/validcode/get?" + UrlSuffix.getVerifyCodeSuffix("hyzb-android", vCodeKey);
+						}
+						bitmapUtils.display(verifyCodeBtn, url);
+					}
+				});
+			}else if(dialog!=null && !TextUtils.isEmpty(msg) && msg.equals("786")){
 				HYMob.getDataListByLoginError(LoginActivity.this, HYEventConstans.EVENT_ID_LOGIN, "0",msg);
+				String resultMsg = "图片验证码输入错误";
+
+				dialog.setMessage(resultMsg);
+				dialog.show();
+				getVerifyCode();
+
+			}else if(dialog!=null && !TextUtils.isEmpty(msg)){
 
 				dialog.setMessage(msg);
 				dialog.show();
@@ -348,7 +481,7 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 	@SuppressLint("ShowToast")
 	@Override
 	public void onNoInterNetError() {
-		Toast.makeText(this, getString(R.string.no_network),Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, getString(R.string.no_network), Toast.LENGTH_SHORT).show();
 		stopLoading();
 	}
 
@@ -361,7 +494,9 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 
 	@Override
 	public void onDialogOkClick() {
-		dialog.dismiss();
+		if(dialog!=null && dialog.isShowing()&&!LoginActivity.this.isFinishing()){
+			dialog.dismiss();
+		}
 	}
 
 	@Override
@@ -378,7 +513,7 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 	@Override
 	protected void onStop() {
 		super.onStop();
-		if(dialog!=null && dialog.isShowing()){
+		if(dialog!=null && dialog.isShowing() &&!LoginActivity.this.isFinishing() ){
 			dialog.dismiss();
 			dialog = null;
 		}
@@ -502,5 +637,91 @@ public class LoginActivity extends CommonBaseActivity implements NetWorkVMCallBa
 		}
 
 
+	}
+
+//	/**
+//	 * 第一次登录时的提示
+//	 */
+//	private void showFirst() {
+////      if(!SPUtils.getAppUpdate(this)){
+//		if ( SPUtils.isFirstUpdate(this)) {//需要弹窗
+//			updateMessageDialog = new ZhaoBiaoDialog(this, getString(R.string.update_hint), getString(R.string.update_message));
+////			updateMessageDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+////				@Override
+////				public void onDismiss(DialogInterface dialog) {
+////					//弹自定义界面的弹
+////					if (SPUtils.isAutoSetting(LoginActivity.this)) {
+////						autoSettingDialog.show();
+////					}
+////				}
+////			});
+//			updateMessageDialog.setCancelable(false);
+//			updateMessageDialog.setCancelButtonGone();
+//			updateMessageDialog.setOnDialogClickListener(new onDialogClickListener() {
+//				@Override
+//				public void onDialogOkClick() {
+//					updateMessageDialog.dismiss();
+//					SPUtils.saveAlreadyFirstUpdate(LoginActivity.this, false);
+////                    UserUtils.setAppVersion(MainActivity.this, ""); //2.7升级可删
+////                       SPUtils.setAppUpdate(MainActivity.this, true);
+//				}
+//
+//				@Override
+//				public void onDialogCancelClick() {
+//				}
+//			});
+//			updateMessageDialog.show();
+//
+//		}
+////		else {
+////			if (SPUtils.isAutoSetting(this)) {
+////				autoSettingDialog.show();
+////			}
+////		}
+//
+//	}
+
+	public void onVersionBack(String version) {
+		String versionCode = "";
+		Log.e("shenyy", "MainActivity version:" + version);
+		int currentVersion = -1; //当前版本号
+
+		int versionNum = -1;
+		//获取当前系统版本号
+		try {
+			currentVersion = Integer.parseInt(VersionUtils.getVersionCode(this));
+		} catch (Exception e) {
+
+		}
+		if (currentVersion == -1) return;
+
+
+		//当前是MainActivity，获取服务器header返回的版本号
+		if (version != null) {
+			if (version.contains("F")) {
+				forceUpdate = true;
+			}
+			String[] fs = version.split("F");
+			versionCode = fs[0];
+			try {
+				versionNum = Integer.parseInt(versionCode);
+			} catch (Exception e) {
+
+			}
+			if (versionNum == -1) {
+				return;
+			}
+
+			UpdateManager.getUpdateManager().isUpdateNow(this, versionNum, currentVersion, URLConstans.DOWNLOAD_ZHAOBIAO_ADDRESS, forceUpdate);
+//          UpdateManager.getUpdateManager().isUpdateNow(this, versionNum, currentVersion, "http://10.252.23.45:8001/2.7.0_zhaobiao.apk", forceUpdate);
+//			Boolean flag = UpdateManager.needUpdate;
+//			Log.v("www", "flag:" + flag);
+//			if(!flag){
+//				//判断是不是第一次进入主界面
+//				showFirst();
+//			}
+
+
+		}
 	}
 }

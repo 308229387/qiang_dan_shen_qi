@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.huangye.commonlib.model.NetWorkModel;
 import com.huangye.commonlib.model.callback.NetworkModelCallBack;
 import com.huangyezhaobiao.bean.PassportBean;
@@ -13,9 +14,12 @@ import com.lidroid.xutils.http.ResponseInfo;
 import org.apache.http.Header;
 import org.apache.http.HeaderElement;
 
+
 public class LoginModel extends NetWorkModel{
 
 	private static final String PASSPORT_RESULT0 = "0";
+
+	public static String vcodekey = "";
 
 	private static final String TAG = LoginModel.class.getName();
 	public LoginModel(NetworkModelCallBack baseSourceModelCallBack, Context context) {
@@ -63,7 +67,17 @@ public class LoginModel extends NetWorkModel{
 		} else if(resultCode.equals("9") || resultCode.equals("11")){
 			resultMsg = "您的账户存在异常，请至58同城网页登录并验证您的账号后，才能继续登录抢单神器。";
 			baseSourceModelCallBack.onLoadingFailure(resultMsg);
-		} else {
+		} else if(resultCode.equals("785")){
+            String data = jsonResult.getString("data");
+			JSONObject json = JSON.parseObject(data);
+			vcodekey = json.getString("vcodekey");
+			baseSourceModelCallBack.onLoadingFailure(resultCode);
+		}else if(resultCode.equals("786")){
+			baseSourceModelCallBack.onLoadingFailure(resultCode);
+		}else if(resultCode.equals("9") || resultCode.equals("11")){
+			resultMsg ="系统检测到您的账户存在安全隐患，请使用电脑打开58同城首页并登录修改您的密码，才能继续使用抢单神器";
+			baseSourceModelCallBack.onLoadingFailure(resultMsg);
+		}else {
 			baseSourceModelCallBack.onLoadingFailure(resultMsg);
 		}
 	}

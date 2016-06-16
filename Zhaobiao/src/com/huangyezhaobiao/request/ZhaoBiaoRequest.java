@@ -7,6 +7,7 @@ import com.huangye.commonlib.network.HTTPTools;
 import com.huangye.commonlib.network.HttpRequest;
 import com.huangye.commonlib.utils.PhoneUtils;
 import com.huangyezhaobiao.application.BiddingApplication;
+import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.UserUtils;
 import com.lidroid.xutils.http.RequestParams;
 
@@ -25,6 +26,7 @@ public class ZhaoBiaoRequest<T> extends HttpRequest {
 
     public ZhaoBiaoRequest(int method,String url,HttpRequestCallBack callBack){
        super(method,url,callBack);
+        LogUtils.LogV("oooo", url);
     }
 
     @Override

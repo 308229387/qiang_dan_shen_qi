@@ -315,6 +315,10 @@ public interface URLConstans {
 	 * source字段，表示来源
 	 */
 	String TELPHONE_SOURCE = "source";
+	/**
+	 * 图片验证码key值
+	 */
+	String VCODE_KEY ="vcodekey";
 
 	String BID_ID   = "bidId";
 	String BID_TYPE = "bidType";
@@ -340,4 +344,5 @@ public interface URLConstans {
 
 	// apk 下载路径
 	String DOWNLOAD_ZHAOBIAO_ADDRESS = BASE_URL_APP + "update/apk";
+
 }

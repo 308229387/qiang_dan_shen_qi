@@ -390,4 +390,23 @@ public class UrlSuffix {
 	public static String getBidType(String bidType){
 		return URLConstans.BID_TYPE + URLConstans.APP_CHA_EQUALS +bidType;
 	}
+
+	/**
+	 * 图片验证码key值
+	 * @param vcodekey
+	 * @return
+	 */
+	public static String getVcodeKey(String vcodekey){
+		return URLConstans.VCODE_KEY + URLConstans.APP_CHA_EQUALS +vcodekey;
+	}
+
+	/**
+	 * 图片验证码获取
+	 * @param source
+	 * @param vcodekey
+	 * @return
+	 */
+	public static String getVerifyCodeSuffix(String source,String vcodekey){
+		return getSourceSuffix(source) + URLConstans.AND + getVcodeKey(vcodekey);
+	}
 }

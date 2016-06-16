@@ -78,6 +78,35 @@
             android:visibility="invisible" />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/rl_login_vcode"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textInputLayout_verifyCode"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/verifyCodeBtn"
+            >
+            <EditText
+                android:layout_width="fill_parent"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content" />
+        </android.support.design.widget.TextInputLayout>
+        <ImageView
+            android:id="@id/verifyCodeBtn"
+            android:layout_width="90dip"
+            android:layout_height="70dip"
+            android:layout_alignBottom="@id/textInputLayout_verifyCode"
+            android:src="@drawable/vcode_failure"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp" />
+    </RelativeLayout>
+
 
     <Button
         android:id="@+id/loginbutton"

@@ -23,8 +23,9 @@ import com.huangyezhaobiao.inter.Constans;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.UserUtils;
+		import com.huangyezhaobiao.utils.VersionUtils;
 
-import java.util.ArrayList;
+		import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,6 +53,8 @@ public class GuideActivity extends CommonBaseActivity {
 	private View view4;
 	private ImageView ee,er,esan,esi;
 
+	int currentVersion = -1; //当前版本号
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -68,6 +71,13 @@ public class GuideActivity extends CommonBaseActivity {
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 		}
 		getWindow().setBackgroundDrawable(null);
+
+		//获取当前系统版本号
+		try {
+			currentVersion = Integer.parseInt(VersionUtils.getVersionCode(this));
+		} catch (Exception e) {
+
+		}
 	}
 
 	@Override
@@ -118,12 +128,13 @@ public class GuideActivity extends CommonBaseActivity {
 		rl.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (TextUtils.isEmpty(UserUtils.getUserId(GuideActivity.this)) || TextUtils.isEmpty(UserUtils.getAppVersion(GuideActivity.this))) {// 如果没登录过
+				if (TextUtils.isEmpty(UserUtils.getUserId(GuideActivity.this))
+						|| TextUtils.isEmpty(UserUtils.getAppVersion(GuideActivity.this))
+						|| currentVersion >= 23) {// 如果没登录过
 					ActivityUtils.goToActivity(GuideActivity.this,
 							LoginActivity.class);
 				} else {
-					ActivityUtils.goToActivity(GuideActivity.this,
-							MainActivity.class);
+					ActivityUtils.goToActivity(GuideActivity.this, MainActivity.class);
 				}
 				sp.edit().putBoolean("isFirst", false).commit();
 				finish();

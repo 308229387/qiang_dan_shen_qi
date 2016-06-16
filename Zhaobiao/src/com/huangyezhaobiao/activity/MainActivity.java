@@ -1172,11 +1172,11 @@ public class MainActivity extends CommonFragmentActivity implements
 
 
     /**
-     * 第一次登录时的提示(有个逻辑bug,2.6.0版---需要确定一下？？？？)
+     * 第一次登录时的提示
      */
     private void showFirst() {
 //      if(!SPUtils.getAppUpdate(this)){
-        if (isUpdateFirst() || !TextUtils.isEmpty(UserUtils.getAppVersion(this))) {//需要弹窗
+        if (isUpdateFirst()) {//需要弹窗
             updateMessageDialog = new ZhaoBiaoDialog(this, getString(R.string.update_hint), getString(R.string.update_message));
             updateMessageDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
@@ -1194,7 +1194,7 @@ public class MainActivity extends CommonFragmentActivity implements
                 public void onDialogOkClick() {
                     updateMessageDialog.dismiss();
                     SPUtils.saveAlreadyFirstUpdate(MainActivity.this, false);
-                    UserUtils.setAppVersion(MainActivity.this, ""); //2.7升级可删
+//                    UserUtils.setAppVersion(MainActivity.this, ""); //2.7升级可删
 //                       SPUtils.setAppUpdate(MainActivity.this, true);
                 }
 
