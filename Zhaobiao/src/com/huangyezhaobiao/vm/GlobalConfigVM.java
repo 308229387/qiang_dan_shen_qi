@@ -42,7 +42,6 @@ public class GlobalConfigVM extends SourceViewModel{
 
     @Override
     public void onLoadingSuccess(NetBean bean, NetWorkModel model) {
-        super.onLoadingSuccess(bean, model);
         Log.e("shenzhixin","data:"+bean.getData());
         callBack.onLoadingSuccess(JsonUtils.jsonToObject(bean.getData(), GlobalConfigBean.class));
     }

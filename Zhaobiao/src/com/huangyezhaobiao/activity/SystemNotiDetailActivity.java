@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.bean.SysListBean;
+import com.huangyezhaobiao.utils.TimeUtils;
 
 /**
  * Created by shenzhixin on 2015/12/16.
@@ -39,13 +40,14 @@ public class SystemNotiDetailActivity extends QBBaseActivity implements View.OnC
         setContentView(getLayoutId());
         layout_back_head = getView(R.id.layout_head);
         back_layout      = getView(R.id.back_layout);
+        back_layout.setVisibility(View.VISIBLE);
         txt_head         = getView(R.id.txt_head);
+        txt_head.setText("系统通知");
         tv_time          = getView(R.id.tv_time);
         tv_sys_title     = getView(R.id.tv_sys_title);
         tv_sys_content   = getView(R.id.tv_sys_content);
-        txt_head.setText("系统通知");
         if(sysListBean!=null) {
-            tv_time.setText(sysListBean.getTime());
+            tv_time.setText(TimeUtils.formatDateTime(sysListBean.getTime()));
             tv_sys_content.setText(sysListBean.getContent());
             tv_sys_title.setText(sysListBean.getTitle());
         }
@@ -67,5 +69,10 @@ public class SystemNotiDetailActivity extends QBBaseActivity implements View.OnC
                 onBackPressed();
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

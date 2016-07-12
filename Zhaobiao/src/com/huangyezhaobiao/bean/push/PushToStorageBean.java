@@ -22,6 +22,8 @@ public class PushToStorageBean {
 
 	private long userId;
 
+	private String guestName;
+
 
 	public PushToStorageBean() {
 		try {
@@ -100,6 +102,26 @@ public class PushToStorageBean {
 		this.userId = userId;
 	}
 
+	public String getGuestName() {
+		return guestName;
+	}
 
+	public void setGuestName(String guestName) {
+		this.guestName = guestName;
+	}
 
+	@Override
+	public String toString() {
+		return "PushToStorageBean{" +
+				"id=" + id +
+				", tag=" + tag +
+				", orderid=" + orderid +
+				", time='" + time + '\'' +
+				", status=" + status +
+				", str='" + str + '\'' +
+				", fee='" + fee + '\'' +
+				", userId=" + userId +
+				", guestName='" + guestName + '\'' +
+				'}';
+	}
 }

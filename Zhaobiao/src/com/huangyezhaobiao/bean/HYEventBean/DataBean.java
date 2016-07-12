@@ -107,6 +107,11 @@ public class DataBean {
     private String cs;
 
     /**
+     * 上一个页面
+     */
+    private String pageFrom;
+
+    /**
      * 默认的构造方法必须不能省，不然不能解析
      */
     public DataBean() {
@@ -310,6 +315,14 @@ public class DataBean {
 
     public void setCr(String cr) {
         this.cr = cr;
+    }
+
+    public String getPageFrom() {
+        return pageFrom;
+    }
+
+    public void setPageFrom(String pageFrom) {
+        this.pageFrom = pageFrom;
     }
 
     @Override

@@ -99,7 +99,7 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
     }
 
     private void initDialog() {
-        confirmDialog_upload = new ZhaoBiaoDialog(getActivity(), StringUtils.getStringByResId(getActivity(),R.string.hint),StringUtils.getStringByResId(getActivity(),R.string.upload_pic_suggest));
+        confirmDialog_upload = new ZhaoBiaoDialog(getActivity(), StringUtils.getStringByResId(getActivity(),R.string.upload_pic_suggest));
         confirmDialog_upload.setPositiveText(StringUtils.getStringByResId(getActivity(),R.string.submit_direct));
         confirmDialog_upload.setNagativeText(StringUtils.getStringByResId(getActivity(), R.string.upload_evidence));
         confirmDialog_upload.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
@@ -140,7 +140,7 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
 
         });
         uploadPicDialog = new UploadPicDialog(getActivity());
-                resultDialog_success = new ResultDialog(getActivity(),R.drawable.refund_result_success,StringUtils.getStringByResId(getActivity(),R.string.refund_submit_success));
+                resultDialog_success = new ResultDialog(getActivity(),"提交成功",R.drawable.refund_result_success,StringUtils.getStringByResId(getActivity(),R.string.refund_submit_success));
         resultDialog_success.setListener(new ResultDialog.RequestOkListener() {
             @Override
             public void onRequestOkClick() {
@@ -148,15 +148,15 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
                 getActivity().onBackPressed();
             }
         });
-        resultDialog_failure = new ResultDialog(getActivity(),R.drawable.refund_result_fail,StringUtils.getStringByResId(getActivity(),R.string.refund_submit_failure));
+        resultDialog_failure = new ResultDialog(getActivity(),"提交失败",R.drawable.refund_result_fail,StringUtils.getStringByResId(getActivity(),R.string.refund_submit_failure));
         resultDialog_failure.setListener(new ResultDialog.RequestOkListener() {
             @Override
             public void onRequestOkClick() {
                 resultDialog_failure.dismiss();
             }
         });
-        refund_reason_dialog = new ZhaoBiaoDialog(getActivity(),StringUtils.getStringByResId(getActivity(),R.string.hint),StringUtils.getStringByResId(getActivity(),R.string.write_refund_reason));
-        refund_desc_dialog = new ZhaoBiaoDialog(getActivity(),StringUtils.getStringByResId(getActivity(),R.string.hint),StringUtils.getStringByResId(getActivity(), R.string.write_refund_desc));
+        refund_reason_dialog = new ZhaoBiaoDialog(getActivity(),StringUtils.getStringByResId(getActivity(),R.string.write_refund_reason));
+        refund_desc_dialog = new ZhaoBiaoDialog(getActivity(),StringUtils.getStringByResId(getActivity(), R.string.write_refund_desc));
         refund_desc_dialog.setCancelButtonGone();
         refund_reason_dialog.setCancelButtonGone();
         refund_reason_dialog.setOnDialogClickListener(this);
@@ -195,6 +195,16 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
         btn_toggle_camera.setOnClickListener(this);
         btn_toggle_gallery.setOnClickListener(this);
         btn_refund_submit.setOnClickListener(this);
+        et_refund_desc.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                if (hasFocus) {
+                    ( (EditText)v).setHint("");
+                }
+
+            }
+        });
         et_refund_desc.addTextChangedListener(refundCloseVM.getEditTextChangedListener());
     }
 
@@ -328,6 +338,7 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
                 select_view.setVisibility(View.GONE);
                 animatePresenter.hideRotateTranslateAnimation(select_view, btn_toggle_select_pic, btn_toggle_gallery, btn_toggle_camera);
                 takeCamera();
+                HYMob.getDataList(getActivity(), HYEventConstans.EVENT_ID_CAMERA);
                 break;
             case R.id.btn_toggle_select_pic://收,什么都没选
                 animatePresenter.hideRotateTranslateAnimation(select_view, btn_toggle_select_pic, btn_toggle_gallery, btn_toggle_camera);
@@ -350,7 +361,6 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
             Toast.makeText(getActivity(),"没有网络,请检查网络设置",Toast.LENGTH_SHORT).show();
             return;
         }
-        rl_submit.setVisibility(View.VISIBLE);
         if(RefundMediator.checkedId.size()==0){
             //退单原因
             refund_reason_dialog.show();
@@ -373,6 +383,8 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
             confirmDialog_upload.show();
             return;
         }
+
+        rl_submit.setVisibility(View.VISIBLE);
             refundPresenter.submitRefund(getActivity(), refundFirstCommitBean.getOrderId(), RefundMediator.checkedId.get(0), et_refund_desc.getText().toString(), ((MediaAdapter) refundPresenter.getMediaAdapter()).getDataSources(), new UICallback() {
                         @Override
                         public void onUploadPicSuccess(String msg) {

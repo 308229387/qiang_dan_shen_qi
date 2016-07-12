@@ -1,15 +1,19 @@
 package com.huangyezhaobiao.bean.push.pop;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.bean.push.PushToPassBean;
 import com.huangyezhaobiao.bean.push.PushToStorageBean;
 import com.huangyezhaobiao.utils.LogUtils;
+
+import org.w3c.dom.Text;
 
 /**
  * 装修类别推送bean
@@ -32,8 +36,12 @@ public class RenovationPopBean extends PopBaseBean {
 	private String type;// ", "半包"
 	private String fee;// ", "300"
 
+	private String needNear; //距离
+
 	private String voice;
 	private String originalFee;
+
+	private String guestName;
 
 	@Override
 	public String getOriginalFee() {
@@ -52,6 +60,16 @@ public class RenovationPopBean extends PopBaseBean {
 		View view = LayoutInflater.from(context).inflate(R.layout.dialog_pop_renovation, null);
 		((TextView) view.findViewById(R.id.renovation_pop_title)).setText(title);
 		((TextView) view.findViewById(R.id.renovation_pop_space)).setText(space);
+
+		  LinearLayout ll_distance = ((LinearLayout) view.findViewById(R.id.ll_distance));
+		if (!TextUtils.isEmpty(needNear)){
+			ll_distance.setVisibility(View.VISIBLE);
+			((TextView) view.findViewById(R.id.renovation_pop_distance)).setText(needNear);
+		}else{
+			ll_distance.setVisibility(View.GONE);
+		}
+
+
 		((TextView) view.findViewById(R.id.renovation_pop_budget)).setText(budget);
 		((TextView) view.findViewById(R.id.renovation_pop_type)).setText(type);
 		((TextView) view.findViewById(R.id.renovation_pop_time)).setText(endTime);
@@ -75,22 +93,32 @@ public class RenovationPopBean extends PopBaseBean {
 				"title:" + title + ",space:" + space + ",type:" + type + "time:" + time + "budget:" + budget + ",");
 		// 拼接消息字符串
 		StringBuilder str = new StringBuilder();
-		if(title.contains("-")){
-			String[] titles = title.split("-");
-			if(titles.length==2){
-				LogUtils.LogE("asasasas", titles[0] + "," + titles[1]);
-				str.append(titles[0]+" ").append(space + " ").append(budget+" ").append(type + " ").append(titles[1]+" ").append(time + "");
+//		if(title.contains("-")){
+//			String[] titles = title.split("-");
+//			if(titles.length==2){
+//				LogUtils.LogE("asasasas", titles[0] + "," + titles[1]);
+//				str.append(titles[0]+" ").append(space + " ").append(budget+" ").append(type + " ").append(titles[1]+" ").append(time + "");
+//			}
+//		}else{
+//			str.append(title + "").append(space + "").append(budget+"").append(type + "").append(time + "");
+//		}
+
+		if(location.contains("-")){
+			String[] locations = location.split("-");
+			if(locations.length == 3){
+				str.append(locations[0]+"").append("-").append(locations[1]+"").append("-").append(title + "");
+			}else{
+				str.append(location+"").append("-").append(title + "");
 			}
-		}else{
-			str.append(title + "").append(space + "").append(budget+"").append(type + "").append(time + "");
 		}
+
 		//if (status == 1) {
 			bean.setFee(fee);
 		//}
 
 		bean.setStr(str.toString());
 		bean.setStatus(status);
-
+        bean.setGuestName(guestName);
 		return bean;
 	}
 	
@@ -217,6 +245,20 @@ public class RenovationPopBean extends PopBaseBean {
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
-	
-	
+
+	public String getNeedNear() {
+		return needNear;
+	}
+
+	public void setNeedNear(String needNear) {
+		this.needNear = needNear;
+	}
+
+	public String getGuestName() {
+		return guestName;
+	}
+
+	public void setGuestName(String guestName) {
+		this.guestName = guestName;
+	}
 }

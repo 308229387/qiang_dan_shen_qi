@@ -135,14 +135,16 @@ public interface URLConstans {
 	 */
 	String HELP_URL = BASE_URL_APP + APP_HELP ;
 
-	String HELP_PAGE_URL = URLConstans.BASE_HTML_URL + "help.html";
+	//3.0
+	String HELP_PAGE_URL = URLConstans.BASE_COMMON_HTML_URL + "help.html";
 
 	/**
 	 * 功能介绍页面的url
 	 */
 	String INTRODUCTION_URL = BASE_URL_APP + APP_INTRODUCTION;
 
-	String INTRODUCTION_PAGE_URL = URLConstans.BASE_HTML_URL + "introduction.html";
+	//3.0
+	String INTRODUCTION_PAGE_URL = URLConstans.BASE_COMMON_HTML_URL + "introduction.html";
 
 	/**
 	 * 查询余额的url "http://192.168.118.41/app/order/balance?userid=24454277549825&token=1"
@@ -201,7 +203,7 @@ public interface URLConstans {
 	String HOW_TO_BECOME_VIP = BASE_URL_APP + "howToLogin";
 	//String HOW_TO_BECOME_VIP = "http://192.168.118.132:9090/app/howToLogin";
 
-	String HOW_TO_BECOME_VIP_MEMBER = URLConstans.BASE_HTML_URL + "qdsq.html";
+//	String HOW_TO_BECOME_VIP_MEMBER = URLConstans.BASE_HTML_URL + "qdsq.html";
 	/**
 	 * 版本字段
 	 */
@@ -337,6 +339,8 @@ public interface URLConstans {
 	 * 静态页面公共URL
 	 */
 	String BASE_HTML_URL ="http://img.58cdn.com.cn/ds/zhaobiao/app_zhaobiao/html/";
+
+	String BASE_COMMON_HTML_URL ="http://static.58.com/ds/zhaobiao/app_yunying/mycenter/html/";
 	//2016.05.03.add end
 
 	//  上传logger
@@ -344,5 +348,8 @@ public interface URLConstans {
 
 	// apk 下载路径
 	String DOWNLOAD_ZHAOBIAO_ADDRESS = BASE_URL_APP + "update/apk";
+
+    //打电话
+	String CALL_API_URL = BASE_URL+"call/doCall?";
 
 }

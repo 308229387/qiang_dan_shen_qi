@@ -79,7 +79,15 @@ public abstract class PushBean implements Serializable {
 //	public void setStatus(int status){
 //		toPushStorageBean().setStatus(status);
 //	}
-	
 
 
+	@Override
+	public String toString() {
+		return "PushBean{" +
+				"tag=" + tag +
+				", pushTime='" + pushTime + '\'' +
+				", pushTurn=" + pushTurn +
+				", pushId=" + pushId +
+				'}';
+	}
 }

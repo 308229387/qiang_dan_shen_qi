@@ -20,9 +20,11 @@ public class ResultDialog extends Dialog{
     private LayoutInflater mInflater;
     private int resId;
     private String content;
+    private String title;
     private View   rootView;
     private TextView   dialog_tv_content;
     private ImageView  iv_hint;
+    private TextView dialog_tv_description;
     private RelativeLayout rl_ok;
     private RequestOkListener listener;
     public ResultDialog(Context context) {
@@ -34,17 +36,18 @@ public class ResultDialog extends Dialog{
         this.listener = listener;
     }
 
-    public ResultDialog(Context context, int resId,String content) {
+    public ResultDialog(Context context,String title, int resId,String content) {
         super(context, R.style.RequestDialog);
         this.context = context;
         mInflater = LayoutInflater.from(context);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND,
-                WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
+//        this.requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND,
+//                WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
         setCanceledOnTouchOutside(false);
         setCancelable(false);
         Window window = getWindow();
         window.setWindowAnimations(R.style.dialogWindowAnim);
+        this.title = title;
         this.content = content;
         this.resId   = resId;
         initView();
@@ -55,9 +58,11 @@ public class ResultDialog extends Dialog{
         setContentView(rootView);
         dialog_tv_content = (TextView) rootView.findViewById(R.id.dialog_tv_content);
         iv_hint           = (ImageView) rootView.findViewById(R.id.iv_hint);
+        dialog_tv_description = (TextView) rootView.findViewById(R.id.dialog_tv_description);
         rl_ok             = (RelativeLayout) rootView.findViewById(R.id.rl_ok);
-        dialog_tv_content.setText(content);
+        dialog_tv_content.setText(title);
         iv_hint.setImageResource(resId);
+        dialog_tv_description.setText(content);
         rl_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

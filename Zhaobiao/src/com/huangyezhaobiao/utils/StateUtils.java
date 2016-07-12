@@ -20,7 +20,7 @@ public class StateUtils {
 	}
 	
 	
-	public static int state = 0; //服务模式为1 休息模式为2  后台运行为0
+	public static int state = 1; //服务模式为1 休息模式为2
 	/**
 	 * 判断程序是否在后台运行
 	 * @param context
@@ -46,7 +46,7 @@ public class StateUtils {
 	/**
 	 * 获取状态 
 	 * @param context
-	 * @return 服务模式为1 休息模式为2  后台运行为0
+	 * @return 服务模式为1 休息模式为2
 	 */
 	public static int getState(Context context){
 		

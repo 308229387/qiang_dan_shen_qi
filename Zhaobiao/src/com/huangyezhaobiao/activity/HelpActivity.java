@@ -17,10 +17,11 @@ import com.huangyezhaobiao.inter.Constans;
 import com.huangyezhaobiao.url.URLConstans;
 import com.huangyezhaobiao.url.UrlSuffix;
 import com.huangyezhaobiao.utils.ActivityUtils;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.NetUtils;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
-import com.huangyezhaobiao.view.ZhaoBiaoDialog.onDialogClickListener;
 /**
  * webView的缓存机制:
  * 					1.首先判断缓存文件是否存在，不存在直接读取网络数据---如何判断缓存文件是否存在
@@ -30,7 +31,7 @@ import com.huangyezhaobiao.view.ZhaoBiaoDialog.onDialogClickListener;
  * @author 58
  *
  */
-public class HelpActivity extends QBBaseActivity implements onDialogClickListener, OnClickListener{
+public class HelpActivity extends QBBaseActivity implements OnClickListener{
 	private static final String APP_CACAHE_DIRNAME = "/help";
 	private WebView webView;
 	private LinearLayout back_layout,ll_webview_container;
@@ -47,23 +48,27 @@ public class HelpActivity extends QBBaseActivity implements onDialogClickListene
 		setContentView(R.layout.activity_help);
 		initView();
 		initListener();
-		dialog = new ZhaoBiaoDialog(this, "", "4009-321-112");
-		dialog.setOnDialogClickListener(this);
+		dialog = new ZhaoBiaoDialog(this, "4009-321-112");
+		dialog.setOnDialogClickListener(listener);
 
 	}
 
 	@Override
 	public void initView() {
 		ll_webview_container = getView(R.id.ll_webview_container);
+
 		layout_back_head = getView(R.id.layout_head);
+		back_layout = getView(R.id.back_layout);
+		back_layout.setVisibility(View.VISIBLE);
+		txt_head    = getView(R.id.txt_head);
+		txt_head.setText(R.string.help);
+
 		view_no_internet = getView(R.id.view_no_internet);
 		pb          = getView(R.id.pb);
 		rl_help_tel = getView(R.id.rl_help_tel);
 		//webView 	= getView(R.id.webview);
 		webView     = new WebView(getApplicationContext());
 		ll_webview_container.addView(webView);
-		back_layout = getView(R.id.back_layout);
-		txt_head    = getView(R.id.txt_head);
 		tbl         = getView(R.id.tbl);
 		client      = new BaseWebClient();
 		webView.getSettings().setJavaScriptEnabled(true);
@@ -88,7 +93,6 @@ public class HelpActivity extends QBBaseActivity implements onDialogClickListene
 		webView.getSettings().setDefaultTextEncodingName("UTF-8"); // 设置默认的显示编码
 		webView.setWebViewClient(client);
 		webView.setWebChromeClient(webChromeBaseClient);
-		txt_head.setText(R.string.help);
 //		String url = URLConstans.HELP_URL + UrlSuffix.getHelpSuffix();
 		//2016.5.3 add
 		String url = URLConstans.HELP_PAGE_URL ;
@@ -145,20 +149,19 @@ public class HelpActivity extends QBBaseActivity implements onDialogClickListene
 
 	}
 
-	@Override
-	public void onDialogOkClick() {
-		if(exitDialog!=null && exitDialog.isShowing()){
-			super.onDialogOkClick();
-		}else {
+	ZhaoBiaoDialog.onDialogClickListener listener = new ZhaoBiaoDialog.onDialogClickListener() {
+		@Override
+		public void onDialogOkClick() {
 			dialog.dismiss();
-			ActivityUtils.goToDialActivity(this, Constans.HELP_TEL);
+			ActivityUtils.goToDialActivity(HelpActivity.this, Constans.HELP_TEL);
 		}
-	}
 
-	@Override
-	public void onDialogCancelClick() {
-		dialog.dismiss();
-	}
+		@Override
+		public void onDialogCancelClick() {
+			dialog.dismiss();
+		}
+	};
+
 
 	@Override
 	public void onClick(View v) {
@@ -184,5 +187,11 @@ public class HelpActivity extends QBBaseActivity implements onDialogClickListene
 			dialog=null;
 		}
 		System.exit(0);//强制退出，防止内存泄露问题
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		HYMob.getBaseDataListForPage(this, HYEventConstans.PAGE_HELP, stop_time - resume_time);
 	}
 }

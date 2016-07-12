@@ -10,7 +10,6 @@ import com.huangye.commonlib.model.NetWorkModel;
 import com.huangye.commonlib.utils.JsonUtils;
 import com.huangye.commonlib.utils.NetBean;
 import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
-import com.huangyezhaobiao.bean.mydetail.CenterAffiliateDetailBean;
 import com.huangyezhaobiao.bean.DetailsLogBean;
 import com.huangyezhaobiao.bean.mydetail.CleaningOrderDetailBean;
 import com.huangyezhaobiao.bean.mydetail.IACIndividualDetailBean;
@@ -54,7 +53,7 @@ public class FetchDetailsVM extends ZBBaseDetailViewModel<QDDetailBaseBean>{
 		sourcesDir.put("orderdetail_personal_register_area", IACIndividualDetailBean.class);
 		sourcesDir.put("orderdetail_international_register_area", IACInternationalDetailBean.class);
 		//2015.8.17
-		sourcesDir.put("orderdetail_join_invest_area", CenterAffiliateDetailBean.class);
+//		sourcesDir.put("orderdetail_join_invest_area", CenterAffiliateDetailBean.class);
 		//2015.8.25 add
 		sourcesDir.put("orderdetail_decorate_project_area", OrderDetailDecorateProjectBean.class);//工程装修的订单详情
 		sourcesDir.put("orderdetail_decorate_part_area", OrderDetailDecoratePartBean.class);//局部装修的订单详情

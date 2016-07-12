@@ -3,7 +3,7 @@ package com.huangyezhaobiao.url;
 import android.content.Context;
 
 import com.huangye.commonlib.file.SharedPreferencesUtils;
-import com.huangyezhaobiao.fragment.QiangDanBaseFragment;
+import com.huangyezhaobiao.fragment.home.OrderListFragment;
 import com.huangyezhaobiao.utils.PhoneUtils;
 import com.huangyezhaobiao.utils.UserUtils;
 
@@ -35,12 +35,12 @@ public class UrlSuffix {
 
 	/**
 	 * 返回app前缀的orderState
-	 * 
+	 *
 	 * @return
 	 */
 	public static String getAppCenterOrderState() {
 		return URLConstans.APP_ORDER_STATE + URLConstans.APP_CHA_EQUALS
-				+ QiangDanBaseFragment.orderState;
+				+ OrderListFragment.orderState;
 	}
 
 	/**
@@ -91,16 +91,16 @@ public class UrlSuffix {
 		return getAppOrderId(orderId) ;
 	}
 
-//	/**
-//	 * 得到订单中心的后缀
-//	 *
-//	 * @return
-//	 */
-//	public static String getAppCenterSuffix(Context context,String pageNum) {
-//		return getAppUserId() + URLConstans.AND + getAppCenterOrderState()
-//				+ URLConstans.AND + getPageNum(pageNum) + URLConstans.AND
-//				+ getCommonSuffix(context);
-//	}
+	/**
+	 * 得到订单中心的后缀
+	 *
+	 * @return
+	 */
+	public static String getAppCenterSuffix(Context context,String pageNum) {
+		return getAppUserId() + URLConstans.AND + getAppCenterOrderState()
+				+ URLConstans.AND + getPageNum(pageNum) + URLConstans.AND
+				+ getCommonSuffix(context);
+	}
 
 	//2016.5.3 add
 	/**
@@ -408,5 +408,15 @@ public class UrlSuffix {
 	 */
 	public static String getVerifyCodeSuffix(String source,String vcodekey){
 		return getSourceSuffix(source) + URLConstans.AND + getVcodeKey(vcodekey);
+	}
+
+
+	public static String getMobileSuffix(String mobile){
+		return URLConstans.MOBILE + URLConstans.APP_CHA_EQUALS +mobile;
+	}
+
+	//双呼打电话
+	public static String getCallSuffix(Context context,String orderId,String mobile){
+		return getUserId(context) + URLConstans.AND + getAppOrderId(orderId) + URLConstans.AND + getMobileSuffix(mobile);
 	}
 }

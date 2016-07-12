@@ -10,6 +10,8 @@ import android.widget.TextView;
  * 保姆月嫂的
  */
 public class NannyBidHolder {
+    public ImageView grab_style;
+    public ImageView iv_nanny_type;
     public TextView  grab_nanny_title;
     public TextView  grab_nanny_time;
     public TextView  tv_nanny_time_content;
@@ -22,5 +24,7 @@ public class NannyBidHolder {
     public TextView  tv_main_fee;
     public TextView  tv_main_origin_fee;
     //RD shenzhixin 2016.3.29 add for o2o 709 end
+
+    public View view_nanny_bottom;
 
 }

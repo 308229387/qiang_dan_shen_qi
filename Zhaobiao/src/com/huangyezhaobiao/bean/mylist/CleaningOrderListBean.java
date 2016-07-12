@@ -1,33 +1,29 @@
 package com.huangyezhaobiao.bean.mylist;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.activity.FetchDetailsActivity;
-import com.huangyezhaobiao.bean.TelephoneBean;
-import com.huangyezhaobiao.eventbus.EventAction;
-import com.huangyezhaobiao.eventbus.EventType;
-import com.huangyezhaobiao.eventbus.EventbusAgent;
-import com.huangyezhaobiao.fragment.QiangDanBaseFragment;
 import com.huangyezhaobiao.holder.order.CleanindOrderHolder;
 import com.huangyezhaobiao.inter.Constans;
-import com.huangyezhaobiao.inter.MDConstans;
 import com.huangyezhaobiao.lib.QDBaseBean;
 import com.huangyezhaobiao.lib.ZBBaseAdapter;
 import com.huangyezhaobiao.utils.ActivityUtils;
-import com.huangyezhaobiao.utils.BDEventConstans;
-import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
-import com.huangyezhaobiao.utils.MDUtils;
+import com.huangyezhaobiao.utils.TimeUtils;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
+
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -61,10 +57,19 @@ public class CleaningOrderListBean extends QDBaseBean{
     private String refundText;
 
     //2015.12.8 add end
+
+    private String detailAddress;
     private String orderState;
     private CleanindOrderHolder cleanindOrderHolder;
     private ZhaoBiaoDialog dialog;
 
+    public String getDetailAddress() {
+        return detailAddress;
+    }
+
+    public void setDetailAddress(String detailAddress) {
+        this.detailAddress = detailAddress;
+    }
 
     public String getCustomerName(){
         return customerName;
@@ -180,62 +185,88 @@ public class CleaningOrderListBean extends QDBaseBean{
 
     @Override
     public void fillDatas() {
-        initDialog(context);
+//        initDialog(context);
         FetchDetailsActivity.orderState = orderState;
-        cleanindOrderHolder.tv_telephone.setText(phone);
-        cleanindOrderHolder.tv_cleaning_qd_time_content.setText(time);
-        cleanindOrderHolder.tv_cleaning_time.setText(serveTime);
-        cleanindOrderHolder.tv_cleaning_location.setText(location);
-        cleanindOrderHolder.tv_cleaning_need_tools.setText(needTools);
+        FetchDetailsActivity.time =time;
+
         cleanindOrderHolder.tv_cleaning_order_title.setText(title);
-        cleanindOrderHolder.tv_cleaning_size.setText(cleanSpace);
+        cleanindOrderHolder.tv_cleaning_qd_time_content.setText(TimeUtils.formatDateTime(time));
+        cleanindOrderHolder.tv_cleaning_location.setText(location);
+        cleanindOrderHolder.tv_clean_address_content.setText(detailAddress);
         cleanindOrderHolder.tv_customer_name_content.setText(customerName);
+
+
+//        cleanindOrderHolder.tv_telephone.setText(phone);
+//        cleanindOrderHolder.tv_cleaning_time.setText(serveTime);
+//        cleanindOrderHolder.tv_cleaning_need_tools.setText(needTools);
+//        cleanindOrderHolder.tv_cleaning_size.setText(cleanSpace);
         //判断状态
-        if(TextUtils.equals(QiangDanBaseFragment.orderState, Constans.DONE_FRAGMENT)){//已完成
-            cleanindOrderHolder.rl_maybe_not.setVisibility(View.VISIBLE);
-            LogUtils.LogE("ashenasas", "lalala visible");
-            if(TextUtils.equals(orderState, Constans.DONE_FRAGMENT_FINISH)){
-                cleanindOrderHolder.tv_message.setText(R.string.over_done_service);
-            }else if(TextUtils.equals(orderState, Constans.DONE_FRAGMENT_CANCEL)){
-                cleanindOrderHolder.tv_message.setText(R.string.over_done_unservice);
-            }
-        }
-        if(TextUtils.isEmpty(refundText) || TextUtils.equals("未退单",refundText)){
-            //如果是done的话还是要显示
-            if(TextUtils.equals(QiangDanBaseFragment.orderState, Constans.DONE_FRAGMENT)){//已完成
-                cleanindOrderHolder.rl_maybe_not.setVisibility(View.VISIBLE);
-            }else{//不是已完成
-                cleanindOrderHolder.rl_maybe_not.setVisibility(View.GONE);
-            }
-        }else{//有字
-            //如果是done的话还是要显示
-            if(TextUtils.equals(QiangDanBaseFragment.orderState, Constans.DONE_FRAGMENT)){//已完成
-                cleanindOrderHolder.rl_maybe_not.setVisibility(View.VISIBLE);
-                StringBuilder sb = new StringBuilder();
-                sb.append(cleanindOrderHolder.tv_message.getText().toString());
-                cleanindOrderHolder.tv_message.setText(sb.append("      "+refundText));
-            }else{//不是已完成
-                cleanindOrderHolder.rl_maybe_not.setVisibility(View.VISIBLE);
-                cleanindOrderHolder.tv_message.setText(refundText);
+        if(!TextUtils.isEmpty(orderState)){ //获取订单状态
+            if(TextUtils.equals(orderState, Constans.DONE_FRAGMENT_FINISH)){ //已完成(成交)
+                cleanindOrderHolder.iv_cleaning_order_state_line.setVisibility(View.GONE);
+                cleanindOrderHolder.tv_cleaning_order_state.setText(R.string.over_done);
+                if(TextUtils.isEmpty(refundText) || TextUtils.equals(refundText,"未退单")){
+
+                }else{
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("已结束(成交)").append("(").append(refundText).append(")");
+                    cleanindOrderHolder.tv_cleaning_order_state.setText(sb.toString());
+                }
+            }else if( TextUtils.equals(orderState, Constans.DONE_FRAGMENT_CANCEL)){ //已完成(未成交)
+                cleanindOrderHolder.iv_cleaning_order_state_line.setVisibility(View.GONE);
+                cleanindOrderHolder.tv_cleaning_order_state.setText(R.string.over_undone);
+                if(TextUtils.isEmpty(refundText) ||TextUtils.equals(refundText,"未退单")){
+
+                }else{
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("已结束(未成交)").append("(").append(refundText).append(")");
+                    cleanindOrderHolder.tv_cleaning_order_state.setText(sb.toString());
+                }
+            }else if(TextUtils.equals(orderState, Constans.READY_SERVICE)){
+                cleanindOrderHolder.iv_cleaning_order_state_line.setVisibility(View.VISIBLE);
+                cleanindOrderHolder.iv_cleaning_order_state_line.setImageResource(R.drawable.onservice_order_state);
+                cleanindOrderHolder.tv_cleaning_order_state.setText(R.string.unservice);
+                cleanindOrderHolder.tv_cleaning_order_state.setTextColor(Color.parseColor("#4EC5BF"));
+                if(TextUtils.isEmpty(refundText) || TextUtils.equals(refundText,"未退单")){
+
+                }else{
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("待服务").append("(").append(refundText).append(")");
+                    cleanindOrderHolder.tv_cleaning_order_state.setText(sb.toString());
+                    cleanindOrderHolder.tv_cleaning_order_state.setTextColor(Color.parseColor("#4EC5BF"));
+                }
+            }else if(TextUtils.equals(orderState, Constans.ON_SERVICE)){
+                cleanindOrderHolder.iv_cleaning_order_state_line.setVisibility(View.VISIBLE);
+                cleanindOrderHolder.iv_cleaning_order_state_line.setImageResource(R.drawable.servicing_order_state);
+                cleanindOrderHolder.tv_cleaning_order_state.setText(R.string.servicing);
+                cleanindOrderHolder.tv_cleaning_order_state.setTextColor(Color.parseColor("#4EC5BF"));
+                if(TextUtils.isEmpty(refundText) || TextUtils.equals(refundText,"未退单")){
+
+                }else{
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("服务中").append("(").append(refundText).append(")");
+                    cleanindOrderHolder.tv_cleaning_order_state.setText(sb.toString());
+                    cleanindOrderHolder.tv_cleaning_order_state.setTextColor(Color.parseColor("#4EC5BF"));
+                }
             }
         }
         //判断状态end
-        //打电话按钮
-        cleanindOrderHolder.btn_alreadry_contact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //回调到OrderListActivity中去
-                EventAction action = new EventAction(EventType.EVENT_TELEPHONE_FROM_LIST,new TelephoneBean(orderId,TelephoneBean.SOURCE_LIST));
-                EventbusAgent.getInstance().post(action);
-                //点击了打电话按钮
-                BDMob.getBdMobInstance().onMobEvent(context, BDEventConstans.EVENT_ID_ORDER_LIST_PHONE);
-
-                HYMob.getDataListByCall(context, HYEventConstans.EVENT_ID_ORDER_DETAIL_REFUND,orderId,"0");
-
-                initDialog(CleaningOrderListBean.this.context);
-                dialog.show();
-            }
-        });
+//        //打电话按钮
+//        cleanindOrderHolder.btn_alreadry_contact.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //回调到OrderListActivity中去
+//                EventAction action = new EventAction(EventType.EVENT_TELEPHONE_FROM_LIST,new TelephoneBean(orderId,TelephoneBean.SOURCE_LIST));
+//                EventbusAgent.getInstance().post(action);
+//                //点击了打电话按钮
+//                BDMob.getBdMobInstance().onMobEvent(context, BDEventConstans.EVENT_ID_ORDER_LIST_PHONE);
+//
+//                HYMob.getDataListByCall(context, HYEventConstans.EVENT_ID_ORDER_DETAIL_REFUND,orderId,"0");
+//
+//                initDialog(CleaningOrderListBean.this.context);
+//                dialog.show();
+//            }
+//        });
 
         //点击事件
         cleanindOrderHolder.ll.setOnClickListener(new View.OnClickListener() {
@@ -246,32 +277,33 @@ public class CleaningOrderListBean extends QDBaseBean{
                 LogUtils.LogE("ashenFetch", "orderid:" + orderId);
                 map.put(Constans.ORDER_ID, orderId);
                 ActivityUtils.goToActivityWithString(CleaningOrderListBean.this.context, FetchDetailsActivity.class, map);
-                MDUtils.OrderListPageMD(QiangDanBaseFragment.orderState, cateId, orderId, MDConstans.ACTION_DETAILS);
+//                MDUtils.OrderListPageMD(QiangDanBaseFragment.orderState, cateId, orderId, MDConstans.ACTION_DETAILS);
 
+                HYMob.getDataListByServiceState(context, HYEventConstans.EVENT_ID_ORDER_DETAIL_PAGE);
             }
         });
     }
 
 
-    private void initDialog(Context context) {
-        if(dialog == null){
-            dialog = new ZhaoBiaoDialog(context, context.getString(R.string.hint), context.getString(R.string.make_sure_tel));
-            dialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener(){
-
-                @Override
-                public void onDialogOkClick() {
-                    ActivityUtils.goToDialActivity(CleaningOrderListBean.this.context, phone);
-                    MDUtils.OrderListPageMD(QiangDanBaseFragment.orderState, cateId, orderId, MDConstans.ACTION_UP_TEL);
-                    dialog.dismiss();
-                }
-
-                @Override
-                public void onDialogCancelClick() {
-                    dialog.dismiss();
-                }
-            });
-        }
-    }
+//    private void initDialog(Context context) {
+//        if(dialog == null){
+//            dialog = new ZhaoBiaoDialog(context, context.getString(R.string.hint), context.getString(R.string.make_sure_tel));
+//            dialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener(){
+//
+//                @Override
+//                public void onDialogOkClick() {
+//                    ActivityUtils.goToDialActivity(CleaningOrderListBean.this.context, phone);
+//                    MDUtils.OrderListPageMD(QiangDanBaseFragment.orderState, cateId, orderId, MDConstans.ACTION_UP_TEL);
+//                    dialog.dismiss();
+//                }
+//
+//                @Override
+//                public void onDialogCancelClick() {
+//                    dialog.dismiss();
+//                }
+//            });
+//        }
+//    }
 
     @Override
     public View initView(View convertView, LayoutInflater inflater, ViewGroup parent, Context context, ZBBaseAdapter<QDBaseBean> adapter) {
@@ -279,18 +311,23 @@ public class CleaningOrderListBean extends QDBaseBean{
         this.adapter = adapter;
         cleanindOrderHolder = new CleanindOrderHolder();
         convertView         = inflater.inflate(getLayoutId(),parent,false);
-        cleanindOrderHolder.tv_customer_name_content    = (TextView) convertView.findViewById(R.id.tv_customer_name_content);
-        cleanindOrderHolder.btn_alreadry_contact        = (ImageView) convertView.findViewById(R.id.btn_alreadry_contact);
-        cleanindOrderHolder.rl_maybe_not                = convertView.findViewById(R.id.rl_maybe_not);
-        cleanindOrderHolder.tv_cleaning_location        = (TextView) convertView.findViewById(R.id.tv_cleaning_location);
-        cleanindOrderHolder.tv_cleaning_need_tools      = (TextView) convertView.findViewById(R.id.tv_cleaning_need_tools);
         cleanindOrderHolder.tv_cleaning_order_title     = (TextView) convertView.findViewById(R.id.tv_cleaning_order_title);
-        cleanindOrderHolder.tv_cleaning_size            = (TextView) convertView.findViewById(R.id.tv_cleaning_size);
-        cleanindOrderHolder.tv_cleaning_time            = (TextView) convertView.findViewById(R.id.tv_cleaning_time);
         cleanindOrderHolder.tv_cleaning_qd_time_content = (TextView) convertView.findViewById(R.id.tv_cleaning_qd_time_content);
-        cleanindOrderHolder.tv_message                  = (TextView) convertView.findViewById(R.id.tv_message);
-        cleanindOrderHolder.tv_telephone                = (TextView) convertView.findViewById(R.id.tv_telephone);
+        cleanindOrderHolder.tv_cleaning_location        = (TextView) convertView.findViewById(R.id.tv_cleaning_location);
+        cleanindOrderHolder.tv_clean_address_content = (TextView) convertView.findViewById(R.id.tv_clean_address_content);
+        cleanindOrderHolder.tv_customer_name_content    = (TextView) convertView.findViewById(R.id.tv_customer_name_content);
+        cleanindOrderHolder.iv_cleaning_order_state_line = (ImageView) convertView.findViewById(R.id.iv_cleaning_order_state_line);
+        cleanindOrderHolder.tv_cleaning_order_state = (TextView) convertView.findViewById(R.id.tv_cleaning_order_state);
         cleanindOrderHolder.ll                          = convertView.findViewById(R.id.ll);
+
+//        cleanindOrderHolder.tv_message                  = (TextView) convertView.findViewById(R.id.tv_message);
+//        cleanindOrderHolder.tv_telephone                = (TextView) convertView.findViewById(R.id.tv_telephone);
+//        cleanindOrderHolder.btn_alreadry_contact        = (ImageView) convertView.findViewById(R.id.btn_alreadry_contact);
+//        cleanindOrderHolder.rl_maybe_not                = convertView.findViewById(R.id.rl_maybe_not);
+//        cleanindOrderHolder.tv_cleaning_size            = (TextView) convertView.findViewById(R.id.tv_cleaning_size);
+//        cleanindOrderHolder.tv_cleaning_need_tools      = (TextView) convertView.findViewById(R.id.tv_cleaning_need_tools);
+//        cleanindOrderHolder.tv_cleaning_time            = (TextView) convertView.findViewById(R.id.tv_cleaning_time);
+
         convertView.setTag(cleanindOrderHolder);
         return convertView;
     }

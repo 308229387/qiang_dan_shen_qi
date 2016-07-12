@@ -11,9 +11,11 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.activity.MainActivity;
-import com.huangyezhaobiao.activity.MessageCenterActivity;
 import com.huangyezhaobiao.activity.SystemNotiListActivity;
-import com.xiaomi.mipush.sdk.MiPushMessage;
+import com.huangyezhaobiao.fragment.home.BiddingFragment;
+import com.huangyezhaobiao.fragment.home.MessageFragment;
+
+import java.text.MessageFormat;
 
 /**
  * Created by 58 on 2016/1/7.
@@ -61,7 +63,7 @@ public class GePushNotify implements INotify<String>{
             }else{
                 fillContent("您有一条新消息");
                 title = "消息";
-                intent.setClass(context, MessageCenterActivity.class);
+                intent.setClass(context, MainActivity.class);
             }
             startNotify(intent);
 

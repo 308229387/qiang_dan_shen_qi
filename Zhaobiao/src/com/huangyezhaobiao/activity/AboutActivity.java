@@ -13,6 +13,8 @@ import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.constans.AppConstants;
 import com.huangyezhaobiao.url.URLConstans;
 import com.huangyezhaobiao.utils.ActivityUtils;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.VersionUtils;
 
 import java.util.HashMap;
@@ -37,7 +39,10 @@ public class AboutActivity extends QBBaseActivity implements OnClickListener {
 	public void initView() {
 		layout_back_head = getView(R.id.layout_head);
 		back_layout 	 = getView(R.id.back_layout);
+		back_layout.setVisibility(View.VISIBLE);
 		txt_head    	 = getView(R.id.txt_head);
+		txt_head.setText(R.string.about);
+
 		tv_version  	 = getView(R.id.tv_version);
 		rl_gongneng      = getView(R.id.rl_gongneng);
 		rl_check_version = getView(R.id.rl_check_version);
@@ -49,7 +54,6 @@ public class AboutActivity extends QBBaseActivity implements OnClickListener {
 		back_layout.setOnClickListener(this);
 		rl_check_version.setOnClickListener(this);
 		rl_gongneng.setOnClickListener(this);
-		txt_head.setText(R.string.about);
 		try {
 			name = getString(R.string.version_code)+VersionUtils.getVersionName(this);
 		} catch (NameNotFoundException e) {
@@ -72,6 +76,7 @@ public class AboutActivity extends QBBaseActivity implements OnClickListener {
 			break;
 		case R.id.rl_gongneng://跳转到功能界面 都是h5;
 			ActivityUtils.goToActivity(this, IntroduceFunctionActivity.class);
+			HYMob.getDataList(this, HYEventConstans.EVENT_ID_INTRODUCTION);
 			break;
 			case R.id.software_usage://使用协议
 				HashMap<String, String> map = new HashMap<String, String>();
@@ -82,4 +87,9 @@ public class AboutActivity extends QBBaseActivity implements OnClickListener {
 		}
 	}
 
+	@Override
+	protected void onStop() {
+		super.onStop();
+		HYMob.getBaseDataListForPage(this, HYEventConstans.PAGE_ABOUT, stop_time - resume_time);
+	}
 }

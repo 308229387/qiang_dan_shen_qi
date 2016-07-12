@@ -26,6 +26,7 @@
 
 
 	<!-- fontsize edited by chenguangming-->
+	<dimen name="textsize_xxxlarge">23sp</dimen>
 	<dimen name="textsize_xxlarge">20sp</dimen>
 	<dimen name="textsize_xlarge">18sp</dimen>
 	<dimen name="textsize_large">16sp</dimen>

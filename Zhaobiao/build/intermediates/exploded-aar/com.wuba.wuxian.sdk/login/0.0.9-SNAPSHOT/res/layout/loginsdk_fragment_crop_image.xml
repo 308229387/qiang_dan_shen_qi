@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFFFF">
+
+    <com.wuba.loginsdk.activity.account.cropper.widget.CropView
+        android:id="@+id/cv_croper_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:gravity="center_vertical"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black"
+        android:alpha="0.6">
+        <Button
+            android:id="@+id/btn_croper_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:paddingLeft="30dip"
+            android:paddingRight="30dip"
+            android:background="#00000000"
+            android:textSize="15sp"
+            android:textColor="#ffffff"
+            android:text="重选"/>
+
+        <Button
+            android:id="@+id/btn_croper_save"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:paddingLeft="30dip"
+            android:paddingRight="30dip"
+            android:layout_alignParentRight="true"
+            android:background="#00000000"
+            android:textSize="15sp"
+            android:textColor="#ffffff"
+            android:text="选取"/>
+    </RelativeLayout>
+
+</RelativeLayout>
+<!-- From: file:/I:/E/2016523/58sdklogin/WubaLoginSDK/loginsdk/src/main/res/layout/loginsdk_fragment_crop_image.xml -->

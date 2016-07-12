@@ -3,10 +3,16 @@ package com.huangyezhaobiao.photomodule;
         import android.app.Activity;
         import android.content.Context;
         import android.content.Intent;
+        import android.os.Build;
         import android.os.Bundle;
+        import android.util.Log;
+        import android.util.TypedValue;
         import android.view.View;
+        import android.view.WindowManager;
         import android.widget.AbsListView;
         import android.widget.GridView;
+        import android.widget.LinearLayout;
+        import android.widget.RelativeLayout;
         import android.widget.TextView;
         import android.widget.Toast;
 
@@ -15,6 +21,7 @@ package com.huangyezhaobiao.photomodule;
         import com.huangyezhaobiao.eventbus.EventAction;
         import com.huangyezhaobiao.eventbus.EventType;
         import com.huangyezhaobiao.eventbus.EventbusAgent;
+        import com.huangyezhaobiao.utils.Utils;
         import com.nostra13.universalimageloader.core.ImageLoader;
 
         import java.util.ArrayList;
@@ -26,10 +33,11 @@ package com.huangyezhaobiao.photomodule;
  * 扫描神马的功能都是通过presenter来进行的
  */
 public class GalleryActivity extends BaseActivity implements GalleryAdapter.OnGalleryClickListener, View.OnClickListener, GalleryPopup.OnPopupItemClickListener {
-    TextView tv_back;
-    TextView tv_title;
-    TextView tv_right_btn;
-    View ll_right_btn;
+    View ll_titlebar;
+    LinearLayout tv_back;  //返回
+    TextView tv_title;  //标题
+    TextView tv_right_btn;  //右边的确定按钮
+    View ll_right_btn;  //右边的显示
     TextView tv_choose_dir;
     TextView tv_chosen_total_view;
     GridView grid_photo;
@@ -46,6 +54,19 @@ public class GalleryActivity extends BaseActivity implements GalleryAdapter.OnGa
     private PhotoBean photoBean;
     private int from_type = -1;
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT) {
+            int height = Utils.getStatusBarHeight(this);
+            int more = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, getResources().getDisplayMetrics());
+            if (ll_titlebar != null) {
+                ll_titlebar.setPadding(0, height + more, 0, 0);
+            }
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,12 +75,19 @@ public class GalleryActivity extends BaseActivity implements GalleryAdapter.OnGa
         presenter = new GalleryPresenter(this);
         presenter.scanPhotos();
         bindListener();
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT){
+            //透明状态栏
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+        getWindow().setBackgroundDrawable(null);
         EventbusAgent.getInstance().register(this);
+
     }
 
     @Override
     public void initView() {
         setContentView(R.layout.main_tuce_activity);
+        ll_titlebar = getView(R.id.ll_titlebar);
         tv_back              = getView(R.id.tv_back);
         tv_title             = getView(R.id.tv_title);
         tv_right_btn         = getView(R.id.tv_right_btn);
@@ -69,6 +97,7 @@ public class GalleryActivity extends BaseActivity implements GalleryAdapter.OnGa
         grid_photo           = getView(R.id.grid_photo);
 
     }
+
 
     @Override
     public void initListener() {
@@ -110,7 +139,7 @@ public class GalleryActivity extends BaseActivity implements GalleryAdapter.OnGa
         if (StorageConstans.MAX_COUNT == 1) {//头像时压缩如果不清除会有问题
             GalleryScanHelper.checked_photos.clear();
         }
-        tv_right_btn.setText("确定(" + GalleryScanHelper.checkCounts() + ")");
+        tv_right_btn.setText("完成(" + GalleryScanHelper.checkCounts() +"/" +StorageConstans.MAX_COUNT + ")");
         tv_chosen_total_view.setOnClickListener(this);
     }
 
@@ -155,13 +184,13 @@ public class GalleryActivity extends BaseActivity implements GalleryAdapter.OnGa
 
     @Override
     public void onGalleryCheckClicked(int count, MediaPicBean info) {
-        tv_right_btn.setText("确定(" + GalleryScanHelper.checkCounts() + ")");
+        tv_right_btn.setText("完成(" + GalleryScanHelper.checkCounts() + "/" +StorageConstans.MAX_COUNT + ")");
         checkedPhotos.add(info);
     }
 
     @Override
     public void onGalleryUnCheckClicked(int count, MediaPicBean info) {
-        tv_right_btn.setText("确定(" + GalleryScanHelper.checkCounts() + ")");
+        tv_right_btn.setText("完成(" + GalleryScanHelper.checkCounts() + "/" +StorageConstans.MAX_COUNT + ")");
         checkedPhotos.remove(info);
     }
 
@@ -190,7 +219,7 @@ public class GalleryActivity extends BaseActivity implements GalleryAdapter.OnGa
             switch (resultCode) {
                 case StorageConstans.RESULT_CODE_SINGLE_2_GALLERY:
                     adapter.notifyDataSetChanged();
-                    tv_right_btn.setText("确定(" + GalleryScanHelper.checkCounts() + ")");
+                    tv_right_btn.setText("完成(" + GalleryScanHelper.checkCounts() + "/" +StorageConstans.MAX_COUNT +")");
                     break;
                 case StorageConstans.RESULT_CODE_SINGLE_2_GALLERY_2_OTHER:
                     if (StorageConstans.MAX_COUNT == 1) {
@@ -263,7 +292,7 @@ public class GalleryActivity extends BaseActivity implements GalleryAdapter.OnGa
             case R.id.ll_right_btn:
             case R.id.tv_right_btn://确定
                 if (GalleryScanHelper.checked_photos.size() == 0) {
-                    Toast.makeText(this,"请选择至少一张图片",0).show();
+                    Toast.makeText(this,"请选择至少一张图片",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 ArrayList<MediaPicBean> beans = GalleryScanHelper.transferStringToBean(GalleryScanHelper.checked_photos);

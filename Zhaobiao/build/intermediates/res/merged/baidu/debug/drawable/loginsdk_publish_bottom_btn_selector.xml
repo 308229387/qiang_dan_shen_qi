@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/loginsdk_publish_bottom_btn_pressed" android:state_pressed="true"/>
+    <item android:drawable="@drawable/loginsdk_publish_bottom_btn_nomal"/>
+</selector><!-- From: file:/I:/E/2016523/58sdklogin/WubaLoginSDK/loginsdk/src/main/res/drawable/loginsdk_publish_bottom_btn_selector.xml -->

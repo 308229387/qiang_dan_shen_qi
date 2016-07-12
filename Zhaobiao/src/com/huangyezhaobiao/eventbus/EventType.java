@@ -37,8 +37,11 @@ public enum  EventType {
     //从浏览单张图片回来
     EVENT_BACK_FROM_VIEW_SINGLE,
 
-    //从列表页打电话
-    EVENT_TELEPHONE_FROM_LIST,
-    //从详情页打电话
-    EVENT_TELEPHONE_FROM_DETAIL
+//    //从列表页打电话
+//    EVENT_TELEPHONE_FROM_LIST,
+//    //从详情页打电话
+//    EVENT_TELEPHONE_FROM_DETAIL
+
+    //抢单成功后跳转订单页
+    EVENT_TAB_RESET
 }

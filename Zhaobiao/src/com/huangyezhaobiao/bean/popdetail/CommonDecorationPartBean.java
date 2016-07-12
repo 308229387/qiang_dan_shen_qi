@@ -1,8 +1,10 @@
 package com.huangyezhaobiao.bean.popdetail;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
@@ -30,6 +32,8 @@ public class CommonDecorationPartBean extends QDDetailBaseBean {
     private String measureTime;
     private String decorateTime;
     private String location;
+
+    private String needNear;
   //  private String detailAddress;
     @Override
     public View initView(Context context) {
@@ -37,6 +41,13 @@ public class CommonDecorationPartBean extends QDDetailBaseBean {
         ((TextView) view.findViewById(R.id.detail_item_common_decorate_text_dec_type)).setText(decoraType);
         ((TextView) view.findViewById(R.id.detail_item_common_decorate_text_space)).setText(space);
         ((TextView) view.findViewById(R.id.detail_item_common_decorate_text_budget)).setText(budget);
+        LinearLayout ll_part_distance = ((LinearLayout) view.findViewById(R.id.ll_part_distance));
+        if(TextUtils.isEmpty(needNear)){
+            ll_part_distance.setVisibility(View.GONE);
+        }else{
+            ll_part_distance.setVisibility(View.VISIBLE);
+            ((TextView) view.findViewById(R.id.detail_item_common_decorate_text_distance)).setText(needNear);
+        }
         ((TextView) view.findViewById(R.id.detail_item_common_decorate_text_type)).setText(type);
         ((TextView) view.findViewById(R.id.detail_item_common_decorate_text_measure_time)).setText(measureTime);
         ((TextView) view.findViewById(R.id.detail_item_common_decorate_text_dec_time)).setText(decorateTime);
@@ -125,5 +136,13 @@ public class CommonDecorationPartBean extends QDDetailBaseBean {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getNeedNear() {
+        return needNear;
+    }
+
+    public void setNeedNear(String needNear) {
+        this.needNear = needNear;
     }
 }

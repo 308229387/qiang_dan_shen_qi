@@ -3,6 +3,7 @@ package com.huangyezhaobiao.vm;
 import android.content.Context;
 
 import com.huangye.commonlib.model.NetWorkModel;
+import com.huangye.commonlib.utils.NetBean;
 import com.huangye.commonlib.vm.SourceViewModel;
 import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
 import com.huangyezhaobiao.model.BackToForeModel;
@@ -22,5 +23,10 @@ public class BackToForeVM extends SourceViewModel{
 
     public void report(){
         t.getDatas();
+    }
+
+    @Override
+    public void onLoadingSuccess(NetBean bean, NetWorkModel model) {
+
     }
 }

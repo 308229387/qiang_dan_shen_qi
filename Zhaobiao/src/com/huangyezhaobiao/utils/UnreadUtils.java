@@ -10,6 +10,38 @@ import android.content.SharedPreferences;
  */
 public class UnreadUtils {
 	private static final String NAME = "unread";
+
+
+	/**
+	 * 存储新订单信息
+	 * @param context
+	 */
+	public static void saveNewOrder(Context context){
+		SharedPreferences sp = context.getSharedPreferences(NAME+UserUtils.getUserId(context), Context.MODE_PRIVATE);
+		int value = sp.getInt("newOrder", 0);
+		value = value + 1;
+		sp.edit().putInt("newOrder", value).commit();
+
+	}
+	/**
+	 * 返回新订单的未读条数
+	 * @param context
+	 * @return
+	 */
+	public static int getNewOrder(Context context){
+		SharedPreferences sp = context.getSharedPreferences(NAME+UserUtils.getUserId(context), Context.MODE_PRIVATE);
+		int value = sp.getInt("newOrder", 0);
+		return value;
+	}
+
+	/**
+	 * 清除新订单的未读数
+	 * @param context
+	 */
+	public static void clearNewOder(Context context){
+		SharedPreferences sp = context.getSharedPreferences(NAME+UserUtils.getUserId(context), Context.MODE_PRIVATE);
+		sp.edit().putInt("newOrder", 0).commit();
+	}
 	/**
 	 * 存储抢单结果的未读信息
 	 * @param context
@@ -105,6 +137,9 @@ public class UnreadUtils {
 		SharedPreferences sp = context.getSharedPreferences(NAME+UserUtils.getUserId(context), Context.MODE_PRIVATE);
 		sp.edit().putInt("sysno", 0).commit();
 	}
+
+
+
 	/**
 	 * 得到所有的未读信息的数量
 	 * @param context

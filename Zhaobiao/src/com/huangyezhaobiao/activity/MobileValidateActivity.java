@@ -25,6 +25,7 @@ import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import com.huangyezhaobiao.vm.ValidateViewModel;
+import com.wuba.loginsdk.external.LoginClient;
 import com.xiaomi.mipush.sdk.MiPushClient;
 
 import java.util.Map;
@@ -37,43 +38,36 @@ import java.util.regex.Pattern;
  * @author linyueyang
  *
  */
-public class MobileValidateActivity extends CommonBaseActivity implements NetWorkVMCallBack, ZhaoBiaoDialog.onDialogClickListener {
+public class MobileValidateActivity extends CommonBaseActivity implements NetWorkVMCallBack {
 	private Button commit;
+	private LinearLayout back_layout;
 	private TextView txt_head;
 	private EditText mobile;
 	private EditText code;
 	private Button getcode;
 	private int countDown;
 	private ValidateViewModel viewModel;
-	private LinearLayout back_layout;
-	private ZhaoBiaoDialog exitDialog;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mobile_valid);
 		initView();
 		initListener();
 		viewModel = new ValidateViewModel(this,this);
-		configExitDialog();
 		getWindow().setBackgroundDrawable(null);
 	}
 
 
-	private void configExitDialog(){
-		exitDialog = new ZhaoBiaoDialog(this,getString(R.string.sys_noti),getString(R.string.force_exit));
-		exitDialog.setOnDialogClickListener(this);
-		exitDialog.setCancelButtonGone();
-		exitDialog.setCancelable(false);
-	}
-
-
 	public void initView() {
+		back_layout = (LinearLayout) this.findViewById(R.id.back_layout);
+		back_layout.setVisibility(View.VISIBLE);
 		txt_head = (TextView) findViewById(R.id.txt_head);
 		txt_head.setText(R.string.mobile_validate);
+
 		commit = (Button) findViewById(R.id.commit);
 		mobile = (EditText) findViewById(R.id.validate_mobile);
 		code = (EditText) findViewById(R.id.validate_code);
 		getcode = (Button) findViewById(R.id.validate_getcode);
-		back_layout = (LinearLayout) this.findViewById(R.id.back_layout);
+
 	}
 
 	@Override
@@ -246,7 +240,6 @@ public class MobileValidateActivity extends CommonBaseActivity implements NetWor
 	public void onLoginInvalidate() {
 		GePushProxy.unBindPushAlias(getApplicationContext(), UserUtils.getUserId(getApplicationContext()));
 		showExitDialog();
-		Toast.makeText(this,"login invalidate",Toast.LENGTH_SHORT).show();
 	}
 
 
@@ -266,62 +259,14 @@ public class MobileValidateActivity extends CommonBaseActivity implements NetWor
 		return super.dispatchTouchEvent(ev);
 	}
 
-	/**
-	 * 显示退出的对话框
-	 */
-	private void showExitDialog(){
-		if(exitDialog!=null && !exitDialog.isShowing()){
-			try {
-				exitDialog.show();
-			}catch (Exception e){
-				Toast.makeText(this,getString(R.string.force_exit),Toast.LENGTH_SHORT).show();
-				//TODO:退出登录
-				ActivityUtils.goToActivity(MobileValidateActivity.this, LoginActivity.class);
-				onBackPressed();
-				//退出登录后的几件事
-				/**
-				 * 1.清除LoginToken
-				 * 2.清除用户信息
-				 */
-				SharedPreferencesUtils.clearLoginToken(this);
-				UserUtils.clearUserInfo(this);
-			}
-
-		}
-	}
-
-	/**
-	 * 显示退出的对话框
-	 */
-	private void dismissExitDialog(){
-		if(exitDialog!=null && exitDialog.isShowing()){
-			try {
-				exitDialog.dismiss();
-			}catch (Exception e){
-				Toast.makeText(this,getString(R.string.force_exit),Toast.LENGTH_SHORT).show();
-				//TODO:退出登录
-			}finally {
-				ActivityUtils.goToActivity(MobileValidateActivity.this, LoginActivity.class);
-				onBackPressed();
-				//退出登录后的几件事
-				/**
-				 * 1.清除LoginToken
-				 * 2.清除用户信息
-				 */
-				SharedPreferencesUtils.clearLoginToken(this);
-				UserUtils.clearUserInfo(this);
-
-			}
-		}
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
 	}
 
 	@Override
-	public void onDialogOkClick() {
-		dismissExitDialog();
-	}
-
-	@Override
-	public void onDialogCancelClick() {
-
+	protected void onStop() {
+		super.onStop();
+		HYMob.getBaseDataListForPage(this, HYEventConstans.PAGE_FIRST_BIND_MOBILE, stop_time - resume_time);
 	}
 }

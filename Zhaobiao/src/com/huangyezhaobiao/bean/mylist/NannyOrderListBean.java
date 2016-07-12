@@ -1,6 +1,7 @@
 package com.huangyezhaobiao.bean.mylist;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,23 +11,14 @@ import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.activity.FetchDetailsActivity;
-import com.huangyezhaobiao.bean.TelephoneBean;
-import com.huangyezhaobiao.eventbus.EventAction;
-import com.huangyezhaobiao.eventbus.EventType;
-import com.huangyezhaobiao.eventbus.EventbusAgent;
-import com.huangyezhaobiao.fragment.QiangDanBaseFragment;
 import com.huangyezhaobiao.holder.order.NannyOrderHolder;
 import com.huangyezhaobiao.inter.Constans;
-import com.huangyezhaobiao.inter.MDConstans;
 import com.huangyezhaobiao.lib.QDBaseBean;
 import com.huangyezhaobiao.lib.ZBBaseAdapter;
 import com.huangyezhaobiao.utils.ActivityUtils;
-import com.huangyezhaobiao.utils.BDEventConstans;
-import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
-import com.huangyezhaobiao.utils.LogUtils;
-import com.huangyezhaobiao.utils.MDUtils;
+import com.huangyezhaobiao.utils.TimeUtils;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 
 import java.util.HashMap;
@@ -63,10 +55,19 @@ public class NannyOrderListBean extends QDBaseBean{
     //2015.12.8 add
     private String customerName;
     private String refundText;
+
+    private String detailAddress;
     //2015.12.8 add end
     private NannyOrderHolder nannyOrderHolder;
     private ZhaoBiaoDialog dialog;
 
+    public String getDetailAddress() {
+        return detailAddress;
+    }
+
+    public void setDetailAddress(String detailAddress) {
+        this.detailAddress = detailAddress;
+    }
 
     public String getCustomerName() {
         return customerName;
@@ -190,57 +191,79 @@ public class NannyOrderListBean extends QDBaseBean{
 
     @Override
     public void fillDatas() {
-        initDialog(context);
+//        initDialog(context);
         FetchDetailsActivity.orderState = orderState;
+        FetchDetailsActivity.time =time;
         //判断状态
-        if(TextUtils.equals(QiangDanBaseFragment.orderState, Constans.DONE_FRAGMENT)){//已完成
-            nannyOrderHolder.rl_maybe_not.setVisibility(View.VISIBLE);
-            LogUtils.LogE("ashenasas", "lalala visible");
-            if(TextUtils.equals(orderState, Constans.DONE_FRAGMENT_FINISH)){
-                nannyOrderHolder.tv_message.setText(R.string.over_done_service);
-            }else if(TextUtils.equals(orderState, Constans.DONE_FRAGMENT_CANCEL)){
-                nannyOrderHolder.tv_message.setText(R.string.over_done_unservice);
+        if(!TextUtils.isEmpty(orderState)){ //获取订单状态
+            if(TextUtils.equals(orderState, Constans.DONE_FRAGMENT_FINISH)){ //已完成(成交)
+                nannyOrderHolder.iv_order_state_line.setVisibility(View.GONE);
+                nannyOrderHolder.tv_order_state.setText(R.string.over_done);
+                if(TextUtils.isEmpty(refundText) || TextUtils.equals(refundText,"未退单")){
+
+                }else{
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("已结束").append("(").append(refundText).append(")");
+                    nannyOrderHolder.tv_order_state.setText(sb.toString());
+                }
+
+            }else if(TextUtils.equals(orderState, Constans.DONE_FRAGMENT_CANCEL)){ //已完成(未成交)
+                nannyOrderHolder.iv_order_state_line.setVisibility(View.GONE);
+                nannyOrderHolder.tv_order_state.setText(R.string.over_undone);
+                if(TextUtils.isEmpty(refundText) || TextUtils.equals(refundText,"未退单") ){
+
+                }else{
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("已结束").append("(").append(refundText).append(")");
+                    nannyOrderHolder.tv_order_state.setText(sb.toString());
+                }
+            }else if(TextUtils.equals(orderState, Constans.READY_SERVICE)){
+                nannyOrderHolder.iv_order_state_line.setVisibility(View.VISIBLE);
+                nannyOrderHolder.iv_order_state_line.setImageResource(R.drawable.onservice_order_state);
+                nannyOrderHolder.tv_order_state.setText(R.string.unservice);
+                nannyOrderHolder.tv_order_state.setTextColor(Color.parseColor("#4EC5BF"));
+                if(TextUtils.isEmpty(refundText) || TextUtils.equals(refundText,"未退单") ){
+
+                }else{
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("待服务").append("(").append(refundText).append(")");
+                    nannyOrderHolder.tv_order_state.setText(sb.toString());
+                    nannyOrderHolder.tv_order_state.setTextColor(Color.parseColor("#4EC5BF"));
+                }
+
+            }else if(TextUtils.equals(orderState, Constans.ON_SERVICE)){
+                nannyOrderHolder.iv_order_state_line.setVisibility(View.VISIBLE);
+                nannyOrderHolder.iv_order_state_line.setImageResource(R.drawable.servicing_order_state);
+                nannyOrderHolder.tv_order_state.setText(R.string.servicing);
+                nannyOrderHolder.tv_order_state.setTextColor(Color.parseColor("#4EC5BF"));
+                if(TextUtils.isEmpty(refundText) || TextUtils.equals(refundText,"未退单")){
+
+                }else{
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("服务中").append("(").append(refundText).append(")");
+                    nannyOrderHolder.tv_order_state.setText(sb.toString());
+                    nannyOrderHolder.tv_order_state.setTextColor(Color.parseColor("#4EC5BF"));
+                }
             }
         }
 
-        if(TextUtils.isEmpty(refundText) || TextUtils.equals("未退单",refundText)){
-            //如果是done的话还是要显示
-            if(TextUtils.equals(QiangDanBaseFragment.orderState, Constans.DONE_FRAGMENT)){//已完成
-                nannyOrderHolder.rl_maybe_not.setVisibility(View.VISIBLE);
-            }else{//不是已完成
-                nannyOrderHolder.rl_maybe_not.setVisibility(View.GONE);
-            }
-        }else{//有字
-            //如果是done的话还是要显示
-            if(TextUtils.equals(QiangDanBaseFragment.orderState, Constans.DONE_FRAGMENT)){//已完成
-                nannyOrderHolder.rl_maybe_not.setVisibility(View.VISIBLE);
-                StringBuilder sb = new StringBuilder();
-                sb.append(nannyOrderHolder.tv_message.getText().toString());
-                nannyOrderHolder.tv_message.setText(sb.append("      "+refundText));
-            }else{//不是已完成
-                nannyOrderHolder.rl_maybe_not.setVisibility(View.VISIBLE);
-                nannyOrderHolder.tv_message.setText(refundText);
-            }
-        }
-
-
-        //退单
-        //打电话按钮
-        nannyOrderHolder.btn_alreadry_contact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //回调到OrderListActivity中去
-                EventAction action = new EventAction(EventType.EVENT_TELEPHONE_FROM_LIST,new TelephoneBean(orderId,TelephoneBean.SOURCE_LIST));
-                EventbusAgent.getInstance().post(action);
-                //点击了打电话按钮
-                BDMob.getBdMobInstance().onMobEvent(context, BDEventConstans.EVENT_ID_ORDER_LIST_PHONE);
-
-                HYMob.getDataListByCall(context, HYEventConstans.EVENT_ID_ORDER_DETAIL_REFUND, orderId, "0");
-
-                initDialog(NannyOrderListBean.this.context);
-                dialog.show();
-            }
-        });
+//        //退单
+//        //打电话按钮
+//        nannyOrderHolder.btn_alreadry_contact.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //回调到OrderListActivity中去
+//                EventAction action = new EventAction(EventType.EVENT_TELEPHONE_FROM_LIST, new TelephoneBean(orderId, TelephoneBean.SOURCE_LIST));
+//                EventbusAgent.getInstance().post(action);
+//                //点击了打电话按钮
+//                BDMob.getBdMobInstance().onMobEvent(context, BDEventConstans.EVENT_ID_ORDER_LIST_PHONE);
+//
+//                HYMob.getDataListByCall(context, HYEventConstans.EVENT_ID_ORDER_DETAIL_REFUND, orderId, "0");
+//
+//                initDialog(NannyOrderListBean.this.context);
+//                dialog.show();
+//            }
+//        });
 
         //点击事件
         nannyOrderHolder.ll.setOnClickListener(new View.OnClickListener() {
@@ -248,43 +271,46 @@ public class NannyOrderListBean extends QDBaseBean{
             public void onClick(View v) {
                 FetchDetailsActivity.orderState = orderState;
                 Map<String, String> map = new HashMap<String, String>();
-                 map.put(Constans.ORDER_ID, orderId);
+                map.put(Constans.ORDER_ID, orderId);
                 ActivityUtils.goToActivityWithString(NannyOrderListBean.this.context, FetchDetailsActivity.class, map);
-                MDUtils.OrderListPageMD(QiangDanBaseFragment.orderState, cateId, orderId, MDConstans.ACTION_DETAILS);
+//                MDUtils.OrderListPageMD(QiangDanBaseFragment.orderState, cateId, orderId, MDConstans.ACTION_DETAILS);
+                HYMob.getDataListByServiceState(context, HYEventConstans.EVENT_ID_ORDER_DETAIL_PAGE);
 
             }
         });
 
-        nannyOrderHolder.tv_time_nanny_qd_content.setText(time);
-        nannyOrderHolder.tv_telephone.setText(phone);
-        nannyOrderHolder.tv_nanny_time_limit.setText(employTime);
-        nannyOrderHolder.tv_cleaning_age.setText(age);
-        nannyOrderHolder.tv_nanny_experience.setText(experience);
-        nannyOrderHolder.tv_nanny_location.setText(location);
-        nannyOrderHolder.tv_nanny_time.setText(startTime);
         nannyOrderHolder.tv_nanny_order_title.setText(title);
+        nannyOrderHolder.tv_time_nanny_qd_content.setText(TimeUtils.formatDateTime(time));
+        nannyOrderHolder.tv_nanny_location.setText(location);
+        nannyOrderHolder.tv_nanny_address_content.setText(detailAddress);
         nannyOrderHolder.tv_customer_name_content.setText(customerName);
+
+//        nannyOrderHolder.tv_telephone.setText(phone);
+//        nannyOrderHolder.tv_nanny_time_limit.setText(employTime);
+//        nannyOrderHolder.tv_cleaning_age.setText(age);
+//        nannyOrderHolder.tv_nanny_experience.setText(experience);
+//        nannyOrderHolder.tv_nanny_time.setText(startTime);
     }
 
-    private void initDialog(Context context) {
-        if(dialog == null){
-            dialog = new ZhaoBiaoDialog(context, context.getString(R.string.hint), context.getString(R.string.make_sure_tel));
-            dialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener(){
-
-                @Override
-                public void onDialogOkClick() {
-                    ActivityUtils.goToDialActivity(NannyOrderListBean.this.context, phone);
-                    MDUtils.OrderListPageMD(QiangDanBaseFragment.orderState, cateId, orderId, MDConstans.ACTION_UP_TEL);
-                    dialog.dismiss();
-                }
-
-                @Override
-                public void onDialogCancelClick() {
-                    dialog.dismiss();
-                }
-            });
-        }
-    }
+//    private void initDialog(Context context) {
+//        if(dialog == null){
+//            dialog = new ZhaoBiaoDialog(context, context.getString(R.string.hint), context.getString(R.string.make_sure_tel));
+//            dialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener(){
+//
+//                @Override
+//                public void onDialogOkClick() {
+//                    ActivityUtils.goToDialActivity(NannyOrderListBean.this.context, phone);
+//                    MDUtils.OrderListPageMD(QiangDanBaseFragment.orderState, cateId, orderId, MDConstans.ACTION_UP_TEL);
+//                    dialog.dismiss();
+//                }
+//
+//                @Override
+//                public void onDialogCancelClick() {
+//                    dialog.dismiss();
+//                }
+//            });
+//        }
+//    }
 
     @Override
     public View initView(View convertView, LayoutInflater inflater, ViewGroup parent, Context context, ZBBaseAdapter<QDBaseBean> adapter) {
@@ -292,19 +318,23 @@ public class NannyOrderListBean extends QDBaseBean{
         this.adapter                              = adapter;
         nannyOrderHolder                          = new NannyOrderHolder();
         convertView                               = inflater.inflate(getLayoutId(),parent,false);
-        nannyOrderHolder.tv_customer_name_content = (TextView) convertView.findViewById(R.id.tv_customer_name_content);
-        nannyOrderHolder.btn_alreadry_contact     = (ImageView) convertView.findViewById(R.id.btn_alreadry_contact);
-        nannyOrderHolder.rl_maybe_not             = convertView.findViewById(R.id.rl_maybe_not);
-        nannyOrderHolder.tv_cleaning_age          = (TextView) convertView.findViewById(R.id.tv_cleaning_age);
-        nannyOrderHolder.tv_message               = (TextView) convertView.findViewById(R.id.tv_message);
-        nannyOrderHolder.tv_nanny_experience      = (TextView) convertView.findViewById(R.id.tv_nanny_experience);
-        nannyOrderHolder.tv_nanny_location        = (TextView) convertView.findViewById(R.id.tv_nanny_location);
         nannyOrderHolder.tv_nanny_order_title     = (TextView) convertView.findViewById(R.id.tv_nanny_order_title);
-        nannyOrderHolder.tv_nanny_time            = (TextView) convertView.findViewById(R.id.tv_nanny_time);
-        nannyOrderHolder.tv_nanny_time_limit      = (TextView) convertView.findViewById(R.id.tv_nanny_time_limit);
-        nannyOrderHolder.tv_telephone             = (TextView) convertView.findViewById(R.id.tv_telephone);
         nannyOrderHolder.tv_time_nanny_qd_content = (TextView) convertView.findViewById(R.id.tv_time_nanny_qd_content);
+        nannyOrderHolder.tv_nanny_location        = (TextView) convertView.findViewById(R.id.tv_nanny_location);
+        nannyOrderHolder.tv_nanny_address_content = (TextView) convertView.findViewById(R.id.tv_nanny_address_content);
+        nannyOrderHolder.tv_customer_name_content = (TextView) convertView.findViewById(R.id.tv_customer_name_content);
+        nannyOrderHolder.iv_order_state_line = (ImageView) convertView.findViewById(R.id.iv_order_state_line);
+        nannyOrderHolder.tv_order_state = (TextView) convertView.findViewById(R.id.tv_order_state);
         nannyOrderHolder.ll                       = convertView.findViewById(R.id.ll);
+
+//        nannyOrderHolder.btn_alreadry_contact     = (ImageView) convertView.findViewById(R.id.btn_alreadry_contact);
+//        nannyOrderHolder.rl_maybe_not             = convertView.findViewById(R.id.rl_maybe_not);
+//        nannyOrderHolder.tv_cleaning_age          = (TextView) convertView.findViewById(R.id.tv_cleaning_age);
+//        nannyOrderHolder.tv_message               = (TextView) convertView.findViewById(R.id.tv_message);
+//        nannyOrderHolder.tv_nanny_experience      = (TextView) convertView.findViewById(R.id.tv_nanny_experience);
+//        nannyOrderHolder.tv_nanny_time            = (TextView) convertView.findViewById(R.id.tv_nanny_time);
+//        nannyOrderHolder.tv_nanny_time_limit      = (TextView) convertView.findViewById(R.id.tv_nanny_time_limit);
+//        nannyOrderHolder.tv_telephone             = (TextView) convertView.findViewById(R.id.tv_telephone);
         convertView.setTag(nannyOrderHolder);
         return convertView;
     }

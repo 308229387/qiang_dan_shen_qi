@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.bean.SysListBean;
+import com.huangyezhaobiao.utils.TimeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +72,7 @@ public class SystemNotiAdapter extends BaseAdapter{
         SysListBean bean = listBeans.get(position);
 
         holder.tv_sys_content.setText(bean.getTitle());
-        holder.tv_sys_time.setText(bean.getTime());
+        holder.tv_sys_time.setText(TimeUtils.formatDateTime(bean.getTime()));
         switch (bean.getSysType()){
             case "2":
                 holder.iv_hint.setImageResource(R.drawable.sys_notification);

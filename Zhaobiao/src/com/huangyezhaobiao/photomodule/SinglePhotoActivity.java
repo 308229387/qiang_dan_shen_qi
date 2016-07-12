@@ -1,13 +1,17 @@
 package com.huangyezhaobiao.photomodule;
 
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -15,6 +19,7 @@ import android.widget.Toast;
 
 import com.huangye.commonlib.activity.BaseActivity;
 import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.utils.Utils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -38,9 +43,11 @@ import java.util.List;
 public class SinglePhotoActivity extends BaseActivity {
     DisplayImageOptions options;
     ViewPager viewPager;
-    TextView tv_back;
-    TextView tv_title;
-    View ll_right_btn;
+    View title_bar;
+    LinearLayout tv_back;  //返回
+    TextView tv_page_position;
+    TextView tv_title;  //标题
+    View ll_right_btn;   //右边的显示
     TextView tv_single_photo_right;
     RelativeLayout rl_single_photo_check;
     TextView tv_single_photo_check;
@@ -61,8 +68,28 @@ public class SinglePhotoActivity extends BaseActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT) {
+            int height = Utils.getStatusBarHeight(this);
+            int more = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, getResources().getDisplayMetrics());
+            if (title_bar != null) {
+                title_bar.setPadding(0, height + more, 0, 0);
+            }
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT){
+            //透明状态栏
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+        getWindow().setBackgroundDrawable(null);
+
+
         initView();
         index = getIntent().getIntExtra("index", 0);
         checked_size = getIntent().getIntExtra("checkedSize", 0);
@@ -86,7 +113,7 @@ public class SinglePhotoActivity extends BaseActivity {
             @Override
             public void onPageSelected(int position) {
                 index = position;
-                tv_back.setText((position + 1) + "/" + size);
+                tv_page_position.setText((position + 1) + "/" + size);
                 MediaPicBean info = PhotoHelper.current_photo_infos.get(index);
                 updateUI(info);
             }
@@ -110,7 +137,7 @@ public class SinglePhotoActivity extends BaseActivity {
                     changeModel(index, info);
                 } else {
                     if (checked_size >= StorageConstans.MAX_COUNT) {
-                        Toast.makeText(SinglePhotoActivity.this,"最多选择" + StorageConstans.MAX_COUNT + "张",0).show();
+                        Toast.makeText(SinglePhotoActivity.this,"最多选择" + StorageConstans.MAX_COUNT + "张",Toast.LENGTH_SHORT).show();
                     } else {
                         checked_size++;
                         updateChecked(checked_size);
@@ -130,7 +157,10 @@ public class SinglePhotoActivity extends BaseActivity {
     public void initView() {
         setContentView(getContentViewResId());
         viewPager = getView(R.id.viewPager);
+        title_bar = getView(R.id.title_bar);
         tv_back   = getView(R.id.tv_back);
+        tv_page_position = getView(R.id.tv_page_position);
+        tv_page_position.setVisibility(View.VISIBLE);
         tv_title  = getView(R.id.tv_title);
         ll_right_btn = getView(R.id.ll_right_btn);
         tv_single_photo_right = getView(R.id.tv_right_btn);
@@ -166,7 +196,7 @@ public class SinglePhotoActivity extends BaseActivity {
                     setResult(StorageConstans.RESULT_CODE_SINGLE_2_GALLERY_2_OTHER);
                     finish();
                 } else {
-                    Toast.makeText(SinglePhotoActivity.this,"至少选择一张照片",0).show();
+                    Toast.makeText(SinglePhotoActivity.this,"至少选择一张照片",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -179,7 +209,7 @@ public class SinglePhotoActivity extends BaseActivity {
     }
 
     private void updateChecked(int checked_size) {
-        tv_single_photo_right.setText("确定:" + String.valueOf(checked_size));
+        tv_single_photo_right.setText("完成(" + String.valueOf(checked_size)+")");
     }
 
 
@@ -209,7 +239,7 @@ public class SinglePhotoActivity extends BaseActivity {
                 }
             });
         }
-        tv_back.setText((index + 1) + "/" + size);
+        tv_page_position.setText((index + 1) + "/" + size);
     }
 
     private void showOrHideNavigation() {
@@ -272,7 +302,7 @@ public class SinglePhotoActivity extends BaseActivity {
 
                 @Override
                 public void onLoadingFailed(String s, View view, FailReason failReason) {
-                    Toast.makeText(SinglePhotoActivity.this, "加载图片失败了", 0).show();
+                    Toast.makeText(SinglePhotoActivity.this, "加载图片失败了", Toast.LENGTH_SHORT).show();
                     tv_progress.setVisibility(View.GONE);
                     pb_view_single.setVisibility(View.GONE);
                     imageView.setImageResource(R.drawable.default_pic);

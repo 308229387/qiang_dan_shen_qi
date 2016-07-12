@@ -1,7 +1,9 @@
 package com.huangyezhaobiao.vm;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import com.huangye.commonlib.model.NetWorkModel;
 import com.huangye.commonlib.utils.JsonUtils;
@@ -10,6 +12,7 @@ import com.huangye.commonlib.utils.NetBean;
 import com.huangye.commonlib.utils.PhoneUtils;
 import com.huangye.commonlib.vm.SourceViewModel;
 import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
+import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.bean.LoginBean;
 import com.huangyezhaobiao.model.CheckLoginModel;
 import com.huangyezhaobiao.utils.PasswordEncrypt;
@@ -91,6 +94,11 @@ public class CheckLoginViewModel extends SourceViewModel{
 	}
 
 	@Override
+	public void onLoadingStart() {
+
+	}
+
+	@Override
 	public void onLoadingSuccess(NetBean bean, NetWorkModel model) {
 		int status = bean.getStatus();
 		if(status==0){
@@ -104,5 +112,20 @@ public class CheckLoginViewModel extends SourceViewModel{
 			}
 		}
 	}
+
+
+	@Override
+	public void onModelLoginInvalidate() {
+
+		Toast.makeText(context, context.getString(R.string.login_login_invalidate),Toast.LENGTH_SHORT).show();
+	}
+
+
+	@Override
+	public void noInternetConnect() {
+		Toast.makeText(context, context.getString(R.string.no_network), Toast.LENGTH_SHORT).show();
+	}
+
+
 
 }

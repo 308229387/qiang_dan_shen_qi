@@ -1,23 +1,47 @@
 package com.huangyezhaobiao.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.huangye.commonlib.file.SharedPreferencesUtils;
 import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
 import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.bean.GlobalConfigBean;
 import com.huangyezhaobiao.bean.MobileChangeBean;
 import com.huangyezhaobiao.constans.CommonValue;
+import com.huangyezhaobiao.gtui.GePushProxy;
+import com.huangyezhaobiao.inter.MDConstans;
 import com.huangyezhaobiao.presenter.SettingsPresenter;
+import com.huangyezhaobiao.utils.ActivityUtils;
+import com.huangyezhaobiao.utils.BDEventConstans;
+import com.huangyezhaobiao.utils.BDMob;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
+import com.huangyezhaobiao.utils.MDUtils;
 import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.ToastUtils;
+import com.huangyezhaobiao.utils.UserUtils;
+import com.huangyezhaobiao.view.ZhaoBiaoDialog;
+import com.huangyezhaobiao.vm.LogoutViewModel;
 import com.huangyezhaobiao.vm.YuEViewModel;
+import com.wuba.loginsdk.external.LoginCallback;
+import com.wuba.loginsdk.external.LoginClient;
+import com.wuba.loginsdk.external.Request;
+import com.wuba.loginsdk.external.SimpleLoginCallback;
+import com.wuba.loginsdk.model.LoginSDKBean;
+import com.xiaomi.mipush.sdk.MiPushClient;
 
 import java.util.Map;
 
@@ -35,6 +59,12 @@ public class SettingsActivity extends QBBaseActivity implements View.OnClickList
  	private YuEViewModel yuEViewModel;
     private SettingsPresenter       presenter;
     private String mobile;
+
+    private RelativeLayout rl_exit;
+    private ZhaoBiaoDialog confirmExitDialog; //退出对话框
+    private LogoutViewModel lvm; //退出接口
+
+
     public static Intent onNewIntent(Context context){
         Intent intent = new Intent(context,SettingsActivity.class);
         return intent;
@@ -50,6 +80,8 @@ public class SettingsActivity extends QBBaseActivity implements View.OnClickList
         initListener();
         String mobile = SPUtils.getVByK(this, GlobalConfigBean.KEY_USERPHONE);
         tv_now_bind_mobile.setText("已绑定" + mobile);
+
+        lvm = new LogoutViewModel(this, this);
     }
 
 
@@ -57,13 +89,17 @@ public class SettingsActivity extends QBBaseActivity implements View.OnClickList
     @Override
     public void initView() {
         back_layout               = getView(R.id.back_layout);
+        back_layout.setVisibility(View.VISIBLE);
         layout_back_head          = getView(R.id.layout_head);
         txt_head                  = getView(R.id.txt_head);
+        txt_head.setText("设置");
         tbl                       = getView(R.id.tbl);
         rl_change_mobile_settings = getView(R.id.rl_change_mobile_settings);
         rl_auto_settings          = getView(R.id.rl_auto_settings);
         tv_now_bind_mobile        = getView(R.id.tv_now_bind_mobile);
-        txt_head.setText("设置");
+        rl_exit = getView(R.id.rl_exit);
+
+
     }
 
     @Override
@@ -71,6 +107,7 @@ public class SettingsActivity extends QBBaseActivity implements View.OnClickList
         back_layout.setOnClickListener(this);
         rl_auto_settings.setOnClickListener(this);
         rl_change_mobile_settings.setOnClickListener(this);
+        rl_exit.setOnClickListener(this);
     }
 
 
@@ -86,13 +123,52 @@ public class SettingsActivity extends QBBaseActivity implements View.OnClickList
                 break;
             case R.id.rl_auto_settings://去自定义设置界面
                 presenter.goToAutoSettingsActivity(this);
+                HYMob.getDataList(SettingsActivity.this, HYEventConstans.EVENT_ID_AUTO_SETTING);
                 break;
             case R.id.rl_change_mobile_settings://去手机绑定界面
                 presenter.goToMobileChangeActivity(mobile);
+                HYMob.getDataList(SettingsActivity.this, HYEventConstans.EVENT_ID_BIND_MOBILE);
                 break;
+            case R.id.rl_exit:// 退出
+                //进行数据同步化的操作;
+                globalConfigVM.refreshUsers();
+                BDMob.getBdMobInstance().onMobEvent(this, BDEventConstans.EVENT_ID_LOGOUT);
 
+                HYMob.getDataList(SettingsActivity.this, HYEventConstans.EVENT_ID_LOGOUT);
+
+                confirmExitDialog = new ZhaoBiaoDialog(this,getString(R.string.logout_make_sure));
+                confirmExitDialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
+                    @Override
+                    public void onDialogOkClick() {
+                        confirmExitDialog.dismiss();
+                        lvm.logout();
+
+                        SharedPreferencesUtils.clearLoginToken(getApplicationContext());
+                        //退出时注销个推
+                        GePushProxy.unBindPushAlias(getApplicationContext(), UserUtils.getUserId(getApplicationContext()));
+                        //退出时注销小米推送
+                        MiPushClient.unsetAlias(getApplicationContext(), UserUtils.getUserId(getApplicationContext()), null);
+                        UserUtils.clearUserInfo(getApplicationContext());
+                        Toast.makeText(SettingsActivity.this, getString(R.string.logout_now), Toast.LENGTH_SHORT).show();
+                        MDUtils.myUserCenterMD(SettingsActivity.this, MDConstans.ACTION_EXIT);
+                        LoginClient.doLogoutOperate(SettingsActivity.this);
+                        ActivityUtils.goToActivity(SettingsActivity.this, BlankActivity.class);
+                        close();
+
+
+                    }
+
+                    @Override
+                    public void onDialogCancelClick() {
+                        confirmExitDialog.dismiss();
+                    }
+                });
+                confirmExitDialog.show();
+                break;
         }
     }
+
+
 
     @Override
     public void onLoadingStart() {
@@ -155,5 +231,16 @@ public class SettingsActivity extends QBBaseActivity implements View.OnClickList
     @Override
     public void onLoginInvalidate() {
         callBack.onLoginInvalidate();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        HYMob.getBaseDataListForPage(this, HYEventConstans.PAGE_SETTING_LIST, stop_time - resume_time);
     }
 }

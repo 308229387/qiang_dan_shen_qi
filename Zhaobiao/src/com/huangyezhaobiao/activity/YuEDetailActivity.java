@@ -25,8 +25,8 @@ import java.util.List;
  * @author shenzhixin
  *
  */
-public class YuEDetailActivity extends QBBaseActivity implements OnClickListener, StorageVMCallBack{
-	private Button   btn_clean;
+public class YuEDetailActivity extends QBBaseActivity implements  StorageVMCallBack{
+//	private Button   btn_clean;
 	private ListView lv_message_center;
 	private YuEAdapter adapter ;
 	private List<MessageBean> beans = new ArrayList<MessageBean>();
@@ -44,22 +44,22 @@ public class YuEDetailActivity extends QBBaseActivity implements OnClickListener
 	
 	
 	public void initListener(){
-		btn_clean.setOnClickListener(this);
+//		btn_clean.setOnClickListener(this);
 	}
 
 	public void initView() {
 		layout_back_head = getView(R.id.layout_head);
 		tbl               = getView(R.id.tbl);
-		btn_clean         = getView(R.id.btn_clean);
+//		btn_clean         = getView(R.id.btn_clean);
 		lv_message_center = getView(R.id.lv_message_center);
 		lv_message_center.setDivider(null);
 		adapter = new YuEAdapter();
 		lv_message_center.setAdapter(adapter);
 		
 	}
-	
-	
-	
+
+
+
 	 private class YuEAdapter extends BaseAdapter{
 	    	private List<MessageBean> beans = new ArrayList<MessageBean>();
 	    	public void setSources(List<MessageBean> beans){
@@ -108,16 +108,16 @@ public class YuEDetailActivity extends QBBaseActivity implements OnClickListener
 
 
 
-	@Override
-	public void onClick(View view) {
-		switch (view.getId()) {
-		case R.id.btn_clean:
-			
-			
-			break;
-
-		}
-	}
+//	@Override
+//	public void onClick(View view) {
+//		switch (view.getId()) {
+//		case R.id.btn_clean:
+//
+//
+//			break;
+//
+//		}
+//	}
 
 
 
@@ -196,6 +196,8 @@ public class YuEDetailActivity extends QBBaseActivity implements OnClickListener
 		
 	}
 
-
-	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+	}
 }

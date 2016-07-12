@@ -18,7 +18,6 @@ import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.bean.push.PushToPassBean;
-import com.huangyezhaobiao.constans.AppConstants;
 import com.huangyezhaobiao.enums.TitleBarType;
 import com.huangyezhaobiao.gtui.GePushProxy;
 import com.huangyezhaobiao.inter.INotificationListener;
@@ -33,14 +32,13 @@ import com.huangyezhaobiao.utils.StateUtils;
 import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.utils.Utils;
 import com.huangyezhaobiao.view.LoadingProgress;
-import com.huangyezhaobiao.view.MyCustomDialog;
-import com.huangyezhaobiao.view.MyCustomDialog.OnCustomDialogListener;
 import com.huangyezhaobiao.view.QDWaitDialog;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
 import com.huangyezhaobiao.view.TitleMessageBarLayout.OnTitleBarClickListener;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog.onDialogClickListener;
 import com.huangyezhaobiao.vm.KnockViewModel;
+import com.wuba.loginsdk.external.LoginClient;
 
 /**
  * 抢标的最基类activity,多一些这个项目的新东西
@@ -51,7 +49,7 @@ import com.huangyezhaobiao.vm.KnockViewModel;
  * @author szx
  *
  */
-public abstract class QBBaseActivity extends CommonBaseActivity implements INotificationListener,OnTitleBarClickListener,INetStateChangedListener, OnCustomDialogListener, onDialogClickListener {
+public abstract class QBBaseActivity extends CommonBaseActivity implements INotificationListener,OnTitleBarClickListener,INetStateChangedListener{
 	private BiddingApplication app;
 	protected TitleMessageBarLayout tbl;
 	private LoadingProgress dialog; 
@@ -59,7 +57,7 @@ public abstract class QBBaseActivity extends CommonBaseActivity implements INoti
 	private ZhaoBiaoDialog zbdialog;
 	protected ZhaoBiaoDialog exitDialog;
 	private PushToPassBean passBean;
-	private MyCustomDialog popDialog;
+//	private MyCustomDialog popDialog;
 	protected View layout_back_head;
 //	private YuEViewModel    yuEViewModel;
 	private ProgressDialog ProgressDialog;
@@ -95,9 +93,9 @@ public abstract class QBBaseActivity extends CommonBaseActivity implements INoti
 				Bundle bundle = new Bundle();
 				bundle.putSerializable("passBean", passBean);
 				intent.putExtras(bundle);
-				if(null!=popDialog ){
-					popDialog.dismiss();
-				}
+//				if(null!=popDialog ){
+//					popDialog.dismiss();
+//				}
 				if(status==3){//成功
 					Toast.makeText(QBBaseActivity.this,"成功",Toast.LENGTH_SHORT).show();
 					intent.setClass(QBBaseActivity.this, BidSuccessActivity.class);
@@ -108,7 +106,7 @@ public abstract class QBBaseActivity extends CommonBaseActivity implements INoti
 					startActivity(intent);
 				}
 				else if(status==2) {
-					zbdialog = new ZhaoBiaoDialog(QBBaseActivity.this, getString(R.string.hint), getString(R.string.not_enough_balance));
+					zbdialog = new ZhaoBiaoDialog(QBBaseActivity.this, getString(R.string.not_enough_balance));
 					zbdialog.setCancelButtonGone();
 					zbdialog.setOnDialogClickListener(new onDialogClickListener() {
 						@Override
@@ -160,18 +158,11 @@ public abstract class QBBaseActivity extends CommonBaseActivity implements INoti
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 		}
 //		yuEViewModel = new YuEViewModel(callBack,this);
-		configExitDialog();
 		getWindow().setBackgroundDrawable(null);
 	}
 
 
 
-	private void configExitDialog() {
-		exitDialog = new ZhaoBiaoDialog(this,getString(R.string.sys_noti),getString(R.string.force_exit));
-		exitDialog.setOnDialogClickListener(this);
-		exitDialog.setCancelButtonGone();
-		exitDialog.setCancelable(false);
-	}
 
 	@Override
 	public void onTitleBarClosedClicked() {
@@ -283,6 +274,7 @@ public abstract class QBBaseActivity extends CommonBaseActivity implements INoti
 	 */
 	@Override
 	public void onNotificationCome(PushBean pushBean) {
+		LogUtils.LogV("nnnnnn",String.valueOf(pushBean.getTag()));
 		if (null != pushBean) {
 			int type = pushBean.getTag();
 			if (type == 100 && StateUtils.getState(QBBaseActivity.this) == 1) {
@@ -314,63 +306,9 @@ public abstract class QBBaseActivity extends CommonBaseActivity implements INoti
 		}
 		
 	}
-	@Override
-	public void back(PushToPassBean bean) {
-		kvm.knock(bean, AppConstants.BIDSOURCE_WINDOW);
-	}
-
-
-	@Override
-	public void onDialogOkClick() {
-		dismissExitDialog();
-		UserUtils.clearUserInfo(QBBaseActivity.this);
-		SharedPreferencesUtils.clearLoginToken(this);
-		ActivityUtils.goToActivity(QBBaseActivity.this, LoginActivity.class);
-		finish();
-	}
-
-	@Override
-	public void onDialogCancelClick() {
-
-	}
-
-	/**
-	 * 显示退出的对话框
-	 */
-	protected void showExitDialog(){
-		if(exitDialog!=null && !exitDialog.isShowing()){
-			try {
-				exitDialog.show();
-			}catch (Exception e){
-				Toast.makeText(this,getString(R.string.force_exit),Toast.LENGTH_SHORT).show();
-				//TODO:退出登录
-				SharedPreferencesUtils.clearLoginToken(this);
-				UserUtils.clearUserInfo(this);
-				ActivityUtils.goToActivity(QBBaseActivity.this, LoginActivity.class);
-				finish();
-			}
-
-		}
-	}
-
-	/**
-	 * 消失退出的对话框
-	 */
-	protected void dismissExitDialog(){
-		if(exitDialog!=null && exitDialog.isShowing()){
-			try {
-				exitDialog.dismiss();
-			}catch (Exception e){
-				Toast.makeText(this,getString(R.string.force_exit),Toast.LENGTH_SHORT).show();
-				//TODO:退出登录
-			}finally {
-				SharedPreferencesUtils.clearLoginToken(this);
-				UserUtils.clearUserInfo(this);
-				ActivityUtils.goToActivity(QBBaseActivity.this, LoginActivity.class);
-				finish();
-			}
-		}
-	}
-
+//	@Override
+//	public void back(PushToPassBean bean) {
+//		kvm.knock(bean, AppConstants.BIDSOURCE_WINDOW);
+//	}
 
 }

@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.huangye.commonlib.model.ListNetWorkModel;
 import com.huangye.commonlib.model.callback.NetworkModelCallBack;
-import com.huangyezhaobiao.fragment.QiangDanBaseFragment;
 import com.huangyezhaobiao.request.ZhaoBiaoRequest;
 import com.huangyezhaobiao.url.URLConstans;
 import com.huangyezhaobiao.url.UrlSuffix;
@@ -39,7 +38,6 @@ public class CenterQiangDanListModel extends ListNetWorkModel{
 		String url = URLConstans.MESSAGE_CENTER_URL + UrlSuffix.getAppCenterSuffix(""+current_load_page);
 		//2016.5.3 add end
 		setRequestURL(url);
-		LogUtils.LogE("ashenTest", "loadmore url:" + "http://192.168.118.41/app/order/orderlist?userid=32904878844161&orderstate=" + QiangDanBaseFragment.orderState + "&pageNum=1&token=1");
 		getDatas();
 	}
 
@@ -55,7 +53,6 @@ public class CenterQiangDanListModel extends ListNetWorkModel{
 		//::http://192.168.118.41/app/order/orderlist?userid/27353503259910&orderstate/1&&pageNum=1&token=1
 		//"http://192.168.118.41/app/order/orderlist?userid=24454277549826&orderstate="+QiangDanBaseFragment.orderState+"&pageNum=1&token=1"
 		setRequestURL(url);
-		LogUtils.LogE("ashenTest", "refresh url:" + "http://192.168.118.41/app/order/orderlist?userid=24454277549826&orderstate=" + QiangDanBaseFragment.orderState + "&pageNum=1&token=1");
 		getDatas();
 	}
 

@@ -51,7 +51,7 @@ public class PushToPassBean implements Serializable {
 		this.cateId = cateId;
 	}
 
-//	public int getBidState() {
+	//	public int getBidState() {
 //		return bidState;
 //	}
 //

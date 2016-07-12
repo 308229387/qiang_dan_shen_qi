@@ -23,8 +23,5 @@ public class YuEViewModel extends SourceViewModel{
 		t.getDatas();
 	}
 
-	@Override
-	public void onVersionBack(String value) {
 
-	}
 }

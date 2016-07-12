@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical" >
+
+    <include layout="@layout/layout_backhead"
+        android:id="@+id/layout_head"
+        />
+
+    <!-- <include layout="@layout/layout_order_hint" /> -->
+
+    <com.huangyezhaobiao.view.TitleMessageBarLayout
+        android:id="@+id/tbl"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp" >
+
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/launcher" />
+
+        <TextView
+            android:id="@+id/tv_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:text="版本号"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_gongneng"
+        style="@style/rl_about_us"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/item_background" >
+
+        <View style="@style/line_about_us" />
+
+        <TextView
+            style="@style/tv_about_us"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:text="功能介绍" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/back" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl__feedback"
+        style="@style/rl_about_us"
+        android:background="@drawable/item_background"
+        android:visibility="gone" >
+
+        <View style="@style/line_about_us" />
+
+        <TextView
+            style="@style/tv_about_us"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="用户反馈" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/back" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_check_version"
+        style="@style/rl_about_us"
+        android:background="@drawable/item_background" >
+
+        <View style="@style/line_about_us" />
+
+        <TextView
+            style="@style/tv_about_us"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:text="检查新版本" />
+
+        <TextView
+            android:id="@+id/tv_msg_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:text="已是最新版本"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/software_usage"
+        style="@style/rl_about_us"
+        android:background="@drawable/item_background" >
+
+        <View style="@style/line_about_us" />
+
+        <TextView
+            style="@style/tv_about_us"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:text="软件使用协议" />
+
+    </RelativeLayout>
+
+    <View style="@style/line_about_us" />
+
+   
+</LinearLayout>

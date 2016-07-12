@@ -30,6 +30,8 @@ public class PersonalRegisterPopBean extends PopBaseBean {
 	//2015.10.22 add end
 	private String originalFee;
 
+	private String guestName;
+
 	@Override
 	public String getOriginalFee() {
 		return originalFee;
@@ -67,14 +69,22 @@ public class PersonalRegisterPopBean extends PopBaseBean {
 
 		// 拼接消息字符串
 		StringBuilder str = new StringBuilder();
-		str.append(title + " ").append(time + "");
+//		str.append(title + " ").append(time + "");
+		if(location.contains("-")){
+			String[] locations = location.split("-");
+			if(locations.length == 3){
+				str.append(locations[0]+"").append("-").append(locations[1]+"").append("-").append(title + "");
+			}else{
+				str.append(location+"").append("-").append(title + "");
+			}
+		}
 		if (status == 1) {
 			bean.setFee(fee);
 		}
 
 		bean.setStr(str.toString());
 		bean.setStatus(status);
-
+        bean.setGuestName(guestName);
 		return bean;
 	}
 
@@ -196,5 +206,13 @@ public class PersonalRegisterPopBean extends PopBaseBean {
 
 	public void setBusiness(String business) {
 		this.business = business;
+	}
+
+	public String getGuestName() {
+		return guestName;
+	}
+
+	public void setGuestName(String guestName) {
+		this.guestName = guestName;
 	}
 }

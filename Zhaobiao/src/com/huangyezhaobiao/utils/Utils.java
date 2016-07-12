@@ -1,12 +1,18 @@
 package com.huangyezhaobiao.utils;
 
+import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.PowerManager;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.KeyCharacterMap;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 
 import java.util.List;
 
@@ -79,6 +85,32 @@ public class Utils {
 			result = context.getResources().getDimensionPixelSize(resourceId);
 		}
 		return result;
+	}
+
+
+	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+	public static boolean checkDeviceHasNavigationBar(Context activity) {
+
+		//通过判断设备是否有返回键、菜单键(不是虚拟键,是手机屏幕外的按键)来确定是否有navigation bar
+		boolean hasMenuKey = ViewConfiguration.get(activity)
+				.hasPermanentMenuKey();
+		boolean hasBackKey = KeyCharacterMap
+				.deviceHasKey(KeyEvent.KEYCODE_BACK);
+
+		if (!hasMenuKey && !hasBackKey) {
+			// 做任何你需要做的,这个设备有一个导航栏
+			return true;
+		}
+		return false;
+	}
+
+	public static int getNavigationBarHeight(Activity activity) {
+		Resources resources = activity.getResources();
+		int resourceId = resources.getIdentifier("navigation_bar_height",
+				"dimen", "android");
+		//获取NavigationBar的高度
+		int height = resources.getDimensionPixelSize(resourceId);
+		return height;
 	}
 
 

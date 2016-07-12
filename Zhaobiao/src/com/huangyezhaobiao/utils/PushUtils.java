@@ -174,7 +174,7 @@ public class PushUtils {
 
 		case NEW_ORDER:
 			try {
-
+				Log.v("PushUtils","接收到New_Order" + detail);
 				if(detail.getInteger("pushTurn") != null) {
 					pushTurn = detail.getInteger("pushTurn");//推送轮次
 				}
@@ -182,6 +182,7 @@ public class PushUtils {
 				if( detail.getString("voice")!= null) {
 					String voice = detail.getString("voice");
 					info.put("voice", voice);//声音播报内容
+					Log.v("PushUtils", "接收到New_Order" + voice);
 				}
 
 				if(info.getString("displayType")!= null && popMap.containsKey(info.getString("displayType"))) {
@@ -190,10 +191,13 @@ public class PushUtils {
 					pushList.add(popBean0);//加到队列中，弹窗啊啥的用
 					//	}
 					bean = popBean0;
+					Log.v("PushUtils", "接收到New_Order" + bean.pushId);
 				}
 
-			} catch (Exception e) {
+				UnreadUtils.saveNewOrder(context);
 
+			} catch (Exception e) {
+				Log.v("PushUtils","接收到New_Order异常");
 			}
 
 			break;
@@ -270,6 +274,7 @@ public class PushUtils {
 		switch (PopTypeEnum.getPopType(type)) {
 
 		case NEW_ORDER:
+			UnreadUtils.clearNewOder(context);
 			Intent intent = new Intent(context, OrderDetailActivity.class);
 			// 程序在后台运行的时候必须要加的标志，新建activity队列
 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
@@ -280,7 +285,6 @@ public class PushUtils {
 			context.startActivity(intent);
 			break;
 		case ORDERRESULT:
-
 			UnreadUtils.clearQDResult(context);
 			Intent intent1 = new Intent(context, OtherDetailActivity.class);
 			// 程序在后台运行的时候必须要加的标志，新建activity队列

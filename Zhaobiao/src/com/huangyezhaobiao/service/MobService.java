@@ -19,6 +19,7 @@ import com.huangyezhaobiao.utils.NetUtils;
 import com.huangyezhaobiao.utils.UserUtils;
 import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
+import com.wuba.loginsdk.external.LoginClient;
 
 import java.util.List;
 import java.util.Timer;
@@ -83,8 +84,18 @@ public class MobService extends Service {
         if(list!= null && list.size() != 0){
             list.clear();
         }
-        params.addHeader("ppu", UserUtils.getUserPPU(BiddingApplication.getAppInstanceContext()));
-        params.addHeader("userId",UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
+//        params.addHeader("ppu", UserUtils.getUserPPU(BiddingApplication.getAppInstanceContext()));
+//        params.addHeader("userId",UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
+
+        params.addHeader("ppu", LoginClient.doGetPPUOperate(BiddingApplication.getAppInstanceContext()));
+        params.addHeader("userId",LoginClient.doGetUserIDOperate(BiddingApplication.getAppInstanceContext()));
+//        params.addHeader("userId","34675169722113");  //bigbang1
+//        params.addHeader("userId","34680567140865");  //bigbang2
+//        params.addHeader("userId","34680592616449");  //bigbang3
+//        params.addHeader("userId","34964986925569");  //bigbang4
+//        params.addHeader("userId","35606241334273");  //bigbang5
+//        params.addHeader("userId","35606250707713");  //bigbang6
+//        params.addHeader("userId","35606332708865");  //bigbang7
         params.addHeader("version", "6");
         params.addHeader("platform", "1");
         params.addHeader("UUID", PhoneUtils.getIMEI(BiddingApplication.getAppInstanceContext()));

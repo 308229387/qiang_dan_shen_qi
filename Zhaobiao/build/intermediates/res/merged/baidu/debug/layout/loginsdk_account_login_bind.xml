@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/activity_main_bg" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <include
+            android:id="@+id/login_title_layout"
+            layout="@layout/loginsdk_public_title" />
+
+        <!--
+        <RelativeLayout
+            android:id="@+id/bind_title"
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:background="@color/wb_title" >
+
+            <ImageButton
+                android:id="@+id/bind_back"
+                android:layout_width="@dimen/wb_home_title_btn_width"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dip"
+                android:background="@drawable/loginsdk_wb_back_btn"
+                android:gravity="center"
+                android:paddingRight="10dip" />
+
+            <TextView
+                style="@style/BaseTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxEms="7"
+                android:singleLine="true"
+                android:text="@string/login_bind_text" />
+        </RelativeLayout>
+        -->
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1.0" >
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <RelativeLayout
+                    android:id="@+id/user_password_bind"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/manager_account_margin"
+                    android:layout_marginRight="@dimen/manager_account_margin"
+                    android:layout_marginTop="@dimen/manager_account_margin"
+                    android:background="@drawable/loginsdk_wb_personal_item_full_normal" >
+
+                    <TextView
+                        android:id="@+id/username_bind"
+                        style="@style/RegisterText"
+                        android:layout_marginRight="10dip"
+                        android:text="@string/login_user_name" />
+
+                    <TextView
+                        android:id="@+id/username_divider"
+                        android:layout_width="1px"
+                        android:layout_height="fill_parent"
+                        android:layout_alignBottom="@id/username_bind"
+                        android:layout_alignTop="@id/username_bind"
+                        android:layout_marginBottom="15dip"
+                        android:layout_marginTop="15dip"
+                        android:layout_toRightOf="@id/username_bind"
+                        android:background="#c6cbd1" />
+
+                    <com.wuba.loginsdk.views.LoginAutoClearEditView
+                        android:id="@+id/login_bind_username"
+                        style="@style/RegisterEdit"
+                        android:layout_alignBaseline="@id/username_bind"
+                        android:layout_marginLeft="10dip"
+                        android:layout_toRightOf="@id/username_divider"
+                        android:hint="@string/login_username_hint"
+                        android:maxLength="50"
+                        android:textColor="@color/orange" />
+
+                    <TextView
+                        android:id="@+id/reg_separator_line"
+                        style="@style/SeparatorLine"
+                        android:layout_below="@id/username_bind" />
+
+                    <TextView
+                        android:id="@+id/password_bind"
+                        style="@style/RegisterText"
+                        android:layout_below="@id/reg_separator_line"
+                        android:layout_marginRight="10dip"
+                        android:text="@string/login_user_pass" />
+
+                    <TextView
+                        android:id="@+id/password_divider"
+                        android:layout_width="1px"
+                        android:layout_height="fill_parent"
+                        android:layout_alignBottom="@id/password_bind"
+                        android:layout_alignTop="@id/password_bind"
+                        android:layout_marginBottom="15dip"
+                        android:layout_marginTop="15dip"
+                        android:layout_toRightOf="@id/password_bind"
+                        android:background="#c6cbd1" />
+
+                    <com.wuba.loginsdk.views.LoginAutoClearEditView
+                        android:id="@+id/login_bind_password"
+                        style="@style/RegisterEdit"
+                        android:layout_alignBaseline="@id/password_bind"
+                        android:layout_alignLeft="@id/login_bind_username"
+                        android:hint="@string/login_pass_hint"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword"
+                        android:maxLength="50"
+                        android:textColor="@color/orange" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/login_login_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/user_password_bind"
+                    android:layout_marginLeft="@dimen/manager_account_margin"
+                    android:layout_marginRight="@dimen/manager_account_margin"
+                    android:layout_marginTop="46.6dip" >
+
+                    <Button
+                        android:id="@+id/login_login_bind"
+                        style="@style/LoginRegButtonStyle"
+                        android:layout_width="fill_parent"
+                        android:background="@drawable/loginsdk_wb_login_btn_xml"
+                        android:text="@string/login_bind"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+            </RelativeLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <!--
+         <include
+        android:id="@+id/loginsdk_native_loading_view"
+        layout="@layout/public_native_request_loading"
+        android:visibility="gone" />
+    -->
+
+    <com.wuba.loginsdk.views.base.RequestLoadingView
+        android:id="@+id/request_loading"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" />
+
+</RelativeLayout><!-- From: file:/I:/E/2016523/58sdklogin/WubaLoginSDK/loginsdk/src/main/res/layout/loginsdk_account_login_bind.xml -->

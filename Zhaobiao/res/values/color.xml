@@ -71,4 +71,18 @@
     <color name="timeline_color">#a6a6a6</color>
     <color name="tab_red_light">#c62930</color>
 
+   <!--通用 -->
+    <color name="gray_normal">#808080</color>
+    <color name="red_selected">#ff6360</color>
+    <!--Main bottom -->
+    <color name="home_tab_item_bg">#ffffffff</color>
+    <color name="home_tab_text_normal_color">@color/gray_normal</color>
+    <color name="home_tab_text_selected_color">@color/red_selected</color>
+    <color name="gray_color_line">#f1f1f1</color>
+
+    <color name="order_state_blue">#4EC5BF</color>
+    <color name="order_state_default">#C5C5C5</color>
+    <color name="order_detail_text">#686868</color>
+
+    <color name="refund_reason">#B6B6B6</color>
 </resources>

@@ -15,7 +15,7 @@ import com.huangyezhaobiao.lib.ZBBaseAdapter;
  */
 public class OrderLVAdapter extends ZBBaseAdapter<QDBaseBean>{
 	public OrderLVAdapter(Context context,
-			AdapterListener listener,int type) {
+			AdapterListener listener) {
 		super(context, listener);
 	
 	}

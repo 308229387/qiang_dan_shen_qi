@@ -101,7 +101,7 @@ public class UpdateManager {
 	public void showConfirmDownloadDialog(final Context context,final String url){
 		this.context = context;
 		if(confirmUpdateDialog==null){
-			confirmUpdateDialog = new ZhaoBiaoDialog(context, "app更新", "是否进行新版本的更新");
+			confirmUpdateDialog = new ZhaoBiaoDialog(context,"是否进行新版本的更新");
 //			confirmUpdateDialog = new ZhaoBiaoDialog(context, context.getString(R.string.update_hint), context.getString(R.string.update_message));
 			confirmUpdateDialog.setCancelable(false);
 			confirmUpdateDialog.setOnDialogClickListener(new onDialogClickListener() {

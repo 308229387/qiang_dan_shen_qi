@@ -83,10 +83,8 @@ public abstract class ZBBaseDetailViewModel<T> extends SourceViewModel{
 		//为测试不同的数据而使用
 		for(Map<String, String> map:t){
 			Class<? extends T> classz = sourcesDir.get(map.get(key));
-			//LogUtils.LogE("asdf", "className:"+classz.getSimpleName());
 			try {
 				if(classz!=null){
-					//LogUtils.LogE("asdffff", "49");
 					T order = toJavaBean(classz.newInstance(), map);
 					beans.add(order);
 				}

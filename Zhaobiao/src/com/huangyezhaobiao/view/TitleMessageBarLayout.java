@@ -29,6 +29,8 @@ import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.MDUtils;
 import com.huangyezhaobiao.utils.UnreadUtils;
+import com.huangyezhaobiao.voice.VoiceManager;
+import com.huangyezhaobiao.voice.VoiceManager.OnVoiceManagerPlayFinished;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,6 +51,16 @@ public class TitleMessageBarLayout extends RelativeLayout{
 	private long orderId;
 	private int  tag;
 	private PushToPassBean pushPassBean;
+
+//	private VoiceManager voiceManager;
+//
+//	private  OnVoiceManagerPlayFinished voiceListener;
+
+//	private String NewMessage = "您有一条新消息";
+//
+//	private String NewNotice = "您有一条新通知";
+
+
 	public void setPushBean(PushBean bean){
 		this.bean = bean;
 		message = bean.toPushStorageBean().getStr();
@@ -59,22 +71,27 @@ public class TitleMessageBarLayout extends RelativeLayout{
 		configTag(tag);
 		Log.e("shenzhixinUUU", "message:" + message + ",tag:" + tag + ",orderId:" + orderId);
 	}
+
 	
 	private void configTag(int tag) {
 		switch (PopTypeEnum.getPopType(tag)) {
 		case NEW_ORDER:
 			type = TitleBarType.NEW_ORDER;
+//            voiceManager.clickQDButton();//停止播放
 			break;
 		case ORDERRESULT:
 			int status = bean.toPushStorageBean().getStatus();
 			LogUtils.LogE("ashenashen", "status:" + status);
 			type = status==1?TitleBarType.QDRESULT_SUCCESS:TitleBarType.QDRESULT_FAILURE;
+//			voiceManager.createOrdersDialog(NewMessage);
 			break;
 		case COUNTDOWN:
 			type = TitleBarType.DAOJISHI;
+//			voiceManager.createOrdersDialog(NewMessage);
 			break;
 		case SYSTEMMESSAGE:
 			type = TitleBarType.SYS_NOTI;
+//			voiceManager.createOrdersDialog(NewNotice);
 			break;
 
 		}
@@ -98,6 +115,15 @@ public class TitleMessageBarLayout extends RelativeLayout{
 			int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		initView();
+//		voiceManager = VoiceManager.getVoiceManagerInstance(context.getApplicationContext());
+//		voiceManager.setOnPlayFinishedListener(voiceListener);
+//
+//		voiceListener = new OnVoiceManagerPlayFinished() {
+//			@Override
+//			public void onPlayFinished() {
+//
+//			}
+//		};
 	}
 
 	public TitleMessageBarLayout(Context context) {
@@ -253,8 +279,15 @@ public class TitleMessageBarLayout extends RelativeLayout{
 		public void onClick(View v) {
 			switch (v.getId()) {
 			case R.id.rl_right_title_close:
-				if(titleBarListener!=null){
+
+//				if(voiceManager!=null) {
+//					voiceManager.closeOrdersDialog();
+//				}
+
+				if (titleBarListener!=null){
 					titleBarListener.onTitleBarClosedClicked();
+
+
 				}
 				break;
 			case R.id.title_root://根部信息
@@ -267,6 +300,7 @@ public class TitleMessageBarLayout extends RelativeLayout{
 					if(isDefaultHandle){
 						switch (type) {
 						case NEW_ORDER:	//新订单	+ orderId
+							UnreadUtils.clearNewOder(getContext());
 							Intent intent = new Intent(getContext(),OrderDetailActivity.class);
 							if(pushPassBean!=null){
 								Bundle bundle = new Bundle();
@@ -308,6 +342,12 @@ public class TitleMessageBarLayout extends RelativeLayout{
 					}else if(titleBarListener!=null){
 						titleBarListener.onTitleBarClicked(type);
 					}
+
+
+//				if(voiceManager!=null) {
+//					voiceManager.closeOrdersDialog();
+//				}
+
 				LogUtils.LogE("ashen", "title_root");
 				break;
 			}

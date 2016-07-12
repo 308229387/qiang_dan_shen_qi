@@ -9,9 +9,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
 import com.huangye.commonlib.delegate.HttpRequestCallBack;
 import com.huangye.commonlib.network.HTTPTools;
+import com.huangyezhaobiao.activity.FetchDetailsActivity;
 import com.huangyezhaobiao.bean.HYEventBean.CommonBean;
 import com.huangyezhaobiao.bean.HYEventBean.DataBean;
-import com.huangyezhaobiao.fragment.QiangDanBaseFragment;
 import com.huangyezhaobiao.url.URLConstans;
 import com.lidroid.xutils.http.ResponseInfo;
 
@@ -136,7 +136,7 @@ public class HYMob {
     public static DataBean getBaseDataBeanByState(Context context,String co){
         String userId =UserUtils.getUserId(context);
         String time = String.valueOf(System.currentTimeMillis());
-        String serviceState = QiangDanBaseFragment.orderState;  //服务状态 待服务1/服务中2/已结束3
+        String serviceState = FetchDetailsActivity.orderState;  //服务状态 待服务1/服务中2/已结束31,32
         if(TextUtils.isEmpty(userId)){
             userId ="-";
         }
@@ -208,6 +208,24 @@ public class HYMob {
         dataList.add(bean);
         createMap(context, dataBeanToJson(dataList, "co", "sa", "cq", "loginState", "userName"), "0") ; //0表示正常日志，1表示崩溃日志
     }
+
+    /**
+     * 使用协议
+     * @param context
+     * @param co
+     * @param userName
+     */
+    public static void getDataListByProtocol(Context context,String co,String userName){
+
+        if(TextUtils.isEmpty(userName)){
+            userName = "-";
+        }
+        DataBean bean = getBaseDataBean(context, co);
+        bean.setUserName(userName);
+        dataList.add(bean);
+        createMap(context, dataBeanToJson(dataList, "co", "sa", "cq", "userName"), "0") ; //0表示正常日志，1表示崩溃日志
+    }
+
 
     /**
      * 登录失败
@@ -389,6 +407,40 @@ public class HYMob {
         bean.setCs(time);
         dataList.add(bean);
         createMap(context, dataBeanToJson(dataList, "cr", "sa", "cs"), "0"); //0表示正常日志，1表示崩溃日志
+    }
+
+    /**
+     * 页面停留时间
+     * @param context
+     * @param cr
+     * @param cs
+     */
+    public static void getBaseDataListFromPage(Context context,String cr,long cs,String from){
+        if(cs <=0)cs =0;
+        String userId =UserUtils.getUserId(context);
+        String time = String.valueOf(cs);
+        if(TextUtils.isEmpty(userId)){
+            userId ="-";
+        }
+        if (TextUtils.isEmpty(cr)){
+            cr = "-";
+        }
+
+        if (TextUtils.isEmpty(time)){
+            time = "-";
+        }
+
+        if(TextUtils.isEmpty(from)){
+            from ="-";
+        }
+
+        DataBean bean = new DataBean();
+        bean.setCr(cr);
+        bean.setSa(userId);
+        bean.setCs(time);
+        bean.setPageFrom(from);
+        dataList.add(bean);
+        createMap(context, dataBeanToJson(dataList, "cr", "sa", "cs","pageFrom"), "0"); //0表示正常日志，1表示崩溃日志
     }
 
     /**

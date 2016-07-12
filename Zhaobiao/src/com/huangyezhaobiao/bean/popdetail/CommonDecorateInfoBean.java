@@ -1,8 +1,10 @@
 package com.huangyezhaobiao.bean.popdetail;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
@@ -29,6 +31,8 @@ public class CommonDecorateInfoBean extends QDDetailBaseBean {
 	private String measureTime;// ":"2015年6月1日",
 	private String decorateTime;// ":"2015年6月",
 	private String location;// ":"朝阳区北苑"
+
+	private String needNear;
 
 	//详细地址 2015.10.21 add
 //	private String detailAddress;
@@ -109,11 +113,26 @@ public class CommonDecorateInfoBean extends QDDetailBaseBean {
 		this.location = location;
 	}
 
+	public String getNeedNear() {
+		return needNear;
+	}
+
+	public void setNeedNear(String needNear) {
+		this.needNear = needNear;
+	}
+
 	@Override
 	public View initView(Context context) {
 		View view = LayoutInflater.from(context).inflate(R.layout.detail_item_common_decorate, null);
 		((TextView) view.findViewById(R.id.detail_item_common_decorate_text_type)).setText(decoraType);
 		((TextView) view.findViewById(R.id.detail_item_common_decorate_text_space)).setText(space);
+		LinearLayout ll_info_distance = ((LinearLayout) view.findViewById(R.id.ll_info_distance));
+		if(TextUtils.isEmpty(needNear)){
+			ll_info_distance.setVisibility(View.GONE);
+		}else{
+			ll_info_distance.setVisibility(View.VISIBLE);
+			((TextView) view.findViewById(R.id.detail_item_common_decorate_text_distance)).setText(needNear);
+		}
 		((TextView) view.findViewById(R.id.detail_item_common_decorate_text_budget)).setText(budget);
 		((TextView) view.findViewById(R.id.detail_item_common_decorate_text_dec_type)).setText(type);
 		((TextView) view.findViewById(R.id.detail_item_common_decorate_measure_time)).setText(measureTime);

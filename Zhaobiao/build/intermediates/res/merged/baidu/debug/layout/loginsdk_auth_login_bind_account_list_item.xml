@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/auth_login_bind_accout_item_text"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px88"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="#333333"
+        android:textSize="@dimen/fontsize26" />
+
+</LinearLayout>
+<!-- From: file:/I:/E/2016523/58sdklogin/WubaLoginSDK/loginsdk/src/main/res/layout/loginsdk_auth_login_bind_account_list_item.xml -->

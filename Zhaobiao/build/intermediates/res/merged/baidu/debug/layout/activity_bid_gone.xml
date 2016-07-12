@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fafafa"
+    android:orientation="vertical" >
+
+    <include layout="@layout/layout_backhead"
+        android:id="@+id/layout_head"
+        />
+    
+	<com.huangyezhaobiao.view.TitleMessageBarLayout
+	    android:id="@+id/tbl"
+	    android:layout_width="fill_parent"
+	    android:layout_height="45dp"
+	    android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="173dp"
+            android:layout_height="183dp"
+            android:layout_gravity="center"
+            android:src="@drawable/t_sorry" 
+            android:layout_marginTop="57dp"
+            android:layout_marginBottom="30dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="此单生意太火爆了，已被抢走了"
+            android:textColor="@color/black"
+            android:textSize="16dp"/>
+        <TextView 
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="请下次早点下手"
+            android:textColor="@color/black"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+    </RelativeLayout>
+
+</LinearLayout>

@@ -3,16 +3,12 @@ package com.huangyezhaobiao.bean.mydetail;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.bean.popdetail.QDDetailBaseBean;
-import com.huangyezhaobiao.fragment.QiangDanBaseFragment;
 import com.huangyezhaobiao.inter.MDConstans;
 import com.huangyezhaobiao.utils.ActivityUtils;
-import com.huangyezhaobiao.utils.BDEventConstans;
-import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.DetailsLogBeanUtils;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.MDUtils;
@@ -135,16 +131,16 @@ public class CleaningOrderDetailBean extends QDDetailBaseBean{
     @Override
     public View initView(final Context context) {
         View view = LayoutInflater.from(context).inflate(R.layout.cleaning_order_detail_layout,null);
-        ((TextView)view.findViewById(R.id.cleaning_bid_detail_service_type_content)).setText("服务类型: "+ serviceType);
-        ((TextView)view.findViewById(R.id.cleaning_bid_detail_size_content)).setText("清洁面积: "+cleanSpace);
-        ((TextView)view.findViewById(R.id.cleaning_bid_detail_service_location_content)).setText("服务区域: "+location);
-        ((TextView)view.findViewById(R.id.cleaning_bid_detail_service_time)).setText("服务时间: "+serveTime);
-        ((TextView)view.findViewById(R.id.cleaning_bid_detail_cleaning_tools)).setText("洁具永平: "+needTools);
-        ((TextView)view.findViewById(R.id.cleaning_bid_detail_budget)).setText("预        算: "+budget);
-        ((TextView)view.findViewById(R.id.cleaning_order_detail_special)).setText("特殊需求: "+special);
+        ((TextView)view.findViewById(R.id.cleaning_bid_detail_service_type_content)).setText(serviceType);
+        ((TextView)view.findViewById(R.id.cleaning_bid_detail_size_content)).setText(cleanSpace);
+        ((TextView)view.findViewById(R.id.cleaning_bid_detail_service_location_content)).setText(location);
+        ((TextView)view.findViewById(R.id.cleaning_bid_detail_service_time)).setText(serveTime);
+        ((TextView)view.findViewById(R.id.cleaning_bid_detail_cleaning_tools)).setText(needTools);
+        ((TextView)view.findViewById(R.id.cleaning_bid_detail_budget)).setText(budget);
+        ((TextView)view.findViewById(R.id.cleaning_order_detail_special)).setText(special);
        // ((TextView)view.findViewById(R.id.tv_ch_tel_content)).setText(clientPhone);
-        ((TextView)view.findViewById(R.id.cleaning_bid_detail_service_detail_age)).setText("年龄要求: "+age);
-        ((TextView)view.findViewById(R.id.cleaning_bid_detail_service_detail_address_content)).setText("详细地址: "+detailAddress);
+        ((TextView)view.findViewById(R.id.cleaning_bid_detail_service_detail_age)).setText(age);
+        ((TextView)view.findViewById(R.id.cleaning_bid_detail_service_detail_address_content)).setText(detailAddress);
       /*  ((ImageView)view.findViewById(R.id.iv_tels)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,26 +153,26 @@ public class CleaningOrderDetailBean extends QDDetailBaseBean{
         return view;
     }
 
-    private void initDialog(final Context context) {
-        if(dialog == null){
-            dialog = new ZhaoBiaoDialog(context, "提示", "确定要拨打电话?");
-            dialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
-
-                @Override
-                public void onDialogOkClick() {
-                    LogUtils.LogE("assssshenaaa", "bidid:" + DetailsLogBeanUtils.bean.getBidID() + ",cateid:" + DetailsLogBeanUtils.bean.getCateID());
-                    ActivityUtils.goToDialActivity(context, clientPhone);
-                    MDUtils.OrderDetailsPageMD(QiangDanBaseFragment.orderState, DetailsLogBeanUtils.bean.getCateID() + "", orderId + "", MDConstans.ACTION_DOWN_TEL, clientPhone);
-                    dialog.dismiss();
-                    dialog = null;
-                }
-
-                @Override
-                public void onDialogCancelClick() {
-                    dialog.dismiss();
-                    dialog = null;
-                }
-            });
-        }
-    }
+//    private void initDialog(final Context context) {
+//        if(dialog == null){
+//            dialog = new ZhaoBiaoDialog(context, "提示", "确定要拨打电话?");
+//            dialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
+//
+//                @Override
+//                public void onDialogOkClick() {
+//                    LogUtils.LogE("assssshenaaa", "bidid:" + DetailsLogBeanUtils.bean.getBidID() + ",cateid:" + DetailsLogBeanUtils.bean.getCateID());
+//                    ActivityUtils.goToDialActivity(context, clientPhone);
+//                    MDUtils.OrderDetailsPageMD(QiangDanBaseFragment.orderState, DetailsLogBeanUtils.bean.getCateID() + "", orderId + "", MDConstans.ACTION_DOWN_TEL, clientPhone);
+//                    dialog.dismiss();
+//                    dialog = null;
+//                }
+//
+//                @Override
+//                public void onDialogCancelClick() {
+//                    dialog.dismiss();
+//                    dialog = null;
+//                }
+//            });
+//        }
+//    }
 }

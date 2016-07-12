@@ -14,6 +14,8 @@ import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.bean.push.PushToPassBean;
 import com.huangyezhaobiao.inter.MDConstans;
 import com.huangyezhaobiao.utils.ActivityUtils;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.MDUtils;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
 
@@ -24,15 +26,24 @@ import com.huangyezhaobiao.view.TitleMessageBarLayout;
  */
 public class BidFailureActivity extends QBBaseActivity{
 
+	private LinearLayout back_layout;
 	private TextView txt_head;
 	private Button toBidList;
-	private LinearLayout back_layout;
 	private PushToPassBean receivePassBean;
+
+	private String bidId;
+
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_bid_failure);
 		Intent intent = this.getIntent(); 
 		receivePassBean=(PushToPassBean)intent.getSerializableExtra("passBean");
+
+		if (receivePassBean != null ) {
+			bidId = String.valueOf(receivePassBean.getBidId());
+		}
+		HYMob.getDataListByQiangDan(BidFailureActivity.this, HYEventConstans.EVENT_ID_FAILURE_PAGE, bidId);
+
 		initView();
 		initListener();
 	}
@@ -40,10 +51,12 @@ public class BidFailureActivity extends QBBaseActivity{
 	@Override
 	public void initView() {
 		layout_back_head = getView(R.id.layout_head);
+		back_layout = (LinearLayout) this.findViewById(R.id.back_layout);
+		back_layout.setVisibility(View.VISIBLE);
 		txt_head = (TextView) findViewById(R.id.txt_head);
 		txt_head.setText(R.string.bidding_failure);
+
 		toBidList = (Button) findViewById(R.id.failure_bidlist);
-		back_layout = (LinearLayout) this.findViewById(R.id.back_layout);
 		tbl = (TitleMessageBarLayout) findViewById(R.id.tbl);
 	}
 
@@ -69,5 +82,10 @@ public class BidFailureActivity extends QBBaseActivity{
 	public void finish() {
 		super.finish();
 		MDUtils.QDResult(MDConstans.BID_FAILURED, receivePassBean.getCateId()+"", receivePassBean.getBidId()+"", MDConstans.ACTION_CLOSE_RESULT);
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
 	}
 }

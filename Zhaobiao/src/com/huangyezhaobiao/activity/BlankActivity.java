@@ -1,0 +1,201 @@
+package com.huangyezhaobiao.activity;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
+import android.widget.Toast;
+
+import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.bean.LoginBean;
+import com.huangyezhaobiao.gtui.GePushProxy;
+import com.huangyezhaobiao.service.MyService;
+import com.huangyezhaobiao.utils.ActivityUtils;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
+import com.huangyezhaobiao.utils.PhoneUtils;
+import com.huangyezhaobiao.utils.UserUtils;
+import com.huangyezhaobiao.view.ZhaoBiaoDialog;
+import com.huangyezhaobiao.vm.CheckLoginViewModel;
+import com.wuba.loginsdk.external.LoginCallback;
+import com.wuba.loginsdk.external.LoginClient;
+import com.wuba.loginsdk.external.Request;
+import com.wuba.loginsdk.external.SimpleLoginCallback;
+import com.wuba.loginsdk.model.LoginSDKBean;
+import com.wuba.loginsdk.utils.ToastUtils;
+import com.xiaomi.mipush.sdk.MiPushClient;
+
+public class BlankActivity extends CommonBaseActivity {
+
+
+    private ZhaoBiaoDialog alertDialog;
+
+    private CheckLoginViewModel checkLoginViewModel;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_blank);
+        //注册登录SDK
+        LoginClient.register(mLoginCallback);
+        initDailog();
+
+        onClickLogin();
+
+        //关掉service
+        stopService(new Intent(BlankActivity.this, MyService.class));
+//        //关掉service
+//        stopService(new Intent(BlankActivity.this, AlertService.class));
+
+    }
+
+    /**
+     * 调起登录服务，使用默认参数
+     */
+    public void onClickLogin() {
+        Request request = new Request.Builder()
+                .setOperate(Request.LOGIN)
+                .setLogoResId(R.drawable.newlogin_logo)
+				.setLoginProtocolActivity(SoftwareUsageActivity.class)//控制是否显示协议，协议页面是一个activity
+                .setForgetPwdEnable(true)//是否显示忘记密码
+                .setPhoneLoginEnable(false)//是否显示手机动态码登录入口
+                .setRegistEnable(false)//是否显示注册入口
+                .setSocialEntranceEnable(false)//设置页面是否显示三方登录
+                .setCloseButtonEnable(false)//设置页面是否带关闭按钮
+                .create();
+        LoginClient.launch(this, request);
+    }
+
+    /**
+     * 实现需要的接口，SimpleLoginCallback为默认的空实现版本
+     */
+    private LoginCallback mLoginCallback = new SimpleLoginCallback() {
+        /**
+         * 账号登录完成回调
+         */
+        @SuppressLint("SwitchIntDef")
+        @Override
+        public void onLogin58Finished(boolean isSuccess, String msg, @Nullable LoginSDKBean loginSDKBean) {
+            super.onLogin58Finished(isSuccess, msg, loginSDKBean);
+            ToastUtils.showToast(BlankActivity.this, msg);
+            if (isSuccess && loginSDKBean != null) {
+                checkLoginViewModel = new CheckLoginViewModel(BlankActivity.this, BlankActivity.this);
+                checkLoginViewModel.login();
+            }else if(!isSuccess){
+//                alertDialog.setMessage("抢单神器目前仅支持58装修、工商注册、保姆及保洁类别vip用户登录使用，vip开通详询4001-511-166");
+//                alertDialog.show();
+                finish();
+            }
+
+        }
+    };
+
+    private void initDailog() {
+        if (alertDialog == null) {
+            alertDialog = new ZhaoBiaoDialog(this, "");
+            alertDialog.setCancelButtonGone();
+            alertDialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
+                @Override
+                public void onDialogOkClick() {
+                    if (alertDialog != null && alertDialog.isShowing() && !BlankActivity.this.isFinishing()) {
+                        alertDialog.dismiss();
+                        finish();
+                    }
+                }
+
+                @Override
+                public void onDialogCancelClick() {
+
+                }
+            });
+        }
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (alertDialog != null && alertDialog.isShowing() && !BlankActivity.this.isFinishing()) {
+            alertDialog.dismiss();
+            alertDialog = null;
+        }
+        LoginClient.unregister(mLoginCallback);
+
+    }
+
+    @Override
+    public void initView() {
+
+    }
+
+    @Override
+    public void initListener() {
+
+    }
+
+    @Override
+    public void onLoadingSuccess(Object t) {
+//		stopLoading();
+        if (t instanceof LoginBean) {
+            LoginBean loginBean = (LoginBean) t;
+
+            String companyName = loginBean.getCompanyName();
+
+            int hasValidated = loginBean.getHasValidated();
+
+            long userId = loginBean.getUserId();
+
+            String userName = LoginClient.doGetUnameOperate(this);
+
+            UserUtils.saveUser(this, userId + "", companyName, userName);
+
+            HYMob.getDataListByLoginSuccess(this, HYEventConstans.EVENT_ID_LOGIN, "1", userName);
+
+            // 用于测试，写死数据"24454277549825",实际用UserUtils.getUserId(LoginActivity.this)
+            MiPushClient.setAlias(getApplicationContext(), UserUtils.getUserId(getApplicationContext()), null);
+            //个推注册别名
+            boolean result = GePushProxy.bindPushAlias(getApplicationContext(), userId + "_" + PhoneUtils.getIMEI(this));
+            Toast.makeText(this, "注册别名结果:" + result, Toast.LENGTH_SHORT).show();
+
+
+            if (hasValidated == 1) {    //判断是否验证过手机 1没有验证过，0验证过
+
+                ActivityUtils.goToActivity(this, MobileValidateActivity.class);
+            } else {
+                UserUtils.hasValidate(getApplicationContext());
+
+                ActivityUtils.goToActivity(this, MainActivity.class);
+            }
+
+            UserUtils.setSessionTime(this, System.currentTimeMillis()); //存储登录成功时间
+
+            finish();
+
+        }
+    }
+
+    @Override
+    public void onLoadingError(String msg) {
+        //TODO:判断一下是不是在当前界面
+        try {
+
+            HYMob.getDataListByLoginError(this, HYEventConstans.EVENT_ID_LOGIN, "0", msg);
+
+            if (alertDialog != null && !TextUtils.isEmpty(msg)) {
+                alertDialog.setMessage(msg);
+                alertDialog.show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        HYMob.getBaseDataListForPage(this, HYEventConstans.PAGE_LOGIN, stop_time - resume_time);
+
+    }
+}

@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -19,10 +19,11 @@ import com.huangyezhaobiao.bean.push.PushToStorageBean;
 import com.huangyezhaobiao.db.DataBaseManager.TABLE_OTHER;
 import com.huangyezhaobiao.inter.Constans;
 import com.huangyezhaobiao.utils.ActivityUtils;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.UnreadUtils;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
-import com.huangyezhaobiao.view.ZhaoBiaoDialog.onDialogClickListener;
 import com.huangyezhaobiao.vm.DetailMessageListStorageVM;
 
 import java.util.ArrayList;
@@ -36,24 +37,32 @@ import java.util.List;
  * @author shenzhx
  *
  */
-public class OtherDetailActivity extends QBBaseActivity implements OnClickListener,StorageVMCallBack, onDialogClickListener{
+public class OtherDetailActivity extends QBBaseActivity implements OnClickListener,StorageVMCallBack{
+
+	private View    back_layout;
+	private TextView txt_head;
 	private ListView lv_message_center;
 	private OtherAdapter adapter;
-	private Button btn_clean;
+//	private Button btn_clean;
 	public List<PushToStorageBean> beans = new ArrayList<PushToStorageBean>();
 	private int type;
 	private DetailMessageListStorageVM svm;
-	private TextView tv_top_center;
-	private ZhaoBiaoDialog dialog;
-	private RelativeLayout rl_back;
+//	private TextView tv_top_center;
+//	private ZhaoBiaoDialog dialog;
+//	private RelativeLayout rl_back;
 	private RelativeLayout rl_no_unread;
+	private ImageView iv_unread;
+	private TextView tv_no_unread;
+
+	private String Logger_Type; //埋点类型
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_other_message);
 		initView();
-		dialog = new ZhaoBiaoDialog(this, getString(R.string.hint),getString(R.string.make_sure_clear_all_message));
-		dialog.setOnDialogClickListener(this);
+//		dialog = new ZhaoBiaoDialog(this, getString(R.string.hint),getString(R.string.make_sure_clear_all_message));
+//		dialog.setOnDialogClickListener(listener);
 		tbl.setVisibility(View.GONE);
 		svm = new DetailMessageListStorageVM(this, this);
 		type = getIntent().getIntExtra("type", -1);
@@ -65,33 +74,48 @@ public class OtherDetailActivity extends QBBaseActivity implements OnClickListen
 
 	private void configTypeTitle(int type) {
 		String title = "";
+		String message = "";
 		switch (type) {
 		case TABLE_OTHER.KOUFEI:
 			title = getString(R.string.bidding_result);
+			message = "您还没有收到抢单结果提醒哦~";
+			iv_unread.setImageResource(R.drawable.result_hint);
+			Logger_Type = HYEventConstans.PAGE_RESULT_ALERT;
 			break;
 		case TABLE_OTHER.DAOJISHI:
 			title = getString(R.string.bidding_timeless);
+			message = "您还没有收到客户联系提醒哦~";
+			iv_unread.setImageResource(R.drawable.contact_hint);
+			Logger_Type = HYEventConstans.PAGE_CONTACT_CLIENT;
 			break;
 		case  TABLE_OTHER.SYSNOTIF:
 			title = getString(R.string.bidding_sys_noti);
+			message = "您还没有收到通知资讯哦~";
+			iv_unread.setImageResource(R.drawable.systeminfo_hint);
 			break;
 
 		}
-		tv_top_center.setText(title);
+		txt_head.setText(title);
+//		tv_top_center.setText(title);
+		tv_no_unread.setText(message);
 	}
 
 	public  void initView() {
 		layout_back_head = getView(R.id.layout_head);
+		back_layout      = getView(R.id.back_layout);
+		back_layout.setVisibility(View.VISIBLE);
+		txt_head         =  getView(R.id.txt_head);
 		tbl          = getView(R.id.tbl);
-		rl_back      = getView(R.id.rl_back);
-		tv_top_center = getView(R.id.tv_top_center);
+//		tv_top_center = getView(R.id.tv_top_center);
 		rl_no_unread  = getView(R.id.rl_no_unread);
+		iv_unread = getView(R.id.iv_unread);
+		tv_no_unread = getView(R.id.tv_no_unread);
 		lv_message_center = getView(R.id.lv_message_center);
 		adapter = new OtherAdapter(this);
 		lv_message_center.setAdapter(adapter);
-		btn_clean = getView(R.id.btn_clean);
-		btn_clean.setOnClickListener(this);
-		rl_back.setOnClickListener(this);
+//		btn_clean = getView(R.id.btn_clean);
+//		btn_clean.setOnClickListener(this);
+		back_layout.setOnClickListener(this);
 		lv_message_center.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -105,6 +129,8 @@ public class OtherDetailActivity extends QBBaseActivity implements OnClickListen
 					case TABLE_OTHER.DAOJISHI:
 						map.put(Constans.ORDER_ID, orderId);
 						ActivityUtils.goToActivityWithString(OtherDetailActivity.this, FetchDetailsActivity.class, map);
+
+						HYMob.getDataList(OtherDetailActivity.this, HYEventConstans.EVENT_ID_CHECK_ORDER);
 						break;
 					case TABLE_OTHER.KOUFEI:
 						if (state == 1) {
@@ -123,10 +149,10 @@ public class OtherDetailActivity extends QBBaseActivity implements OnClickListen
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.btn_clean:
-			dialog.show();
-			break;
-		case R.id.rl_back:
+//		case R.id.btn_clean:
+//			dialog.show();
+//			break;
+		case R.id.back_layout:
 			onBackPressed();
 			break;
 		}
@@ -207,13 +233,13 @@ public class OtherDetailActivity extends QBBaseActivity implements OnClickListen
 			if(type == push_type){
 				loadDatas();
 				switch (type) {
-				case TABLE_OTHER.DAOJISHI:
+				case TABLE_OTHER.DAOJISHI:  //客户联系提醒 102
 					UnreadUtils.clearDaoJiShiResult(this);
 					break;
-				case TABLE_OTHER.KOUFEI:
+				case TABLE_OTHER.KOUFEI:  //抢单结果 101
 					UnreadUtils.clearQDResult(this);
 					break;
-				case TABLE_OTHER.SYSNOTIF:
+				case TABLE_OTHER.SYSNOTIF: //系统消息 103
 					UnreadUtils.clearSysNotiNum(this);
 					break;
 				default:
@@ -227,20 +253,28 @@ public class OtherDetailActivity extends QBBaseActivity implements OnClickListen
 	}
 
 	@Override
-	public void onDialogOkClick() {
-		if(exitDialog!=null && exitDialog.isShowing()){
-			super.onDialogOkClick();
-			return;
-		}
-		dialog.dismiss();
-		svm.cleanAllDatas();
+	protected void onStop() {
+		super.onStop();
+
+		HYMob.getBaseDataListForPage(this, Logger_Type, stop_time - resume_time);
 	}
 
-	@Override
-	public void onDialogCancelClick() {
-		dialog.dismiss();
-	}
-
-
+	//	ZhaoBiaoDialog.onDialogClickListener listener = new ZhaoBiaoDialog.onDialogClickListener() {
+//		@Override
+//		public void onDialogOkClick() {
+//			if(dialog != null){
+//				dialog.dismiss();
+//			}
+//
+//			svm.cleanAllDatas();
+//		}
+//
+//		@Override
+//		public void onDialogCancelClick() {
+//			if(dialog != null){
+//				dialog.dismiss();
+//			}
+//		}
+//	};
 
 }

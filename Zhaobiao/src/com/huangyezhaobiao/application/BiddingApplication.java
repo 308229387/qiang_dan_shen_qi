@@ -39,9 +39,12 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.tencent.bugly.crashreport.CrashReport;
+import com.wuba.loginsdk.external.ILogger;
+import com.wuba.loginsdk.external.LoginSdk;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Timer;
 
@@ -53,6 +56,9 @@ import java.util.Timer;
  * @author linyueyang
  */
 public class BiddingApplication extends Application {
+
+//    private List<Activity> activityList = new LinkedList<Activity>();
+
     private NotificationExecutor notificationExecutor;
     private NotificationExecutor getuiNotificationExecutor;
     private INotificationListener listener;// 透传消息的引用
@@ -63,7 +69,6 @@ public class BiddingApplication extends Application {
     // user your appid the key.
     //public static final String APP_KEY = "5471735123320";
     public static final String APP_KEY = "5321736232207";
-
 
     // 此TAG在adb logcat中检索自己所需要的信息， 只需在命令行终端输入 adb logcat | grep
     // com.xiaomi.mipushdemo
@@ -78,7 +83,7 @@ public class BiddingApplication extends Application {
     private ImageLoader imageLoader;
     private ILogExecutor logExecutor;
 
-    private void setApp(BiddingApplication context){
+    private void setApp(BiddingApplication context) {
         app = context;
     }
 
@@ -96,14 +101,77 @@ public class BiddingApplication extends Application {
         return listener;
     }
 
-    public static Context getAppInstanceContext(){
+    public static Context getAppInstanceContext() {
         return app;
     }
 
 
-    public static BiddingApplication getBiddingApplication(){
+    public static BiddingApplication getBiddingApplication() {
         return app;
     }
+
+
+//    // 遍历所有Activity并finish
+//    public void exit() {
+//
+//        try {
+//            for (Activity activity : activityList) {
+//                if(activity != null){
+//                    activity.finish();
+//                }
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }finally {
+//            System.exit(0);
+//        }
+//    }
+//
+//    /**
+//     * 结束指定的Activity
+//     */
+//    public  void finishSingleActivity(Activity activity) {
+//        if (activity != null) {
+//            if (activityList.contains(activity)) {
+//                activityList.remove(activity);
+//            }
+//            activity.finish();
+//        }
+//    }
+//
+//    /**
+//     * 结束指定类名的Activity 在遍历一个列表的时候不能执行删除操作，所有我们先记住要删除的对象，遍历之后才去删除。
+//     */
+//    public  void finishSingleActivityByClass(Class cls) {
+//        Activity tempActivity = null;
+//        for (Activity activity : activityList) {
+//            if (activity.getClass().equals(cls)) {
+//                tempActivity = activity;
+//            }
+//        }
+//
+//        finishSingleActivity(tempActivity);
+//    }
+//
+//    // 添加Activity到容器中
+//    public void addActivity(Activity activity) {
+//        if(!activityList.contains(activity)){
+//            activityList.add(activity);
+//        }
+//
+//    }
+//
+//    public void removeActivity(Activity activity){
+//        activityList.remove(activity);
+//    }
+
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        System.gc();
+    }
+
     /**
      * 停止文件操作
      */
@@ -112,6 +180,7 @@ public class BiddingApplication extends Application {
             mTimer.cancel();
         }
     }
+
     //在自己的Application中添加如下代码
     public static RefWatcher getRefWatcher(Context context) {
         BiddingApplication application = (BiddingApplication) context
@@ -122,22 +191,21 @@ public class BiddingApplication extends Application {
     //在自己的Application中添加如下代码
     private RefWatcher refWatcher;
 
-    private void initNotificationExecutor(){
+    private void initNotificationExecutor() {
         notificationExecutor = new NotificationExecutor();
-        INotify iNotify      = new MiPushNotify(getApplicationContext());
+        INotify iNotify = new MiPushNotify(getApplicationContext());
         notificationExecutor.setiNotify(iNotify);
     }
 
 
-    private void initGeTuiNotificationExecutor(){
+    private void initGeTuiNotificationExecutor() {
         getuiNotificationExecutor = new NotificationExecutor();
-        INotify notify            = new GePushNotify(getApplicationContext());
+        INotify notify = new GePushNotify(getApplicationContext());
         getuiNotificationExecutor.setiNotify(notify);
     }
 
-    public NotificationExecutor getGeTuiNotification(){
-        if(getuiNotificationExecutor==null)
-        {
+    public NotificationExecutor getGeTuiNotification() {
+        if (getuiNotificationExecutor == null) {
             initGeTuiNotificationExecutor();
         }
         return getuiNotificationExecutor;
@@ -146,22 +214,58 @@ public class BiddingApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        //注册服务，初始化必要资源
+        LoginSdk.LoginConfig loginConfig = new LoginSdk.LoginConfig()
+                //可选，设置日志级别，默认不输出日志，ILogger.NONE（关闭日志）,ILogger.STANDARD_LOG(标准andorid日志)
+                .setLogLevel(ILogger.STANDARD_LOG)
+                 //必选，设置app id，由产品统一约定
+                .setAppId("1004")
+                 //必选，设置渠道
+                .setChannel("58")
+                 //必选，设置product id, 由产品统一约定
+                .setProductId("qiangdanshenqi");
+//                .setShieldPrivateKey("RSA_PRIVATE_KEY_FOR_ANDROID")
+//                .setThirdLoginConfig("200065", "wxc7929cc3d3fda545", "4139185932","http://bj.58.com/");
+        LoginSdk.register(this, loginConfig, new LoginSdk.RegisterCallback() {
+            @Override
+            public void onInitialized() {
+                LogUtils.LogD(TAG, "WubaLoginSDK registered");
+            }
+        });
+
         //生成
-       setApp(BiddingApplication.this);
+        setApp(BiddingApplication.this);
+
         refWatcher = LeakCanary.install(this);
+
         initNotificationExecutor();
+
         initGeTuiNotificationExecutor();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD)
+
+        {
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());
             StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().penaltyLog().build());
         }
-        AppBean.getAppBean().setApp(this);
+
+        AppBean.getAppBean().
+
+                setApp(this);
+
         UserConstans.setUserId(UserUtils.getUserId(this));
         // 注册push服务，注册成功后会向DemoMessageReceiver发送广播
         // 可以从DemoMessageReceiver的onCommandResult方法中MiPushCommandMessage对'象参数中获取注册信息
         // 因为推送服务XMPushService在AndroidManifest.xml中设置为运行在另外一个进程，这导致本Application会被实例化两次，所以我们需要让应用的主进程初始化。
-        Log.e("shenzhixin","init:"+shouldInit());
-        if (shouldInit()) {
+        Log.e("shenzhixin", "init:" +
+
+                        shouldInit()
+
+        );
+        if (shouldInit() )
+
+        {
             //shenzhixin add 日志上传者
             logExecutor = new LogExecutor();
             //shenzhixin add 日志上传者end
@@ -173,7 +277,7 @@ public class BiddingApplication extends Application {
                             .enableWebKitInspector(
                                     Stetho.defaultInspectorModulesProvider(this))
                             .build());
-           // MiPushClient.registerPush(this, APP_ID, APP_KEY); //for test
+            // MiPushClient.registerPush(this, APP_ID, APP_KEY); //for test
 
            /* // 上传日志定时任务
             mTimer = new Timer(true);
@@ -204,7 +308,7 @@ public class BiddingApplication extends Application {
             SqlUtils.initDB(getApplicationContext(), new SqlUpgradeCallback() {
                 @Override
                 public void onUpgrade(DbUtils dbUtils) {
-                    updateDb(dbUtils,"PushToStorageBean");
+                    updateDb(dbUtils, "PushToStorageBean");
                 }
             });
             //初始化Log信息 shenzhixin add
@@ -245,7 +349,11 @@ public class BiddingApplication extends Application {
         };
         Logger.setLogger(this, newLogger);*/
         if (handler == null)
-            handler = new PushHandler(getApplicationContext());
+            handler = new
+
+                    PushHandler(getApplicationContext()
+
+            );
 
     }
 
@@ -255,8 +363,8 @@ public class BiddingApplication extends Application {
                 ImageLoaderConfiguration.createDefault(getApplicationContext()));
     }
 
-    public NotificationExecutor getNotificationExecutor(){
-        if(notificationExecutor==null){
+    public NotificationExecutor getNotificationExecutor() {
+        if (notificationExecutor == null) {
             initNotificationExecutor();
         }
         return notificationExecutor;
@@ -265,7 +373,7 @@ public class BiddingApplication extends Application {
     private static void updateDb(DbUtils db, String tableName) {
         try {
             Class<PushToStorageBean> c = (Class<PushToStorageBean>) Class.forName("com.huangyezhaobiao.bean.push." + tableName);// 把要使用的类加载到内存中,并且把有关这个类的所有信息都存放到对象c中
-            LogUtils.LogE("shenzhixinDB","upgradeDB:"+db.tableIsExist(PushToStorageBean.class)+"..name:"+TableUtils.getTableName(PushToStorageBean.class));
+            LogUtils.LogE("shenzhixinDB", "upgradeDB:" + db.tableIsExist(PushToStorageBean.class) + "..name:" + TableUtils.getTableName(PushToStorageBean.class));
             if (db.tableIsExist(PushToStorageBean.class)) {
                 List<String> dbFildsList = new ArrayList<String>();
                 String str = "select * from " + TableUtils.getTableName(PushToStorageBean.class);
@@ -274,13 +382,13 @@ public class BiddingApplication extends Application {
                 for (int i = 0; i < count; i++) {
                     dbFildsList.add(cursor.getColumnName(i));
                 }
-                LogUtils.LogE("shenzhixinDB","upgradeDB: line 174");
+                LogUtils.LogE("shenzhixinDB", "upgradeDB: line 174");
                 cursor.close();
                 // 把属性的信息提取出来，并且存放到field类的对象中，因为每个field的对象只能存放一个属性的信息所以要用数组去接收
                 Field f[] = c.getDeclaredFields();
                 for (int i = 0; i < f.length; i++) {
                     String fildName = f[i].getName();
-                    LogUtils.LogE("shenzhixinDB","upgradeDB: line 180:"+dbFildsList.contains(fildName));
+                    LogUtils.LogE("shenzhixinDB", "upgradeDB: line 180:" + dbFildsList.contains(fildName));
                     if (fildName.equals("serialVersionUID")) {
                         continue;
                     }
@@ -364,7 +472,7 @@ public class BiddingApplication extends Application {
      *
      * @return
      */
-    public  boolean isAppOnForeground() {
+    public boolean isAppOnForeground() {
         // Returns a list of application processes that are running on the
         // device
 
@@ -403,7 +511,6 @@ public class BiddingApplication extends Application {
         }
 
     }*/
-
 
 
 }

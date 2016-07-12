@@ -1,16 +1,17 @@
 package com.huangyezhaobiao.activity;
 
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.huangye.commonlib.activity.BaseActivity;
 import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
 import com.huangyezhaobiao.R;
@@ -43,10 +44,10 @@ public class PushInActivity extends BaseActivity implements NetWorkVMCallBack, V
     private KnockViewModel kvm;
     private ImageView dialog_voice;//声音控制按钮
     private LinearLayout dialog_linear;//添加view的布局界面
-    private Button dialog_knock;//抢单按钮
+    private TextView dialog_knock;//抢单按钮
     private TextView dialog_fee;//费用价格
     private TextView dialog_discount_fee;//折扣价
-    private Button dialog_next;//下一条
+    private TextView dialog_next;//下一条
     private ImageView dialog_cancel;//取消按钮
     private TextView count;//显示的时间倒计时
     private int countDown;//剩余时间的倒计时
@@ -54,6 +55,8 @@ public class PushInActivity extends BaseActivity implements NetWorkVMCallBack, V
     private VoiceManager voiceManager;
     private BiddingApplication app;
     private android.app.ProgressDialog qdDialog;
+
+    protected long resume_time,stop_time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +70,7 @@ public class PushInActivity extends BaseActivity implements NetWorkVMCallBack, V
         };
         kvm = new KnockViewModel(this, this);
         setContentView(R.layout.dialog_orderpop);
+        VoiceManager.allowSpeak = true;
         voiceManager = VoiceManager.getVoiceManagerInstance(getApplicationContext());
         voiceManager.setOnPlayFinishedListener(listener);
         initView();
@@ -79,7 +83,10 @@ public class PushInActivity extends BaseActivity implements NetWorkVMCallBack, V
     @Override
     protected void onResume() {
         super.onResume();
+        resume_time = System.currentTimeMillis();
+
         //Bugtags.onResume(this);
+        LogUtils.LogV("wwwww","pushInActivity");
         if (app == null) {
             app = (BiddingApplication) getApplication();
         }
@@ -132,16 +139,16 @@ public class PushInActivity extends BaseActivity implements NetWorkVMCallBack, V
          */
 
         if(TextUtils.equals(bean.getOriginalFee(),bean.getFee())){//两个价格一样的
-            dialog_fee.setText(bean.getFee());
+            dialog_fee.setText("￥" + bean.getFee());
             dialog_discount_fee.setVisibility(View.GONE);
         }else {
             //活动价
-            dialog_discount_fee.setText(bean.getOriginalFee() + "元");
+            dialog_discount_fee.setText(bean.getOriginalFee());
             dialog_discount_fee.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
             //活动价
 
             //原价
-            dialog_fee.setText(bean.getFee());
+            dialog_fee.setText("￥" + bean.getFee());
             //原价
         }
     }
@@ -190,6 +197,15 @@ public class PushInActivity extends BaseActivity implements NetWorkVMCallBack, V
             else{
                 dialog_next.setVisibility(View.VISIBLE);
             }
+            VoiceManager.allowSpeak = true;
+            if (MDConstans.ACTION_CLOSE_VOLUMN.equals(yuyin_op)) {
+                yuyin_op = MDConstans.ACTION_OPEN_VOLUMN;
+                dialog_voice.setImageResource(R.drawable.iv_voice_close);
+
+            } else {
+                yuyin_op = MDConstans.ACTION_CLOSE_VOLUMN;
+                dialog_voice.setImageResource(R.drawable.iv_voice);
+            }
             // 需要改成list的下一条
             voiceManager.addOrder(bean.getVoice());
             voiceManager.manaulToNextOrders();
@@ -226,8 +242,8 @@ public class PushInActivity extends BaseActivity implements NetWorkVMCallBack, V
         dialog_fee = (TextView) findViewById(R.id.dialog_fee);
         dialog_voice = (ImageView) findViewById(R.id.dialog_voice);
         dialog_linear = (LinearLayout) findViewById(R.id.dialog_linear);
-        dialog_knock = (Button) findViewById(R.id.dialog_knock);
-        dialog_next = (Button) findViewById(R.id.dialog_next);
+        dialog_knock = (TextView) findViewById(R.id.dialog_knock);
+        dialog_next = (TextView) findViewById(R.id.dialog_next);
         dialog_discount_fee = (TextView) findViewById(R.id.dialog_discount_fee);
         dialog_cancel.setOnClickListener(this);
         dialog_voice.setOnClickListener(this);
@@ -267,7 +283,12 @@ public class PushInActivity extends BaseActivity implements NetWorkVMCallBack, V
                     ToastUtils.makeImgAndTextToast(this, "抢单成功", R.drawable.validate_error, 1).show();
                     MDUtils.pushWindowPageMD(this, bean.toPushPassBean().getCateId() + "", bean.toPushPassBean().getBidId() + "", MDConstans.ACTION_QIANG_DAN);
                     //跳到主界面
-                    ActivityUtils.goToActivity(this, BidSuccessActivity.class);
+                    Intent newIntent = new Intent(this, BidSuccessActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("passBean", bean.toPushPassBean());
+                    newIntent.putExtras(bundle);
+                    startActivity(newIntent);
+
                     break;
                 case 4://您已抢过此单
                     ToastUtils.makeImgAndTextToast(this, "您以抢过此单", R.drawable.validate_error, 1).show();
@@ -335,16 +356,15 @@ public class PushInActivity extends BaseActivity implements NetWorkVMCallBack, V
                 BDMob.getBdMobInstance().onMobEvent(this, BDEventConstans.EVENT_ID_WINDOW_PAGE_VOLUME);
 
                 HYMob.getDataList(this, HYEventConstans.EVENT_ID_WINDOW_PAGE_VOLUME);
-
                 voiceManager.clickVolumeButton();
                 MDUtils.pushWindowPageMD(this, bean.getCateId() + "", bean.toPushStorageBean() + "", yuyin_op);
                 if (MDConstans.ACTION_CLOSE_VOLUMN.equals(yuyin_op)) {
                     yuyin_op = MDConstans.ACTION_OPEN_VOLUMN;
-                    dialog_voice.setImageResource(R.drawable.t_voice_close);
+                    dialog_voice.setImageResource(R.drawable.iv_voice_close);
 
                 } else {
                     yuyin_op = MDConstans.ACTION_CLOSE_VOLUMN;
-                    dialog_voice.setImageResource(R.drawable.t_voice);
+                    dialog_voice.setImageResource(R.drawable.iv_voice);
                 }
                 break;
             case R.id.dialog_knock://抢单按钮，抢单，然后进入首列表
@@ -379,6 +399,13 @@ public class PushInActivity extends BaseActivity implements NetWorkVMCallBack, V
             app.removeINotificationListener();
         }
         BDMob.getBdMobInstance().onPauseActivity(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        stop_time = System.currentTimeMillis();
+        HYMob.getBaseDataListForPage(this, HYEventConstans.PAGE_POP_WINDOW, stop_time - resume_time);
     }
 
     @Override

@@ -1,8 +1,10 @@
 package com.huangyezhaobiao.bean.popdetail;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
@@ -30,6 +32,8 @@ public class CommonDecorateProjectBean extends QDDetailBaseBean {
     private String measureTime;
     private String decorateTime;
     private String location;
+
+    private String needNear;
     //2015.10.21 add
   //  private String detailAddress;
     //2015.10.21 add end
@@ -39,6 +43,13 @@ public class CommonDecorateProjectBean extends QDDetailBaseBean {
         View view = LayoutInflater.from(context).inflate(R.layout.detail_item_common_decorate_project, null);
         ((TextView) view.findViewById(R.id.detail_item_common_decorate_text_dec_type)).setText(type);
         ((TextView) view.findViewById(R.id.detail_item_common_decorate_text_space)).setText(space);
+        LinearLayout ll_project_distance = ((LinearLayout) view.findViewById(R.id.ll_project_distance));
+        if(TextUtils.isEmpty(needNear)){
+            ll_project_distance.setVisibility(View.GONE);
+        }else{
+            ll_project_distance.setVisibility(View.VISIBLE);
+            ((TextView) view.findViewById(R.id.detail_item_common_decorate_text_distance)).setText(needNear);
+        }
         ((TextView) view.findViewById(R.id.detail_item_common_decorate_text_budget)).setText(budget);
         ((TextView) view.findViewById(R.id.detail_item_common_decorate_text_type)).setText(decoraType);
         ((TextView) view.findViewById(R.id.detail_item_common_decorate_text_measure_time)).setText(measureTime);
@@ -122,7 +133,15 @@ public class CommonDecorateProjectBean extends QDDetailBaseBean {
         this.location = location;
     }
 
-   /* public String getDetailAddress() {
+    public String getNeedNear() {
+        return needNear;
+    }
+
+    public void setNeedNear(String needNear) {
+        this.needNear = needNear;
+    }
+
+    /* public String getDetailAddress() {
         return detailAddress;
     }
 

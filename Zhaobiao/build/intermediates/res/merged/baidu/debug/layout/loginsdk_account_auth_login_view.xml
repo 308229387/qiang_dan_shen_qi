@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/activity_main_bg">
+    <!--  商盾登录页面 -->
+
+    <include
+        android:id="@+id/auth_login_title_layout"
+        layout="@layout/loginsdk_public_title" />
+
+    <LinearLayout
+        android:id="@+id/auth_user_password_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/auth_login_title_layout"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/manager_account_row_height"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="85dip"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/login_text_margin_border_dimen"
+                android:text="@string/auth_login_phone_number"
+                android:textColor="@color/wb_login_text"
+                android:textSize="@dimen/template_frame_item_maintextsize" />
+
+
+            <com.wuba.loginsdk.views.LoginAutoClearEditView
+                android:id="@+id/auth_phone_edit"
+                style="@style/RegisterEdit"
+                android:layout_width="fill_parent"
+                android:hint="@string/login_username_hint"
+                android:maxLength="50" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px1"
+            android:layout_marginLeft="@dimen/px30"
+            android:background="#f3f3f3" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/manager_account_row_height"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="85dip"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/login_text_margin_border_dimen"
+                android:text="@string/auth_login_authcode"
+                android:textColor="@color/wb_login_text"
+                android:textSize="@dimen/template_frame_item_maintextsize" />
+
+            <com.wuba.loginsdk.views.LoginAutoClearEditView
+                android:id="@+id/auth_pwd_edit"
+                style="@style/RegisterEdit"
+                android:layout_width="fill_parent"
+                android:imeOptions="actionDone"
+                android:maxLength="50" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/auth_login_button"
+        style="@style/LoginRegButtonStyle"
+        android:layout_width="fill_parent"
+        android:layout_below="@id/auth_user_password_layout"
+        android:background="@color/dynamic_login_verify_color"
+        android:text="@string/auth_login_btn_ok"
+        android:textColor="@color/white" />
+
+    <com.wuba.loginsdk.views.base.RequestLoadingView
+        android:id="@+id/auth_login_request_loading"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" />
+
+</RelativeLayout><!-- From: file:/I:/E/2016523/58sdklogin/WubaLoginSDK/loginsdk/src/main/res/layout/loginsdk_account_auth_login_view.xml -->

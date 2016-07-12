@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
@@ -26,6 +27,7 @@ import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.MDUtils;
+import com.huangyezhaobiao.utils.TimeUtils;
 
 /**
  * 抢单信息的模型类----装修
@@ -53,9 +55,19 @@ public class RenovationListBean extends QDBaseBean {
 	private String fee;//活动价
 	private String originFee;//原价
 
+	private String needNear; //距离
+
 	private int bidState;
 
 	private RenovationViewHolder holder;
+
+	public String getNeedNear() {
+		return needNear;
+	}
+
+	public void setNeedNear(String needNear) {
+		this.needNear = needNear;
+	}
 
 	public long getPushId() {
 		return pushId;
@@ -188,14 +200,14 @@ public class RenovationListBean extends QDBaseBean {
 
 	@Override
 	public int getLayoutId() {
-		return R.layout.adapter_item_order;
+		return 0;
 	}
 
 	@Override
 	public void fillDatas() {
 
 		holder.title.setText(this.getTitle());
-		holder.time.setText(this.getTime());
+		holder.time.setText(TimeUtils.formatDateTime(time));
 		/**
 		 * edited by chenguangming ==== start
 		 * */
@@ -221,17 +233,24 @@ public class RenovationListBean extends QDBaseBean {
 			endTime = endTime.substring(0,10)+"...";
 		if(null!=location&&location.length()>10)
 			location = location.substring(0,9)+"...";
-		Log.e("shenzhixin", "zhuangxiu,space:" + getSpace() + ",budget:" + getBudget() + ",type:" + getType() + ",endTime:" + getEndTime() + ",location:" + getLocation());
+
 		holder.space.setText("面积:"+this.getSpace());
 		holder.budget.setText("预算:"+this.getBudget());
 		holder.decorate_type.setText("方式:"+this.getType());
 		holder.location.setText("区域:"+this.getLocation());
 
+		if(!TextUtils.isEmpty(needNear)){
+			holder.distance.setVisibility(View.VISIBLE);
+			holder.distance.setText("距离:"+this.getNeedNear());
+		}
+
+		//Item跳转
 		holder.item.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				if(bidState==1){//不可抢
+
+				if(bidState==1){//不可抢 埋点
 					BDMob.getBdMobInstance().onMobEvent(context, BDEventConstans.EVENT_ID_BIDDING_LIST_TO_DETAIL_UNABLE_BIDDING);
 
 					HYMob.getDataListByState(context, HYEventConstans.EVENT_ID_BIDDING_LIST_TO_DETAIL_UNABLE_BIDDING, String.valueOf(bidId), "0");
@@ -240,7 +259,6 @@ public class RenovationListBean extends QDBaseBean {
 					BDMob.getBdMobInstance().onMobEvent(context, BDEventConstans.EVENT_ID_BIDDING_LIST_TO_DETAIL_ENABLE_BIDDING);
 
 					HYMob.getDataListByState(context, HYEventConstans.EVENT_ID_BIDDING_LIST_TO_DETAIL_UNABLE_BIDDING, String.valueOf(bidId), "1");
-
 				}
 				Intent intent = new Intent();
 				intent.setClass(context, OrderDetailActivity.class);
@@ -257,13 +275,19 @@ public class RenovationListBean extends QDBaseBean {
 		 * */
 		switch (bidState){
 			case 1://不可抢
-				holder.knock.setBackgroundResource(R.drawable.t_not_bid_bg);
-				holder.knock.setText("已抢完");
-				holder.knock.setTextColor(context.getResources().getColor(R.color.transparent));
-				holder.knock.setClickable(false);
+				holder.grab_style.setImageResource(R.drawable.type_back_grabbed);
+				holder.iv_renovation_type.setImageResource(R.drawable.iv_renovation_brush);
+				holder.view_bottom.setVisibility(View.GONE);
+//				holder.knock.setBackgroundResource(R.drawable.t_not_bid_bg);
+//				holder.knock.setText("已抢完");
+//				holder.knock.setTextColor(context.getResources().getColor(R.color.transparent));
+//				holder.knock.setClickable(false);
 				break;
 			default://可抢
-				holder.knock.setBackgroundResource(R.drawable.t_redbuttonselector);
+				holder.grab_style.setImageResource(R.drawable.type_back_grab);
+				holder.iv_renovation_type.setImageResource(R.drawable.iv_renovation_brush_knock);
+				holder.view_bottom.setVisibility(View.VISIBLE);
+				holder.knock.setBackgroundResource(R.drawable.bt_knock_button_selector);
 				holder.knock.setTextColor(context.getResources().getColor(R.color.white));
 				holder.knock.setText("抢单");
 				holder.knock.setClickable(true);
@@ -293,18 +317,23 @@ public class RenovationListBean extends QDBaseBean {
 		RenovationListBean.this.adapter = adapter;
 		convertView = inflater.inflate(R.layout.order_item_renovation, null);
 		holder.item =  convertView.findViewById(R.id.renovation_item);
+		holder.grab_style= (ImageView) convertView.findViewById(R.id.grab_style);
+		holder.iv_renovation_type = (ImageView) convertView.findViewById(R.id.iv_renovation_type);
 		holder.title = (TextView) convertView.findViewById(R.id.grab_renovation_title);
 		holder.time = (TextView) convertView.findViewById(R.id.grab_renovation_time);
 		holder.space = (TextView) convertView.findViewById(R.id.tv_grab_area_title);
 		holder.budget = (TextView) convertView.findViewById(R.id.tv_grab_budget_title);
 		holder.decorate_type = (TextView) convertView.findViewById(R.id.tv_grab_type_title);
 		holder.location = (TextView) convertView.findViewById(R.id.tv_grab_location_title);
+        holder.distance = (TextView) convertView.findViewById(R.id.tv_grab_distance_title);
 
+		holder.view_bottom = convertView.findViewById(R.id.view_bottom);
 		holder.knock = (Button) convertView.findViewById(R.id.grab_main_knock);
 		holder.tvActivePrice = (TextView) convertView.findViewById(R.id.tv_main_fee);
 		holder.tvOriginalPrice = (TextView) convertView.findViewById(R.id.tv_main_origin_fee);
-
 		holder.tvOriginalPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+
+
 		convertView.setTag(holder);
 		return convertView;
 	}

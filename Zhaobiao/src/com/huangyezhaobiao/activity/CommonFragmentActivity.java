@@ -1,7 +1,14 @@
 package com.huangyezhaobiao.activity;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -26,9 +33,13 @@ import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import com.huangyezhaobiao.vm.BackToForeVM;
 import com.huangyezhaobiao.vm.GlobalConfigVM;
-import com.huangyezhaobiao.vm.LoginViewModel;
 import com.huangyezhaobiao.vm.LogoutViewModel;
 import com.huangyezhaobiao.windowf.AppExitService;
+import com.wuba.loginsdk.external.LoginCallback;
+import com.wuba.loginsdk.external.LoginClient;
+import com.wuba.loginsdk.external.Request;
+import com.wuba.loginsdk.external.SimpleLoginCallback;
+import com.wuba.loginsdk.model.LoginSDKBean;
 import com.xiaomi.mipush.sdk.MiPushClient;
 
 /**
@@ -42,6 +53,38 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
 //    private static final String TAG = CommonFragmentActivity.class.getName();
 
     protected long resume_time,stop_time;
+
+    protected ZhaoBiaoDialog exitDialog; //当用户被挤掉时,显示这个对话框
+    private ZhaoBiaoDialog LogoutDialog;
+
+    protected final static String CLOSE_ACTIVITTY = "CLOSE_ACTIVITTY";
+
+
+    // 写一个广播的内部类，当收到动作时，结束activity
+    protected  BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            unregisterReceiver(this); // 这句话必须要写要不会报错，不写虽然能关闭，会报一堆错
+            ((Activity) context).finish();
+        }
+
+    };
+
+    protected void initBroadcast(){
+        // 在当前的activity中注册广播
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(CLOSE_ACTIVITTY);
+        registerReceiver(broadcastReceiver, filter); // 注册
+    }
+
+    protected void close() {
+        Intent intent = new Intent();
+        intent.setAction(CLOSE_ACTIVITTY); // 说明动作
+        sendBroadcast(intent);// 该函数用于发送广播
+//        finish();
+    }
+
+
     /**
      * 需要同步
      *
@@ -61,6 +104,27 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
         return TimeUtils.beyond24Hour(currentTimeLine, latTimeLine);//没有在时间戳范围内
 
     }
+
+    /**
+     *
+     * 需要退出重新登录
+     * @return
+     */
+    private boolean islogoutTime(){
+        //当前时间戳
+        long currentTimeLine  = System.currentTimeMillis();
+        //从sp取时间戳
+        long latTimeLine     = 0;
+        try {
+            latTimeLine = Long.valueOf( UserUtils.getSessionTime(CommonFragmentActivity.this));
+        } catch (NumberFormatException e) {
+            latTimeLine = 0;
+            e.printStackTrace();
+        }
+        return TimeUtils.beyond13Days(currentTimeLine, latTimeLine);//没有在时间戳范围内
+
+    }
+
 
     private NetWorkVMCallBack globalConfigCallBack = new NetWorkVMCallBack() {
         @Override
@@ -122,11 +186,13 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
         }
     };
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initVM();
-
+        configExitDialog();
+        initBroadcast();
     }
 
     private void initVM() {
@@ -141,6 +207,8 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
 
         resume_time = System.currentTimeMillis();
 
+        initLogoutDialog();
+
         if (SPUtils.fromBackground(this)) {
 
             //从后台进来的,加接口
@@ -149,108 +217,65 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
 
             HYMob.getDataList(this, HYEventConstans.EVENT_ID_APP_OPEND);
 
-            backToForeVM.report();
+            if(!TextUtils.isEmpty(UserUtils.getUserId(this))){
+                backToForeVM.report();
+            }
+
             if (needAsync() && !TextUtils.isEmpty(UserUtils.getUserId(this))) {
                 globalConfigVM.refreshUsers();
             }
-            Log.v(TAG, "=>" + UserUtils.getAccountName(this));
-            Log.v(TAG, ">>" + UserUtils.getAccountEncrypt(this));
-//            if (!"".equals(UserUtils.getAccountName(this)) && !"".equals(UserUtils.getAccountEncrypt(this)) && UserUtils.isOutOfDate(this)) {
-//                dialog = new ZhaoBiaoDialog(this, "提示", "登录失败，您输入的账户名和密码不符!");
-//                dialog.setCancelButtonGone();
-//                dialog.setOnDialogClickListener(dialogClickListener);
-//                loginViewModel = new LoginViewModel(vmCallBack, this);
-//                Log.v("从后台进来的", UserUtils.getAccountName(this) + "===" + UserUtils.getAccountEncrypt(this));
-//                loginViewModel.login(UserUtils.getAccountName(this), UserUtils.getAccountEncrypt(this), true);
-//            }
+
+            if(islogoutTime() && !TextUtils.isEmpty(UserUtils.getUserId(this))){
+                if(LogoutDialog!=null){
+                    LogoutDialog.setMessage("您已长时间无登录操作，请重新登录");
+                    LogoutDialog.show();
+                }
+            }
+
+
         } else {
             Log.e(TAG, "not fromBackground");
         }
+
+
         BDMob.getBdMobInstance().onResumeActivity(this);
     }
-
-    /**
-     * added by chenguangming start
-     **/
     private LogoutViewModel lvm;
-    private ZhaoBiaoDialog.onDialogClickListener dialogClickListener = new ZhaoBiaoDialog.onDialogClickListener() {
-        @Override
-        public void onDialogOkClick() {
-            dialog.dismiss();
-            /** 跳转到登录的界面*/
-            lvm = new LogoutViewModel(vmCallBack, CommonFragmentActivity.this);
-            lvm.logout();
-            SharedPreferencesUtils.clearLoginToken(getApplicationContext());
-            //退出时注销个推
-            GePushProxy.unBindPushAlias(getApplicationContext(), UserUtils.getUserId(getApplicationContext()));
-            //退出时注销小米推送
-            MiPushClient.unsetAlias(getApplicationContext(), UserUtils.getUserId(getApplicationContext()), null);
-            UserUtils.clearUserInfo(getApplicationContext());
-            ActivityUtils.goToActivity(CommonFragmentActivity.this, LoginActivity.class);
-            finish();
-        }
-
-        @Override
-        public void onDialogCancelClick() {
-
-        }
-    };
-
-    /**
-     * created by chenguangming 自动登录
-     */
-    private LoginViewModel loginViewModel;
-    private ZhaoBiaoDialog dialog;
-
-    private NetWorkVMCallBack vmCallBack = new NetWorkVMCallBack() {
-
-
-        @Override
-        public void onLoadingStart() {
-
-        }
-
-        @Override
-        public void onLoadingSuccess(Object t) {
-
-        }
-
-        @Override
-        public void onLoadingError(String msg) {
-            try {
-                if (dialog != null && !TextUtils.isEmpty(msg)) {
-                    dialog.setMessage(msg);
-                    dialog.show();
-                }
-            } catch (Exception e) {
-                Toast.makeText(CommonFragmentActivity.this, msg, Toast.LENGTH_SHORT).show();
+    public void initLogoutDialog(){
+        LogoutDialog = new ZhaoBiaoDialog(this,"");
+        LogoutDialog.setCancelButtonGone();
+        LogoutDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                LogoutDialog = null;
             }
-        }
+        });
+        LogoutDialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
+            @Override
+            public void onDialogOkClick() {
+                LogoutDialog.dismiss();
+                /** 跳转到登录的界面*/
+                lvm = new LogoutViewModel(CommonFragmentActivity.this, CommonFragmentActivity.this);
+                lvm.logout();
+                SharedPreferencesUtils.clearLoginToken(getApplicationContext());
+                //退出时注销个推
+                GePushProxy.unBindPushAlias(getApplicationContext(), UserUtils.getUserId(getApplicationContext()));
+                //退出时注销小米推送
+                MiPushClient.unsetAlias(getApplicationContext(), UserUtils.getUserId(getApplicationContext()), null);
+                UserUtils.clearUserInfo(getApplicationContext());
 
-        @Override
-        public void onLoadingCancel() {
+                LoginClient.doLogoutOperate(CommonFragmentActivity.this);
+                ActivityUtils.goToActivity(CommonFragmentActivity.this, BlankActivity.class);
+                close();
+            }
 
-        }
+            @Override
+            public void onDialogCancelClick() {
 
-        @Override
-        public void onNoInterNetError() {
-            Toast.makeText(CommonFragmentActivity.this, getString(R.string.no_network), Toast.LENGTH_SHORT).show();
-        }
+            }
+        });
+    }
 
-        @Override
-        public void onLoginInvalidate() {
-            Toast.makeText(CommonFragmentActivity.this, getString(R.string.login_login_invalidate), Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onVersionBack(String version) {
-
-        }
-    };
-
-    /**
-     * added by chenguangming end
-     */
 
     @Override
     protected void onStop() {
@@ -264,6 +289,7 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
         } else {
             Log.e(TAG, "not to background");
         }
+
     }
 
     /**
@@ -285,6 +311,15 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (!this.isFinishing() && LogoutDialog != null && LogoutDialog.isShowing()) {
+            LogoutDialog.dismiss();
+            LogoutDialog = null;
+        }
+
+        if (!this.isFinishing() && exitDialog != null && exitDialog.isShowing()) {
+            exitDialog.dismiss();
+            exitDialog = null;
+        }
     }
 
     @Override
@@ -300,6 +335,12 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
     @Override
     public void onLoadingError(String msg) {
 
+        if( !TextUtils.isEmpty(msg) && msg.equals("PPU")){
+            if(LogoutDialog!=null){
+                LogoutDialog.setMessage("您已经长时间无登录操作，请重新登录");
+                LogoutDialog.show();
+            }
+        }
     }
 
     @Override
@@ -309,17 +350,97 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
 
     @Override
     public void onNoInterNetError() {
-
+        Toast.makeText(CommonFragmentActivity.this, getString(R.string.no_network),Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onLoginInvalidate() {
-
+        GePushProxy.unBindPushAlias(getApplicationContext(), UserUtils.getUserId(getApplicationContext()));
+        showExitDialog();
     }
 
     @Override
     public void onVersionBack(String version) {
         Log.e("shenyy", "version:" + version);
 
+    }
+
+
+    /**
+     * 配置退出的对话框
+     */
+    private void configExitDialog() {
+        exitDialog = new ZhaoBiaoDialog(CommonFragmentActivity.this,
+//                getString(R.string.sys_noti),
+                getString(R.string.force_exit));
+        exitDialog.setCancelButtonGone();
+        exitDialog.setCancelable(false);
+        exitDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                exitDialog = null;
+            }
+        });
+        exitDialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
+            @Override
+            public void onDialogOkClick() {
+                dismissExitDialog();
+            }
+
+            @Override
+            public void onDialogCancelClick() {
+
+            }
+        });
+    }
+
+    /**
+     * 显示退出的对话框
+     */
+    protected void showExitDialog() {
+        if (exitDialog != null && !exitDialog.isShowing()) {
+            try {
+                exitDialog.show();
+            } catch (Exception e) {
+                Toast.makeText(CommonFragmentActivity.this, getString(R.string.force_exit), Toast.LENGTH_SHORT).show();
+                //TODO:退出登录
+                LoginClient.doLogoutOperate(CommonFragmentActivity.this);
+                ActivityUtils.goToActivity(CommonFragmentActivity.this, BlankActivity.class);
+                //退出登录后的几件事
+                /**
+                 * 1.清除LoginToken
+                 * 2.清除用户信息
+                 */
+                SharedPreferencesUtils.clearLoginToken(CommonFragmentActivity.this);
+                UserUtils.clearUserInfo(CommonFragmentActivity.this);
+               close();
+            }
+        }
+    }
+
+    /**
+     * 关闭退出的对话框
+     */
+    protected void dismissExitDialog() {
+        if (exitDialog != null && exitDialog.isShowing()) {
+            try {
+                exitDialog.dismiss();
+            } catch (Exception e) {
+                Toast.makeText(CommonFragmentActivity.this, getString(R.string.force_exit), Toast.LENGTH_SHORT).show();
+                //TODO:退出登录
+            } finally {
+                LoginClient.doLogoutOperate(CommonFragmentActivity.this);
+                ActivityUtils.goToActivity(CommonFragmentActivity.this, BlankActivity.class);
+
+                //退出登录后的几件事
+                /**
+                 * 1.清除LoginToken
+                 * 2.清除用户信息
+                 */
+                SharedPreferencesUtils.clearLoginToken(CommonFragmentActivity.this);
+                UserUtils.clearUserInfo(CommonFragmentActivity.this);
+                close();
+            }
+        }
     }
 }

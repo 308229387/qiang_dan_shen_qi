@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingLeft="20dip"
+    android:paddingRight="20dip"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:id="@+id/dialog_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:background="@drawable/loginsdk_request_dialog_bg">
+
+            <LinearLayout
+                android:id="@+id/topPanel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dip"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:text="@string/login_phone_verify_title"
+                    android:textColor="@color/dialog_title_color"
+                    android:textSize="@dimen/wb_dialog_title_size" />
+
+            </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/verifytip_affirm_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/manager_account_margin"
+                android:layout_marginLeft="@dimen/manager_account_margin"
+                android:layout_marginRight="@dimen/manager_account_margin_right">
+                <TextView
+                    android:id="@+id/verify_tip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    android:textColor="#ff0000"
+                    android:text="@string/verrify_tip"
+                    android:visibility="invisible"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/phone_affirm_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="44dip"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="@dimen/manager_account_margin"
+                android:layout_marginRight="@dimen/manager_account_margin_right"
+                android:background="#f6f6f6">
+
+                <RelativeLayout
+                    android:id="@+id/phone_affirm_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent">
+
+                    <com.wuba.loginsdk.views.LoginAutoClearEditView
+                        android:id="@+id/affirm_retrieve_phone"
+                        style="@style/RegisterEdit"
+                        android:layout_width="130dip"
+                        android:layout_marginLeft="10dip"
+                        android:maxLength="10"
+                        android:hint="@string/login_phone_verify_title"
+                        android:textColor="@color/orange" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/phone_refresh_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:paddingTop="5dip"
+                    android:paddingBottom="5dip"
+                    android:layout_toRightOf="@id/phone_affirm_view">
+                    <com.wuba.loginsdk.views.base.RecycleImageView
+                        android:id="@+id/get_affirm_view"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"/>
+                    <com.wuba.loginsdk.views.base.RecycleImageView
+                        android:id="@+id/refresh_affirm_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="invisible"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/loginsdk_wb_suggest_loading"/>
+
+                    <TextView
+                        android:id="@+id/verified_img_unable"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:textColor="@color/img_verified_unable"
+                        android:background="@color/dynamic_unlog_verify_color"
+                        android:textSize="@dimen/template_frame_item_secondtextsize"
+                        android:text="@string/verified_img_unable"
+                        android:gravity="center"
+                        android:visibility="invisible"
+                        android:layout_marginRight="1dip"/>
+                </RelativeLayout>>
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/buttonPanel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:orientation="vertical" >
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/wb_separator_line" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:id="@+id/leftSpacer"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:orientation="horizontal"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/negativeButton"
+                        android:layout_width="0dip"
+                        android:layout_height="40dip"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:text="@string/quit_dialog_cancel"
+                        android:textColor="@color/dialog_button_text_hint"
+                        android:clickable="true"
+                        android:textSize="18sp" />
+
+                    <View
+                        android:id="@+id/dialog_btn_divider"
+                        android:layout_width="1px"
+                        android:layout_height="match_parent"
+                        android:background="@color/wb_separator_line" />
+
+                    <Button
+                        android:id="@+id/positiveButton"
+                        android:layout_width="0dip"
+                        android:layout_height="40dip"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:text="@string/quit_dialog_ok"
+                        android:textColor="@color/dialog_button_text_color"
+                        android:textSize="18sp"
+                        android:visibility="visible" />
+
+                    <LinearLayout
+                        android:id="@+id/rightSpacer"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:orientation="horizontal"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout><!-- From: file:/I:/E/2016523/58sdklogin/WubaLoginSDK/loginsdk/src/main/res/layout/loginsdk_authentication_dialog.xml -->

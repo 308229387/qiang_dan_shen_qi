@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.bean.push.PushToStorageBean;
+import com.huangyezhaobiao.utils.TimeUtils;
 import com.huangyezhaobiao.utils.UnreadUtils;
 
 import java.util.ArrayList;
@@ -75,7 +76,7 @@ public class MessageSeriesAdapter extends BaseAdapter{
 		}
 		PushToStorageBean bean = messageBeans.get(position);
 		holder.tv_content.setText(bean.getStr());
-		holder.tv_time.setText(bean.getTime());
+		holder.tv_time.setText(TimeUtils.formatDateTime(bean.getTime()));
 		if(unread_counts[position]>0){
 			holder.tv_unread.setVisibility(View.VISIBLE);
 			holder.tv_unread.setText("" + unread_counts[position]);

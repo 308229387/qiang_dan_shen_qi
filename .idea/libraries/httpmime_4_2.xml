@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="httpmime-4.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Zhaobiao/build/intermediates/exploded-aar/com.wuba.wuxian.third/httpmime/4.2/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/Zhaobiao/build/intermediates/exploded-aar/com.wuba.wuxian.third/httpmime/4.2/res" />
+      <root url="jar://$PROJECT_DIR$/Zhaobiao/build/intermediates/exploded-aar/com.wuba.wuxian.third/httpmime/4.2/jars/libs/httpmime-4.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

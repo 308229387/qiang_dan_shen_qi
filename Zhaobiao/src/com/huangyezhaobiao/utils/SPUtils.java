@@ -15,8 +15,9 @@ public class SPUtils {
     private static String KEY_FIRST_UPDATE = "isFirstUpdate";
     private static String KEY_NEED_AUTO_SETTING = "isAutoSetting";
     private static String KEY_SERVICE_STATE     = "serviceState";
-    private static final String USER_APP_UPDATE= "appUpdate";
-    public  static Boolean appUpdate;
+    private static final String USER_APP_MOBILE= "appMobile";
+    private static final String DETAIL_ORDERID = "detail_orderId";
+
     /**
      * 全局初始化的时间戳
      */
@@ -112,14 +113,24 @@ public class SPUtils {
     }
 
 
-    public static boolean getAppUpdate(Context context){
-        appUpdate = context.getSharedPreferences(SP_NAME, 0).getBoolean(USER_APP_UPDATE, false);
-        return appUpdate;
+    public static String getAppMobile(Context context){
+        String appMobile = context.getSharedPreferences(SP_NAME, 0).getString(USER_APP_MOBILE, "");
+        return appMobile;
     }
 
-    public static void setAppUpdate(Context context,Boolean isUpdated){
+    public static void setAppMobile(Context context,String mobile){
         SharedPreferences sp = context.getSharedPreferences(SP_NAME, 0);
-        sp.edit().putBoolean(USER_APP_UPDATE, isUpdated).commit();
+        sp.edit().putString(USER_APP_MOBILE, mobile).commit();
+    }
+
+    public static String getOrderId(Context context){
+        String orderId = context.getSharedPreferences(SP_NAME, 0).getString(DETAIL_ORDERID, "");
+        return orderId;
+    }
+
+    public static void setOrderId(Context context,String orderId){
+        SharedPreferences sp = context.getSharedPreferences(SP_NAME, 0);
+        sp.edit().putString(DETAIL_ORDERID, orderId).commit();
     }
 
     /**
@@ -160,4 +171,6 @@ public class SPUtils {
         SharedPreferences sp = context.getSharedPreferences(SP_NAME,0);
         return sp.getString(UserUtils.getUserId(context.getApplicationContext())+key,"");
     }
+
+
 }

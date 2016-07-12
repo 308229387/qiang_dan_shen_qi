@@ -12,7 +12,6 @@ import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
 import com.huangyezhaobiao.bean.SumplymentInfoJoinBean;
 import com.huangyezhaobiao.bean.popdetail.BottomViewBean;
 import com.huangyezhaobiao.bean.popdetail.CleaningBidDetailBean;
-import com.huangyezhaobiao.bean.popdetail.CommonAffiliateInfoBean;
 import com.huangyezhaobiao.bean.popdetail.CommonDecorateInfoBean;
 import com.huangyezhaobiao.bean.popdetail.CommonDecorateProjectBean;
 import com.huangyezhaobiao.bean.popdetail.CommonDecorationPartBean;
@@ -28,8 +27,6 @@ import com.huangyezhaobiao.inter.OrderDetailCallBack;
 import com.huangyezhaobiao.lib.ZBBaseDetailViewModel;
 import com.huangyezhaobiao.model.PopDetailModel;
 import com.huangyezhaobiao.url.URLConstans;
-import com.huangyezhaobiao.url.UrlSuffix;
-import com.huangyezhaobiao.utils.UserUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +78,7 @@ public class QIangDanDetailViewModel extends ZBBaseDetailViewModel<QDDetailBaseB
 		sourcesDir.put("common_info_international_register_area", CommonInternationalRegisterInfoBean.class);
 		sourcesDir.put("common_info_personal_register_area", CommonPersonalRegisterInfoBean.class);
 		//2015.8.17 add
-		sourcesDir.put("common_info_join_invest_area", CommonAffiliateInfoBean.class);
+//		sourcesDir.put("common_info_join_invest_area", CommonAffiliateInfoBean.class);
 		sourcesDir.put("sumplyment_info_join_invest_area", SumplymentInfoJoinBean.class);
 
 		//2015.8.25 add

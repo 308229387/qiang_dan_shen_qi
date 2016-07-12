@@ -1,3 +1,285 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\hy_android_zb\Commonlib\unspecified\jars\libs\fastjson-1.2.5.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c065e7387cd82f0d9132d4fb0d9864c6b6a13459">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\fastjson-1.2.5_6856d58d6c24f337c16d7869bcb8cf5a905238d2.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudio\sdk_1\extras\android\m2repository\com\android\support\support-annotations\22.2.1\support-annotations-22.2.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\support-annotations-22.2.1_de423362da342b175ed518a730c8d06b60756980.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\libs\eventbus-20150901.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ab8bb345eb133b6f138252834f01a8b07f258769">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\eventbus-20150901_9b7615602a9debff3d9ae2aa6b96edc33ff3f437.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.third\open_sdk\3.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="41e5a3a3e6182e4ed4eb431689b5121b0a19faf8">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\com.wuba.wuxian.third-open_sdk-3.1.0_c3d96d1801618d2c24ea7017e822748abdbc4bce.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.third\open_sdk\3.1.0\jars\libs\open_sdk.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="72cbec26e46a4a314cb38e667914a34086997935">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\open_sdk_a6f7e3133ecf5840e6e04ac40994eb726db38b90.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\libs\Msc.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b094b9a52d88af3cae8dcd3ede86ce6308b1a3bb">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\Msc_814e32d2ae46cc8c6a35d534cf1fa94ad1ff03e8.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\libs\nineoldandroids-2.4.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a43cf9e271b5bc564e880a0a4be63ab9c69c97f8">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\nineoldandroids-2.4.0_7e5e1498eaa46c23e6cc5c6b7f7f2a8082f81c6b.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\libs\wup-1.0.0-SNAPSHOT.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a0845068801a0b9a3a144b7cf57cb650b3d467e5">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\wup-1.0.0-SNAPSHOT_c61f04eda26c622051e370a4da68428b2e154922.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="39ae02ce40c3ac828abbf780ce0ff5d7a28b7d6a">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\com.android.support-cardview-v7-23.0.1_0257db6d1df329d2b2a17e389bfafcce421136c1.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.third\httpmime\4.2\jars\libs\httpmime-4.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="224c7eabc4eac7cd08c352d1393fee9b1466a766">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\httpmime-4.2_beb8a1a4708c28cc4edf58a77b1f3d5fd70d4deb.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\design\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="fc63b820d54c8a27a3a614bdd93920e0076581c2">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\com.android.support-design-22.2.0_c5893749179ba23a3c028cfcbe0a4c36ccf9df81.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="49789fd8676f0179a6cd693aff666d6b3d9ba130">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\com.wuba.wuxian.lib-lego-3.0.0_5fd67ce1d12c61b2e8623f800bbb6c79317a04dc.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\hy_android_zb\Commonlib\unspecified\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9becab6efa8a69932a9fb2ebc784551deaa85823">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\hy_android_zb-Commonlib-unspecified_07dd7fd784a2d1c70c0a3a5de93fdf91dd33469a.jar" />
+    </item>
+    <item
+        jar="C:\Users\58\.gradle\caches\modules-2\files-2.1\com.facebook.stetho\stetho\1.1.0\d8892e70b02cf2972b2a00aef145809560b0efb4\stetho-1.1.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d8892e70b02cf2972b2a00aef145809560b0efb4">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\stetho-1.1.0_e39b1efed502f1a81c116fbb52b2c779995dc686.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\com.android.support-appcompat-v7-22.2.0_de56cf181d8b26c38986d4ebf2285a271bda6c15.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\hy_android_zb\Commonlib\unspecified\jars\libs\xUtils-2.6.14.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3a13e7a29d2c6ab30a12813ecc55e8f565463ad6">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\xUtils-2.6.14_7c6c651caeab532d006a6f5d77a0205c0261cd0a.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\libs\universal-image-loader-1.9.4.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="dd9eeb557650c4ad7394df23f0f5cf27a7cfc697">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\universal-image-loader-1.9.4_8fdd5a7d46aea45bc9448b780599263546215eb2.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\libs\Xg_sdk_v2.38_20150616_1057.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b7d6cf9e40b44971cb043f30979ad6869295ae4c">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\Xg_sdk_v2.38_20150616_1057_6bf3d8167f93cf0fec98d426e0447d1f3e7f55b5.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.third\httpmime\4.2\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0a441e90c1858590cd5fa4601a937719453fe04b">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\com.wuba.wuxian.third-httpmime-4.2_dd4fc0732f5c56cffb534f4ceabe0ce5a9c1ea08.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\hy_android_zb\library\unspecified\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="892a7276bd2ed90b940ef8731c3a6e6fc99cdaae">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\hy_android_zb-library-unspecified_295543780a3becef575a1ac0587203a192caf3a5.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.third\libammsdk\3.1.1\jars\libs\libammsdk.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="7695d02fee0412fa9e8b4c5cdc31a4a19b4719b5">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\libammsdk_1b9137427fcc0b2725c4abb718c8bfe30537d0d6.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\libs\GetuiExt-2.0.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="7825bfa9135d693e2046eab96fd94e724e0f9eda">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\GetuiExt-2.0.3_10248d26f69aeb0a5f608ab9017b24e0aaf6ae2f.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.third\open_sdk\3.1.0\jars\libs\mta-sdk-1.6.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="7a5a51c37049ce1b78a7b58242cb5a5370763a0d">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\mta-sdk-1.6.2_4bad783c6205b9dfd4ec2ceaebafa7cf53352c46.jar" />
+    </item>
+    <item
+        jar="C:\Users\58\.gradle\caches\modules-2\files-2.1\com.squareup.leakcanary\leakcanary-watcher\1.3\632482a61ad24b7ec864072945d221369f9a606\leakcanary-watcher-1.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0632482a61ad24b7ec864072945d221369f9a606">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\leakcanary-watcher-1.3_4dfcd87b0f6c43c3c35a7c9a118b3b0d8ae1e6cb.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\com.android.support-support-v4-22.2.1_663fdb532f357c768e05ef054818455520c16466.jar" />
+    </item>
+    <item
+        jar="C:\Users\58\.gradle\caches\modules-2\files-2.1\commons-cli\commons-cli\1.2\2bf96b7aa8b611c177d329452af1dc933e14501c\commons-cli-1.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="2bf96b7aa8b611c177d329452af1dc933e14501c">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\commons-cli-1.2_651de2e46668a25a6a9438ca905a639feda33dfb.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\libs\GetuiSDK2.8.1.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f00cf9e7afe9e79f651d6cc2f0e4ef511cfb4013">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\GetuiSDK2.8.1.0_17c30bf2a6dfdfc137a756bbb38212abeace0d82.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.squareup.leakcanary\leakcanary-android-no-op\1.3\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4efe9814ec1d5fbbe146fbfb01895deaa321f488">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\com.squareup.leakcanary-leakcanary-android-no-op-1.3_344de7ed2dd3d503386a9dd6b085cbcb19bac166.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\libs\Sunflower.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="695fda9aeebe54be7cd2c1a6f9745c6b9cd380ef">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\Sunflower_ff354d33ffb3be912bbf228ac69a4e80de650d6b.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.third\weibosdkcore\3.1.2\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9e78a89be457198f99cad3e1d501e6e930c69869">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\com.wuba.wuxian.third-weibosdkcore-3.1.2_15389e11f840739406b9352b969095dffeedd016.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\libs\bugly_crash_release__2.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4b297a8d6f2369bf53b4812e26aa96f2656ae39d">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\bugly_crash_release__2.1_afbeac93fc3d51e888ba10bb7672c4c304455366.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\libs\jg_filter_sdk_1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ebfc3cde0309ff27e9568757784eefefc71407a2">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\jg_filter_sdk_1.1_f5a74cecc66b06e82fff12d1479be24b3e6246eb.jar" />
+    </item>
+    <item
+        jar="C:\Users\58\.gradle\caches\modules-2\files-2.1\com.google.code.findbugs\jsr305\2.0.1\516c03b21d50a644d538de0f0369c620989cd8f0\jsr305-2.0.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\jsr305-2.0.1_63b51f1781c648da9a10519eda5ad84b96a9505e.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\0.0.9-SNAPSHOT\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="47a3b199aa953c38491c53a9a6bcffa023096feb">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\com.wuba.wuxian.sdk-login-0.0.9-SNAPSHOT_0385c007bdb49c7f2a79e961a1be1d29692a94f0.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\libs\mid-sdk-2.20.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0822bf00661a83ba2fab32214c70cc50a244a0a3">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\mid-sdk-2.20_56f016c0b5dc8fe31d874394b7fac5b75be50c53.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.third\libammsdk\3.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="36684f655f9268b6173df64ab0f617554fcfdbaf">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\com.wuba.wuxian.third-libammsdk-3.1.1_042209c41f8d4b0b27ac18df6e43d6cbfa34933a.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\libs\MiPush_SDK_Client_2_2_16.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3e4a5b7d14dd3b95cb0dfff1b0f28265c528e101">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\MiPush_SDK_Client_2_2_16_5bb46e108d2aa4a82835abda375deb58dbaa9b65.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.third\weibosdkcore\3.1.2\jars\libs\weibosdkcore.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d322a7140cfff813e8ca62485084ce664a9eb178">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\weibosdkcore_e5db9463c0da30dbef27a45a9a7a4ddd5b8686a5.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\libs\android_api_3.7.0.5.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="8c011b95740d039b4b49e27c7cc7aba3f01e4947">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\android_api_3.7.0.5_e9250211e49773b4e2206e1e22da124c66728226.jar" />
+    </item>
+    <item
+        jar="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\libs\internal_impl-22.2.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\pre-dexed\fir\release\internal_impl-22.2.1_8bf65ad00db363f3be2cc32bd5a184348ca4e182.jar" />
+    </item>
+
+</items>

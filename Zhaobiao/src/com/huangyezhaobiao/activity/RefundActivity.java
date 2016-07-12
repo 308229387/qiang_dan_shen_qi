@@ -33,6 +33,8 @@ import com.huangyezhaobiao.netmodel.NetStateManager;
 import com.huangyezhaobiao.photomodule.CameraHelper;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.BDMob;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.NetUtils;
 import com.huangyezhaobiao.utils.PushUtils;
 import com.huangyezhaobiao.utils.StateUtils;
@@ -40,12 +42,15 @@ import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.utils.Utils;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
+import com.wuba.loginsdk.external.LoginClient;
+
+import java.sql.Ref;
 
 /**
  * Created by shenzhixin on 2015/12/9.
  * 退单界面
  */
-public class RefundActivity extends CommonFragmentActivity implements View.OnClickListener, INetStateChangedListener, INotificationListener, TitleMessageBarLayout.OnTitleBarClickListener, ZhaoBiaoDialog.onDialogClickListener {
+public class RefundActivity extends CommonFragmentActivity implements View.OnClickListener, INetStateChangedListener, INotificationListener, TitleMessageBarLayout.OnTitleBarClickListener {
     public final static String KEY_REFUND_TYPE = "refund_type";
     public final static String KEY_ORDER_ID    = "orderId";
 
@@ -59,7 +64,6 @@ public class RefundActivity extends CommonFragmentActivity implements View.OnCli
     FragmentTransaction fragmentTransaction;
     RefundBaseFragment refundBaseFragment = null;
     private String orderId;
-    private ZhaoBiaoDialog exitDialog;
 
     /**
      * RefundActivity需要的intent
@@ -70,7 +74,7 @@ public class RefundActivity extends CommonFragmentActivity implements View.OnCli
     public static Intent onNewIntent(Context context,String refundType,String orderId){
         Intent intent = new Intent(context,RefundActivity.class);
         intent.putExtra(KEY_REFUND_TYPE, refundType);
-        intent.putExtra(KEY_ORDER_ID,orderId);
+        intent.putExtra(KEY_ORDER_ID, orderId);
         return intent ;
     }
 
@@ -110,7 +114,6 @@ public class RefundActivity extends CommonFragmentActivity implements View.OnCli
         fragmentManager     = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         setContentView(getLayoutId());
-        configExitDialog();
         initView();
         initListener();
         setStyleBar();
@@ -124,7 +127,7 @@ public class RefundActivity extends CommonFragmentActivity implements View.OnCli
     private void configFragmentWithIntentType() {
         orderId     = getIntent().getStringExtra(KEY_ORDER_ID);
         String type = getIntent().getStringExtra(KEY_REFUND_TYPE);
-        Log.e("shenzhixinUUU","go to result:"+type);
+        Log.e("shenzhixinUUU", "go to result:" + type);
         try {
             refundBaseFragment = RefundFragmentFactory.createRefundFragment(type);
             refundBaseFragment.setOrderId(orderId);
@@ -158,8 +161,10 @@ public class RefundActivity extends CommonFragmentActivity implements View.OnCli
         tbl              = (TitleMessageBarLayout) findViewById(R.id.tbl);
         back_layout      = findViewById(R.id.layout_back);
         txt_head         = (TextView) findViewById(R.id.txt_head);
-        real_back_layout = (LinearLayout) findViewById(R.id.back_layout);
         txt_head.setText("退单申请");
+        real_back_layout = (LinearLayout) findViewById(R.id.back_layout);
+        real_back_layout.setVisibility(View.VISIBLE);
+
     }
 
 
@@ -246,78 +251,26 @@ public class RefundActivity extends CommonFragmentActivity implements View.OnCli
             if (resultCode == RESULT_OK) {
                 refundBaseFragment.fillDatas();
             }else if(resultCode!=0){
-                Toast.makeText(this,"拍照出问题了呢:"+resultCode,0).show();
+                Toast.makeText(this,"拍照出问题了呢:"+resultCode,Toast.LENGTH_SHORT).show();
             }
        // }
     }
 
-    public void onLoginInvalidate(){
-        GePushProxy.unBindPushAlias(getApplicationContext(), UserUtils.getUserId(getApplicationContext()));
-        showExitDialog();
-    }
-
-    /**
-     * 配置强制退出的dialog
-     */
-    private void configExitDialog() {
-        exitDialog = new ZhaoBiaoDialog(this,getString(R.string.sys_noti),getString(R.string.force_exit));
-        exitDialog.setOnDialogClickListener(this);
-        exitDialog.setCancelButtonGone();
-        exitDialog.setCancelable(false);
-    }
-
-
-    /**
-     * 显示退出登录的对话框
-     */
-    public void showExitDialog(){
-        if(exitDialog!=null && !exitDialog.isShowing())
-        {
-            try {
-                exitDialog.show();
-            }catch (Exception e){
-                Toast.makeText(this,"出错了",Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    /**
-     * 消失退出登录的对话框
-     */
-    public void dismissExitDialog(){
-        if(exitDialog!=null && exitDialog.isShowing()){
-            try{
-                exitDialog.dismiss();
-            }catch (Exception e){
-
-            }finally{
-                //TODO:退出
-                SharedPreferencesUtils.clearLoginToken(this);
-                UserUtils.clearUserInfo(this);
-                ActivityUtils.goToActivity(this, LoginActivity.class);
-                onBackPressed();
-            }
-        }
-    }
 
     @Override
-    public void onDialogOkClick() {
-        dismissExitDialog();
-        UserUtils.clearUserInfo(this);
-        SharedPreferencesUtils.clearLoginToken(this);
-        ActivityUtils.goToActivity(this, LoginActivity.class);
-        finish();
+    public void onLoginInvalidate() {
+        super.onLoginInvalidate();
     }
-
-    @Override
-    public void onDialogCancelClick() {
-
-    }
-
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         RefundMediator.checkedId.clear();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        HYMob.getBaseDataListForPage(RefundActivity.this, HYEventConstans.PAGE_REFUND, stop_time - resume_time);
     }
 }

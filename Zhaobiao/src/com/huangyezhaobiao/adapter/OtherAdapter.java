@@ -1,6 +1,7 @@
 package com.huangyezhaobiao.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.bean.push.PushToStorageBean;
 import com.huangyezhaobiao.inter.Constans;
 import com.huangyezhaobiao.utils.LogUtils;
+import com.huangyezhaobiao.utils.TimeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,8 +56,8 @@ public class OtherAdapter extends BaseAdapter{
 			holder.tv_time     = (TextView) convertView.findViewById(R.id.tv_time);
 			holder.tv_qd_result = (TextView) convertView.findViewById(R.id.tv_qd_result);
 			holder.rl_more = (RelativeLayout) convertView.findViewById(R.id.rl_more);
+			holder.tv_more = (TextView) convertView.findViewById(R.id.tv_more);
 			holder.tv_order_number = (TextView) convertView.findViewById(R.id.tv_order_number);
-			holder.tv_order_numberss = (TextView) convertView.findViewById(R.id.tv_order_numberss);
 			holder.tv_noouejd = (TextView) convertView.findViewById(R.id.tv_noouejd);
 			holder.view   = convertView.findViewById(R.id.view);
 			convertView.setTag(holder);
@@ -63,6 +65,7 @@ public class OtherAdapter extends BaseAdapter{
 			holder = (ViewHolder) convertView.getTag();
 		}
 		PushToStorageBean messageBean = beans.get(position);
+		LogUtils.LogE("efefefefef", "messageBean:" + messageBean.toString());
 		String fee = messageBean.getFee();
 		LogUtils.LogE("efefefefef", "fee:" + fee);
 		int status = messageBean.getStatus();
@@ -75,8 +78,7 @@ public class OtherAdapter extends BaseAdapter{
 				holder.view.setVisibility(View.VISIBLE);
 				holder.rl_more.setVisibility(View.VISIBLE);
 				holder.tv_noouejd.setVisibility(View.VISIBLE);
-				holder.tv_noouejd.setText(context.getString(R.string.order_number) + messageBean.getOrderid());
-				holder.tv_order_numberss.setVisibility(View.VISIBLE);
+				holder.tv_noouejd.setText("订单编号  " + messageBean.getOrderid());
 				holder.tv_order_number.setVisibility(View.VISIBLE);
 				
 			}else{
@@ -84,39 +86,38 @@ public class OtherAdapter extends BaseAdapter{
 				holder.view.setVisibility(View.GONE);
 				holder.tv_noouejd.setVisibility(View.GONE);
 				holder.rl_more.setVisibility(View.GONE);
-				holder.tv_order_numberss.setVisibility(View.INVISIBLE);
 				holder.tv_order_number.setVisibility(View.INVISIBLE);
 			}
 			//fix bug ui
 			if(!TextUtils.isEmpty(fee)){
-				holder.tv_order_numberss.setVisibility(View.VISIBLE);
 				holder.tv_order_number.setVisibility(View.VISIBLE);
-				holder.tv_order_number.setText("￥"+fee);
+				holder.tv_order_number.setText("订单价格  "  +fee +"元");
 			}else{
-				holder.tv_order_numberss.setVisibility(View.INVISIBLE);
 				holder.tv_order_number.setVisibility(View.INVISIBLE);
 			}
 			//fix bug ui
 			LogUtils.LogE("ashjhj", "status:" + status);
-			holder.tv_time.setText(messageBean.getTime());
+			holder.tv_time.setText(TimeUtils.formatDateTime(messageBean.getTime()));
 			String mss = messageBean.getStr();
 			LogUtils.LogE("post", "mss:" + mss);
 			if(mss.length()>31)
-				holder.tv_bg_title.setText(mss.substring(0, 31));
+				holder.tv_bg_title.setText("订单信息  " + mss.substring(0, 31));
 			else {
-				holder.tv_bg_title.setText(mss);
+				holder.tv_bg_title.setText("订单信息  " + mss);
 			}
 			break;
 		case Constans.QD_DAOJISHI://倒计时
-			holder.tv_bg_title.setText(R.string.daojishi_hint);
-			holder.tv_time.setText(messageBean.getTime());
-			holder.tv_noouejd.setText(context.getString(R.string.order_number)+messageBean.getOrderid());
+			holder.tv_time.setText(TimeUtils.formatDateTime(messageBean.getTime()));
+			holder.tv_qd_result.setText(R.string.daojishi_hint);
+			holder.tv_qd_result.setTextColor(Color.parseColor("#808080"));
+			holder.tv_noouejd.setText("订单编号  " + messageBean.getOrderid());
+			holder.tv_bg_title.setText("客户姓名  " + messageBean.getGuestName());
 			holder.view.setVisibility(View.VISIBLE);
 			holder.rl_more.setVisibility(View.VISIBLE);
+			holder.tv_more.setText("查看详情");
 			holder.tv_noouejd.setVisibility(View.VISIBLE);
-			holder.tv_order_numberss.setVisibility(View.GONE);
 			holder.tv_order_number.setVisibility(View.GONE);
-			holder.tv_qd_result.setVisibility(View.GONE);
+
 			break;
 		case Constans.SYS_NOTI://倒计时
 			holder.tv_bg_title.setText(messageBean.getStr());
@@ -124,7 +125,6 @@ public class OtherAdapter extends BaseAdapter{
 			holder.view.setVisibility(View.GONE);
 			holder.rl_more.setVisibility(View.GONE);
 			holder.tv_noouejd.setVisibility(View.GONE);
-			holder.tv_order_numberss.setVisibility(View.GONE);
 			holder.tv_order_number.setVisibility(View.GONE);
 			holder.tv_qd_result.setVisibility(View.GONE);
 			holder.tv_time.setText(messageBean.getTime());
@@ -141,9 +141,9 @@ public class OtherAdapter extends BaseAdapter{
 		public TextView tv_bg_title;
 		public TextView tv_qd_result;
 		public TextView tv_order_number;
-		public TextView tv_order_numberss;
 		public TextView tv_noouejd;
 		public RelativeLayout rl_more;
+		public TextView tv_more;
 		public View view;
 	}
 	

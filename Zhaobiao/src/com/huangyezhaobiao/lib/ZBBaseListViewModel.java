@@ -66,21 +66,25 @@ public abstract class ZBBaseListViewModel<T> extends ListSourceViewModel<T>{
 	protected List<T> transferToListBean(String t) {
 		// TODO Auto-generated method stub
 		List<T> list = new ArrayList<T>();
-		JSONArray jsonArray = JSON.parseArray(t);
-		if (jsonArray == null) {
-			return list;
-		} else {
-			for (int i = 0; i < jsonArray.size(); i++) {
-				JSONObject jsonObject = jsonArray.getJSONObject(i);
-				Log.e("shenzhixin", "key:" + jsonObject.get(key));
-				if(sourcesDir.get(jsonObject.get(key) + "")!=null) {//防止有新业务出现，但是app还没有升级到最新的版本
-					android.util.Log.e("shenzhixin", "hahaha");
-					Class<? extends T> classz = sourcesDir.get(jsonObject.get(key) + "");
-					LogUtils.LogE("shenzhixin", "key:" + key + ",className:" + classz + ",content:" + jsonObject.toString());
-					T object = JsonUtils.jsonToObject(jsonObject.toString(), classz);
-					list.add(object);
-				}
-			}
+		try {
+			JSONArray jsonArray = JSON.parseArray(t);
+			if (jsonArray == null) {
+                return list;
+            } else {
+                for (int i = 0; i < jsonArray.size(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    Log.e("shenzhixin", "key:" + jsonObject.get(key));
+                    if(sourcesDir.get(jsonObject.get(key) + "")!=null) {//防止有新业务出现，但是app还没有升级到最新的版本
+                        Log.e("shenzhixin", "hahaha");
+                        Class<? extends T> classz = sourcesDir.get(jsonObject.get(key) + "");
+                        LogUtils.LogE("shenzhixin", "key:" + key + ",className:" + classz + ",content:" + jsonObject.toString());
+                        T object = JsonUtils.jsonToObject(jsonObject.toString(), classz);
+                        list.add(object);
+                    }
+                }
+            }
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return list;
 	}

@@ -46,6 +46,8 @@ public class CleaningPopBean extends PopBaseBean{
     private String time;
     private String originalFee;
 
+    private String guestName;
+
     @Override
     public String getOriginalFee() {
         return originalFee;
@@ -163,6 +165,14 @@ public class CleaningPopBean extends PopBaseBean{
         this.fee = fee;
     }
 
+    public String getGuestName() {
+        return guestName;
+    }
+
+    public void setGuestName(String guestName) {
+        this.guestName = guestName;
+    }
+
     @Override
     public View initView(Context context) {
         if(location!=null && location.length()>20){
@@ -205,20 +215,32 @@ public class CleaningPopBean extends PopBaseBean{
         bean.setTime(time);
         // 拼接消息字符串
         StringBuilder str = new StringBuilder();
-        if(title.contains("-")){
-            String[] titles = title.split("-");
-            if(titles.length==2){
-                str.append(titles[0]+" ").append(age + " ").append(location+" ").append(serveTime + " ").append(titles[1]+" ");
+//        if(title.contains("-")){
+//            String[] titles = title.split("-");
+//            if(titles.length==2){
+//                str.append(titles[0]+" ").append(age + " ").append(location+" ").append(serveTime + " ").append(titles[1]+" ");
+//            }
+//        }else{
+//            str.append(title + "").append(age + "").append(location+"").append(serveTime + "");
+//        }
+
+        if(location.contains("-")){
+            String[] locations = location.split("-");
+            if(locations.length == 3){
+                str.append(locations[0]+"").append("-").append(locations[1]+"").append("-").append(title + "");
+            }else{
+                str.append(location+"").append("-").append(title + "");
             }
-        }else{
-            str.append(title + "").append(age + "").append(location+"").append(serveTime + "");
         }
+
+
         //if (status == 1) {
         bean.setFee(fee);
         //}
 
         bean.setStr(str.toString());
         bean.setStatus(status);
+        bean.setGuestName(guestName);
         return bean;
     }
 

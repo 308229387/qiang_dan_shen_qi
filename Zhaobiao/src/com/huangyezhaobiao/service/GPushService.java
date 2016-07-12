@@ -16,10 +16,12 @@ import com.huangyezhaobiao.notification.NotificationExecutor;
 import com.huangyezhaobiao.push.BiddingMessageReceiver;
 import com.huangyezhaobiao.url.URLConstans;
 import com.huangyezhaobiao.url.UrlSuffix;
-import com.huangyezhaobiao.utils.PushUtils;
+        import com.huangyezhaobiao.utils.LogUtils;
+        import com.huangyezhaobiao.utils.PushUtils;
         import com.huangyezhaobiao.utils.UserUtils;
         import com.lidroid.xutils.http.RequestParams;
         import com.lidroid.xutils.http.ResponseInfo;
+        import com.wuba.loginsdk.external.LoginClient;
 
         import java.util.List;
 
@@ -64,6 +66,7 @@ public class GPushService extends IntentService {
         final NotificationExecutor notificationExecutor = app.getGeTuiNotification();
         //得到转化过来的实体bean--新订单/结果/倒计时等
         final PushBean pushBean = PushUtils.dealGePushMessage(this, jsonResult);
+        LogUtils.LogV("pushBean",pushBean.toString());
 
         BiddingMessageReceiver.PushHandler handler = BiddingApplication.getHandler();
         //根据不同的状态做不同的东西
@@ -80,16 +83,19 @@ public class GPushService extends IntentService {
         if(list!= null && list.size() != 0){
             list.clear();
         }
-        params.addHeader("ppu", UserUtils.getUserPPU(BiddingApplication.getAppInstanceContext()));
-        params.addHeader("userId",UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
-        Log.e("sdf", "ppu:" + UserUtils.getUserPPU(BiddingApplication.getAppInstanceContext()));
-        Log.e("sdf", "userId:" + UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
-//        try {
-//            params.addHeader("version", VersionUtils.getVersionCode(BiddingApplication.getAppInstanceContext()));
+//        params.addHeader("ppu", UserUtils.getUserPPU(BiddingApplication.getAppInstanceContext()));
+//        params.addHeader("userId",UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
+
+        params.addHeader("ppu", LoginClient.doGetPPUOperate(BiddingApplication.getAppInstanceContext()));
+        params.addHeader("userId",LoginClient.doGetUserIDOperate(BiddingApplication.getAppInstanceContext()));
+//        params.addHeader("userId","34675169722113");  //bigbang1
+//        params.addHeader("userId","34680567140865");  //bigbang2
+//        params.addHeader("userId","34680592616449");  //bigbang3
+//        params.addHeader("userId","34964986925569");  //bigbang4
+//        params.addHeader("userId","35606241334273");  //bigbang5
+//        params.addHeader("userId","35606250707713");  //bigbang6
+//        params.addHeader("userId","35606332708865");  //bigbang7
         params.addHeader("version", "6");
-//        } catch (PackageManager.NameNotFoundException e) {
-//            e.printStackTrace();
-//        }
         params.addHeader("platform", "1");
         params.addHeader("UUID", PhoneUtils.getIMEI(BiddingApplication.getAppInstanceContext()));
         return params;

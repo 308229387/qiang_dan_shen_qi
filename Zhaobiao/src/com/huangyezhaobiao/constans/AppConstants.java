@@ -18,11 +18,10 @@ public class AppConstants {
     public static final String BUGTAGS_KEY = "2df806ee275e6ef1f8663c332def8eee";
 
     public static final String UPLOAD_REFUND_EVIDENCE = "image";
-    public static int HOME_TAB_HOME = 0;
-    public static int HOME_TAB_DISCOVER = 1;
-    public static int HOME_TAB_POST = 2;
-    public static int HOME_TAB_MESSAGE = 3;
-    public static int HOME_TAB_PERSONAL_CENTER = 4;
+    public static int HOME_TAB_BIDDING = 0;
+    public static int HOME_TAB_MESSAGE = 1;
+    public static int HOME_TAB_ORDER = 2;
+    public static int HOME_TAB_PERSONAL_CENTER = 3;
 
     public static int HOME_PAGE_HOME = 0;
     public static int HOME_PAGE_DISCOVER = 1;
@@ -162,7 +161,7 @@ public class AppConstants {
     /**
      * 在弹窗抢的单子
      */
-        public static final String BIDSOURCE_WINDOW = "0";
+        public static final String BIDSOURCE_WINDOW = "4";
     /**
      * 在详情页抢的单子
      */

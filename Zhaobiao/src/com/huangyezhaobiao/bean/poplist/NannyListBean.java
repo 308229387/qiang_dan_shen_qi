@@ -24,6 +24,7 @@ import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.MDUtils;
+import com.huangyezhaobiao.utils.TimeUtils;
 
 /**
  * Created by shenzhixin on 2015/12/4.
@@ -197,7 +198,7 @@ public class NannyListBean extends QDBaseBean{
         //RD shenzhixin 2016.3.29 add for o2o-709 end
 
 
-        nannyBidHolder.grab_nanny_time.setText(time);
+        nannyBidHolder.grab_nanny_time.setText(TimeUtils.formatDateTime(time));
         nannyBidHolder.grab_nanny_title.setText(title);
         nannyBidHolder.tv_nanny_budget_content.setText("预算:"+budget);
         nannyBidHolder.tv_nanny_location_content.setText("区域:"+location);
@@ -228,13 +229,19 @@ public class NannyListBean extends QDBaseBean{
         });
         switch (bidState){
             case 1://不可抢
-                nannyBidHolder.grab_nanny_knock.setBackgroundResource(R.drawable.t_not_bid_bg);
-                nannyBidHolder.grab_nanny_knock.setText("已抢完");
-                nannyBidHolder.grab_nanny_knock.setTextColor(context.getResources().getColor(R.color.transparent));
-                nannyBidHolder.grab_nanny_knock.setClickable(false);
+                nannyBidHolder.grab_style.setImageResource(R.drawable.type_back_grabbed);
+                nannyBidHolder.iv_nanny_type.setImageResource(R.drawable.iv_nanny_label);
+                nannyBidHolder.view_nanny_bottom.setVisibility(View.GONE);
+//                nannyBidHolder.grab_nanny_knock.setBackgroundResource(R.drawable.t_not_bid_bg);
+//                nannyBidHolder.grab_nanny_knock.setText("已抢完");
+//                nannyBidHolder.grab_nanny_knock.setTextColor(context.getResources().getColor(R.color.transparent));
+//                nannyBidHolder.grab_nanny_knock.setClickable(false);
                 break;
             default://可抢
-                nannyBidHolder.grab_nanny_knock.setBackgroundResource(R.drawable.t_redbuttonselector);
+                nannyBidHolder.grab_style.setImageResource(R.drawable.type_back_grab);
+                nannyBidHolder.iv_nanny_type.setImageResource(R.drawable.iv_nanny_label_knock);
+                nannyBidHolder.view_nanny_bottom.setVisibility(View.VISIBLE);
+                nannyBidHolder.grab_nanny_knock.setBackgroundResource(R.drawable.bt_knock_button_selector);
                 nannyBidHolder.grab_nanny_knock.setTextColor(context.getResources().getColor(R.color.white));
                 nannyBidHolder.grab_nanny_knock.setText("抢单");
                 nannyBidHolder.grab_nanny_knock.setClickable(true);
@@ -256,7 +263,8 @@ public class NannyListBean extends QDBaseBean{
         this.adapter                              = adapter;
         convertView                               = inflater.inflate(getLayoutId(),parent,false);
         nannyBidHolder                            = new NannyBidHolder();
-        nannyBidHolder.grab_nanny_knock           = (Button) convertView.findViewById(R.id.grab_main_knock);
+        nannyBidHolder.grab_style                 = (ImageView) convertView.findViewById(R.id.grab_style);
+        nannyBidHolder.iv_nanny_type              = (ImageView) convertView.findViewById(R.id.iv_nanny_type);
         nannyBidHolder.grab_nanny_time            = (TextView) convertView.findViewById(R.id.grab_nanny_time);
         nannyBidHolder.grab_nanny_title           = (TextView) convertView.findViewById(R.id.grab_nanny_title);
         nannyBidHolder.tv_nanny_budget_content    = (TextView) convertView.findViewById(R.id.tv_nanny_budget);
@@ -264,8 +272,12 @@ public class NannyListBean extends QDBaseBean{
         nannyBidHolder.tv_nanny_startTime_content = (TextView) convertView.findViewById(R.id.tv_nanny_startTime);
         nannyBidHolder.tv_nanny_time_content      = (TextView) convertView.findViewById(R.id.tv_nanny_time);
         nannyBidHolder.nanny_item                 = convertView.findViewById(R.id.nanny_item);
+
+        nannyBidHolder.view_nanny_bottom          = convertView.findViewById(R.id.view_nanny_bottom);
+        nannyBidHolder.grab_nanny_knock           = (Button) convertView.findViewById(R.id.grab_main_knock);
         nannyBidHolder.tv_main_fee                = (TextView) convertView.findViewById(R.id.tv_main_fee);
         nannyBidHolder.tv_main_origin_fee         = (TextView) convertView.findViewById(R.id.tv_main_origin_fee);
+
         convertView.setTag(nannyBidHolder);
         return convertView;
     }

@@ -66,7 +66,7 @@ public class RefundReasonAdapter extends BaseAdapter {
             holder.item_reason_widget.setTextColor(context.getResources().getColor(R.color.white));
         }else{
             holder.item_reason_widget.setBackgroundResource(R.drawable.drawable_reason_entity_uncheck);
-            holder.item_reason_widget.setTextColor(context.getResources().getColor(R.color.blacks));
+            holder.item_reason_widget.setTextColor(context.getResources().getColor(R.color.refund_reason));
         }
         holder.item_reason_widget.setText(entity.getReasonName());
         holder.item_reason_widget.setOnClickListener(new View.OnClickListener() {

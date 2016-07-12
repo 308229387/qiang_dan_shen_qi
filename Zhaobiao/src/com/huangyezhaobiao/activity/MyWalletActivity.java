@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.utils.ActivityUtils;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 
 /**
  * Created by shenzhixin on 2015/12/12.
@@ -34,10 +36,12 @@ public class MyWalletActivity extends QBBaseActivity implements View.OnClickList
     public void initView() {
         layout_back_head = getView(R.id.layout_head);
         back_layout 	 = getView(R.id.back_layout);
+        back_layout.setVisibility(View.VISIBLE);
         txt_head    	 = getView(R.id.txt_head);
+        txt_head.setText("我的钱包");
         tbl              = getView(R.id.tbl);
         rl_charge        = getView(R.id.rl_charge);
-        txt_head.setText("我的钱包");
+
     }
 
     @Override
@@ -54,8 +58,20 @@ public class MyWalletActivity extends QBBaseActivity implements View.OnClickList
                 break;
             case R.id.rl_charge:
                 ActivityUtils.goToActivity(this,ConsumptionActivity.class);
+                HYMob.getDataList(this, HYEventConstans.EVENT_ID_CONSUMPTION);
                 break;
         }
 
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        HYMob.getBaseDataListForPage(this, HYEventConstans.PAGE_WALLET, stop_time - resume_time);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

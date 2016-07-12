@@ -17,6 +17,8 @@ import android.widget.TextView;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.url.URLConstans;
 import com.huangyezhaobiao.url.UrlSuffix;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.NetUtils;
 
@@ -40,11 +42,15 @@ public class IntroduceFunctionActivity extends QBBaseActivity implements OnClick
 		setContentView(R.layout.activity_introduce_production);
 		ll_webview_container = getView(R.id.ll_webview_container);
 		chromeBaseClient = new WebChromeBaseClient();
+
 		layout_back_head = getView(R.id.layout_head);
+		backLayout = getView(R.id.back_layout);
+		backLayout.setVisibility(View.VISIBLE);
+		txt_head   = getView(R.id.txt_head);
+		txt_head.setText(R.string.introduction);
+
 		view_no_internet = getView(R.id.view_no_internet);
 		pb         = getView(R.id.pb);
-		backLayout = getView(R.id.back_layout);
-		txt_head   = getView(R.id.txt_head);
 		tbl        = getView(R.id.tbl);
 		webView_introduce =getView(R.id.webview);
 		client      = new BaseWebClient();
@@ -53,7 +59,6 @@ public class IntroduceFunctionActivity extends QBBaseActivity implements OnClick
 		webView_introduce.getSettings().setDefaultTextEncodingName("UTF-8"); // 设置默认的显示编码
 		webView_introduce.setWebViewClient(client);
 		webView_introduce.setWebChromeClient(chromeBaseClient);
-		txt_head.setText(R.string.introduction);
 		removeJSInterface();
 //		String url = URLConstans.INTRODUCTION_URL + UrlSuffix.getIntroductionSuffix();
 
@@ -167,6 +172,9 @@ public class IntroduceFunctionActivity extends QBBaseActivity implements OnClick
 		System.exit(0);
 	}
 
-
-
+	@Override
+	protected void onStop() {
+		super.onStop();
+		HYMob.getBaseDataListForPage(this, HYEventConstans.PAGE_INTRODUCTION, stop_time - resume_time);
+	}
 }

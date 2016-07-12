@@ -2,13 +2,15 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
     -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
+
         -->
     </style>
     
@@ -35,22 +37,50 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+
+
+    <style name="loading" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/sss</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
     <!-- Request页面的Dialog -->
     <style name="RequestDialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsTranslucent">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
     </style>
 
-<!--      <style name="MyDialog" parent="@android:style/Theme.Dialog">
+    <style name="transfering" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowContentOverlay">@null</item>
-    </style> -->
+    </style>
+
+    <!--      <style name="MyDialog" parent="@android:style/Theme.Dialog">
+            <item name="android:windowFrame">@null</item>
+            <item name="android:windowIsFloating">true</item>
+            <item name="android:windowIsTranslucent">true</item>
+            <item name="android:windowNoTitle">true</item>
+            <item name="android:backgroundDimEnabled">false</item>
+            <item name="android:windowContentOverlay">@null</item>
+        </style> -->
     
      <!-- Request页面的Dialog -->
     <style name="MyDialog"  parent="@android:style/Theme.Dialog">
@@ -113,16 +143,48 @@
         <item name="android:windowEnterAnimation">@anim/dialog_enter_anim</item>  
         <item name="android:windowExitAnimation">@anim/dialog_exit_anim</item>  
     </style> 
-    
-    
-    
-    <style name="loading" parent="@android:style/Theme.Dialog">
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowIsTranslucent">false</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@color/sss</item>
-        <item name="android:backgroundDimEnabled">false</item>
-        <item name="android:windowContentOverlay">@null</item>
+
+    <!--Main bottom-->
+    <style name="HomeTab">
+        <item name="android:textAppearance">?android:textAppearance</item>
     </style>
+
+    <declare-styleable name="Switch_Style">
+        <!-- Default style for the Switch widget. -->
+        <attr name="sb_switchStyle" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="SwitchButton">
+        <!-- Drawable to use as the "thumb" that switches back and forth. -->
+        <attr name="sb_thumb" format="reference" />
+        <!-- Drawable to use as the "track" that the switch thumb slides within. -->
+        <attr name="sb_track" format="reference" />
+        <!-- Text to use when the switch is in the checked/"on" state. -->
+        <attr name="sb_textOn" format="string" />
+        <!-- Text to use when the switch is in the unchecked/"off" state. -->
+        <attr name="sb_textOff" format="string" />
+        <!-- Amount of padding on either side of text within the switch thumb. -->
+        <attr name="sb_thumbTextPadding" format="dimension" />
+        <!-- TextAppearance style for text displayed on the switch thumb. -->
+        <attr name="sb_switchTextAppearance" format="reference" />
+        <!-- Minimum width for the switch component -->
+        <attr name="sb_switchMinWidth" format="dimension" />
+        <!-- Minimum space between the switch and caption text -->
+        <attr name="sb_switchPadding" format="dimension" />
+    </declare-styleable>
+    <style name="Switch">
+        <item name="sb_track">@drawable/switch_btn</item>
+        <item name="sb_thumb">@drawable/switch_btn_slipper</item>
+        <item name="sb_textOn">@string/switch_on</item>
+        <item name="sb_textOff">@string/switch_off</item>
+        <item name="sb_thumbTextPadding">15dip</item>
+        <item name="sb_switchMinWidth">60dip</item>
+        <item name="sb_switchPadding">10dip</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:background">#00FFFFFF</item>
+    </style>
+
+    <string name="switch_on"></string>
+    <string name="switch_off"></string>
+    <color name="switchtextcolor">#FFFFFF</color>
 </resources>

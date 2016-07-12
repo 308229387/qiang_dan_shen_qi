@@ -23,14 +23,14 @@ import com.huangyezhaobiao.utils.HYMob;
  * @author shenzhixin
  *
  */
-public class PriceAreaBean extends QDDetailBaseBean{
+public class    PriceAreaBean extends QDDetailBaseBean{
 	private String name;
 	private String orderNum;
 	private String orderFee;
 	private String originalFee;
 	private String refundState;
 	private TextView tv_last_cost_content;
-	private TextView tv_last_number_content;
+//	private TextView tv_last_number_content;  //订单编号
 	private TextView tv_original_fee;
 	private View     rl_tuidan;
 	private Context  context;
@@ -48,7 +48,7 @@ public class PriceAreaBean extends QDDetailBaseBean{
 		this.context           = context;
 		View view 			   = LayoutInflater.from(context).inflate(R.layout.layout_qiangdan_last, null);
 		tv_last_cost_content   = (TextView) view.findViewById(R.id.tv_last_cost_content);
-		tv_last_number_content = (TextView) view.findViewById(R.id.tv_last_number_content);
+//		tv_last_number_content = (TextView) view.findViewById(R.id.tv_last_number_content);
 		rl_tuidan    		   = view.findViewById(R.id.rl_tuidan);
 		tv_original_fee        = (TextView) view.findViewById(R.id.tv_original_fee);
 		fillDatas();
@@ -57,12 +57,8 @@ public class PriceAreaBean extends QDDetailBaseBean{
 	
 	private void fillDatas()
 	{
-		Log.e("shenzhixinUUU", "state:" + refundState);
-		//refundState = "1";//for test
-		//orderFee = originalFee; for test
-		tv_last_number_content.setText(orderNum);
 		//orderFee是活动价，当原价与活动价相等时，显示活动价，隐藏原价
-		tv_last_cost_content.setText(orderFee);
+		tv_last_cost_content.setText("￥"+orderFee);
 		if(!TextUtils.isEmpty(originalFee)) {
 			tv_original_fee.setText(originalFee);
 		}
@@ -149,20 +145,7 @@ public class PriceAreaBean extends QDDetailBaseBean{
 	public void setOrderFee(String orderFee) {
 		this.orderFee = orderFee;
 	}
-	public TextView getTv_last_cost_content() {
-		return tv_last_cost_content;
-	}
-	public void setTv_last_cost_content(TextView tv_last_cost_content) {
-		this.tv_last_cost_content = tv_last_cost_content;
-	}
-	public TextView getTv_last_number_content() {
-		return tv_last_number_content;
-	}
-	public void setTv_last_number_content(TextView tv_last_number_content) {
-		this.tv_last_number_content = tv_last_number_content;
-	}
 
-	
 	public void setNewType(String newType){
 		super.newtype = newType;
 	}

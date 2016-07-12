@@ -16,12 +16,13 @@ public class ZhaoBiaoDialog extends Dialog implements View.OnClickListener{
 	private Context context;
 	private LayoutInflater mInflater;
 	private View view;
-	private TextView dialog_tv_title;
+//	private TextView dialog_tv_title;
 	private TextView dialog_tv_content;
 	private RelativeLayout rl_cancel,rl_ok;
+	private View indicator_line;
 	private TextView tv_dialog_cancel,tv_dialog_ok;
 	private onDialogClickListener listener;
-	private String title;
+//	private String title;
 	private String content;
 	
 	public void setOnDialogClickListener(onDialogClickListener listener){
@@ -36,17 +37,17 @@ public class ZhaoBiaoDialog extends Dialog implements View.OnClickListener{
 		tv_dialog_ok.setText(positive);
 	}
 
-	public ZhaoBiaoDialog(Context context,String title,String content) {
+	public ZhaoBiaoDialog(Context context,String content) {
 		 super(context,R.style.RequestDialog);
 		 this.context = context;
 		 mInflater = LayoutInflater.from(context);
-		 this.requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题
-		 getWindow().setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND,
-				WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
+//		 this.requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题
+//		 getWindow().setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND,
+//				WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
 		 setCanceledOnTouchOutside(false);
 		 Window window = getWindow();
 		 window.setWindowAnimations(R.style.dialogWindowAnim);
-		 this.title = title;
+//		 this.title = title;
 		 this.content = content;
 		 initView();
 		
@@ -56,10 +57,11 @@ public class ZhaoBiaoDialog extends Dialog implements View.OnClickListener{
 		view = mInflater.inflate(R.layout.dialog_zhaobiao, null);
 		setContentView(view);
 		dialog_tv_content = (TextView) view.findViewById(R.id.dialog_tv_content);
-		dialog_tv_title   = (TextView) view.findViewById(R.id.dialog_tv_title);
+//		dialog_tv_title   = (TextView) view.findViewById(R.id.dialog_tv_title);
 		rl_cancel         = (RelativeLayout) view.findViewById(R.id.rl_cancel);
 		rl_ok             = (RelativeLayout) view.findViewById(R.id.rl_ok);
 		tv_dialog_cancel  = (TextView) view.findViewById(R.id.tv_dialog_cancel);
+		indicator_line   = view.findViewById(R.id.indicator_line);
 		tv_dialog_ok      = (TextView) view.findViewById(R.id.tv_dialog_ok);
 		rl_ok.setOnClickListener(this);
 		rl_cancel.setOnClickListener(this);
@@ -69,21 +71,21 @@ public class ZhaoBiaoDialog extends Dialog implements View.OnClickListener{
 			dialog_tv_content.setText(content);
 		}
 		
-		if(TextUtils.isEmpty(title)){
-			dialog_tv_title.setVisibility(View.GONE);
-		}else {
-			dialog_tv_title.setText(title);
-		}
+//		if(TextUtils.isEmpty(title)){
+//			dialog_tv_title.setVisibility(View.GONE);
+//		}else {
+//			dialog_tv_title.setText(title);
+//		}
 
 	}
 
-	/**
-	 * 设置标题
-	 * @param title
-	 */
-	public void setTitle(String title){
-		dialog_tv_title.setText(title);
-	}
+//	/**
+//	 * 设置标题
+//	 * @param title
+//	 */
+//	public void setTitle(String title){
+//		dialog_tv_title.setText(title);
+//	}
 	
 	/**
 	 * 设置内容
@@ -100,7 +102,9 @@ public class ZhaoBiaoDialog extends Dialog implements View.OnClickListener{
 	}
 	
 	public void setCancelButtonGone(){
+
 		rl_cancel.setVisibility(View.GONE);
+		indicator_line.setVisibility(View.GONE);
 	}
 	
 	@Override

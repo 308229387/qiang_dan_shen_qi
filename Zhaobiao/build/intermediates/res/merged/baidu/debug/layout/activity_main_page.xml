@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <com.huangyezhaobiao.tab.MainTabViewPager
+            android:id="@+id/id_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_divider_line_height"
+            android:background="@color/gray_color_line"
+            android:layout_above="@+id/id_indicator"/>
+
+        <com.huangyezhaobiao.tab.MainTabIndicator
+            android:id="@+id/id_indicator"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="50.0dip"/>
+
+
+</RelativeLayout>

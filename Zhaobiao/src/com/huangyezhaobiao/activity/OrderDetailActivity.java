@@ -3,6 +3,7 @@ package com.huangyezhaobiao.activity;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -30,6 +32,7 @@ import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
+import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.MDUtils;
 import com.huangyezhaobiao.utils.PushUtils;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
@@ -54,6 +57,7 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 	private ZhaoBiaoDialog zbdialog;
 	private LinearLayout linear;// 可抢单详情页 用于addview
 	private QIangDanDetailViewModel viewModel;
+	private TextView count_title;
 	private TextView fee;
 	private TextView discountFee;
 	private PushToPassBean popPass;
@@ -79,9 +83,11 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 	@Override
 	public void initView() {
 		rl_qd            = getView(R.id.rl_qd);
+		count_title = getView(R.id.count_title);
 		discountFee      = getView(R.id.discountFee);
 		layout_back_head = getView(R.id.layout_head);
 		back_layout = (LinearLayout) this.findViewById(R.id.back_layout);
+		back_layout.setVisibility(View.VISIBLE);
 		order_detail_bottom = (RelativeLayout) this.findViewById(R.id.order_detail_bottom);
 		done = (Button) this.findViewById(R.id.done);
 		tbl = (TitleMessageBarLayout) findViewById(R.id.tbl);
@@ -108,7 +114,13 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 			tbl.setPushBean(pushBean);
 			tbl.setVisibility(View.VISIBLE);
 			if(pushBean.getTag()==100){
-				PushUtils.pushList.clear();
+				LogUtils.LogV("bidState",""+ bidState);
+				if(bidState == 0){  //可抢的订单详情页不弹窗
+					PushUtils.pushList.clear();
+				}else if(bidState == 1){
+					super.onNotificationCome(pushBean);
+				}
+
 			}
 		}
 	}
@@ -151,8 +163,8 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 	@SuppressWarnings("unchecked")
 	@Override
 	public void onLoadingSuccess(Object t) {
-		stopLoading();
 		if (t instanceof Integer) {
+			stopLoading();
 			rl_qd.setVisibility(View.GONE);
 			int status = (Integer) t;
 			Intent intent = new Intent();
@@ -170,7 +182,7 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 			}
 			else if(status==2) {
 				
-				zbdialog = new ZhaoBiaoDialog(this, getString(R.string.hint), getString(R.string.not_enough_balance));
+				zbdialog = new ZhaoBiaoDialog(this, getString(R.string.not_enough_balance));
 				zbdialog.setCancelButtonGone();
 				zbdialog.setOnDialogClickListener(new onDialogClickListener() {
 					
@@ -200,15 +212,13 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 				Toast.makeText(OrderDetailActivity.this,getString(R.string.bidding_exception), Toast.LENGTH_SHORT).show();;
 			}
 		} else {
-
 			// 这里把bean返回的List<View> 添加到对应位置的linearlayout里面
 			// 当然addView是不能margin和padding的
-
 			List<View> viewList = (List<View>) t;
-
 			for (View v : viewList) {
 				linear.addView(v);
 			}
+			stopLoading();
 		}
 	}
 
@@ -239,10 +249,11 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 	@SuppressLint("ResourceAsColor")
 	@Override
 	public void back(LogBean log, final BottomViewBean bottom) {
- 
 		popPass = log.toPopPassBean();
 		bidState = log.getBidState();
 		if (bidState == 0) {
+			done.setBackgroundColor(getResources().getColor(R.color.tab_red));
+			done.setText(R.string.grab_list);
 			done.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View arg0) {
@@ -254,33 +265,34 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 								rl_qd.setVisibility(View.VISIBLE);
 								knockViewModel = new KnockViewModel(OrderDetailActivity.this, OrderDetailActivity.this);
 								knockViewModel.knock(popPass, AppConstants.BIDSOURCE_DETAIL);
-								MDUtils.bidDetailsPageMD(OrderDetailActivity.this, "" + bidState,
-										popPass.getCateId() + "", popPass.getBidId() + "", MDConstans.ACTION_QIANG_DAN);
+								MDUtils.bidDetailsPageMD(OrderDetailActivity.this, "" + bidState,popPass.getCateId() + "", popPass.getBidId() + "", MDConstans.ACTION_QIANG_DAN);
 							} catch (Exception e) {
 
-					}
+					        }
 				}
 			});
 		} else {
-			done.setBackgroundColor(getResources().getColor(R.color.whitedark));
+//			done.setBackgroundColor(getResources().getColor(R.color.whitedark));
+			done.setBackgroundColor(Color.parseColor("#AFAFAF"));
 			done.setText(R.string.bidding_finish);
 		}
-		//bottom.setPrevilage(bottom.getOriginFee());//for test
+
+		count_title.setText("抢单费用");
+
 		//如果活动价与原价一样，那么就只显示原价不显示活动价，原价也不划横线
 		if(TextUtils.equals(bottom.getPrevilage(),bottom.getOriginFee())){//活动价为空,不显示活动价
-			discountFee.setText(bottom.getPrevilage());
-			//discountFee的marginTop为15dp,ui好看 shenzhixin add 2016.3.28
+
+			discountFee.setText("￥" + bottom.getPrevilage());
 			RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) discountFee.getLayoutParams();
 			params.topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,15,getResources().getDisplayMetrics());
 			discountFee.setLayoutParams(params);
-			//shenzhixin add 2016.3.28 end
 			fee.setVisibility(View.GONE);
 		}else {
 			//fee是原价
 			fee.setText(bottom.getOriginFee());
 			fee.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
 			//discountFee是活动价
-			discountFee.setText(bottom.getPrevilage());
+			discountFee.setText("￥" + bottom.getPrevilage());
 		}
 	}
 
@@ -289,5 +301,10 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 	protected void onStop() {
 		super.onStop();
 		HYMob.getBaseDataListForPage(OrderDetailActivity.this, HYEventConstans.PAGE_BINDING_DETAIL, stop_time - resume_time);
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
 	}
 }

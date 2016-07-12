@@ -3,7 +3,6 @@ package com.huangyezhaobiao.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -54,15 +53,13 @@ import java.util.Map;
 public class MobileBindChangeActivity extends QBBaseActivity implements View.OnClickListener, NetWorkVMCallBack ,MobileChangeIView{
     private LinearLayout              back_layout;
     private TextView                  txt_head;
-    private TextInputLayout           til_now_bind_mobile;
-    private TextInputLayout           til_now_validate_code;
-    private TextInputLayout           til_new_validate_mobile;
+
     private EditText                  et_now_bind_mobile;
     private EditText                  et_now_validate_code;
     private EditText                  et_new_validate_mobile;
     private Button                    btn_getCode;
     private Button                    btn_submit;
-    private ZhaoBiaoDialog            changeMobileExitDialog;
+//    private ZhaoBiaoDialog            changeMobileExitDialog;
     private ZhaoBiaoDialog            confirmChangeMobileDialog;
     private ValidateViewModel mobileChangeGetCodeVM;
     private MobileBindChangeViewModel mobileBindChangeViewModel;
@@ -79,7 +76,7 @@ public class MobileBindChangeActivity extends QBBaseActivity implements View.OnC
 
     public static Intent onNewIntent(Context context,String mobile){
         Intent intent = new Intent(context,MobileBindChangeActivity.class);
-        intent.putExtra(MOBILE,mobile);
+        intent.putExtra(MOBILE, mobile);
         return intent;
     }
 
@@ -117,27 +114,21 @@ public class MobileBindChangeActivity extends QBBaseActivity implements View.OnC
         setContentView(getLayoutId());
         layout_back_head        = getView(R.id.layout_head);
         back_layout             = getView(R.id.back_layout);
+        back_layout.setVisibility(View.VISIBLE);
         txt_head                = getView(R.id.txt_head);
-        til_now_bind_mobile     = getView(R.id.now_bind_mobile);
-        til_new_validate_mobile = getView(R.id.new_validate_mobile);
-        til_now_validate_code   = getView(R.id.now_validate_code);
+        txt_head.setText(R.string.change_mobile_bind);
+
+        et_now_bind_mobile     = getView(R.id.now_bind_mobile);
+        et_now_validate_code   = getView(R.id.now_validate_code);
+        et_new_validate_mobile = getView(R.id.new_validate_mobile);
+
         btn_getCode             = getView(R.id.btn_getCode);
         btn_submit              = getView(R.id.btn_submit);
-        et_new_validate_mobile  = til_new_validate_mobile.getEditText();
-        et_now_bind_mobile      = til_now_bind_mobile.getEditText();
-        et_now_validate_code    = til_now_validate_code.getEditText();
-        changeMobileExitDialog = new ZhaoBiaoDialog(this,"提示","确认要退出修改绑定手机号么?");
-        confirmChangeMobileDialog = new ZhaoBiaoDialog(this,"提示","确认修改手机号么?");
-        initDatas();
 
+//        changeMobileExitDialog = new ZhaoBiaoDialog(this,"提示","确认要退出修改绑定手机号么?");
+        confirmChangeMobileDialog = new ZhaoBiaoDialog(this,"确认修改手机号么?");
     }
 
-    private void initDatas() {
-        til_new_validate_mobile.setHint(getString(R.string.new_bind_mobile));
-        til_now_bind_mobile.setHint(getString(R.string.now_bind_mobile));
-        til_now_validate_code.setHint(getString(R.string.validate_number));
-        txt_head.setText(R.string.change_mobile_bind);
-    }
 
     @Override
     public void initListener() {
@@ -146,18 +137,20 @@ public class MobileBindChangeActivity extends QBBaseActivity implements View.OnC
         btn_submit.setOnClickListener(this);
         et_now_validate_code.addTextChangedListener(mobileBindChangePresenter.getMobileCodeListener());
         et_new_validate_mobile.addTextChangedListener(mobileBindChangePresenter.getNewMobileTextWatcher());
-        changeMobileExitDialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
-            @Override
-            public void onDialogOkClick() {
-                changeMobileExitDialog.dismiss();
-                onBackPressed();
-            }
 
-            @Override
-            public void onDialogCancelClick() {
-                changeMobileExitDialog.dismiss();
-            }
-        });
+//        changeMobileExitDialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
+//            @Override
+//            public void onDialogOkClick() {
+//                changeMobileExitDialog.dismiss();
+//                onBackPressed();
+//            }
+//
+//            @Override
+//            public void onDialogCancelClick() {
+//                changeMobileExitDialog.dismiss();
+//            }
+//        });
+
         confirmChangeMobileDialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
             @Override
             public void onDialogOkClick() {
@@ -177,7 +170,8 @@ public class MobileBindChangeActivity extends QBBaseActivity implements View.OnC
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.back_layout://后退
-                changeMobileExitDialog.show();
+//                changeMobileExitDialog.show();
+                onBackPressed();
                 break;
             case R.id.btn_getCode://获取验证码
                 BDMob.getBdMobInstance().onMobEvent(this, BDEventConstans.EVENT_ID_CHANGE_MOBILE_PAGE_GET_CODE);
@@ -299,5 +293,11 @@ public class MobileBindChangeActivity extends QBBaseActivity implements View.OnC
         btn_getCode.setTextColor(getResources().getColor(R.color.white));
         btn_getCode.setClickable(false);
         btn_getCode.setText(time+"秒后重发");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        HYMob.getBaseDataListForPage(this, HYEventConstans.PAGE_BIND_MOBILE, stop_time - resume_time);
     }
 }

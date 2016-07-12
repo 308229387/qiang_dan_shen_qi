@@ -1,20 +1,20 @@
 apply plugin: 'com.android.application'
 apply plugin: 'bugly'
 
-buildscript {
-    repositories {
-        mavenCentral()
-        maven { url 'https://maven.fabric.io/public' }
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.0.0'
-    }
-}
+//buildscript {
+//    repositories {
+//        mavenCentral()
+//        maven { url 'https://maven.fabric.io/public' }
+//    }
+//    dependencies {
+//        classpath 'com.android.tools.build:gradle:2.0.0'
+//    }
+//}
 
 
-repositories {
-    mavenCentral()
-}
+//repositories {
+//    mavenCentral()
+//}
 
 bugly {
     appId = '900004313'
@@ -37,9 +37,12 @@ dependencies {
     compile files('libs/GetuiSDK2.8.1.0.jar')
     compile files('libs/bugly_crash_release__2.1.jar')
     compile 'com.facebook.stetho:stetho:1.1.0'
+
+    compile 'com.wuba.wuxian.sdk:login:0.0.9-SNAPSHOT' //passport SDK
 }
 
 android {
+
     signingConfigs {
         release_key {
             keyAlias 'hyzhaobiao'
@@ -110,5 +113,11 @@ android {
             manifestPlaceholders = [BAIDU_CHANNEL_VALUE: "fir"]
         }
 
+    }
+
+    //在android节点内部添加configurations
+    configurations.all {
+        resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
+        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
     }
 }

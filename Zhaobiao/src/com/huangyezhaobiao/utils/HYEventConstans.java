@@ -195,6 +195,261 @@ public interface HYEventConstans {
      */
     String EVENT_ID_LOGIN = "293";
 
+    /**
+     * 引导页
+     */
+    String GUIDE_PAGE = "397";
+    /**
+     * 使用协议
+     */
+    String USEAGE_PROTOCOL ="398";
+
+    /**
+     *导航栏-抢单
+     */
+    String INDICATOR_BIDDING_LIST_PAGE = "399";
+    /**
+     * 导航栏-消息
+     */
+    String INDICATOR_MESSAGE_PAGE = "400";
+    /**
+     * 导航栏-订单
+     */
+    String INDICATOR_ORDER_PAGE = "402";
+
+    /**
+     * 导航栏-我
+     */
+    String INDICATOR_PERSONAL_PAGE = "403";
+
+    /**
+     * 抢单成功页面
+     */
+    String  EVENT_ID_SUCCESS_PAGE = "404";
+
+    /**
+     * 抢单失败页面
+     */
+    String EVENT_ID_FAILURE_PAGE = "405";
+
+    /**
+     * 消息-抢单结果提醒入口
+     */
+    String EVENT_ID_RESULT_ALERT = "406";
+
+    /**
+     *结果提醒中“查看订单”入口
+     */
+    String EVENT_ID_CHECK_ORDER = "407";
+
+    /**
+     * 消息-客户联系提醒入口
+     */
+    String EVETN_ID_CONTACT_CLIENT = "408";
+
+    /**
+     *消息-通知资讯入口
+     */
+    String EVENT_SYSTEM_NOTICE = "409";
+
+    /**
+     * 订单信息展示区块（点击进入订单详情页）
+     */
+    String EVENT_ID_ORDER_DETAIL_PAGE = "410";
+
+    /**
+     * 筛选器按钮
+     */
+    String EVENT_ID_FILTER = "411";
+
+    /**
+     * 筛选器内重置按钮
+     */
+    String EVENT_ID_FILTER_RESET ="412";
+
+    /**
+     * 筛选器内确定按钮
+     */
+    String EVENT_ID_FILTER_CONFIRM = "413";
+
+    /**
+     * 相机按钮
+     */
+    String EVENT_ID_CAMERA = "414";
+
+    /**
+     * 已抢详情页短信发送按钮
+     */
+    String EVENT_ID_ORDER_DETAIL_PAGE_MESSAGE = "415";
+
+    /**
+     * 我的钱包入口
+     */
+    String EVENT_ID_MY_WALLET = "416";
+
+    /**
+     * 消费记录入口
+     */
+    String EVENT_ID_CONSUMPTION = "417";
+
+    /**
+     * 设置入口
+     */
+    String EVENT_ID_SETTING = "418";
+
+    /**
+     * 修改绑定手机号入口
+     */
+    String EVENT_ID_BIND_MOBILE = "419";
+
+    /**
+     * 自定义接单设置入口
+     */
+    String EVENT_ID_AUTO_SETTING ="420";
+
+    /**
+     * 帮助入口
+     */
+    String EVENT_ID_HELP = "421";
+
+    /**
+     * 关于入口
+     */
+    String EVENT_ID_ABOUT = "422";
+
+    /**
+     * 功能介绍页入口
+     */
+    String EVENT_ID_INTRODUCTION = "423";
+
+    /**
+     * 主列表停留时间
+     */
+    String PAGE_BINGING_LIST = "424";
+
+    /**
+     * 弹窗停留时间
+     */
+    String PAGE_POP_WINDOW = "425";
 
 
+    /**
+     * 使用另一个号码按钮点击
+     */
+    String EVENT_CHANGE_NUMBER = "427";
+
+//    /**
+//     * 更换号码成功之后的接听
+//     */
+//     String EVENT_ANOTHER_NUMBER_RECEIVE = "428";
+
+    /**
+     * 呼叫弹窗取消按钮点击
+     */
+    String EVENT_CALL_CANCEL = "429";
+
+    /**
+     * 呼叫弹窗接听按钮点击
+     */
+    String EVENT_CALL_CONFIRM = "430";
+
+    /**
+     * 打电话提示接听弹窗展现时间
+     */
+    String PAGE_DIALOG_CALL = "431";
+
+    /**
+     * 修改接听号码弹窗展现时间
+     */
+    String PAGE_DIALOG_INPUT = "432";
+
+    /**
+     * 退单申请页
+     */
+    String PAGE_REFUND = "433";
+
+    /**
+     * 个人中心首页
+     */
+    String PAGE_PERSONAL ="434";
+
+    /**
+     * 我的钱包
+     */
+    String PAGE_WALLET = "435";
+
+    /**
+     * 消费记录
+     */
+    String PAGE_RECORD_EXPENSES = "436";
+
+    /**
+     * 设置列表
+     */
+    String PAGE_SETTING_LIST ="437";
+
+    /**
+     * 自定义设置页面
+     */
+    String PAGE_AUTO_SETTING = "438";
+
+    /**
+     * 更改手机绑定页面
+     */
+    String PAGE_BIND_MOBILE = "439";
+
+    /**
+     * 消息中心首页列表
+     */
+    String PAGE_MESSAGE_LIST = "440";
+
+    /**
+     * 抢单结果提醒页
+     */
+    String PAGE_RESULT_ALERT = "441";
+
+    /**
+     * 客户联系提醒页
+     */
+    String PAGE_CONTACT_CLIENT = "442";
+
+    /**
+     * 系统通知
+     */
+    String PAGE_SYSTEM_NOTICE= "443";
+
+    /**
+     * 帮助页面
+     */
+    String PAGE_HELP ="444";
+
+    /**
+     * 关于列表
+     */
+    String PAGE_ABOUT= "445";
+
+    /**
+     * 功能介绍页
+     */
+    String PAGE_INTRODUCTION ="446";
+
+    /**
+     * 商家协议页
+     */
+    String PAGE_PROTOCOL ="447";
+
+    /**
+     * 登陆页面
+     */
+    String PAGE_LOGIN = "448";
+
+    /**
+     * 引导页
+     */
+    String PAGE_GUIDE = "449";
+
+    /**
+     * 手机绑定页面
+     */
+    String PAGE_FIRST_BIND_MOBILE = "450";
 }

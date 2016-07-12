@@ -32,9 +32,12 @@ public class VoiceManager {
 	private static VoiceManager voiceManager;
 	private Context context;
 	private SpeechSynthesizer mTts;//语音说话器
-	private boolean allowSpeak = true;//是否允许播报
+	public static  boolean allowSpeak = true;//是否允许播报
 	//线程安全的集合队列,存放
-	private List<String> messages = Collections.synchronizedList(new ArrayList<String>());
+	private List<String> messages = Collections.synchronizedList(new ArrayList<String>());//总队列存放标地、消息
+
+	private List<String> otherMessageList = Collections.synchronizedList(new ArrayList<String>()); //存放消息的队列
+
 	private String message;
 	private OnVoiceManagerPlayFinished listener;
 	private VoiceManager(){};
@@ -79,7 +82,7 @@ public class VoiceManager {
 	
 	public void speakLocalMessage(String msg){
 		//if(mTts!=null && !mTts.isSpeaking()){
-			mTts.startSpeaking(msg,null);
+			mTts.startSpeaking(msg, null);
 		//}
 	}
 
@@ -95,7 +98,7 @@ public class VoiceManager {
 			LogUtils.LogE("demo", "message:" + message);
 			mTts.startSpeaking(message, mSynListener);
 		}else{
-			Toast.makeText(context,"消息列表页:"+messages.size(),0).show();
+			Toast.makeText(context,"消息列表页:"+messages.size(),Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -113,7 +116,8 @@ public class VoiceManager {
 			mTts.stopSpeaking();
 		}
 	}
-	
+
+
 	/**
 	 * 创建批次的第一个新订单
 	 * @param message
@@ -122,14 +126,20 @@ public class VoiceManager {
 		addOrder(message);
 		speak();
 	}
-	
+
+
+
+
+
+
 	/**
 	 * 订单窗还在时又来了一条新订单
 	 */
 	public void addOrder(String message){
 		messages.add(message);
 	}
-	
+
+
 	/**
 	 * 点击了抢单按钮
 	 */

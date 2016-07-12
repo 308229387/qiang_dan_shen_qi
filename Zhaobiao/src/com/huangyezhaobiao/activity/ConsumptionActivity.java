@@ -14,6 +14,8 @@ import com.huangye.commonlib.vm.callback.ListNetWorkVMCallBack;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.adapter.ConsumptionAdapter;
 import com.huangyezhaobiao.bean.ConsumeItemBean;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.PullToRefreshListViewUtils;
 import com.huangyezhaobiao.vm.ConsumeListVM;
 
@@ -53,14 +55,16 @@ public class ConsumptionActivity extends QBBaseActivity implements View.OnClickL
     public void initView() {
         layout_back_head   = getView(R.id.layout_head);
         back_layout 	   = getView(R.id.back_layout);
+        back_layout.setVisibility(View.VISIBLE);
         txt_head    	   = getView(R.id.txt_head);
+        txt_head.setText("消费记录");
         tbl                = getView(R.id.tbl);
         srl                = getView(R.id.srl);
-        consume_list       = getView(R.id.consume_list);
+        consume_list = getView(R.id.consume_list);
         listView           = consume_list.getRefreshableView();
         datas_empty_layout = getView(R.id.datas_empty_layout);
         adapter            = new ConsumptionAdapter(this,itemBeans);
-        txt_head.setText("消费记录");
+
         PullToRefreshListViewUtils.initListView(consume_list);
         configListView();
     }
@@ -215,7 +219,9 @@ public class ConsumptionActivity extends QBBaseActivity implements View.OnClickL
         showExitDialog();
     }
 
-
-
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+        HYMob.getBaseDataListForPage(this, HYEventConstans.PAGE_RECORD_EXPENSES, stop_time - resume_time);
+    }
 }

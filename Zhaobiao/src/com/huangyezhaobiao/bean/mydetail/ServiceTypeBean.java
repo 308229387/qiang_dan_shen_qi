@@ -17,7 +17,6 @@ import com.huangyezhaobiao.bean.popdetail.QDDetailBaseBean;
 import com.huangyezhaobiao.eventbus.EventAction;
 import com.huangyezhaobiao.eventbus.EventType;
 import com.huangyezhaobiao.eventbus.EventbusAgent;
-import com.huangyezhaobiao.fragment.QiangDanBaseFragment;
 import com.huangyezhaobiao.inter.Constans;
 import com.huangyezhaobiao.inter.MDConstans;
 import com.huangyezhaobiao.utils.ActivityUtils;
@@ -38,16 +37,23 @@ import com.huangyezhaobiao.view.ZhaoBiaoDialog.onDialogClickListener;
  */
 public class ServiceTypeBean extends QDDetailBaseBean{
 	private Context context;
-	private String name;
+	private String name; //订单状态
 	private String leftTime;
 	private String clientPhone;
 	private String customerName;
-	private RelativeLayout rl_done_not_gone;
+	private String orderNum; //订单编号
+
+//	private RelativeLayout rl_done_not_gone; //标题栏
 	private TextView       tv_done_status;
-	private TextView       tv_tel_time;
-	private TextView       tv_tel_phone_content;
+//	private TextView       tv_tel_time;//剩余时间
+//	private TextView       tv_tel_phone_content; //客户电话
 	private TextView       tv_customer_name_content;
-	private ImageView      iv_tel;
+//	private ImageView      iv_tel;  //打电话
+
+
+
+	private TextView tv_last_number_content;  //订单编号
+
 	private ZhaoBiaoDialog dialog;
 
 	public String getCustomerName() {
@@ -61,50 +67,54 @@ public class ServiceTypeBean extends QDDetailBaseBean{
 	@Override
 	public View initView(final Context context) {
 		this.context = context;
-		initDialog(context);
+//		initDialog(context);
 		View view 			 = LayoutInflater.from(context).inflate(R.layout.layout_qiangdan_first, null);
-		rl_done_not_gone 	 = (RelativeLayout) view.findViewById(R.id.rl_done_not_gone);
+		tv_last_number_content = (TextView) view.findViewById(R.id.tv_last_number_content);
 		tv_done_status   	 = (TextView) view.findViewById(R.id.tv_done_status);
-		tv_tel_time      	 = (TextView) view.findViewById(R.id.tv_tel_time);
 		tv_customer_name_content = (TextView) view.findViewById(R.id.tv_customer_name_content);
-		tv_tel_phone_content = (TextView) view.findViewById(R.id.tv_tel_phone_content);
-		iv_tel 			 	 = (ImageView) view.findViewById(R.id.iv_tel);
-		iv_tel.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				EventAction action = new EventAction(EventType.EVENT_TELEPHONE_FROM_DETAIL,new TelephoneBean(orderId+"",TelephoneBean.SOURCE_DETAIL));
-				EventbusAgent.getInstance().post(action);
-				//加埋点
-				BDMob.getBdMobInstance().onMobEvent(context, BDEventConstans.EVENT_ID_ORDER_DETAIL_PAGE_PHONE);
 
-				HYMob.getDataListByCall(context, HYEventConstans.EVENT_ID_ORDER_DETAIL_PAGE_PHONE, String.valueOf(orderId), "1");
-
-
-				initDialog(ServiceTypeBean.this.context);
-				dialog.show();
-			}
-		});
+//		rl_done_not_gone 	 = (RelativeLayout) view.findViewById(R.id.rl_done_not_gone);
+//		tv_tel_time      	 = (TextView) view.findViewById(R.id.tv_tel_time);
+//		tv_tel_phone_content = (TextView) view.findViewById(R.id.tv_tel_phone_content);
+//		iv_tel 			 	 = (ImageView) view.findViewById(R.id.iv_tel);
+//		iv_tel.setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				EventAction action = new EventAction(EventType.EVENT_TELEPHONE_FROM_DETAIL,new TelephoneBean(orderId+"",TelephoneBean.SOURCE_DETAIL));
+//				EventbusAgent.getInstance().post(action);
+//				//加埋点
+//				BDMob.getBdMobInstance().onMobEvent(context, BDEventConstans.EVENT_ID_ORDER_DETAIL_PAGE_PHONE);
+//
+//				HYMob.getDataListByCall(context, HYEventConstans.EVENT_ID_ORDER_DETAIL_PAGE_PHONE, String.valueOf(orderId), "1");
+//
+//
+//				initDialog(ServiceTypeBean.this.context);
+//				dialog.show();
+//			}
+//		});
 		fillDatas();
 		return view;
 	}
 	private void fillDatas() {
-		Log.e("shenzhixin","fetch state:"+FetchDetailsActivity.orderState);
-		if(TextUtils.equals(QiangDanBaseFragment.orderState,"1"))
-			tv_done_status.setText(R.string.unservice);
-		else if(TextUtils.equals(QiangDanBaseFragment.orderState,"2"))
-			tv_done_status.setText(R.string.servicing);
-		else if(TextUtils.equals(QiangDanBaseFragment.orderState,"3")){
-			if(TextUtils.equals(FetchDetailsActivity.orderState,Constans.DONE_FRAGMENT_FINISH))
-					tv_done_status.setText(R.string.over_done_service);
-			else if(TextUtils.equals(FetchDetailsActivity.orderState,Constans.DONE_FRAGMENT_CANCEL)){
-					tv_done_status.setText(R.string.over_done_unservice);
-			}
-		}else{
-			tv_done_status.setText(R.string.order_details);
+
+		if(!TextUtils.isEmpty(clientPhone)){
+			FetchDetailsActivity.clientPhone = clientPhone;
 		}
-		tv_tel_phone_content.setText(clientPhone);
-		tv_tel_time.setText("剩余时间:    "+leftTime);
-		tv_customer_name_content.setText("客户姓名:    "+customerName);
+
+		tv_last_number_content.setText(orderNum);
+
+		if (TextUtils.equals(name,  Constans.READY_SERVICE))
+			tv_done_status.setText(R.string.unservice);
+		else if (TextUtils.equals(name, Constans.ON_SERVICE))
+			tv_done_status.setText(R.string.servicing);
+		else if (TextUtils.equals(name, Constans.DONE_FRAGMENT_FINISH))
+			tv_done_status.setText(R.string.over_done_service);
+		else if(TextUtils.equals(name,Constans.DONE_FRAGMENT_CANCEL))
+					tv_done_status.setText(R.string.over_done_unservice);
+
+//		tv_tel_phone_content.setText(clientPhone);
+//		tv_tel_time.setText("剩余时间:    "+leftTime);
+		tv_customer_name_content.setText(customerName);
 	}
 	public Context getContext() {
 		return context;
@@ -130,63 +140,40 @@ public class ServiceTypeBean extends QDDetailBaseBean{
 	public void setClientPhone(String clientPhone) {
 		this.clientPhone = clientPhone;
 	}
-	public RelativeLayout getRl_done_not_gone() {
-		return rl_done_not_gone;
-	}
-	public void setRl_done_not_gone(RelativeLayout rl_done_not_gone) {
-		this.rl_done_not_gone = rl_done_not_gone;
-	}
-	public TextView getTv_done_status() {
-		return tv_done_status;
-	}
-	public void setTv_done_status(TextView tv_done_status) {
-		this.tv_done_status = tv_done_status;
-	}
-	public TextView getTv_tel_time() {
-		return tv_tel_time;
-	}
-	public void setTv_tel_time(TextView tv_tel_time) {
-		this.tv_tel_time = tv_tel_time;
-	}
-	public TextView getTv_tel_phone_content() {
-		return tv_tel_phone_content;
-	}
-	public void setTv_tel_phone_content(TextView tv_tel_phone_content) {
-		this.tv_tel_phone_content = tv_tel_phone_content;
-	}
-	public ImageView getIv_tel() {
-		return iv_tel;
-	}
-	public void setIv_tel(ImageView iv_tel) {
-		this.iv_tel = iv_tel;
-	}
-	
-	
+
 	public void setNewType(String newType){
 		super.newtype = newType;
 	}
-	
-	
-	private void initDialog(Context context) {
-		if(dialog == null){
-			dialog = new ZhaoBiaoDialog(context, context.getString(R.string.hint), context.getString(R.string.make_sure_tel));
-			dialog.setOnDialogClickListener(new onDialogClickListener() {
-				
-				@Override
-				public void onDialogOkClick() {
-					LogUtils.LogE("assssshenaaa", "bidid:" + DetailsLogBeanUtils.bean.getBidID() + ",cateid:" + DetailsLogBeanUtils.bean.getCateID());
-					ActivityUtils.goToDialActivity(ServiceTypeBean.this.context, clientPhone);
-					MDUtils.OrderDetailsPageMD(QiangDanBaseFragment.orderState, DetailsLogBeanUtils.bean.getCateID()+"",DetailsLogBeanUtils.bean.getBidID()+"", MDConstans.ACTION_UP_TEL,clientPhone);
-					dialog.dismiss();
-					dialog = null;
-				}
-				
-				@Override
-				public void onDialogCancelClick() {
-					dialog.dismiss();
-					dialog = null;
-				}
-			});
-		}
+
+	public String getOrderNum() {
+		return orderNum;
 	}
+
+	public void setOrderNum(String orderNum) {
+		this.orderNum = orderNum;
+	}
+
+
+	//	private void initDialog(Context context) {
+//		if(dialog == null){
+//			dialog = new ZhaoBiaoDialog(context, context.getString(R.string.hint), context.getString(R.string.make_sure_tel));
+//			dialog.setOnDialogClickListener(new onDialogClickListener() {
+//
+//				@Override
+//				public void onDialogOkClick() {
+//					LogUtils.LogE("assssshenaaa", "bidid:" + DetailsLogBeanUtils.bean.getBidID() + ",cateid:" + DetailsLogBeanUtils.bean.getCateID());
+//					ActivityUtils.goToDialActivity(ServiceTypeBean.this.context, clientPhone);
+//					MDUtils.OrderDetailsPageMD(QiangDanBaseFragment.orderState, DetailsLogBeanUtils.bean.getCateID()+"",DetailsLogBeanUtils.bean.getBidID()+"", MDConstans.ACTION_UP_TEL,clientPhone);
+//					dialog.dismiss();
+//					dialog = null;
+//				}
+//
+//				@Override
+//				public void onDialogCancelClick() {
+//					dialog.dismiss();
+//					dialog = null;
+//				}
+//			});
+//		}
+//	}
 }

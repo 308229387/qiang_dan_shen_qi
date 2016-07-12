@@ -16,6 +16,14 @@ import android.widget.TextView;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.bean.push.PushToPassBean;
+import com.huangyezhaobiao.eventbus.EventAction;
+import com.huangyezhaobiao.eventbus.EventType;
+import com.huangyezhaobiao.eventbus.EventbusAgent;
+import com.huangyezhaobiao.fragment.home.BiddingFragment;
+import com.huangyezhaobiao.fragment.home.MessageFragment;
+import com.huangyezhaobiao.fragment.home.OrderListFragment;
+import com.huangyezhaobiao.inter.Constans;
+import com.huangyezhaobiao.service.AlertService;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
@@ -23,7 +31,11 @@ import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.KeyguardUtils;
 import com.huangyezhaobiao.utils.LogUtils;
+import com.huangyezhaobiao.utils.UnreadUtils;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 抢单成功界面
@@ -33,37 +45,64 @@ import com.huangyezhaobiao.view.TitleMessageBarLayout;
  */
 public class BidSuccessActivity extends QBBaseActivity {
 
+	private LinearLayout back_layout;
 	private TextView txt_head;
 	private Button toOrderList;
 
 	private Button toBidList;
-	private LinearLayout back_layout;
 	private PushToPassBean receivePassBean;
 	private BroadcastReceiver receiver;
 	KeyguardManager keyguardManager;
 
 	private String bidId;
+	public static Long orderId;
+
 	KeyguardManager.KeyguardLock keyguardLock;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_bid_success);
+
 		Intent intent = this.getIntent(); 
 		receivePassBean=(PushToPassBean)intent.getSerializableExtra("passBean");
+
+		if (receivePassBean != null ) {
+			bidId = String.valueOf(receivePassBean.getBidId());
+		}
+		HYMob.getDataListByQiangDan(BidSuccessActivity.this, HYEventConstans.EVENT_ID_SUCCESS_PAGE, bidId);
+
+//		if(receivePassBean.getCateId() == 4063 || receivePassBean.getCateId() == 4064 ||
+//				receivePassBean.getCateId() == 4066){
+//			//启动15分钟推送服务
+//			Intent newIntent = new Intent(this, AlertService.class);
+//			Bundle bundle = new Bundle();
+//			bundle.putSerializable("passBean", receivePassBean);
+//			newIntent.putExtras(bundle);
+//			startService(newIntent);
+//
+//		}
 		initView();
 		initListener();
 		keyguardManager = (KeyguardManager)getApplication().getSystemService(KEYGUARD_SERVICE);
 		keyguardLock = keyguardManager.newKeyguardLock("");
 		registerScreenOffReceiver();
+
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
 	}
 
 	@Override
 	public void initView() {
 		layout_back_head = getView(R.id.layout_head);
+		back_layout = (LinearLayout) this.findViewById(R.id.back_layout);
+		back_layout.setVisibility(View.VISIBLE);
 		txt_head = (TextView) findViewById(R.id.txt_head);
-		txt_head.setText(R.string.bidding_success);
+		txt_head.setText(R.string.bidding_success_title);
+
 		toOrderList = (Button) findViewById(R.id.success_orderlist);
 		toBidList = (Button) findViewById(R.id.success_bidlist);
-		back_layout = (LinearLayout) this.findViewById(R.id.back_layout);
 		tbl = (TitleMessageBarLayout) findViewById(R.id.tbl);
 	}
 
@@ -74,15 +113,22 @@ public class BidSuccessActivity extends QBBaseActivity {
 
 			@Override
 			public void onClick(View v) {
-				//查看抢单
+				//查看订单
 				BDMob.getBdMobInstance().onMobEvent(BidSuccessActivity.this, BDEventConstans.EVENT_ID_SUCCESS_PAGE_LOOK_BIDDING);
 				if (receivePassBean != null ) {
 					bidId = String.valueOf(receivePassBean.getBidId());
 				}
 
-				HYMob.getDataListByQiangDan(BidSuccessActivity.this, HYEventConstans.EVENT_ID_SUCCESS_PAGE_LOOK_BIDDING,bidId);
+				HYMob.getDataListByQiangDan(BidSuccessActivity.this, HYEventConstans.EVENT_ID_SUCCESS_PAGE_LOOK_BIDDING, bidId);
 
-				ActivityUtils.goToActivity(BidSuccessActivity.this, OrderListActivity.class);
+			    Map<String, String> map = new HashMap<String, String>();
+
+				map.put(Constans.ORDER_ID, String.valueOf(orderId));
+
+				ActivityUtils.goToActivityWithString(BidSuccessActivity.this, FetchDetailsActivity.class, map);
+
+
+//				ActivityUtils.goToActivity(BidSuccessActivity.this, MainActivity.class);
 			}
 		});
 		toBidList.setOnClickListener(new OnClickListener() {

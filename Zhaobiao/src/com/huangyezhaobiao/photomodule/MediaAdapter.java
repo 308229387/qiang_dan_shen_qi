@@ -47,7 +47,7 @@ public class MediaAdapter extends BaseAdapter {
         this.maxCount = maxCount;
         addBean = new MediaAddBean();
         if (editable && mBeans.size() < maxCount) {
-            mBeans.add(0, addBean);
+            mBeans.add(0,addBean);
         }
     }
 
@@ -64,7 +64,7 @@ public class MediaAdapter extends BaseAdapter {
             Log.e("sss", "size:" + beans.size());
         }
         if (mBeans.size() < maxCount && editable) {
-            mBeans.add(0, addBean);
+            mBeans.add(0,addBean);
         }
         notifyDataSetChanged();
     }

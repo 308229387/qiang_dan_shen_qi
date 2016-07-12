@@ -91,11 +91,11 @@ public abstract class HttpRequest<T> {
 		Set<Entry<String, String>> entrySet = map.entrySet();
 		Iterator<Entry<String, String>> iterator = entrySet.iterator();
 		while (iterator.hasNext()) {
-			  Entry<String, String> next = iterator.next();
-			  String key   = next.getKey();
-			  String value = next.getValue();
-			  LogUtils.LogE("stestUrl", "key.." + key + ",value:" + value + "\n");
-			  params.addBodyParameter(key, value);
+			Entry<String, String> next = iterator.next();
+			String key   = next.getKey();
+			String value = next.getValue();
+			LogUtils.LogE("stestUrl", "key.." + key + ",value:" + value + "\n");
+			params.addBodyParameter(key, value);
 		}
 	}
 	

@@ -86,7 +86,7 @@ public class RefundAgainCommitFragment extends RefundBaseFragment implements Net
     }
 
     private void initDialog() {
-        resultDialog_success = new ResultDialog(getActivity(),R.drawable.refund_result_success,StringUtils.getStringByResId(getActivity(),R.string.refund_submit_success));
+        resultDialog_success = new ResultDialog(getActivity(),"提交成功",R.drawable.refund_result_success,StringUtils.getStringByResId(getActivity(),R.string.refund_submit_success));
         resultDialog_success.setListener(new ResultDialog.RequestOkListener() {
             @Override
             public void onRequestOkClick() {
@@ -94,7 +94,7 @@ public class RefundAgainCommitFragment extends RefundBaseFragment implements Net
                 getActivity().onBackPressed();
             }
         });
-        resultDialog_failure = new ResultDialog(getActivity(),R.drawable.refund_result_fail,StringUtils.getStringByResId(getActivity(),R.string.refund_submit_failure));
+        resultDialog_failure = new ResultDialog(getActivity(),"提交失败",R.drawable.refund_result_fail,StringUtils.getStringByResId(getActivity(),R.string.refund_submit_failure));
         resultDialog_failure.setListener(new ResultDialog.RequestOkListener() {
             @Override
             public void onRequestOkClick() {
@@ -103,7 +103,7 @@ public class RefundAgainCommitFragment extends RefundBaseFragment implements Net
         });
 
         uploadPicDialog    = new UploadPicDialog(getActivity());
-        notUploadPicDialog = new ZhaoBiaoDialog(getActivity(), StringUtils.getStringByResId(getActivity(), R.string.hint),StringUtils.getStringByResId(getActivity(),R.string.not_upload_pic));
+        notUploadPicDialog = new ZhaoBiaoDialog(getActivity(),StringUtils.getStringByResId(getActivity(),R.string.not_upload_pic));
         notUploadPicDialog.setCancelButtonGone();
         notUploadPicDialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
             @Override
@@ -116,7 +116,7 @@ public class RefundAgainCommitFragment extends RefundBaseFragment implements Net
 
             }
         });
-        confirmAddPicDialog = new ZhaoBiaoDialog(getActivity(),StringUtils.getStringByResId(getActivity(), R.string.hint),StringUtils.getStringByResId(getActivity(),R.string.confirm_add_evidence));
+        confirmAddPicDialog = new ZhaoBiaoDialog(getActivity(),StringUtils.getStringByResId(getActivity(),R.string.confirm_add_evidence));
         confirmAddPicDialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
             @Override
             public void onDialogOkClick() {

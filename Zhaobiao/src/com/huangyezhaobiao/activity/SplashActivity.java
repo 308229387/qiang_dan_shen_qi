@@ -16,20 +16,25 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.eventbus.EventAction;
 import com.huangyezhaobiao.eventbus.EventbusAgent;
 import com.huangyezhaobiao.gtui.GePushProxy;
 import com.huangyezhaobiao.inter.Constans;
+import com.huangyezhaobiao.log.LogInvocation;
+import com.huangyezhaobiao.url.URLConstans;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.CommonUtils;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
+import com.huangyezhaobiao.utils.UpdateManager;
 import com.huangyezhaobiao.utils.UserUtils;
-import com.huangyezhaobiao.utils.Utils;
 import com.huangyezhaobiao.utils.VersionUtils;
+import com.huangyezhaobiao.vm.UpdateViewModel;
+import com.wuba.loginsdk.external.LoginClient;
 
 import air.com.wuba.bangbang.common.impush.DeamonService;
 
@@ -39,11 +44,13 @@ import air.com.wuba.bangbang.common.impush.DeamonService;
  * else
  * ---没登录 LoginActivity
  * else
- * ---登录了 MainActivity
+ * ---登陆了--没绑定手机号 ---mobileValidateActivity
+ * else
+ * ---登录了--绑定了手机号--- MainActivity
  * @author shenzhixin
  * 
  */
-public class SplashActivity extends Activity {
+public class SplashActivity extends Activity implements NetWorkVMCallBack{
 	private static final long DELAYED_TIMES = 3 * 1000;
 	private SharedPreferences sp;
 	private Handler handler = new Handler();
@@ -52,6 +59,16 @@ public class SplashActivity extends Activity {
 	// boolean isRegisterSuccess = false;//注册推送是否成功
 	private View      rl_splash;
 	private ImageView iv_splash;
+
+//	private LoadingProgress loading;
+
+	private UpdateViewModel updateViewModel;
+	/**
+	 * 是否强制更新
+	 */
+	private boolean forceUpdate;
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -80,24 +97,21 @@ public class SplashActivity extends Activity {
 		startService(intent);
 
 		context = this;
+		updateViewModel = new UpdateViewModel(this, this);
+
 		// 等三秒
 		handler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				//isTime = true;
-			//	if (isTime && isRegisterSuccess) {
-					goLogic();
-					//isTime = false;
-			//	}
-				return;
+				goLogic();
 			}
 		}, DELAYED_TIMES);
 
 		if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT) {
 			//透明状态栏
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-			//透明导航栏
-			getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+//			//透明导航栏
+//			getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 		}
 		getWindow().setBackgroundDrawable(null);
 		/** 启动Service */
@@ -106,40 +120,64 @@ public class SplashActivity extends Activity {
 //			mobService.putExtra("from","");
 //			context.startService(mobService);
 //		}
+
+//		BiddingApplication.getBiddingApplication().addActivity(this);
 	}
 
-	private void goLogic() {
+
+	private void goLogic(){
 		sp = getSharedPreferences(Constans.APP_SP, 0);
 		String currentVersionName = "1.0.0";
 		try {
-            currentVersionName = VersionUtils.getVersionName(context);
-        } catch (NameNotFoundException e) {
-            e.printStackTrace();
-        }
+			currentVersionName = VersionUtils.getVersionName(context);
+		} catch (NameNotFoundException e) {
+			e.printStackTrace();
+		}
+		String mCurrentVersionName = currentVersionName.replace(".", "");
+
+
 		String saveVersionName = sp.getString(Constans.VERSION_NAME,
-                "1.0.0");
-		String mCurrentVersionName = currentVersionName
-                .replace(".", "");
-		Log.e("ashenVersion", "cvN:" + currentVersionName);
-		Log.e("ashenVersion",
-                "isFirst:" + sp.getBoolean("isFirst", true));
-		Log.e("lly",
-				"isFirst:" + UserUtils.hasValidate);
-		if (sp.getBoolean("isFirst", true) || !CommonUtils.compareTwoNumbersGuide(saveVersionName,
+				"1.0.0");
+		if (!CommonUtils.compareTwoNumbersGuide(saveVersionName,
 				mCurrentVersionName) ){//进入引导界面
-            ActivityUtils.goToActivity(context, GuideActivity.class);
-        }else if(TextUtils.isEmpty(UserUtils.getUserId(context)) || TextUtils.isEmpty(UserUtils.getUserPPU(context))){//如果没有登录过
-            ActivityUtils.goToActivity(context, LoginActivity.class);
-        }else if(!UserUtils.isValidate(context)){//还未验证，走验证界面
-			// ActivityUtils.goToActivity(context, MobileValidateActivity.class);
-			// added by chenguangming
-            ActivityUtils.goToActivity(context, LoginActivity.class);
-		}else{//走主界面
-            ActivityUtils.goToActivity(context, MainActivity.class);
-        }
-		//finish();
+
+			ActivityUtils.goToActivity(context, GuideActivity.class);
+
+		} else if (TextUtils.isEmpty(UserUtils.getUserId(this))
+				|| !UserUtils.isValidate(this)
+				|| TextUtils.isEmpty(LoginClient.doGetPPUOperate(BiddingApplication.getAppInstanceContext()))
+				) {//如果没有登录过
+			ActivityUtils.goToActivity(context, BlankActivity.class);
+
+		} else {//走主界面
+			ActivityUtils.goToActivity(context, MainActivity.class);
+		}
+
 		sp.edit().putString(Constans.VERSION_NAME, currentVersionName).commit();
 	}
+
+	//	/**
+//	 * 加载效果
+//	 */
+//	public void startLoading() {
+//		if (loading == null) {
+//			loading = new LoadingProgress(SplashActivity.this,
+//					R.style.loading);
+//		}
+//		if(loading !=null && !this.isFinishing()){
+//			loading.show();
+//		}
+//	}
+//
+//	/**
+//	 * 对话框消失
+//	 */
+//	public void stopLoading() {
+//		if (!this.isFinishing() && loading != null && loading.isShowing()) {
+//			loading.dismiss();
+//			loading = null;
+//		}
+//	}
 
 	/** 判断Service是否在运行*/
 	private boolean isMobServiceRunning(String serviceName) {
@@ -157,22 +195,17 @@ public class SplashActivity extends Activity {
 	protected void onPause() {
 		super.onPause();
 		BDMob.getBdMobInstance().onPauseActivity(this);
+
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
 		BDMob.getBdMobInstance().onResumeActivity(BiddingApplication.getBiddingApplication());
-
 		HYMob.getDataList(this, HYEventConstans.EVENT_ID_APP_OPEND);
 
-	}
-
-	public void initView() {
-
-	}
-
-	public void initListener() {
+		if(updateViewModel != null)
+			updateViewModel.checkVersion();
 
 	}
 
@@ -187,6 +220,8 @@ public class SplashActivity extends Activity {
 		EventbusAgent.getInstance().unregister(this);
 		rl_splash.setBackgroundResource(0);
 		iv_splash.setImageResource(0);
+		//销毁数据
+		LogInvocation.destroy();
 
 	}
 
@@ -214,4 +249,58 @@ public class SplashActivity extends Activity {
 		}*/
 	}
 
+
+	@Override
+	public void onLoadingStart() {
+	}
+	@Override
+	public void onLoadingSuccess(Object t) {
+	}
+	@Override
+	public void onLoadingError(String msg) {
+	}
+	@Override
+	public void onLoadingCancel() {
+	}
+	@Override
+	public void onNoInterNetError() {
+	}
+	@Override
+	public void onLoginInvalidate() {
+	}
+
+	@Override
+	public void onVersionBack(String version) {
+		String versionCode = "";
+		int currentVersion = -1; //当前版本号
+
+		int versionNum = -1;
+		//获取当前系统版本号
+		try {
+			currentVersion = Integer.parseInt(VersionUtils.getVersionCode(this));
+		} catch (Exception e) {
+
+		}
+		if (currentVersion == -1) return;
+
+
+		//当前是MainActivity，获取服务器header返回的版本号
+		if (version != null) {
+			if (version.contains("F")) {
+				forceUpdate = true;
+			}
+			String[] fs = version.split("F");
+			versionCode = fs[0];
+			try {
+				versionNum = Integer.parseInt(versionCode);
+			} catch (Exception e) {
+
+			}
+			if (versionNum == -1) {
+				return;
+			}
+
+			UpdateManager.getUpdateManager().isUpdateNow(this, versionNum, currentVersion, URLConstans.DOWNLOAD_ZHAOBIAO_ADDRESS, forceUpdate);
+		}
+	}
 }

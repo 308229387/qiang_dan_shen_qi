@@ -9,6 +9,7 @@ import com.huangye.commonlib.model.NetWorkModel;
 import com.huangye.commonlib.utils.NetBean;
 import com.huangye.commonlib.vm.SourceViewModel;
 import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
+import com.huangyezhaobiao.activity.BidSuccessActivity;
 import com.huangyezhaobiao.bean.push.PushToPassBean;
 import com.huangyezhaobiao.model.KnockModel;
 import com.huangyezhaobiao.utils.BidUtils;
@@ -80,6 +81,8 @@ public class KnockViewModel extends SourceViewModel {
 			JSONObject object = JSON.parseObject(bean.getData());
 			if (null != object) {
 				int knockStatus = object.getInteger("status");
+				long orderId = object.getLong("orderId");
+				BidSuccessActivity.orderId = orderId;
 				callBack.onLoadingSuccess(knockStatus);
 			}
 		} else {

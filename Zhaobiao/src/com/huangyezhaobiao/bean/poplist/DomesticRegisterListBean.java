@@ -28,6 +28,7 @@ import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.MDUtils;
+import com.huangyezhaobiao.utils.TimeUtils;
 
 /**
  * 抢单信息的模型类----工商注册
@@ -42,7 +43,7 @@ public class DomesticRegisterListBean extends QDBaseBean {
 	private int displayType;
 	private int bidState;
 	private long bidId;
-	private String title;// 工商注册-个体
+	private String title;// 工商注册-海外
 	private String time;
 	private String endTime;
 	private String location;
@@ -195,15 +196,21 @@ public class DomesticRegisterListBean extends QDBaseBean {
 	@Override
 	public void fillDatas() {
 		if (bidState == 1) {
+			holder.grab_style.setImageResource(R.drawable.type_back_grabbed);
+			holder.iv_domesticregister_type.setImageResource(R.drawable.iv_domesticregister_label);
+			holder.view_cash_bottom.setVisibility(View.GONE);
 //			holder.knock.setImageResource(R.drawable.t_bid_gone);
-			holder.knock.setBackgroundResource(R.drawable.t_not_bid_bg);
-			holder.knock.setTextColor(context.getResources().getColor(R.color.transparent));
-			holder.knock.setText(R.string.bidding_finish);
-			holder.knock.setClickable(false);
+//			holder.knock.setBackgroundResource(R.drawable.t_not_bid_bg);
+//			holder.knock.setTextColor(context.getResources().getColor(R.color.transparent));
+//			holder.knock.setText(R.string.bidding_finish);
+//			holder.knock.setClickable(false);
 		}
 		else {
+			holder.grab_style.setImageResource(R.drawable.type_back_grab);
+			holder.iv_domesticregister_type.setImageResource(R.drawable.iv_domesticregister_label_knock);
+			holder.view_cash_bottom.setVisibility(View.VISIBLE);
 //			holder.knock.setImageResource(R.drawable.t_knock);
-			holder.knock.setBackgroundResource(R.drawable.t_redbuttonselector);
+			holder.knock.setBackgroundResource(R.drawable.bt_knock_button_selector);
 			holder.knock.setTextColor(context.getResources().getColor(R.color.white));
 			holder.knock.setText("抢单");
 			holder.knock.setClickable(true);
@@ -216,16 +223,14 @@ public class DomesticRegisterListBean extends QDBaseBean {
 				}
 			});
 		}
-		Log.e("shenzhixin", DomesticRegisterListBean.this.toString());
 		holder.title.setText(title);
-		holder.time.setText(time);
+		holder.time.setText(TimeUtils.formatDateTime(time));
 		holder.grab_domesticregister_time_delegate.setText("代理记账:"+agencyTime);
 		holder.grab_domesticregister_need_location_delegate.setText("代理地址:"+agencyLocation);
 		holder.location.setText("注册区域:"+location);
-		Log.e("shenzhixinHAHAHA", "business:" + business);
 		holder.tv_business_content.setText("经营业务");
 		if(!TextUtils.isEmpty(business)) {
-			holder.tv_business_content.setText("经营业务"+business);
+			holder.tv_business_content.setText("经营业务:"+business);
 		}
 
 		//2016.03.29 add for O2O-709
@@ -277,6 +282,8 @@ public class DomesticRegisterListBean extends QDBaseBean {
 		this.adapter = adapter;
 		convertView = inflater.inflate(R.layout.order_item_domesticregister, null);
 		holder.item =  convertView.findViewById(R.id.domesticregister_item);
+		holder.grab_style                       = (ImageView) convertView.findViewById(R.id.grab_style);
+		holder.iv_domesticregister_type       = (ImageView) convertView.findViewById(R.id.iv_domesticregister_type);
 		holder.title = (TextView) convertView.findViewById(R.id.grab_domesticregister_title);
 		holder.time = (TextView) convertView.findViewById(R.id.grab_domesticregister_time);
 		holder.grab_domesticregister_time_delegate = (TextView) convertView.findViewById(R.id.tv_delegate_budget);
@@ -284,6 +291,7 @@ public class DomesticRegisterListBean extends QDBaseBean {
 		holder.tv_business_content  = (TextView) convertView.findViewById(R.id.tv_business_title);
 		holder.location = (TextView) convertView.findViewById(R.id.tv_location_title);
 
+        holder.view_cash_bottom       =convertView.findViewById(R.id.view_cash_bottom);
 		holder.tv_main_fee                = (TextView) convertView.findViewById(R.id.tv_main_fee);
 		holder.tv_main_origin_fee         = (TextView) convertView.findViewById(R.id.tv_main_origin_fee);
 		holder.knock = (Button) convertView.findViewById(R.id.grab_main_knock);

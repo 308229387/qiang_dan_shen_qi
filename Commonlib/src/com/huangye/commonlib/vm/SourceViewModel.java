@@ -50,7 +50,10 @@ public abstract class SourceViewModel implements NetworkModelCallBack{
 		if(callBack!=null) {
 			if (status == 0) {
 				callBack.onLoadingSuccess(jsonTransferToMap(bean));
-			} else {
+			} else if(status == 2001){
+                 String msg = "PPU";
+				callBack.onLoadingError(msg);
+			}else{
 				String msg = bean.getMsg();
 				if (!TextUtils.isEmpty(msg)) {
 					callBack.onLoadingError(bean.getMsg());

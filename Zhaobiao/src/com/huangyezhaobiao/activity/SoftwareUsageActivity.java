@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.webkit.JsPromptResult;
@@ -21,9 +22,12 @@ import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.constans.AppConstants;
 import com.huangyezhaobiao.url.URLConstans;
 import com.huangyezhaobiao.utils.ActivityUtils;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.NetUtils;
 import com.huangyezhaobiao.utils.ToastUtils;
+import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 
 import java.util.HashMap;
@@ -46,11 +50,18 @@ public class SoftwareUsageActivity extends QBBaseActivity implements View.OnClic
     private View view_no_internet;
     private ZhaoBiaoDialog dialog;
     private String mTitle;
+    private String url;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
         initListener();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        HYMob.getDataListByProtocol(this, HYEventConstans.USEAGE_PROTOCOL,UserUtils.getUserName(this));
     }
 
     @Override
@@ -62,6 +73,7 @@ public class SoftwareUsageActivity extends QBBaseActivity implements View.OnClic
         layout_back_head = getView(R.id.layout_head);
         pb         = getView(R.id.pb);
         backLayout = getView(R.id.back_layout);
+        backLayout.setVisibility(View.VISIBLE);
         txt_head   = getView(R.id.txt_head);
         tbl        = getView(R.id.tbl);
         webView_introduce = getView(R.id.webview);
@@ -73,10 +85,22 @@ public class SoftwareUsageActivity extends QBBaseActivity implements View.OnClic
         webView_introduce.setWebChromeClient(chromeBaseClient);
         removeJSInterface();
 
-        mTitle = getIntent().getStringExtra(AppConstants.H5_TITLE);
+
+        if(TextUtils.isEmpty(getIntent().getStringExtra(AppConstants.H5_TITLE))){
+            mTitle = getString(R.string.h5_login_softwareusage);
+        }else{
+            mTitle = getIntent().getStringExtra(AppConstants.H5_TITLE);
+        }
+
         txt_head.setText(mTitle);
+
         //TODO:换成软件使用协议的地址即可
-        String url = getIntent().getStringExtra(AppConstants.H5_WEBURL);
+        if(TextUtils.isEmpty(getIntent().getStringExtra(AppConstants.H5_WEBURL))){
+            url = URLConstans.SOFTWARE_USEAGE_PROTOCOL;
+        }else{
+            url = getIntent().getStringExtra(AppConstants.H5_WEBURL);
+        }
+
         LogUtils.LogE("ashenIntro", "url:" + url);
         if(!NetUtils.isNetworkConnected(this)){
             view_no_internet.setVisibility(View.VISIBLE);
@@ -136,7 +160,7 @@ public class SoftwareUsageActivity extends QBBaseActivity implements View.OnClic
                 final String urlTel = url.split(":")[1];
                 // 拨打电话
                 if(dialog == null || !dialog.isShowing()){
-                    dialog = new ZhaoBiaoDialog(SoftwareUsageActivity.this,SoftwareUsageActivity.this.getString(R.string.hint), SoftwareUsageActivity.this.getString(R.string.make_sure_tel));
+                    dialog = new ZhaoBiaoDialog(SoftwareUsageActivity.this,SoftwareUsageActivity.this.getString(R.string.make_sure_tel));
                     dialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
                         @Override
                         public void onDialogOkClick() {
@@ -232,4 +256,9 @@ public class SoftwareUsageActivity extends QBBaseActivity implements View.OnClic
 //        System.exit(0);
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        HYMob.getBaseDataListForPage(this, HYEventConstans.PAGE_PROTOCOL, stop_time - resume_time);
+    }
 }

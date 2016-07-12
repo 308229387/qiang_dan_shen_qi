@@ -17,6 +17,8 @@ import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.adapter.SystemNotiAdapter;
 import com.huangyezhaobiao.bean.SysListBean;
 import com.huangyezhaobiao.presenter.SystemNotiListPresenter;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.PullToRefreshListViewUtils;
 import com.huangyezhaobiao.vm.SystemNotiListVM;
 
@@ -51,14 +53,14 @@ public class SystemNotiListActivity extends  QBBaseActivity implements View.OnCl
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Log.e("shenzhixinUUU","position:"+position);
                 position = position - 1;
-                if(position>=0) {
+                if (position >= 0) {
                     SysListBean listBean = ((SystemNotiAdapter) systemNotiListPresenter.getSysNotiAdapter()).getDataSources().get(position);
                     systemNotiListPresenter.handleClick(listBean);
                 }
             }
         });
+
     }
 
 
@@ -67,13 +69,14 @@ public class SystemNotiListActivity extends  QBBaseActivity implements View.OnCl
         setContentView(getLayoutId());
         layout_back_head = getView(R.id.layout_head);
         back_layout      = getView(R.id.back_layout);
-        tbl              = getView(R.id.tbl);
+        back_layout.setVisibility(View.VISIBLE);
         txt_head         = getView(R.id.txt_head);
+        txt_head.setText("通知资讯");
+        tbl              = getView(R.id.tbl);
         srl              = getView(R.id.srl);
         sys_list         = getView(R.id.sys_list);
-        rl_no_unread     = getView(R.id.rl_no_unread);
+        rl_no_unread = getView(R.id.rl_no_unread);
         listView         = sys_list.getRefreshableView();
-        txt_head.setText("通知资讯");
         PullToRefreshListViewUtils.initListView(sys_list);
         configListView();
     }
@@ -186,7 +189,7 @@ public class SystemNotiListActivity extends  QBBaseActivity implements View.OnCl
                         if (refreshView.isHeaderShown()) {
                         } else {
                             sys_list.onRefreshComplete();
-                            Toast.makeText(SystemNotiListActivity.this, "不能加载更多了", 0).show();
+                            Toast.makeText(SystemNotiListActivity.this, "不能加载更多了", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -207,7 +210,7 @@ public class SystemNotiListActivity extends  QBBaseActivity implements View.OnCl
         stopLoading();
         srl.setRefreshing(false);
         sys_list.onRefreshComplete();
-        Toast.makeText(this,msg,0).show();
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -222,7 +225,7 @@ public class SystemNotiListActivity extends  QBBaseActivity implements View.OnCl
         stopLoading();
         srl.setRefreshing(false);
         sys_list.onRefreshComplete();
-        Toast.makeText(this,"没有网络了",0).show();
+        Toast.makeText(this,"没有网络了",Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -231,5 +234,16 @@ public class SystemNotiListActivity extends  QBBaseActivity implements View.OnCl
         srl.setRefreshing(false);
         sys_list.onRefreshComplete();
         showExitDialog();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        HYMob.getBaseDataListForPage(this, HYEventConstans.PAGE_SYSTEM_NOTICE, stop_time - resume_time);
     }
 }

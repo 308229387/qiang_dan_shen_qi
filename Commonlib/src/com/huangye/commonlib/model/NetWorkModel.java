@@ -104,6 +104,7 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
             if(result != null && result.getHeaders("version") != null){
                 LogUtils.LogV("commonversion"," name = " + result.getHeaders("version")[0].getName() +",value = " + result.getHeaders("version")[0].getValue());
                 baseSourceModelCallBack.onVersionBack(result.getHeaders("version")[0].getValue());
+
             }
         } catch (Exception e) {
             loginflag = -1;//如果解析不成功，不让他掉线

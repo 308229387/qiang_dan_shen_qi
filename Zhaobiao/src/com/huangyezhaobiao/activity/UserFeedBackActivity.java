@@ -65,6 +65,7 @@ public class UserFeedBackActivity extends QBBaseActivity {
 	public void initView() {
 		layout_back_head = getView(R.id.layout_head);
 		back_layout = getView(R.id.back_layout);
+		back_layout.setVisibility(View.VISIBLE);
 		txt_head    = getView(R.id.txt_head);
 		et_contact  = getView(R.id.et_contact);
 		et_message  = getView(R.id.et_message);
@@ -73,7 +74,8 @@ public class UserFeedBackActivity extends QBBaseActivity {
 	}
 
 
-
-
-
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+	}
 }

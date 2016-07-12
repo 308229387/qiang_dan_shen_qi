@@ -7,7 +7,6 @@ import com.huangye.commonlib.model.NetWorkModel;
 import com.huangye.commonlib.utils.JsonUtils;
 import com.huangye.commonlib.utils.NetBean;
 import com.huangye.commonlib.vm.callback.ListNetWorkVMCallBack;
-import com.huangyezhaobiao.bean.mylist.CenterAffiliateBean;
 import com.huangyezhaobiao.bean.mylist.CleaningOrderListBean;
 import com.huangyezhaobiao.bean.mylist.MessCenIACIndividualBean;
 import com.huangyezhaobiao.bean.mylist.MessCenIACInnerCashBean;
@@ -41,7 +40,7 @@ public class QiangDanListViewModel extends ZBBaseListViewModel<QDBaseBean>{
 		sourcesDir.put("2", MessCenIACIndividualBean.class);
 		sourcesDir.put("3", MessCenIACInnerCashBean.class);
 		//2015.8.18 add
-		sourcesDir.put("4", CenterAffiliateBean.class);
+//		sourcesDir.put("4", CenterAffiliateBean.class);
 		//2015.12.7 add
 		sourcesDir.put("5", NannyOrderListBean.class);
 		sourcesDir.put("6", CleaningOrderListBean.class);

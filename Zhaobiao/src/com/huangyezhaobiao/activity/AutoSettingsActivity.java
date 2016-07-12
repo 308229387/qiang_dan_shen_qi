@@ -21,6 +21,8 @@ import android.widget.TextView;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.url.URLConstans;
 import com.huangyezhaobiao.url.UrlSuffix;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.NetUtils;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
@@ -59,9 +61,12 @@ public class AutoSettingsActivity extends QBBaseActivity implements View.OnClick
     public void initView() {
         setContentView(getLayoutId());
         ll_webview_container  = getView(R.id.ll_webview_container);
+
         layout_back_head      = getView(R.id.layout_head);
         back_layout           = getView(R.id.back_layout);
+        back_layout.setVisibility(View.VISIBLE);
         txt_head              = getView(R.id.txt_head);
+        txt_head.setText("自定义设置");
         progress              = getView(R.id.pb);
         tv_no_internet        = getView(R.id.tv_no_internet);
         webView_auto_settings = new WebView(this);
@@ -87,8 +92,7 @@ public class AutoSettingsActivity extends QBBaseActivity implements View.OnClick
             webView_auto_settings.setVisibility(View.GONE);
             tv_no_internet.setVisibility(View.VISIBLE);
         }
-        txt_head.setText("自定义设置");
-        dialog               = new ZhaoBiaoDialog(this,"提示","确定要退出自定义设置么");
+        dialog               = new ZhaoBiaoDialog(this,"确定要退出自定义设置么");
         dialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
             @Override
             public void onDialogOkClick() {
@@ -195,5 +199,11 @@ private class WebChromeBaseClient  extends WebChromeClient {
         webView_auto_settings.destroy();
         webView_auto_settings = null;
         System.exit(0);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        HYMob.getBaseDataListForPage(this, HYEventConstans. PAGE_AUTO_SETTING, stop_time - resume_time);
     }
 }

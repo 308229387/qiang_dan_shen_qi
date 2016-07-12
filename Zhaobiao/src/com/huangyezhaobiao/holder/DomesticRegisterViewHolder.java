@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 public final class DomesticRegisterViewHolder {
 	public View item;
+	public ImageView grab_style;
+	public ImageView iv_domesticregister_type;
 	public TextView title;
 	public TextView time;
 	public TextView grab_domesticregister_time_delegate;
@@ -20,4 +22,7 @@ public final class DomesticRegisterViewHolder {
 	public TextView  tv_main_origin_fee;
 	//RD wangjianlong 2016.3.29 add for o2o 709 end
 	public Button knock;
+
+	public View view_cash_bottom;
+
 }

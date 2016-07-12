@@ -1,18 +1,16 @@
 package com.huangyezhaobiao.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Context;
 
 import com.huangye.commonlib.model.ListStorageBaseModel;
 import com.huangye.commonlib.model.callback.StorageModelCallBack;
 import com.huangye.commonlib.utils.ConditionBean;
-import com.huangyezhaobiao.activity.LoginActivity;
-import com.huangyezhaobiao.bean.MessageBean;
 import com.huangyezhaobiao.bean.push.PushToStorageBean;
 import com.huangyezhaobiao.inter.Constans;
 import com.huangyezhaobiao.utils.UserUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DetailMessageListStorageModel extends ListStorageBaseModel<PushToStorageBean>{
 	private List<ConditionBean> conditionList = new ArrayList<ConditionBean>();

@@ -1,9 +1,11 @@
 package com.huangyezhaobiao.activity;
 
+		import android.annotation.SuppressLint;
 		import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
+		import android.support.annotation.Nullable;
+		import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.TextUtils;
@@ -17,13 +19,29 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
+		import android.widget.TextView;
+		import android.widget.Toast;
 
-import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.inter.Constans;
+		import com.huangyezhaobiao.R;
+		import com.huangyezhaobiao.bean.LoginBean;
+		import com.huangyezhaobiao.gtui.GePushProxy;
+		import com.huangyezhaobiao.inter.Constans;
 import com.huangyezhaobiao.utils.ActivityUtils;
-import com.huangyezhaobiao.utils.LogUtils;
-import com.huangyezhaobiao.utils.UserUtils;
+		import com.huangyezhaobiao.utils.HYEventConstans;
+		import com.huangyezhaobiao.utils.HYMob;
+		import com.huangyezhaobiao.utils.LogUtils;
+		import com.huangyezhaobiao.utils.PhoneUtils;
+		import com.huangyezhaobiao.utils.UserUtils;
 		import com.huangyezhaobiao.utils.VersionUtils;
+		import com.huangyezhaobiao.view.ZhaoBiaoDialog;
+		import com.huangyezhaobiao.vm.CheckLoginViewModel;
+		import com.wuba.loginsdk.external.LoginCallback;
+		import com.wuba.loginsdk.external.LoginClient;
+		import com.wuba.loginsdk.external.Request;
+		import com.wuba.loginsdk.external.SimpleLoginCallback;
+		import com.wuba.loginsdk.model.LoginSDKBean;
+		import com.wuba.loginsdk.utils.ToastUtils;
+		import com.xiaomi.mipush.sdk.MiPushClient;
 
 		import java.util.ArrayList;
 import java.util.List;
@@ -39,9 +57,10 @@ public class GuideActivity extends CommonBaseActivity {
 	private ViewPager viewPager;
 	private ImageView hint_indicator;
 	private int width;
-	private ImageView[] indicators = new ImageView[4];
-	private int[] ids = { R.id.indicator1, R.id.indicator2, R.id.indicator3,
-			R.id.indicator4 };
+	private ImageView[] indicators = new ImageView[3];
+	private int[] ids = { R.id.indicator1, R.id.indicator2, R.id.indicator3
+//			R.id.indicator4
+	};
 	private float distance;
 	private GuideAdapter adapter;
 	private SharedPreferences sp;
@@ -50,10 +69,11 @@ public class GuideActivity extends CommonBaseActivity {
 	private View view1;
 	private View view2;
 	private View view3;
-	private View view4;
+//	private View view4;
 	private ImageView ee,er,esan,esi;
 
 	int currentVersion = -1; //当前版本号
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +87,8 @@ public class GuideActivity extends CommonBaseActivity {
 		if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT){
 			//透明状态栏
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-			//透明导航栏
-			getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+//			//透明导航栏
+//			getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 		}
 		getWindow().setBackgroundDrawable(null);
 
@@ -78,6 +98,12 @@ public class GuideActivity extends CommonBaseActivity {
 		} catch (Exception e) {
 
 		}
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		HYMob.getDataList(this, HYEventConstans.GUIDE_PAGE);
 	}
 
 	@Override
@@ -93,7 +119,7 @@ public class GuideActivity extends CommonBaseActivity {
 				width = params.width;
 				LogUtils.LogE("asas", "width:" + width);
 				distance = TypedValue.applyDimension(
-						TypedValue.COMPLEX_UNIT_DIP, 25.0f, getResources()
+						TypedValue.COMPLEX_UNIT_DIP, 22.5f, getResources()
 								.getDisplayMetrics());
 			}
 		});
@@ -101,38 +127,39 @@ public class GuideActivity extends CommonBaseActivity {
 		for (int i = 0; i < indicators.length; i++) {
 			indicators[i] = getView(ids[i]);
 		}
-		if (screenHeigh <= 480) {
-			view1 = LayoutInflater.from(this).inflate(R.layout.guide1_small,
-					null);
-			view2 = LayoutInflater.from(this).inflate(R.layout.guide2_small,
-					null);
-			view3 = LayoutInflater.from(this).inflate(R.layout.guide3_small,
-					null);
-			view4 = LayoutInflater.from(this).inflate(R.layout.guide4_small,
-					null);
-		} else {
+//		if (screenHeigh <= 480) {
+//			view1 = LayoutInflater.from(this).inflate(R.layout.guide1_small,
+//					null);
+//			view2 = LayoutInflater.from(this).inflate(R.layout.guide2_small,
+//					null);
+//			view3 = LayoutInflater.from(this).inflate(R.layout.guide3_small,
+//					null);
+////			view4 = LayoutInflater.from(this).inflate(R.layout.guide4_small,
+////					null);
+//		} else {
 			view1 = LayoutInflater.from(this).inflate(R.layout.guide1, null);
 			view2 = LayoutInflater.from(this).inflate(R.layout.guide2, null);
 			view3 = LayoutInflater.from(this).inflate(R.layout.guide3, null);
-			view4 = LayoutInflater.from(this).inflate(R.layout.guide4, null);
-		}
+//			view4 = LayoutInflater.from(this).inflate(R.layout.guide4, null);
+//		}
 		ee   = (ImageView) view1.findViewById(R.id.ee);
 		er   = (ImageView) view2.findViewById(R.id.er);
 		esan = (ImageView) view3.findViewById(R.id.e3);
-		esi  = (ImageView) view4.findViewById(R.id.e4);
+//		esi  = (ImageView) view4.findViewById(R.id.e4);
 		views.add(view1);
 		views.add(view2);
 		views.add(view3);
-		views.add(view4);
-		RelativeLayout rl = (RelativeLayout) view4.findViewById(R.id.rl_click);
+//		views.add(view4);
+		TextView rl = (TextView) view3.findViewById(R.id.rl_click);
 		rl.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				if (TextUtils.isEmpty(UserUtils.getUserId(GuideActivity.this))
 						|| TextUtils.isEmpty(UserUtils.getAppVersion(GuideActivity.this))
 						|| currentVersion >= 23) {// 如果没登录过
-					ActivityUtils.goToActivity(GuideActivity.this,
-							LoginActivity.class);
+
+					ActivityUtils.goToActivity(GuideActivity.this, BlankActivity.class);
+
 				} else {
 					ActivityUtils.goToActivity(GuideActivity.this, MainActivity.class);
 				}
@@ -221,11 +248,11 @@ public class GuideActivity extends CommonBaseActivity {
 		view1.setBackgroundResource(0);
 		view2.setBackgroundResource(0);
 		view3.setBackgroundResource(0);
-		view4.setBackgroundResource(0);
+//		view4.setBackgroundResource(0);
 		ee.setImageResource(0);
 		er.setImageResource(0);
 		esan.setImageResource(0);
-		esi.setImageResource(0);
+//		esi.setImageResource(0);
 
 	}
 
@@ -236,5 +263,11 @@ public class GuideActivity extends CommonBaseActivity {
 		screenWidth = dm.widthPixels;
 		screenHeigh = dm.heightPixels;
 		LogUtils.LogE("screenSize", "width:" + screenWidth + ",height:" + screenHeigh);
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		HYMob.getBaseDataListForPage(this, HYEventConstans.PAGE_GUIDE, stop_time - resume_time);
 	}
 }
