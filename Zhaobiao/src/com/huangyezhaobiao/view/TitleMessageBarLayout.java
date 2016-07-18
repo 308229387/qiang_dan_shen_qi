@@ -252,7 +252,7 @@ public class TitleMessageBarLayout extends RelativeLayout{
 		iv_title_left_yue.setVisibility(View.VISIBLE);
 		rl_right_title_close.setVisibility(View.VISIBLE);
 		iv_title_right_new_array.setVisibility(View.INVISIBLE);
-		tv_title_message.setText("您有一笔抢单尚未联系客户，请三小时内联系客户");
+		tv_title_message.setText("订单已经到手15分钟啦，别忘了联系客户！越早联系竞争优势越大，成单概率越高哦");
 		MDUtils.messageBarPageMD(MDConstans.DAOJISHI,bean.toPushPassBean().getCateId()+"",bean.toPushPassBean().getBidId()+"");
 	}
 

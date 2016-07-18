@@ -2,7 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="@color/gray"
+    android:background="@color/common_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -14,13 +14,14 @@
         android:layout_centerInParent="true"
         android:text="@string/refund_time_close"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="18sp"
         />
 
     <ImageView
-        android:layout_width="117dp"
-        android:layout_height="117dp"
+        android:layout_width="146dp"
+        android:layout_height="155dp"
         android:layout_above="@id/refund_time_title1"
+        android:layout_marginTop="80dip"
         android:layout_marginBottom="34dp"
         android:layout_centerHorizontal="true"
         android:src="@drawable/refund_blank_hint"
@@ -34,21 +35,21 @@
         android:text="@string/refund_time_title1"
         android:layout_marginTop="26dp"
         android:textColor="@color/t_gray"
-        android:textSize="16sp"
+        android:textSize="17sp"
         />
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_below="@id/refund_time_title2"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="11dp"
         >
         <TextView
             android:id="@+id/tv_refund_startTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/t_gray"
-            android:textSize="14sp"
+            android:textSize="17sp"
             android:text="2015-4-22"
             />
         <TextView
@@ -58,7 +59,7 @@
             android:layout_toRightOf="@id/tv_refund_startTime"
             android:layout_height="wrap_content"
             android:textColor="@color/t_gray"
-            android:textSize="16sp"
+            android:textSize="17sp"
             android:text="至"
             />
         <TextView
@@ -67,7 +68,7 @@
             android:layout_toRightOf="@id/to"
             android:layout_height="wrap_content"
             android:textColor="@color/t_gray"
-            android:textSize="14sp"
+            android:textSize="17sp"
             android:text="2015-4-22"
             />
 

@@ -30,7 +30,7 @@ import com.huangyezhaobiao.utils.LogUtils;
      "startTime":"2015-11-11",	//开始时间
      "fee", "300"
  */
-public class NannyPopBean extends PopBaseBean{
+public class  NannyPopBean extends PopBaseBean{
     private String orderId;
     private int status;// 抢单结果通知，1代表失败，0代表成功 新订单时不用，结果用
     private int cateId;//":"4065",
@@ -47,8 +47,6 @@ public class NannyPopBean extends PopBaseBean{
     private String voice;   //新订单时用，结果不用
     private String time;    //推送时间
     private String originalFee;
-
-    private String guestName;
 
     @Override
     public String getOriginalFee() {
@@ -169,13 +167,6 @@ public class NannyPopBean extends PopBaseBean{
         this.voice = voice;
     }
 
-    public String getGuestName() {
-        return guestName;
-    }
-
-    public void setGuestName(String guestName) {
-        this.guestName = guestName;
-    }
 
     @Override
     public View initView(Context context) {
@@ -243,7 +234,6 @@ public class NannyPopBean extends PopBaseBean{
 
         bean.setStr(str.toString());
         bean.setStatus(status);
-        bean.setGuestName(guestName);
         return bean;
     }
 

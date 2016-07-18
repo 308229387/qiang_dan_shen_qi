@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
@@ -141,12 +142,22 @@ public abstract class QBBaseActivity extends CommonBaseActivity implements INoti
 		}
 		@Override
 		public void onLoadingError(String msg) {
-			Toast.makeText(QBBaseActivity.this, msg, Toast.LENGTH_SHORT).show();
+
+			if (!TextUtils.isEmpty(msg) && msg.equals("2001")) {
+				if(LogoutDialog!=null){
+					LogoutDialog.setMessage("PPU过期，请重新登录");
+					LogoutDialog.show();
+				}
+			}else if(!TextUtils.isEmpty(msg)){
+				Toast.makeText(QBBaseActivity.this, msg, Toast.LENGTH_SHORT).show();
+			}
+
 			dismissQDWaitDialog();
 		}
 		@Override
 		public void onLoadingCancel() {
 		}
+
 	};
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -306,7 +317,9 @@ public abstract class QBBaseActivity extends CommonBaseActivity implements INoti
 		}
 		
 	}
-//	@Override
+
+
+	//	@Override
 //	public void back(PushToPassBean bean) {
 //		kvm.knock(bean, AppConstants.BIDSOURCE_WINDOW);
 //	}

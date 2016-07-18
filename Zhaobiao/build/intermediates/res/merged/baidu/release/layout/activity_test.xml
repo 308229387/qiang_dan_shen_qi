@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:onClick="upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="upload"
+        />
+
+    <Button
+        android:onClick="createData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="createData"
+        />
+
+   <!-- <Button
+        android:onClick="replaceAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="replaceAll"
+        />
+    <Button
+        android:onClick="find"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="find"
+        />&ndash;&gt;-->
+
+</LinearLayout>

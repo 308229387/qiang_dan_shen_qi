@@ -55,7 +55,7 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
     protected long resume_time,stop_time;
 
     protected ZhaoBiaoDialog exitDialog; //当用户被挤掉时,显示这个对话框
-    private ZhaoBiaoDialog LogoutDialog;
+    protected ZhaoBiaoDialog LogoutDialog;
 
     protected final static String CLOSE_ACTIVITTY = "CLOSE_ACTIVITTY";
 
@@ -96,7 +96,11 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
         //从sp取时间戳
         long latTimeLine = 0;
         try {
-            latTimeLine = Long.valueOf(SPUtils.getVByK(CommonFragmentActivity.this, SPUtils.KEY_TIMELINE_GLOBAL));
+            String  time = SPUtils.getVByK(CommonFragmentActivity.this, SPUtils.KEY_TIMELINE_GLOBAL);
+            if(!TextUtils.isEmpty(time)){
+                latTimeLine = Long.valueOf(time);
+            }
+
         } catch (NumberFormatException e) {
             latTimeLine = 0;
             e.printStackTrace();
@@ -172,7 +176,7 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
 
         @Override
         public void onNoInterNetError() {
-
+            Toast.makeText(CommonFragmentActivity.this, getString(R.string.no_network), Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -184,6 +188,8 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
         public void onVersionBack(String version) {
 
         }
+
+
     };
 
 
@@ -232,7 +238,6 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
                 }
             }
 
-
         } else {
             Log.e(TAG, "not fromBackground");
         }
@@ -255,7 +260,7 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
             public void onDialogOkClick() {
                 LogoutDialog.dismiss();
                 /** 跳转到登录的界面*/
-                lvm = new LogoutViewModel(CommonFragmentActivity.this, CommonFragmentActivity.this);
+                lvm = new LogoutViewModel(vmCallBack, CommonFragmentActivity.this);
                 lvm.logout();
                 SharedPreferencesUtils.clearLoginToken(getApplicationContext());
                 //退出时注销个推
@@ -275,6 +280,45 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
             }
         });
     }
+
+    private NetWorkVMCallBack vmCallBack = new NetWorkVMCallBack() {
+        @Override
+        public void onLoadingStart() {
+
+        }
+
+        @Override
+        public void onLoadingSuccess(Object t) {
+
+        }
+
+        @Override
+        public void onLoadingError(String msg) {
+
+        }
+
+        @Override
+        public void onLoadingCancel() {
+
+        }
+
+        @Override
+        public void onNoInterNetError() {
+            Toast.makeText(CommonFragmentActivity.this, getString(R.string.no_network),Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onLoginInvalidate() {
+
+        }
+
+        @Override
+        public void onVersionBack(String version) {
+
+        }
+
+
+    };
 
 
     @Override
@@ -334,10 +378,9 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
 
     @Override
     public void onLoadingError(String msg) {
-
-        if( !TextUtils.isEmpty(msg) && msg.equals("PPU")){
+        if (!TextUtils.isEmpty(msg) && msg.equals("2001")) {
             if(LogoutDialog!=null){
-                LogoutDialog.setMessage("您已经长时间无登录操作，请重新登录");
+                LogoutDialog.setMessage("PPU过期，请重新登录");
                 LogoutDialog.show();
             }
         }
@@ -350,7 +393,7 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
 
     @Override
     public void onNoInterNetError() {
-        Toast.makeText(CommonFragmentActivity.this, getString(R.string.no_network),Toast.LENGTH_SHORT).show();
+
     }
 
     @Override

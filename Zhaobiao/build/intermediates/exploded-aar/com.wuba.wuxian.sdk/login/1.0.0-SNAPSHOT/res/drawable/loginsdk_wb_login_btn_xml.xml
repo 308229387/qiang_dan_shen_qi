@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selector
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--<item android:state_pressed="true" android:drawable="@drawable/wb_login_btn_pressed" />
+    <item android:drawable="@drawable/wb_login_btn_normal" />-->
+<!--    <item android:state_pressed="true" >
+        <shape>
+            <solid android:color="@color/login_login_ensure_color" />
+            <corners android:radius="6dip" />
+        </shape>
+    </item>-->
+    <item >
+        <shape>
+            <solid android:color="@color/login_forget_password_color" />
+            <corners android:radius="2dip" />
+        </shape>
+    </item>
+</selector>
+<!-- From: file:/I:/E/2016523/58sdklogin/WubaLoginSDK/loginsdk/src/main/res/drawable/loginsdk_wb_login_btn_xml.xml -->

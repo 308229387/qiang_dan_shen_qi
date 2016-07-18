@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+        android:interpolator="@android:anim/decelerate_interpolator"
+        android:zAdjustment="top">
+	<translate android:fromXDelta="0%" android:toXDelta="-100%"
+        android:duration="300"/>
+</set>
+<!-- From: file:/I:/E/2016523/58sdklogin/WubaLoginSDK/loginsdk/src/main/res/anim/loginsdk_activity_open_exit.xml -->

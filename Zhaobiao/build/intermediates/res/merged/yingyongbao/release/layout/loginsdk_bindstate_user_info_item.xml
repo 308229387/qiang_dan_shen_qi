@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="55dp"
+    android:descendantFocusability = "blocksDescendants"
+    android:background="@drawable/loginsdk_personal_list_selector">
+
+    <TextView
+        android:id="@+id/userinfo_title"
+        android:layout_height="wrap_content"
+        android:layout_width="70dip"
+        android:layout_marginLeft="15dip"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:id="@+id/userinfo_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/userinfo_title"
+        android:textColor="#808080"
+        android:textSize="16sp"
+        android:maxEms="10"
+        android:ellipsize="end"
+        android:maxLines="1"/>
+
+    <com.wuba.loginsdk.views.base.RecycleImageView
+        android:id="@+id/userInfo_arrow_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dip"
+        android:layout_centerVertical="true"
+        android:src="@drawable/loginsdk_home_selfplat_more_arrow"/>
+
+    <View
+        android:id="@+id/userInfo_divider"
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#dedfe0"
+        android:layout_marginLeft="15dip"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout><!-- From: file:/I:/E/2016523/58sdklogin/WubaLoginSDK/loginsdk/src/main/res/layout/loginsdk_bindstate_user_info_item.xml -->

@@ -36,9 +36,20 @@
 
     <LinearLayout
         android:id="@+id/rl_detail_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="@color/divider"
+        android:layout_below="@+id/rl_detail_bottom"/>
+
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="48dp"
-        android:layout_alignParentBottom="true">
+        android:layout_height="48dp" >
 
         <RelativeLayout
             android:id="@+id/order_detail_message"
@@ -86,6 +97,8 @@
                 android:textColor="@color/white"
                 android:textSize="18sp" />
         </RelativeLayout>
+
+    </LinearLayout>
 
     </LinearLayout>
 

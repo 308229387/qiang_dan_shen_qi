@@ -85,4 +85,14 @@
     <color name="order_detail_text">#686868</color>
 
     <color name="refund_reason">#B6B6B6</color>
+
+    <color name="detail_text">#AEAEAE</color>
+
+    <color name="common_background">#F5FBFB</color>
+
+    <color name="binding_detail_text">#B2B2B2</color>
+
+    <color name="button_red">#FC5846</color>
+
+    <color name="binding_list_text">#B4B4B4</color>
 </resources>

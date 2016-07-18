@@ -215,7 +215,11 @@ public class SettingsActivity extends QBBaseActivity implements View.OnClickList
     @Override
     public void onLoadingError(String msg) {
         stopLoading();
-        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+        if (!TextUtils.isEmpty(msg) && msg.equals("2001")) {
+            super.onLoadingError(msg);
+        }else if(!TextUtils.isEmpty(msg)){
+            Toast.makeText(this, msg,Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

@@ -7,17 +7,23 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.bean.LoginBean;
 import com.huangyezhaobiao.gtui.GePushProxy;
 import com.huangyezhaobiao.service.MyService;
+import com.huangyezhaobiao.url.URLConstans;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
+import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.PhoneUtils;
+import com.huangyezhaobiao.utils.UpdateManager;
 import com.huangyezhaobiao.utils.UserUtils;
+import com.huangyezhaobiao.utils.VersionUtils;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import com.huangyezhaobiao.vm.CheckLoginViewModel;
+import com.huangyezhaobiao.vm.UpdateViewModel;
 import com.wuba.loginsdk.external.LoginCallback;
 import com.wuba.loginsdk.external.LoginClient;
 import com.wuba.loginsdk.external.Request;
@@ -33,23 +39,105 @@ public class BlankActivity extends CommonBaseActivity {
 
     private CheckLoginViewModel checkLoginViewModel;
 
+    private UpdateViewModel updateViewModel;
+    /**
+     * 是否强制更新
+     */
+	private boolean forceUpdate;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blank);
+        initDailog();
         //注册登录SDK
         LoginClient.register(mLoginCallback);
-        initDailog();
-
         onClickLogin();
 
         //关掉service
         stopService(new Intent(BlankActivity.this, MyService.class));
 //        //关掉service
 //        stopService(new Intent(BlankActivity.this, AlertService.class));
+        updateViewModel = new UpdateViewModel(vmCallBack, this);
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+//        if(updateViewModel != null)
+//            updateViewModel.checkVersion();
+    }
+
+    private NetWorkVMCallBack vmCallBack = new NetWorkVMCallBack() {
+        @Override
+        public void onLoadingStart() {
+
+
+        }
+
+        @Override
+        public void onLoadingSuccess(Object t) {
+
+        }
+
+        @Override
+        public void onLoadingError(String msg) {
+
+        }
+
+        @Override
+        public void onLoadingCancel() {
+
+        }
+
+        @Override
+        public void onNoInterNetError() {
+
+        }
+
+        @Override
+        public void onLoginInvalidate() {
+
+        }
+
+        @Override
+        public void onVersionBack(String version) {
+            String versionCode = "";
+            int currentVersion = -1; //当前版本号
+
+            int versionNum = -1;
+            //获取当前系统版本号
+            try {
+                currentVersion = Integer.parseInt(VersionUtils.getVersionCode(BlankActivity.this));
+            } catch (Exception e) {
+
+            }
+            if (currentVersion == -1) return;
+
+
+            //当前是MainActivity，获取服务器header返回的版本号
+            if (version != null) {
+                if (version.contains("F")) {
+                    forceUpdate = true;
+                }
+                String[] fs = version.split("F");
+                versionCode = fs[0];
+                try {
+                    versionNum = Integer.parseInt(versionCode);
+                } catch (Exception e) {
+
+                }
+                if (versionNum == -1) {
+                    return;
+                }
+
+                UpdateManager.getUpdateManager().isUpdateNow(BlankActivity.this, versionNum, currentVersion, URLConstans.DOWNLOAD_ZHAOBIAO_ADDRESS, forceUpdate);
+            }
+        }
+    };
 
     /**
      * 调起登录服务，使用默认参数
@@ -79,16 +167,17 @@ public class BlankActivity extends CommonBaseActivity {
         @Override
         public void onLogin58Finished(boolean isSuccess, String msg, @Nullable LoginSDKBean loginSDKBean) {
             super.onLogin58Finished(isSuccess, msg, loginSDKBean);
-            ToastUtils.showToast(BlankActivity.this, msg);
             if (isSuccess && loginSDKBean != null) {
+                ToastUtils.showToast(BlankActivity.this, msg);
                 checkLoginViewModel = new CheckLoginViewModel(BlankActivity.this, BlankActivity.this);
                 checkLoginViewModel.login();
-            }else if(!isSuccess){
-//                alertDialog.setMessage("抢单神器目前仅支持58装修、工商注册、保姆及保洁类别vip用户登录使用，vip开通详询4001-511-166");
-//                alertDialog.show();
-                finish();
             }
 
+            //需要单独处理返回按钮事件的可以判断code值
+            if(loginSDKBean != null && loginSDKBean.getCode()==LoginSDKBean.CODE_CANCEL_OPERATION) {
+                //CODE_CANCEL_OPERATION表示账号登录页面点击了返回按钮或返回键，取消了登录操作
+                finish();
+            }
         }
     };
 
@@ -157,7 +246,7 @@ public class BlankActivity extends CommonBaseActivity {
             MiPushClient.setAlias(getApplicationContext(), UserUtils.getUserId(getApplicationContext()), null);
             //个推注册别名
             boolean result = GePushProxy.bindPushAlias(getApplicationContext(), userId + "_" + PhoneUtils.getIMEI(this));
-            Toast.makeText(this, "注册别名结果:" + result, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "注册别名结果:" + result, Toast.LENGTH_SHORT).show();
 
 
             if (hasValidated == 1) {    //判断是否验证过手机 1没有验证过，0验证过

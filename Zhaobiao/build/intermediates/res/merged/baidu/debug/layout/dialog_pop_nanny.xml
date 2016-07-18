@@ -55,14 +55,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="需求类型："
-                android:textColor="#808080"
+                android:text="需求类型"
+                android:textColor="@color/detail_text"
                 android:textSize="@dimen/textsize_large" />
 
             <TextView
                 android:id="@+id/nanny_need_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="55dip"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="@dimen/textsize_large" />
@@ -76,14 +77,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="所在区域："
-                android:textColor="#808080"
+                android:text="所在区域"
+                android:textColor="@color/detail_text"
                 android:textSize="@dimen/textsize_large" />
 
             <TextView
                 android:id="@+id/nanny_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="55dip"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="@dimen/textsize_large" />
@@ -97,14 +99,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="雇佣时间："
-                android:textColor="#808080"
+                android:text="雇佣时间"
+                android:textColor="@color/detail_text"
                 android:textSize="@dimen/textsize_large" />
 
             <TextView
                 android:id="@+id/nanny_hire_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="55dip"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="@dimen/textsize_large" />
@@ -118,14 +121,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="年龄要求："
-                android:textColor="#808080"
+                android:text="年龄要求"
+                android:textColor="@color/detail_text"
                 android:textSize="@dimen/textsize_large" />
 
             <TextView
                 android:id="@+id/nanny_age"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="55dip"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="@dimen/textsize_large" />
@@ -141,14 +145,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="经验年限："
-                android:textColor="#808080"
+                android:text="经验年限"
+                android:textColor="@color/detail_text"
                 android:textSize="@dimen/textsize_large" />
 
             <TextView
                 android:id="@+id/nanny_experience"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="55dip"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="@dimen/textsize_large" />
@@ -162,14 +167,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="开始时间："
-                android:textColor="#808080"
+                android:text="开始时间"
+                android:textColor="@color/detail_text"
                 android:textSize="@dimen/textsize_large" />
 
             <TextView
                 android:id="@+id/nanny_start_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="55dip"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="@dimen/textsize_large" />

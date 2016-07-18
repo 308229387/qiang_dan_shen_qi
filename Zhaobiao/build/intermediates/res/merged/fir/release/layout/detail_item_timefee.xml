@@ -27,7 +27,7 @@
                 android:id="@+id/detail_item_timefee_text1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="29dp"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="@dimen/textsize_large"/>
@@ -51,7 +51,7 @@
                 android:id="@+id/detail_item_timefee_text2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="29dp"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="@dimen/textsize_large" />

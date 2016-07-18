@@ -7,9 +7,9 @@
     <solid android:color="#FC5846" />
     <!-- 填充的颜色 -->
     <corners
-        android:bottomLeftRadius="3.5dp"
+        android:bottomLeftRadius="2dp"
         android:bottomRightRadius="0dp"
-        android:topLeftRadius="3.5dp"
+        android:topLeftRadius="2dp"
         android:topRightRadius="0dp" />
 
 </shape>

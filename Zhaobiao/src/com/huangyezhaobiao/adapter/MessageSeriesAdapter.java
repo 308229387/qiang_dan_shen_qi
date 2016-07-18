@@ -37,7 +37,7 @@ public class MessageSeriesAdapter extends BaseAdapter{
 		this.context = context;
 		mInflater = LayoutInflater.from(context);
 	}
-	
+
 	public void setDataSources(List<PushToStorageBean> messageBeans){
 		this.messageBeans = messageBeans;
 		notifyDataSetChanged();
@@ -75,7 +75,6 @@ public class MessageSeriesAdapter extends BaseAdapter{
 			holder = (ViewHolder) convertView.getTag();
 		}
 		PushToStorageBean bean = messageBeans.get(position);
-		holder.tv_content.setText(bean.getStr());
 		holder.tv_time.setText(TimeUtils.formatDateTime(bean.getTime()));
 		if(unread_counts[position]>0){
 			holder.tv_unread.setVisibility(View.VISIBLE);
@@ -94,16 +93,29 @@ public class MessageSeriesAdapter extends BaseAdapter{
 		case 1:
 			holder.tv_title.setText(R.string.toast_bidding_result);
 			holder.iv_message.setImageResource(R.drawable.qd_result);
+
+			if(bean.getStr() == "暂无消息"){
+				holder.tv_content.setText(bean.getStr());
+			}else {
+				if(bean.getStatus() == 1){
+					holder.tv_content.setText("抢单成功!" + bean.getStr());
+				}else {
+					holder.tv_content.setText("抢单失败!" + bean.getStr());
+				}
+			}
+
 			count = UnreadUtils.getQDResult(context);
 			break;
 		case 2:
 			holder.tv_title.setText(R.string.toast_bidding_timeless);
 			holder.iv_message.setImageResource(R.drawable.daojishi);
+			holder.tv_content.setText(bean.getStr());
 			count = UnreadUtils.getDaoJiShi(context);
 			break;
 		case 3:
 			holder.tv_title.setText(R.string.bidding_sys_noti);
 			holder.iv_message.setImageResource(R.drawable.sysnotifi);
+			holder.tv_content.setText(bean.getStr());
 			count = UnreadUtils.getSysNotiNum(context);
 			break;
 	

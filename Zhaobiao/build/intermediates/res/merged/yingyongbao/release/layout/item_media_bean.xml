@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_root"
+    android:layout_width="68dp"
+    android:layout_height="68dp"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:id="@+id/rl_item"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+       android:layout_centerInParent="true">
+
+        <com.huangyezhaobiao.photomodule.SelectableRoundedImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/iv_item_bean"
+            android:layout_width="61dp"
+            android:layout_height="61dp"
+            android:layout_margin="5dp"
+            android:layout_centerInParent="true"
+            android:scaleType="centerCrop"
+            app:sriv_left_bottom_corner_radius="6dp"
+            android:src="@drawable/iv_add_picture"
+            app:sriv_left_top_corner_radius="6dip"
+            app:sriv_right_bottom_corner_radius="6dp"
+            app:sriv_right_top_corner_radius="6dip" />
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_margin="2dp"
+            android:src="@drawable/img_delete" />
+    </RelativeLayout>
+</RelativeLayout>

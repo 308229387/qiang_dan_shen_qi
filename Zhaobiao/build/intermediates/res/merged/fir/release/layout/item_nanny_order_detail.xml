@@ -23,14 +23,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="服务类型"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/nanny_bid_detail_service_type_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:layout_toRightOf="@id/nanny_bid_detail_service_type_title"
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -49,14 +49,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="雇佣时间"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/nanny_bid_detail_hire_time_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:layout_toRightOf="@id/nanny_bid_detail_hire_time_title"
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -75,14 +75,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="服务区域"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/nanny_bid_detail_service_location_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:layout_toRightOf="@id/nanny_bid_detail_service_location_title"
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -101,14 +101,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="详细地址"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/nanny_bid_detail_service_detail_address_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:layout_toRightOf="@id/nanny_bid_detail_service_detail_address_title"
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -126,14 +126,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="年龄要求"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/nanny_bid_detail_age_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:layout_toRightOf="@id/nanny_bid_detail_age_title"
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -152,14 +152,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="经验年限"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/nanny_bid_detail_experience_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:layout_toRightOf="@id/nanny_bid_detail_experience_title"
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -177,14 +177,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="预        算"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/nanny_bid_detail_budget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:layout_toRightOf="@id/nanny_bid_detail_budget_title"
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -202,14 +202,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="开始时间"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/nanny_bid_detail_start_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:layout_toRightOf="@id/nanny_bid_detail_start_time_title"
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -227,14 +227,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="特殊需求"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/nanny_order_detail_special"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:layout_toRightOf="@id/nanny_order_detail_special_title"
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />

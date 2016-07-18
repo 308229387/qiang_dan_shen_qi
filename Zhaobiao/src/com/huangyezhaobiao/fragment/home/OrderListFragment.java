@@ -415,6 +415,11 @@ public class OrderListFragment extends  BaseHomeFragment implements INotificatio
         lv.setVisibility(View.GONE);
         layout_no_data.setVisibility(View.VISIBLE);
 
+        if (!TextUtils.isEmpty(msg) && msg.equals("2001")) {
+            MainActivity ola = (MainActivity) getActivity();
+            ola.onLoadingError(msg);
+        }
+
 //        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
     }
 
@@ -434,6 +439,7 @@ public class OrderListFragment extends  BaseHomeFragment implements INotificatio
 
     @Override
     public void onLoginInvalidate() {
+        stopLoading();
         MainActivity ola = (MainActivity) getActivity();
         ola.onLoginInvalidate();
     }

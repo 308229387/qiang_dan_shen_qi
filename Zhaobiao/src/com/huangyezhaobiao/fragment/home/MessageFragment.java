@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,16 +64,21 @@ public class MessageFragment extends BaseHomeFragment implements INotificationLi
 
     private Map<String, Integer> maps = new HashMap<String, Integer>();
 
+    private boolean isFirstOpen = true;
+
     @Override
     public void OnFragmentSelectedChanged(boolean isSelected) {
-
+          if(isSelected){
+              if(isFirstOpen){
+                  load();
+              }
+          }
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         vm = new CenterMessageStorageViewModel(getActivity(), this);
-        loadDatas();
         messageBeans = new ArrayList<PushToStorageBean>();
     }
 
@@ -81,27 +87,34 @@ public class MessageFragment extends BaseHomeFragment implements INotificationLi
         app = BiddingApplication.getBiddingApplication();
         app.setCurrentNotificationListener(this);
         super.onResume();
+        load();
         notifyDatasWithoutUnread();
-
+        adapter.notifyDataSetChanged();
         HYMob.getDataList(getActivity(), HYEventConstans.INDICATOR_MESSAGE_PAGE);
     }
 
+    @Override
     protected void loadDatas() {
-        new Thread() {
-            @Override
-            public void run() {
-                super.run();
-                if(vm != null)
-                vm.getDate();
-            }
-        }.start();
-
     }
 
     @Override
     protected void loadMore() {
 
     }
+
+    private void load(){
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                if(vm != null)
+                    vm.getDate();
+            }
+        }.start();
+
+        isFirstOpen = false;
+    }
+
 
     @Nullable
     @Override
@@ -169,13 +182,23 @@ public class MessageFragment extends BaseHomeFragment implements INotificationLi
     private void notifyDatasWithoutUnread() {
         messageBeans.clear();
         operateList(qiangDan);
-        operateList(daoJiShi);
+        operateContactList(daoJiShi);
         operateSysList(sysNoti);
         adapter.setDataSources(messageBeans);
         lv_message_center.setAdapter(adapter);
     }
 
     private void operateList(List<PushToStorageBean> bean) {
+        if (bean.size() > 0) {
+            PushToStorageBean single = bean.get(bean.size()-1);
+            messageBeans.add(single);
+        } else {
+            PushToStorageBean bean2 = new PushToStorageBean("暂无消息", "");
+            messageBeans.add(bean2);
+        }
+    }
+
+    private void operateContactList(List<PushToStorageBean> bean) {
         if (bean.size() > 0) {
             PushToStorageBean single = bean.get(bean.size()-1);
             messageBeans.add(single);
@@ -239,6 +262,7 @@ public class MessageFragment extends BaseHomeFragment implements INotificationLi
                         }
                     }
                     notifyDatasWithoutUnread();
+                    adapter.notifyDataSetChanged();
                 }
             });
         }
@@ -285,12 +309,18 @@ public class MessageFragment extends BaseHomeFragment implements INotificationLi
                 startActivity(intent);
             } else {
                 LogUtils.LogV("nnnnnnB2d", String.valueOf(pushBean.getTag()));
-                loadDatas();
-                tbl.setPushBean(pushBean);
-                tbl.setVisibility(View.VISIBLE);
-                PushUtils.pushList.clear();
-            }
+//                if(tbl  != null){
+//                    tbl.setPushBean(pushBean);
+//                    tbl.setVisibility(View.VISIBLE);
+//                }
+//
+//                PushUtils.pushList.clear();
+
+                load();
         }
+        }
+
+
     }
 
     @Override

@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:text="取消"
-                    android:textColor="@color/red" />
+                    android:textColor="@color/t_gray" />
             </RelativeLayout>
 
             <!--<View-->

@@ -225,8 +225,12 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 	@Override
 	public void onLoadingError(String msg) {
 		stopLoading();
-		if(!TextUtils.isEmpty(msg))
+		if (!TextUtils.isEmpty(msg) && msg.equals("2001")) {
+			super.onLoadingError(msg);
+		}else if(!TextUtils.isEmpty(msg)){
 			Toast.makeText(this, msg,Toast.LENGTH_SHORT).show();
+		}
+
 	}
 
 	@Override
@@ -252,7 +256,7 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 		popPass = log.toPopPassBean();
 		bidState = log.getBidState();
 		if (bidState == 0) {
-			done.setBackgroundColor(getResources().getColor(R.color.tab_red));
+			done.setBackgroundColor(getResources().getColor(R.color.button_red));
 			done.setText(R.string.grab_list);
 			done.setOnClickListener(new OnClickListener() {
 				@Override

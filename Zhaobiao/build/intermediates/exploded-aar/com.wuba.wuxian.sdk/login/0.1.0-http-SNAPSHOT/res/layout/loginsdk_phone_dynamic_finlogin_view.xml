@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/activity_main_bg">
+    <include
+        android:id="@+id/login_title_layout"
+        layout="@layout/loginsdk_public_title" />
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_title_layout" >
+
+        <FrameLayout
+            android:id="@+id/dynamic_finance_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:id="@+id/phone_dynamic_login_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/loginsdk_wb_personal_item_full_normal"
+            android:layout_below="@id/dynamic_finance_layout">
+
+            <RelativeLayout
+                android:id="@+id/phone_dynamic_login_view"
+                android:layout_width="fill_parent"
+                android:layout_height="44dp">
+                <TextView
+                    android:id="@+id/dynamic_layout"
+                    style="@style/RegisterText"
+                    android:layout_marginRight="10dip"
+                    android:layout_marginLeft="@dimen/login_text_margin_border_dimen"
+                    android:text="@string/login_phone_num" />
+
+                <TextView
+                    android:id="@+id/dynamic_divider"
+                    android:layout_width="1px"
+                    android:layout_height="fill_parent"
+                    android:layout_alignBottom="@id/dynamic_layout"
+                    android:layout_alignTop="@id/dynamic_layout"
+                    android:layout_marginBottom="15dip"
+                    android:layout_marginTop="15dip"
+                    android:layout_toRightOf="@id/dynamic_layout"
+                    android:visibility="invisible"
+                    android:background="#c6cbd1" />
+                <Button
+                    android:id="@+id/get_affirm_button"
+                    android:layout_width="@dimen/dynamic_login_account_width"
+                    android:layout_height="@dimen/manager_account_row_height"
+                    android:singleLine="false"
+                    android:layout_alignParentRight="true"
+                    android:background="@null"
+                    android:text="@string/login_phone_get_verify_num"
+                    android:textColor="@color/dynamic_unlog_verify_color"
+                    android:textSize="@dimen/template_frame_item_secondtextsize"/>
+
+                <com.wuba.loginsdk.views.LoginAutoClearEditView
+                    android:id="@+id/dynamic_phone"
+                    style="@style/RegisterEdit"
+                    android:inputType="phone"
+                    android:layout_alignBaseline="@id/dynamic_layout"
+                    android:layout_marginLeft="20dip"
+                    android:layout_toRightOf="@id/dynamic_divider"
+                    android:layout_toLeftOf="@id/get_affirm_button"
+                    android:hint="@string/login_phone_num_input"
+                    android:digits="1234567890"
+                    android:textColor="@color/orange"
+                    android:maxLength="11"/>
+                <TextView
+                    android:id="@+id/verified_divider"
+                    android:layout_width="1px"
+                    android:layout_height="fill_parent"
+                    android:layout_alignBottom="@id/dynamic_layout"
+                    android:layout_alignTop="@id/dynamic_layout"
+                    android:layout_toRightOf="@id/dynamic_phone"
+                    android:visibility="visible"
+                    android:background="#c6cbd1" />
+                <TextView
+                    android:id="@+id/phone_unbind_hint"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@id/dynamic_layout"
+                    android:layout_marginLeft="10dip"
+                    android:layout_toRightOf="@id/dynamic_divider"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/reg_separator_line"
+                style="@style/SeparatorLine"
+                android:layout_below="@id/phone_dynamic_login_view" />
+
+            <RelativeLayout
+                android:id="@+id/phone_affirm_view"
+                android:layout_width="fill_parent"
+                android:layout_height="44dp"
+                android:layout_below="@id/phone_dynamic_login_view">
+
+                <TextView
+                    android:id="@+id/affirm_dynamic_layout"
+                    style="@style/RegisterText"
+                    android:layout_marginRight="10dip"
+                    android:layout_marginLeft="@dimen/login_text_margin_border_dimen"
+                    android:text="@string/login_phone_verify_num" />
+
+                <TextView
+                    android:id="@+id/affirm_dynamic_divider"
+                    android:layout_width="1px"
+                    android:layout_height="fill_parent"
+                    android:layout_alignBottom="@id/affirm_dynamic_layout"
+                    android:layout_alignTop="@id/affirm_dynamic_layout"
+                    android:layout_marginBottom="15dip"
+                    android:layout_marginTop="15dip"
+                    android:layout_toRightOf="@id/affirm_dynamic_layout"
+                    android:visibility="invisible"
+                    android:background="#c6cbd1" />
+
+                <com.wuba.loginsdk.views.LoginAutoClearEditView
+                    android:id="@+id/affirm_dynamic_phone"
+                    style="@style/RegisterEdit"
+                    android:layout_width="fill_parent"
+                    android:layout_alignBaseline="@id/affirm_dynamic_layout"
+                    android:layout_marginLeft="20dip"
+                    android:layout_toRightOf="@id/affirm_dynamic_divider"
+                    android:hint="@string/login_phone_verify_num_input"
+                    android:inputType="number"
+                    android:digits="1234567890"
+                    android:maxLength="6"
+                    android:textColor="@color/orange" />
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/phone_relogin_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/phone_dynamic_login_layout"
+            android:layout_marginLeft="@dimen/manager_account_margin"
+            android:layout_marginRight="@dimen/manager_account_margin"
+            android:layout_marginTop="20dip" >
+
+            <Button
+                android:id="@+id/phone_dynamic_password_button"
+                style="@style/LoginRegButtonStyle"
+                android:layout_width="fill_parent"
+                android:background="@drawable/loginsdk_wb_unlogin_btn_xml"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dynamic_relogin_view"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/phone_relogin_layout"
+            android:layout_marginLeft="@dimen/manager_account_margin"
+            android:layout_marginRight="@dimen/manager_account_margin"
+            android:layout_marginTop="20dip">
+
+            <TextView
+                android:id="@+id/dynamic_relogin"
+                android:layout_width="wrap_content"
+                android:layout_height="20dip"
+                android:layout_alignParentLeft="true"
+                android:text="@string/dynamic_relogin_text"
+                android:textColor="@color/login_bottom_text_hint_color"
+                android:textSize="13sp"
+                android:visibility="gone"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <com.wuba.loginsdk.views.base.RequestLoadingView
+        android:id="@+id/request_loading"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" />
+</RelativeLayout><!-- From: file:/I:/E/2016523/58sdklogin/WubaLoginSDK/loginsdk/src/main/res/layout/loginsdk_phone_dynamic_finlogin_view.xml -->

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -294,7 +295,13 @@ public class RefundAgainCommitFragment extends RefundBaseFragment implements Net
         stopLoading();
         layout_no_internet.setVisibility(View.GONE);
         rl_submit.setVisibility(View.GONE);
-        Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
+        if (!TextUtils.isEmpty(msg) && msg.equals("2001")) {
+            RefundActivity ola = (RefundActivity) getActivity();
+            ola.onLoadingError(msg);
+        }else if(!TextUtils.isEmpty(msg)){
+            Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override
@@ -316,6 +323,7 @@ public class RefundAgainCommitFragment extends RefundBaseFragment implements Net
         rl_submit.setVisibility(View.GONE);
         ((RefundActivity)getActivity()).onLoginInvalidate();
     }
+
 
     @Override
     public void onClick(View v) {

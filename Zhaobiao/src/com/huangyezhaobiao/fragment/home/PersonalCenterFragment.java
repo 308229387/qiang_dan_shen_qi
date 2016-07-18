@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.activity.AboutActivity;
+import com.huangyezhaobiao.activity.BidSuccessActivity;
 import com.huangyezhaobiao.activity.HelpActivity;
 import com.huangyezhaobiao.activity.MainActivity;
 import com.huangyezhaobiao.activity.MyWalletActivity;
@@ -55,7 +56,9 @@ public class PersonalCenterFragment extends BaseHomeFragment implements NetWorkV
 
     @Override
     public void OnFragmentSelectedChanged(boolean isSelected) {
-        if(isSelected){}
+        if(isSelected){
+
+        }
     }
 
     @Override
@@ -71,6 +74,7 @@ public class PersonalCenterFragment extends BaseHomeFragment implements NetWorkV
     @Override
     public void onResume() {
         super.onResume();
+        yuEViewModel.getBalance();
         HYMob.getDataList(getActivity(), HYEventConstans.INDICATOR_PERSONAL_PAGE);
     }
 
@@ -78,7 +82,6 @@ public class PersonalCenterFragment extends BaseHomeFragment implements NetWorkV
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         yuEViewModel = new YuEViewModel(this, getActivity());
-        yuEViewModel.getBalance();
     }
 
     @Nullable
@@ -185,6 +188,11 @@ public class PersonalCenterFragment extends BaseHomeFragment implements NetWorkV
     @Override
     public void onLoadingError(String msg) {
         stopLoading();
+
+        if (!TextUtils.isEmpty(msg) && msg.equals("2001")) {
+            MainActivity ola = (MainActivity) getActivity();
+            ola.onLoadingError(msg);
+        }
 //        if (!TextUtils.isEmpty(msg)) {
 //            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
 //        }
@@ -204,6 +212,7 @@ public class PersonalCenterFragment extends BaseHomeFragment implements NetWorkV
 
     @Override
     public void onLoginInvalidate() {
+        stopLoading();
         MainActivity ola = (MainActivity) getActivity();
         ola.onLoginInvalidate();
     }
@@ -212,6 +221,8 @@ public class PersonalCenterFragment extends BaseHomeFragment implements NetWorkV
     public void onVersionBack(String version) {
 
     }
+
+
 
     @Override
     public void onStop() {

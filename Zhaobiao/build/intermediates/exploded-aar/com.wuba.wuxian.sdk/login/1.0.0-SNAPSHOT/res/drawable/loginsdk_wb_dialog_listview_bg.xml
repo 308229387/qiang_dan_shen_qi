@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" android:drawable="@color/wb_dialog_listview_item_press"></item>
+    <item android:drawable="@color/wb_dialog_listview_item_normal"></item>
+</selector><!-- From: file:/I:/E/2016523/58sdklogin/WubaLoginSDK/loginsdk/src/main/res/drawable/loginsdk_wb_dialog_listview_bg.xml -->

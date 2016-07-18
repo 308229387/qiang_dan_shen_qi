@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/iv_no_orders"
-        android:layout_width="117dp"
-        android:layout_height="117dp"
+        android:layout_width="146dp"
+        android:layout_height="155dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="118dp"
         android:src="@drawable/order_hint" />
@@ -18,10 +18,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/iv_no_orders"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:text="暂无已抢到的订单,"
         android:textColor="#808080"
-        android:textSize="16sp" />
+        android:textSize="17sp" />
 
     <TextView
         android:id="@+id/ty"
@@ -32,7 +32,7 @@
         android:layout_marginTop="5dp"
         android:text="去抢单页等等新订单吧！"
         android:textColor="#808080"
-        android:textSize="16sp" />
+        android:textSize="17sp" />
 
     <RelativeLayout
         android:id="@+id/layout_no_internet_click_refresh"

@@ -50,7 +50,7 @@ import air.com.wuba.bangbang.common.impush.DeamonService;
  * @author shenzhixin
  * 
  */
-public class SplashActivity extends Activity implements NetWorkVMCallBack{
+public class SplashActivity extends Activity {
 	private static final long DELAYED_TIMES = 3 * 1000;
 	private SharedPreferences sp;
 	private Handler handler = new Handler();
@@ -62,11 +62,7 @@ public class SplashActivity extends Activity implements NetWorkVMCallBack{
 
 //	private LoadingProgress loading;
 
-	private UpdateViewModel updateViewModel;
-	/**
-	 * 是否强制更新
-	 */
-	private boolean forceUpdate;
+
 
 
 	@Override
@@ -97,7 +93,6 @@ public class SplashActivity extends Activity implements NetWorkVMCallBack{
 		startService(intent);
 
 		context = this;
-		updateViewModel = new UpdateViewModel(this, this);
 
 		// 等三秒
 		handler.postDelayed(new Runnable() {
@@ -204,9 +199,6 @@ public class SplashActivity extends Activity implements NetWorkVMCallBack{
 		BDMob.getBdMobInstance().onResumeActivity(BiddingApplication.getBiddingApplication());
 		HYMob.getDataList(this, HYEventConstans.EVENT_ID_APP_OPEND);
 
-		if(updateViewModel != null)
-			updateViewModel.checkVersion();
-
 	}
 
 	@Override
@@ -250,57 +242,4 @@ public class SplashActivity extends Activity implements NetWorkVMCallBack{
 	}
 
 
-	@Override
-	public void onLoadingStart() {
-	}
-	@Override
-	public void onLoadingSuccess(Object t) {
-	}
-	@Override
-	public void onLoadingError(String msg) {
-	}
-	@Override
-	public void onLoadingCancel() {
-	}
-	@Override
-	public void onNoInterNetError() {
-	}
-	@Override
-	public void onLoginInvalidate() {
-	}
-
-	@Override
-	public void onVersionBack(String version) {
-		String versionCode = "";
-		int currentVersion = -1; //当前版本号
-
-		int versionNum = -1;
-		//获取当前系统版本号
-		try {
-			currentVersion = Integer.parseInt(VersionUtils.getVersionCode(this));
-		} catch (Exception e) {
-
-		}
-		if (currentVersion == -1) return;
-
-
-		//当前是MainActivity，获取服务器header返回的版本号
-		if (version != null) {
-			if (version.contains("F")) {
-				forceUpdate = true;
-			}
-			String[] fs = version.split("F");
-			versionCode = fs[0];
-			try {
-				versionNum = Integer.parseInt(versionCode);
-			} catch (Exception e) {
-
-			}
-			if (versionNum == -1) {
-				return;
-			}
-
-			UpdateManager.getUpdateManager().isUpdateNow(this, versionNum, currentVersion, URLConstans.DOWNLOAD_ZHAOBIAO_ADDRESS, forceUpdate);
-		}
-	}
 }

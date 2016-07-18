@@ -18,7 +18,7 @@
             android:layout_marginRight="15dip"
             android:singleLine="true"
             android:text="预算 8-10万"
-            android:textColor="@color/t_gray"
+            android:textColor="@color/binding_list_text"
             android:textSize="15sp" />
 
 
@@ -27,11 +27,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_grab_budget_title"
-            android:layout_marginTop="11dip"
+            android:layout_marginTop="7dip"
             android:layout_marginRight="15dip"
             android:singleLine="true"
             android:text="面积: 90-144平米"
-            android:textColor="@color/t_gray"
+            android:textColor="@color/binding_list_text"
             android:textSize="15sp" />
 
         <TextView
@@ -39,11 +39,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_grab_area_title"
-            android:layout_marginTop="11dip"
+            android:layout_marginTop="7dip"
             android:layout_marginRight="15dip"
             android:singleLine="true"
             android:text=""
-            android:textColor="@color/t_gray"
+            android:textColor="@color/binding_list_text"
             android:textSize="15sp"
             android:visibility="gone"/>
 
@@ -62,7 +62,7 @@
             android:layout_marginRight="15dip"
             android:singleLine="true"
             android:text="区域  朝阳区-望京"
-            android:textColor="#808080"
+            android:textColor="@color/binding_list_text"
             android:textSize="15sp" />
 
         <TextView
@@ -71,10 +71,10 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="15dip"
             android:layout_below="@id/tv_grab_location_title"
-            android:layout_marginTop="11dip"
+            android:layout_marginTop="7dip"
             android:singleLine="true"
             android:text="方式: 全包"
-            android:textColor="#808080"
+            android:textColor="@color/binding_list_text"
             android:textSize="15sp" />
     </RelativeLayout>
 

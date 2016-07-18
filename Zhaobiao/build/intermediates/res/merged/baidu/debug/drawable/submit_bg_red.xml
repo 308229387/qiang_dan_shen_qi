@@ -3,14 +3,14 @@
     android:shape="rectangle"
     >
     <corners
-        android:radius="4dp"
+        android:radius="2dp"
         />
     <solid
-        android:color="#ff0000"
+        android:color="@color/button_red"
         />
     <stroke
 
-        android:color="@color/red"
+        android:color="@color/button_red"
         android:width="1dp"
         />
 </shape>

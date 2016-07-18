@@ -45,4 +45,5 @@ public class GlobalConfigVM extends SourceViewModel{
         Log.e("shenzhixin","data:"+bean.getData());
         callBack.onLoadingSuccess(JsonUtils.jsonToObject(bean.getData(), GlobalConfigBean.class));
     }
+
 }

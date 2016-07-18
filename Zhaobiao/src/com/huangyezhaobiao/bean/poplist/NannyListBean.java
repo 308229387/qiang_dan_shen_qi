@@ -200,10 +200,10 @@ public class NannyListBean extends QDBaseBean{
 
         nannyBidHolder.grab_nanny_time.setText(TimeUtils.formatDateTime(time));
         nannyBidHolder.grab_nanny_title.setText(title);
-        nannyBidHolder.tv_nanny_budget_content.setText("预算:"+budget);
-        nannyBidHolder.tv_nanny_location_content.setText("区域:"+location);
-        nannyBidHolder.tv_nanny_startTime_content.setText("开始时间:"+startTime);
-        nannyBidHolder.tv_nanny_time_content.setText("雇佣时间:"+employTime);
+        nannyBidHolder.tv_nanny_budget_content.setText("预算   "+budget);
+        nannyBidHolder.tv_nanny_location_content.setText("区域   "+location);
+        nannyBidHolder.tv_nanny_startTime_content.setText("开始时间   "+startTime);
+        nannyBidHolder.tv_nanny_time_content.setText("雇佣时间   "+employTime);
         nannyBidHolder.nanny_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

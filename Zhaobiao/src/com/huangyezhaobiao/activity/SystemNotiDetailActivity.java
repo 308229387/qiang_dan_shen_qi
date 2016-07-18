@@ -3,6 +3,7 @@ package com.huangyezhaobiao.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ public class SystemNotiDetailActivity extends QBBaseActivity implements View.OnC
     private TextView tv_time;
     private TextView tv_sys_title;
     private TextView tv_sys_content;
+    private String title;
     public static Intent onNewIntent(Context context,SysListBean listBean){
         Intent intent = new Intent(context,SystemNotiDetailActivity.class);
         intent.putExtra("sysBean",listBean);
@@ -42,7 +44,7 @@ public class SystemNotiDetailActivity extends QBBaseActivity implements View.OnC
         back_layout      = getView(R.id.back_layout);
         back_layout.setVisibility(View.VISIBLE);
         txt_head         = getView(R.id.txt_head);
-        txt_head.setText("系统通知");
+
         tv_time          = getView(R.id.tv_time);
         tv_sys_title     = getView(R.id.tv_sys_title);
         tv_sys_content   = getView(R.id.tv_sys_content);
@@ -50,6 +52,13 @@ public class SystemNotiDetailActivity extends QBBaseActivity implements View.OnC
             tv_time.setText(TimeUtils.formatDateTime(sysListBean.getTime()));
             tv_sys_content.setText(sysListBean.getContent());
             tv_sys_title.setText(sysListBean.getTitle());
+            title = sysListBean.getSysType();
+            if(!TextUtils.isEmpty(title) && TextUtils.equals(title,"1")){
+                txt_head.setText("活动消息");
+            }else if(!TextUtils.isEmpty(title) && TextUtils.equals(title,"2")){
+                txt_head.setText("系统消息");
+            }
+
         }
     }
 

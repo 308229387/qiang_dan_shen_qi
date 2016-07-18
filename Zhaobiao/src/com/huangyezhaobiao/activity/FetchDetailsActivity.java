@@ -110,14 +110,18 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 		super.onResume();
 		EventbusAgent.getInstance().register(this);
 		orderId = getIntent().getStringExtra(Constans.ORDER_ID);
-		SPUtils.setOrderId(this, orderId);
-		if(TextUtils.isEmpty(orderId)){//orderId如果为空
-			vm = new FetchDetailsVM(this, this, 0l);
-		}else{
-			vm = new FetchDetailsVM(this, this, Long.parseLong(SPUtils.getOrderId(this)));
-		}
-		vm.fetchDetailDatas();
+		try {
+			if(TextUtils.isEmpty(orderId)){//orderId如果为空
+                vm = new FetchDetailsVM(this, this, 0l);
+            }else{
+				SPUtils.setOrderId(this, orderId);
+                vm = new FetchDetailsVM(this, this, Long.parseLong(SPUtils.getOrderId(this)));
+            }
+			vm.fetchDetailDatas();
 
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
 		flag = true;
 	}
 
@@ -371,6 +375,7 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 		public void onVersionBack(String version) {
 
 		}
+
 	};
 
 	/**
@@ -475,8 +480,13 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 
 	@Override
 	public void onLoadingError(String msg) {
-		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 		stopLoading();
+		if (!TextUtils.isEmpty(msg) && msg.equals("2001")) {
+			super.onLoadingError(msg);
+		}else if(!TextUtils.isEmpty(msg)){
+			Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+		}
+
 	}
 
 	@Override
@@ -486,6 +496,7 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 
 	@Override
 	public void onNoInterNetError() {
+
 		Toast.makeText(this, getString(R.string.setting_network),Toast.LENGTH_SHORT).show();
 		stopLoading();
 	}

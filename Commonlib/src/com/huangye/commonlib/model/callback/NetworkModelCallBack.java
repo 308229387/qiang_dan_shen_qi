@@ -49,4 +49,6 @@ public interface NetworkModelCallBack {
 	 * 版本号返回
 	 */
 	public void onVersionBack(String value);
+
+
 }

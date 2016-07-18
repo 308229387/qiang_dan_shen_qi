@@ -42,6 +42,7 @@ public class ServiceTypeBean extends QDDetailBaseBean{
 	private String clientPhone;
 	private String customerName;
 	private String orderNum; //订单编号
+	private String time;
 
 //	private RelativeLayout rl_done_not_gone; //标题栏
 	private TextView       tv_done_status;
@@ -101,6 +102,10 @@ public class ServiceTypeBean extends QDDetailBaseBean{
 			FetchDetailsActivity.clientPhone = clientPhone;
 		}
 
+		if(!TextUtils.isEmpty(time)){
+			FetchDetailsActivity.time =time;
+		}
+
 		tv_last_number_content.setText(orderNum);
 
 		if (TextUtils.equals(name,  Constans.READY_SERVICE))
@@ -153,6 +158,13 @@ public class ServiceTypeBean extends QDDetailBaseBean{
 		this.orderNum = orderNum;
 	}
 
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
 
 	//	private void initDialog(Context context) {
 //		if(dialog == null){

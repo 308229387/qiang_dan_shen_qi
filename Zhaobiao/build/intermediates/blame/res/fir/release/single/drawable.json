@@ -5,7 +5,7 @@
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\loginsdk_wb_unlogin_btn_xml.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\0.0.9-SNAPSHOT\\res\\drawable\\loginsdk_wb_unlogin_btn_xml.xml"
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable\\loginsdk_wb_unlogin_btn_xml.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\bg_qd.xml",
@@ -41,7 +41,7 @@
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\loginsdk_wb_btn_off.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\0.0.9-SNAPSHOT\\res\\drawable\\loginsdk_wb_btn_off.xml"
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable\\loginsdk_wb_btn_off.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\bg_smallred.xml",
@@ -73,7 +73,7 @@
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\loginsdk_wb_autologin_checkbox.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\0.0.9-SNAPSHOT\\res\\drawable\\loginsdk_wb_autologin_checkbox.xml"
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable\\loginsdk_wb_autologin_checkbox.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\guide_bg_button.xml",
@@ -81,7 +81,7 @@
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\loginsdk_personal_list_selector.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\0.0.9-SNAPSHOT\\res\\drawable\\loginsdk_personal_list_selector.xml"
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable\\loginsdk_personal_list_selector.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\back_bg.xml",
@@ -129,7 +129,7 @@
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\loginsdk_loginpassword_visiable.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\0.0.9-SNAPSHOT\\res\\drawable\\loginsdk_loginpassword_visiable.xml"
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable\\loginsdk_loginpassword_visiable.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\dialog_list.xml",
@@ -141,7 +141,7 @@
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\loginsdk_bindstate_unbind_bg.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\0.0.9-SNAPSHOT\\res\\drawable\\loginsdk_bindstate_unbind_bg.xml"
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable\\loginsdk_bindstate_unbind_bg.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\bt_knock_button_selector.xml",
@@ -185,7 +185,7 @@
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\loginsdk_publish_bottom_btn_selector.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\0.0.9-SNAPSHOT\\res\\drawable\\loginsdk_publish_bottom_btn_selector.xml"
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable\\loginsdk_publish_bottom_btn_selector.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\login_usage_bg.xml",
@@ -197,7 +197,7 @@
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\loginsdk_publish_bottom_cancel_btn_selector.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\0.0.9-SNAPSHOT\\res\\drawable\\loginsdk_publish_bottom_cancel_btn_selector.xml"
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable\\loginsdk_publish_bottom_cancel_btn_selector.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\subimt_bg_reds.xml",
@@ -245,7 +245,7 @@
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\loginsdk_wx_login_btn_bg.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\0.0.9-SNAPSHOT\\res\\drawable\\loginsdk_wx_login_btn_bg.xml"
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable\\loginsdk_wx_login_btn_bg.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\qiangdan_bg_item_click.xml",
@@ -257,11 +257,11 @@
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\loginsdk_qq_login_btn_bg.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\0.0.9-SNAPSHOT\\res\\drawable\\loginsdk_qq_login_btn_bg.xml"
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable\\loginsdk_qq_login_btn_bg.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\loginsdk_wb_login_btn_xml.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\0.0.9-SNAPSHOT\\res\\drawable\\loginsdk_wb_login_btn_xml.xml"
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable\\loginsdk_wb_login_btn_xml.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\title_back_btn_selector.xml",
@@ -273,7 +273,7 @@
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\loginsdk_password_visiable.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\0.0.9-SNAPSHOT\\res\\drawable\\loginsdk_password_visiable.xml"
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable\\loginsdk_password_visiable.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\bg_ll_item.xml",
@@ -289,7 +289,7 @@
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\loginsdk_wb_back_btn.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\0.0.9-SNAPSHOT\\res\\drawable\\loginsdk_wb_back_btn.xml"
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable\\loginsdk_wb_back_btn.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\item_background.xml",
@@ -301,7 +301,7 @@
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\loginsdk_wb_change_city_click.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\0.0.9-SNAPSHOT\\res\\drawable\\loginsdk_wb_change_city_click.xml"
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable\\loginsdk_wb_change_city_click.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\abc_cab_background_internal_bg.xml",
@@ -313,7 +313,7 @@
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\loginsdk_home_guess_like_list_bg.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\0.0.9-SNAPSHOT\\res\\drawable\\loginsdk_home_guess_like_list_bg.xml"
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable\\loginsdk_home_guess_like_list_bg.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\snackbar_background.xml",
@@ -321,7 +321,7 @@
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\loginsdk_bind_tencent_ok_selector.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\0.0.9-SNAPSHOT\\res\\drawable\\loginsdk_bind_tencent_ok_selector.xml"
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable\\loginsdk_bind_tencent_ok_selector.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\submit_btn_bg.xml",
@@ -333,7 +333,7 @@
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\loginsdk_wb_dialog_listview_bg.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\0.0.9-SNAPSHOT\\res\\drawable\\loginsdk_wb_dialog_listview_bg.xml"
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable\\loginsdk_wb_dialog_listview_bg.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\item_selector.xml",
@@ -341,7 +341,7 @@
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\loginsdk_bindstate_binded_bg.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\0.0.9-SNAPSHOT\\res\\drawable\\loginsdk_bindstate_binded_bg.xml"
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable\\loginsdk_bindstate_binded_bg.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\abc_switch_thumb_material.xml",
@@ -381,7 +381,7 @@
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\loginsdk_bindstate_bind_bg.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\0.0.9-SNAPSHOT\\res\\drawable\\loginsdk_bindstate_bind_bg.xml"
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable\\loginsdk_bindstate_bind_bg.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\fir\\release\\drawable\\type_back_grabbed.xml",

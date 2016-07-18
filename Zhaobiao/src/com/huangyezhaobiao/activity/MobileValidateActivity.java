@@ -3,6 +3,7 @@ package com.huangyezhaobiao.activity;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -222,7 +223,13 @@ public class MobileValidateActivity extends CommonBaseActivity implements NetWor
 
 	@Override
 	public void onLoadingError(String msg) {
-		ToastUtils.makeImgAndTextToast(MobileValidateActivity.this,msg, R.drawable.validate_error, 0).show();
+
+		if (!TextUtils.isEmpty(msg) && msg.equals("2001")) {
+			super.onLoadingError(msg);
+		}else if(!TextUtils.isEmpty(msg)){
+			ToastUtils.makeImgAndTextToast(MobileValidateActivity.this, msg, R.drawable.validate_error, 0).show();
+		}
+
 
 	}
 

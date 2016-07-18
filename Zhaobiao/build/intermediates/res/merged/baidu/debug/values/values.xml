@@ -52,6 +52,8 @@
     <color name="background_floating_material_light">#ffeeeeee</color>
     <color name="background_material_dark">#ff303030</color>
     <color name="background_material_light">#ffeeeeee</color>
+    <color name="binding_detail_text">#B2B2B2</color>
+    <color name="binding_list_text">#B4B4B4</color>
     <color name="black">#000000</color>
     <color name="blacks">#666666</color>
     <color name="blue">#529AF4</color>
@@ -67,6 +69,7 @@
     <color name="bright_foreground_material_light">@android:color/black</color>
     <color name="button_material_dark">#ff5a595b</color>
     <color name="button_material_light">#ffd6d7d7</color>
+    <color name="button_red">#FC5846</color>
     <color name="cardview_dark_background">#FF202020</color>
     <color name="cardview_light_background">#FFFAFAFA</color>
     <color name="cardview_shadow_end_color">#03000000</color>
@@ -89,6 +92,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
+    <color name="common_background">#F5FBFB</color>
     <color name="counpline">#e2e2e2</color>
     <color name="counpnum">#ddd</color>
     <color name="counpnumaround">#dddddd</color>
@@ -110,6 +114,7 @@
     <color name="detail_pager_header_progress_color">#ff550a</color>
     <color name="detail_pager_header_subtext_color">#b2b2b2</color>
     <color name="detail_pager_header_title_color">#929291</color>
+    <color name="detail_text">#AEAEAE</color>
     <color name="devider_color">#ffe6e5e5</color>
     <color name="dialog_button_text_color">#ff6a22</color>
     <color name="dialog_button_text_hint">#a6a6a6</color>
@@ -1230,11 +1235,11 @@
     <string name="bidding_failure">抢单失败!</string>
     <string name="bidding_finish">已抢完</string>
     <string name="bidding_line">抢单排队中</string>
-    <string name="bidding_result">抢单结果</string>
+    <string name="bidding_result">抢单结果提醒</string>
     <string name="bidding_success">抢单成功!</string>
     <string name="bidding_success_title">抢单成功</string>
     <string name="bidding_sys_noti">通知资讯</string>
-    <string name="bidding_timeless">客户联系</string>
+    <string name="bidding_timeless">客户联系提醒</string>
     <string name="bind_wait_alert">绑定中…</string>
     <string name="budget_title">预算:</string>
     <string name="call_charge_name">话费充值</string>
@@ -1303,7 +1308,7 @@
     <string name="copyright_company_name_below">© 1998–2010 CopyRight All Reserved By 58.com</string>
     <string name="copyright_company_version">58同城V</string>
     <string name="copyright_weibo_text">关注我们</string>
-    <string name="daojishi_hint">您有一笔抢单即将到期,请3小时内联系客户</string>
+    <string name="daojishi_hint">订单已经到手15分钟啦，别忘了联系客户！越早联系竞争优势越大，成单概率越高哦</string>
     <string name="declaration_custom_body"/>
     <string name="declaration_custom_title"/>
     <string name="declaration_jinli_body">		该功能会产生一定的ＧＰＲＳ流量，具体资费标准请咨询当地网络运营商，可以选择ＷＬＡＮ网络以节省流量。</string>
@@ -1370,7 +1375,7 @@
     <string name="financelogin_username_hint">请输入手机号</string>
     <string name="financial_total_earn_text">累计收益</string>
     <string name="financial_usable_balance_text">可用余额：￥</string>
-    <string name="force_exit">     账号在其他手机登录，您已被迫下线。请注意密码安全。</string>
+    <string name="force_exit">账号在其他手机登录，您已被迫下线.\n请注意密码安全。</string>
     <string name="get_code">获取验证码</string>
     <string name="get_phone_authcode">获取手机验证码</string>
     <string name="get_validate">获取验证码</string>
@@ -1545,7 +1550,7 @@
     <string name="new_bind_mobile">绑定新手机号码</string>
     <string name="no_message">暂无消息</string>
     <string name="no_network">当前没有网络</string>
-    <string name="not_enough_balance">账户推广余额少!\n请及时充值,以免影响下一次抢单</string>
+    <string name="not_enough_balance">账户推广余额少!请及时充值,\n以免影响下一次抢单</string>
     <string name="not_upload_pic">您补交证据还没有上传图片,请上传图片</string>
     <string name="now_bind_mobile">目前绑定手机</string>
     <string name="off">关闭</string>
@@ -1849,7 +1854,7 @@
     <string name="update_dialog_version_propmt">版本更新:V%s</string>
     <string name="update_dialog_wifi_propmt">已经在wifi下为您下载了apk，是否安装？</string>
     <string name="update_hint">更新提示</string>
-    <string name="update_message">1、登录安全升级，账号安全性更高\n2、系统深层优化，操作流畅度更好\n3、360°无死角兼容了更多手机系统版本\n4、修复了一些bug
+    <string name="update_message">1.全新页面设计，增加底部导航!\n2.订单详情页新增发短信和免费电话功能
     </string>
     <string name="update_notification_text_in">发现新版本，点我更新！ 建议在wifi条件下更新。</string>
     <string name="update_notification_text_up">58同城更新啦！请到通知栏查看。</string>
@@ -3442,7 +3447,7 @@
     <style name="line_about_us">
         <item name="android:layout_height">1dp</item>
         <item name="android:layout_width">fill_parent</item>
-        <item name="android:background">@color/grays</item>
+        <item name="android:background">@color/gray</item>
     </style>
     <style name="loading" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>

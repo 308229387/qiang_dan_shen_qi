@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/login_total_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/activity_main_bg" >
+    <!--  修改页面 -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <include
+            android:id="@+id/login_title_layout"
+            layout="@layout/loginsdk_public_title" />
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1.0" >
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+                <FrameLayout
+                    android:id="@+id/dynamic_finance_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <RelativeLayout
+                    android:id="@+id/user_password_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/dynamic_finance_layout"
+                    android:background="@drawable/loginsdk_wb_personal_item_full_normal" >
+
+                    <TextView
+                        android:id="@+id/username_layout"
+                        style="@style/RegisterText"
+                        android:layout_marginLeft="@dimen/login_text_margin_border_dimen"
+                        android:layout_marginRight="15dip"
+                        android:text="@string/login_account_name" />
+
+                    <TextView
+                        android:id="@+id/username_divider"
+                        android:layout_width="1px"
+                        android:layout_height="fill_parent"
+                        android:layout_alignBottom="@id/username_layout"
+                        android:layout_alignTop="@id/username_layout"
+                        android:layout_marginBottom="15dip"
+                        android:layout_marginTop="15dip"
+                        android:layout_toRightOf="@id/username_layout"
+                        android:visibility="invisible"
+                        android:background="#c6cbd1" />
+
+                    <com.wuba.loginsdk.views.LoginAutoClearEditView
+                        android:id="@+id/login_username"
+                        style="@style/RegisterEdit"
+                        android:layout_alignBottom="@id/username_layout"
+                        android:layout_marginLeft="15dip"
+                        android:layout_toRightOf="@id/username_divider"
+                        android:hint="@string/financelogin_username_hint"
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        android:digits="1234567890"
+                        android:textColor="@color/orange" />
+
+                    <TextView
+                        android:id="@+id/reg_separator_line"
+                        style="@style/SeparatorLine"
+                        android:layout_below="@id/username_layout" />
+
+                    <TextView
+                        android:id="@+id/password_layout"
+                        style="@style/RegisterText"
+                        android:layout_below="@id/reg_separator_line"
+                        android:layout_marginLeft="@dimen/login_text_margin_border_dimen"
+                        android:layout_marginRight="10dip"
+                        android:text="@string/login_user_pass" />
+
+                    <TextView
+                        android:id="@+id/password_divider"
+                        android:layout_width="1px"
+                        android:layout_height="fill_parent"
+                        android:layout_alignBottom="@id/password_layout"
+                        android:layout_alignTop="@id/password_layout"
+                        android:layout_marginBottom="15dip"
+                        android:layout_marginTop="15dip"
+                        android:visibility="invisible"
+                        android:layout_toRightOf="@id/password_layout"
+                        android:background="#c6cbd1" />
+
+                    <com.wuba.loginsdk.views.LoginAutoClearEditView
+                        android:id="@+id/login_password"
+                        style="@style/RegisterEdit"
+                        android:layout_alignBottom="@id/password_layout"
+                        android:layout_alignLeft="@id/login_username"
+                        android:hint="@string/login_pass_hint"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword"
+                        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,.?!/@:;~'*()"
+                        android:maxLength="16"
+                        android:textColor="@color/orange" />
+                </RelativeLayout>
+
+                <CheckBox
+                    android:id="@+id/isAutoLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/user_password_layout"
+                    android:layout_marginLeft="21dip"
+                    android:layout_marginTop="10dip"
+                    android:button="@drawable/loginsdk_wb_autologin_checkbox"
+                    android:text="@string/login_isauto_checkbox"
+                    android:textColor="@color/wb_textedit_hit"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/login_login"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/user_password_layout"
+                    android:layout_marginLeft="@dimen/manager_account_margin"
+                    android:layout_marginRight="@dimen/manager_account_margin"
+                    android:layout_marginTop="20dip" >
+
+                    <Button
+                        android:id="@+id/login_login_button"
+                        style="@style/LoginRegButtonStyle"
+                        android:layout_width="fill_parent"
+                        android:background="@drawable/loginsdk_wb_login_btn_xml"
+                        android:text="@string/login_text"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/remember_forget_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/login_login"
+                    android:layout_marginLeft="@dimen/manager_account_margin"
+                    android:layout_marginRight="@dimen/manager_account_margin"
+                    android:layout_marginTop="20dip" >
+                    <TextView
+                        android:id="@+id/dynamic_login"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dip"
+                        android:layout_alignParentLeft="true"
+                        android:text="@string/dynamic_login_text"
+                        android:textColor="@color/login_bottom_text_hint_color"
+                        android:textSize="13dip"
+                        />
+
+                    <TextView
+                        android:id="@+id/forget_password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dip"
+                        android:textColor="@color/login_bottom_text_hint_color"
+                        android:layout_alignParentRight="true"
+                        android:text="@string/login_forget_password"
+                        android:textSize="13dip" />
+                </RelativeLayout>
+
+
+
+
+                <!--
+                    <RelativeLayout
+                        android:id="@+id/login_oauth_text"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/login_login"
+                        android:layout_marginBottom="24dip"
+                        android:layout_marginTop="40dip" >
+
+                        <TextView
+                            android:id="@+id/login_oauth_text_center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="@string/login_bind_partner"
+                            android:textColor="@color/login_register_light_gray"
+                            android:textSize="12sp"
+                            android:visibility="visible" />
+
+                        <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="1px"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/manager_account_margin"
+                            android:layout_marginRight="7dip"
+                            android:layout_toLeftOf="@id/login_oauth_text_center"
+                            android:background="@color/login_register_light_gray" />
+
+                        <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="1px"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="7dip"
+                            android:layout_marginRight="@dimen/manager_account_margin"
+                            android:layout_toRightOf="@id/login_oauth_text_center"
+                            android:background="@color/login_register_light_gray" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/login_oauth_layout"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/login_oauth_text"
+                        android:layout_marginLeft="@dimen/manager_account_margin"
+                        android:layout_marginRight="@dimen/manager_account_margin"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal"
+                        android:visibility="visible" >
+
+                        <LinearLayout
+                            android:id="@+id/login_sina_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical" >
+
+                            <com.wuba.loginsdk.views.base.RecycleImageView
+                                android:id="@+id/login_sina"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/login_sina" />
+
+                            <TextView
+                                android:id="@+id/sina_text_color"
+                                android:layout_width="wrap_content"
+                                android:layout_height="fill_parent"
+                                android:layout_marginTop="8dip"
+                                android:text="@string/login_bind_sina"
+                                android:textColor="@color/login_register_light_gray"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/login_qq_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dip"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical" >
+
+                            <com.wuba.loginsdk.views.base.RecycleImageView
+                                android:id="@+id/login_qq"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/login_qq" />
+
+                            <TextView
+                                android:id="@+id/qq_text_color"
+                                android:layout_width="wrap_content"
+                                android:layout_height="fill_parent"
+                                android:layout_marginTop="8dip"
+                                android:text="@string/login_bind_qq"
+                                android:textColor="@color/login_register_light_gray"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                      -->
+            </RelativeLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <!--
+         <include
+        android:id="@+id/loginsdk_native_loading_view"
+        layout="@layout/public_native_request_loading"
+        android:visibility="gone" />
+    -->
+
+    <com.wuba.loginsdk.views.base.RequestLoadingView
+        android:id="@+id/request_loading"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" />
+
+</RelativeLayout><!-- From: file:/I:/E/2016523/58sdklogin/WubaLoginSDK/loginsdk/src/main/res/layout/loginsdk_account_finlogin_view.xml -->

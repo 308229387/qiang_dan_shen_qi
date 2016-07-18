@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
@@ -100,10 +101,16 @@ public class UpdateManager {
 	 */
 	public void showConfirmDownloadDialog(final Context context,final String url){
 		this.context = context;
-		if(confirmUpdateDialog==null){
+		if(confirmUpdateDialog==null && downloadDialog == null){
 			confirmUpdateDialog = new ZhaoBiaoDialog(context,"是否进行新版本的更新");
 //			confirmUpdateDialog = new ZhaoBiaoDialog(context, context.getString(R.string.update_hint), context.getString(R.string.update_message));
 			confirmUpdateDialog.setCancelable(false);
+			confirmUpdateDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+				@Override
+				public void onDismiss(DialogInterface dialog) {
+					confirmUpdateDialog = null;
+				}
+			});
 			confirmUpdateDialog.setOnDialogClickListener(new onDialogClickListener() {
 				@Override
 				public void onDialogOkClick() {

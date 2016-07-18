@@ -10,6 +10,7 @@ public class CountdownPushBean extends PushBean {
 	private int cateId;// ": "4063",
 	private int displayType;// ": "1",
 	private long bidId;// ": "12312321",
+	private String guestName;
 
 	@Override
 	public PushToStorageBean toPushStorageBean() {
@@ -17,8 +18,9 @@ public class CountdownPushBean extends PushBean {
 		try {
 			bean.setOrderid(Long.parseLong(orderId));
 			bean.setTag(tag);
-			bean.setStr("您有一条新订单，即将于三小时内到期");
+			bean.setStr("订单已经到手15分钟啦，别忘了联系客户！越早联系竞争优势越大，成单概率越高哦");
 			bean.setTime(pushTime);
+			bean.setGuestName(guestName);
 		}catch(RuntimeException e){
 
 		}
@@ -64,6 +66,14 @@ public class CountdownPushBean extends PushBean {
 
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
+	}
+
+	public String getGuestName() {
+		return guestName;
+	}
+
+	public void setGuestName(String guestName) {
+		this.guestName = guestName;
 	}
 
 	@Override

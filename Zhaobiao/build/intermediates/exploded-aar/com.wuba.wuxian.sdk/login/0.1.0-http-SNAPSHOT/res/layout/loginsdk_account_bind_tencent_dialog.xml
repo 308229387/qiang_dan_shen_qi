@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <RelativeLayout
+        android:id="@+id/TransitionDialogBackground"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/leading_bg" >
+        <FrameLayout
+            android:id="@+id/ad_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+            <com.wuba.loginsdk.views.base.RecycleImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/bind_tencent_bg"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/loginsdk_bind_tencent_bg"/>
+
+            <ImageButton
+                android:id="@+id/bind_tencent_cancel_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|right"
+                android:background="@null"
+                android:paddingRight="10dip"
+                android:paddingTop="10dip"
+                android:src="@drawable/loginsdk_del_button_white" />
+
+            <ImageButton
+                android:id="@+id/bind_tencent_ok_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:background="@null"
+                android:paddingBottom="30dip"
+                android:src="@drawable/loginsdk_bind_tencent_ok_selector" />
+        </FrameLayout>
+    </RelativeLayout>
+
+</RelativeLayout><!-- From: file:/I:/E/2016523/58sdklogin/WubaLoginSDK/loginsdk/src/main/res/layout/loginsdk_account_bind_tencent_dialog.xml -->

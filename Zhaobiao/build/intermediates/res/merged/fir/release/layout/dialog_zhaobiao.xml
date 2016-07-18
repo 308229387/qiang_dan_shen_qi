@@ -8,20 +8,23 @@
         android:layout_width="fill_parent"
         android:background="@drawable/call_bg_dialog"
         android:layout_centerVertical="true"
-        android:layout_height="175dp" >
-
-        <TextView
-            android:id="@+id/dialog_tv_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        android:layout_height="170dp" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dip"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="10dip"
-            android:lineSpacingExtra="2dp"
-            android:text="确定要进行退出么"
-            android:textColor="@color/black"
-            android:textSize="@dimen/textsize_large"/>
+            android:gravity="center">
+            <TextView
+                android:id="@+id/dialog_tv_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dip"
+                android:lineSpacingExtra="2dp"
+                android:text="确定要进行退出么"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize_large"/>
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll"
@@ -42,7 +45,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:text="取消"
-                    android:textColor="@color/red" />
+                    android:textColor="@color/t_gray"
+                    android:textSize="17sp"/>
             </RelativeLayout>
 
             <View
@@ -63,7 +67,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:text="确认"
-                    android:textColor="@color/red" />
+                    android:textColor="@color/red"
+                    android:textSize="17sp"/>
             </RelativeLayout>
         </LinearLayout>
 

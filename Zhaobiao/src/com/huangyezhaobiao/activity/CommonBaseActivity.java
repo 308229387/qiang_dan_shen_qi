@@ -54,7 +54,7 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
     protected long resume_time,stop_time;
 
     protected ZhaoBiaoDialog exitDialog;
-    private ZhaoBiaoDialog LogoutDialog;
+    protected  ZhaoBiaoDialog LogoutDialog;
 
     private final static String CLOSE_ACTIVITTY = "CLOSE_ACTIVITTY";
 
@@ -92,7 +92,11 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
         //从sp取时间戳
         long latTimeLine     = 0;
         try {
-            latTimeLine = Long.valueOf(SPUtils.getVByK(CommonBaseActivity.this, SPUtils.KEY_TIMELINE_GLOBAL));
+
+            String  time = SPUtils.getVByK(CommonBaseActivity.this, SPUtils.KEY_TIMELINE_GLOBAL);
+            if(!TextUtils.isEmpty(time)){
+                latTimeLine = Long.valueOf(time);
+            }
         } catch (NumberFormatException e) {
             latTimeLine = 0;
             e.printStackTrace();
@@ -117,7 +121,7 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
             latTimeLine = 0;
             e.printStackTrace();
         }
-        LogUtils.LogV("xxxxxxx2",String.valueOf(TimeUtils.beyond13Days(currentTimeLine, latTimeLine)));
+        LogUtils.LogV("xxxxxxx2", String.valueOf(TimeUtils.beyond13Days(currentTimeLine, latTimeLine)));
         return TimeUtils.beyond13Days(currentTimeLine, latTimeLine);//没有在时间戳范围内
 
     }
@@ -168,7 +172,7 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
 
         @Override
         public void onNoInterNetError() {
-
+            Toast.makeText(CommonBaseActivity.this, getString(R.string.no_network), Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -180,6 +184,7 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
         public void onVersionBack(String version) {
 
         }
+
     };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -198,6 +203,7 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
 
         initLogoutDialog();
 
+
         //封装了的百度统计
         BDMob.getBdMobInstance().onResumeActivity(this);
         if(SPUtils.fromBackground(this)){
@@ -212,7 +218,7 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
                 LogUtils.LogV("XXXXX","backToForeVM");
             }
 
-            if(needAsync() && !TextUtils.isEmpty(UserUtils.getUserId(this))){
+            if( needAsync() && !TextUtils.isEmpty(UserUtils.getUserId(this))){
                 globalConfigVM.refreshUsers();
                 LogUtils.LogV("XXXXX", "globalConfigVM");
             }
@@ -223,7 +229,6 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
                     LogoutDialog.show();
                 }
             }
-
 
         }else{
             Log.e(TAG,"not fromBackground");
@@ -245,7 +250,7 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
             public void onDialogOkClick() {
                 LogoutDialog.dismiss();
                 /** 跳转到登录的界面*/
-                lvm = new LogoutViewModel(CommonBaseActivity.this, CommonBaseActivity.this);
+                lvm = new LogoutViewModel(vmCallBack, CommonBaseActivity.this);
                 lvm.logout();
                 SharedPreferencesUtils.clearLoginToken(getApplicationContext());
                 //退出时注销个推
@@ -267,7 +272,43 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
     }
 
 
+    private NetWorkVMCallBack vmCallBack = new NetWorkVMCallBack() {
+        @Override
+        public void onLoadingStart() {
 
+        }
+
+        @Override
+        public void onLoadingSuccess(Object t) {
+
+        }
+
+        @Override
+        public void onLoadingError(String msg) {
+
+        }
+
+        @Override
+        public void onLoadingCancel() {
+
+        }
+
+        @Override
+        public void onNoInterNetError() {
+            Toast.makeText(CommonBaseActivity.this, getString(R.string.no_network), Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onLoginInvalidate() {
+
+        }
+
+        @Override
+        public void onVersionBack(String version) {
+
+        }
+
+    };
 
     /**
      * 开启appexitService
@@ -331,9 +372,9 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
 
     @Override
     public void onLoadingError(String msg) {
-        if( !TextUtils.isEmpty(msg) && msg.equals("PPU")){
+        if (!TextUtils.isEmpty(msg) && msg.equals("2001")) {
             if(LogoutDialog!=null){
-                LogoutDialog.setMessage("您已经长时间无登录操作，请重新登录");
+                LogoutDialog.setMessage("PPU过期，请重新登录");
                 LogoutDialog.show();
             }
         }
@@ -346,7 +387,6 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
 
     @Override
     public void onNoInterNetError() {
-        Toast.makeText(CommonBaseActivity.this, getString(R.string.no_network),Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -354,6 +394,7 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
         GePushProxy.unBindPushAlias(getApplicationContext(), UserUtils.getUserId(getApplicationContext()));
         showExitDialog();
     }
+
 
     protected void configExitDialog(){
         exitDialog = new ZhaoBiaoDialog(this,

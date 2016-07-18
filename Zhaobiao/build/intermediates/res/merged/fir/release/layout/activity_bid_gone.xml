@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fafafa"
+    android:background="@color/common_background"
     android:orientation="vertical" >
 
     <include layout="@layout/layout_backhead"
@@ -21,8 +21,8 @@
         android:orientation="vertical" >
 
         <ImageView
-            android:layout_width="173dp"
-            android:layout_height="183dp"
+            android:layout_width="146dp"
+            android:layout_height="155dp"
             android:layout_gravity="center"
             android:src="@drawable/t_sorry" 
             android:layout_marginTop="57dp"
@@ -31,17 +31,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="此单生意太火爆了，已被抢走了"
-            android:textColor="@color/black"
-            android:textSize="16dp"/>
+            android:text="此单生意太火爆，已被抢走了"
+            android:textColor="@color/t_gray"
+            android:textSize="17sp"/>
         <TextView 
             android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="请下次早点下手"
-            android:textColor="@color/black"
-            android:textSize="16sp"/>
+            android:text="请下回早看早下手哦！"
+            android:textColor="@color/t_gray"
+            android:textSize="17sp"/>
     </LinearLayout>
 
     <RelativeLayout

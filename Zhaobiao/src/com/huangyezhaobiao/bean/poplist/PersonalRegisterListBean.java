@@ -205,10 +205,10 @@ public class PersonalRegisterListBean extends QDBaseBean {
 		}
 		holder.title.setText(title);
 		holder.time.setText(TimeUtils.formatDateTime(time));
-		holder.grab_domesticregister_location.setText("注册区域:"+location);
-		holder.tv_business_content.setText("经营业务:");
+		holder.grab_domesticregister_location.setText("注册区域   "+location);
+		holder.tv_business_content.setText("经营业务   ");
 		if(!TextUtils.isEmpty(business)) {
-			holder.tv_business_content.setText("经营业务:"+business);
+			holder.tv_business_content.setText("经营业务   "+business);
 		}
 
 		//2016.03.29 add for O2O-709

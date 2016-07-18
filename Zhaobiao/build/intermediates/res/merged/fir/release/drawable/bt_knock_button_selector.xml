@@ -12,7 +12,7 @@
     </item>
     <item>
         <shape>
-            <gradient android:centerColor="@color/tab_red" android:endColor="@color/tab_red" android:startColor="@color/tab_red" />
+            <gradient android:centerColor="@color/button_red" android:endColor="@color/button_red" android:startColor="@color/button_red" />
 
             <corners android:radius="2dp" />
 

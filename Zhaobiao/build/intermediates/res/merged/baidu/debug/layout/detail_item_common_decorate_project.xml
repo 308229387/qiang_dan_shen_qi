@@ -26,14 +26,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="装修类型"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/binding_detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/detail_item_common_decorate_text_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:text=""
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -48,14 +48,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="房屋类型"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/binding_detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/detail_item_common_decorate_house_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:text=""
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -70,14 +70,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="所在区域"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/binding_detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/detail_item_common_decorate_text_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:text=""
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -94,14 +94,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="距离要求"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/binding_detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/detail_item_common_decorate_text_distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:text=""
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -116,14 +116,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="装修预算"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/binding_detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/detail_item_common_decorate_text_budget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:text=""
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -140,14 +140,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="房屋面积"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/binding_detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/detail_item_common_decorate_text_space"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:text=""
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -163,14 +163,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="装修方式"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/binding_detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/detail_item_common_decorate_text_dec_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:text=""
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -188,14 +188,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="详细地址"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/binding_detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/detail_item_common_decorate_text_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:text="马上要加的"
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -210,14 +210,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="量房时间"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/binding_detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/detail_item_common_decorate_text_measure_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:text=""
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -232,14 +232,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="装修时间"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/binding_detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/detail_item_common_decorate_text_dec_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:text=""
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />

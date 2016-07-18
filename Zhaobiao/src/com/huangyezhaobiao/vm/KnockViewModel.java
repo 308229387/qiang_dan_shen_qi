@@ -81,8 +81,10 @@ public class KnockViewModel extends SourceViewModel {
 			JSONObject object = JSON.parseObject(bean.getData());
 			if (null != object) {
 				int knockStatus = object.getInteger("status");
-				long orderId = object.getLong("orderId");
-				BidSuccessActivity.orderId = orderId;
+				if(object.containsKey("orderId")){
+					long orderId = object.getLong("orderId");
+					BidSuccessActivity.orderId = orderId;
+				}
 				callBack.onLoadingSuccess(knockStatus);
 			}
 		} else {

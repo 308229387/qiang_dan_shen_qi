@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="#F5FBFB"
     android:orientation="vertical">
 
     <include
@@ -63,8 +63,7 @@
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@id/tv_arrow"
             android:text="目前绑定号码"
-            android:textColor="#e5e5e5"
-            android:textStyle="bold"
+            android:textColor="#818181"
             android:textSize="@dimen/textsize_large"/>
 
     </RelativeLayout>
@@ -81,7 +80,6 @@
         android:layout_width="fill_parent"
         android:layout_height="40dp"
         android:layout_below="@id/view"
-        android:layout_marginTop="3dp"
         android:background="@drawable/menu_item_background">
 
         <TextView
@@ -116,7 +114,6 @@
         android:layout_width="fill_parent"
         android:layout_height="40dp"
         android:layout_below="@id/rl_auto_settings"
-        android:layout_marginTop="3dp"
         android:background="@drawable/menu_item_background">
 
         <TextView
@@ -128,13 +125,13 @@
             android:textColor="@color/black"
             android:textSize="@dimen/textsize_large"/>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/iv_arrow" />
+        <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:src="@drawable/iv_arrow" />-->
     </RelativeLayout>
 
     <View

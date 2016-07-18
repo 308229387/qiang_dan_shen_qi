@@ -18,7 +18,7 @@
             android:singleLine="true"
             android:layout_marginRight="15dip"
             android:text="雇佣时间:"
-            android:textColor="#808080"
+            android:textColor="@color/binding_list_text"
             android:textSize="15sp" />
 
         <TextView
@@ -26,11 +26,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_nanny_time"
-            android:layout_marginTop="11dip"
+            android:layout_marginTop="7dip"
             android:layout_marginRight="15dip"
             android:singleLine="true"
             android:text="区域:"
-            android:textColor="#808080"
+            android:textColor="@color/binding_list_text"
             android:textSize="15sp" />
     </RelativeLayout>
 
@@ -47,7 +47,7 @@
             android:layout_marginRight="15dip"
             android:singleLine="true"
             android:text="预算:"
-            android:textColor="#808080"
+            android:textColor="@color/binding_list_text"
             android:textSize="15sp" />
 
 
@@ -56,12 +56,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_nanny_budget"
-            android:layout_marginTop="11dip"
+            android:layout_marginTop="7dip"
             android:layout_marginRight="15dip"
             android:gravity="center_vertical"
             android:singleLine="true"
             android:text="开始时间:"
-            android:textColor="#808080"
+            android:textColor="@color/binding_list_text"
             android:textSize="15sp"  />
     </RelativeLayout>
 

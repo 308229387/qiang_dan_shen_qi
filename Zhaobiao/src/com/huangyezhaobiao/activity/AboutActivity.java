@@ -55,7 +55,7 @@ public class AboutActivity extends QBBaseActivity implements OnClickListener {
 		rl_check_version.setOnClickListener(this);
 		rl_gongneng.setOnClickListener(this);
 		try {
-			name = getString(R.string.version_code)+VersionUtils.getVersionName(this);
+			name = "v"+VersionUtils.getVersionName(this);
 		} catch (NameNotFoundException e) {
 			name = getString(R.string.error_get_versioncode);
 			e.printStackTrace();

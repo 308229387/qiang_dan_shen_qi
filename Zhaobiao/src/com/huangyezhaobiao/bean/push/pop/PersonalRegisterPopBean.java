@@ -30,8 +30,6 @@ public class PersonalRegisterPopBean extends PopBaseBean {
 	//2015.10.22 add end
 	private String originalFee;
 
-	private String guestName;
-
 	@Override
 	public String getOriginalFee() {
 		return originalFee;
@@ -83,8 +81,8 @@ public class PersonalRegisterPopBean extends PopBaseBean {
 		}
 
 		bean.setStr(str.toString());
+
 		bean.setStatus(status);
-        bean.setGuestName(guestName);
 		return bean;
 	}
 
@@ -208,11 +206,4 @@ public class PersonalRegisterPopBean extends PopBaseBean {
 		this.business = business;
 	}
 
-	public String getGuestName() {
-		return guestName;
-	}
-
-	public void setGuestName(String guestName) {
-		this.guestName = guestName;
-	}
 }

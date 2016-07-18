@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="#e9e9e9"
+    android:background="@color/common_background"
     android:layout_height="match_parent"
     >
 <ScrollView
@@ -12,17 +12,16 @@
 <LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="#e9e9e9"
+    android:background="@color/common_background"
     android:layout_height="match_parent">
     <include
         layout="@layout/item_refund_result"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content" />
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="@color/t_gray"
+        android:background="#efefef"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -41,7 +40,7 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="1px"
-            android:background="@color/t_gray"
+            android:background="#efefef"
             />
         <com.huangyezhaobiao.view.HorizontialListView
             android:id="@+id/hlv_photo_container"
@@ -56,14 +55,14 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="6dp"
+            android:layout_marginRight="15dp"
             android:paddingBottom="7dip"
             android:src="@drawable/iv_refund_picture" />
             />
         <View
             android:layout_width="fill_parent"
             android:layout_height="1px"
-            android:background="@color/t_gray"
+            android:background="#efefef"
             android:layout_alignParentBottom="true"
             />
         </RelativeLayout>

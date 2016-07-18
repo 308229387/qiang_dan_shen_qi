@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <size android:width="100dip" android:height="5dip"/>
+
+    <solid android:color="@color/order_state_blue" />
+    <!-- 填充的颜色 -->
+
+</shape>

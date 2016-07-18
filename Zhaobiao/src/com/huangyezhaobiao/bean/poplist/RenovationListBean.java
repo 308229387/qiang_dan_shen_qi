@@ -234,14 +234,14 @@ public class RenovationListBean extends QDBaseBean {
 		if(null!=location&&location.length()>10)
 			location = location.substring(0,9)+"...";
 
-		holder.space.setText("面积:"+this.getSpace());
-		holder.budget.setText("预算:"+this.getBudget());
-		holder.decorate_type.setText("方式:"+this.getType());
-		holder.location.setText("区域:"+this.getLocation());
+		holder.space.setText("面积   "+this.getSpace());
+		holder.budget.setText("预算   "+this.getBudget());
+		holder.decorate_type.setText("方式   "+this.getType());
+		holder.location.setText("区域   "+this.getLocation());
 
 		if(!TextUtils.isEmpty(needNear)){
 			holder.distance.setVisibility(View.VISIBLE);
-			holder.distance.setText("距离:"+this.getNeedNear());
+			holder.distance.setText("距离   "+this.getNeedNear());
 		}
 
 		//Item跳转

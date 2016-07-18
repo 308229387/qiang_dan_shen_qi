@@ -19,7 +19,7 @@
             android:id="@+id/id_indicator"
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="50.0dip"/>
+            android:layout_height="49.0dip"/>
 
 
 </RelativeLayout>

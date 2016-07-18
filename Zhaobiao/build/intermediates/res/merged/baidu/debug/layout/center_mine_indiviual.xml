@@ -5,7 +5,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/grap_list_selector"
-    app:cardElevation="2dp"
+    app:cardElevation="1dp"
 
     >
 <LinearLayout
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dip"
-                android:textColor="@color/timeline_color"
+                android:textColor="@color/binding_detail_text"
                 android:text="16-06-20  11:30"
                 android:textSize="13sp"/>
 

@@ -53,6 +53,7 @@ public class SystemActiveActivity extends QBBaseActivity implements View.OnClick
         layout_back_head = getView(R.id.layout_head);
         pb = getView(R.id.pb);
         backLayout = getView(R.id.back_layout);
+        backLayout.setVisibility(View.VISIBLE);
         txt_head = getView(R.id.txt_head);
         tbl = getView(R.id.tbl);
         txt_head.setText("活动消息");

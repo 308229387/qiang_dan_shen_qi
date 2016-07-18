@@ -2,6 +2,7 @@ package com.huangyezhaobiao.activity;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ListView;
@@ -44,7 +45,14 @@ public class ConsumptionActivity extends QBBaseActivity implements View.OnClickL
         initView();
         initSwipeRefreshLayout();
         initListener();
-        consumeListVM.refresh();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(consumeListVM!= null){
+            consumeListVM.refresh();
+        }
     }
 
     private int getLayoutId(){
@@ -67,6 +75,15 @@ public class ConsumptionActivity extends QBBaseActivity implements View.OnClickL
 
         PullToRefreshListViewUtils.initListView(consume_list);
         configListView();
+
+        datas_empty_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(consumeListVM!= null){
+                    consumeListVM.refresh();
+                }
+            }
+        });
     }
 
     @Override
@@ -134,9 +151,11 @@ public class ConsumptionActivity extends QBBaseActivity implements View.OnClickL
         srl.setRefreshing(false);
         itemBeans = (List<ConsumeItemBean>) t;
         if(itemBeans==null || itemBeans.size()==0){
+            listView.setVisibility(View.GONE);
             datas_empty_layout.setVisibility(View.VISIBLE);
         }else {
             datas_empty_layout.setVisibility(View.GONE);
+            listView.setVisibility(View.VISIBLE);
             adapter.refreshDatas(itemBeans);
             listView.setAdapter(adapter);
         }
@@ -193,7 +212,15 @@ public class ConsumptionActivity extends QBBaseActivity implements View.OnClickL
          stopLoading();
          srl.setRefreshing(false);
          consume_list.onRefreshComplete();
-         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+
+        listView.setVisibility(View.GONE);
+        datas_empty_layout.setVisibility(View.VISIBLE);
+
+        if (!TextUtils.isEmpty(msg) && msg.equals("2001")) {
+            super.onLoadingError(msg);
+        }else if(!TextUtils.isEmpty(msg)){
+            Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

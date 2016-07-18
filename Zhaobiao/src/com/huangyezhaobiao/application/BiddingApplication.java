@@ -30,6 +30,7 @@ import com.huangyezhaobiao.notification.NotificationExecutor;
 import com.huangyezhaobiao.push.BiddingMessageReceiver.PushHandler;
 import com.huangyezhaobiao.receiver.NetworkChangedReceiver;
 import com.huangyezhaobiao.utils.LogUtils;
+import com.huangyezhaobiao.utils.LoggerUtils;
 import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.voice.VoiceManager;
 import com.lidroid.xutils.DbUtils;
@@ -222,7 +223,7 @@ public class BiddingApplication extends Application {
                  //必选，设置app id，由产品统一约定
                 .setAppId("1004")
                  //必选，设置渠道
-                .setChannel("58")
+                .setChannel(LoggerUtils.getChannelId(this))
                  //必选，设置product id, 由产品统一约定
                 .setProductId("qiangdanshenqi");
 //                .setShieldPrivateKey("RSA_PRIVATE_KEY_FOR_ANDROID")

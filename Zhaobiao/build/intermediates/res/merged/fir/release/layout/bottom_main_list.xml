@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@id/tv_main_fee"
-            android:textColor="#808080"
+            android:textColor="@color/binding_list_text"
             android:layout_marginLeft="3dp"
             android:layout_centerVertical="true"
             android:textSize="@dimen/textsize_normal"

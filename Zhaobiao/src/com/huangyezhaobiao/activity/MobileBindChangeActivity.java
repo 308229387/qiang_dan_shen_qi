@@ -2,6 +2,7 @@ package com.huangyezhaobiao.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -248,7 +249,11 @@ public class MobileBindChangeActivity extends QBBaseActivity implements View.OnC
     @Override
     public void onLoadingError(String msg) {
         stopLoading();
-        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+        if (!TextUtils.isEmpty(msg) && msg.equals("2001")) {
+            super.onLoadingError(msg);
+        }else if(!TextUtils.isEmpty(msg)){
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -269,12 +274,14 @@ public class MobileBindChangeActivity extends QBBaseActivity implements View.OnC
     @Override
     public void onSubmitEnabled() {
         btn_submit.setEnabled(true);
+        btn_submit.setTextColor(Color.parseColor("#FFFFFF"));
         btn_submit.setBackgroundResource(R.drawable.submit_btn_bg);
     }
 
     @Override
     public void onSubmitUnEnabled() {
         btn_submit.setEnabled(false);
+        btn_submit.setTextColor(Color.parseColor("#FDC9C0"));
         btn_submit.setBackgroundResource(R.drawable.submit_bg_gray);
     }
 

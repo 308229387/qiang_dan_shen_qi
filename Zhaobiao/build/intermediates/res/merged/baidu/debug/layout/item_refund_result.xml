@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/common_background">
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="60dp"
@@ -69,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="订单ID     :"
+            android:text="订单ID      "
             android:textColor="#808080"
             android:textSize="15sp"/>
         <TextView
@@ -94,7 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="退单原因 :"
+            android:text="退单原因  "
             android:textColor="#808080"
             android:textSize="15sp"/>
         <TextView
@@ -119,7 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="详细描述 :"
+            android:text="详细描述  "
             android:textColor="#808080"
             android:textSize="15sp"/>
         <TextView
@@ -136,8 +137,7 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="30dp"
-        android:background="@color/background"
-        >
+        android:background="@color/background">
         <TextView
             android:id="@+id/tv_refund_evidence"
             android:layout_marginLeft="15dp"
@@ -145,7 +145,7 @@
             android:textColor="#808080"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="上传证据 :"
+            android:text="上传证据  "
             android:textSize="15sp"/>
         <TextView
             android:layout_width="wrap_content"
@@ -156,6 +156,13 @@
             android:textColor="@color/black"
             android:layout_toRightOf="@id/tv_refund_evidence"
             android:textSize="15sp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="8dip"
+        android:background="@color/background">
 
     </RelativeLayout>
 
@@ -173,7 +180,7 @@
             android:textColor="#808080"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="补交证据 :"
+            android:text="补交证据  "
             android:textSize="15sp"/>
         <TextView
             android:layout_width="wrap_content"

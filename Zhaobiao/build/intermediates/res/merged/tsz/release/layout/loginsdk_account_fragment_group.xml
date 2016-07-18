@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--<com.wuba.home.HomeGridListView-->
+        <!--android:id="@+id/bottom_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:dividerHeight="0dip"-->
+        <!--android:listSelector="@drawable/loginsdk_home_guess_like_list_bg">-->
+    <!--</com.wuba.home.HomeGridListView>-->
+    <com.wuba.loginsdk.views.base.RequestLoadingView
+        android:id="@+id/request_loading"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" />
+</FrameLayout>
+<!-- From: file:/I:/E/2016523/58sdklogin/WubaLoginSDK/loginsdk/src/main/res/layout/loginsdk_account_fragment_group.xml -->

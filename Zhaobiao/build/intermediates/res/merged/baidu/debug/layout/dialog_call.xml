@@ -9,14 +9,14 @@
         android:layout_width="fill_parent"
         android:background="@drawable/call_bg_dialog"
         android:layout_centerVertical="true"
-        android:layout_height="200dip" >
+        android:layout_height="180dip" >
 
         <TextView
             android:id="@+id/dialog_tv_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="25dp"
             android:lineSpacingExtra="2dp"
             android:text="确定呼叫王先生？"
             android:textColor="@color/black"
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/dialog_tv_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:text="使用另一个号码？"
             android:textColor="@color/red"
             android:textSize="14sp" />
@@ -77,7 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/ll_input_dialog"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:text="您输入的号码有误"
             android:textColor="@color/red"
             android:textSize="14sp"
@@ -102,7 +102,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:text="取消"
-                    android:textColor="@color/t_gray" />
+                    android:textColor="@color/t_gray"
+                    android:textSize="17sp"/>
             </RelativeLayout>
 
             <View
@@ -122,7 +123,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:text="确认"
-                    android:textColor="@color/red" />
+                    android:textColor="@color/red"
+                    android:textSize="17sp"/>
             </RelativeLayout>
         </LinearLayout>
 

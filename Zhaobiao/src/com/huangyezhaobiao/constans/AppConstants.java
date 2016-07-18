@@ -198,4 +198,7 @@ public class AppConstants {
     public static final String PBI_IDENTIFIERFORVENDOR = "PBI-IdentifierForVendor";
     public static final String PBI_RELEASEMARKET = "PBI-ReleaseMarket";
     public static final String PBI_PPU ="ppu";
+
+
+    public static final String  RESET = "reset";
 }

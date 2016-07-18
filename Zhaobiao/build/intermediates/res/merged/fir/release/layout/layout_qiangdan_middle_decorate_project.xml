@@ -24,14 +24,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="装修类型"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/tv_type_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:layout_toRightOf="@id/tv_type_title"
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -50,14 +50,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="房屋类型"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/tv_house_type_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:layout_toRightOf="@id/tv_house_type_title"
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -75,14 +75,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="所在区域"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/tv_location_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:layout_toRightOf="@id/tv_location_title"
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -100,14 +100,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="详细地址"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/tv_details_address_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:layout_toRightOf="@id/tv_details_address_title"
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -127,14 +127,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="距离要求"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/tv_details_distance_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:layout_toRightOf="@id/tv_details_distance_title"
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -152,14 +152,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="装修预算"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/tv_budget_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:layout_toRightOf="@id/tv_budget_title"
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -178,14 +178,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="房屋面积"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/tv_size_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:layout_toRightOf="@id/tv_size_title"
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -203,14 +203,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="装修方式"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/tv_zx_type_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:layout_toRightOf="@id/tv_zx_type_title"
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -229,14 +229,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="量房时间"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/tv_lf_time_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:layout_toRightOf="@id/tv_lf_time_title"
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -254,14 +254,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="装修时间"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/tv_zx_time_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:layout_toRightOf="@id/tv_zx_time_title"
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />
@@ -280,14 +280,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="特殊需求"
-            android:textColor="@color/light_text_color"
+            android:textColor="@color/detail_text"
             android:textSize="@dimen/textsize_large" />
 
         <TextView
             android:id="@+id/tv_needs_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="29dp"
             android:layout_toRightOf="@id/tv_needs_title"
             android:textColor="@color/order_detail_text"
             android:textSize="@dimen/textsize_large" />

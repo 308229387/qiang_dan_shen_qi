@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.WindowManager;
 
 import com.huangye.commonlib.utils.UserConstans;
@@ -37,6 +38,8 @@ import com.huangyezhaobiao.utils.PushUtils;
 import com.huangyezhaobiao.utils.StateUtils;
 import com.huangyezhaobiao.utils.UnreadUtils;
 import com.huangyezhaobiao.utils.UserUtils;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -89,11 +92,10 @@ public class MainActivity extends CommonFragmentActivity  {
 //            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
         getWindow().setBackgroundDrawable(null);
-
         initView();
         initMainNavigateTab();
-        initPage();
         refreshTab();
+        initPage();
         registerScreenOffReceiver();
         startBindService();
     }
@@ -104,6 +106,11 @@ public class MainActivity extends CommonFragmentActivity  {
         EventbusAgent.getInstance().register(this);
         refreshTab();
         super.onResume();
+
+        if(BidSuccessActivity.isReset){
+            BidSuccessActivity.isReset = false;
+            initPage();
+        }
 
     }
 

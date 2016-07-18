@@ -91,6 +91,8 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
         //登录是否合法，默认为是
         boolean isLoginValidate = true;
         String token = "";
+
+        int status = -1;
         //获得请求的flag
         try {
             jsonResult = JSON.parseObject(result.result);
@@ -100,6 +102,11 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
             if (jsonResult.containsKey("loginFlag")) {
                 loginflag = jsonResult.getInteger("loginFlag");
             }
+
+            if(jsonResult.containsKey("status")){
+                status  = jsonResult.getInteger("status");
+            }
+
             // 获取app version
             if(result != null && result.getHeaders("version") != null){
                 LogUtils.LogV("commonversion"," name = " + result.getHeaders("version")[0].getName() +",value = " + result.getHeaders("version")[0].getValue());
@@ -146,7 +153,9 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
             } else {//合法
                 if (TextUtils.isEmpty(jsonResult.getString("result"))) {
                     baseSourceModelCallBack.onLoadingFailure(jsonResult.getString("msg"));
-                } else {
+                }else if(status == 2001){
+                    baseSourceModelCallBack.onLoadingFailure(String.valueOf(status));
+                }else {
                     baseSourceModelCallBack.onLoadingSuccess(transformJsonToNetBean(result.result), this);
                 }
             }

@@ -91,7 +91,12 @@ public class RefundResultFragment extends RefundBaseFragment implements NetWorkV
     public void onLoadingError(String msg) {
         stopLoading();
         layout_no_internet.setVisibility(View.GONE);
-        Toast.makeText(getActivity(),msg,0).show();
+        if (!TextUtils.isEmpty(msg) && msg.equals("2001")) {
+            RefundActivity ola = (RefundActivity) getActivity();
+            ola.onLoadingError(msg);
+        }else if(!TextUtils.isEmpty(msg)){
+            Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -112,4 +117,5 @@ public class RefundResultFragment extends RefundBaseFragment implements NetWorkV
         stopLoading();
         ((RefundActivity)getActivity()).onLoginInvalidate();
     }
+
 }

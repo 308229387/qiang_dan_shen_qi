@@ -2,6 +2,7 @@ package com.huangyezhaobiao.activity;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
@@ -47,7 +48,16 @@ public class SystemNotiListActivity extends  QBBaseActivity implements View.OnCl
         initSwipeRefreshLayout();
         systemNotiListVM = new SystemNotiListVM(this,this);
         systemNotiListPresenter = new SystemNotiListPresenter(this);
-        systemNotiListVM.refresh();
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(systemNotiListVM != null){
+            systemNotiListVM.refresh();
+        }
         systemNotiListPresenter.initNotiAdapter(sysListBeans);
         listView.setAdapter(systemNotiListPresenter.getSysNotiAdapter());
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -60,9 +70,7 @@ public class SystemNotiListActivity extends  QBBaseActivity implements View.OnCl
                 }
             }
         });
-
     }
-
 
     @Override
     public void initView() {
@@ -79,6 +87,15 @@ public class SystemNotiListActivity extends  QBBaseActivity implements View.OnCl
         listView         = sys_list.getRefreshableView();
         PullToRefreshListViewUtils.initListView(sys_list);
         configListView();
+
+        rl_no_unread.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(systemNotiListVM != null){
+                    systemNotiListVM.refresh();
+                }
+            }
+        });
     }
 
 
@@ -149,9 +166,11 @@ public class SystemNotiListActivity extends  QBBaseActivity implements View.OnCl
         if(t instanceof List){
             List<SysListBean> listBeans = (List<SysListBean>) t;
             if(listBeans.size()==0){
+                listView.setVisibility(View.GONE);
                 rl_no_unread.setVisibility(View.VISIBLE);
             }else {
                 rl_no_unread.setVisibility(View.GONE);
+                listView.setVisibility(View.VISIBLE);
                 systemNotiListPresenter.initNotiAdapter(listBeans);
                 listView.setAdapter(systemNotiListPresenter.getSysNotiAdapter());
             }
@@ -210,7 +229,16 @@ public class SystemNotiListActivity extends  QBBaseActivity implements View.OnCl
         stopLoading();
         srl.setRefreshing(false);
         sys_list.onRefreshComplete();
-        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+
+        listView.setVisibility(View.GONE);
+        rl_no_unread.setVisibility(View.VISIBLE);
+
+        if (!TextUtils.isEmpty(msg) && msg.equals("2001")) {
+            super.onLoadingError(msg);
+        }else if(!TextUtils.isEmpty(msg)){
+            Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override

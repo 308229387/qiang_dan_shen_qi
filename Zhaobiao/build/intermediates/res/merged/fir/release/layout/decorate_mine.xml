@@ -16,8 +16,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="装修区域:"
-            android:textColor="#808080"
+            android:text="装修区域"
+            android:textColor="@color/binding_detail_text"
             android:textSize="15sp" />
 
         <TextView
@@ -27,9 +27,10 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/tv_grab_location_title"
             android:layout_marginRight="20dip"
+            android:layout_marginLeft="20dip"
             android:singleLine="true"
             android:text="朝阳区-望京"
-            android:textColor="#808080"
+            android:textColor="@color/binding_detail_text"
             android:textSize="15sp" />
 
     </RelativeLayout>
@@ -44,8 +45,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="详细地址:"
-            android:textColor="#808080"
+            android:text="详细地址"
+            android:textColor="@color/binding_detail_text"
             android:textSize="15sp" />
 
         <TextView
@@ -54,10 +55,11 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginRight="20dip"
+            android:layout_marginLeft="20dip"
             android:layout_toRightOf="@id/tv_decorate_address"
             android:singleLine="true"
             android:text="酒仙桥"
-            android:textColor="#808080"
+            android:textColor="@color/binding_detail_text"
             android:textSize="15sp" />
 
         <ImageView
@@ -79,8 +81,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:textColor="#808080"
-            android:text="客户姓名:"
+            android:textColor="@color/binding_detail_text"
+            android:text="客户姓名"
             android:textSize="15sp" />
 
         <TextView
@@ -88,9 +90,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="20dip"
             android:layout_toRightOf="@id/tv_customer_name"
             android:text="王先生"
-            android:textColor="#808080"
+            android:textColor="@color/binding_detail_text"
             android:textSize="15sp" />
     </RelativeLayout>
 

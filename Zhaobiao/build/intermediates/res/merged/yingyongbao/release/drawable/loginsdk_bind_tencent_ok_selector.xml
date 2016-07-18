@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selector
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" android:drawable="@drawable/loginsdk_bind_tencent_btn_ok_press" />
+    <item android:drawable="@drawable/loginsdk_bind_tencent_btn_ok" />
+</selector><!-- From: file:/I:/E/2016523/58sdklogin/WubaLoginSDK/loginsdk/src/main/res/drawable/loginsdk_bind_tencent_ok_selector.xml -->

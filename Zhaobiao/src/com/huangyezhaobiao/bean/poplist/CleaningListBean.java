@@ -196,9 +196,9 @@ public class CleaningListBean extends QDBaseBean{
         /**
          * ==============================end
          * */
-        cleaningBidHolder.tv_cleaning_size_content.setText("清洁面积:"+cleanSpace);
-        cleaningBidHolder.tv_cleaning_service_time_content.setText("服务时间:"+serveTime);
-        cleaningBidHolder.tv_cleaning_location_content.setText("服务区域:"+location);
+        cleaningBidHolder.tv_cleaning_size_content.setText("清洁面积    "+cleanSpace);
+        cleaningBidHolder.tv_cleaning_service_time_content.setText("服务时间    "+serveTime);
+        cleaningBidHolder.tv_cleaning_location_content.setText("服务区域    "+location);
         cleaningBidHolder.grab_cleaning_title.setText(title);
         cleaningBidHolder.grab_cleaning_time.setText(TimeUtils.formatDateTime(time));
         cleaningBidHolder.cleaning_item.setOnClickListener(new View.OnClickListener() {

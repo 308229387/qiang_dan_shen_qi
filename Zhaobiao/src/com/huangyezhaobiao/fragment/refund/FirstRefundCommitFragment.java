@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
 import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.activity.MainActivity;
 import com.huangyezhaobiao.activity.RefundActivity;
 import com.huangyezhaobiao.adapter.RefundReasonAdapter;
 import com.huangyezhaobiao.bean.tt.RefundFirstCommitBean;
@@ -39,6 +40,7 @@ import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.KeyboardUtil;
 import com.huangyezhaobiao.utils.NetUtils;
 import com.huangyezhaobiao.utils.StringUtils;
+import com.huangyezhaobiao.view.AttentionDialog;
 import com.huangyezhaobiao.view.HorizontialListView;
 import com.huangyezhaobiao.view.ResultDialog;
 import com.huangyezhaobiao.view.UploadPicDialog;
@@ -54,7 +56,7 @@ import java.util.List;
  * 第一次提交退单的操作
  * //展示,提交,这块很麻烦
  */
-public class FirstRefundCommitFragment extends RefundBaseFragment implements NetWorkVMCallBack, View.OnClickListener, ZhaoBiaoDialog.onDialogClickListener, ETInterface {
+public class FirstRefundCommitFragment extends RefundBaseFragment implements NetWorkVMCallBack, View.OnClickListener, AttentionDialog.RequestOkListener, ETInterface {
     private TextView              tv_order_number;
     private TextView              tv_hint_text;
     private GridView              gridView_quit_reason;
@@ -81,8 +83,8 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
     private ZhaoBiaoDialog  confirmDialog_upload;//上传图片的对话框
     private ResultDialog    resultDialog_success;//成功的结果反馈
     private ResultDialog    resultDialog_failure;//失败的结果反馈
-    private ZhaoBiaoDialog  refund_reason_dialog;//请选择退单原因
-    private ZhaoBiaoDialog  refund_desc_dialog;//请填写退单描述
+    private AttentionDialog  refund_reason_dialog;//请选择退单原因
+    private AttentionDialog  refund_desc_dialog;//请填写退单描述
     private UploadPicDialog uploadPicDialog;//图片的对话框
 
 
@@ -155,12 +157,12 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
                 resultDialog_failure.dismiss();
             }
         });
-        refund_reason_dialog = new ZhaoBiaoDialog(getActivity(),StringUtils.getStringByResId(getActivity(),R.string.write_refund_reason));
-        refund_desc_dialog = new ZhaoBiaoDialog(getActivity(),StringUtils.getStringByResId(getActivity(), R.string.write_refund_desc));
-        refund_desc_dialog.setCancelButtonGone();
-        refund_reason_dialog.setCancelButtonGone();
-        refund_reason_dialog.setOnDialogClickListener(this);
-        refund_desc_dialog.setOnDialogClickListener(this);
+        refund_reason_dialog = new AttentionDialog(getActivity(),StringUtils.getStringByResId(getActivity(),R.string.write_refund_reason),R.drawable.refund_attention);
+        refund_desc_dialog = new AttentionDialog(getActivity(),StringUtils.getStringByResId(getActivity(), R.string.write_refund_desc),R.drawable.refund_attention);
+//        refund_desc_dialog.setCancelButtonGone();
+//        refund_reason_dialog.setCancelButtonGone();
+        refund_reason_dialog.setListener(this);
+        refund_desc_dialog.setListener(this);
 
     }
 
@@ -200,7 +202,7 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
             public void onFocusChange(View v, boolean hasFocus) {
 
                 if (hasFocus) {
-                    ( (EditText)v).setHint("");
+                    ((EditText) v).setHint("");
                 }
 
             }
@@ -243,7 +245,11 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
         stopLoading();
         rl_submit.setVisibility(View.GONE);
         layout_no_internet.setVisibility(View.GONE);
-        if(!TextUtils.isEmpty(msg)) {
+
+        if (!TextUtils.isEmpty(msg) && msg.equals("2001")) {
+            RefundActivity ola = (RefundActivity) getActivity();
+            ola.onLoadingError(msg);
+        }else if(!TextUtils.isEmpty(msg)) {
             Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
         }
     }
@@ -270,6 +276,7 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
         rl_submit.setVisibility(View.GONE);
         ((RefundActivity)getActivity()).onLoginInvalidate();
     }
+
 
     private void deleteExistJavaBean(BaseMediaBean baseMediaBean){
         for(int i=0;i<baseMediaBeans.size();i++){
@@ -473,18 +480,13 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
     }
 
     @Override
-    public void onDialogOkClick() {
-        refund_reason_dialog.dismiss();
-        refund_desc_dialog.dismiss();
-    }
-
-    @Override
-    public void onDialogCancelClick() {
-
-    }
-
-    @Override
     public void onChanged(String text) {
         tv_hint_count.setText(text);
+    }
+
+    @Override
+    public void onRequestOkClick() {
+        refund_reason_dialog.dismiss();
+        refund_desc_dialog.dismiss();
     }
 }

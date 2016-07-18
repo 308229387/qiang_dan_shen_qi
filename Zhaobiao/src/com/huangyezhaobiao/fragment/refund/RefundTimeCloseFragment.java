@@ -1,6 +1,7 @@
 package com.huangyezhaobiao.fragment.refund;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -69,7 +70,12 @@ public class RefundTimeCloseFragment extends RefundBaseFragment implements NetWo
     public void onLoadingError(String msg) {
         stopLoading();
         layout_no_internet.setVisibility(View.GONE);
-        Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
+        if (!TextUtils.isEmpty(msg) && msg.equals("2001")) {
+            RefundActivity ola = (RefundActivity) getActivity();
+            ola.onLoadingError(msg);
+        }else if(!TextUtils.isEmpty(msg)){
+            Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -90,4 +96,5 @@ public class RefundTimeCloseFragment extends RefundBaseFragment implements NetWo
         //调用到acivity的loginInvalidate
         ((RefundActivity)getActivity()).onLoginInvalidate();
     }
+
 }

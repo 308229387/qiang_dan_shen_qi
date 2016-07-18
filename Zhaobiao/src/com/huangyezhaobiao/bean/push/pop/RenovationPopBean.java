@@ -41,8 +41,6 @@ public class RenovationPopBean extends PopBaseBean {
 	private String voice;
 	private String originalFee;
 
-	private String guestName;
-
 	@Override
 	public String getOriginalFee() {
 		return originalFee;
@@ -118,7 +116,6 @@ public class RenovationPopBean extends PopBaseBean {
 
 		bean.setStr(str.toString());
 		bean.setStatus(status);
-        bean.setGuestName(guestName);
 		return bean;
 	}
 	
@@ -254,11 +251,4 @@ public class RenovationPopBean extends PopBaseBean {
 		this.needNear = needNear;
 	}
 
-	public String getGuestName() {
-		return guestName;
-	}
-
-	public void setGuestName(String guestName) {
-		this.guestName = guestName;
-	}
 }

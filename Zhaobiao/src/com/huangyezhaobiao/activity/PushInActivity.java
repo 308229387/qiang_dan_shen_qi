@@ -198,14 +198,14 @@ public class PushInActivity extends BaseActivity implements NetWorkVMCallBack, V
                 dialog_next.setVisibility(View.VISIBLE);
             }
             VoiceManager.allowSpeak = true;
-            if (MDConstans.ACTION_CLOSE_VOLUMN.equals(yuyin_op)) {
-                yuyin_op = MDConstans.ACTION_OPEN_VOLUMN;
-                dialog_voice.setImageResource(R.drawable.iv_voice_close);
-
-            } else {
+//            if (MDConstans.ACTION_CLOSE_VOLUMN.equals(yuyin_op)) {
+//                yuyin_op = MDConstans.ACTION_OPEN_VOLUMN;
+//                dialog_voice.setImageResource(R.drawable.iv_voice_close);
+//
+//            } else {
                 yuyin_op = MDConstans.ACTION_CLOSE_VOLUMN;
                 dialog_voice.setImageResource(R.drawable.iv_voice);
-            }
+//            }
             // 需要改成list的下一条
             voiceManager.addOrder(bean.getVoice());
             voiceManager.manaulToNextOrders();
@@ -338,6 +338,7 @@ public class PushInActivity extends BaseActivity implements NetWorkVMCallBack, V
     public void onVersionBack(String version) {
 
     }
+
 
     @Override
     public void onClick(View view) {

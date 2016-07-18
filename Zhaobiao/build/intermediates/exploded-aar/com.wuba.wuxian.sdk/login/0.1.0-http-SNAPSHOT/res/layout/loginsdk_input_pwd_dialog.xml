@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/px50">
+        <com.wuba.loginsdk.views.LoginAutoClearEditView
+            android:id="@+id/login_input_pwd"
+            style="@style/RegisterEdit"
+            android:hint="请输入58账户密码"
+
+            android:paddingLeft="@dimen/px20"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:maxLength="16"
+            android:background="#f6f6f6"
+            android:textColor="@color/orange" />
+        <RelativeLayout
+            android:id="@+id/phone_affirm_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="44dip"
+            android:layout_below="@id/login_input_pwd"
+            android:layout_marginTop="@dimen/px2"
+            android:background="#f6f6f6">
+
+            <RelativeLayout
+                android:id="@+id/phone_affirm_view"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent">
+
+                <com.wuba.loginsdk.views.LoginAutoClearEditView
+                    android:id="@+id/login_input_vcode"
+                    style="@style/RegisterEdit"
+                    android:layout_width="130dip"
+                    android:layout_marginLeft="10dip"
+                    android:maxLength="10"
+                    android:hint="请输入验证码"
+                    android:textColor="@color/orange" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/phone_refresh_view"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:paddingTop="5dip"
+                android:paddingBottom="5dip"
+                android:layout_toRightOf="@id/phone_affirm_view">
+                <com.wuba.loginsdk.views.base.RecycleImageView
+                    android:id="@+id/get_affirm_view"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"/>
+                <com.wuba.loginsdk.views.base.RecycleImageView
+                    android:id="@+id/refresh_affirm_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/loginsdk_wb_suggest_loading"/>
+
+                <TextView
+                    android:id="@+id/verified_img_unable"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:textColor="@color/img_verified_unable"
+                    android:background="@color/dynamic_unlog_verify_color"
+                    android:textSize="@dimen/template_frame_item_secondtextsize"
+                    android:text="@string/verified_img_unable"
+                    android:gravity="center"
+                    android:visibility="invisible"
+                    android:layout_marginRight="1dip"/>
+            </RelativeLayout>>
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <com.wuba.loginsdk.views.base.RequestLoadingView
+        android:id="@+id/request_loading"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" />
+</RelativeLayout>
+<!-- From: file:/I:/E/2016523/58sdklogin/WubaLoginSDK/loginsdk/src/main/res/layout/loginsdk_input_pwd_dialog.xml -->

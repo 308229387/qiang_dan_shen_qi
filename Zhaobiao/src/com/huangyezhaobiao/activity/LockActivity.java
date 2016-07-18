@@ -251,14 +251,14 @@ public class LockActivity extends Activity implements NetWorkVMCallBack, View.On
                 dialog_next.setVisibility(View.VISIBLE);
             }
             VoiceManager.allowSpeak = true;
-            if (MDConstans.ACTION_CLOSE_VOLUMN.equals(yuyin_op)) {
-                yuyin_op = MDConstans.ACTION_OPEN_VOLUMN;
-                dialog_voice.setImageResource(R.drawable.iv_voice_close);
-
-            } else {
+//            if (MDConstans.ACTION_CLOSE_VOLUMN.equals(yuyin_op)) {
+//                yuyin_op = MDConstans.ACTION_OPEN_VOLUMN;
+//                dialog_voice.setImageResource(R.drawable.iv_voice_close);
+//
+//            } else {
                 yuyin_op = MDConstans.ACTION_CLOSE_VOLUMN;
                 dialog_voice.setImageResource(R.drawable.iv_voice);
-            }
+//            }
 
             // 需要改成list的下一条
             voiceManager.addOrder(bean.getVoice());

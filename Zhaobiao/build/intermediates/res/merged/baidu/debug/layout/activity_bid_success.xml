@@ -83,7 +83,7 @@
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/t_whitebuttonselector"
                 android:text="继续抢单"
-                android:textColor="@color/red"
+                android:textColor="@color/button_red"
                 android:textSize="18dp" />
         </LinearLayout>
     </LinearLayout>

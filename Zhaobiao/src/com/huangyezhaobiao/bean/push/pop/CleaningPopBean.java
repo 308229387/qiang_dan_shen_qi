@@ -46,7 +46,7 @@ public class CleaningPopBean extends PopBaseBean{
     private String time;
     private String originalFee;
 
-    private String guestName;
+
 
     @Override
     public String getOriginalFee() {
@@ -165,13 +165,7 @@ public class CleaningPopBean extends PopBaseBean{
         this.fee = fee;
     }
 
-    public String getGuestName() {
-        return guestName;
-    }
 
-    public void setGuestName(String guestName) {
-        this.guestName = guestName;
-    }
 
     @Override
     public View initView(Context context) {
@@ -240,7 +234,6 @@ public class CleaningPopBean extends PopBaseBean{
 
         bean.setStr(str.toString());
         bean.setStatus(status);
-        bean.setGuestName(guestName);
         return bean;
     }
 

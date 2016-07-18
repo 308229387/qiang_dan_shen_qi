@@ -32,7 +32,6 @@ public class DomesticRegisterPopBean extends PopBaseBean {
 	//2015.10.22 add end
 	private String voice;
 	private String originalFee;
-	private String guestName;
 
 	@Override
 	public String getOriginalFee() {
@@ -85,9 +84,9 @@ public class DomesticRegisterPopBean extends PopBaseBean {
 		if (status == 1) {
 			bean.setFee(fee);
 		}
+
 		bean.setStr(str.toString());
 		bean.setStatus(status);
-        bean.setGuestName(guestName);
 		return bean;
 	}
 	
@@ -245,11 +244,4 @@ public class DomesticRegisterPopBean extends PopBaseBean {
 		this.business = business;
 	}
 
-	public String getGuestName() {
-		return guestName;
-	}
-
-	public void setGuestName(String guestName) {
-		this.guestName = guestName;
-	}
 }

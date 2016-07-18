@@ -15,12 +15,12 @@ public final class R {
 		public static final int ic_launcher = 0x7f020076;
 	}
 	public static final class id {
-		public static final int action_settings = 0x7f0d039c;
-		public static final int dage = 0x7f0d0388;
+		public static final int action_settings = 0x7f0d039e;
+		public static final int dage = 0x7f0d038a;
 	}
 	public static final class layout {
 		public static final int activity_main = 0x7f03002a;
-		public static final int test = 0x7f0300d8;
+		public static final int test = 0x7f0300d9;
 	}
 	public static final class menu {
 		public static final int main = 0x7f0e0000;

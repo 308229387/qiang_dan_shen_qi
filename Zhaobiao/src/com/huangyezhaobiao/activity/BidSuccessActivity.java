@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.bean.push.PushToPassBean;
+import com.huangyezhaobiao.constans.AppConstants;
 import com.huangyezhaobiao.eventbus.EventAction;
 import com.huangyezhaobiao.eventbus.EventType;
 import com.huangyezhaobiao.eventbus.EventbusAgent;
@@ -24,6 +25,7 @@ import com.huangyezhaobiao.fragment.home.MessageFragment;
 import com.huangyezhaobiao.fragment.home.OrderListFragment;
 import com.huangyezhaobiao.inter.Constans;
 import com.huangyezhaobiao.service.AlertService;
+import com.huangyezhaobiao.url.URLConstans;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
@@ -56,6 +58,8 @@ public class BidSuccessActivity extends QBBaseActivity {
 
 	private String bidId;
 	public static Long orderId;
+
+	public static boolean isReset = false;
 
 	KeyguardManager.KeyguardLock keyguardLock;
 	protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +95,7 @@ public class BidSuccessActivity extends QBBaseActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
+
 	}
 
 	@Override
@@ -128,7 +133,7 @@ public class BidSuccessActivity extends QBBaseActivity {
 				ActivityUtils.goToActivityWithString(BidSuccessActivity.this, FetchDetailsActivity.class, map);
 
 
-//				ActivityUtils.goToActivity(BidSuccessActivity.this, MainActivity.class);
+//			ActivityUtils.goToActivity(BidSuccessActivity.this, MainActivity.class);
 			}
 		});
 		toBidList.setOnClickListener(new OnClickListener() {
@@ -143,7 +148,9 @@ public class BidSuccessActivity extends QBBaseActivity {
 
 				HYMob.getDataListByQiangDan(BidSuccessActivity.this, HYEventConstans.EVENT_ID_SUCCESS_PAGE_CONTINUE_BIDDING, bidId);
 
+				isReset = true;
 				ActivityUtils.goToActivity(BidSuccessActivity.this, MainActivity.class);
+
 			}
 		});
 		back_layout.setOnClickListener(new OnClickListener() {

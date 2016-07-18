@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/reset_nickname_title_layout"
+        layout="@layout/loginsdk_public_title" />
+
+    <View
+        android:id="@+id/reset_nick_name_divider_up"
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#dedfe0"
+        android:layout_marginTop="20dip"
+        android:layout_below="@id/reset_nickname_title_layout"/>
+
+    <LinearLayout
+        android:id="@+id/reset_nick_name_edit_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="55dip"
+        android:layout_below="@id/reset_nick_name_divider_up"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/reset_nick_name_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="15dip"
+            android:text="昵称:"/>
+
+        <com.wuba.loginsdk.views.LoginAutoClearEditView
+            android:id="@+id/nickname_edit_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="15dip"
+            android:background="@null"
+            android:singleLine="true"
+            android:textSize="16sp"
+            android:hint="@string/input_nickname"
+            android:textColor="#808080"
+            android:maxLength="20"
+            android:maxEms="10"
+            android:ellipsize="end"
+            android:maxLines="1"
+            />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/reset_nick_name_divider_bottom"
+        android:layout_below="@id/reset_nick_name_edit_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#dedfe0"/>
+
+    <TextView
+        android:id="@+id/tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/reset_nick_name_divider_bottom"
+        android:singleLine="true"
+        android:textSize="12sp"
+        android:textColor="#a6a6a6"
+        android:layout_marginTop="7dip"
+        android:layout_centerHorizontal="true"
+        android:text="20个以内字符，仅可以使用汉字、字母、数字或下划线"/>
+
+</RelativeLayout>
+<!-- From: file:/I:/E/2016523/58sdklogin/WubaLoginSDK/loginsdk/src/main/res/layout/loginsdk_fragment_nickname_reset.xml -->

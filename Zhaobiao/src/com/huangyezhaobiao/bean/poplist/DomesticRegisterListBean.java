@@ -225,12 +225,12 @@ public class DomesticRegisterListBean extends QDBaseBean {
 		}
 		holder.title.setText(title);
 		holder.time.setText(TimeUtils.formatDateTime(time));
-		holder.grab_domesticregister_time_delegate.setText("代理记账:"+agencyTime);
-		holder.grab_domesticregister_need_location_delegate.setText("代理地址:"+agencyLocation);
-		holder.location.setText("注册区域:"+location);
+		holder.grab_domesticregister_time_delegate.setText("代理记账   "+agencyTime);
+		holder.grab_domesticregister_need_location_delegate.setText("代理地址   "+agencyLocation);
+		holder.location.setText("注册区域   "+location);
 		holder.tv_business_content.setText("经营业务");
 		if(!TextUtils.isEmpty(business)) {
-			holder.tv_business_content.setText("经营业务:"+business);
+			holder.tv_business_content.setText("经营业务   "+business);
 		}
 
 		//2016.03.29 add for O2O-709

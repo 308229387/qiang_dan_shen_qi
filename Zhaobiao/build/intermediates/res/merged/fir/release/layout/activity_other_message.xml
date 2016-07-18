@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#f5fbfb"
 
     android:orientation="vertical" >
     <include
@@ -26,8 +26,8 @@
 
 		<ImageView
 			android:id="@+id/iv_unread"
-			android:layout_width="117dp"
-			android:layout_height="117dp"
+			android:layout_width="146dp"
+			android:layout_height="155dp"
 			android:layout_marginTop="118dp"
 			android:layout_centerHorizontal="true"
 			android:src="@drawable/result_hint"

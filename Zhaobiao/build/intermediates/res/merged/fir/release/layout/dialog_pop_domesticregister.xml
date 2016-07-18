@@ -55,14 +55,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="注册类型："
-                android:textColor="#808080"
+                android:text="注册类型"
+                android:textColor="@color/detail_text"
                 android:textSize="@dimen/textsize_large" />
 
             <TextView
                 android:id="@+id/domesticregister_pop_registertype"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="55dip"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="@dimen/textsize_large" />
@@ -76,14 +77,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="注册区域："
-                android:textColor="#808080"
+                android:text="注册区域"
+                android:textColor="@color/detail_text"
                 android:textSize="@dimen/textsize_large" />
 
             <TextView
                 android:id="@+id/domesticregister_pop_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="55dip"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="@dimen/textsize_large" />
@@ -97,14 +99,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="经营业务："
-                android:textColor="#808080"
+                android:text="经营业务"
+                android:textColor="@color/detail_text"
                 android:textSize="@dimen/textsize_large" />
 
             <TextView
                 android:id="@+id/domesticregister_pop_business"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="55dip"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="@dimen/textsize_large" />
@@ -117,14 +120,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="代理记账："
-                android:textColor="#808080"
+                android:text="代理记账"
+                android:textColor="@color/detail_text"
                 android:textSize="@dimen/textsize_large" />
 
             <TextView
                 android:id="@+id/domesticregister_pop_isproxylocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="55dip"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="@dimen/textsize_large" />
@@ -138,14 +142,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="代理地址："
-                android:textColor="#808080"
+                android:text="代理地址"
+                android:textColor="@color/detail_text"
                 android:textSize="@dimen/textsize_large" />
 
             <TextView
                 android:id="@+id/domesticregister_pop_proxytally"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="55dip"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="@dimen/textsize_large" />
@@ -162,14 +167,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="注册时间："
-                android:textColor="#808080"
+                android:text="注册时间"
+                android:textColor="@color/detail_text"
                 android:textSize="@dimen/textsize_large" />
 
             <TextView
                 android:id="@+id/domesticregister_pop_registertime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="55dip"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="@dimen/textsize_large" />
@@ -184,14 +190,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="所属行业："
-                android:textColor="#808080"
+                android:text="所属行业"
+                android:textColor="@color/detail_text"
                 android:textSize="@dimen/textsize_large" />
 
             <TextView
                 android:id="@+id/domesticregister_pop_industry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="55dip"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="@dimen/textsize_large" />

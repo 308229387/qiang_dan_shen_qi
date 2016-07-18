@@ -315,7 +315,7 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
     @Override
     public void onLoadingMoreSuccess(Object res) {
         List<QDBaseBean> list = (List<QDBaseBean>) res;
-        LogUtils.LogV("loadMore1",""+list.size());
+        LogUtils.LogV("loadMore1", "" + list.size());
         adapter.loadMoreSuccess(list);
         mPullToRefreshListView.onRefreshComplete();
         stopLoading();
@@ -368,7 +368,7 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
         }else if (t instanceof Integer) {
             stopLoading();
             int status = (Integer) t;
-            Toast.makeText(getActivity(), "status:" + status, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getActivity(), "status:" + status, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent();
             Bundle bundle = new Bundle();
             bundle.putSerializable("passBean", passBean);
@@ -464,7 +464,11 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
         }
         root.setVisibility(View.VISIBLE);
 
-        if (!TextUtils.isEmpty(msg)) {
+
+        if (!TextUtils.isEmpty(msg) && msg.equals("2001")) {
+            MainActivity ola = (MainActivity) getActivity();
+            ola.onLoadingError(msg);
+        }else if (!TextUtils.isEmpty(msg)) {
             Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
         }
         dismissQDWaitDialog();
@@ -524,8 +528,10 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
         }
     }
 
+
     @Override
     public void onLoginInvalidate() {
+        stopLoading();
         MainActivity ola = (MainActivity) getActivity();
         ola.onLoginInvalidate();
     }
@@ -536,40 +542,45 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
     private void showFirst() {
 //      if(!SPUtils.getAppUpdate(this)){
         if (SPUtils.isFirstUpdate(getActivity())) {//需要弹窗
-            updateMessageDialog = new ZhaoBiaoDialog(getActivity(),
+            if (updateMessageDialog == null) {
+                updateMessageDialog = new ZhaoBiaoDialog(getActivity(),
 //                    getString(R.string.update_hint),
-                    getString(R.string.update_message));
-            updateMessageDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-                    //弹自定义界面的弹
-                    if (SPUtils.isAutoSetting(getActivity())) {
-                        autoSettingDialog.show();
+                        getString(R.string.update_message));
+                updateMessageDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        updateMessageDialog = null;
+                        //弹自定义界面的弹
+                        if (SPUtils.isAutoSetting(getActivity())) {
+                            autoSettingDialog.show();
+                        }
                     }
-                }
-            });
-            updateMessageDialog.setCancelable(false);
-            updateMessageDialog.setCancelButtonGone();
-            updateMessageDialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
-                @Override
-                public void onDialogOkClick() {
-                    updateMessageDialog.dismiss();
-                    SPUtils.saveAlreadyFirstUpdate(getActivity(), false);
+                });
+                updateMessageDialog.setCancelable(false);
+                updateMessageDialog.setCancelButtonGone();
+                updateMessageDialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
+                    @Override
+                    public void onDialogOkClick() {
+                        updateMessageDialog.dismiss();
+                        SPUtils.saveAlreadyFirstUpdate(getActivity(), false);
 //                    UserUtils.setAppVersion(MainActivity.this, ""); //2.7升级可删
 //                       SPUtils.setAppUpdate(MainActivity.this, true);
-                }
+                    }
 
-                @Override
-                public void onDialogCancelClick() {
-                }
-            });
-            updateMessageDialog.show();
+                    @Override
+                    public void onDialogCancelClick() {
+                    }
+                });
+                updateMessageDialog.show();
 
+            }
         } else {
             if (SPUtils.isAutoSetting(getActivity())) {
                 autoSettingDialog.show();
             }
         }
+
+
     }
 
     /**
@@ -617,8 +628,6 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
     @Override
     public void onNotificationCome(PushBean pushBean) {
         LogUtils.LogV("nnnnnnB1a", String.valueOf(pushBean.getTag()));
-        if (listViewModel != null)
-            loadDatas();
         if (null != pushBean) {
             int type = pushBean.getTag();
             LogUtils.LogV("nnnnnnB1b", String.valueOf(pushBean.getTag())+ StateUtils.getState(getActivity()) );
@@ -634,6 +643,10 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
             }
         } else {
             Toast.makeText(getActivity(), "实体bean为空", Toast.LENGTH_SHORT).show();
+        }
+
+        if (listViewModel != null){
+            loadDatas();
         }
     }
 

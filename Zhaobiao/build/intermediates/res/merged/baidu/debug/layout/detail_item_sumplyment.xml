@@ -18,14 +18,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="特殊需求"
-                android:textColor="@color/light_text_color"
+                android:textColor="@color/binding_detail_text"
                 android:textSize="@dimen/textsize_large" />
 
             <TextView
                 android:id="@+id/detail_item_sumplyment_text1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="29dp"
                 android:textColor="@color/order_detail_text"
                 android:textSize="@dimen/textsize_large" />
         </LinearLayout>
