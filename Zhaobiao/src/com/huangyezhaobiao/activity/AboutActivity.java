@@ -41,6 +41,7 @@ public class AboutActivity extends QBBaseActivity implements OnClickListener {
 		back_layout 	 = getView(R.id.back_layout);
 		back_layout.setVisibility(View.VISIBLE);
 		txt_head    	 = getView(R.id.txt_head);
+
 		txt_head.setText(R.string.about);
 
 		tv_version  	 = getView(R.id.tv_version);
