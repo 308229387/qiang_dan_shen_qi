@@ -187,7 +187,9 @@ public class PersonalCenterFragment extends BaseHomeFragment implements NetWorkV
 
     @Override
     public void onLoadingError(String msg) {
-        stopLoading();
+        if(getActivity() != null){
+            stopLoading();
+        }
 
         if (!TextUtils.isEmpty(msg) && msg.equals("2001")) {
             MainActivity ola = (MainActivity) getActivity();

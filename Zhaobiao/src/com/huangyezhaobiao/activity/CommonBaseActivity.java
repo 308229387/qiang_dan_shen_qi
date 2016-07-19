@@ -121,7 +121,6 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
             latTimeLine = 0;
             e.printStackTrace();
         }
-        LogUtils.LogV("xxxxxxx2", String.valueOf(TimeUtils.beyond13Days(currentTimeLine, latTimeLine)));
         return TimeUtils.beyond13Days(currentTimeLine, latTimeLine);//没有在时间戳范围内
 
     }

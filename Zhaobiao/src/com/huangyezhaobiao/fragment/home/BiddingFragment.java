@@ -450,7 +450,9 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
         if (srl != null && srl.isRefreshing()) {
             srl.setRefreshing(false);
         }
-        stopLoading();
+        if(getActivity() != null){
+            stopLoading();
+        }
 
         //加载ViewStub
         if (root == null) {

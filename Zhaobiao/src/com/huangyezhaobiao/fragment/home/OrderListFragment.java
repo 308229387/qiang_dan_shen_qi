@@ -408,7 +408,10 @@ public class OrderListFragment extends  BaseHomeFragment implements INotificatio
 
     @Override
     public void onLoadingError(String msg) {
-        stopLoading();
+        if(getActivity() != null){
+            stopLoading();
+        }
+
         if(lv_all_fragment!=null &&lv_all_fragment.isRefreshing())
             lv_all_fragment.onRefreshComplete();
 
