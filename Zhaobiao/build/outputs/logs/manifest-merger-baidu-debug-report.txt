@@ -1,1034 +1,1034 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:2:1-536:12
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:2:1-536:12
 	package
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:4:5-34
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:4:5-34
 	android:versionName
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:7:5-32
-		INJECTED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml
-		INJECTED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:7:5-32
+		INJECTED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml
+		INJECTED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml
 	xmlns:tools
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:3:5-51
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:3:5-51
 	android:versionCode
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:6:5-29
-		INJECTED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml
-		INJECTED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:6:5-29
+		INJECTED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml
+		INJECTED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml
 	xmlns:android
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:2:11-69
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:2:11-69
 	android:installLocation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:5:5-35
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:5:5-35
 uses-sdk
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:9:5-12:53
-MERGED from [hy_android_zb:library:unspecified] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\hy_android_zb\library\unspecified\AndroidManifest.xml:7:5-43
-MERGED from [hy_android_zb:Commonlib:unspecified] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\hy_android_zb\Commonlib\unspecified\AndroidManifest.xml:7:5-9:41
-MERGED from [com.android.support:design:22.2.0] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\design\22.2.0\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:appcompat-v7:22.2.0] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.0\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:22.2.1] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:22.2.1] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:cardview-v7:23.0.1] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.0.1\AndroidManifest.xml:20:5-43
-MERGED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:7:5-9:41
-MERGED from [com.android.support:support-v4:22.2.1] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:20:5-43
-MERGED from [com.wuba.wuxian.third:libammsdk:3.1.1] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.third\libammsdk\3.1.1\AndroidManifest.xml:7:5-9:41
-MERGED from [com.wuba.wuxian.third:open_sdk:3.1.0] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.third\open_sdk\3.1.0\AndroidManifest.xml:7:5-9:41
-MERGED from [com.wuba.wuxian.lib:lego:3.0.0] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:7:5-9:41
-MERGED from [com.wuba.wuxian.third:httpmime:4.2] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.third\httpmime\4.2\AndroidManifest.xml:7:5-9:41
-MERGED from [com.wuba.wuxian.third:weibosdkcore:3.1.2] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.third\weibosdkcore\3.1.2\AndroidManifest.xml:7:5-9:41
-MERGED from [com.squareup.leakcanary:leakcanary-android:1.3] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.squareup.leakcanary\leakcanary-android\1.3\AndroidManifest.xml:20:5-22:41
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:9:5-12:53
+MERGED from [hy_android_zb:library:unspecified] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\hy_android_zb\library\unspecified\AndroidManifest.xml:7:5-43
+MERGED from [hy_android_zb:Commonlib:unspecified] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\hy_android_zb\Commonlib\unspecified\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:design:22.2.0] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\design\22.2.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:22.2.0] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:22.2.1] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:22.2.1] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:cardview-v7:23.0.1] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.0.1\AndroidManifest.xml:20:5-43
+MERGED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:support-v4:22.2.1] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:20:5-43
+MERGED from [com.wuba.wuxian.third:libammsdk:3.1.1] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.third\libammsdk\3.1.1\AndroidManifest.xml:7:5-9:41
+MERGED from [com.wuba.wuxian.third:open_sdk:3.1.0] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.third\open_sdk\3.1.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.wuba.wuxian.lib:lego:3.0.0] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.wuba.wuxian.third:httpmime:4.2] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.third\httpmime\4.2\AndroidManifest.xml:7:5-9:41
+MERGED from [com.wuba.wuxian.third:weibosdkcore:3.1.2] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.third\weibosdkcore\3.1.2\AndroidManifest.xml:7:5-9:41
+MERGED from [com.squareup.leakcanary:leakcanary-android:1.3] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.squareup.leakcanary\leakcanary-android\1.3\AndroidManifest.xml:20:5-22:41
 	tools:overrideLibrary
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:12:9-50
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:12:9-50
 	android:targetSdkVersion
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:11:9-38
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:11:9-38
 	android:minSdkVersion
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:10:9-35
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:10:9-35
 uses-permission#android.permission.SEND_SMS
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:15:5-67
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:15:5-67
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:15:22-64
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:15:22-64
 uses-permission#android.permission.INTERNET
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:16:5-67
-MERGED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:11:5-67
-MERGED from [com.wuba.wuxian.lib:lego:3.0.0] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:13:5-67
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:16:5-67
+MERGED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:11:5-67
+MERGED from [com.wuba.wuxian.lib:lego:3.0.0] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:13:5-67
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:16:22-64
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:16:22-64
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:17:5-79
-MERGED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:12:5-79
-MERGED from [com.wuba.wuxian.lib:lego:3.0.0] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:11:5-79
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:17:5-79
+MERGED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:12:5-79
+MERGED from [com.wuba.wuxian.lib:lego:3.0.0] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:11:5-79
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:17:22-76
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:17:22-76
 uses-permission#android.permission.CHANGE_WIFI_STATE
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:18:5-76
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:18:5-76
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:18:22-73
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:18:22-73
 uses-permission#android.permission.ACCESS_WIFI_STATE
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:19:5-76
-MERGED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:13:5-76
-MERGED from [com.wuba.wuxian.lib:lego:3.0.0] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:12:5-76
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:19:5-76
+MERGED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:13:5-76
+MERGED from [com.wuba.wuxian.lib:lego:3.0.0] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:12:5-76
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:19:22-73
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:19:22-73
 uses-permission#android.permission.WAKE_LOCK
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:20:5-68
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:20:5-68
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:20:22-65
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:20:22-65
 uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:21:5-81
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:21:5-81
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:21:22-78
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:21:22-78
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:22:5-81
-MERGED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:15:5-81
-MERGED from [com.wuba.wuxian.lib:lego:3.0.0] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:14:5-81
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:22:5-81
+MERGED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:15:5-81
+MERGED from [com.wuba.wuxian.lib:lego:3.0.0] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:14:5-81
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:22:22-78
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:22:22-78
 uses-permission#android.permission.VIBRATE
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:23:5-66
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:23:5-66
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:23:22-63
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:23:22-63
 uses-permission#android.permission.GET_TASKS
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:24:5-68
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:24:5-68
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:24:22-65
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:24:22-65
 uses-permission#android.permission.BLUETOOTH
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:26:5-68
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:26:5-68
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:26:22-65
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:26:22-65
 uses-permission#android.permission.BLUETOOTH_ADMIN
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:27:5-74
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:27:5-74
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:27:22-71
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:27:22-71
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:29:5-79
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:29:5-79
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:29:22-76
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:29:22-76
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:30:5-81
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:30:5-81
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:30:22-78
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:30:22-78
 uses-permission#android.permission.SYSTEM_ALERT_WINDOW
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:32:5-78
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:32:5-78
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:32:22-75
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:32:22-75
 uses-permission#getui.permission.GetuiService.com.huangyezhaobiao
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:34:5-89
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:34:5-89
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:34:22-86
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:34:22-86
 permission#getui.permission.GetuiService.com.huangyezhaobiao
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:36:5-38:44
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:36:5-38:44
 	android:protectionLevel
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:38:9-41
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:38:9-41
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:37:9-73
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:37:9-73
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:47:5-80
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:47:5-80
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:47:22-77
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:47:22-77
 uses-permission#android.permission.READ_LOGS
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:48:5-68
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:48:5-68
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:48:22-65
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:48:22-65
 uses-permission#android.permission.DISABLE_KEYGUARD
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:50:5-75
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:50:5-75
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:50:22-72
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:50:22-72
 uses-permission#android.permission.READ_PHONE_STATE
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:55:5-75
-MERGED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:14:5-75
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:55:5-75
+MERGED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:14:5-75
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:55:22-72
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:55:22-72
 uses-permission#android.permission.CALL_PHONE
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:57:5-69
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:57:5-69
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:57:22-66
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:57:22-66
 uses-permission#android.permission.RECORD_AUDIO
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:62:5-71
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:62:5-71
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:62:22-68
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:62:22-68
 uses-permission#android.permission.CHANGE_NETWORK_STATE
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:68:5-79
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:68:5-79
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:68:22-76
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:68:22-76
 uses-permission#android.permission.READ_CONTACTS
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:72:5-72
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:72:5-72
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:72:22-69
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:72:22-69
 permission#com.huangyezhaobiao.permission.MIPUSH_RECEIVE
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:74:5-76:47
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:74:5-76:47
 	android:protectionLevel
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:76:9-44
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:76:9-44
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:75:9-69
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:75:9-69
 uses-permission#com.huangyezhaobiao.permission.MIPUSH_RECEIVE
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:78:5-85
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:78:5-85
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:78:22-82
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:78:22-82
 uses-permission#android.permission.PROCESS_OUTGOING_CALLS
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:80:5-81
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:80:5-81
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:80:22-78
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:80:22-78
 uses-permission#android.permission.RESTART_PACKAGES
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:100:5-75
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:100:5-75
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:100:22-72
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:100:22-72
 uses-permission#android.permission.BROADCAST_STICKY
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:101:5-75
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:101:5-75
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:101:22-72
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:101:22-72
 uses-permission#android.permission.WRITE_SETTINGS
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:102:5-73
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:102:5-73
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:102:22-70
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:102:22-70
 uses-permission#android.permission.RECEIVE_USER_PRESENT
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:103:5-79
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:103:5-79
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:103:22-76
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:103:22-76
 uses-permission#android.permission.KILL_BACKGROUND_PROCESSES
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:106:5-84
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:106:5-84
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:106:22-81
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:106:22-81
 uses-permission#android.permission.BATTERY_STATS
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:112:5-72
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:112:5-72
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:112:22-69
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:112:22-69
 uses-permission#android.permission.MOUNT_UNMOUNT_FILESYSTEMS
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:115:5-84
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:115:5-84
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:115:22-81
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:115:22-81
 application
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:118:5-534:19
-MERGED from [hy_android_zb:library:unspecified] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\hy_android_zb\library\unspecified\AndroidManifest.xml:9:5-20
-MERGED from [com.android.support:design:22.2.0] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\design\22.2.0\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:appcompat-v7:22.2.0] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.0\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:22.2.1] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:22.2.1] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:cardview-v7:23.0.1] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.0.1\AndroidManifest.xml:22:5-20
-MERGED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:17:5-129:19
-MERGED from [com.android.support:support-v4:22.2.1] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:22:5-20
-MERGED from [com.wuba.wuxian.third:libammsdk:3.1.1] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.third\libammsdk\3.1.1\AndroidManifest.xml:11:5-15:19
-MERGED from [com.wuba.wuxian.third:open_sdk:3.1.0] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.third\open_sdk\3.1.0\AndroidManifest.xml:11:5-15:19
-MERGED from [com.wuba.wuxian.lib:lego:3.0.0] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:16:5-34:19
-MERGED from [com.wuba.wuxian.third:httpmime:4.2] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.third\httpmime\4.2\AndroidManifest.xml:11:5-15:19
-MERGED from [com.wuba.wuxian.third:weibosdkcore:3.1.2] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.third\weibosdkcore\3.1.2\AndroidManifest.xml:11:5-15:19
-MERGED from [com.squareup.leakcanary:leakcanary-android:1.3] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.squareup.leakcanary\leakcanary-android\1.3\AndroidManifest.xml:24:5-46:19
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:118:5-534:19
+MERGED from [hy_android_zb:library:unspecified] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\hy_android_zb\library\unspecified\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:design:22.2.0] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\design\22.2.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:22.2.0] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:22.2.1] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:22.2.1] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:cardview-v7:23.0.1] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.0.1\AndroidManifest.xml:22:5-20
+MERGED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:17:5-129:19
+MERGED from [com.android.support:support-v4:22.2.1] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:22:5-20
+MERGED from [com.wuba.wuxian.third:libammsdk:3.1.1] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.third\libammsdk\3.1.1\AndroidManifest.xml:11:5-15:19
+MERGED from [com.wuba.wuxian.third:open_sdk:3.1.0] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.third\open_sdk\3.1.0\AndroidManifest.xml:11:5-15:19
+MERGED from [com.wuba.wuxian.lib:lego:3.0.0] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:16:5-34:19
+MERGED from [com.wuba.wuxian.third:httpmime:4.2] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.third\httpmime\4.2\AndroidManifest.xml:11:5-15:19
+MERGED from [com.wuba.wuxian.third:weibosdkcore:3.1.2] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.third\weibosdkcore\3.1.2\AndroidManifest.xml:11:5-15:19
+MERGED from [com.squareup.leakcanary:leakcanary-android:1.3] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.squareup.leakcanary\leakcanary-android\1.3\AndroidManifest.xml:24:5-46:19
 	android:label
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:121:9-41
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:121:9-41
 	android:supportsRtl
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:19:9-35
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:19:9-35
 	android:icon
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:120:9-42
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:120:9-42
 	android:largeHeap
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:122:9-33
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:122:9-33
 	android:persistent
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:123:9-34
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:123:9-34
 	android:allowBackup
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:18:9-35
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:18:9-35
 	android:theme
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:124:9-45
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:124:9-45
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:119:9-55
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:119:9-55
 meta-data#io.fabric.ApiKey
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:127:9-129:72
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:127:9-129:72
 	android:value
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:129:13-69
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:129:13-69
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:128:13-44
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:128:13-44
 meta-data#BaiduMobAd_STAT_ID
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:134:9-136:42
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:134:9-136:42
 	android:value
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:136:13-39
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:136:13-39
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:135:13-46
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:135:13-46
 meta-data#BaiduMobAd_CHANNEL
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:139:9-141:54
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:139:9-141:54
 	android:value
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:141:13-51
-		INJECTED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:141:13-51
+		INJECTED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:140:13-46
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:140:13-46
 meta-data#BaiduMobAd_EXCEPTION_LOG
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:144:9-146:37
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:144:9-146:37
 	android:value
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:146:13-34
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:146:13-34
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:145:13-52
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:145:13-52
 meta-data#BaiduMobAd_SEND_STRATEGY
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:149:9-151:49
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:149:9-151:49
 	android:value
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:151:13-46
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:151:13-46
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:150:13-52
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:150:13-52
 meta-data#PUSH_APPID
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:156:9-158:54
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:156:9-158:54
 	android:value
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:158:13-51
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:158:13-51
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:157:13-38
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:157:13-38
 meta-data#PUSH_APPKEY
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:160:9-162:54
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:160:9-162:54
 	android:value
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:162:13-51
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:162:13-51
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:161:13-39
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:161:13-39
 meta-data#PUSH_APPSECRET
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:164:9-166:54
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:164:9-166:54
 	android:value
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:166:13-51
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:166:13-51
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:165:13-42
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:165:13-42
 receiver#com.huangyezhaobiao.push.GPushReceiver
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:169:9-175:20
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:169:9-175:20
 	android:exported
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:171:13-37
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:171:13-37
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:170:13-47
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:170:13-47
 intent-filter#com.igexin.sdk.action.otNMzfOiCaAfiPCC1MVne9
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:172:13-174:29
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:172:13-174:29
 action#com.igexin.sdk.action.otNMzfOiCaAfiPCC1MVne9
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:173:17-87
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:173:17-87
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:173:25-84
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:173:25-84
 service#com.igexin.sdk.PushService
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:177:9-181:46
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:177:9-181:46
 	android:process
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:181:13-43
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:181:13-43
 	android:label
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:180:13-47
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:180:13-47
 	android:exported
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:179:13-36
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:179:13-36
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:178:13-54
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:178:13-54
 service#com.huangyezhaobiao.service.GPushService
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:182:9-57
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:182:9-57
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:182:18-54
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:182:18-54
 service#com.igexin.sdk.PushServiceUser
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:183:9-186:54
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:183:9-186:54
 	android:label
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:186:13-51
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:186:13-51
 	android:exported
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:185:13-36
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:185:13-36
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:184:13-58
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:184:13-58
 receiver#com.igexin.sdk.PushReceiver
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:188:9-199:20
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:188:9-199:20
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:188:19-61
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:188:19-61
 intent-filter#android.intent.action.ACTION_POWER_CONNECTED+android.intent.action.ACTION_POWER_DISCONNECTED+android.intent.action.BOOT_COMPLETED+android.intent.action.MEDIA_MOUNTED+android.intent.action.USER_PRESENT+android.net.conn.CONNECTIVITY_CHANGE+com.igexin.sdk.action.refreshls
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:189:13-198:29
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:189:13-198:29
 action#android.intent.action.BOOT_COMPLETED
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:190:17-79
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:190:17-79
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:190:25-76
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:190:25-76
 action#android.net.conn.CONNECTIVITY_CHANGE
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:191:17-79
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:191:17-79
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:191:25-76
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:191:25-76
 action#android.intent.action.USER_PRESENT
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:192:17-77
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:192:17-77
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:192:25-74
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:192:25-74
 action#com.igexin.sdk.action.refreshls
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:193:17-74
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:193:17-74
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:193:25-71
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:193:25-71
 action#android.intent.action.MEDIA_MOUNTED
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:195:17-78
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:195:17-78
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:195:25-75
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:195:25-75
 action#android.intent.action.ACTION_POWER_CONNECTED
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:196:17-87
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:196:17-87
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:196:25-84
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:196:25-84
 action#android.intent.action.ACTION_POWER_DISCONNECTED
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:197:17-90
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:197:17-90
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:197:25-87
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:197:25-87
 receiver#com.igexin.sdk.PushManagerReceiver
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:200:9-206:20
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:200:9-206:20
 	android:exported
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:202:13-37
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:202:13-37
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:201:13-62
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:201:13-62
 intent-filter#com.igexin.sdk.action.pushmanager
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:203:13-205:29
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:203:13-205:29
 action#com.igexin.sdk.action.pushmanager
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:204:17-76
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:204:17-76
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:204:25-73
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:204:25-73
 activity#com.igexin.sdk.PushActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:208:9-214:75
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:208:9-214:75
 	android:process
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:212:13-43
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:212:13-43
 	android:excludeFromRecents
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:210:13-46
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:210:13-46
 	android:exported
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:211:13-37
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:211:13-37
 	android:theme
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:214:13-72
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:214:13-72
 	android:taskAffinity
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:213:13-67
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:213:13-67
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:209:13-55
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:209:13-55
 activity#com.igexin.sdk.GActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:215:9-221:75
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:215:9-221:75
 	android:process
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:219:13-43
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:219:13-43
 	android:excludeFromRecents
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:217:13-46
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:217:13-46
 	android:exported
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:218:13-36
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:218:13-36
 	android:theme
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:221:13-72
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:221:13-72
 	android:taskAffinity
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:220:13-67
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:220:13-67
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:216:13-52
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:216:13-52
 service#com.igexin.download.DownloadService
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:223:9-225:46
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:223:9-225:46
 	android:process
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:225:13-43
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:225:13-43
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:224:13-63
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:224:13-63
 receiver#com.igexin.download.DownloadReceiver
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:227:9-231:20
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:227:9-231:20
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:227:19-70
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:227:19-70
 intent-filter#android.net.conn.CONNECTIVITY_CHANGE
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:228:13-230:29
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:228:13-230:29
 provider#com.igexin.download.DownloadProvider
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:233:9-237:46
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:233:9-237:46
 	android:authorities
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:235:13-64
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:235:13-64
 	android:process
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:237:13-43
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:237:13-43
 	android:exported
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:236:13-36
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:236:13-36
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:234:13-64
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:234:13-64
 activity#com.igexin.getuiext.activity.GetuiExtActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:239:9-246:75
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:239:9-246:75
 	android:process
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:244:13-43
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:244:13-43
 	android:excludeFromRecents
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:242:13-46
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:242:13-46
 	android:exported
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:243:13-37
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:243:13-37
 	android:configChanges
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:241:13-72
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:241:13-72
 	android:theme
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:246:13-72
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:246:13-72
 	android:taskAffinity
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:245:13-62
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:245:13-62
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:240:13-73
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:240:13-73
 receiver#com.igexin.getuiext.service.PayloadReceiver
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:248:9-255:20
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:248:9-255:20
 	android:exported
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:250:13-37
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:250:13-37
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:249:13-71
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:249:13-71
 intent-filter#com.igexin.sdk.action.7fjUl2Z3LH6xYy7NQK4ni4+com.igexin.sdk.action.otNMzfOiCaAfiPCC1MVne9
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:251:13-254:29
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:251:13-254:29
 action#com.igexin.sdk.action.7fjUl2Z3LH6xYy7NQK4ni4
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:252:17-87
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:252:17-87
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:252:25-84
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:252:25-84
 service#com.igexin.getuiext.service.GetuiExtService
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:257:9-259:46
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:257:9-259:46
 	android:process
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:259:13-43
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:259:13-43
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:258:13-71
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:258:13-71
 activity#com.huangyezhaobiao.activity.MainActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:264:9-268:52
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:264:9-268:52
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:268:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:268:13-49
 	android:label
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:266:13-45
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:266:13-45
 	android:launchMode
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:267:13-44
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:267:13-44
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:265:13-50
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:265:13-50
 activity#com.huangyezhaobiao.activity.OrderDetailActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:269:9-272:52
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:269:9-272:52
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:272:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:272:13-49
 	android:label
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:271:13-45
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:271:13-45
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:270:13-57
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:270:13-57
 activity#com.huangyezhaobiao.activity.SystemNotiListActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:273:9-275:52
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:273:9-275:52
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:275:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:275:13-49
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:274:13-60
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:274:13-60
 activity#com.huangyezhaobiao.activity.HelpActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:276:9-280:52
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:276:9-280:52
 	android:process
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:279:13-39
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:279:13-39
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:280:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:280:13-49
 	android:label
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:278:13-45
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:278:13-45
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:277:13-50
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:277:13-50
 activity#com.huangyezhaobiao.activity.AboutActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:281:9-284:52
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:281:9-284:52
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:284:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:284:13-49
 	android:label
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:283:13-45
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:283:13-45
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:282:13-51
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:282:13-51
 activity#com.huangyezhaobiao.activity.SystemActiveActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:285:9-288:52
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:285:9-288:52
 	android:process
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:287:13-39
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:287:13-39
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:288:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:288:13-49
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:286:13-58
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:286:13-58
 activity#com.huangyezhaobiao.activity.SystemNotiDetailActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:289:9-291:52
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:289:9-291:52
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:291:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:291:13-49
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:290:13-62
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:290:13-62
 activity#com.huangyezhaobiao.activity.YuEDetailActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:292:9-294:52
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:292:9-294:52
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:294:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:294:13-49
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:293:13-55
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:293:13-55
 activity#com.huangyezhaobiao.activity.OtherDetailActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:295:9-297:52
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:295:9-297:52
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:297:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:297:13-49
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:296:13-57
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:296:13-57
 activity#com.huangyezhaobiao.activity.UserFeedBackActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:298:9-300:52
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:298:9-300:52
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:300:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:300:13-49
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:299:13-58
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:299:13-58
 activity#com.huangyezhaobiao.activity.FetchDetailsActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:301:9-303:52
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:301:9-303:52
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:303:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:303:13-49
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:302:13-58
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:302:13-58
 activity#com.huangyezhaobiao.activity.MobileValidateActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:304:9-307:52
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:304:9-307:52
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:307:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:307:13-49
 	android:launchMode
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:306:13-44
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:306:13-44
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:305:13-60
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:305:13-60
 activity#com.huangyezhaobiao.activity.BidFailureActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:308:9-310:52
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:308:9-310:52
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:310:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:310:13-49
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:309:13-56
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:309:13-56
 activity#com.huangyezhaobiao.activity.BidGoneActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:311:9-313:52
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:311:9-313:52
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:313:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:313:13-49
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:312:13-53
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:312:13-53
 activity#com.huangyezhaobiao.activity.BidSuccessActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:314:9-316:52
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:314:9-316:52
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:316:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:316:13-49
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:315:13-56
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:315:13-56
 activity#com.huangyezhaobiao.activity.RefundActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:317:9-320:70
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:317:9-320:70
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:319:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:319:13-49
 	android:windowSoftInputMode
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:320:13-67
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:320:13-67
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:318:13-52
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:318:13-52
 activity#com.huangyezhaobiao.activity.SplashActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:321:9-332:20
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:321:9-332:20
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:325:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:325:13-49
 	android:launchMode
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:323:13-44
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:323:13-44
 	android:noHistory
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:324:13-37
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:324:13-37
 	android:theme
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:326:13-45
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:326:13-45
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:322:13-52
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:322:13-52
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:327:13-331:29
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:327:13-331:29
 action#android.intent.action.MAIN
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:328:17-69
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:328:17-69
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:328:25-66
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:328:25-66
 category#android.intent.category.LAUNCHER
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:330:17-77
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:330:17-77
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:330:27-74
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:330:27-74
 activity#com.huangyezhaobiao.activity.BlankActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:333:9-336:52
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:333:9-336:52
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:336:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:336:13-49
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:334:13-51
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:334:13-51
 activity#com.huangyezhaobiao.activity.LockActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:337:9-342:73
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:337:9-342:73
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:341:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:341:13-49
 	android:launchMode
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:339:13-48
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:339:13-48
 	android:noHistory
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:340:13-37
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:340:13-37
 	android:theme
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:342:13-70
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:342:13-70
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:338:13-50
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:338:13-50
 activity#com.huangyezhaobiao.activity.GuideActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:343:9-345:52
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:343:9-345:52
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:345:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:345:13-49
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:344:13-51
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:344:13-51
 activity#com.huangyezhaobiao.activity.MyWalletActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:346:9-348:52
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:346:9-348:52
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:348:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:348:13-49
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:347:13-54
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:347:13-54
 activity#com.huangyezhaobiao.activity.IntroduceFunctionActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:349:9-352:52
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:349:9-352:52
 	android:process
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:351:13-39
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:351:13-39
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:352:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:352:13-49
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:350:13-63
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:350:13-63
 activity#com.huangyezhaobiao.activity.AutoSettingsActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:353:9-364:20
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:353:9-364:20
 	android:process
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:355:13-39
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:355:13-39
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:356:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:356:13-49
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:354:13-58
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:354:13-58
 activity#com.huangyezhaobiao.activity.SoftwareUsageActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:365:9-368:52
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:365:9-368:52
 	android:process
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:367:13-39
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:367:13-39
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:368:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:368:13-49
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:366:13-59
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:366:13-59
 activity#com.huangyezhaobiao.activity.PushInActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:369:9-373:52
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:369:9-373:52
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:372:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:372:13-49
 	android:noHistory
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:371:13-37
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:371:13-37
 	android:theme
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:373:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:373:13-49
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:370:13-52
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:370:13-52
 activity#com.huangyezhaobiao.photomodule.SinglePhotoActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:374:9-376:52
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:374:9-376:52
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:376:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:376:13-49
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:375:13-60
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:375:13-60
 activity#com.huangyezhaobiao.photomodule.ViewSinglePhotoActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:377:9-379:52
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:377:9-379:52
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:379:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:379:13-49
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:378:13-64
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:378:13-64
 activity#com.huangyezhaobiao.activity.DemoPhotoActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:380:9-390:20
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:380:9-390:20
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:382:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:382:13-49
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:381:13-55
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:381:13-55
 activity#com.huangyezhaobiao.photomodule.GalleryActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:391:9-401:20
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:391:9-401:20
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:393:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:393:13-49
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:392:13-56
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:392:13-56
 activity#com.huangyezhaobiao.activity.ConsumptionActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:402:9-404:52
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:402:9-404:52
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:404:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:404:13-49
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:403:13-57
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:403:13-57
 service#com.xiaomi.push.service.XMPushService
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:415:9-418:46
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:415:9-418:46
 	android:enabled
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:417:13-35
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:417:13-35
 	android:process
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:418:13-43
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:418:13-43
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:416:13-65
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:416:13-65
 service#com.xiaomi.mipush.sdk.PushMessageHandler
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:422:9-425:39
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:422:9-425:39
 	android:enabled
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:424:13-35
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:424:13-35
 	android:exported
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:425:13-36
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:425:13-36
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:423:13-68
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:423:13-68
 service#com.huangyezhaobiao.service.MyService
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:426:9-430:19
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:426:9-430:19
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:426:18-51
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:426:18-51
 intent-filter#hahah
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:427:13-429:29
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:427:13-429:29
 	android:priority
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:427:28-51
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:427:28-51
 action#hahah
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:428:17-48
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:428:17-48
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:428:25-45
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:428:25-45
 service#com.huangyezhaobiao.windowf.AppExitService
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:431:9-59
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:431:9-59
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:431:18-56
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:431:18-56
 service#com.xiaomi.mipush.sdk.MessageHandleService
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:432:9-434:38
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:432:9-434:38
 	android:enabled
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:434:13-35
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:434:13-35
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:433:13-70
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:433:13-70
 receiver#com.xiaomi.push.service.receivers.NetworkStatusReceiver
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:436:9-444:20
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:436:9-444:20
 	android:exported
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:438:13-36
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:438:13-36
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:437:13-83
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:437:13-83
 intent-filter#android.intent.category.DEFAULT+android.net.conn.CONNECTIVITY_CHANGE
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:439:13-443:29
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:439:13-443:29
 category#android.intent.category.DEFAULT
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:442:17-76
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:442:17-76
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:442:27-73
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:442:27-73
 receiver#com.xiaomi.push.service.receivers.PingReceiver
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:445:9-452:20
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:445:9-452:20
 	android:process
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:448:13-43
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:448:13-43
 	android:exported
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:447:13-37
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:447:13-37
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:446:13-74
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:446:13-74
 intent-filter#com.xiaomi.push.PING_TIMER
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:449:13-451:29
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:449:13-451:29
 action#com.xiaomi.push.PING_TIMER
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:450:17-69
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:450:17-69
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:450:25-66
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:450:25-66
 receiver#com.huangyezhaobiao.push.BiddingMessageReceiver
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:453:9-467:20
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:453:9-467:20
 	android:exported
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:455:13-36
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:455:13-36
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:454:13-56
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:454:13-56
 intent-filter#com.xiaomi.mipush.RECEIVE_MESSAGE
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:458:13-460:29
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:458:13-460:29
 action#com.xiaomi.mipush.RECEIVE_MESSAGE
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:459:17-76
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:459:17-76
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:459:25-73
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:459:25-73
 intent-filter#com.xiaomi.mipush.MESSAGE_ARRIVED
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:461:13-463:29
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:461:13-463:29
 action#com.xiaomi.mipush.MESSAGE_ARRIVED
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:462:17-76
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:462:17-76
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:462:25-73
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:462:25-73
 intent-filter#com.xiaomi.mipush.ERROR
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:464:13-466:29
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:464:13-466:29
 action#com.xiaomi.mipush.ERROR
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:465:17-66
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:465:17-66
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:465:25-63
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:465:25-63
 service#com.squareup.leakcanary.internal.HeapAnalyzerService
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:469:9-472:45
-MERGED from [com.squareup.leakcanary:leakcanary-android:1.3] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.squareup.leakcanary\leakcanary-android\1.3\AndroidManifest.xml:25:9-28:45
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:469:9-472:45
+MERGED from [com.squareup.leakcanary:leakcanary-android:1.3] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.squareup.leakcanary\leakcanary-android\1.3\AndroidManifest.xml:25:9-28:45
 	android:enabled
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:471:13-36
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:471:13-36
 	android:process
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:472:13-42
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:472:13-42
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:470:13-80
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:470:13-80
 service#com.squareup.leakcanary.DisplayLeakService
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:473:9-475:39
-MERGED from [com.squareup.leakcanary:leakcanary-android:1.3] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.squareup.leakcanary\leakcanary-android\1.3\AndroidManifest.xml:29:9-31:39
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:473:9-475:39
+MERGED from [com.squareup.leakcanary:leakcanary-android:1.3] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.squareup.leakcanary\leakcanary-android\1.3\AndroidManifest.xml:29:9-31:39
 	android:enabled
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:475:13-36
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:475:13-36
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:474:13-70
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:474:13-70
 activity#com.huangyezhaobiao.activity.MobileBindChangeActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:492:9-504:20
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:492:9-504:20
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:495:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:495:13-49
 	android:launchMode
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:494:13-44
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:494:13-44
 	android:theme
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:496:13-51
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:496:13-51
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:493:13-62
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:493:13-62
 activity#com.huangyezhaobiao.activity.SettingsActivity
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:505:9-507:52
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:505:9-507:52
 	android:screenOrientation
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:507:13-49
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:507:13-49
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:506:13-54
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:506:13-54
 receiver#com.huangyezhaobiao.receiver.BatteryReceiver
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:509:9-513:20
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:509:9-513:20
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:509:19-59
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:509:19-59
 intent-filter#android.intent.action.BATTERY_CHANGED
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:510:13-512:29
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:510:13-512:29
 action#android.intent.action.BATTERY_CHANGED
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:511:17-80
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:511:17-80
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:511:25-77
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:511:25-77
 service#air.com.wuba.bangbang.common.impush.DeamonService
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:515:9-517:46
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:515:9-517:46
 	android:process
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:517:13-43
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:517:13-43
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:516:13-77
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:516:13-77
 receiver#com.huangyezhaobiao.receiver.PhoneReceiver
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:525:9-529:20
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:525:9-529:20
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:525:19-57
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:525:19-57
 intent-filter#android.intent.action.PHONE_STATE
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:526:13-528:29
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:526:13-528:29
 action#android.intent.action.PHONE_STATE
-ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:527:17-76
+ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:527:17-76
 	android:name
-		ADDED from D:\workspace\hy_android_zb\Zhaobiao\AndroidManifest.xml:527:25-73
+		ADDED from E:\qiang\hy_android_zb\Zhaobiao\AndroidManifest.xml:527:25-73
 activity#com.wuba.loginsdk.activity.account.BindWXActivity
-ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:20:9-31:20
+ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:20:9-31:20
 	android:screenOrientation
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:24:13-49
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:24:13-49
 	android:exported
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:23:13-37
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:23:13-37
 	android:configChanges
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:22:13-58
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:22:13-58
 	android:theme
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:25:13-53
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:25:13-53
 	android:name
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:21:13-77
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:21:13-77
 intent-filter#android.intent.category.DEFAULT+com.wuba.activity.account.ACTION_BIND_ACCOUNT
-ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:26:13-30:29
+ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:26:13-30:29
 action#com.wuba.activity.account.ACTION_BIND_ACCOUNT
-ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:27:17-88
+ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:27:17-88
 	android:name
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:27:25-85
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:27:25-85
 activity#com.wuba.loginsdk.activity.account.PhoneRetrievePasswordActivity
-ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:32:9-37:71
+ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:32:9-37:71
 	android:screenOrientation
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:35:13-49
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:35:13-49
 	android:windowSoftInputMode
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:37:13-68
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:37:13-68
 	android:configChanges
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:34:13-58
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:34:13-58
 	android:theme
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:36:13-53
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:36:13-53
 	android:name
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:33:13-92
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:33:13-92
 activity#com.wuba.loginsdk.activity.account.PhoneBindOrUnbindActivity
-ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:38:9-43:71
+ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:38:9-43:71
 	android:screenOrientation
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:41:13-49
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:41:13-49
 	android:windowSoftInputMode
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:43:13-68
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:43:13-68
 	android:configChanges
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:40:13-58
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:40:13-58
 	android:theme
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:42:13-53
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:42:13-53
 	android:name
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:39:13-88
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:39:13-88
 activity#com.tencent.connect.common.AssistActivity
-ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:44:9-48:75
+ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:44:9-48:75
 	android:screenOrientation
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:47:13-49
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:47:13-49
 	android:configChanges
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:46:13-58
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:46:13-58
 	android:theme
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:48:13-72
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:48:13-72
 	android:name
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:45:13-69
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:45:13-69
 activity#com.wuba.loginsdk.activity.account.ResetNickNameActivity
-ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:49:9-54:20
+ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:49:9-54:20
 	android:screenOrientation
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:52:13-49
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:52:13-49
 	android:configChanges
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:51:13-58
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:51:13-58
 	android:theme
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:53:13-53
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:53:13-53
 	android:name
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:50:13-84
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:50:13-84
 activity#com.wuba.loginsdk.activity.account.CropImageActivity
-ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:55:9-60:20
+ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:55:9-60:20
 	android:screenOrientation
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:58:13-49
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:58:13-49
 	android:configChanges
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:57:13-58
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:57:13-58
 	android:theme
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:59:13-53
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:59:13-53
 	android:name
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:56:13-80
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:56:13-80
 service#com.wuba.loginsdk.service.UserAccountService
-ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:62:9-68:19
+ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:62:9-68:19
 	android:exported
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:64:13-37
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:64:13-37
 	android:name
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:63:13-72
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:63:13-72
 intent-filter#com.wuba.service.ACTION_USER_ACCOUNT
-ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:65:13-67:29
+ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:65:13-67:29
 action#com.wuba.service.ACTION_USER_ACCOUNT
-ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:66:17-79
+ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:66:17-79
 	android:name
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:66:25-76
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:66:25-76
 activity#com.wuba.loginsdk.activity.account.UserAccountFragmentActivity
-ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:70:9-84:20
+ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:70:9-84:20
 	android:screenOrientation
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:74:13-49
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:74:13-49
 	android:launchMode
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:73:13-44
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:73:13-44
 	android:windowSoftInputMode
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:76:13-70
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:76:13-70
 	android:configChanges
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:72:13-58
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:72:13-58
 	android:theme
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:75:13-53
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:75:13-53
 	android:name
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:71:13-90
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:71:13-90
 intent-filter#android.intent.category.DEFAULT+com.wuab.Intent.ACTION_LOGIN
-ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:79:13-83:29
+ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:79:13-83:29
 action#com.wuab.Intent.ACTION_LOGIN
-ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:80:17-71
+ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:80:17-71
 	android:name
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:80:25-68
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:80:25-68
 activity#com.wuba.loginsdk.activity.account.BindStateActivity
-ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:85:9-89:56
+ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:85:9-89:56
 	android:screenOrientation
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:88:13-49
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:88:13-49
 	android:configChanges
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:87:13-58
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:87:13-58
 	android:theme
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:89:13-53
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:89:13-53
 	android:name
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:86:13-80
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:86:13-80
 activity#com.wuba.loginsdk.activity.account.ThirdLoginActivity
-ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:90:9-94:56
+ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:90:9-94:56
 	android:screenOrientation
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:93:13-49
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:93:13-49
 	android:configChanges
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:92:13-58
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:92:13-58
 	android:theme
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:94:13-53
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:94:13-53
 	android:name
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:91:13-81
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:91:13-81
 activity#com.wuba.loginsdk.activity.account.PhoneDynamicLoginActivity
-ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:95:9-99:56
+ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:95:9-99:56
 	android:screenOrientation
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:98:13-49
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:98:13-49
 	android:configChanges
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:97:13-58
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:97:13-58
 	android:theme
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:99:13-53
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:99:13-53
 	android:name
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:96:13-88
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:96:13-88
 activity#com.wuba.loginsdk.activity.account.JumpFunctionActivity
-ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:100:9-105:73
+ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:100:9-105:73
 	android:screenOrientation
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:103:13-49
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:103:13-49
 	android:windowSoftInputMode
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:105:13-70
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:105:13-70
 	android:configChanges
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:102:13-58
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:102:13-58
 	android:theme
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:104:13-53
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:104:13-53
 	android:name
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:101:13-83
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:101:13-83
 activity#com.wuba.loginsdk.wxapi.WXCallbackEntryActivity
-ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:106:9-111:56
+ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:106:9-111:56
 	android:screenOrientation
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:110:13-49
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:110:13-49
 	android:exported
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:109:13-36
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:109:13-36
 	android:configChanges
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:108:13-58
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:108:13-58
 	android:theme
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:111:13-53
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:111:13-53
 	android:name
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:107:13-75
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:107:13-75
 activity#com.wuba.loginsdk.activity.OfflineAlertActivity
-ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:112:9-117:56
+ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:112:9-117:56
 	android:screenOrientation
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:116:13-49
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:116:13-49
 	android:launchMode
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:115:13-43
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:115:13-43
 	android:configChanges
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:114:13-58
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:114:13-58
 	android:theme
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:117:13-53
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:117:13-53
 	android:name
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:113:13-75
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:113:13-75
 activity#com.wuba.loginsdk.activity.account.AuthLoginActivity
-ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:118:9-89
+ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:118:9-89
 	android:name
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:118:19-86
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:118:19-86
 receiver#com.wuba.loginsdk.internal.OfflineAlertReceiver
-ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:126:9-128:40
+ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:126:9-128:40
 	android:exported
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:128:13-37
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:128:13-37
 	android:name
-		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:127:13-75
+		ADDED from [com.wuba.wuxian.sdk:login:1.0.0-SNAPSHOT] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.sdk\login\1.0.0-SNAPSHOT\AndroidManifest.xml:127:13-75
 service#com.wuba.lego.service.LegoSendAndWriteService
-ADDED from [com.wuba.wuxian.lib:lego:3.0.0] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:17:9-20:19
+ADDED from [com.wuba.wuxian.lib:lego:3.0.0] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:17:9-20:19
 	android:exported
-		ADDED from [com.wuba.wuxian.lib:lego:3.0.0] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:19:13-36
+		ADDED from [com.wuba.wuxian.lib:lego:3.0.0] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:19:13-36
 	android:name
-		ADDED from [com.wuba.wuxian.lib:lego:3.0.0] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:18:13-73
+		ADDED from [com.wuba.wuxian.lib:lego:3.0.0] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:18:13-73
 service#com.wuba.lego.service.LegoReportStrategyService
-ADDED from [com.wuba.wuxian.lib:lego:3.0.0] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:21:9-25:19
+ADDED from [com.wuba.wuxian.lib:lego:3.0.0] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:21:9-25:19
 	android:enabled
-		ADDED from [com.wuba.wuxian.lib:lego:3.0.0] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:23:13-35
+		ADDED from [com.wuba.wuxian.lib:lego:3.0.0] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:23:13-35
 	android:exported
-		ADDED from [com.wuba.wuxian.lib:lego:3.0.0] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:24:13-36
+		ADDED from [com.wuba.wuxian.lib:lego:3.0.0] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:24:13-36
 	android:name
-		ADDED from [com.wuba.wuxian.lib:lego:3.0.0] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:22:13-75
+		ADDED from [com.wuba.wuxian.lib:lego:3.0.0] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:22:13-75
 receiver#com.wuba.lego.service.LegoRecevier
-ADDED from [com.wuba.wuxian.lib:lego:3.0.0] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:27:9-33:20
+ADDED from [com.wuba.wuxian.lib:lego:3.0.0] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:27:9-33:20
 	android:name
-		ADDED from [com.wuba.wuxian.lib:lego:3.0.0] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:27:19-68
+		ADDED from [com.wuba.wuxian.lib:lego:3.0.0] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:27:19-68
 intent-filter#android.intent.action.BOOT_COMPLETED+android.net.conn.CONNECTIVITY_CHANGE+com.wuba.lego.clientlog.receiver
-ADDED from [com.wuba.wuxian.lib:lego:3.0.0] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:28:13-32:29
+ADDED from [com.wuba.wuxian.lib:lego:3.0.0] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:28:13-32:29
 action#com.wuba.lego.clientlog.receiver
-ADDED from [com.wuba.wuxian.lib:lego:3.0.0] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:29:17-75
+ADDED from [com.wuba.wuxian.lib:lego:3.0.0] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:29:17-75
 	android:name
-		ADDED from [com.wuba.wuxian.lib:lego:3.0.0] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:29:25-72
+		ADDED from [com.wuba.wuxian.lib:lego:3.0.0] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.wuba.wuxian.lib\lego\3.0.0\AndroidManifest.xml:29:25-72
 activity#com.squareup.leakcanary.internal.DisplayLeakActivity
-ADDED from [com.squareup.leakcanary:leakcanary-android:1.3] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.squareup.leakcanary\leakcanary-android\1.3\AndroidManifest.xml:33:9-45:20
+ADDED from [com.squareup.leakcanary:leakcanary-android:1.3] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.squareup.leakcanary\leakcanary-android\1.3\AndroidManifest.xml:33:9-45:20
 	android:enabled
-		ADDED from [com.squareup.leakcanary:leakcanary-android:1.3] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.squareup.leakcanary\leakcanary-android\1.3\AndroidManifest.xml:35:13-36
+		ADDED from [com.squareup.leakcanary:leakcanary-android:1.3] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.squareup.leakcanary\leakcanary-android\1.3\AndroidManifest.xml:35:13-36
 	android:label
-		ADDED from [com.squareup.leakcanary:leakcanary-android:1.3] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.squareup.leakcanary\leakcanary-android\1.3\AndroidManifest.xml:37:13-73
+		ADDED from [com.squareup.leakcanary:leakcanary-android:1.3] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.squareup.leakcanary\leakcanary-android\1.3\AndroidManifest.xml:37:13-73
 	android:icon
-		ADDED from [com.squareup.leakcanary:leakcanary-android:1.3] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.squareup.leakcanary\leakcanary-android\1.3\AndroidManifest.xml:36:13-56
+		ADDED from [com.squareup.leakcanary:leakcanary-android:1.3] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.squareup.leakcanary\leakcanary-android\1.3\AndroidManifest.xml:36:13-56
 	android:theme
-		ADDED from [com.squareup.leakcanary:leakcanary-android:1.3] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.squareup.leakcanary\leakcanary-android\1.3\AndroidManifest.xml:39:13-53
+		ADDED from [com.squareup.leakcanary:leakcanary-android:1.3] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.squareup.leakcanary\leakcanary-android\1.3\AndroidManifest.xml:39:13-53
 	android:taskAffinity
-		ADDED from [com.squareup.leakcanary:leakcanary-android:1.3] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.squareup.leakcanary\leakcanary-android\1.3\AndroidManifest.xml:38:13-59
+		ADDED from [com.squareup.leakcanary:leakcanary-android:1.3] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.squareup.leakcanary\leakcanary-android\1.3\AndroidManifest.xml:38:13-59
 	android:name
-		ADDED from [com.squareup.leakcanary:leakcanary-android:1.3] D:\workspace\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.squareup.leakcanary\leakcanary-android\1.3\AndroidManifest.xml:34:13-80
+		ADDED from [com.squareup.leakcanary:leakcanary-android:1.3] E:\qiang\hy_android_zb\Zhaobiao\build\intermediates\exploded-aar\com.squareup.leakcanary\leakcanary-android\1.3\AndroidManifest.xml:34:13-80
