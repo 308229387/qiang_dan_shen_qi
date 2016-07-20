@@ -16,12 +16,12 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable-hdpi\\loginsdk_publish_bottom_btn_pressed.9.png"
     },
     {
-        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\t_order.png",
-        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\drawable-hdpi\\t_order.png"
-    },
-    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\t_bid_gone.png",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\drawable-hdpi\\t_bid_gone.png"
+    },
+    {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\t_order.png",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\drawable-hdpi\\t_order.png"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\loginsdk_findpass_hide.png",
@@ -164,12 +164,12 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable-hdpi\\abc_ic_search_api_mtrl_alpha.png"
     },
     {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\ic_launcher.png",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\hy_android_zb\\Commonlib\\unspecified\\res\\drawable-hdpi-v4\\ic_launcher.png"
-    },
-    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\t_bid_gone.png",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\drawable-hdpi\\t_bid_gone.png"
+    },
+    {
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\ic_launcher.png",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\hy_android_zb\\Commonlib\\unspecified\\res\\drawable-hdpi-v4\\ic_launcher.png"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\loginsdk_wb_personal_item_full_pressed.9.png",
@@ -192,12 +192,12 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable-hdpi\\loginsdk_wb_dialog_navy_white_normal.9.png"
     },
     {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\loginsdk_wx_login_btn_normal.9.png",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable-hdpi\\loginsdk_wx_login_btn_normal.9.png"
-    },
-    {
         "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\loginsdk_wb_personal_item_full_pressed.9.png",
         "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\drawable-hdpi\\loginsdk_wb_personal_item_full_pressed.9.png"
+    },
+    {
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\loginsdk_wx_login_btn_normal.9.png",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable-hdpi\\loginsdk_wx_login_btn_normal.9.png"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\loginsdk_del_button_white.png",
@@ -208,20 +208,20 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\hy_android_zb\\library\\unspecified\\res\\drawable-hdpi-v4\\default_ptr_rotate.png"
     },
     {
-        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\loginsdk_wb_dialog_icon.png",
-        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable-hdpi\\loginsdk_wb_dialog_icon.png"
-    },
-    {
         "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\close.png",
         "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\drawable-hdpi\\close.png"
     },
     {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\abc_list_divider_mtrl_alpha.9.png",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable-hdpi\\abc_list_divider_mtrl_alpha.9.png"
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\loginsdk_wb_dialog_icon.png",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable-hdpi\\loginsdk_wb_dialog_icon.png"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\graysharp.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\drawable-hdpi\\graysharp.xml"
+    },
+    {
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\abc_list_divider_mtrl_alpha.9.png",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable-hdpi\\abc_list_divider_mtrl_alpha.9.png"
     },
     {
         "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\abc_list_longpressed_holo.9.png",
@@ -420,16 +420,16 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable-hdpi\\abc_ic_search_api_mtrl_alpha.png"
     },
     {
-        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\graysharp.xml",
-        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\drawable-hdpi\\graysharp.xml"
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\weibo_detail_buttombar_itembg_on.9.png",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\drawable-hdpi\\weibo_detail_buttombar_itembg_on.9.png"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\common_circle_corner_white_btn_selector.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\drawable-hdpi\\common_circle_corner_white_btn_selector.xml"
     },
     {
-        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\weibo_detail_buttombar_itembg_on.9.png",
-        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\drawable-hdpi\\weibo_detail_buttombar_itembg_on.9.png"
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\graysharp.xml",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\drawable-hdpi\\graysharp.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\loginsdk_account_newlogin_ipwd.png",
@@ -584,16 +584,16 @@
         "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\drawable-hdpi\\t_head.png"
     },
     {
-        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\loginsdk_wx_login_btn_img.png",
-        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable-hdpi\\loginsdk_wx_login_btn_img.png"
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable-hdpi\\abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\t_loading.png",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\drawable-hdpi\\t_loading.png"
     },
     {
-        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png",
-        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable-hdpi\\abc_ic_menu_cut_mtrl_alpha.png"
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\loginsdk_wx_login_btn_img.png",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable-hdpi\\loginsdk_wx_login_btn_img.png"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\request_dialog_negative_bg_normal.9.png",
@@ -624,12 +624,12 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\hy_android_zb\\Commonlib\\unspecified\\res\\drawable-hdpi-v4\\ic_launcher.png"
     },
     {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\abc_ab_share_pack_mtrl_alpha.9.png",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable-hdpi\\abc_ab_share_pack_mtrl_alpha.9.png"
-    },
-    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\abc_switch_track_mtrl_alpha.9.png",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable-hdpi\\abc_switch_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\abc_ab_share_pack_mtrl_alpha.9.png",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable-hdpi\\abc_ab_share_pack_mtrl_alpha.9.png"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\abc_ic_ab_back_mtrl_am_alpha.png",
@@ -648,12 +648,12 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\drawable-hdpi\\t_voice.png"
     },
     {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\loginsdk_bind_tencent_btn_ok.png",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable-hdpi\\loginsdk_bind_tencent_btn_ok.png"
-    },
-    {
         "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\loginsdk_publish_bottom_btn_nomal.9.png",
         "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\drawable-hdpi\\loginsdk_publish_bottom_btn_nomal.9.png"
+    },
+    {
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\loginsdk_bind_tencent_btn_ok.png",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable-hdpi\\loginsdk_bind_tencent_btn_ok.png"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\lock.png",
@@ -684,12 +684,12 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable-hdpi\\abc_btn_rating_star_off_mtrl_alpha.png"
     },
     {
-        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\t_cancel.png",
-        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\drawable-hdpi\\t_cancel.png"
-    },
-    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\loginsdk_bind_tencent_bg.png",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\drawable-hdpi\\loginsdk_bind_tencent_bg.png"
+    },
+    {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\t_cancel.png",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\drawable-hdpi\\t_cancel.png"
     },
     {
         "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\loginsdk_wb_city_item_full_pressed.9.png",
@@ -712,12 +712,12 @@
         "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\drawable-hdpi\\loginsdk_qq_login_btn_normal.9.png"
     },
     {
-        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png",
-        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable-hdpi\\abc_ic_menu_paste_mtrl_am_alpha.png"
-    },
-    {
         "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\loginsdk_account_newlogin_qq.png",
         "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\drawable-hdpi\\loginsdk_account_newlogin_qq.png"
+    },
+    {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable-hdpi\\abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-hdpi-v4\\t_cancel.png",

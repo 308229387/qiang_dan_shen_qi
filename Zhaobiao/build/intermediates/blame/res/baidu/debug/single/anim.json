@@ -4,12 +4,12 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\anim\\loginsdk_push_right_in.xml"
     },
     {
-        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\anim\\slide_out.xml",
-        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\anim\\slide_out.xml"
-    },
-    {
         "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\anim\\base_next_out.xml",
         "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\anim\\base_next_out.xml"
+    },
+    {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\anim\\slide_out.xml",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\anim\\slide_out.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\anim\\loginsdk_dialog_overshoot_interpolator.xml",
@@ -28,12 +28,12 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.0\\res\\anim\\snackbar_in.xml"
     },
     {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\anim\\abc_slide_out_top.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\anim\\abc_slide_out_top.xml"
-    },
-    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\anim\\fab_out.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.0\\res\\anim\\fab_out.xml"
+    },
+    {
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\anim\\abc_slide_out_top.xml",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\anim\\abc_slide_out_top.xml"
     },
     {
         "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\anim\\slide_out.xml",
@@ -44,12 +44,12 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\anim\\abc_fade_in.xml"
     },
     {
-        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\anim\\abc_slide_in_bottom.xml",
-        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\anim\\abc_slide_in_bottom.xml"
-    },
-    {
         "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\anim\\loginsdk_slide_out_bottom.xml",
         "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\anim\\loginsdk_slide_out_bottom.xml"
+    },
+    {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\anim\\abc_slide_in_bottom.xml",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\anim\\abc_slide_in_bottom.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\anim\\loginsdk_area_refresh_rotate.xml",

@@ -44,12 +44,12 @@
         "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_screen_toolbar.xml"
     },
     {
-        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\order_cate_popup.xml",
-        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\order_cate_popup.xml"
-    },
-    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_phone_retrieve_pwd_view.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_phone_retrieve_pwd_view.xml"
+    },
+    {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\order_cate_popup.xml",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\order_cate_popup.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\can_fetch_list_domestic_item.xml",
@@ -80,12 +80,12 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\item_nanny_order_list.xml"
     },
     {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\design_navigation_item_subheader.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.0\\res\\layout\\design_navigation_item_subheader.xml"
-    },
-    {
         "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_consumption.xml",
         "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_consumption.xml"
+    },
+    {
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\design_navigation_item_subheader.xml",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.0\\res\\layout\\design_navigation_item_subheader.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_qiangdan_middle_decorate_project.xml",
@@ -104,12 +104,12 @@
         "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_pop_cleaning.xml"
     },
     {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_introduce_production.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_introduce_production.xml"
-    },
-    {
         "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_reset_password_view.xml",
         "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_reset_password_view.xml"
+    },
+    {
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_introduce_production.xml",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_introduce_production.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\center_mine_indiviual.xml",
@@ -140,28 +140,28 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\center_mine_decorate.xml"
     },
     {
-        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_quick_financeregister.xml",
-        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_quick_financeregister.xml"
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_phone_dynamic_login_view.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_phone_dynamic_login_view.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\request_dialog.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\request_dialog.xml"
     },
     {
-        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_phone_dynamic_login_view.xml",
-        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_phone_dynamic_login_view.xml"
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_quick_financeregister.xml",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_quick_financeregister.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_pop_nanny.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_pop_nanny.xml"
     },
     {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_nanny_order_list.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\item_nanny_order_list.xml"
-    },
-    {
         "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_fragment_title_myorder.xml",
         "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_fragment_title_myorder.xml"
+    },
+    {
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_nanny_order_list.xml",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\item_nanny_order_list.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_pop_personalregister.xml",
