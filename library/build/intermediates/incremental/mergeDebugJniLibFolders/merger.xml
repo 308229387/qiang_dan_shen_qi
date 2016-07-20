@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="D:\workspace\hy_android_zb\library\src\main\jniLibs"/></dataSet><dataSet config="debug"><source path="D:\workspace\hy_android_zb\library\build-types\debug\jniLibs"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="E:\qiang\hy_android_zb\library\src\main\jniLibs"/></dataSet><dataSet config="debug"><source path="E:\qiang\hy_android_zb\library\build-types\debug\jniLibs"/></dataSet></merger>

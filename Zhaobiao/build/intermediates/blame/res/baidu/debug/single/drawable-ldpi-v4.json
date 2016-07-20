@@ -1,9 +1,5 @@
 [
     {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\radar.gif",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\radar.gif"
-    },
-    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\picture_unselected.png",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\picture_unselected.png"
     },
@@ -12,16 +8,72 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\ic_add_pressed.png"
     },
     {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\pictures_no.png",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\pictures_no.png"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\pictures_selected.png",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\pictures_selected.png"
+    },
+    {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\all_photo_szx.png",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\all_photo_szx.png"
+    },
+    {
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\grad_list_press.xml",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\grad_list_press.xml"
+    },
+    {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\grad_list_press.xml",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\grad_list_press.xml"
+    },
+    {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\grad_list.xml",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\grad_list.xml"
+    },
+    {
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\refreshpressed.png",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\refreshpressed.png"
+    },
+    {
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\refresh.png",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\refresh.png"
+    },
+    {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\refreshpressed.png",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\refreshpressed.png"
+    },
+    {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\ic_add_selector.xml",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\ic_add_selector.xml"
+    },
+    {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\title_back_btn_selector.xml",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\title_back_btn_selector.xml"
+    },
+    {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\no_local.png",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\no_local.png"
+    },
+    {
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\radar.gif",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\radar.gif"
+    },
+    {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\radar.gif",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\radar.gif"
+    },
+    {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\ic_add_pressed.png",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\ic_add_pressed.png"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\all_photo_szx.png",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\all_photo_szx.png"
     },
     {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\grad_list_press.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\grad_list_press.xml"
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\refresh.png",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\refresh.png"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\grad_list.xml",
@@ -32,12 +84,12 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\pictures_no.png"
     },
     {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\refreshpressed.png",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\refreshpressed.png"
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\pictures_selected.png",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\pictures_selected.png"
     },
     {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\refresh.png",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\refresh.png"
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\picture_unselected.png",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\drawable-ldpi\\picture_unselected.png"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\drawable-ldpi-v4\\no_local.png",
