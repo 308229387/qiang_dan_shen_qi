@@ -120,7 +120,7 @@ public class CommonFragmentActivity extends FragmentActivity implements NetWorkV
         //从sp取时间戳
         long latTimeLine     = 0;
         try {
-            latTimeLine = Long.valueOf( UserUtils.getSessionTime(CommonFragmentActivity.this));
+            latTimeLine = UserUtils.getSessionTime(CommonFragmentActivity.this);
         } catch (NumberFormatException e) {
             latTimeLine = 0;
             e.printStackTrace();

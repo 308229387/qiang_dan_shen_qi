@@ -272,7 +272,13 @@ public class MessageFragment extends BaseHomeFragment implements INotificationLi
     @Override
     public void getDataFailure() {
         if(getActivity() != null){
-            Toast.makeText(getActivity(), getString(R.string.app_exception), Toast.LENGTH_SHORT).show();
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(getActivity(), getString(R.string.app_exception), Toast.LENGTH_SHORT).show();
+                }
+            });
+
         }
 
     }

@@ -241,6 +241,11 @@ public class UserUtils {
 		return mobItem;
 	}
 
+	public static boolean isHasMobItem(Context  context){
+		SharedPreferences sp = context.getSharedPreferences(MOB_FILE_NAME, 0);
+		return sp.contains(MOB_ITEM);
+	}
+
 	public static void setMobCommon(Context context,String mobCommon){
 		SharedPreferences sp = context.getSharedPreferences(MOB_FILE_NAME, 0);
 		sp.edit().putString(MOB_COMMON, mobCommon).apply();

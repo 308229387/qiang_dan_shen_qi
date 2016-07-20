@@ -116,7 +116,7 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
         //从sp取时间戳
         long latTimeLine     = 0;
         try {
-            latTimeLine = Long.valueOf( UserUtils.getSessionTime(CommonBaseActivity.this));
+            latTimeLine =  UserUtils.getSessionTime(CommonBaseActivity.this);
         } catch (NumberFormatException e) {
             latTimeLine = 0;
             e.printStackTrace();

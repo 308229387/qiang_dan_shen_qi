@@ -132,7 +132,7 @@ public abstract class BaseHomeFragment extends Fragment implements TitleMessageB
     public void onDestroy() {
         if (app != null)
         app.unRegisterNetStateListener();//解除网络的变化Listener
-        app.stopTimer();//停止文件的上传
+//        app.stopTimer();//停止文件的上传
         super.onDestroy();
     }
 

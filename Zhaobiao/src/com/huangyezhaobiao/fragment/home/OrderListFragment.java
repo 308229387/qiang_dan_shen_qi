@@ -98,7 +98,15 @@ public class OrderListFragment extends  BaseHomeFragment implements INotificatio
                       yuEViewModel.getBalance();
                   }
               }else{
-                  UnreadUtils.clearQDResult(getActivity());
+
+                  try {
+                      if(UnreadUtils.isHasQDResult(getActivity())){
+                          UnreadUtils.clearQDResult(getActivity());
+                      }
+                  } catch (Exception e) {
+                      e.printStackTrace();
+                  }
+
                   EventAction action = new EventAction(EventType.EVENT_TAB_RESET);
                   EventbusAgent.getInstance().post(action);
               }

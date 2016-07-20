@@ -34,12 +34,17 @@ public class UnreadUtils {
 		return value;
 	}
 
+	public static boolean isHasNewOrder(Context context){
+		SharedPreferences sp = context.getSharedPreferences(NAME + UserUtils.getUserId(context), Context.MODE_PRIVATE);
+		return sp.contains("newOrder");
+	}
+
 	/**
 	 * 清除新订单的未读数
 	 * @param context
 	 */
 	public static void clearNewOder(Context context){
-		SharedPreferences sp = context.getSharedPreferences(NAME+UserUtils.getUserId(context), Context.MODE_PRIVATE);
+		SharedPreferences sp = context.getSharedPreferences(NAME + UserUtils.getUserId(context), Context.MODE_PRIVATE);
 		sp.edit().putInt("newOrder", 0).commit();
 	}
 	/**
@@ -63,13 +68,17 @@ public class UnreadUtils {
 		int value = sp.getInt("result", 0);
 		return value;
 	}
+	public static boolean isHasQDResult(Context context){
+		SharedPreferences sp = context.getSharedPreferences(NAME+UserUtils.getUserId(context), Context.MODE_PRIVATE);
+		return sp.contains("result");
+	}
 	
 	/**
 	 * 清除抢单结果的未读数
 	 * @param context
 	 */
 	public static void clearQDResult(Context context){
-		SharedPreferences sp = context.getSharedPreferences(NAME+UserUtils.getUserId(context), Context.MODE_PRIVATE);
+		SharedPreferences sp = context.getSharedPreferences(NAME + UserUtils.getUserId(context), Context.MODE_PRIVATE);
 		sp.edit().putInt("result", 0).commit();
 	}
 	
@@ -102,7 +111,7 @@ public class UnreadUtils {
 	 * @param context
 	 */
 	public static void clearDaoJiShiResult(Context context){
-		SharedPreferences sp = context.getSharedPreferences(NAME+UserUtils.getUserId(context), Context.MODE_PRIVATE);
+		SharedPreferences sp = context.getSharedPreferences(NAME + UserUtils.getUserId(context), Context.MODE_PRIVATE);
 		sp.edit().putInt("daojishi", 0).commit();
 	}
 	
@@ -137,6 +146,7 @@ public class UnreadUtils {
 		SharedPreferences sp = context.getSharedPreferences(NAME+UserUtils.getUserId(context), Context.MODE_PRIVATE);
 		sp.edit().putInt("sysno", 0).commit();
 	}
+
 
 
 

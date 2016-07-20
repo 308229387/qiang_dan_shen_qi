@@ -78,7 +78,7 @@ public class BiddingApplication extends Application {
     private static PushHandler handler = null;
 
     private static LogHandler loghandler = null;
-    private Timer mTimer;
+//    private Timer mTimer;
     private VoiceManager manager;
     private static BiddingApplication app;
     private ImageLoader imageLoader;
@@ -173,14 +173,14 @@ public class BiddingApplication extends Application {
         System.gc();
     }
 
-    /**
-     * 停止文件操作
-     */
-    public void stopTimer() {
-        if (mTimer != null) {
-            mTimer.cancel();
-        }
-    }
+//    /**
+//     * 停止文件操作
+//     */
+//    public void stopTimer() {
+//        if (mTimer != null) {
+//            mTimer.cancel();
+//        }
+//    }
 
     //在自己的Application中添加如下代码
     public static RefWatcher getRefWatcher(Context context) {

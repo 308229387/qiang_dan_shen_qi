@@ -440,7 +440,7 @@ public class HYMob {
         bean.setCs(time);
         bean.setPageFrom(from);
         dataList.add(bean);
-        createMap(context, dataBeanToJson(dataList, "cr", "sa", "cs","pageFrom"), "0"); //0表示正常日志，1表示崩溃日志
+        createMap(context, dataBeanToJson(dataList, "cr", "sa", "cs", "pageFrom"), "0"); //0表示正常日志，1表示崩溃日志
     }
 
     /**
@@ -467,11 +467,16 @@ public class HYMob {
      * @return
      */
     public static HashMap createMap(Context context,String data,String t){
-        int num = UserUtils.getMobItem(context);
-        if( num > 0){
-            LogUtils.LogV("Upload", "sp upload");
-            uploadMob(context,UserUtils.getMobCommon(context),UserUtils.getMobData(context),0,"sp");
+        try {
+            if(UserUtils.isHasMobItem(context) && UserUtils.getMobItem(context) >0){
+                LogUtils.LogV("Upload", "sp upload");
+                uploadMob(context,UserUtils.getMobCommon(context),UserUtils.getMobData(context),0,"sp");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
 
         if(dataList.size() > 5){
             LogUtils.LogV("Upload", "uploadeing");

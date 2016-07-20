@@ -109,7 +109,14 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
             if(isFirstOpen){
                 loadDatas();
             }else{
-                UnreadUtils.clearNewOder(getActivity());
+                try {
+                    if(UnreadUtils.isHasNewOrder(getActivity())){
+                        UnreadUtils.clearNewOder(getActivity());
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 EventAction action = new EventAction(EventType.EVENT_TAB_RESET);
                 EventbusAgent.getInstance().post(action);
             }
@@ -121,11 +128,10 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
     protected void loadDatas() {
         if(listViewModel!= null){
             listViewModel.refresh();
+
+            BDMob.getBdMobInstance().onMobEvent(getActivity(), BDEventConstans.EVENT_ID_BIDDING_LIAT_PAGE_MANUAL_REFRESH);
+            HYMob.getDataList(getActivity(), HYEventConstans.EVENT_ID_BIDDING_LIAT_PAGE_MANUAL_REFRESH);
         }
-
-        BDMob.getBdMobInstance().onMobEvent(getActivity(), BDEventConstans.EVENT_ID_BIDDING_LIAT_PAGE_MANUAL_REFRESH);
-        HYMob.getDataList(getActivity(), HYEventConstans.EVENT_ID_BIDDING_LIAT_PAGE_MANUAL_REFRESH);
-
         isFirstOpen = false;
 
     }

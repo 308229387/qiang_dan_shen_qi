@@ -1,5 +1,6 @@
 package com.huangyezhaobiao.fragment.refund;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -125,7 +126,7 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
 
                     @Override
                     public void onUploadPrecent(String precent) {
-                        if(!uploadPicDialog.isShowing()) {
+                        if (!uploadPicDialog.isShowing() && getActivity().isFinishing() && uploadPicDialog != null) {
                             uploadPicDialog.show();
                         }
                         uploadPicDialog.setUploadProgress(precent);
@@ -139,10 +140,17 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
                 confirmDialog_upload.dismiss();
             }
 
-
         });
+
         uploadPicDialog = new UploadPicDialog(getActivity());
-                resultDialog_success = new ResultDialog(getActivity(),"提交成功",R.drawable.refund_result_success,StringUtils.getStringByResId(getActivity(),R.string.refund_submit_success));
+        uploadPicDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                uploadPicDialog = null;
+            }
+        });
+
+       resultDialog_success = new ResultDialog(getActivity(),"提交成功",R.drawable.refund_result_success,StringUtils.getStringByResId(getActivity(),R.string.refund_submit_success));
         resultDialog_success.setListener(new ResultDialog.RequestOkListener() {
             @Override
             public void onRequestOkClick() {
