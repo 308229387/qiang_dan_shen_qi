@@ -4,6 +4,10 @@
         "source": "D:\\workspace\\hy_android_zb\\Commonlib\\build\\intermediates\\bundles\\debug\\res\\layout\\activity_main.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Commonlib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\activity_main.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Commonlib\\build\\intermediates\\bundles\\debug\\res\\layout\\activity_main.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Commonlib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\test.xml",
         "source": "E:\\qiang\\hy_android_zb\\Commonlib\\build\\intermediates\\bundles\\debug\\res\\layout\\test.xml"
     },
@@ -14,5 +18,9 @@
     {
         "merged": "D:\\workspace\\hy_android_zb\\Commonlib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\test.xml",
         "source": "D:\\workspace\\hy_android_zb\\Commonlib\\build\\intermediates\\bundles\\debug\\res\\layout\\test.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Commonlib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\test.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Commonlib\\build\\intermediates\\bundles\\debug\\res\\layout\\test.xml"
     }
 ]

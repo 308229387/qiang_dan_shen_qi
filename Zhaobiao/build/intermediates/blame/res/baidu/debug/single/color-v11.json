@@ -12,6 +12,14 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color-v11\\abc_background_cache_hint_selector_material_light.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color-v11\\abc_background_cache_hint_selector_material_dark.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color-v11\\abc_background_cache_hint_selector_material_light.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml"
     }

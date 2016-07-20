@@ -1,5 +1,9 @@
 [
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_login_telverify_safeguard.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_account_login_telverify_safeguard.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_list_menu_item_icon.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_list_menu_item_icon.xml"
     },
@@ -20,16 +24,32 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_bid_loading.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\order_state_selector.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\order_state_selector.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_login_bind.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_account_login_bind.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\guide3.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\guide3.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_details_qiangdan.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_details_qiangdan.xml"
     },
     {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_phone_retrieve_pwd_view.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_phone_retrieve_pwd_view.xml"
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_screen_toolbar.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_screen_toolbar.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\order_cate_popup.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\order_cate_popup.xml"
+    },
+    {
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_phone_retrieve_pwd_view.xml",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_phone_retrieve_pwd_view.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\can_fetch_list_domestic_item.xml",
@@ -40,6 +60,10 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_bid_failure.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_my_wallet.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_my_wallet.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\fragment_order_list.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\fragment_order_list.xml"
     },
@@ -48,16 +72,20 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\single_photo_activity.xml"
     },
     {
-        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_nanny_order_list.xml",
-        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\item_nanny_order_list.xml"
-    },
-    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_mobile_bind_change.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_mobile_bind_change.xml"
     },
     {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_nanny_order_list.xml",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\item_nanny_order_list.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\design_navigation_item_subheader.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.0\\res\\layout\\design_navigation_item_subheader.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_consumption.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_consumption.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_qiangdan_middle_decorate_project.xml",
@@ -68,28 +96,60 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\item_sys_noti.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_downloading.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_downloading.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_pop_cleaning.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_pop_cleaning.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_introduce_production.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_introduce_production.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_reset_password_view.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_reset_password_view.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\center_mine_indiviual.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\center_mine_indiviual.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_auth_login_view.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_account_auth_login_view.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_mobile_bind_change.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_mobile_bind_change.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_weixin_login_view.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_account_weixin_login_view.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_consume.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\item_consume.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_cleaning_order_list.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\item_cleaning_order_list.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\center_mine_decorate.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\center_mine_decorate.xml"
     },
     {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_quick_financeregister.xml",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_quick_financeregister.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\request_dialog.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\request_dialog.xml"
     },
     {
-        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_quick_financeregister.xml",
-        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_quick_financeregister.xml"
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_phone_dynamic_login_view.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_phone_dynamic_login_view.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_pop_nanny.xml",
@@ -100,12 +160,24 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\item_nanny_order_list.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_fragment_title_myorder.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_fragment_title_myorder.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_pop_personalregister.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_pop_personalregister.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\view_single_photo_activity.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\view_single_photo_activity.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_bind_tencent_dialog.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_account_bind_tencent_dialog.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\detail_item_timefee.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\detail_item_timefee.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_snackbar_include.xml",
@@ -120,6 +192,10 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_quick_register.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_blank.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_blank.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_phone_dynamic_login_layout.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_phone_dynamic_login_layout.xml"
     },
@@ -128,16 +204,20 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_mobile_bind_change.xml"
     },
     {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\pull_to_refresh_header_horizontal.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\hy_android_zb\\library\\unspecified\\res\\layout\\pull_to_refresh_header_horizontal.xml"
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\view_main_no_bid.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\view_main_no_bid.xml"
+    },
+    {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_public_title.xml",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_public_title.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_forget_password_view.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_forget_password_view.xml"
     },
     {
-        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_public_title.xml",
-        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_public_title.xml"
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\pull_to_refresh_header_horizontal.xml",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\hy_android_zb\\library\\unspecified\\res\\layout\\pull_to_refresh_header_horizontal.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_nanny_list.xml",
@@ -152,20 +232,36 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\notification_template_big_media_narrow.xml"
     },
     {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_public_title.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_public_title.xml"
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_cleaning_list.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\item_cleaning_list.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_bid_success.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_bid_success.xml"
     },
     {
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_public_title.xml",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_public_title.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\fragment_binding.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\fragment_binding.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\guide2.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\guide2.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_pop_personalregister.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_pop_personalregister.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_qiangdan_middle_getigs.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_qiangdan_middle_getigs.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_orderpop.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_orderpop.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_login_third.xml",
@@ -176,8 +272,20 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\item_nanny_list.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_qiangdan_middle_getigs.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_qiangdan_middle_getigs.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_login_passport_safeguard.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_account_login_passport_safeguard.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_media_bean.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\item_media_bean.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_sys_noti_list.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_sys_noti_list.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_bindstate_user_info_item.xml",
@@ -192,16 +300,20 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\can_fetch_list_domestic_item.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_guide.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_guide.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_select_dialog_material.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_select_dialog_material.xml"
     },
     {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_select_pic.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\item_select_pic.xml"
-    },
-    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_login_bind_type.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_account_login_bind_type.xml"
+    },
+    {
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_select_pic.xml",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\item_select_pic.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_login_resetpwd_safeguard.xml",
@@ -220,6 +332,10 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\window_float.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\fragment_refund.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\fragment_refund.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\list_dir_item.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\list_dir_item.xml"
     },
@@ -232,32 +348,36 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\detail_item_timefee.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_settings.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_settings.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_about.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_about.xml"
-    },
-    {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_help.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_help.xml"
-    },
-    {
-        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_phone_retrieve_pwd_view.xml",
-        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_phone_retrieve_pwd_view.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_loading.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_loading.xml"
     },
     {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_phone_retrieve_pwd_view.xml",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_phone_retrieve_pwd_view.xml"
+    },
+    {
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_help.xml",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_help.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_test.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_test.xml"
     },
     {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\window_float.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\window_float.xml"
-    },
-    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_all_fragment.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_all_fragment.xml"
+    },
+    {
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\window_float.xml",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\window_float.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_screen_simple_overlay_action_mode.xml",
@@ -268,12 +388,20 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_downloading.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\single_photo_activity.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\single_photo_activity.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_refund_result.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\item_refund_result.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_action_menu_layout.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_action_menu_layout.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\notification_template_part_time.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\notification_template_part_time.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_finlogin_view.xml",
@@ -292,12 +420,16 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\cleaning_bid_detail_layout.xml"
     },
     {
-        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\order_item_renovation.xml",
-        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\order_item_renovation.xml"
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_loading.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_loading.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\single_photo_activity.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\single_photo_activity.xml"
+    },
+    {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\order_item_renovation.xml",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\order_item_renovation.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\notification_media_cancel_action.xml",
@@ -310,6 +442,14 @@
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_phone_dynamic_login_layout.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_phone_dynamic_login_layout.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_alert_call.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_alert_call.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_auth_login_bind_account_list_dialog.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_auth_login_bind_account_list_dialog.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\__leak_canary_display_leak.xml",
@@ -328,24 +468,60 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_account_weixin_login_view.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_orderdetail.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_orderdetail.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\adapter_item_order.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\adapter_item_order.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_screen_simple.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_screen_simple.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\adapter_item_order.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\adapter_item_order.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_bid_gone.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_bid_gone.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_nanny_bid_detail.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\item_nanny_bid_detail.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\design_navigation_item_separator.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.0\\res\\layout\\design_navigation_item_separator.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_nanny_bid_detail.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\item_nanny_bid_detail.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\order_item_renovation.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\order_item_renovation.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_refund.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_refund.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\select_dialog_singlechoice_material.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\select_dialog_singlechoice_material.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_refund_result.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\item_refund_result.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_pop_cleaning.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_pop_cleaning.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_list_menu_item_layout.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_list_menu_item_layout.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\order_item_personalregister.xml",
@@ -356,32 +532,76 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\fragment_refund_add_commit.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_no_internet.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_no_internet.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_auth_login_bind_account_list_dialog.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_auth_login_bind_account_list_dialog.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_quick_register.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_quick_register.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_system_noti_detail.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_system_noti_detail.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_retrieve_password_view.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_account_retrieve_password_view.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\select_dialog_item_material.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\select_dialog_item_material.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\nanny_order_body.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\nanny_order_body.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_finlogin_view.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_account_finlogin_view.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_retrieve_password_view.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_account_retrieve_password_view.xml"
     },
     {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_main_page.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_main_page.xml"
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_zhaobiao.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_zhaobiao.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_login_bind.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_account_login_bind.xml"
     },
     {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_phone_dynamic_finlogin_view.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_phone_dynamic_finlogin_view.xml"
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_main_page.xml",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_main_page.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_phone_dynamic_login_layout.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_phone_dynamic_login_layout.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_main.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\hy_android_zb\\Commonlib\\unspecified\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_phone_dynamic_finlogin_view.xml",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_phone_dynamic_finlogin_view.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_login_oauth_nickname.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_account_login_oauth_nickname.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\notification_media_cancel_action.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_snackbar_include.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.0\\res\\layout\\layout_snackbar_include.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\order_cate_popup.xml",
@@ -408,8 +628,16 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_account_weixin_login_view.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_screen_simple_overlay_action_mode.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_qd_wait.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_qd_wait.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\order_item_renovation.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\order_item_renovation.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_request.xml",
@@ -428,24 +656,48 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\no_internet_layout.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_about.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_about.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\no_internet_layout.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\no_internet_layout.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_consume.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\item_consume.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\center_mine_decorate.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\center_mine_decorate.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_score.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_score.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_cleaning_list.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\item_cleaning_list.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\list_dir.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\list_dir.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_action_mode_close_item_material.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_action_mode_close_item_material.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_downloading.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_downloading.xml"
     },
     {
-        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_screen_simple.xml",
-        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_screen_simple.xml"
-    },
-    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\detail_item_common_decorate.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\detail_item_common_decorate.xml"
+    },
+    {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_screen_simple.xml",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_screen_simple.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\notification_template_big_media_narrow.xml",
@@ -456,8 +708,16 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\cleaning_order_detail_layout.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\center_mine_indiviual.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\center_mine_indiviual.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_auto_settings.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_auto_settings.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_qd_wait.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_qd_wait.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\center_mine_inner_cash.xml",
@@ -476,12 +736,24 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_bindstate_list_item.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\center_mine_inner_cash.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\center_mine_inner_cash.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_login_bind_type.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_account_login_bind_type.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\design_navigation_item_separator.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.0\\res\\layout\\design_navigation_item_separator.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_orderdetail.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_orderdetail.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_action_bar_title_item.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_action_bar_title_item.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\lv_header.xml",
@@ -496,12 +768,28 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_phone_dynamic_finlogin_view.xml"
     },
     {
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_auth_login_view.xml",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_account_auth_login_view.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_publish_select_main_view.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_publish_select_main_view.xml"
     },
     {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_auth_login_view.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_account_auth_login_view.xml"
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_phone_bind_layout.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_phone_bind_layout.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\__leak_canary_display_leak.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.squareup.leakcanary\\leakcanary-android\\1.3\\res\\layout\\__leak_canary_display_leak.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_login_passport_safeguard.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_account_login_passport_safeguard.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\detail_item_common_decorate_part.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\detail_item_common_decorate_part.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_center_message.xml",
@@ -512,12 +800,36 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\request_dialog.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\cleaning_bid_detail_layout.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\cleaning_bid_detail_layout.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\select_dialog_singlechoice_material.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\select_dialog_singlechoice_material.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_waterwave.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_waterwave.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\support_simple_spinner_dropdown_item.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\support_simple_spinner_dropdown_item.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_phone_retrieve_pwd_view.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_phone_retrieve_pwd_view.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\__leak_canary_display_leak.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.squareup.leakcanary\\leakcanary-android\\1.3\\res\\layout\\__leak_canary_display_leak.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_qiangdan_middle_decorate_project.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_qiangdan_middle_decorate_project.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_auto_settings.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_auto_settings.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_dialog_title_material.xml",
@@ -526,6 +838,10 @@
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_bind_state_headimg_item.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_bind_state_headimg_item.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_search_view.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_search_view.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\fragment_refund_result.xml",
@@ -538,6 +854,10 @@
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_login_view.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_account_login_view.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\notification_template_lines.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\notification_template_lines.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_pop_domesticregister.xml",
@@ -568,6 +888,22 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_media_menu.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\fragment_order_list.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\fragment_order_list.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\navigation_header.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\navigation_header.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_popup_menu_item_layout.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_popup_menu_item_layout.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\decorate_mine.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\decorate_mine.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_main.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\hy_android_zb\\Commonlib\\unspecified\\res\\layout\\activity_main.xml"
     },
@@ -576,8 +912,16 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_input_pwd_dialog.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_input_pwd_dialog.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_backhead.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_backhead.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_test.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_test.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_settings.xml",
@@ -620,8 +964,16 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_alert_call.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\window_float.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\window_float.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_other_item.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_other_item.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_qiangdan_first.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_qiangdan_first.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\order_item_domesticregister.xml",
@@ -640,12 +992,20 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_zhaobiao.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_bindstate_list_item.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_bindstate_list_item.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\viewpager_photo.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\viewpager_photo.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_splash.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_splash.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_request_dialog.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_request_dialog.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\design_navigation_item.xml",
@@ -658,6 +1018,10 @@
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_quick_register.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_quick_register.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\design_navigation_item.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.0\\res\\layout\\design_navigation_item.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\center_mine_inner_cash.xml",
@@ -676,6 +1040,10 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.0\\res\\layout\\design_navigation_item_header.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\design_navigation_item_header.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.0\\res\\layout\\design_navigation_item_header.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\select_dialog_item_material.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\select_dialog_item_material.xml"
     },
@@ -688,12 +1056,28 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_account_login_resetpwd_safeguard.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\center_mine_decorate.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\center_mine_decorate.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_attention.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_attention.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_consume.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\item_consume.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_reason_refund.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\item_reason_refund.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_login_telverify_safeguard.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_account_login_telverify_safeguard.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_demo_photo.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_demo_photo.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_list_menu_item_icon.xml",
@@ -712,8 +1096,16 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_account_login_third.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_qiangdan_last.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_qiangdan_last.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_system_noti_detail.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_system_noti_detail.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_action_bar_view_list_nav_layout.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_action_bar_view_list_nav_layout.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\guide2.xml",
@@ -722,6 +1114,18 @@
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_bind_state_logout_btn.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_bind_state_logout_btn.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_action_bar_up_container.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_action_bar_up_container.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_pop_domesticregister.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_pop_domesticregister.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_native_loading_view.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_native_loading_view.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_qiangdan_middle_reg_international.xml",
@@ -752,8 +1156,24 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\item_cleaning_body.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_activity_crop_image.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_activity_crop_image.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_orderdetail.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_orderdetail.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\__leak_canary_ref_top_row.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.squareup.leakcanary\\leakcanary-android\\1.3\\res\\layout\\__leak_canary_ref_top_row.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\view_title_bar.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\view_title_bar.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_db_item.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_db_item.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_forget_password_view.xml",
@@ -762,6 +1182,10 @@
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\list_dir_item.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\list_dir_item.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_expanded_menu_layout.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_expanded_menu_layout.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_qiangdan_middle.xml",
@@ -780,6 +1204,14 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_help.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\notification_media_action.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\notification_media_action.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_authentication_dialog.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_authentication_dialog.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\can_orderlist_domestic_personal_item.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\can_orderlist_domestic_personal_item.xml"
     },
@@ -788,8 +1220,28 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_fragment_crop_image.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_select_dialog_material.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\detail_item_common_decorate.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\detail_item_common_decorate.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_other_message.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_other_message.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_activity_chooser_view.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_action_menu_item_layout.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_mobile_valid.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_mobile_valid.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\detail_item_timefee.xml",
@@ -812,8 +1264,16 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_popup_menu_item_layout.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_pop_nanny.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_pop_nanny.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\design_navigation_item_subheader.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.0\\res\\layout\\design_navigation_item_subheader.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\__leak_canary_ref_row.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.squareup.leakcanary\\leakcanary-android\\1.3\\res\\layout\\__leak_canary_ref_row.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_search_dropdown_item_icons_2line.xml",
@@ -836,8 +1296,16 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\notification_template_media.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\main_tuce_activity.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\main_tuce_activity.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_snackbar_include.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.0\\res\\layout\\layout_snackbar_include.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\pull_to_refresh_header_vertical.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\hy_android_zb\\library\\unspecified\\res\\layout\\pull_to_refresh_header_vertical.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_qiangdan_last.xml",
@@ -848,12 +1316,20 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.0\\res\\layout\\design_navigation_item_header.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_sys_noti.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\item_sys_noti.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_refund_result.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\item_refund_result.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_qiangdan_middle_getigs.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_qiangdan_middle_getigs.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\decorate_bottom.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\decorate_bottom.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\can_orderlist_domestic_personal_item.xml",
@@ -868,6 +1344,10 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_account_login_telverify_safeguard.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_action_mode_bar.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_action_mode_bar.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\pull_to_refresh_header_horizontal.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\hy_android_zb\\library\\unspecified\\res\\layout\\pull_to_refresh_header_horizontal.xml"
     },
@@ -876,8 +1356,16 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_fragment_nickname_reset.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_user_feedback.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_user_feedback.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\cleaning_order_mine.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\cleaning_order_mine.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\select_dialog_multichoice_material.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\select_dialog_multichoice_material.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_guide.xml",
@@ -892,6 +1380,14 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_search_view.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_bindstate_divider_view.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_bindstate_divider_view.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\list_dir_item.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\list_dir_item.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\fragment_binding.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\fragment_binding.xml"
     },
@@ -900,12 +1396,20 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\grid_item.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_screen_content_include.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_screen_content_include.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\detail_item_common_decorate_part.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\detail_item_common_decorate_part.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_default_login_logo_layout.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_default_login_logo_layout.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\notification_template_big_media.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\notification_template_big_media.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_fragment_title_myorder.xml",
@@ -920,12 +1424,28 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\notification_template_media.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_fetch_details.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_fetch_details.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_help.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_help.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\lv_header.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\lv_header.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_upload_pic.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_upload_pic.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_bid_gone.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_bid_gone.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_pop_renovation.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_pop_renovation.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_list_menu_item_checkbox.xml",
@@ -938,6 +1458,14 @@
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_search_dropdown_item_icons_2line.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\test.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\hy_android_zb\\Commonlib\\unspecified\\res\\layout\\test.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_bid_success.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_bid_success.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_alert_dialog_material.xml",
@@ -954,6 +1482,10 @@
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_nanny_body.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\item_nanny_body.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\guide1.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\guide1.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_bind_tencent_dialog.xml",
@@ -996,6 +1528,18 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\detail_item_common_international.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_simple_dropdown_hint.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_simple_dropdown_hint.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_list_menu_item_checkbox.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_list_menu_item_checkbox.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_alert_dialog_material.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_alert_dialog_material.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_bind_state_logout_btn.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_bind_state_logout_btn.xml"
     },
@@ -1006,6 +1550,14 @@
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_blank.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_blank.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_center_message.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_center_message.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\cleaning_order_mine.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\cleaning_order_mine.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\test.xml",
@@ -1024,6 +1576,22 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_user_feedback.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_activity_reset_nick_name.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_activity_reset_nick_name.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_fragment_group.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_account_fragment_group.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_upload_pic.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_upload_pic.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_request_dialog_progress.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_request_dialog_progress.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_fragment_crop_image.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_fragment_crop_image.xml"
     },
@@ -1038,6 +1606,10 @@
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\detail_item_common_decorate_project.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\detail_item_common_decorate_project.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_list_menu_item_radio.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_list_menu_item_radio.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_zhaobiao.xml",
@@ -1072,12 +1644,32 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_action_bar_title_item.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_cleaning_body.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\item_cleaning_body.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_series_message.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_series_message.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_action_menu_item_layout.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_action_menu_item_layout.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\home_tab_view.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\home_tab_view.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\can_orderlist_domestic_inner_item.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\can_orderlist_domestic_inner_item.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\detail_item_common_personal.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\detail_item_common_personal.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_qiangdan_middle.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_qiangdan_middle.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_qiangdan_middle.xml",
@@ -1086,6 +1678,10 @@
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\design_navigation_item_separator.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.0\\res\\layout\\design_navigation_item_separator.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\support_simple_spinner_dropdown_item.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\support_simple_spinner_dropdown_item.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_action_mode_close_item_material.xml",
@@ -1128,8 +1724,16 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_select_dialog_material.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\titlebar_view.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\titlebar_view.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\detail_item_common_international.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\detail_item_common_international.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_newlogin_view.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_account_newlogin_view.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\horizontial_item_photo.xml",
@@ -1148,6 +1752,14 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.0\\res\\layout\\layout_snackbar.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_other_item.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_other_item.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_media_menu.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_media_menu.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_newlogin_view.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_account_newlogin_view.xml"
     },
@@ -1156,8 +1768,24 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\detail_item_common_decorate_project.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_backhead.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_backhead.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\order_cate_popup.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\order_cate_popup.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_introduce_production.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_introduce_production.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\guide1.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\guide1.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_bid_failure.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_bid_failure.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_about.xml",
@@ -1180,6 +1808,10 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_auto_settings.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_request.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_request.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_quick_financeregister.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_quick_financeregister.xml"
     },
@@ -1192,12 +1824,32 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_waterwave.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_fragment_nickname_reset.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_fragment_nickname_reset.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\cleaning_order_detail_layout.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\cleaning_order_detail_layout.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\notification_template_media.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\notification_template_media.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\view_main_no_bid.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\view_main_no_bid.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_list_menu_item_layout.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_fragment_crop_image.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_fragment_crop_image.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\fragment_refund_result.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\fragment_refund_result.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\design_navigation_menu.xml",
@@ -1208,6 +1860,10 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\notification_template_lines.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_list_menu_item_icon.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_list_menu_item_icon.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_action_bar_up_container.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_action_bar_up_container.xml"
     },
@@ -1216,12 +1872,20 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_native_loading_view.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\order_item_domesticregister.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\order_item_domesticregister.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\can_fetch_list_personal_domestic_item.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\can_fetch_list_personal_domestic_item.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_activity_crop_image.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_activity_crop_image.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_splash.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_splash.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\fragment_refund_add_commit.xml",
@@ -1240,8 +1904,20 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.0\\res\\layout\\design_navigation_item.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_auth_login_bind_account_list_item.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_auth_login_bind_account_list_item.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_details_qiangdan.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_details_qiangdan.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\guide2.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\guide2.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_nanny_order_detail.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\item_nanny_order_detail.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_action_bar_up_container.xml",
@@ -1252,8 +1928,16 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_loading.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_other_message.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_other_message.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_orderpop.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_orderpop.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_login_third.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_account_login_third.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_request_dialog.xml",
@@ -1268,12 +1952,24 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_login.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_select_pic.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\item_select_pic.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_affiliates_details.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_affiliates_details.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\view_single_photo_activity.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\view_single_photo_activity.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\main_tuce_activity.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\main_tuce_activity.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\pull_to_refresh_header_horizontal.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\hy_android_zb\\library\\unspecified\\res\\layout\\pull_to_refresh_header_horizontal.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_expanded_menu_layout.xml",
@@ -1308,8 +2004,16 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\item_media_bean.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\detail_item_sumplyment.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\detail_item_sumplyment.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_simple_dropdown_hint.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_simple_dropdown_hint.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_main.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\hy_android_zb\\Commonlib\\unspecified\\res\\layout\\activity_main.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\detail_item_sumplyment.xml",
@@ -1320,6 +2024,10 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_score.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\design_navigation_menu.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.0\\res\\layout\\design_navigation_menu.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_qiangdan_first.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_qiangdan_first.xml"
     },
@@ -1328,12 +2036,28 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\decorate_mine.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\can_fetch_list_personal_domestic_item.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\can_fetch_list_personal_domestic_item.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\viewpager_photo.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\viewpager_photo.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_pop_domesticregister.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_pop_domesticregister.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_bind_state_logout_btn.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_bind_state_logout_btn.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\center_affiliate_bean.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\center_affiliate_bean.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_nanny_body.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\item_nanny_body.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_series_message.xml",
@@ -1354,6 +2078,10 @@
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\notification_template_big_media.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\notification_template_big_media.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_phone_dynamic_finlogin_view.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_phone_dynamic_finlogin_view.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\__leak_canary_leak_row.xml",
@@ -1400,8 +2128,20 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_account_newlogin_view.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\__leak_canary_leak_row.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.squareup.leakcanary\\leakcanary-android\\1.3\\res\\layout\\__leak_canary_leak_row.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\grid_item.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\grid_item.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_no_internet.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_no_internet.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\detail_item_common_international.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\detail_item_common_international.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_retrieve_password_view.xml",
@@ -1412,12 +2152,24 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_screen_toolbar.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_nanny_list.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\item_nanny_list.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\navigation_header.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\navigation_header.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_login_view.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_account_login_view.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\design_navigation_menu.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.0\\res\\layout\\design_navigation_menu.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_nanny_order_list.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\item_nanny_order_list.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_expanded_menu_layout.xml",
@@ -1430,6 +2182,10 @@
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_phone_bind_layout.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_phone_bind_layout.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\detail_item_common_decorate_project.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\detail_item_common_decorate_project.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_backhead.xml",
@@ -1452,12 +2208,28 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_chosehead.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\bottom_main_list.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\bottom_main_list.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_login_resetpwd_safeguard.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_account_login_resetpwd_safeguard.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_action_menu_layout.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_action_menu_layout.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_dialog_title_material.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_dialog_title_material.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\select_dialog_multichoice_material.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\notification_template_big_media_narrow.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\notification_template_big_media_narrow.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_demo_photo.xml",
@@ -1474,6 +2246,10 @@
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\detail_item_sumplyment.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\detail_item_sumplyment.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_public_title.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_public_title.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_splash.xml",
@@ -1520,12 +2296,20 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\main_tuce_activity.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\notification_template_part_chronometer.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\notification_template_part_chronometer.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_simple_dropdown_hint.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_simple_dropdown_hint.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_bindstate_divider_view.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_bindstate_divider_view.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_details_qiangdan.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_details_qiangdan.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\can_orderlist_domestic_inner_item.xml",
@@ -1548,6 +2332,10 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\item_nanny_bid_detail.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_publish_select_main_view.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_publish_select_main_view.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_input_pwd_dialog.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_input_pwd_dialog.xml"
     },
@@ -1564,12 +2352,24 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_default_login_logo_layout.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_search_dropdown_item_icons_2line.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\nanny_order_body.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\nanny_order_body.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\pull_to_refresh_header_vertical.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\hy_android_zb\\library\\unspecified\\res\\layout\\pull_to_refresh_header_vertical.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\decorate_bottom.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\decorate_bottom.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_main_page.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_main_page.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_reset_password_view.xml",
@@ -1596,12 +2396,28 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\select_dialog_item_material.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_quick_financeregister.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_quick_financeregister.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_call.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_call.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_forget_password_view.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_forget_password_view.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_fetch_details.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_fetch_details.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_activity_crop_image.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_activity_crop_image.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_bind_state_headimg_item.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_bind_state_headimg_item.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_pop_renovation.xml",
@@ -1620,6 +2436,10 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_screen_content_include.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_bindstate_user_info_item.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_bindstate_user_info_item.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_nanny_order_detail.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\item_nanny_order_detail.xml"
     },
@@ -1630,6 +2450,10 @@
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_login_passport_safeguard.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_account_login_passport_safeguard.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_public_requestloading_web.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_public_requestloading_web.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\notification_template_part_time.xml",
@@ -1648,6 +2472,10 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_authentication_dialog.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\detail_item_common_personal.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\detail_item_common_personal.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_auth_login_bind_account_list_item.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_auth_login_bind_account_list_item.xml"
     },
@@ -1656,12 +2484,24 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\item_select_pic.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\fragment_first_refund_commit.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\fragment_first_refund_commit.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\fragment_refund.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\fragment_refund.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\can_orderlist_domestic_personal_item.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\can_orderlist_domestic_personal_item.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\item_cleaning_order_list.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\item_cleaning_order_list.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\horizontial_item_photo.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\horizontial_item_photo.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_system_noti_detail.xml",
@@ -1670,6 +2510,10 @@
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_bindstate_divider_view.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_bindstate_divider_view.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_account_login_bind_state.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_account_login_bind_state.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\notification_media_action.xml",
@@ -1688,6 +2532,10 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_reset_password_view.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_qiangdan_middle_decorate_part.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_qiangdan_middle_decorate_part.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_mobile_valid.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_mobile_valid.xml"
     },
@@ -1704,8 +2552,16 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_top_message.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\fragment_refund_add_commit.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\fragment_refund_add_commit.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_bindstate_user_info_item.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.0-SNAPSHOT\\res\\layout\\loginsdk_bindstate_user_info_item.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_request_dialog_listview.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_request_dialog_listview.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_search_view.xml",
@@ -1728,12 +2584,20 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\lv_header.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_action_menu_layout.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_action_menu_layout.xml"
+    },
+    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_test.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_test.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_action_bar_view_list_nav_layout.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_action_bar_view_list_nav_layout.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_qiangdan_middle_reg_international.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_qiangdan_middle_reg_international.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\horizontial_item_photo.xml",
@@ -1756,6 +2620,14 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_no_internet.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\request_dialog.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\request_dialog.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\can_fetch_list_domestic_item.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\can_fetch_list_domestic_item.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\guide3.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\guide3.xml"
     },
@@ -1770,6 +2642,14 @@
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\notification_template_part_chronometer.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\dialog_pop_affiliate.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\dialog_pop_affiliate.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\design_navigation_item_subheader.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.0\\res\\layout\\design_navigation_item_subheader.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\view_title_bar.xml",
@@ -1808,8 +2688,20 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\fragment_binding.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\loginsdk_default_login_logo_layout.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\layout\\loginsdk_default_login_logo_layout.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_qiangdan_middle_decorate_project.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\layout_qiangdan_middle_decorate_project.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\order_item_personalregister.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\layout\\order_item_personalregister.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\abc_activity_chooser_view_list_item.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_activity_chooser_view_list_item.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\center_mine_indiviual.xml",
@@ -1830,5 +2722,9 @@
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\activity_mobile_valid.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\layout\\activity_mobile_valid.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout\\layout_snackbar.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.0\\res\\layout\\layout_snackbar.xml"
     }
 ]

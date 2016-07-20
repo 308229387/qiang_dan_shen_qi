@@ -4,12 +4,76 @@
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\switch_thumb_material_dark.xml"
     },
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\abc_primary_text_material_light.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\abc_primary_text_material_light.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\abc_primary_text_material_light.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\abc_primary_text_material_light.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\abc_primary_text_disable_only_material_light.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\abc_primary_text_disable_only_material_light.xml"
+    },
+    {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\abc_primary_text_material_dark.xml",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\abc_primary_text_material_dark.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\abc_secondary_text_material_dark.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\abc_secondary_text_material_dark.xml"
+    },
+    {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\abc_primary_text_material_light.xml",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\abc_primary_text_material_light.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\abc_secondary_text_material_light.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\abc_secondary_text_material_light.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\abc_primary_text_disable_only_material_dark.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\abc_primary_text_disable_only_material_dark.xml"
+    },
+    {
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\abc_primary_text_disable_only_material_dark.xml",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\abc_primary_text_disable_only_material_dark.xml"
+    },
+    {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\abc_secondary_text_material_dark.xml",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\abc_secondary_text_material_dark.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\abc_primary_text_material_dark.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\abc_primary_text_material_dark.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\switch_thumb_material_dark.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\switch_thumb_material_dark.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\switch_thumb_material_light.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\switch_thumb_material_light.xml"
+    },
+    {
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\switch_thumb_material_light.xml",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\switch_thumb_material_light.xml"
+    },
+    {
+        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\switch_thumb_material_light.xml",
+        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\switch_thumb_material_light.xml"
+    },
+    {
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\abc_search_url_text.xml",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\abc_search_url_text.xml"
+    },
+    {
+        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\abc_secondary_text_material_light.xml",
+        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\abc_secondary_text_material_light.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\abc_primary_text_disable_only_material_light.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\abc_primary_text_disable_only_material_light.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\loginsdk_wb_title_text_color_selector.xml",
@@ -24,24 +88,12 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\abc_primary_text_disable_only_material_dark.xml"
     },
     {
-        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\abc_primary_text_material_dark.xml",
-        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\abc_primary_text_material_dark.xml"
-    },
-    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\abc_primary_text_material_dark.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\abc_primary_text_material_dark.xml"
     },
     {
-        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\abc_primary_text_material_light.xml",
-        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\abc_primary_text_material_light.xml"
-    },
-    {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\abc_primary_text_disable_only_material_dark.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\abc_primary_text_disable_only_material_dark.xml"
-    },
-    {
-        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\abc_secondary_text_material_dark.xml",
-        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\abc_secondary_text_material_dark.xml"
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\loginsdk_wb_title_text_color_selector.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.wuba.wuxian.sdk\\login\\1.0.1-SNAPSHOT\\res\\color\\loginsdk_wb_title_text_color_selector.xml"
     },
     {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\abc_primary_text_disable_only_material_light.xml",
@@ -52,24 +104,12 @@
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\abc_search_url_text.xml"
     },
     {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\switch_thumb_material_light.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\switch_thumb_material_light.xml"
-    },
-    {
-        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\switch_thumb_material_light.xml",
-        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\switch_thumb_material_light.xml"
-    },
-    {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\abc_secondary_text_material_light.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\abc_secondary_text_material_light.xml"
     },
     {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\abc_search_url_text.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\abc_search_url_text.xml"
-    },
-    {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\abc_secondary_text_material_light.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\abc_secondary_text_material_light.xml"
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\abc_search_url_text.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color\\abc_search_url_text.xml"
     },
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\color\\loginsdk_wb_title_text_color_selector.xml",

@@ -6,5 +6,9 @@
     {
         "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\raw\\keep.xml",
         "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\res\\raw\\keep.xml"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\raw\\keep.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\raw\\keep.xml"
     }
 ]

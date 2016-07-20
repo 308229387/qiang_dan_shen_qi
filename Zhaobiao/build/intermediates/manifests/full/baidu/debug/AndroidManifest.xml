@@ -537,11 +537,6 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Wuba.Splash" >
-            <intent-filter>
-                <action android:name="com.wuba.activity.account.ACTION_BIND_ACCOUNT" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.wuba.loginsdk.activity.account.PhoneRetrievePasswordActivity"
@@ -588,13 +583,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Wuba.Splash"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" >
-
-            <!-- wpt(隐式调用登录),给插件调用 -->
-            <intent-filter>
-                <action android:name="com.wuab.Intent.ACTION_LOGIN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.wuba.loginsdk.activity.account.BindStateActivity"

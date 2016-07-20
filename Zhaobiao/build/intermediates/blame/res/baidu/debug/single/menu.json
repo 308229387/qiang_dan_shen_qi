@@ -1,5 +1,9 @@
 [
     {
+        "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\menu\\main.xml",
+        "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\res\\menu\\main.xml"
+    },
+    {
         "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\menu\\main.xml",
         "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\res\\menu\\main.xml"
     },
