@@ -44,6 +44,7 @@ public abstract class AnimationAdapter extends BaseAdapterDecorator {
     private boolean mHasParentAnimationAdapter;
 
 
+
     public AnimationAdapter(BaseAdapter baseAdapter) {
         super(baseAdapter);
         mAnimators = new SparseArray<AnimationInfo>();
