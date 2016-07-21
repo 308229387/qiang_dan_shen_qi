@@ -9,7 +9,6 @@
 	<dimen name="image_url_xlarge_width">200dip</dimen>
 	<dimen name="image_url_large_width">150dip</dimen>
 	<!-- Loading控件的适配  (3.0版本IM在用，如果修改，请通知)-->
-	<dimen name="title_bar_height">40dp</dimen>
 
 	<dimen name="common_divider_padding">10dip</dimen>
 
@@ -19,10 +18,6 @@
 	
 	<!-- 设置 -->
 	<dimen name="cornerradius">20dip</dimen>
-	
-	<!-- 司机列表页-->
-
-    <dimen name="shadow_width">0dp</dimen>
 
 
 	<!-- fontsize edited by chenguangming-->
@@ -32,5 +27,4 @@
 	<dimen name="textsize_large">16sp</dimen>
 	<dimen name="textsize_normal">14sp</dimen>
 	<dimen name="textsize_small">12sp</dimen>
-	<dimen name="textsize_tiny">10sp</dimen>
 </resources>

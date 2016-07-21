@@ -3,25 +3,18 @@
     <color name="divider">#ebebeb</color>
     <!--ebebeb-->
     <color name="gray_dark">#323232</color>
-    <color name="hbg">#ffffff</color>
     <color name="hidecolor">#00000000</color>
     <color name="line">#cad0d9</color>
     <color name="blue">#529AF4</color>
     <color name="white">#FFFFFF</color>
     <color name="white_btn_pressed">#f0f0f0</color>
-    <color name="line_gray_color">#e1e1e1</color>
     <color name="background">#FFFFFF</color>
     <color name="darkgraylight">#eaeaea</color>
-    <color name="orglight">#fff1c7</color>
-    <color name="orgdark">#e9d38e</color>
     <color name="whitedark">#efefef</color>
     <color name="transparent">#80000000</color>
     <!-- 暗灰色 -->
-    <color name="green">#85c433</color>
     <color name="red">#F45E46</color>
     <color name="black">#000000</color>
-    <color name="blacks">#666666</color>
-    <color name="orangedark">#D67B00</color>
     <color name="sss">#e0000000</color>
     <!-- Dialog -->
 
@@ -37,38 +30,16 @@
     <!-- 分享 -->
     <color name="share_progress_bg">#BB000000</color>
     <color name="share_bg">#f8f8f8</color>
-    <color name="tabtext">#787878</color>
-    <color name="tabtext_selected">#ff9200</color>
-    <color name="tabbackground">#f8f8fa</color>
-    <color name="headbackground_selected">#fff</color>
-    <color name="headbackground">#ff9200</color>
-    <color name="headbacktext">#ffe1b8</color>
-    <color name="checkmorebackground">#F6F6F6</color>
-    <color name="checkmoresoligthword">#c3c3c3</color>
-    <color name="checkmorelongline">#dddddd</color>
-    <color name="checkmoreshortline">#e9e9e9</color>
     <color name="counpnum">#ddd</color>
-    <color name="counpline">#e2e2e2</color>
-    <color name="counpnumaround">#dddddd</color>
-    <color name="coupontext">#000000</color>
-    <color name="couponinfotext">#8d8d8d</color>
-    <color name="couponselect">#eeeeee</color>
     <color name="gray">#efefef</color>
     <color name="grays">#dfdfdf</color>
-    <color name="newgray">#a6a6a6</color>
     <color name="tab_red">#E12F37</color>
 
-    <color name="segment_press">#c62930</color>
-    <color name="segment_unpress">#55ffffff</color>
     <color name="t_gray">#808080</color>
-    <color name="tab_red_press">#c62930</color>
     <color name="white_press">#f6f6f6</color>
-    <color name="t_near_white">#70fafafa</color>
     <!-- 水波纹效果的颜色 -->
-    <color name="reveal_color">#1b000000</color>
     <color name="blue_color">#5f96f4</color>
     <color name="light_text_color">#808080</color>
-    <color name="timeline_color">#a6a6a6</color>
     <color name="tab_red_light">#c62930</color>
 
    <!--通用 -->
