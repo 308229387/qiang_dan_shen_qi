@@ -18,7 +18,6 @@ import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.bean.push.PushToStorageBean;
 import com.huangyezhaobiao.bean.push.bar.CountdownPushBean;
 import com.huangyezhaobiao.bean.push.bar.SystemPushBean;
-import com.huangyezhaobiao.bean.push.pop.AffiliatePopBean;
 import com.huangyezhaobiao.bean.push.pop.CleaningPopBean;
 import com.huangyezhaobiao.bean.push.pop.DomesticRegisterPopBean;
 import com.huangyezhaobiao.bean.push.pop.NannyPopBean;
@@ -47,7 +46,7 @@ public class PushUtils {
 		popMap.put("2", PersonalRegisterPopBean.class);
 		popMap.put("3", DomesticRegisterPopBean.class);
 		//2015.8.17 add
-		popMap.put("4", AffiliatePopBean.class);
+//		popMap.put("4", AffiliatePopBean.class);
 		//2015.12.7 add
 		popMap.put("5", NannyPopBean.class);
 		popMap.put("6", CleaningPopBean.class);
