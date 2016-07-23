@@ -28,6 +28,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
             instance = new DBOpenHelper(context.getApplicationContext());
         }
         return instance;
+
     }
 
     private static String getUserDatabaseName() {
