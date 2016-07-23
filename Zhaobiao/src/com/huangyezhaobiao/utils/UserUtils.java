@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
+import com.huangyezhaobiao.application.BiddingApplication;
+
 /**
  * 用户的beanUtils
  * @author shenzhixin
@@ -119,6 +121,17 @@ public class UserUtils {
 		SharedPreferences sp = context.getSharedPreferences(USER_SP_NAME, 0);//用userId，来区分
 		UserUtils.userId = userId;
 		sp.edit().putString(USER_ID, userId).commit();
+	}
+
+	/**
+	 * 得到用户Id
+	 * @return
+	 */
+	public static String getUserId(){
+		if(TextUtils.isEmpty(userId)){
+			userId = BiddingApplication.getAppInstanceContext().getSharedPreferences(USER_SP_NAME, 0).getString(USER_ID, "");
+		}
+		return userId;
 	}
 
 	/**
