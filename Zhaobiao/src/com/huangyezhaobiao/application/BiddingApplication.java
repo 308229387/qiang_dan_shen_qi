@@ -35,6 +35,7 @@ import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.voice.VoiceManager;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.table.TableUtils;
+import com.lzy.okhttputils.OkHttpUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.squareup.leakcanary.LeakCanary;
@@ -215,7 +216,7 @@ public class BiddingApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        OkHttpUtils.init(this);
         //注册服务，初始化必要资源
         LoginSdk.LoginConfig loginConfig = new LoginSdk.LoginConfig()
                 //可选，设置日志级别，默认不输出日志，ILogger.NONE（关闭日志）,ILogger.STANDARD_LOG(标准andorid日志)
