@@ -55,7 +55,7 @@
     <string name="hint">提示</string>
     <string name="update_hint">更新提示</string>
     <string name="network_error_message">当前网络慢,请您稍后重试奥</string>
-    <string name="update_message">1.全新页面设计，增加底部导航!\n2.订单详情页新增发短信和免费电话功能
+    <string name="update_message">1.全新页面设计，增加底部导航!\n2.订单详情页新增发短信和免费电话功能\n3.修复了登录的bug
     </string>
     <string name="logout_now">退出了当前的账号</string>
     <string name="logout_make_sure">确定要退出当前账号么?</string>

@@ -58,6 +58,7 @@ import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.StateUtils;
 import com.huangyezhaobiao.utils.UnreadUtils;
 import com.huangyezhaobiao.utils.UpdateManager;
+import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.utils.VersionUtils;
 import com.huangyezhaobiao.view.QDWaitDialog;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
@@ -366,10 +367,14 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
         if (t instanceof AccountExpireBean) {
             AccountExpireBean accountExpireBean = (AccountExpireBean) t;
             String expireState = accountExpireBean.getExpireState();
-            if ("1".equals(expireState)) {
-                //网灵通过期
-                accountExpireDialog.setMessage(accountExpireBean.getMsg());
-                accountExpireDialog.show();
+            String message = accountExpireBean.getMsg();
+            if (!TextUtils.isEmpty(expireState) && "1".equals(expireState)) {
+                if(!TextUtils.isEmpty(message)){
+                    //网灵通过期
+                    accountExpireDialog.setMessage(message);
+                    accountExpireDialog.show();
+                }
+
             }
         }else if (t instanceof Integer) {
             stopLoading();
@@ -498,42 +503,52 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
 
     @Override
     public void onVersionBack(String version) {
-        String versionCode = "";
-        int currentVersion = -1; //当前版本号
-        int versionNum = -1;
-        //获取当前系统版本号
-        try {
-            currentVersion = Integer.parseInt(VersionUtils.getVersionCode(getActivity()));
-        } catch (Exception e) {
 
-        }
-        if (currentVersion == -1) return;
+       if(getActivity() != null && !UserUtils.isNeedUpdate(getActivity())){ //判断是否强制更新
+           String versionCode = "";
+           int currentVersion = -1; //当前版本号
+           int versionNum = -1;
+           //获取当前系统版本号
+           try {
+               currentVersion = Integer.parseInt(VersionUtils.getVersionCode(getActivity()));
+           } catch (Exception e) {
 
-        //当前是MainActivity，获取服务器header返回的版本号
-        if (version != null) {
-            if (version.contains("F")) {
-                forceUpdate = true;
-            }
-            String[] fs = version.split("F");
-            versionCode = fs[0];
-            try {
-                versionNum = Integer.parseInt(versionCode);
-            } catch (Exception e) {
+           }
+           if (currentVersion == -1) return;
 
-            }
-            if (versionNum == -1) {
-                return;
-            }
+           //当前是MainActivity，获取服务器header返回的版本号
+           if (version != null) {
+               if (version.contains("F")) {
+                   forceUpdate = true;
+                   String[] fs = version.split("F");
+                   versionCode = fs[0];
+                   try {
+                       versionNum = Integer.parseInt(versionCode);
+                   } catch (Exception e) {
 
-            UpdateManager.getUpdateManager().isUpdateNow(getActivity(), versionNum, currentVersion, URLConstans.DOWNLOAD_ZHAOBIAO_ADDRESS, forceUpdate);
+                   }
+               }else{
+                   try {
+                       versionNum = Integer.parseInt(version);
+                   } catch (Exception e) {
+
+                   }
+               }
+
+               if (versionNum == -1) {
+                   return;
+               }
+
+               UpdateManager.getUpdateManager().isUpdateNow(getActivity(), versionNum, currentVersion, URLConstans.DOWNLOAD_ZHAOBIAO_ADDRESS, forceUpdate);
 //          UpdateManager.getUpdateManager().isUpdateNow(this, versionNum, currentVersion, "http://10.252.23.45:8001/2.7.0_zhaobiao.apk", forceUpdate);
-            Boolean flag = UpdateManager.needUpdate;
-            Log.v("www", "flag:" + flag);
-            if (!flag) {
-                //判断是不是第一次进入主界面
-                showFirst();
-            }
-        }
+               Boolean flag = UpdateManager.needUpdate;
+               Log.v("www", "flag:" + flag);
+               if (!flag) {
+                   //判断是不是第一次进入主界面
+                   showFirst();
+               }
+           }
+       }
     }
 
 

@@ -9,13 +9,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.constans.AppConstants;
 import com.huangyezhaobiao.url.URLConstans;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
+import com.huangyezhaobiao.utils.UpdateManager;
 import com.huangyezhaobiao.utils.VersionUtils;
+import com.huangyezhaobiao.vm.UpdateViewModel;
 
 import java.util.HashMap;
 
@@ -28,12 +31,19 @@ public class AboutActivity extends QBBaseActivity implements OnClickListener {
 	private String name;
 	private RelativeLayout rl_gongneng,rl_check_version;
 	private RelativeLayout software_usage;
+	private UpdateViewModel updateViewModel;  //版本更新
+	/**
+	 * 是否强制更新
+	 */
+	private boolean forceUpdate;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_about);
 		initView();
 		initListener();
+		updateViewModel = new UpdateViewModel(vmCallBack, this);
 	}
 	@Override
 	public void initView() {
@@ -72,8 +82,9 @@ public class AboutActivity extends QBBaseActivity implements OnClickListener {
 			onBackPressed();
 			break;
 		case R.id.rl_check_version://跳转到检查版本更新的界面
-			Toast.makeText(this, getString(R.string.already_new_version), Toast.LENGTH_SHORT).show();
-
+		 if(updateViewModel != null){
+			 updateViewModel.checkVersion();
+		 }
 			break;
 		case R.id.rl_gongneng://跳转到功能界面 都是h5;
 			ActivityUtils.goToActivity(this, IntroduceFunctionActivity.class);
@@ -87,6 +98,93 @@ public class AboutActivity extends QBBaseActivity implements OnClickListener {
 				break;
 		}
 	}
+
+	private NetWorkVMCallBack vmCallBack = new NetWorkVMCallBack() {
+		@Override
+		public void onLoadingStart() {
+			startLoading();
+		}
+
+		@Override
+		public void onLoadingSuccess(Object t) {
+			stopLoading();
+		}
+
+		@Override
+		public void onLoadingError(String msg) {
+			stopLoading();
+		}
+
+		@Override
+		public void onLoadingCancel() {
+			stopLoading();
+		}
+
+		@Override
+		public void onNoInterNetError() {
+			Toast.makeText(AboutActivity.this, getString(R.string.no_network), Toast.LENGTH_SHORT).show();
+		}
+
+		@Override
+		public void onLoginInvalidate() {
+
+		}
+
+		@Override
+		public void onVersionBack(String version) {
+			stopLoading();
+			String versionCode = "";
+			int currentVersion = -1; //当前版本号
+
+			int versionNum = -1;
+			//获取当前系统版本号
+			try {
+				currentVersion = Integer.parseInt(VersionUtils.getVersionCode(AboutActivity.this));
+			} catch (Exception e) {
+
+			}
+			if (currentVersion == -1) return;
+
+
+			//当前是MainActivity，获取服务器header返回的版本号
+			if (version != null) {
+
+				if (version.contains("F")) {
+					forceUpdate = true;
+					String[] fs = version.split("F");
+					versionCode = fs[0];
+					try {
+						versionNum = Integer.parseInt(versionCode);
+					} catch (Exception e) {
+
+					}
+				}else{
+					try {
+						versionNum = Integer.parseInt(version);
+					} catch (Exception e) {
+
+					}
+				}
+
+				if (versionNum == -1) {
+					return;
+				}
+
+				UpdateManager.getUpdateManager().isUpdateNow(AboutActivity.this, versionNum, currentVersion, URLConstans.DOWNLOAD_ZHAOBIAO_ADDRESS, forceUpdate);
+				Boolean flag = UpdateManager.needUpdate;
+				if (!flag) {
+					runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							Toast.makeText(AboutActivity.this, getString(R.string.already_new_version), Toast.LENGTH_SHORT).show();
+						}
+					});
+
+				}
+
+			}
+		}
+	};
 
 	@Override
 	protected void onStop() {

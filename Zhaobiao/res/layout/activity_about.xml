@@ -121,7 +121,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="25dp"
-            android:text="当前已是最新版本"
+            android:text=""
             android:textSize="16sp" />
     </RelativeLayout>
 

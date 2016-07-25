@@ -24,6 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.activity.AboutActivity;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog.onDialogClickListener;
 /**
@@ -115,12 +116,14 @@ public class UpdateManager {
 				@Override
 				public void onDialogOkClick() {
 					dismissConfirmDownloadDialog();
+					UserUtils.saveNeedUpdate(context, true); //存储不强制更新的flag
 					startDownloading(context, url);
 				}
 
 				@Override
 				public void onDialogCancelClick() {
 					dismissConfirmDownloadDialog();
+					UserUtils.saveNeedUpdate(context, true); //存储不强制更新的flag
 					if (forceUpdate) {
 						((Activity) context).finish();//退出应用
 					}
@@ -247,7 +250,7 @@ public class UpdateManager {
 //	}
 
 
-	boolean forceUpdate = true;
+	boolean forceUpdate = false;
 	/**
 	 * 新版本的检查是否需要更新
 	 * @return
