@@ -37,6 +37,7 @@ dependencies {
     compile files('libs/GetuiSDK2.8.1.0.jar')
     compile files('libs/bugly_crash_release__2.1.jar')
     compile 'com.facebook.stetho:stetho:1.1.0'
+    compile 'com.google.code.gson:gson:2.5'
 
     compile 'com.wuba.wuxian.sdk:login:1.0.1-SNAPSHOT' //passport SDK
 //    compile 'com.wuba.wuxian.sdk:login:0.1.0-http-SNAPSHOT' //线下passport SDK
