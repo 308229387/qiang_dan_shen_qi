@@ -186,4 +186,14 @@
 
     <string name="switch_on"> </string>
     <string name="switch_off"> </string>
+
+    <style name="CustomCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkbox_style</item>
+    </style>
+
+    <style name="DefaultCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkbox_default_style</item>
+    </style>
+
+
 </resources>

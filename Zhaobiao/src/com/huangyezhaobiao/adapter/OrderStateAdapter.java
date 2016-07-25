@@ -88,10 +88,6 @@ public class OrderStateAdapter extends BaseAdapter{
         return convertView;
     }
 
-    public void notifyChanged() {
-
-    }
-
     class ViewHolder{
         public TextView tv_orderState_popup;
     }

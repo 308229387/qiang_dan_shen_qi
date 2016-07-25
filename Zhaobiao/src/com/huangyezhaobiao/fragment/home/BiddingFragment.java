@@ -476,7 +476,7 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
         if (!TextUtils.isEmpty(msg) && msg.equals("2001")) {
             MainActivity ola = (MainActivity) getActivity();
             ola.onLoadingError(msg);
-        }else if (!TextUtils.isEmpty(msg)) {
+        }else if (getActivity() != null && !TextUtils.isEmpty(msg)) {
             Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
         }
         dismissQDWaitDialog();

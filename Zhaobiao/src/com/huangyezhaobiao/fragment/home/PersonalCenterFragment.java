@@ -19,6 +19,7 @@ import com.huangyezhaobiao.activity.AboutActivity;
 import com.huangyezhaobiao.activity.BidSuccessActivity;
 import com.huangyezhaobiao.activity.HelpActivity;
 import com.huangyezhaobiao.activity.MainActivity;
+import com.huangyezhaobiao.activity.ManageActivity;
 import com.huangyezhaobiao.activity.MyWalletActivity;
 import com.huangyezhaobiao.activity.SettingsActivity;
 import com.huangyezhaobiao.bean.GlobalConfigBean;
@@ -46,6 +47,7 @@ public class PersonalCenterFragment extends BaseHomeFragment implements NetWorkV
     private ImageView iv_refresh;// 刷新按钮
 
     private RelativeLayout mywallet;//我的钱包
+    private RelativeLayout manage; //
     private RelativeLayout sliding_settings; //设置
     private RelativeLayout help;//帮助
     private RelativeLayout about; //关于
@@ -97,6 +99,8 @@ public class PersonalCenterFragment extends BaseHomeFragment implements NetWorkV
             tv_yue = (TextView) view.findViewById(R.id.tv_yue);
             mywallet = (RelativeLayout) view.findViewById(R.id.mywallet);
             mywallet.setOnClickListener(this);
+            manage = (RelativeLayout) view.findViewById(R.id.manage);
+            manage.setOnClickListener(this);
             sliding_settings = (RelativeLayout) view.findViewById(R.id.sliding_settings);
             sliding_settings.setOnClickListener(this);
             help = (RelativeLayout) view.findViewById(R.id.help);
@@ -127,6 +131,9 @@ public class PersonalCenterFragment extends BaseHomeFragment implements NetWorkV
                 ActivityUtils.goToActivity(getActivity(), MyWalletActivity.class);
                 HYMob.getDataList(getActivity(), HYEventConstans.EVENT_ID_MY_WALLET);
                 break;
+            case R.id.manage:
+                ActivityUtils.goToActivity(getActivity(), ManageActivity.class);
+                break;
             case R.id.sliding_settings://点击了设置
                 Intent intent = SettingsActivity.onNewIntent(getActivity());
                 startActivity(intent);
@@ -140,9 +147,6 @@ public class PersonalCenterFragment extends BaseHomeFragment implements NetWorkV
                 ActivityUtils.goToActivity(getActivity(), AboutActivity.class);
                 HYMob.getDataList(getActivity(), HYEventConstans.EVENT_ID_ABOUT);
                 break;
-//            case R.id.manage:
-//                ActivityUtils.goToActivity(getActivity(), ManageActivity.class);
-//                break;
 
         }
 
