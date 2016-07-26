@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5FBFB">
+
+    <include
+        android:id="@+id/layout_head"
+        layout="@layout/layout_backhead" />
+
+    <!-- <include layout="@layout/layout_order_hint" /> -->
+
+    <com.huangyezhaobiao.view.TitleMessageBarLayout
+        android:id="@+id/tbl"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/manage_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="11dp"
+            android:paddingLeft="15dp"
+            android:layout_marginTop="11dp"
+            android:text="当前子账号"
+            android:textColor="#808080"
+            android:textSize="15sp" />
+        <TextView
+            android:id="@+id/tv_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="11dp"
+            android:layout_alignParentRight="true"
+            android:paddingRight="16dp"
+            android:layout_marginTop="11dp"
+            android:text="编辑"
+            android:textColor="#fc5846"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#eeeeee" />
+
+    <ListView
+        android:id="@+id/lv_sManage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@null"
+        android:fadingEdge="none"
+        android:listSelector="#00000000"
+        android:persistentDrawingCache="none"
+        android:scrollbars="none"
+        android:scrollingCache="false"
+        android:visibility="gone">
+    </ListView>
+
+    <RelativeLayout
+        android:id="@+id/rl_add_manage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_manage_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/iv_add_account" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="11dp"
+            android:layout_marginLeft="9dp"
+            android:layout_marginTop="11dp"
+            android:layout_toRightOf="@id/iv_manage_add"
+            android:text="添加账号"
+            android:textColor="#808080"
+            android:textSize="@dimen/textsize_normal" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#eeeeee" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:textColor="#ababab"
+        android:text="@string/manage_notice"
+        android:textSize="@dimen/textsize_normal"/>
+
+</LinearLayout>
