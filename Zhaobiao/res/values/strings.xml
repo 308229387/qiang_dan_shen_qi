@@ -42,7 +42,7 @@
     <string name="login_login_invalidate">登录异常,请稍后重试</string>
     <string name="pls_input">请输入内容</string>
     <string name="not_enough_balance">账户推广余额少!请及时充值,\n以免影响下一次抢单</string>
-    <string name="update_message">1.全新页面设计，增加底部导航!\n2.订单详情页新增发短信和免费电话功能
+    <string name="update_message">1.全新页面设计，增加底部导航!\n2.订单详情页新增发短信和免费电话功能\n3.修复了登录的bug
     </string>
     <string name="logout_now">退出了当前的账号</string>
     <string name="logout_make_sure">确定要退出当前账号么?</string>
@@ -99,8 +99,8 @@
     <!-- 装修 careated by chenguangming -->
     <string name="grab_list">抢单</string>
 
-
     <string name="transfer_answer_number">您需要先接听免费的转接电话，\n接听后会自动帮您呼叫客户，\n您的绑定号码：</string>
     <string name="alert_customer_call">现在联系客户，成功签单的几率是平时\n的一倍哦~积极联系客户有助于促进\n成单呢~</string>
     <string name="manage_notice">温馨提示: 子账号在登录界面使用手机动态即可</string>
+
 </resources>

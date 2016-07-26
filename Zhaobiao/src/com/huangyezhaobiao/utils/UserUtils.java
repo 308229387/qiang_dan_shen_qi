@@ -47,6 +47,12 @@ public class UserUtils {
 	private static final String USER_APP_VERSION = "appVersion";
 	private static String appVersion;
 
+	/**
+	 * 非强制更新判断
+	 */
+	private static final String USER_UPDATE_SP_NAME = "user_update";
+	private static final String USER_UPDATE_NAME = "force_update";
+
 	/** 24小时*/
 	private static long AFTER_A_DAY = 24 * 60 * 60 * 1000l;
 	public static void saveUser(Context context,String userId,String companyName,String userName){
@@ -93,6 +99,21 @@ public class UserUtils {
 //	public static String getPassportUserId(Context context){
 //		return context.getSharedPreferences(PPU_SP_NAME, 0).getString(USER_ID, "");
 //	}
+
+	/**
+	 * 是否从登录页面进入，提示更新
+	 * @param context
+	 * @return
+	 */
+	public static boolean isNeedUpdate(Context context) {
+		SharedPreferences sp = context.getSharedPreferences(USER_UPDATE_SP_NAME, 0);
+		return sp.getBoolean(USER_UPDATE_NAME, true);
+	}
+
+	public static void saveNeedUpdate(Context context,Boolean flag){
+		SharedPreferences sp = context.getSharedPreferences(USER_UPDATE_SP_NAME, 0);
+		sp.edit().putBoolean(USER_UPDATE_NAME, flag).commit();
+	}
 
 
 	/**
