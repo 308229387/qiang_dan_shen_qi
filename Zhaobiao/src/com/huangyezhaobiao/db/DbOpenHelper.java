@@ -8,6 +8,7 @@ import com.huangyezhaobiao.utils.UserUtils;
 
 /**
  * Created by SongYongmeng on 2016/7/21.
+ * DB缓存
  */
 public class DBOpenHelper extends SQLiteOpenHelper {
     private static DBOpenHelper instance;
