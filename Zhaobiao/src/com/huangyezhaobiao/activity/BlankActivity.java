@@ -39,11 +39,6 @@ public class BlankActivity extends CommonBaseActivity {
 
     private CheckLoginViewModel checkLoginViewModel;
 
-    private UpdateViewModel updateViewModel;
-    /**
-     * 是否强制更新
-     */
-	private boolean forceUpdate;
 
 
     @Override
@@ -59,7 +54,7 @@ public class BlankActivity extends CommonBaseActivity {
         stopService(new Intent(BlankActivity.this, MyService.class));
 //        //关掉service
 //        stopService(new Intent(BlankActivity.this, AlertService.class));
-        updateViewModel = new UpdateViewModel(vmCallBack, this);
+
 
     }
 
@@ -67,77 +62,8 @@ public class BlankActivity extends CommonBaseActivity {
     protected void onResume() {
         super.onResume();
 
-//        if(updateViewModel != null)
-//            updateViewModel.checkVersion();
     }
 
-    private NetWorkVMCallBack vmCallBack = new NetWorkVMCallBack() {
-        @Override
-        public void onLoadingStart() {
-
-
-        }
-
-        @Override
-        public void onLoadingSuccess(Object t) {
-
-        }
-
-        @Override
-        public void onLoadingError(String msg) {
-
-        }
-
-        @Override
-        public void onLoadingCancel() {
-
-        }
-
-        @Override
-        public void onNoInterNetError() {
-
-        }
-
-        @Override
-        public void onLoginInvalidate() {
-
-        }
-
-        @Override
-        public void onVersionBack(String version) {
-            String versionCode = "";
-            int currentVersion = -1; //当前版本号
-
-            int versionNum = -1;
-            //获取当前系统版本号
-            try {
-                currentVersion = Integer.parseInt(VersionUtils.getVersionCode(BlankActivity.this));
-            } catch (Exception e) {
-
-            }
-            if (currentVersion == -1) return;
-
-
-            //当前是MainActivity，获取服务器header返回的版本号
-            if (version != null) {
-                if (version.contains("F")) {
-                    forceUpdate = true;
-                }
-                String[] fs = version.split("F");
-                versionCode = fs[0];
-                try {
-                    versionNum = Integer.parseInt(versionCode);
-                } catch (Exception e) {
-
-                }
-                if (versionNum == -1) {
-                    return;
-                }
-
-                UpdateManager.getUpdateManager().isUpdateNow(BlankActivity.this, versionNum, currentVersion, URLConstans.DOWNLOAD_ZHAOBIAO_ADDRESS, forceUpdate);
-            }
-        }
-    };
 
     /**
      * 调起登录服务，使用默认参数
@@ -244,7 +170,7 @@ public class BlankActivity extends CommonBaseActivity {
 
             // 用于测试，写死数据"24454277549825",实际用UserUtils.getUserId(LoginActivity.this)
             MiPushClient.setAlias(getApplicationContext(), UserUtils.getUserId(getApplicationContext()), null);
-            //个推注册别名
+            //个推注册别名(个推必须的)
             boolean result = GePushProxy.bindPushAlias(getApplicationContext(), userId + "_" + PhoneUtils.getIMEI(this));
 //            Toast.makeText(this, "注册别名结果:" + result, Toast.LENGTH_SHORT).show();
 
@@ -259,7 +185,7 @@ public class BlankActivity extends CommonBaseActivity {
             }
 
             UserUtils.setSessionTime(this, System.currentTimeMillis()); //存储登录成功时间
-
+            UserUtils.saveNeedUpdate(this,false); //存储不强制更新的flag
             finish();
 
         }
