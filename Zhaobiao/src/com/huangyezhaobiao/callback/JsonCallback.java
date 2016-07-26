@@ -8,6 +8,7 @@ import com.lzy.okhttputils.OkHttpUtils;
 
 import org.json.JSONObject;
 
+import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 import okhttp3.Response;
@@ -19,6 +20,10 @@ public abstract class JsonCallback<T> extends EncryptCallback<T> {
 
     private Class<T> clazz;
     private Type type;
+
+    public JsonCallback() {
+        this.clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+    }
 
     public JsonCallback(Class<T> clazz) {
         this.clazz = clazz;
@@ -40,8 +45,8 @@ public abstract class JsonCallback<T> extends EncryptCallback<T> {
          */
         JSONObject jsonObject = new JSONObject(responseData);
         final String msg = jsonObject.optString("msg", "");
-        final int code = jsonObject.optInt("code", 0);
-        String data = jsonObject.optString("data", "");
+        final int code = jsonObject.optInt("status", 0);
+        String data = jsonObject.optString("result", "");
         switch (code) {
             case 0:
                 /**
