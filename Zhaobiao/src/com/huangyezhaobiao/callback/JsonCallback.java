@@ -1,6 +1,7 @@
 package com.huangyezhaobiao.callback;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -38,7 +39,7 @@ public abstract class JsonCallback<T> extends EncryptCallback<T> {
     public T parseNetworkResponse(Response response) throws Exception {
         String responseData = response.body().string();
         if (TextUtils.isEmpty(responseData)) return null;
-
+        Log.d("get==",responseData);
         /**
          * 一般来说，服务器返回的响应码都包含 code，msg，data 三部分，在此根据自己的业务需要完成相应的逻辑判断
          * 以下只是一个示例，具体业务具体实现
@@ -57,20 +58,26 @@ public abstract class JsonCallback<T> extends EncryptCallback<T> {
                 if (clazz != null) return new Gson().fromJson(data, clazz);
                 if (type != null) return new Gson().fromJson(data, type);
                 break;
-            case 104:
+            case 100:
                 //比如：用户授权信息无效，在此实现相应的逻辑，弹出对话或者跳转到其他页面等,该抛出错误，会在onError中回调。
-                throw new IllegalStateException("用户授权信息无效");
-            case 105:
+                throw new IllegalStateException(msg);
+            case 200:
                 //比如：用户收取信息已过期，在此实现相应的逻辑，弹出对话或者跳转到其他页面等,该抛出错误，会在onError中回调。
-                throw new IllegalStateException("用户收取信息已过期");
-            case 106:
-                //比如：用户账户被禁用，在此实现相应的逻辑，弹出对话或者跳转到其他页面等,该抛出错误，会在onError中回调。
-                throw new IllegalStateException("用户账户被禁用");
+                throw new IllegalStateException(msg);
             case 300:
+                //比如：用户账户被禁用，在此实现相应的逻辑，弹出对话或者跳转到其他页面等,该抛出错误，会在onError中回调。
+                throw new IllegalStateException(msg);
+            case 400:
                 //比如：其他乱七八糟的等，在此实现相应的逻辑，弹出对话或者跳转到其他页面等,该抛出错误，会在onError中回调。
-                throw new IllegalStateException("其他乱七八糟的等");
+                throw new IllegalStateException(msg);
+            case 500:
+                //比如：其他乱七八糟的等，在此实现相应的逻辑，弹出对话或者跳转到其他页面等,该抛出错误，会在onError中回调。
+                throw new IllegalStateException(msg);
+            case 600:
+                //比如：其他乱七八糟的等，在此实现相应的逻辑，弹出对话或者跳转到其他页面等,该抛出错误，会在onError中回调。
+                throw new IllegalStateException(msg);
             default:
-                throw new IllegalStateException("错误代码：" + code + "，错误信息：" + msg);
+                throw new IllegalStateException("未知错误");
         }
         //如果要更新UI，需要使用handler，可以如下方式实现，也可以自己写handler
         OkHttpUtils.getInstance().getDelivery().post(new Runnable() {

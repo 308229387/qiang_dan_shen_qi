@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.application.BiddingApplication;
 
 /**
  * 进行toast显示的Ui工具类
@@ -18,6 +19,7 @@ import com.huangyezhaobiao.R;
  *
  */
 public class ToastUtils extends Toast{
+
 
 	public ToastUtils(Context context) {
 		super(context);
@@ -103,5 +105,11 @@ public class ToastUtils extends Toast{
 	 *修改Toast显示时间
 	 * ****************end****************
 	 */
+	public static void showToast(int message) {
+		Toast.makeText(BiddingApplication.getBiddingApplication(), message + "", Toast.LENGTH_SHORT).show();
+	}
 
+	public static void showToast(String message) {
+		Toast.makeText(BiddingApplication.getBiddingApplication(), message , Toast.LENGTH_SHORT).show();
+	}
 }
