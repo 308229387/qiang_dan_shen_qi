@@ -18,7 +18,6 @@ public abstract class CommonCallback<T> extends AbsCallback<T> {
                 .headers("userId", LoginClient.doGetUserIDOperate(BiddingApplication.getAppInstanceContext()))//
                 .headers("version", "6")//
                 .headers("platform", "1")//
-                .headers("UUID", PhoneUtils.getIMEI(BiddingApplication.getAppInstanceContext()))//
-                .headers("userId", LoginClient.doGetUserIDOperate(BiddingApplication.getAppInstanceContext()));
+                .headers("UUID", PhoneUtils.getIMEI(BiddingApplication.getAppInstanceContext()));
     }
 }

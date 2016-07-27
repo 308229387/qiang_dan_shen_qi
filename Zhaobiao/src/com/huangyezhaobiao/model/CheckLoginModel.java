@@ -150,7 +150,7 @@ public class CheckLoginModel extends NetWorkModel {
 				}
 			}
 		}catch(Exception e){//fix bug 185 on bugly
-			baseSourceModelCallBack.onLoadingFailure("服务器出现了问题，稍后再试呢");
+//			baseSourceModelCallBack.onLoadingFailure("服务器出现了问题，稍后再试呢");
 			e.printStackTrace();
 			//上传异常信息
 			uploadException(e,result.result);

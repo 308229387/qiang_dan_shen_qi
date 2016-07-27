@@ -426,7 +426,7 @@ public class FirstRefundCommitFragment extends RefundBaseFragment implements Net
                 @Override
                 public void onUploadPrecent(String precent) {
                     Log.e("shenzhixin",precent);
-                    if(!uploadPicDialog.isShowing()) {
+                    if(getActivity() != null && uploadPicDialog != null && !uploadPicDialog.isShowing()) {
                         uploadPicDialog.show();
                     }
                     uploadPicDialog.setUploadProgress(precent);

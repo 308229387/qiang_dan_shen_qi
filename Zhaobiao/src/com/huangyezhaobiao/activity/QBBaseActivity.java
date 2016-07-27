@@ -1,6 +1,7 @@
 package com.huangyezhaobiao.activity;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ import com.huangyezhaobiao.utils.PushUtils;
 import com.huangyezhaobiao.utils.StateUtils;
 import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.utils.Utils;
+import com.huangyezhaobiao.view.AccountHelpDialog;
 import com.huangyezhaobiao.view.LoadingProgress;
 import com.huangyezhaobiao.view.QDWaitDialog;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
@@ -62,6 +64,7 @@ public abstract class QBBaseActivity extends CommonBaseActivity implements INoti
 	protected View layout_back_head;
 //	private YuEViewModel    yuEViewModel;
 	private ProgressDialog ProgressDialog;
+
 	protected void dismissQDWaitDialog(){
 		if(ProgressDialog!=null && ProgressDialog.isShowing()){
 			ProgressDialog.dismiss();
@@ -319,9 +322,6 @@ public abstract class QBBaseActivity extends CommonBaseActivity implements INoti
 	}
 
 
-	//	@Override
-//	public void back(PushToPassBean bean) {
-//		kvm.knock(bean, AppConstants.BIDSOURCE_WINDOW);
-//	}
+
 
 }

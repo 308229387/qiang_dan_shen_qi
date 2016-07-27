@@ -514,6 +514,10 @@
             android:name=".activity.AddAccountActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".activity.UpdateAccountActivity"
+            android:screenOrientation="portrait" />
+
         <receiver android:name=".receiver.BatteryReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BATTERY_CHANGED" />

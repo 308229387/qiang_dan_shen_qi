@@ -103,10 +103,9 @@ public class MainActivity extends CommonFragmentActivity  {
     @Override
     protected void onResume() {
         UserConstans.USER_ID = UserUtils.getUserId(this);
+        super.onResume();
         EventbusAgent.getInstance().register(this);
         refreshTab();
-        super.onResume();
-
         if(BidSuccessActivity.isReset){
             BidSuccessActivity.isReset = false;
             initPage();

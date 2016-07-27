@@ -185,7 +185,7 @@ public class BlankActivity extends CommonBaseActivity {
             }
 
             UserUtils.setSessionTime(this, System.currentTimeMillis()); //存储登录成功时间
-            UserUtils.saveNeedUpdate(this,false); //存储不强制更新的flag
+            UserUtils.saveNeedUpdate(this, false); //存储不强制更新的flag
             finish();
 
         }

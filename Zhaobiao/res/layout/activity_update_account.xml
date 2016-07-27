@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white">
         <TextView
-            android:id="@+id/tv_user_title"
+            android:id="@+id/tv_update_user_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="11dp"
@@ -36,12 +36,12 @@
             android:textSize="@dimen/textsize_large"/>
 
         <EditText
-            android:id="@+id/tv_user_content"
+            android:id="@+id/et_update_user_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
             android:layout_marginBottom="11dp"
-            android:layout_toRightOf="@id/tv_user_title"
+            android:layout_toRightOf="@id/tv_update_user_title"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="11dp"
             android:hint="如张三"
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white">
         <TextView
-            android:id="@+id/tv_phone_title"
+            android:id="@+id/tv_update_phone_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="11dp"
@@ -70,12 +70,12 @@
             android:textSize="@dimen/textsize_large"/>
 
         <EditText
-            android:id="@+id/tv_phone_content"
+            android:id="@+id/et_update_phone_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
             android:layout_marginBottom="11dp"
-            android:layout_toRightOf="@id/tv_phone_title"
+            android:layout_toRightOf="@id/tv_update_phone_title"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="11dp"
             android:hint="如13232323212"
@@ -120,12 +120,12 @@
                 android:layout_weight="1">
 
                 <LinearLayout
-                    android:id="@+id/ll_base"
+                    android:id="@+id/ll_update_base"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp">
                     <CheckBox
-                        android:id="@+id/cb_base"
+                        android:id="@+id/cb_update_base"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/DefaultCheckboxTheme"
@@ -136,24 +136,24 @@
                         android:textSize="15sp"/>
 
                     <ImageView
-                        android:id="@+id/iv_base_help"
+                        android:id="@+id/iv_update_base_help"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/cb_base"
+                        android:layout_toRightOf="@id/cb_update_base"
                         android:layout_marginLeft="9dp"
                         android:src="@drawable/iv_base_help"/>
                 </LinearLayout>
 
 
                     <CheckBox
-                        android:id="@+id/cb_order"
+                        android:id="@+id/cb_update_order"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/CustomCheckboxTheme"
                         android:layout_marginTop="20dp"
                         android:layout_marginLeft="16dp"
                         android:paddingLeft="12dp"
-                        android:layout_below="@id/ll_base"
+                        android:layout_below="@id/ll_update_base"
                         android:checked="false"
                         android:text="查看已抢订单"
                         android:textColor="#666666"
@@ -166,7 +166,7 @@
                 android:layout_weight="1">
 
                 <CheckBox
-                    android:id="@+id/cb_bidding"
+                    android:id="@+id/cb_update_bidding"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="12dp"
@@ -186,7 +186,7 @@
         android:background="#eeeeee" />
 
     <Button
-        android:id="@+id/btn_save"
+        android:id="@+id/btn_update_save"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"

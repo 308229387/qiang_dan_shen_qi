@@ -1,6 +1,7 @@
 package com.huangyezhaobiao.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +10,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.activity.AddAccountActivity;
+import com.huangyezhaobiao.activity.UpdateAccountActivity;
 import com.huangyezhaobiao.bean.ChildAccountBean;
+import com.huangyezhaobiao.inter.Constans;
+import com.huangyezhaobiao.utils.ActivityUtils;
+import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by 58 on 2016/7/22.
@@ -24,6 +32,8 @@ public class ChildAccountAdapter extends BaseAdapter{
 
     public boolean flag = false; // false表示右上角显示"编辑"，true表示显示"完成"
 
+    private ZhaoBiaoDialog deleteDialog;
+
     public ChildAccountAdapter(Context context, List<ChildAccountBean> childAccountList){
         this.context = context;
         this.childAccountList = childAccountList;
@@ -33,6 +43,7 @@ public class ChildAccountAdapter extends BaseAdapter{
         this.context = context;
         this.childAccountList = childAccountList;
         this.flag = flag;
+        initDeleteDialog();
     }
     @Override
     public int getCount() {
@@ -76,18 +87,33 @@ public class ChildAccountAdapter extends BaseAdapter{
         if(flag){
             holder.account_delete.setVisibility(View.VISIBLE);
             holder.account_edit.setVisibility(View.VISIBLE);
-
             holder.account_delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    remove(position);
-                    notifyDataSetChanged();
+                    deleteDialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
+                        @Override
+                        public void onDialogOkClick() {
+                            deleteDialog.dismiss();
+                            remove(position);
+                            notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onDialogCancelClick() {
+                            deleteDialog.dismiss();
+                        }
+                    });
+                    deleteDialog.show();
                 }
             });
             holder.account_edit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
+                    Map<String, String> map = new HashMap<String, String>();
+                    map.put(Constans.CHILD_ACCOUNT_NAME, account.getAccountName());
+                    map.put(Constans.CHILD_ACCOUNT_PHONE, account.getAccountPhone());
+                    ActivityUtils.goToActivityWithString(context, UpdateAccountActivity.class, map);
                 }
             });
         }else{
@@ -104,4 +130,16 @@ public class ChildAccountAdapter extends BaseAdapter{
         TextView account_phone; //电话
         ImageView account_edit; //修改
     }
+
+    protected void initDeleteDialog(){
+        deleteDialog= new ZhaoBiaoDialog(context,"确认删除选中权限?");
+
+        deleteDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                deleteDialog = null;
+            }
+        });
+    }
+
 }

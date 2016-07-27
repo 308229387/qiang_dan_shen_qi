@@ -132,8 +132,13 @@ public class UserUtils {
 	 * @return
 	 */
 	public static long getSessionTime(Context context){
-		sessionTime = context.getSharedPreferences(PPU_SP_NAME,0).getLong(SESSION_TIME,0);
+		sessionTime = context.getSharedPreferences(PPU_SP_NAME,0).getLong(SESSION_TIME,0L);
 		return sessionTime;
+	}
+
+	public static boolean isHasSessionTime(Context  context){
+		SharedPreferences sp = context.getSharedPreferences(PPU_SP_NAME, 0);
+		return sp.contains(SESSION_TIME);
 	}
 
 

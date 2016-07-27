@@ -168,7 +168,7 @@ public abstract class BaseHomeFragment extends Fragment implements TitleMessageB
      * 对话框消失
      */
     public void stopLoading() {
-        if (!getActivity().isFinishing() && loading != null && loading.isShowing()) {
+        if (getActivity()!=null && !getActivity().isFinishing() && loading != null && loading.isShowing()) {
             loading.dismiss();
             loading = null;
         }
@@ -184,7 +184,7 @@ public abstract class BaseHomeFragment extends Fragment implements TitleMessageB
             }
             loading.show();
         } catch (RuntimeException e) {
-            if (!getActivity().isFinishing() && loading != null && loading.isShowing()) {
+            if (getActivity()!=null && !getActivity().isFinishing() && loading != null && loading.isShowing()) {
                 loading.dismiss();
                 loading = null;
             }

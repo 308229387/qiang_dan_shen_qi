@@ -56,6 +56,7 @@ import com.huangyezhaobiao.utils.PullToRefreshListViewUtils;
 import com.huangyezhaobiao.utils.PushUtils;
 import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.StateUtils;
+import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.utils.UnreadUtils;
 import com.huangyezhaobiao.utils.UpdateManager;
 import com.huangyezhaobiao.utils.UserUtils;
@@ -368,12 +369,13 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
             AccountExpireBean accountExpireBean = (AccountExpireBean) t;
             String expireState = accountExpireBean.getExpireState();
             String message = accountExpireBean.getMsg();
-            if (!TextUtils.isEmpty(expireState) && "1".equals(expireState)) {
-                if(!TextUtils.isEmpty(message)){
+            if (!TextUtils.isEmpty(expireState) && TextUtils.equals("1",expireState)&& !TextUtils.isEmpty(message)) {
                     //网灵通过期
+                if(accountExpireDialog!= null){
                     accountExpireDialog.setMessage(message);
                     accountExpireDialog.show();
                 }
+
 
             }
         }else if (t instanceof Integer) {
@@ -405,7 +407,10 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
                 yueNotEnoughDialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
                     @Override
                     public void onDialogOkClick() {
-                        yueNotEnoughDialog.dismiss();
+                        if (yueNotEnoughDialog != null) {
+                            yueNotEnoughDialog.dismiss();
+                        }
+
                     }
 
                     @Override
@@ -445,7 +450,8 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
         accountExpireDialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
             @Override
             public void onDialogOkClick() {
-                accountExpireDialog.dismiss();
+                    accountExpireDialog.dismiss();
+
             }
 
             @Override
@@ -477,12 +483,15 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
         }
         root.setVisibility(View.VISIBLE);
 
-
-        if (!TextUtils.isEmpty(msg) && msg.equals("2001")) {
-            MainActivity ola = (MainActivity) getActivity();
-            ola.onLoadingError(msg);
-        }else if (getActivity() != null && !TextUtils.isEmpty(msg)) {
-            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+        try {
+            if (!TextUtils.isEmpty(msg) && msg.equals("2001")) {
+                MainActivity ola = (MainActivity) getActivity();
+                ola.onLoadingError(msg);
+            }else if (getActivity() != null && !TextUtils.isEmpty(msg)) {
+               ToastUtils.showToast(msg);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         dismissQDWaitDialog();
     }
@@ -685,11 +694,11 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
         if (app != null)
             app.removeINotificationListener();
 
-        if (!getActivity().isFinishing() && accountExpireDialog != null && accountExpireDialog.isShowing()) {
+        if (getActivity() != null && !getActivity().isFinishing() && accountExpireDialog != null && accountExpireDialog.isShowing()) {
             accountExpireDialog.dismiss();
             accountExpireDialog = null;
         }
-        if (!getActivity().isFinishing() && yueNotEnoughDialog != null && yueNotEnoughDialog.isShowing()) {
+        if (getActivity() != null && !getActivity().isFinishing() && yueNotEnoughDialog != null && yueNotEnoughDialog.isShowing()) {
             yueNotEnoughDialog.dismiss();
             yueNotEnoughDialog = null;
         }

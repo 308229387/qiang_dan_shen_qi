@@ -92,6 +92,11 @@ public interface Constans {
 	 *进行的是一般的请求
 	 */
 	String REQUEST_NORMAL = "0";
+
+
+	String CHILD_ACCOUNT_NAME = "account_name";
+
+	String CHILD_ACCOUNT_PHONE = "account_phone";
 }
 
 

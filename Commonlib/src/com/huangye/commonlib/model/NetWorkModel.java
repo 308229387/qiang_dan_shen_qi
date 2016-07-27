@@ -160,7 +160,7 @@ public abstract class NetWorkModel extends HYBaseModel implements HttpRequestCal
                 }
             }
         } catch (Exception e) {
-            baseSourceModelCallBack.onLoadingFailure("服务器出现了问题，稍后再试呢");
+//            baseSourceModelCallBack.onLoadingFailure("服务器出现了问题，稍后再试呢");
             e.printStackTrace();
             //上传异常信息
             uploadException(e, result.result);
