@@ -12,7 +12,6 @@ import android.os.Message;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.activity.OrderDetailActivity;
-import com.huangyezhaobiao.activity.SplashActivity;
 import com.huangyezhaobiao.bean.push.PushToPassBean;
 
 import java.util.Timer;

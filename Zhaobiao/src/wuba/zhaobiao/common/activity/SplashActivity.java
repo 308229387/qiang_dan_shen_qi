@@ -1,17 +1,17 @@
-package com.huangyezhaobiao.activity;
+package wuba.zhaobiao.common.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
-import android.view.WindowManager;
 
 import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.activity.BlankActivity;
+import com.huangyezhaobiao.activity.GuideActivity;
+import com.huangyezhaobiao.activity.MainActivity;
 import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.gtui.GePushProxy;
 import com.huangyezhaobiao.inter.Constans;
@@ -25,18 +25,18 @@ import com.huangyezhaobiao.utils.VersionUtils;
 import com.wuba.loginsdk.external.LoginClient;
 
 import air.com.wuba.bangbang.common.impush.DeamonService;
+import wuba.zhaobiao.common.model.SplashModel;
 
 /**
  * 引导界面，注册推送，等3秒进入相应界面，存储版本号
  */
-public class SplashActivity extends Activity {
+public class SplashActivity extends BaseActivity<SplashModel> {
     private static final long DELAYED_TIMES = 3 * 1000;
     private SharedPreferences sp;
     private Handler handler = new Handler();
     private Context context = this;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         init();
@@ -45,7 +45,7 @@ public class SplashActivity extends Activity {
     private void init() {
         registPush();
         waitTime();
-        setHeardColor();
+        model.setHeardColor();
     }
 
     private void registPush() {
@@ -61,13 +61,6 @@ public class SplashActivity extends Activity {
                 goToWhere();
             }
         }, DELAYED_TIMES);
-    }
-
-    private void setHeardColor() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
-        getWindow().setBackgroundDrawable(null);
     }
 
     private void goToWhere() {
@@ -119,6 +112,11 @@ public class SplashActivity extends Activity {
         super.onResume();
         BDMob.getBdMobInstance().onResumeActivity(BiddingApplication.getBiddingApplication());
         HYMob.getDataList(this, HYEventConstans.EVENT_ID_APP_OPEND);
+    }
+
+    @Override
+    public SplashModel createModel() {
+        return new SplashModel(SplashActivity.this);
     }
 
 }

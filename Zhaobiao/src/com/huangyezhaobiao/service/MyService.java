@@ -11,8 +11,9 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.activity.SplashActivity;
 import com.huangyezhaobiao.utils.LogUtils;
+
+import wuba.zhaobiao.common.activity.SplashActivity;
 
 /**
  * Created by shenzhixin on 2015/11/9.

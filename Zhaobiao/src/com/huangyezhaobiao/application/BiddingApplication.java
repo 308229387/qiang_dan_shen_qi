@@ -46,9 +46,7 @@ import com.wuba.loginsdk.external.LoginSdk;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Timer;
 
 /**
  * 1、为了打开客户端的日志，便于在开发过程中调试，需要自定义一个Application。
@@ -59,14 +57,11 @@ import java.util.Timer;
  */
 public class BiddingApplication extends Application {
 
-//    private List<Activity> activityList = new LinkedList<Activity>();
 
     private NotificationExecutor notificationExecutor;
     private NotificationExecutor getuiNotificationExecutor;
     private INotificationListener listener;// 透传消息的引用
     private NetworkChangedReceiver receiver;
-    // user your appid the key.
-    //public static final String APP_ID = "2882303761517351320";
     public static final String APP_ID = "2882303761517362207";
     // user your appid the key.
     //public static final String APP_KEY = "5471735123320";
