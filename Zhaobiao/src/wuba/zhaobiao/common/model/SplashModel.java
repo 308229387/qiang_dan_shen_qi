@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import android.view.WindowManager;
 
 import com.huangyezhaobiao.activity.GuideActivity;
-import com.huangyezhaobiao.activity.MainActivity;
 import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.gtui.GePushProxy;
 import com.huangyezhaobiao.inter.Constans;
@@ -21,6 +20,7 @@ import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.utils.VersionUtils;
 import com.wuba.loginsdk.external.LoginClient;
 
+import wuba.zhaobiao.common.activity.HomePageActivity;
 import wuba.zhaobiao.common.activity.LoginActivity;
 import wuba.zhaobiao.common.activity.SplashActivity;
 
@@ -41,7 +41,7 @@ public class SplashModel extends BaseModel {
         GePushProxy.initliazePush(context.getApplicationContext());
     }
 
-    public void setHeardColor() {
+    public void setTobBarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             context.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
@@ -64,7 +64,7 @@ public class SplashModel extends BaseModel {
         } else if (neverCome()) {
             ActivityUtils.goToActivity(context, LoginActivity.class);
         } else {
-            ActivityUtils.goToActivity(context, MainActivity.class);
+            ActivityUtils.goToActivity(context, HomePageActivity.class);
         }
         sp.edit().putString(Constans.VERSION_NAME, currentVersionName).commit();
     }

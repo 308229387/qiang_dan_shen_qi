@@ -8,7 +8,7 @@ import wuba.zhaobiao.common.model.LoginModel;
 
 /**
  * Created by SongYongmeng on 2016/7/28.
- * 描    述：登陆界面，注册SDK，设置个性化SDK，登陆结果处理
+ * 描    述：登陆界面，注册SDK，设置个性化SDK，登陆PASSPORD然后储存信息，操作。
  */
 public class LoginActivity extends BaseActivity<LoginModel> {
 
@@ -22,7 +22,6 @@ public class LoginActivity extends BaseActivity<LoginModel> {
     private void init() {
         model.registLoginSDK();
         model.configLandedParams();
-        model.stopService();
     }
 
     @Override
@@ -34,7 +33,6 @@ public class LoginActivity extends BaseActivity<LoginModel> {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        model.dismissDialog();
         model.unregisterLoginSDK();
     }
 

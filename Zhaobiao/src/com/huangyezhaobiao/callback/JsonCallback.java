@@ -1,7 +1,6 @@
 package com.huangyezhaobiao.callback;
 
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -39,13 +38,20 @@ public abstract class JsonCallback<T> extends EncryptCallback<T> {
     public T parseNetworkResponse(Response response) throws Exception {
         String responseData = response.body().string();
         if (TextUtils.isEmpty(responseData)) return null;
-        Log.d("get==",responseData);
+        /**
+         * 一般来说，服务器返回的响应码都包含 code，msg，data 三部分，在此根据自己的业务需要完成相应的逻辑判断
+         * 以下只是一个示例，具体业务具体实现
+         */
         JSONObject jsonObject = new JSONObject(responseData);
         final String msg = jsonObject.optString("msg", "");
         final int code = jsonObject.optInt("status", 0);
         String data = jsonObject.optString("result", "");
         switch (code) {
             case 0:
+                /**
+                 * code = 0 代表成功，默认实现了Gson解析成相应的实体Bean返回，可以自己替换成fastjson等
+                 * 对于返回参数，先支持 String，然后优先支持class类型的字节码，最后支持type类型的参数
+                 */
                 if (clazz == String.class) return (T) data;
                 if (clazz != null) return new Gson().fromJson(data, clazz);
                 if (type != null) return new Gson().fromJson(data, type);

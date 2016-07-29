@@ -22,7 +22,7 @@ public class SplashActivity extends BaseActivity<SplashModel> {
     private void init() {
         model.registPush();
         model.waitTimeAfterGoToWhere();
-        model.setHeardColor();
+        model.setTobBarColor();
     }
 
     @Override

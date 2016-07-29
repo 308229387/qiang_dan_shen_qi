@@ -1,6 +1,5 @@
 package wuba.zhaobiao.common.model;
 
-import android.content.Intent;
 import android.support.annotation.Nullable;
 
 import com.huangyezhaobiao.R;
@@ -9,7 +8,6 @@ import com.huangyezhaobiao.activity.MobileValidateActivity;
 import com.huangyezhaobiao.activity.SoftwareUsageActivity;
 import com.huangyezhaobiao.callback.JsonCallback;
 import com.huangyezhaobiao.gtui.GePushProxy;
-import com.huangyezhaobiao.service.MyService;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
@@ -64,38 +62,12 @@ public class LoginModel extends BaseModel {
         return loginSDKBean != null && loginSDKBean.getCode() == LoginSDKBean.CODE_CANCEL_OPERATION;
     }
 
-    public void dismissDialog() {
-        if (alertDialog != null && alertDialog.isShowing() && !context.isFinishing()) {
-            alertDialog.dismiss();
-            alertDialog = null;
-        }
-    }
-
     public void getBaiduStatisticsInfo() {
         HYMob.getBaseDataListForPage(context, HYEventConstans.PAGE_LOGIN, context.stop_time - context.resume_time);
     }
 
-
     public void unregisterLoginSDK() {
         LoginClient.unregister(mLoginCallback);
-    }
-
-    public void stopService() {
-        context.stopService(new Intent(context, MyService.class));
-    }
-
-    private class loginCallBack extends SimpleLoginCallback {
-        @Override
-        public void onLogin58Finished(boolean isSuccess, String msg, @Nullable LoginSDKBean loginSDKBean) {
-            super.onLogin58Finished(isSuccess, msg, loginSDKBean);
-            if (isSuccess && loginSDKBean != null) {
-                loginSuccess(msg);
-            }
-
-            if (isLoginFail(loginSDKBean)) {
-                context.finish();
-            }
-        }
     }
 
     private void initDailog(String msg) {
@@ -149,6 +121,19 @@ public class LoginModel extends BaseModel {
         }
     }
 
+    private class loginCallBack extends SimpleLoginCallback {
+        @Override
+        public void onLogin58Finished(boolean isSuccess, String msg, @Nullable LoginSDKBean loginSDKBean) {
+            super.onLogin58Finished(isSuccess, msg, loginSDKBean);
+            if (isSuccess && loginSDKBean != null) {
+                loginSuccess(msg);
+            }
+
+            if (isLoginFail(loginSDKBean)) {
+                context.finish();
+            }
+        }
+    }
 
     private class localLoginRespons extends JsonCallback<LoginRespons> {
 
