@@ -335,6 +335,10 @@
 
             android:screenOrientation="portrait" />
         <activity
+            android:name="wuba.zhaobiao.common.activity.LoginActivity"
+
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activity.LockActivity"
             android:launchMode="singleInstance"
             android:noHistory="true"
@@ -537,8 +541,8 @@
         </receiver>
 
         <!--<service-->
-            <!--android:name=".service.AlertService"-->
-            <!--android:enabled="true"></service>-->
+        <!--android:name=".service.AlertService"-->
+        <!--android:enabled="true"></service>-->
     </application>
 
 </manifest>

@@ -14,11 +14,10 @@ public abstract class CommonCallback<T> extends AbsCallback<T> {
     public void onBefore(BaseRequest request) {
         super.onBefore(request);
         //如果账户已经登录，就添加 token 等等
-        request.headers("ppu", LoginClient.doGetPPUOperate(BiddingApplication.getAppInstanceContext()))//
-                .headers("userId", LoginClient.doGetUserIDOperate(BiddingApplication.getAppInstanceContext()))//
+        request.headers("ppu", LoginClient.doGetPPUOperate(BiddingApplication.getAppInstanceContext()))//passpord
+                .headers("userId", LoginClient.doGetUserIDOperate(BiddingApplication.getAppInstanceContext()))//用户唯一
                 .headers("version", "6")//
                 .headers("platform", "1")//
-                .headers("UUID", PhoneUtils.getIMEI(BiddingApplication.getAppInstanceContext()))//
-                .headers("userId", LoginClient.doGetUserIDOperate(BiddingApplication.getAppInstanceContext()));
+                .headers("UUID", PhoneUtils.getIMEI(BiddingApplication.getAppInstanceContext()));//识别设置的标识
     }
 }

@@ -21,7 +21,7 @@ public class SplashActivity extends BaseActivity<SplashModel> {
 
     private void init() {
         model.registPush();
-        model.waitTime();
+        model.waitTimeAfterGoToWhere();
         model.setHeardColor();
     }
 
@@ -34,7 +34,7 @@ public class SplashActivity extends BaseActivity<SplashModel> {
     @Override
     protected void onResume() {
         super.onResume();
-        model.baiduStatistics();
+        model.baiduStatisticsStart();
     }
 
     @Override

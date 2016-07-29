@@ -1,6 +1,5 @@
 package wuba.zhaobiao.common.model;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -8,7 +7,6 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.view.WindowManager;
 
-import com.huangyezhaobiao.activity.BlankActivity;
 import com.huangyezhaobiao.activity.GuideActivity;
 import com.huangyezhaobiao.activity.MainActivity;
 import com.huangyezhaobiao.application.BiddingApplication;
@@ -23,7 +21,7 @@ import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.utils.VersionUtils;
 import com.wuba.loginsdk.external.LoginClient;
 
-import air.com.wuba.bangbang.common.impush.DeamonService;
+import wuba.zhaobiao.common.activity.LoginActivity;
 import wuba.zhaobiao.common.activity.SplashActivity;
 
 /**
@@ -41,8 +39,6 @@ public class SplashModel extends BaseModel {
 
     public void registPush() {
         GePushProxy.initliazePush(context.getApplicationContext());
-        Intent intent = new Intent(context, DeamonService.class);
-        context.startService(intent);
     }
 
     public void setHeardColor() {
@@ -52,7 +48,7 @@ public class SplashModel extends BaseModel {
         context.getWindow().setBackgroundDrawable(null);
     }
 
-    public void waitTime() {
+    public void waitTimeAfterGoToWhere() {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -63,11 +59,11 @@ public class SplashModel extends BaseModel {
 
     private void goToWhere() {
         String currentVersionName = getVersion();
-        if (isFirstCome(currentVersionName)) {//进入引导界面
+        if (isFirstCome(currentVersionName)) {
             ActivityUtils.goToActivity(context, GuideActivity.class);
-        } else if (neverCome()) {//如果没有登录过
-            ActivityUtils.goToActivity(context, BlankActivity.class);
-        } else {//走主界面
+        } else if (neverCome()) {
+            ActivityUtils.goToActivity(context, LoginActivity.class);
+        } else {
             ActivityUtils.goToActivity(context, MainActivity.class);
         }
         sp.edit().putString(Constans.VERSION_NAME, currentVersionName).commit();
@@ -99,7 +95,7 @@ public class SplashModel extends BaseModel {
                 || TextUtils.isEmpty(LoginClient.doGetPPUOperate(BiddingApplication.getAppInstanceContext()));
     }
 
-    public void baiduStatistics() {
+    public void baiduStatisticsStart() {
         BDMob.getBdMobInstance().onResumeActivity(BiddingApplication.getBiddingApplication());
         HYMob.getDataList(context, HYEventConstans.EVENT_ID_APP_OPEND);
     }
