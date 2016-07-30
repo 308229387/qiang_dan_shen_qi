@@ -68,7 +68,7 @@ public class SplashModel extends BaseModel {
         sp = context.getSharedPreferences(Constans.APP_SP, 0);
     }
 
-    public void waitTimeAfterGoToWhere() {
+    public void waitAfterSaveVerSionAndGo() {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
