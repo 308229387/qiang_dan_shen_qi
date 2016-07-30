@@ -28,24 +28,44 @@ import wuba.zhaobiao.common.activity.SplashActivity;
  * Created by SongYongmeng on 2016/7/28.
  */
 public class SplashModel extends BaseModel {
+
     private SplashActivity context;
-    private static final long DELAYED_TIMES = 3 * 1000;
     private SharedPreferences sp;
+    private static final long DELAYED_TIMES = 3 * 1000;
     private Handler handler = new Handler();
 
     public SplashModel(SplashActivity context) {
         this.context = context;
     }
 
+    public void setTobBarColor() {
+        setTopColor();
+        setTopBackground();
+    }
+
+    private void setTopColor() {
+        if (judgCanSupportChangeTopColor())
+            setTopColorParams();
+    }
+
+    private boolean judgCanSupportChangeTopColor() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
+    }
+
+    private void setTopColorParams() {
+        context.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+    }
+
+    private void setTopBackground() {
+        context.getWindow().setBackgroundDrawable(null);
+    }
+
     public void registPush() {
         GePushProxy.initliazePush(context.getApplicationContext());
     }
 
-    public void setTobBarColor() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            context.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
-        context.getWindow().setBackgroundDrawable(null);
+    public void getSP() {
+        sp = context.getSharedPreferences(Constans.APP_SP, 0);
     }
 
     public void waitTimeAfterGoToWhere() {
@@ -58,19 +78,17 @@ public class SplashModel extends BaseModel {
     }
 
     private void goToWhere() {
-        String currentVersionName = getVersion();
-        if (isFirstCome(currentVersionName)) {
-            ActivityUtils.goToActivity(context, GuideActivity.class);
-        } else if (neverCome()) {
-            ActivityUtils.goToActivity(context, LoginActivity.class);
-        } else {
-            ActivityUtils.goToActivity(context, HomePageActivity.class);
-        }
-        sp.edit().putString(Constans.VERSION_NAME, currentVersionName).commit();
+        String currentVersionName = getVersionName();
+        judgeHowManyComeAfterGo(currentVersionName);
+        saveVersionName(currentVersionName);
     }
 
-    private String getVersion() {
-        sp = context.getSharedPreferences(Constans.APP_SP, 0);
+    private String getVersionName() {
+        String currentVersionName = getCurrentVersionName();
+        return currentVersionName;
+    }
+
+    private String getCurrentVersionName() {
         String currentVersionName = "1.0.0";
         try {
             currentVersionName = VersionUtils.getVersionName(context);
@@ -78,6 +96,16 @@ public class SplashModel extends BaseModel {
             e.printStackTrace();
         }
         return currentVersionName;
+    }
+
+    private void judgeHowManyComeAfterGo(String currentVersionName) {
+        if (isFirstCome(currentVersionName)) {
+            ActivityUtils.goToActivity(context, GuideActivity.class);
+        } else if (neverCome()) {
+            ActivityUtils.goToActivity(context, LoginActivity.class);
+        } else {
+            ActivityUtils.goToActivity(context, HomePageActivity.class);
+        }
     }
 
     private Boolean isFirstCome(String currentVersionName) {
@@ -95,12 +123,17 @@ public class SplashModel extends BaseModel {
                 || TextUtils.isEmpty(LoginClient.doGetPPUOperate(BiddingApplication.getAppInstanceContext()));
     }
 
-    public void baiduStatisticsStart() {
-        BDMob.getBdMobInstance().onResumeActivity(BiddingApplication.getBiddingApplication());
-        HYMob.getDataList(context, HYEventConstans.EVENT_ID_APP_OPEND);
+    private void saveVersionName(String currentVersionName) {
+        sp.edit().putString(Constans.VERSION_NAME, currentVersionName).commit();
     }
 
     public void baiduStatisticsPause() {
         BDMob.getBdMobInstance().onPauseActivity(context);
     }
+
+    public void baiduStatisticsStart() {
+        BDMob.getBdMobInstance().onResumeActivity(BiddingApplication.getBiddingApplication());
+        HYMob.getDataList(context, HYEventConstans.EVENT_ID_APP_OPEND);
+    }
+
 }

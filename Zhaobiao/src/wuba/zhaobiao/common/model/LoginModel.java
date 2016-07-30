@@ -20,7 +20,6 @@ import com.wuba.loginsdk.external.LoginClient;
 import com.wuba.loginsdk.external.Request;
 import com.wuba.loginsdk.external.SimpleLoginCallback;
 import com.wuba.loginsdk.model.LoginSDKBean;
-import com.wuba.loginsdk.utils.ToastUtils;
 
 import okhttp3.Call;
 import okhttp3.Response;
@@ -34,20 +33,23 @@ import wuba.zhaobiao.respons.LoginRespons;
 public class LoginModel extends BaseModel {
     private LoginActivity context;
     private ZhaoBiaoDialog alertDialog;
+    private LoginCallback mLoginCallback;
+
     private String NOT_VALIDATED = "1";
 
     public LoginModel(LoginActivity context) {
         this.context = context;
     }
 
-    public void registLoginSDK() {
+    public void creatLoginCallback() {
+        mLoginCallback = new loginCallBack();
+    }
+
+    public void setLoginSDKAndSaveInfo() {
         LoginClient.register(mLoginCallback);
     }
 
-    private LoginCallback mLoginCallback = new loginCallBack();
-
     private void loginSuccess(String msg) {
-        ToastUtils.showToast(context, msg);
         landed();
     }
 
@@ -58,8 +60,44 @@ public class LoginModel extends BaseModel {
                 .execute(new localLoginRespons());
     }
 
-    private boolean isLoginFail(@Nullable LoginSDKBean loginSDKBean) {
-        return loginSDKBean != null && loginSDKBean.getCode() == LoginSDKBean.CODE_CANCEL_OPERATION;
+    private void passpordLoginSuccess(LoginRespons loginRespons) {
+        saveInfoAndStatistics(loginRespons);
+        validatedPhoneNumAfterGoToWhere(loginRespons);
+        context.finish();
+    }
+
+    private void saveInfoAndStatistics(LoginRespons loginRespons) {
+        String userName = LoginClient.doGetUnameOperate(context);
+        String compnyName = loginRespons.getData().getCompanyName();
+        String userId = loginRespons.getData().getUserId();
+        saveInfo(userName, compnyName, userId);
+    }
+
+    private void saveInfo(String userName, String compnyName, String userId) {
+        saveLocalInfo();
+        saveStatistics(userName, userId);
+        UserUtils.saveUser(context, userId, compnyName, userName);
+    }
+
+    private void validatedPhoneNumAfterGoToWhere(LoginRespons loginRespons) {
+        if (hasValidated(loginRespons)) {
+            ActivityUtils.goToActivity(context, MobileValidateActivity.class);
+        } else {
+            UserUtils.hasValidate(context.getApplicationContext());
+            ActivityUtils.goToActivity(context, MainActivity.class);
+        }
+    }
+
+    //1:NOT_VALIDATED    0:HAS_VALIDATEDD
+    private Boolean hasValidated(LoginRespons loginRespons) {
+        Boolean check = loginRespons.getData().getHasValidated().equals(NOT_VALIDATED);
+        return check;
+    }
+
+    private void initPasspordErrorDailog(String msg) {
+        if (alertDialog == null) {
+            creatAndConfigErrorDialog(msg);
+        }
     }
 
     public void getBaiduStatisticsInfo() {
@@ -68,16 +106,6 @@ public class LoginModel extends BaseModel {
 
     public void unregisterLoginSDK() {
         LoginClient.unregister(mLoginCallback);
-    }
-
-    private void initDailog(String msg) {
-        if (alertDialog == null) {
-            alertDialog = new ZhaoBiaoDialog(context, "");
-            alertDialog.setCancelButtonGone();
-            alertDialog.setOnDialogClickListener(new grabDialog());
-            alertDialog.setMessage(msg);
-            alertDialog.show();
-        }
     }
 
     public void configLandedParams() {
@@ -94,31 +122,46 @@ public class LoginModel extends BaseModel {
         LoginClient.launch(context, request);
     }
 
-    private void passpordLoginSuccess(LoginRespons loginRespons) {
-        saveInfoAndStatistics(loginRespons);
-        doValidatedPhoneNum(loginRespons);
-        context.finish();
+    private void saveLocalInfo() {
+        saveLandedTime();
+        setNotForciblyUpdateFlag();
     }
 
-    private void saveInfoAndStatistics(LoginRespons loginRespons) {
-        String userName = LoginClient.doGetUnameOperate(context);
-        String compnyName = loginRespons.getData().getCompanyName();
-        String userId = loginRespons.getData().getUserId();
-        UserUtils.saveUser(context, userId, compnyName, userName);
-        UserUtils.setSessionTime(context, System.currentTimeMillis()); //存储登录成功时间
-        UserUtils.saveNeedUpdate(context, false); //存储不强制更新的flag
+    private void saveLandedTime() {
+        UserUtils.setSessionTime(context, System.currentTimeMillis());
+    }
+
+    private void setNotForciblyUpdateFlag() {
+        UserUtils.saveNeedUpdate(context, false);
+    }
+
+    private void saveStatistics(String userName, String userId) {
         HYMob.getDataListByLoginSuccess(context, HYEventConstans.EVENT_ID_LOGIN, "1", userName);
         GePushProxy.bindPushAlias(context.getApplicationContext(), userId + "_" + PhoneUtils.getIMEI(context));
     }
 
-    private void doValidatedPhoneNum(LoginRespons loginRespons) {
-        String hasValidated = loginRespons.getData().getHasValidated();
-        if (hasValidated.equals(NOT_VALIDATED)) {    //判断是否验证过手机 1没有验证过，0验证过
-            ActivityUtils.goToActivity(context, MobileValidateActivity.class);
-        } else {
-            UserUtils.hasValidate(context.getApplicationContext());
-            ActivityUtils.goToActivity(context, MainActivity.class);
-        }
+    private void creatAndConfigErrorDialog(String msg) {
+        creatErrorDalog();
+        setErrorDialogInfo(msg);
+        errorDialogShow();
+    }
+
+    private void creatErrorDalog() {
+        alertDialog = new ZhaoBiaoDialog(context, "");
+    }
+
+    private void setErrorDialogInfo(String msg) {
+        alertDialog.setCancelButtonGone();
+        alertDialog.setOnDialogClickListener(new grabDialog());
+        alertDialog.setMessage(msg);
+    }
+
+    private void errorDialogShow() {
+        alertDialog.show();
+    }
+
+    private boolean isPasspordLoginFail(@Nullable LoginSDKBean loginSDKBean) {
+        return loginSDKBean != null && loginSDKBean.getCode() == LoginSDKBean.CODE_CANCEL_OPERATION;
     }
 
     private class loginCallBack extends SimpleLoginCallback {
@@ -129,7 +172,7 @@ public class LoginModel extends BaseModel {
                 loginSuccess(msg);
             }
 
-            if (isLoginFail(loginSDKBean)) {
+            if (isPasspordLoginFail(loginSDKBean)) {
                 context.finish();
             }
         }
@@ -144,7 +187,7 @@ public class LoginModel extends BaseModel {
 
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
-            initDailog(e.getMessage());
+            initPasspordErrorDailog(e.getMessage());
         }
     }
 

@@ -20,9 +20,10 @@ public class SplashActivity extends BaseActivity<SplashModel> {
     }
 
     private void init() {
-        model.registPush();
-        model.waitTimeAfterGoToWhere();
         model.setTobBarColor();
+        model.registPush();
+        model.getSP();
+        model.waitTimeAfterGoToWhere();
     }
 
     @Override

@@ -3,6 +3,7 @@ package wuba.zhaobiao.common.model;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.WindowManager;
@@ -11,6 +12,7 @@ import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.activity.BidSuccessActivity;
 import com.huangyezhaobiao.constans.AppConstants;
 import com.huangyezhaobiao.eventbus.EventAction;
+import com.huangyezhaobiao.eventbus.EventType;
 import com.huangyezhaobiao.eventbus.EventbusAgent;
 import com.huangyezhaobiao.fragment.home.BaseHomeFragment;
 import com.huangyezhaobiao.fragment.home.BiddingFragment;
@@ -22,7 +24,6 @@ import com.huangyezhaobiao.tab.MainTabFragmentAdapter;
 import com.huangyezhaobiao.tab.MainTabIndicator;
 import com.huangyezhaobiao.tab.MainTabIndicatorBean;
 import com.huangyezhaobiao.tab.MainTabViewPager;
-import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.UnreadUtils;
 
 import java.util.ArrayList;
@@ -43,6 +44,68 @@ public class HomePageModel extends BaseModel {
 
     private int DEFALT_FRAGMENT_NUM = 0;
 
+    public void setTobBarColor() {
+        context.getWindow().setBackgroundDrawable(null);
+        int flag = creatTopBarParams();
+        setTopBarParams(flag);
+    }
+
+    private int creatTopBarParams() {
+        return WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+    }
+
+    private void setTopBarParams(int flag) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
+            context.getWindow().addFlags(flag);
+    }
+
+    public void initViewPagerAndButton() {
+        mIndicator = (MainTabIndicator) context.findViewById(R.id.id_indicator);
+        mViewPager = (MainTabViewPager) context.findViewById(R.id.id_pager);
+    }
+
+    public void addFragmentToList() {
+        creatFragmentList();
+        addFragment();
+    }
+
+    private void creatFragmentList() {
+        mFragmentList = new ArrayList(4);
+    }
+
+    private void addFragment() {
+        mFragmentList.add(new BiddingFragment());
+        mFragmentList.add(new MessageFragment());
+        mFragmentList.add(new OrderListFragment());
+        mFragmentList.add(new PersonalCenterFragment());
+    }
+
+    public void configViewPagerAndButton() {
+        creatAdapter();
+        setAdapterForViewPager();
+        configViewPager();
+        configIndicator();
+    }
+
+    private void creatAdapter() {
+        mAdapter = new MainTabFragmentAdapter(context.getSupportFragmentManager(), mFragmentList);
+    }
+
+    private void setAdapterForViewPager() {
+        mViewPager.setAdapter(mAdapter);
+    }
+
+    private void configViewPager() {
+        mViewPager.setScanScroll(false);
+        mViewPager.setOffscreenPageLimit(3);
+        mViewPager.addOnPageChangeListener(new PageChangeListener());
+    }
+
+    private void configIndicator() {
+        mIndicator.setNavigateTab(new MainTabIndicatorBean());
+        mIndicator.setOnTabSelectedListener(new TabSelectListener());
+    }
+
     public void registEvenBus() {
         EventbusAgent.getInstance().register(context);
     }
@@ -52,87 +115,51 @@ public class HomePageModel extends BaseModel {
         context.startService(intent);
     }
 
-    public void eventBusThing(EventAction action) {
-
-        switch (action.getType()) {
-            case EVENT_TAB_RESET:
-                LogUtils.LogV("MainActivity1","xxxxx");
-                refreshTab();
-                break;
-        }
-    }
-
     public void registerScreenOffReceiver() {
-        if (receiver == null) {
-            receiver = new ScreenReceiver(context);
-            IntentFilter filter = new IntentFilter();
-            filter.addAction(Intent.ACTION_SCREEN_OFF);
-            filter.addAction(Intent.ACTION_SCREEN_ON);
-            context.registerReceiver(receiver, filter);
-        }
+        if (receiver == null)
+            doRegist();
     }
 
-    public void unregisterScreenOffReceiver() {
-        if (receiver != null) {
-            context.unregisterReceiver(receiver);
-            receiver = null;
-        }
+    public void eventBusThing(EventAction action) {
+        if (action.getType() == EventType.EVENT_TAB_RESET)
+            refreshTab();
     }
 
-    public void setTobBarColor() {
-        context.getWindow().setBackgroundDrawable(null);
-        int flag = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
-            context.getWindow().addFlags(flag);
-    }
-
-    public void initView() {
-        mIndicator = (MainTabIndicator) context.findViewById(R.id.id_indicator);
-        mViewPager = (MainTabViewPager) context.findViewById(R.id.id_pager);
-    }
-
-    public void addFragmentToList() {
-        mFragmentList = new ArrayList(4);
-        mFragmentList.add(new BiddingFragment());
-        mFragmentList.add(new MessageFragment());
-        mFragmentList.add(new OrderListFragment());
-        mFragmentList.add(new PersonalCenterFragment());
-    }
-
-    public void configViewPagerAndButton() {
-        mAdapter = new MainTabFragmentAdapter(context.getSupportFragmentManager(), mFragmentList);
-        mViewPager.setAdapter(mAdapter);
-        mViewPager.setScanScroll(false);
-        mIndicator.setNavigateTab(new MainTabIndicatorBean());
-        mIndicator.setOnTabSelectedListener(new TabSelectListener());
-        mViewPager.setOffscreenPageLimit(3);
-        mViewPager.addOnPageChangeListener(new PageChangeListener());
-    }
-
-    private void procTabClick(int paramInt) {
-        if (mViewPager != null && paramInt < mViewPager.getAdapter().getCount()) {
-            changePage(paramInt);
-            changeFragmentState(paramInt);
-        }
-    }
-
-    private void changePage(int paramInt) {
-        mViewPager.setCurrentItem(paramInt, false);
-        mIndicator.setCurrentTab(paramInt);
-        AppConstants.HOME_PAGE_INDEX = paramInt;
-    }
-
-    private void changeFragmentState(int paramInt) {
-        int counts = mFragmentList.size();
-        BaseHomeFragment fragment;
-        for (int index = 0; index < counts; index++) {
-            fragment = (BaseHomeFragment) mFragmentList.get(index);
-            if (paramInt == index) {
-                fragment.OnFragmentSelectedChanged(true);
-                BaseHomeFragment.current_index = index;
-            } else if (AppConstants.HOME_PAGE_INDEX == index) {
-                fragment.OnFragmentSelectedChanged(false);
+    public void refreshTab() {
+        context.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                checkWhenIndicatorEqualsZero();
+                checkWhenIndicatorEqualsOne();
+                checkWhenIndicatorEqualsTwo();
             }
+        });
+    }
+
+    private void checkWhenIndicatorEqualsZero() {
+        int num0 = UnreadUtils.getNewOrder(context);
+        if (num0 > 0) {
+            mIndicator.showNewTag(AppConstants.HOME_TAB_BIDDING, num0);
+        } else {
+            mIndicator.hideNewTag(AppConstants.HOME_TAB_BIDDING);
+        }
+    }
+
+    private void checkWhenIndicatorEqualsOne() {
+        int num1 = UnreadUtils.getAllNum(context);
+        if (num1 > 0) {
+            mIndicator.showNewTag(AppConstants.HOME_TAB_MESSAGE, num1);
+        } else {
+            mIndicator.hideNewTag(AppConstants.HOME_TAB_MESSAGE);
+        }
+    }
+
+    private void checkWhenIndicatorEqualsTwo() {
+        int num2 = UnreadUtils.getQDResult(context);
+        if (num2 > 0) {
+            mIndicator.showNewTag(AppConstants.HOME_TAB_ORDER, num2);
+        } else {
+            mIndicator.hideNewTag(AppConstants.HOME_TAB_ORDER);
         }
     }
 
@@ -149,48 +176,84 @@ public class HomePageModel extends BaseModel {
     }
 
     public void setViewPage(int paramInt) {
-        try {
-            int tabIndex = paramInt;
-            if ((mIndicator == null) || (mIndicator.getMainNavigateTab() == null)
-                    || (tabIndex < mIndicator.getMainNavigateTab().getTabParams().size())) {
-                mIndicator.onClickSelectedTab(tabIndex);
-                return;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        int tabIndex = paramInt;
+        if (viewPagerStateIsRight(tabIndex)) {
+            mIndicator.onClickSelectedTab(tabIndex);
+            return;
         }
     }
 
-    public void refreshTab() {
-        context.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-
-                int num0 = UnreadUtils.getNewOrder(context);
-                if (num0 > 0) {
-                    mIndicator.showNewTag(AppConstants.HOME_TAB_BIDDING, num0);
-                } else {
-                    mIndicator.hideNewTag(AppConstants.HOME_TAB_BIDDING);
-                }
-
-                int num1 = UnreadUtils.getAllNum(context);
-                if (num1 > 0) {
-                    mIndicator.showNewTag(AppConstants.HOME_TAB_MESSAGE, num1);
-                } else {
-                    mIndicator.hideNewTag(AppConstants.HOME_TAB_MESSAGE);
-                }
-
-                int num2 = UnreadUtils.getQDResult(context);
-                if (num2 > 0) {
-                    mIndicator.showNewTag(AppConstants.HOME_TAB_ORDER, num2);
-                } else {
-                    mIndicator.hideNewTag(AppConstants.HOME_TAB_ORDER);
-                }
-
-            }
-        });
+    private boolean viewPagerStateIsRight(int tabIndex) {
+        return (mIndicator == null) || (mIndicator.getMainNavigateTab() == null)
+                || (tabIndex < mIndicator.getMainNavigateTab().getTabParams().size());
     }
 
+    public void unregisterScreenOffReceiver() {
+        if (receiver != null) {
+            context.unregisterReceiver(receiver);
+            receiver = null;
+        }
+    }
+
+    private void doRegist() {
+        receiver = new ScreenReceiver(context);
+        IntentFilter filter = creatFilter();
+        context.registerReceiver(receiver, filter);
+    }
+
+    @NonNull
+    private IntentFilter creatFilter() {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_SCREEN_OFF);
+        filter.addAction(Intent.ACTION_SCREEN_ON);
+        return filter;
+    }
+
+
+
+
+    private void procTabClick(int paramInt) {
+        if (mViewPager != null && paramInt < mViewPager.getAdapter().getCount()) {
+            changePage(paramInt);
+            changeFragmentState(paramInt);
+        }
+    }
+
+    private void changePage(int paramInt) {
+        mViewPager.setCurrentItem(paramInt, false);
+        mIndicator.setCurrentTab(paramInt);
+        AppConstants.HOME_PAGE_INDEX = paramInt;
+    }
+
+    private void changeFragmentState(int paramInt) {
+        int counts = mFragmentList.size();
+        turnChangeState(paramInt, counts);
+    }
+
+    private void turnChangeState(int paramInt, int counts) {
+        for (int index = 0; index < counts; index++) {
+            checkWhichOne(paramInt, index);
+        }
+    }
+
+    private void checkWhichOne(int paramInt, int index) {
+        BaseHomeFragment
+                fragment = (BaseHomeFragment) mFragmentList.get(index);
+        if (paramInt == index) {
+            changeFragmentStateForTrue(fragment, index);
+        } else if (AppConstants.HOME_PAGE_INDEX == index) {
+            changeFragmentStateForFalse(fragment);
+        }
+    }
+
+    private void changeFragmentStateForTrue(BaseHomeFragment fragment, int index) {
+        fragment.OnFragmentSelectedChanged(true);
+        BaseHomeFragment.current_index = index;
+    }
+
+    private void changeFragmentStateForFalse(BaseHomeFragment fragment) {
+        fragment.OnFragmentSelectedChanged(false);
+    }
 
     public void unregistEvenBus() {
         EventbusAgent.getInstance().unregister(context);

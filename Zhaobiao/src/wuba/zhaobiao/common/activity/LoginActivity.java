@@ -20,7 +20,8 @@ public class LoginActivity extends BaseActivity<LoginModel> {
     }
 
     private void init() {
-        model.registLoginSDK();
+        model.creatLoginCallback();
+        model.setLoginSDKAndSaveInfo();
         model.configLandedParams();
     }
 
