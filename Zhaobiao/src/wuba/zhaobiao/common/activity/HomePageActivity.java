@@ -1,10 +1,18 @@
 package wuba.zhaobiao.common.activity;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.bean.result;
+import com.huangyezhaobiao.callback.DialogCallback;
 import com.huangyezhaobiao.eventbus.EventAction;
+import com.lzy.okhttputils.OkHttpUtils;
 
+import okhttp3.Call;
+import okhttp3.Request;
+import okhttp3.Response;
 import wuba.zhaobiao.common.model.HomePageModel;
 
 /**
@@ -18,6 +26,8 @@ public class HomePageActivity extends BaseActivity<HomePageModel> {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
         init();
+        get();
+
     }
 
     private void init() {
@@ -66,6 +76,32 @@ public class HomePageActivity extends BaseActivity<HomePageModel> {
     private void unRegistService() {
         model.unregisterScreenOffReceiver();
         model.unregistEvenBus();
+    }
+
+    private void get() {
+        OkHttpUtils.get("http://zhaobiao.58.com/api/getBids")//
+                .params("pushId", "-1")//
+                .params("bidId", "-1")//
+                .params("bidState", "-1")//
+                .execute(new ObjectText(HomePageActivity.this, result.class));
+    }
+
+    //序列化的实体响应类
+    private class ObjectText<T> extends DialogCallback<T> {
+
+        public ObjectText(Activity activity, Class<T> clazz) {
+            super(activity, clazz);
+        }
+
+        @Override
+        public void onResponse(boolean isFromCache, T t, Request request, @Nullable Response response) {
+
+        }
+
+        @Override
+        public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
+        }
+
     }
 
     @Override
