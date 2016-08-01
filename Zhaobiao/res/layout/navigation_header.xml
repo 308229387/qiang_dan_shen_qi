@@ -18,7 +18,7 @@
         android:layout_marginTop="30dip"
         android:textSize="19sp"
         android:textColor="@color/white"
-        android:text="name"
+        android:text=""
         android:textStyle="normal" />
         <com.huangyezhaobiao.view.CircleImageView
             android:id="@+id/civ_user"
@@ -39,7 +39,7 @@
             android:paddingBottom="20dip"
             android:textSize="18sp"
             android:textColor="@color/white"
-            android:text="company"
+            android:text=""
             android:textStyle="normal" />
         </RelativeLayout>
 
@@ -81,7 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:text="￥1200.00"
+                android:text="￥0.00"
                 android:textColor="#e12f37"
                 android:textSize="14sp" />
 

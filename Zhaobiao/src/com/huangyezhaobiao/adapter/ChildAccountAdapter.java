@@ -2,6 +2,7 @@ package com.huangyezhaobiao.adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,17 +11,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.activity.AddAccountActivity;
 import com.huangyezhaobiao.activity.UpdateAccountActivity;
 import com.huangyezhaobiao.bean.ChildAccountBean;
+import com.huangyezhaobiao.callback.JsonCallback;
 import com.huangyezhaobiao.inter.Constans;
 import com.huangyezhaobiao.utils.ActivityUtils;
+import com.huangyezhaobiao.utils.LogUtils;
+import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
+import com.lzy.okhttputils.OkHttpUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import okhttp3.Call;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Created by 58 on 2016/7/22.
@@ -28,18 +36,18 @@ import java.util.Map;
 public class ChildAccountAdapter extends BaseAdapter{
 
     private Context context;
-    private List<ChildAccountBean> childAccountList = new ArrayList<>();
+    private List<ChildAccountBean.data.bean> childAccountList = new ArrayList<>();
 
     public boolean flag = false; // false表示右上角显示"编辑"，true表示显示"完成"
 
     private ZhaoBiaoDialog deleteDialog;
 
-    public ChildAccountAdapter(Context context, List<ChildAccountBean> childAccountList){
+    public ChildAccountAdapter(Context context, List<ChildAccountBean.data.bean> childAccountList){
         this.context = context;
         this.childAccountList = childAccountList;
     }
 
-    public ChildAccountAdapter(Context context,List<ChildAccountBean> childAccountList,boolean flag){
+    public ChildAccountAdapter(Context context,List<ChildAccountBean.data.bean> childAccountList,boolean flag){
         this.context = context;
         this.childAccountList = childAccountList;
         this.flag = flag;
@@ -80,9 +88,9 @@ public class ChildAccountAdapter extends BaseAdapter{
             holder = (ViewHolder) convertView.getTag();
         }
 
-        final ChildAccountBean account = childAccountList.get(position);
-        holder.account_name.setText(account.getAccountName());
-        holder.account_phone.setText(account.getAccountPhone());
+        final ChildAccountBean.data.bean account = childAccountList.get(position);
+        holder.account_name.setText(account.getUsername());
+        holder.account_phone.setText(account.getPhone());
 
         if(flag){
             holder.account_delete.setVisibility(View.VISIBLE);
@@ -94,6 +102,7 @@ public class ChildAccountAdapter extends BaseAdapter{
                         @Override
                         public void onDialogOkClick() {
                             deleteDialog.dismiss();
+                            adeleteChildAccount(account.getId());
                             remove(position);
                             notifyDataSetChanged();
                         }
@@ -111,8 +120,10 @@ public class ChildAccountAdapter extends BaseAdapter{
                 public void onClick(View v) {
 
                     Map<String, String> map = new HashMap<String, String>();
-                    map.put(Constans.CHILD_ACCOUNT_NAME, account.getAccountName());
-                    map.put(Constans.CHILD_ACCOUNT_PHONE, account.getAccountPhone());
+                    map.put(Constans.CHILD_ACCOUNT_ID,account.getId());
+                    map.put(Constans.CHILD_ACCOUNT_NAME, account.getUsername());
+                    map.put(Constans.CHILD_ACCOUNT_PHONE, account.getPhone());
+                    map.put(Constans.CHILD_ACCOUNT_AUTHORITY,account.getRabc());
                     ActivityUtils.goToActivityWithString(context, UpdateAccountActivity.class, map);
                 }
             });
@@ -140,6 +151,28 @@ public class ChildAccountAdapter extends BaseAdapter{
                 deleteDialog = null;
             }
         });
+    }
+
+    //请求实体
+    private void adeleteChildAccount(String id) {
+        OkHttpUtils.get("http://zhaobiao.58.com/api/suserdelete")//
+                .params("id", id)//
+                .execute(new callback());
+    }
+    //响应类
+    private class callback extends JsonCallback<String> {
+
+        @Override
+        public void onResponse(boolean isFromCache, String s, Request request, @Nullable Response response) {
+            LogUtils.LogV("childAccount", "add_success");
+        }
+
+        @Override
+        public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
+
+            ToastUtils.showToast(e.getMessage());
+        }
+
     }
 
 }

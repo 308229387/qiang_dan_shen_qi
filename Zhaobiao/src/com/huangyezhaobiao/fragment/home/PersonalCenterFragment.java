@@ -11,19 +11,16 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.activity.AboutActivity;
-import com.huangyezhaobiao.activity.BidSuccessActivity;
 import com.huangyezhaobiao.activity.HelpActivity;
 import com.huangyezhaobiao.activity.MainActivity;
-import com.huangyezhaobiao.activity.ManageActivity;
+import com.huangyezhaobiao.activity.AccountManageActivity;
 import com.huangyezhaobiao.activity.MyWalletActivity;
 import com.huangyezhaobiao.activity.SettingsActivity;
 import com.huangyezhaobiao.bean.GlobalConfigBean;
-import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.enums.TitleBarType;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.BDEventConstans;
@@ -31,7 +28,6 @@ import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.SPUtils;
-import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.vm.YuEViewModel;
 
 import java.util.Map;
@@ -132,7 +128,7 @@ public class PersonalCenterFragment extends BaseHomeFragment implements NetWorkV
                 HYMob.getDataList(getActivity(), HYEventConstans.EVENT_ID_MY_WALLET);
                 break;
             case R.id.manage:
-                ActivityUtils.goToActivity(getActivity(), ManageActivity.class);
+                ActivityUtils.goToActivity(getActivity(), AccountManageActivity.class);
                 break;
             case R.id.sliding_settings://点击了设置
                 Intent intent = SettingsActivity.onNewIntent(getActivity());
@@ -180,11 +176,11 @@ public class PersonalCenterFragment extends BaseHomeFragment implements NetWorkV
             if (!TextUtils.isEmpty(companyName)) {
                 tv_userCompany.setText(companyName);
                 stopLoading();
+            }else if (!TextUtils.isEmpty(userName)) {
+                tv_userName.setText(userName);
+                stopLoading();
             }
-//            if (!TextUtils.isEmpty(userName)) {
-//                tv_userName.setText(userName);
-//                stopLoading();
-//            }
+
             tv_userName.setText("我");
         }
     }

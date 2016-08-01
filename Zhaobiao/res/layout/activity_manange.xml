@@ -73,7 +73,8 @@
         android:id="@+id/divider2"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="#eeeeee" />
+        android:background="#eeeeee"
+        android:visibility="gone"/>
 
    <LinearLayout
        android:id="@+id/ll_add_child_account"

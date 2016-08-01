@@ -37,15 +37,15 @@
 
         <EditText
             android:id="@+id/et_update_user_content"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
             android:layout_marginBottom="11dp"
             android:layout_toRightOf="@id/tv_update_user_title"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="11dp"
-            android:hint="如张三"
-            android:textColor="#c8c8c8"
+            android:maxLength="9"
+            android:hint=""
             android:textSize="15sp" />
     </RelativeLayout>
     <View
@@ -71,7 +71,7 @@
 
         <EditText
             android:id="@+id/et_update_phone_content"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
             android:layout_marginBottom="11dp"
@@ -79,6 +79,9 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="11dp"
             android:hint="如13232323212"
+            android:editable="false"
+            android:focusable="false"
+            android:inputType="phone"
             android:textColor="#c8c8c8"
             android:textSize="15sp" />
     </RelativeLayout>

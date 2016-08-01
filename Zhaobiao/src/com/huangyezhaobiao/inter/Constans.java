@@ -94,9 +94,13 @@ public interface Constans {
 	String REQUEST_NORMAL = "0";
 
 
+	String CHILD_ACCOUNT_ID = "account_id";
+
 	String CHILD_ACCOUNT_NAME = "account_name";
 
 	String CHILD_ACCOUNT_PHONE = "account_phone";
+
+	String CHILD_ACCOUNT_AUTHORITY = "account_authority";
 }
 
 

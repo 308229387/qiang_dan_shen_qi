@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.bean.result;
 import com.huangyezhaobiao.callback.JsonCallback;
+import com.huangyezhaobiao.utils.LogUtils;
+import com.huangyezhaobiao.utils.StringUtils;
 import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.view.AccountHelpDialog;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
@@ -46,7 +49,7 @@ public class AddAccountActivity extends QBBaseActivity implements View.OnClickLi
     private AccountHelpDialog helpDailog;
     private ZhaoBiaoDialog saveDialog;
 
-    StringBuilder builder;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,8 +57,6 @@ public class AddAccountActivity extends QBBaseActivity implements View.OnClickLi
         initView();
         initListener();
 
-        builder= new StringBuilder();
-        builder.append("1").append("|").append("3");
     }
 
     @Override
@@ -76,12 +77,6 @@ public class AddAccountActivity extends QBBaseActivity implements View.OnClickLi
 
     }
 
-    CompoundButton.OnCheckedChangeListener listener = new CompoundButton.OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-        }
-    };
 
 
 
@@ -90,8 +85,6 @@ public class AddAccountActivity extends QBBaseActivity implements View.OnClickLi
         back_layout.setOnClickListener(this);
         iv_base_help.setOnClickListener(this);
         btn_save.setOnClickListener(this);
-        cb_order.setOnCheckedChangeListener(listener);
-        cb_bidding.setOnCheckedChangeListener(listener);
     }
 
     @Override
@@ -104,30 +97,96 @@ public class AddAccountActivity extends QBBaseActivity implements View.OnClickLi
                 initHelpDialog();
                 break;
             case R.id.btn_save:
-                 get();
+                String name = tv_user_content.getText().toString();
+                if(TextUtils.isEmpty(name)){
+                    ToastUtils.showToast("权限使用人不能为空");
+                    return;
+                }else if(!TextUtils.isEmpty(name) && !StringUtils.stringFilter(name)){
+                    ToastUtils.showToast("权限使用人只允许输入文字或者字母");
+                    tv_user_content.setSelection(name.length());//设置新的光标所在位置
+                    return;
+                }
+                String phone = tv_phone_content.getText().toString();
+                if(TextUtils.isEmpty(phone)){
+                    ToastUtils.showToast("使用人手机不能为空");
+                    return;
+                }else if(!TextUtils.isEmpty(phone) && !StringUtils.isMobileNO(phone)){
+                    ToastUtils.showToast("请输入正确的手机号");
+                    tv_phone_content.setSelection(phone.length());//设置新的光标所在位置
+                    return;
+                }
+                StringBuilder builder = new StringBuilder();
+                builder.append("1");
+                if(cb_bidding.isChecked()){
+                    builder.append("|").append("2");
+                }
+                if(cb_order.isChecked()){
+                    builder.append("|").append("4");
+                }
+
+                addChildAccount(name, phone, builder.toString()); //增加子账号接口
+                LogUtils.LogV("childAccount", "update_success_bidding---" + builder.toString());
                 break;
         }
     }
 
+
+    private void save(){
+        String name = tv_user_content.getText().toString();
+        if(TextUtils.isEmpty(name)){
+            saveDialog.dismiss();
+            ToastUtils.showToast("权限使用人不能为空");
+            return;
+        }else if(!TextUtils.isEmpty(name) && !StringUtils.stringFilter(name)){
+            saveDialog.dismiss();
+            ToastUtils.showToast("权限使用人只允许输入文字或者字母");
+            tv_user_content.setSelection(name.length());//设置新的光标所在位置
+            return;
+        }
+        String phone = tv_phone_content.getText().toString();
+        if(TextUtils.isEmpty(phone)){
+            saveDialog.dismiss();
+            ToastUtils.showToast("使用人手机不能为空");
+            return;
+        }else if(!TextUtils.isEmpty(phone) && !StringUtils.isMobileNO(phone)){
+            saveDialog.dismiss();
+            ToastUtils.showToast("请输入正确的手机号");
+            tv_phone_content.setSelection(phone.length());//设置新的光标所在位置
+            return;
+        }
+        StringBuilder builder = new StringBuilder();
+        builder.append("1");
+        if(cb_bidding.isChecked()){
+            builder.append("|").append("2");
+        }
+        if(cb_order.isChecked()){
+            builder.append("|").append("4");
+        }
+
+        addChildAccount(name, phone, builder.toString()); //增加子账号接口
+        LogUtils.LogV("childAccount", "update_success_bidding---" + builder.toString());
+    }
+
     //请求实体
-    private void get() {
+    private void addChildAccount(String name,String phone ,String authority) {
         OkHttpUtils.get("http://zhaobiao.58.com/api/suseradd")//
-                .params("username", tv_user_content.getText().toString())//
-                .params("phone", tv_phone_content.getText().toString())//
-                .params("rbac",builder.toString())
-                .execute(new Test());
+                .params("username", name)//
+                .params("phone",phone)//
+                .params("rbac",authority)
+                .execute(new callback());
     }
     //响应类
-    private class Test extends JsonCallback<String> {
+    private class callback extends JsonCallback<String> {
 
         @Override
         public void onResponse(boolean isFromCache, String s, Request request, @Nullable Response response) {
-
-            ToastUtils.showToast(11111111);
+            LogUtils.LogV("childAccount","add_success");
+            finish();
         }
 
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
+
             ToastUtils.showToast(e.getMessage());
         }
 
@@ -139,7 +198,7 @@ public class AddAccountActivity extends QBBaseActivity implements View.OnClickLi
     }
 
     private void initSaveDialog(){
-        saveDialog= new ZhaoBiaoDialog(this,"是否保存添加的权限?");
+        saveDialog= new ZhaoBiaoDialog(this,"是否保存添加的子账号?");
         saveDialog.setNagativeText("不保存");
         saveDialog.setPositiveText("保存");
         saveDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -152,8 +211,7 @@ public class AddAccountActivity extends QBBaseActivity implements View.OnClickLi
         saveDialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
             @Override
             public void onDialogOkClick() {
-                saveDialog.dismiss();
-                finish();
+                save();
             }
 
             @Override
@@ -191,19 +249,6 @@ public class AddAccountActivity extends QBBaseActivity implements View.OnClickLi
 
         });
         helpDailog.show();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (!this.isFinishing() && helpDailog != null && helpDailog.isShowing()) {
-            helpDailog.dismiss();
-            helpDailog = null;
-        }
-        if (!this.isFinishing() && saveDialog != null && saveDialog.isShowing()) {
-            saveDialog.dismiss();
-            saveDialog = null;
-        }
     }
 
 

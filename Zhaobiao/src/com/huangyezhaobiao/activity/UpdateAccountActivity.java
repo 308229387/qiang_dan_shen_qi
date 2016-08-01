@@ -3,7 +3,10 @@ package com.huangyezhaobiao.activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -13,9 +16,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.bean.ChildAccountBean;
+import com.huangyezhaobiao.callback.JsonCallback;
 import com.huangyezhaobiao.inter.Constans;
+import com.huangyezhaobiao.utils.LogUtils;
+import com.huangyezhaobiao.utils.StringUtils;
+import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.view.AccountHelpDialog;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
+import com.lzy.okhttputils.OkHttpUtils;
+
+import org.w3c.dom.Text;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+
+import okhttp3.Call;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Created by 58 on 2016/7/26.
@@ -28,10 +47,11 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
     private CheckBox cb_update_order,cb_update_bidding;
     private Button btn_update_save;
 
-    private String name,phone;
+    private String id,name,phone,authority;
 
     private AccountHelpDialog helpDailog;
     private ZhaoBiaoDialog saveDialog;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +60,7 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
         initView();
         initListener();
         initData();
+
     }
 
     @Override
@@ -55,11 +76,13 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
         iv_update_base_help = getView(R.id.iv_update_base_help);
         btn_update_save = getView(R.id.btn_update_save);
         cb_update_order = getView(R.id.cb_update_order);
-        cb_update_bidding = getView(R.id.cb_update_bidding);
     }
 
     private void initData(){
         Intent intent = getIntent();
+        if(!TextUtils.isEmpty( intent.getStringExtra(Constans.CHILD_ACCOUNT_ID))){
+            id = intent.getStringExtra(Constans.CHILD_ACCOUNT_ID);
+        }
         name = intent.getStringExtra(Constans.CHILD_ACCOUNT_NAME);
         if(!TextUtils.isEmpty(name)){
             et_update_user_content.setText(name);
@@ -68,24 +91,28 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
         if(!TextUtils.isEmpty(phone)){
             et_update_phone_content.setText(phone);
         }
+        authority = intent.getStringExtra(Constans.CHILD_ACCOUNT_AUTHORITY);
+        if(!TextUtils.isEmpty(authority)
+                && TextUtils.equals("5",authority) || TextUtils.equals("7",authority)){
+            cb_update_order.setChecked(true);
+        }
+        cb_update_bidding = getView(R.id.cb_update_bidding);
+        if(!TextUtils.isEmpty(authority)
+                && TextUtils.equals("3",authority) || TextUtils.equals("7",authority)){
+            cb_update_bidding.setChecked(true);
+        }
     }
 
 
-    CompoundButton.OnCheckedChangeListener listener = new CompoundButton.OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-        }
-    };
 
     @Override
     public void initListener() {
         back_layout.setOnClickListener(this);
         iv_update_base_help.setOnClickListener(this);
         btn_update_save.setOnClickListener(this);
-        cb_update_order.setOnCheckedChangeListener(listener);
-        cb_update_bidding.setOnCheckedChangeListener(listener);
+
     }
+
 
     @Override
     public void onClick(View v) {
@@ -97,8 +124,54 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
                 initHelpDialog();
                 break;
             case R.id.btn_update_save:
+                String name = et_update_user_content.getText().toString();
+
+                if(TextUtils.isEmpty(name)){
+                    ToastUtils.showToast("权限使用人不能为空");
+                    return;
+                }else if(!TextUtils.isEmpty(name) && !StringUtils.stringFilter(name)){
+                    ToastUtils.showToast("权限使用人只允许输入文字或者字母");
+                    et_update_user_content.setSelection(name.length());//设置新的光标所在位置
+                    return;
+                }
+                StringBuilder builder= new StringBuilder();
+                builder.append("1");
+                if(cb_update_bidding.isChecked()){
+                    builder.append("|").append("2");
+                }
+                if(cb_update_order.isChecked()){
+                    builder.append("|").append("4");
+                }
+
+                updateChildAccount(id,name,builder.toString()); //更新子账号接口
+
                 break;
         }
+    }
+
+    //请求实体
+    private void updateChildAccount(String id, String name,String authority) {
+        OkHttpUtils.get("http://zhaobiao.58.com/api/suserupdate")//
+                .params("id",id)
+                .params("username", name)
+                .params("rbac", authority)
+                .execute(new callback());
+    }
+    //响应类
+    private class callback extends JsonCallback<ChildAccountBean> {
+
+        @Override
+        public void onResponse(boolean isFromCache, ChildAccountBean childAccountBean, Request request, @Nullable Response response) {
+            LogUtils.LogV("childAccount","update_success");
+            finish();
+        }
+
+        @Override
+        public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
+
+            ToastUtils.showToast(e.getMessage());
+        }
+
     }
 
     @Override
@@ -107,9 +180,7 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
     }
 
     private void initSaveDialog(){
-        saveDialog= new ZhaoBiaoDialog(this,"是否保存添加的权限?");
-        saveDialog.setNagativeText("不保存");
-        saveDialog.setPositiveText("保存");
+        saveDialog= new ZhaoBiaoDialog(this,"是否确认返回?");
         saveDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
@@ -131,6 +202,7 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
             }
         });
         saveDialog.show();
+
     }
 
     private void  initHelpDialog(){
@@ -161,18 +233,6 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
         helpDailog.show();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (!this.isFinishing() && helpDailog != null && helpDailog.isShowing()) {
-            helpDailog.dismiss();
-            helpDailog = null;
-        }
-        if (!this.isFinishing() && saveDialog != null && saveDialog.isShowing()) {
-            saveDialog.dismiss();
-            saveDialog = null;
-        }
-    }
 
 
 }

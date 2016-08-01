@@ -37,13 +37,14 @@
 
         <EditText
             android:id="@+id/tv_user_content"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
             android:layout_marginBottom="11dp"
             android:layout_toRightOf="@id/tv_user_title"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="11dp"
+            android:maxLength="9"
             android:hint="如张三"
             android:textColor="#c8c8c8"
             android:textSize="15sp" />
@@ -71,7 +72,7 @@
 
         <EditText
             android:id="@+id/tv_phone_content"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
             android:layout_marginBottom="11dp"
@@ -79,6 +80,8 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="11dp"
             android:hint="如13232323212"
+            android:maxLength="11"
+            android:inputType="phone"
             android:textColor="#c8c8c8"
             android:textSize="15sp" />
     </RelativeLayout>

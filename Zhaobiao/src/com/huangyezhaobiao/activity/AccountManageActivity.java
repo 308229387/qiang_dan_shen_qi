@@ -1,7 +1,7 @@
 package com.huangyezhaobiao.activity;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -11,17 +11,23 @@ import android.widget.TextView;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.adapter.ChildAccountAdapter;
 import com.huangyezhaobiao.bean.ChildAccountBean;
+import com.huangyezhaobiao.callback.JsonCallback;
 import com.huangyezhaobiao.utils.ActivityUtils;
+import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.ToastUtils;
-import com.huangyezhaobiao.view.ZhaoBiaoDialog;
+import com.lzy.okhttputils.OkHttpUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.Call;
+import okhttp3.Request;
+import okhttp3.Response;
+
 /**
  * Created by 58 on 2016/7/21.
  */
-public class ManageActivity extends QBBaseActivity implements View.OnClickListener{
+public class AccountManageActivity extends QBBaseActivity implements View.OnClickListener {
 
     private View back_layout;
     private TextView txt_head;
@@ -35,7 +41,7 @@ public class ManageActivity extends QBBaseActivity implements View.OnClickListen
 
     private ChildAccountAdapter adapter;
 
-    private List<ChildAccountBean> list = new ArrayList<>();
+    private List<ChildAccountBean.data.bean> list = new ArrayList<>();
 
 
     @Override
@@ -45,46 +51,65 @@ public class ManageActivity extends QBBaseActivity implements View.OnClickListen
         initView();
         initListener();
 
-        initData();
-
     }
 
-    private void initData(){
-        ChildAccountBean entity1 = new ChildAccountBean();
-        entity1.setAccountName("销售");
-        entity1.setAccountPhone("12323456789");
-        list.add(entity1);
-        ChildAccountBean entity2 = new ChildAccountBean();
-        entity2.setAccountName("客服");
-        entity2.setAccountPhone("12323456789");
-        list.add(entity2);
-        ChildAccountBean entity3 = new ChildAccountBean();
-        entity3.setAccountName("设计");
-        entity3.setAccountPhone("12323456789");
-        list.add(entity3);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getChildAccountList();
+    }
 
-        if(list.size() > 0) {
-            tv_edit.setVisibility(View.VISIBLE);
-            tv_edit.setText("编辑");
-            lv_sManage.setVisibility(View.VISIBLE);
-        }else{
-            tv_edit.setVisibility(View.GONE);
-            lv_sManage.setVisibility(View.GONE);
+
+    //请求实体
+    private void getChildAccountList() {
+        OkHttpUtils.get("http://zhaobiao.58.com/api/suserlist")//
+                .execute(new callback());
+    }
+
+    //响应类
+    private class callback extends JsonCallback<ChildAccountBean> {
+
+
+        @Override
+        public void onResponse(boolean isFromCache, ChildAccountBean childAccountBean, Request request, @Nullable Response response) {
+            LogUtils.LogV("childAccount", "getList_success");
+            ChildAccountBean.data data =  childAccountBean.getData();
+            if(data != null){
+                list =data.getList();
+                if (list != null && list.size() > 0) {
+                    tv_edit.setVisibility(View.VISIBLE);
+                    tv_edit.setText("编辑");
+                    lv_sManage.setVisibility(View.VISIBLE);
+                    divider2.setVisibility(View.VISIBLE);
+                } else {
+                    tv_edit.setVisibility(View.GONE);
+                    lv_sManage.setVisibility(View.GONE);
+                    divider2.setVisibility(View.GONE);
+                }
+                ll_add_child_account.setVisibility(View.VISIBLE);
+
+                adapter = new ChildAccountAdapter(AccountManageActivity.this, list, flag);
+                lv_sManage.setAdapter(adapter);
+            }
+
         }
-        ll_add_child_account.setVisibility(View.VISIBLE);
 
-        adapter = new ChildAccountAdapter(this,list,flag);
-        lv_sManage.setAdapter(adapter);
+        @Override
+        public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
+
+            ToastUtils.showToast(e.getMessage());
+        }
+
     }
 
     @Override
     public void initView() {
-        back_layout               = getView(R.id.back_layout);
+        back_layout = getView(R.id.back_layout);
         back_layout.setVisibility(View.VISIBLE);
-        layout_back_head          = getView(R.id.layout_head);
-        txt_head                  = getView(R.id.txt_head);
+        layout_back_head = getView(R.id.layout_head);
+        txt_head = getView(R.id.txt_head);
         txt_head.setText("子账号管理");
-        tbl                       = getView(R.id.tbl);
+        tbl = getView(R.id.tbl);
         tv_edit = getView(R.id.tv_edit);
         tv_edit.setOnClickListener(this);
         lv_sManage = getView(R.id.lv_sManage);
@@ -108,37 +133,37 @@ public class ManageActivity extends QBBaseActivity implements View.OnClickListen
                 onBackPressed();
                 break;
             case R.id.tv_edit:
-                if(flag){ //右上角显示为完成的界面
+                if (flag) { //右上角显示为完成的界面
                     flag = !flag;
-                    if(list.size() > 0) {
+                    if (list != null && list.size() > 0) {
                         tv_edit.setVisibility(View.VISIBLE);
                         tv_edit.setText("编辑");
                         lv_sManage.setVisibility(View.VISIBLE);
                         divider2.setVisibility(View.VISIBLE);
-                    }else{
+                    } else {
                         tv_edit.setVisibility(View.GONE);
                         lv_sManage.setVisibility(View.GONE);
                         divider2.setVisibility(View.GONE);
                     }
                     ll_add_child_account.setVisibility(View.VISIBLE);
 
-                    adapter = new ChildAccountAdapter(this,list,flag);
+                    adapter = new ChildAccountAdapter(this, list, flag);
                     lv_sManage.setAdapter(adapter);
 
-                }else{  //右上角显示为编辑的界面
+                } else {  //右上角显示为编辑的界面
                     flag = !flag;
                     tv_edit.setVisibility(View.VISIBLE);
                     tv_edit.setText("完成");
                     ll_add_child_account.setVisibility(View.GONE);
 
-                    adapter = new ChildAccountAdapter(this,list,flag);
+                    adapter = new ChildAccountAdapter(this, list, flag);
                     lv_sManage.setAdapter(adapter);
                 }
-               break;
+                break;
             case R.id.rl_add_manage:
-                if(list.size() >= 3){
+                if (list != null && list.size() >= 3) {
                     ToastUtils.showShort(this, getString(R.string.account_add_more), 3000);
-                }else{
+                } else {
                     ActivityUtils.goToActivity(this, AddAccountActivity.class);
                 }
                 break;

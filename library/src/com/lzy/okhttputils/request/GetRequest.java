@@ -1,5 +1,7 @@
 package com.lzy.okhttputils.request;
 
+import android.util.Log;
+
 import okhttp3.Request;
 import okhttp3.RequestBody;
 
@@ -28,6 +30,7 @@ public class GetRequest extends BaseRequest<GetRequest> {
         Request.Builder requestBuilder = new Request.Builder();
         appendHeaders(requestBuilder);
         url = createUrlFromParams(url, params.urlParamsMap);
+        Log.d("url", "url---" + url);
         return requestBuilder.get().url(url).tag(tag).build();
     }
 }

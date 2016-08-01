@@ -507,7 +507,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".activity.ManageActivity"
+            android:name=".activity.AccountManageActivity"
             android:screenOrientation="portrait" />
 
         <activity
