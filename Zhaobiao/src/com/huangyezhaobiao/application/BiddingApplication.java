@@ -48,7 +48,6 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Timer;
 
 /**
  * 1、为了打开客户端的日志，便于在开发过程中调试，需要自定义一个Application。
@@ -59,14 +58,11 @@ import java.util.Timer;
  */
 public class BiddingApplication extends Application {
 
-//    private List<Activity> activityList = new LinkedList<Activity>();
-
+    private List<Activity> activityList = new LinkedList<Activity>();
     private NotificationExecutor notificationExecutor;
     private NotificationExecutor getuiNotificationExecutor;
     private INotificationListener listener;// 透传消息的引用
     private NetworkChangedReceiver receiver;
-    // user your appid the key.
-    //public static final String APP_ID = "2882303761517351320";
     public static final String APP_ID = "2882303761517362207";
     // user your appid the key.
     //public static final String APP_KEY = "5471735123320";
@@ -79,11 +75,12 @@ public class BiddingApplication extends Application {
     private static PushHandler handler = null;
 
     private static LogHandler loghandler = null;
-//    private Timer mTimer;
+    //    private Timer mTimer;
     private VoiceManager manager;
     private static BiddingApplication app;
     private ImageLoader imageLoader;
     private ILogExecutor logExecutor;
+    private static BiddingApplication instance;
 
     private void setApp(BiddingApplication context) {
         app = context;
@@ -112,60 +109,79 @@ public class BiddingApplication extends Application {
         return app;
     }
 
+    public synchronized static BiddingApplication getInstance() {
+        if (null == instance) {
+            instance = new BiddingApplication();
+        }
+        return instance;
+    }
 
-//    // 遍历所有Activity并finish
-//    public void exit() {
-//
-//        try {
-//            for (Activity activity : activityList) {
-//                if(activity != null){
-//                    activity.finish();
-//                }
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }finally {
-//            System.exit(0);
-//        }
-//    }
-//
-//    /**
-//     * 结束指定的Activity
-//     */
-//    public  void finishSingleActivity(Activity activity) {
-//        if (activity != null) {
-//            if (activityList.contains(activity)) {
-//                activityList.remove(activity);
-//            }
-//            activity.finish();
-//        }
-//    }
-//
-//    /**
-//     * 结束指定类名的Activity 在遍历一个列表的时候不能执行删除操作，所有我们先记住要删除的对象，遍历之后才去删除。
-//     */
-//    public  void finishSingleActivityByClass(Class cls) {
-//        Activity tempActivity = null;
-//        for (Activity activity : activityList) {
-//            if (activity.getClass().equals(cls)) {
-//                tempActivity = activity;
-//            }
-//        }
-//
-//        finishSingleActivity(tempActivity);
-//    }
-//
-//    // 添加Activity到容器中
-//    public void addActivity(Activity activity) {
-//        if(!activityList.contains(activity)){
-//            activityList.add(activity);
-//        }
-//
-//    }
-//
-//    public void removeActivity(Activity activity){
-//        activityList.remove(activity);
-//    }
+
+    // 遍历所有Activity并finish
+    public void exit() {
+
+        try {
+            for (Activity activity : activityList) {
+                if (activity != null) {
+                    activity.finish();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            System.exit(0);
+        }
+    }
+
+    public void removeOtherActivity(Activity context) {
+        try {
+            for (Activity activity : activityList) {
+                if (activity != context) {
+                    activity.finish();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 结束指定的Activity
+     */
+    public void finishSingleActivity(Activity activity) {
+        if (activity != null) {
+            if (activityList.contains(activity)) {
+                activityList.remove(activity);
+            }
+            activity.finish();
+        }
+    }
+
+    /**
+     * 结束指定类名的Activity 在遍历一个列表的时候不能执行删除操作，所有我们先记住要删除的对象，遍历之后才去删除。
+     */
+    public void finishSingleActivityByClass(Class cls) {
+        Activity tempActivity = null;
+        for (Activity activity : activityList) {
+            if (activity.getClass().equals(cls)) {
+                tempActivity = activity;
+            }
+        }
+
+        finishSingleActivity(tempActivity);
+    }
+
+    // 添加Activity到容器中
+    public void addActivity(Activity activity) {
+        if (!activityList.contains(activity)) {
+            activityList.add(activity);
+        }
+
+    }
+
+    public void removeActivity(Activity activity) {
+        activityList.remove(activity);
+    }
 
 
     @Override
@@ -221,11 +237,11 @@ public class BiddingApplication extends Application {
         LoginSdk.LoginConfig loginConfig = new LoginSdk.LoginConfig()
                 //可选，设置日志级别，默认不输出日志，ILogger.NONE（关闭日志）,ILogger.STANDARD_LOG(标准andorid日志)
                 .setLogLevel(ILogger.STANDARD_LOG)
-                 //必选，设置app id，由产品统一约定
+                //必选，设置app id，由产品统一约定
                 .setAppId("1004")
-                 //必选，设置渠道
+                //必选，设置渠道
                 .setChannel(LoggerUtils.getChannelId(this))
-                 //必选，设置product id, 由产品统一约定
+                //必选，设置product id, 由产品统一约定
                 .setProductId("qiangdanshenqi");
 //                .setShieldPrivateKey("RSA_PRIVATE_KEY_FOR_ANDROID")
 //                .setThirdLoginConfig("200065", "wxc7929cc3d3fda545", "4139185932","http://bj.58.com/");
@@ -262,10 +278,10 @@ public class BiddingApplication extends Application {
         // 因为推送服务XMPushService在AndroidManifest.xml中设置为运行在另外一个进程，这导致本Application会被实例化两次，所以我们需要让应用的主进程初始化。
         Log.e("shenzhixin", "init:" +
 
-                        shouldInit()
+                shouldInit()
 
         );
-        if (shouldInit() )
+        if (shouldInit())
 
         {
             //shenzhixin add 日志上传者

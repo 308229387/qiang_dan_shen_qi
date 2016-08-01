@@ -1,57 +1,61 @@
 package com.huangyezhaobiao.callback;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.support.annotation.Nullable;
-import android.view.Window;
 
+import com.huangyezhaobiao.R;
 import com.lzy.okhttputils.request.BaseRequest;
 
-import java.lang.reflect.Type;
+import java.lang.reflect.ParameterizedType;
 
 import okhttp3.Call;
 import okhttp3.Response;
+import wuba.zhaobiao.utils.LogoutDialogUtils;
+import wuba.zhaobiao.utils.ProgressUtils;
 
 /**
- * 描    述：对于网络请求是否需要弹出进度对话框
+ * Created by SongYongmeng on 2016/7/29.
+ * 描    述：对于网络请求是否需要弹出退出对话框
  */
 public abstract class DialogCallback<T> extends JsonCallback<T> {
+    private ProgressUtils progress;
+    private Boolean needProgress = false;
+    private Class<T> clazz;
+    private Activity context;
+    private String NEED_DOWN_LINE = "need_down_line";
+    private String PPU_EXPIRED = "ppu_expired";
 
-    private ProgressDialog dialog;
-
-    private void initDialog(Activity activity) {
-        dialog = new ProgressDialog(activity);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setMessage("请求网络中...");
+    public DialogCallback(Activity context) {
+        this.context = context;
+        this.clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
-    public DialogCallback(Activity activity, Class<T> clazz) {
-        super(clazz);
-        initDialog(activity);
-    }
+    public DialogCallback(Activity context, Boolean needProgress) {
+        this.context = context;
+        this.clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+        this.needProgress = needProgress;
+        progress = new ProgressUtils(context);
 
-    public DialogCallback(Activity activity, Type type) {
-        super(type);
-        initDialog(activity);
     }
 
     @Override
     public void onBefore(BaseRequest request) {
         super.onBefore(request);
-        //网络请求前显示对话框
-        if (dialog != null && !dialog.isShowing()) {
-            dialog.show();
-        }
+        if (needProgress)
+            progress.startLoading();
     }
 
     @Override
     public void onAfter(boolean isFromCache, @Nullable T t, Call call, @Nullable Response response, @Nullable Exception e) {
         super.onAfter(isFromCache, t, call, response, e);
-        //网络请求结束后关闭对话框
-        if (dialog != null && dialog.isShowing()) {
-            dialog.dismiss();
-        }
+        if (needProgress)
+            progress.stopLoading();
+
+        if (e != null && e.getMessage().equals(NEED_DOWN_LINE))
+            new LogoutDialogUtils(context, context.getString(R.string.force_exit)).initAndShowDialog();
+        else if (e != null && e.getMessage().equals(PPU_EXPIRED))
+            new LogoutDialogUtils(context, context.getString(R.string.ppu_expired)).initAndShowDialog();
     }
+
 }
+
