@@ -6,4 +6,5 @@ package wuba.zhaobiao.config;
 public class Urls {
     public static final String BASE_URL = "http://zhaobiao.58.com/";
     public static final String LOGIN = BASE_URL + "api/login";
+    public static final String WLT_CHECK = BASE_URL + "app/global/params";
 }

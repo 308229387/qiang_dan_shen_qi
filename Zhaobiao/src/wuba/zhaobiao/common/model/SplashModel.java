@@ -81,6 +81,7 @@ public class SplashModel extends BaseModel {
         String currentVersionName = getVersionName();
         judgeHowManyComeAfterGo(currentVersionName);
         saveVersionName(currentVersionName);
+        finish();
     }
 
     private String getVersionName() {
@@ -125,6 +126,10 @@ public class SplashModel extends BaseModel {
 
     private void saveVersionName(String currentVersionName) {
         sp.edit().putString(Constans.VERSION_NAME, currentVersionName).commit();
+    }
+
+    private void finish() {
+        context.finish();
     }
 
     public void baiduStatisticsPause() {

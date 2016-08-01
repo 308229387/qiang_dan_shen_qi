@@ -325,7 +325,6 @@
             android:windowSoftInputMode="stateUnchanged|adjustPan" />
         <activity
             android:name="wuba.zhaobiao.common.activity.SplashActivity"
-            android:launchMode="singleTask"
             android:noHistory="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme3">
@@ -341,7 +340,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="wuba.zhaobiao.common.activity.LoginActivity"
-
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.LockActivity"

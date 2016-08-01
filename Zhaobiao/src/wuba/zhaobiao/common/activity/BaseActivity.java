@@ -1,8 +1,10 @@
 package wuba.zhaobiao.common.activity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
+import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.ToastUtils;
 
@@ -16,12 +18,12 @@ public abstract class BaseActivity<T extends BaseModel> extends FragmentActivity
     protected T model;
     public long resume_time;
     public long stop_time;
-
-    private final static String CLOSE_ACTIVITTY = "CLOSE_ACTIVITTY";
+    protected final static String CLOSE_ACTIVITTY = "CLOSE_ACTIVITTY";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        insert(this);
         initModel();
     }
 
@@ -42,6 +44,10 @@ public abstract class BaseActivity<T extends BaseModel> extends FragmentActivity
     protected void onStop() {
         super.onStop();
         stop_time = System.currentTimeMillis();
+    }
+
+    public void insert(Activity context) {
+        BiddingApplication.getInstance().addActivity(context);
     }
 
     public void showToast(String str) {

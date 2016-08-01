@@ -3,7 +3,6 @@ package wuba.zhaobiao.common.model;
 import android.support.annotation.Nullable;
 
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.activity.MainActivity;
 import com.huangyezhaobiao.activity.MobileValidateActivity;
 import com.huangyezhaobiao.activity.SoftwareUsageActivity;
 import com.huangyezhaobiao.callback.JsonCallback;
@@ -23,6 +22,7 @@ import com.wuba.loginsdk.model.LoginSDKBean;
 
 import okhttp3.Call;
 import okhttp3.Response;
+import wuba.zhaobiao.common.activity.HomePageActivity;
 import wuba.zhaobiao.common.activity.LoginActivity;
 import wuba.zhaobiao.config.Urls;
 import wuba.zhaobiao.respons.LoginRespons;
@@ -84,7 +84,7 @@ public class LoginModel extends BaseModel {
             ActivityUtils.goToActivity(context, MobileValidateActivity.class);
         } else {
             UserUtils.hasValidate(context.getApplicationContext());
-            ActivityUtils.goToActivity(context, MainActivity.class);
+            ActivityUtils.goToActivity(context, HomePageActivity.class);
         }
     }
 

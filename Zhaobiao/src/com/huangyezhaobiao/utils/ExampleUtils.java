@@ -11,33 +11,43 @@ import com.lzy.okhttputils.OkHttpUtils;
 import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
+import wuba.zhaobiao.config.Urls;
 
 /**
  * Created by SongYongmeng on 2016/7/26.
+ * 描    述：此类为示例代码。
  */
 public class ExampleUtils {
     public Activity context;
 
-    //带退出提醒的请求。
+    //示例get请求。
     private void get() {
         OkHttpUtils.get("http://zhaobiao.58.com/api/getBids")//
                 .params("pushId", "-1")//
                 .params("bidId", "-1")//
                 .params("bidState", "-1")//
-                .execute(new LogoutRequest(context, result.class));
+                .execute(new LogoutRequest(context));
+    }
+
+    //示例post请求
+    private void post() {
+        OkHttpUtils.post(Urls.WLT_CHECK)
+                .params("params", "params")
+                .execute(new LogoutRequest(context));
     }
 
     /**
-     * 此响应适用首页，Fragment等有需要提示被T下线的请求
+     * 此响应适用首页，Fragment等有需要提示被T下线的请求，响应体中少参数也可以取出值，如在返回的JSON串中包含两个，
+     * 但在定义的result序列化类里，可以只有一个参数
      */
-    private class LogoutRequest<T> extends DialogCallback<T> {
+    private class LogoutRequest extends DialogCallback<result> {
 
-        public LogoutRequest(Activity activity, Class<T> clazz) {
-            super(activity, clazz);
+        public LogoutRequest(Activity context) {
+            super(context);
         }
 
         @Override
-        public void onResponse(boolean isFromCache, T t, Request request, @Nullable Response response) {
+        public void onResponse(boolean isFromCache, result result, Request request, @Nullable Response response) {
 
         }
 

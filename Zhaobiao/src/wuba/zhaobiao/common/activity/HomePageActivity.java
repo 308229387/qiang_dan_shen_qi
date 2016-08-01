@@ -1,9 +1,15 @@
 package wuba.zhaobiao.common.activity;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.widget.Toast;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.eventbus.EventAction;
+import com.huangyezhaobiao.utils.ToastUtils;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import wuba.zhaobiao.common.model.HomePageModel;
 
@@ -24,6 +30,7 @@ public class HomePageActivity extends BaseActivity<HomePageModel> {
         initLayout();
         initEvenBus();
         registService();
+        checkWltOnLineState();
     }
 
     private void initLayout() {
@@ -39,6 +46,7 @@ public class HomePageActivity extends BaseActivity<HomePageModel> {
     private void addFragment() {
         model.addFragmentToList();
         model.configViewPagerAndButton();
+        model.initSelectPage();
     }
 
     private void initEvenBus() {
@@ -50,6 +58,10 @@ public class HomePageActivity extends BaseActivity<HomePageModel> {
         model.registerScreenOffReceiver();
     }
 
+    private void checkWltOnLineState() {
+        model.getWltOnlineStateAndPhoneNum();
+    }
+
     public void onEventMainThread(EventAction action) {
         model.eventBusThing(action);
     }
@@ -57,12 +69,21 @@ public class HomePageActivity extends BaseActivity<HomePageModel> {
     @Override
     protected void onResume() {
         super.onResume();
+        checkRedDotAndLandedTime();
+    }
+
+    private void checkRedDotAndLandedTime() {
         checkRedDotAndGrabBack();
+        checkIsLongTimeNotLogout();
     }
 
     private void checkRedDotAndGrabBack() {
         model.refreshTab();
         model.afterBidSuccessBack();
+    }
+
+    private void checkIsLongTimeNotLogout() {
+        model.checkIsLongTimeNotLogout();
     }
 
     @Override
@@ -74,6 +95,13 @@ public class HomePageActivity extends BaseActivity<HomePageModel> {
     private void unRegistService() {
         model.unregisterScreenOffReceiver();
         model.unregistEvenBus();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK)
+            model.exitBy2Click();
+        return false;
     }
 
     @Override

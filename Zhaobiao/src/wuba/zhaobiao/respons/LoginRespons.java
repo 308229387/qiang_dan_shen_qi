@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class LoginRespons implements Serializable {
     private data data;
 
-    public data getData() {
+    public LoginRespons.data getData() {
         return data;
     }
 

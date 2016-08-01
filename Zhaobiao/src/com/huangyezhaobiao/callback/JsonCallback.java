@@ -79,6 +79,8 @@ public abstract class JsonCallback<T> extends EncryptCallback<T> {
                 throw new IllegalStateException(msg);
             case 600:
                 throw new IllegalStateException(msg);
+            case 2001:
+                throw new IllegalStateException("ppu_expired");
             default:
                 throw new IllegalStateException("未知错误");
         }
