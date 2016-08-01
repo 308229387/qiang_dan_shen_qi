@@ -36,6 +36,33 @@ public class ExampleUtils {
                 .execute(new LogoutRequest(context));
     }
 
+    //带进度条的请求，true为显示，false和无参数为不显示
+    private void getProgress() {
+        OkHttpUtils.get("http://zhaobiao.58.com/api/getBids")//
+                .params("pushId", "-1")//
+                .params("bidId", "-1")//
+                .params("bidState", "-1")//
+                .execute(new ObjectText(context, true));
+    }
+
+    //带进度条的响应体
+    private class ObjectText extends DialogCallback<result> {
+        public ObjectText(Activity context, Boolean b) {
+            super(context, b);
+        }
+
+        @Override
+        public void onResponse(boolean isFromCache, result getBinds, Request request, @Nullable Response response) {
+            ToastUtils.showToast(getBinds.getData().get(0).getBidState());
+        }
+
+        @Override
+        public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
+            ToastUtils.showToast(e.getMessage());
+        }
+
+    }
+
     /**
      * 此响应适用首页，Fragment等有需要提示被T下线的请求，响应体中少参数也可以取出值，如在返回的JSON串中包含两个，
      * 但在定义的result序列化类里，可以只有一个参数
@@ -60,7 +87,7 @@ public class ExampleUtils {
     /**
      * 基础序列化的实体响应类，泛型中是什么类型就是什么类型，可以是String
      */
-    private class ObjectText extends JsonCallback<result> {
+    private class ObjectText1 extends JsonCallback<result> {
 
         @Override
         public void onResponse(boolean isFromCache, result getBinds, Request request, @Nullable Response response) {
