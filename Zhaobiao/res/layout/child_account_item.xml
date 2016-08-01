@@ -22,7 +22,7 @@
 
         <TextView
             android:id="@+id/account_name"
-            android:layout_width="wrap_content"
+            android:layout_width="50dip"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:layout_marginLeft="16dip"
@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="21dip"
+        android:paddingRight="21dip"
         android:src="@drawable/iv_account_edit"
         android:visibility="gone"/>
 

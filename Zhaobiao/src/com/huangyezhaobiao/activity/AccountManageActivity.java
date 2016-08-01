@@ -78,15 +78,25 @@ public class AccountManageActivity extends QBBaseActivity implements View.OnClic
                 list =data.getList();
                 if (list != null && list.size() > 0) {
                     tv_edit.setVisibility(View.VISIBLE);
-                    tv_edit.setText("编辑");
+
+                    if (flag) { //右上角显示为完成的界面
+                        tv_edit.setText("完成");
+                        ll_add_child_account.setVisibility(View.GONE);
+
+                    }else{
+                        tv_edit.setText("编辑");
+                        ll_add_child_account.setVisibility(View.VISIBLE);
+                    }
+
                     lv_sManage.setVisibility(View.VISIBLE);
                     divider2.setVisibility(View.VISIBLE);
+
                 } else {
                     tv_edit.setVisibility(View.GONE);
                     lv_sManage.setVisibility(View.GONE);
                     divider2.setVisibility(View.GONE);
+                    ll_add_child_account.setVisibility(View.VISIBLE);
                 }
-                ll_add_child_account.setVisibility(View.VISIBLE);
 
                 adapter = new ChildAccountAdapter(AccountManageActivity.this, list, flag);
                 lv_sManage.setAdapter(adapter);

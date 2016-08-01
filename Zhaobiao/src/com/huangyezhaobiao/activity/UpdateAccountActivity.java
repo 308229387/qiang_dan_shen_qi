@@ -49,7 +49,7 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
 
     private String id,name,phone,authority;
 
-    private AccountHelpDialog helpDailog;
+    private AccountHelpDialog helpDialog;
     private ZhaoBiaoDialog saveDialog;
 
 
@@ -92,6 +92,7 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
             et_update_phone_content.setText(phone);
         }
         authority = intent.getStringExtra(Constans.CHILD_ACCOUNT_AUTHORITY);
+        LogUtils.LogV("childAccount","update" + authority);
         if(!TextUtils.isEmpty(authority)
                 && TextUtils.equals("5",authority) || TextUtils.equals("7",authority)){
             cb_update_order.setChecked(true);
@@ -206,21 +207,21 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
     }
 
     private void  initHelpDialog(){
-        helpDailog = new AccountHelpDialog(this);
-        helpDailog.setMessage(getString(R.string.account_help));
-        helpDailog.setCancelButtonGone();
-        helpDailog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        helpDialog = new AccountHelpDialog(this);
+        helpDialog.setMessage(getString(R.string.account_help));
+        helpDialog.setCancelButtonGone();
+        helpDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
-                helpDailog = null;
+                helpDialog = null;
 
             }
         });
-        helpDailog.setOnDialogClickListener(new AccountHelpDialog.onDialogClickListener() {
+        helpDialog.setOnDialogClickListener(new AccountHelpDialog.onDialogClickListener() {
 
             @Override
             public void onDialogOkClick() {
-                helpDailog.dismiss();
+                helpDialog.dismiss();
             }
 
             @Override
@@ -230,7 +231,7 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
 
 
         });
-        helpDailog.show();
+        helpDialog.show();
     }
 
 

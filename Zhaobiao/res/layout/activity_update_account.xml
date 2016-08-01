@@ -143,7 +143,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@id/cb_update_base"
-                        android:layout_marginLeft="9dp"
+                        android:paddingLeft="9dp"
                         android:src="@drawable/iv_base_help"/>
                 </LinearLayout>
 

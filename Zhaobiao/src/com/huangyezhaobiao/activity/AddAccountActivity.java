@@ -46,7 +46,7 @@ public class AddAccountActivity extends QBBaseActivity implements View.OnClickLi
     private CheckBox cb_order,cb_bidding;
     private Button btn_save;
 
-    private AccountHelpDialog helpDailog;
+    private AccountHelpDialog helpDialog;
     private ZhaoBiaoDialog saveDialog;
 
 
@@ -224,21 +224,21 @@ public class AddAccountActivity extends QBBaseActivity implements View.OnClickLi
     }
 
     private void  initHelpDialog(){
-        helpDailog = new AccountHelpDialog(this);
-        helpDailog.setMessage(getString(R.string.account_help));
-        helpDailog.setCancelButtonGone();
-        helpDailog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        helpDialog = new AccountHelpDialog(this);
+        helpDialog.setMessage(getString(R.string.account_help));
+        helpDialog.setCancelButtonGone();
+        helpDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
-                helpDailog = null;
+                helpDialog = null;
 
             }
         });
-        helpDailog.setOnDialogClickListener(new AccountHelpDialog.onDialogClickListener() {
+        helpDialog.setOnDialogClickListener(new AccountHelpDialog.onDialogClickListener() {
 
             @Override
             public void onDialogOkClick() {
-                helpDailog.dismiss();
+                helpDialog.dismiss();
             }
 
             @Override
@@ -248,7 +248,7 @@ public class AddAccountActivity extends QBBaseActivity implements View.OnClickLi
 
 
         });
-        helpDailog.show();
+        helpDialog.show();
     }
 
 

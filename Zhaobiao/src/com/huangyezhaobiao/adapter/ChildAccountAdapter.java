@@ -123,7 +123,7 @@ public class ChildAccountAdapter extends BaseAdapter{
                     map.put(Constans.CHILD_ACCOUNT_ID,account.getId());
                     map.put(Constans.CHILD_ACCOUNT_NAME, account.getUsername());
                     map.put(Constans.CHILD_ACCOUNT_PHONE, account.getPhone());
-                    map.put(Constans.CHILD_ACCOUNT_AUTHORITY,account.getRabc());
+                    map.put(Constans.CHILD_ACCOUNT_AUTHORITY,account.getRbac());
                     ActivityUtils.goToActivityWithString(context, UpdateAccountActivity.class, map);
                 }
             });
