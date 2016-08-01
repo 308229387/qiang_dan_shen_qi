@@ -102,15 +102,11 @@ public class MessageFragment extends BaseHomeFragment implements INotificationLi
 
     }
 
-    private void load(){
-        new Thread() {
-            @Override
-            public void run() {
-                super.run();
-                if(vm != null)
-                    vm.getDate();
-            }
-        }.start();
+    private void load() {  //频繁创建新线程导致OOM
+
+        if (vm != null){
+            vm.getDate();
+        }
 
         isFirstOpen = false;
     }

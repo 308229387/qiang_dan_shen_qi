@@ -175,7 +175,9 @@ public class LockActivity extends Activity implements NetWorkVMCallBack, View.On
             });*/
             String du = bean.getVoice();
             LogUtils.LogE("ashenSize", "size:" + PushUtils.pushList.size() + ",voiceManager:" + (voiceManager == null) + ",voice：" + du);
-            voiceManager.createOrdersDialog(du);
+            if(!TextUtils.isEmpty(du)){
+                voiceManager.createOrdersDialog(du);
+            }
         } else if (PushUtils.pushList.size() == 2) {
             showNextButton();
         }

@@ -393,7 +393,9 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 
 		try {
 			currentTimeLine = new Date(System.currentTimeMillis());
-			latTimeLine = sfd.parse(time);
+			if(!TextUtils.isEmpty(time)){
+				latTimeLine = sfd.parse(time);
+			}
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

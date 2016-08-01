@@ -143,7 +143,7 @@ public class ChildAccountAdapter extends BaseAdapter{
     }
 
     protected void initDeleteDialog(){
-        deleteDialog= new ZhaoBiaoDialog(context,"确认删除选中权限?");
+        deleteDialog= new ZhaoBiaoDialog(context,"确认删除选中子账号?");
 
         deleteDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override

@@ -161,7 +161,6 @@ public class OrderListFragment extends  BaseHomeFragment implements INotificatio
         super.onCreate(savedInstanceState);
         lvm = new QiangDanListViewModel(this, getActivity());
         yuEViewModel = new YuEViewModel(this,getActivity());
-        yuEViewModel.getBalance();
     }
 
     @Nullable
