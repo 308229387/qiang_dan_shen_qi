@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.view.WindowManager;
 
-import com.huangyezhaobiao.activity.GuideActivity;
 import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.gtui.GePushProxy;
 import com.huangyezhaobiao.inter.Constans;
@@ -20,6 +19,7 @@ import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.utils.VersionUtils;
 import com.wuba.loginsdk.external.LoginClient;
 
+import wuba.zhaobiao.common.activity.GuideActivity;
 import wuba.zhaobiao.common.activity.HomePageActivity;
 import wuba.zhaobiao.common.activity.LoginActivity;
 import wuba.zhaobiao.common.activity.SplashActivity;

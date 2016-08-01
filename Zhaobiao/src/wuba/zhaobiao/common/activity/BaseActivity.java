@@ -12,7 +12,7 @@ import wuba.zhaobiao.common.model.BaseModel;
 
 /**
  * Created by SongYongmeng on 2016/7/28.
- * 描    述：基类
+ * 描    述：基类,将Activity加入List管理
  */
 public abstract class BaseActivity<T extends BaseModel> extends FragmentActivity {
     protected T model;
@@ -25,6 +25,10 @@ public abstract class BaseActivity<T extends BaseModel> extends FragmentActivity
         super.onCreate(savedInstanceState);
         insert(this);
         initModel();
+    }
+
+    public void insert(Activity context) {
+        BiddingApplication.getInstance().addActivity(context);
     }
 
     @Override
@@ -44,10 +48,6 @@ public abstract class BaseActivity<T extends BaseModel> extends FragmentActivity
     protected void onStop() {
         super.onStop();
         stop_time = System.currentTimeMillis();
-    }
-
-    public void insert(Activity context) {
-        BiddingApplication.getInstance().addActivity(context);
     }
 
     public void showToast(String str) {

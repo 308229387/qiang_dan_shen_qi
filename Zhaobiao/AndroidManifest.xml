@@ -351,6 +351,9 @@
             android:name=".activity.GuideActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name="wuba.zhaobiao.common.activity.GuideActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activity.MyWalletActivity"
             android:screenOrientation="portrait" />
         <activity
