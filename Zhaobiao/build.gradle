@@ -39,9 +39,9 @@ dependencies {
     compile 'com.facebook.stetho:stetho:1.1.0'
     compile 'com.google.code.gson:gson:2.5'
 
-//    compile 'com.wuba.wuxian.sdk:login:1.0.3-SNAPSHOT' //线上passport SDK
+    compile 'com.wuba.wuxian.sdk:login:1.0.3-SNAPSHOT' //线上passport SDK
 //    compile 'com.wuba.wuxian.sdk:login:1.0.3-debug-SNAPSHOT' //线下调试passport SDK
-    compile 'com.wuba.wuxian.sdk:login:0.1.0-http-SNAPSHOT' //线下 http passport SDK
+//    compile 'com.wuba.wuxian.sdk:login:0.1.0-http-SNAPSHOT' //线下 http passport SDK
 
 }
 
