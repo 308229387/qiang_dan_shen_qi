@@ -3,7 +3,6 @@ package wuba.zhaobiao.common.activity;
 import android.os.Bundle;
 
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.application.BiddingApplication;
 
 import wuba.zhaobiao.common.model.LoginModel;
 
@@ -23,7 +22,7 @@ public class LoginActivity extends BaseActivity<LoginModel> {
     }
 
     private void removeOtherActivity() {
-        BiddingApplication.getInstance().removeOtherActivity(this);
+        model.removeOtherActivity();
     }
 
     private void init() {

@@ -1,10 +1,12 @@
 package wuba.zhaobiao.common.model;
 
+import android.os.Handler;
 import android.support.annotation.Nullable;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.activity.MobileValidateActivity;
 import com.huangyezhaobiao.activity.SoftwareUsageActivity;
+import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.callback.JsonCallback;
 import com.huangyezhaobiao.gtui.GePushProxy;
 import com.huangyezhaobiao.utils.ActivityUtils;
@@ -39,6 +41,15 @@ public class LoginModel extends BaseModel {
 
     public LoginModel(LoginActivity context) {
         this.context = context;
+    }
+
+    public void removeOtherActivity() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                BiddingApplication.getInstance().removeOtherActivity(context);
+            }
+        }, 1500);
     }
 
     public void creatLoginCallback() {
