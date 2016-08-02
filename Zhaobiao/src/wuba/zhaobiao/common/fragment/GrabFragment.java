@@ -8,6 +8,7 @@ import wuba.zhaobiao.common.model.GrabModel;
  * Created by SongYongmeng on 2016/8/2.
  */
 public class GrabFragment extends BaseFragment<GrabModel> {
+
     @Override
     public void OnFragmentSelectedChanged(boolean isSelected) {
 
