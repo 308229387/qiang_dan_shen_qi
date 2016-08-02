@@ -1,4 +1,3 @@
-include ':smenulibrary', ':myapplication', ':leakcanary', ':designpatterndemo'
 include ':library'
 include ':Zhaobiao'
 include ':Commonlib'
