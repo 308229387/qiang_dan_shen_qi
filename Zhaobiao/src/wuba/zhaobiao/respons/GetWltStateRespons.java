@@ -17,8 +17,17 @@ public class GetWltStateRespons implements Serializable {
     }
 
     public class data implements Serializable {
+        private appUserSet  appUserSet;
         private userPhoneResult userPhoneResult;
         private wltAlertResult wltAlertResult;
+
+        public GetWltStateRespons.data.appUserSet getAppUserSet() {
+            return appUserSet;
+        }
+
+        public void setAppUserSet(GetWltStateRespons.data.appUserSet appUserSet) {
+            this.appUserSet = appUserSet;
+        }
 
         public GetWltStateRespons.data.userPhoneResult getUserPhoneResult() {
             return userPhoneResult;
@@ -34,6 +43,27 @@ public class GetWltStateRespons implements Serializable {
 
         public void setWltAlertResult(GetWltStateRespons.data.wltAlertResult wltAlertResult) {
             this.wltAlertResult = wltAlertResult;
+        }
+
+        public class appUserSet implements Serializable{
+            private String msg;
+            private String setState;
+
+            public String getMsg() {
+                return msg;
+            }
+
+            public void setMsg(String msg) {
+                this.msg = msg;
+            }
+
+            public String getSetState() {
+                return setState;
+            }
+
+            public void setSetState(String setState) {
+                this.setState = setState;
+            }
         }
 
         public class userPhoneResult implements Serializable {
