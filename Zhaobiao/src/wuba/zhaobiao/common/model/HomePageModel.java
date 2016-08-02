@@ -147,6 +147,13 @@ public class HomePageModel extends BaseModel {
                 .execute(new GetWltState(context));
     }
 
+    private  void saveUserSetState(GetWltStateRespons wltStateRespons){
+        String setState = wltStateRespons.getData().getAppUserSet().getSetState();
+        if(!TextUtils.isEmpty(setState))
+            SPUtils.saveKV(context, GlobalConfigBean.KEY_SETSTATE, setState);
+    }
+
+
     private void savePhoneAndWltState(GetWltStateRespons wltStateRespons) {
         jugedPhoneNumState(wltStateRespons);
         saveWltState(wltStateRespons);

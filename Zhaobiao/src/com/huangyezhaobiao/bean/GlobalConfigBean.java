@@ -5,6 +5,11 @@ package com.huangyezhaobiao.bean;
  * Created by shenzhixin on 2016/5/3 16:33.
  */
 public class GlobalConfigBean {
+
+    /**
+     * 用户是否设置
+     */
+    public static final String KEY_SETSTATE = "setState";
     /**
      * 是否增量拉取的key
      */
