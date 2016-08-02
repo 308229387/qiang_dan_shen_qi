@@ -1,5 +1,6 @@
 package com.huangyezhaobiao.activity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.adapter.ChildAccountAdapter;
 import com.huangyezhaobiao.bean.ChildAccountBean;
+import com.huangyezhaobiao.callback.DialogCallback;
 import com.huangyezhaobiao.callback.JsonCallback;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.LogUtils;
@@ -63,12 +65,16 @@ public class AccountManageActivity extends QBBaseActivity implements View.OnClic
     //请求实体
     private void getChildAccountList() {
         OkHttpUtils.get("http://zhaobiao.58.com/api/suserlist")//
-                .execute(new callback());
+                .execute(new callback(AccountManageActivity.this,true));
     }
 
     //响应类
-    private class callback extends JsonCallback<ChildAccountBean> {
+    private class callback extends DialogCallback<ChildAccountBean> {
 
+
+        public callback(Activity context, Boolean needProgress) {
+            super(context, needProgress);
+        }
 
         @Override
         public void onResponse(boolean isFromCache, ChildAccountBean childAccountBean, Request request, @Nullable Response response) {

@@ -1,5 +1,6 @@
 package com.huangyezhaobiao.activity;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.bean.result;
+import com.huangyezhaobiao.callback.DialogCallback;
 import com.huangyezhaobiao.callback.JsonCallback;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.StringUtils;
@@ -173,10 +175,14 @@ public class AddAccountActivity extends QBBaseActivity implements View.OnClickLi
                 .params("username", name)//
                 .params("phone",phone)//
                 .params("rbac",authority)
-                .execute(new callback());
+                .execute(new callback(AddAccountActivity.this,true));
     }
     //响应类
-    private class callback extends JsonCallback<String> {
+    private class callback extends DialogCallback<String> {
+
+        public callback(Activity context, Boolean needProgress) {
+            super(context, needProgress);
+        }
 
         @Override
         public void onResponse(boolean isFromCache, String s, Request request, @Nullable Response response) {

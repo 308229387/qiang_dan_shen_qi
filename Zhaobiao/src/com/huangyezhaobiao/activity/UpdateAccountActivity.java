@@ -1,5 +1,6 @@
 package com.huangyezhaobiao.activity;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.bean.ChildAccountBean;
+import com.huangyezhaobiao.callback.DialogCallback;
 import com.huangyezhaobiao.callback.JsonCallback;
 import com.huangyezhaobiao.inter.Constans;
 import com.huangyezhaobiao.utils.LogUtils;
@@ -156,10 +158,14 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
                 .params("id",id)
                 .params("username", name)
                 .params("rbac", authority)
-                .execute(new callback());
+                .execute(new callback(UpdateAccountActivity.this,true));
     }
     //响应类
-    private class callback extends JsonCallback<ChildAccountBean> {
+    private class callback extends DialogCallback<ChildAccountBean> {
+
+        public callback(Activity context, Boolean needProgress) {
+            super(context, needProgress);
+        }
 
         @Override
         public void onResponse(boolean isFromCache, ChildAccountBean childAccountBean, Request request, @Nullable Response response) {
