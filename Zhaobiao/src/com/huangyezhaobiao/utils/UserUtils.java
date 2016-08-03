@@ -15,6 +15,8 @@ public class UserUtils {
 	//static String TEST_USERID ="19833833741319";// "54765741"19833833741319;
 	private static final String USER_SP_NAME = "user";
 	private static final String USER_ID = "userId";
+	private static final String IS_SON = "isSon";
+	private static final String R_BAC = "rbac";
 	private static final String USER_PPU = "ppu";
 	private static final String COMPANY_NAME = "companyName";
 	private static final String USER_NAME = "companyName";
@@ -22,6 +24,8 @@ public class UserUtils {
 	public static String userId = "";//"30620951766535";
 	private static String companyName;
 	public static String userName;
+	public static String isSon;
+	public static String rbac;
 	private static String ppu;
 	public static int hasValidate = 1; //默认未认证，0代表已经认证
 	/** 与passport 相关的用户信息*/
@@ -62,10 +66,19 @@ public class UserUtils {
 		//shenzhixin add
 		UserUtils.userId = userId;
 		UserUtils.companyName = companyName;
+
 		UserUtils.userName = userName;
 		sp.edit().putString(USER_ID, userId).commit();
 		sp.edit().putString(COMPANY_NAME, companyName).commit();
 		sp.edit().putString(USER_NAME, userName).commit();
+	}
+
+	public static  void saveAcocuntInfo(Context context,String isSon,String rbac){
+		SharedPreferences sp = context.getSharedPreferences(USER_SP_NAME, 0);//用userId，来区分
+		UserUtils.isSon = isSon;
+		UserUtils.rbac = rbac;
+		sp.edit().putString(IS_SON, isSon).commit();
+		sp.edit().putString(R_BAC, rbac).commit();
 	}
 
 //	public static void setAccountName(Context context,String accountName){
@@ -226,7 +239,18 @@ public class UserUtils {
 		}
 		return companyName;
 	}
-	
+
+	/**
+	 * 得到子账号标志
+	 * @param context
+	 * @return
+	 */
+	public static String getIsSon(Context context){
+		if(TextUtils.isEmpty(isSon)){
+			isSon = context.getSharedPreferences(USER_SP_NAME, 0).getString(IS_SON, "");
+		}
+		return isSon;
+	}
 	/**
 	 * 得到用户名
 	 * @param context
@@ -238,15 +262,31 @@ public class UserUtils {
 		}
 		return userName;
 	}
-	
+
+
+	/**
+	 * 得到子账号权限
+	 * @param context
+	 * @return
+	 */
+	public static String getRbac(Context context){
+		if(TextUtils.isEmpty(rbac)){
+			rbac = context.getSharedPreferences(USER_SP_NAME, 0).getString(R_BAC, "");
+		}
+		return rbac;
+	}
 
 	
 	public static void clearUserInfo(Context context){
 		context.getSharedPreferences(USER_SP_NAME, 0).edit().putString(USER_ID, "").commit();
 		context.getSharedPreferences(USER_SP_NAME, 0).edit().putString(COMPANY_NAME, "").commit();
+		context.getSharedPreferences(USER_SP_NAME, 0).edit().putString(IS_SON, "").commit();
+		context.getSharedPreferences(USER_SP_NAME, 0).edit().putString(R_BAC, "").commit();
 		context.getSharedPreferences(USER_SP_NAME, 0).edit().putInt(HASVALIDATE, 1).commit();
 		userId = "";
 		companyName = "";
+		isSon ="";
+		rbac ="";
 		hasValidate= 1;
 
 		/** clear ppu configurtaion ,added by chenguangming*/

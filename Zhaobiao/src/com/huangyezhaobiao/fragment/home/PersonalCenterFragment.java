@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.activity.AboutActivity;
 import com.huangyezhaobiao.activity.HelpActivity;
 import com.huangyezhaobiao.activity.MainActivity;
 import com.huangyezhaobiao.activity.AccountManageActivity;
@@ -28,9 +27,12 @@ import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.SPUtils;
+import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.vm.YuEViewModel;
 
 import java.util.Map;
+
+import wuba.zhaobiao.common.activity.AboutActivity;
 
 /**
  * Created by 58 on 2016/6/17.
@@ -103,9 +105,12 @@ public class PersonalCenterFragment extends BaseHomeFragment implements NetWorkV
             help.setOnClickListener(this);
             about = (RelativeLayout) view.findViewById(R.id.about);
             about.setOnClickListener(this);
-//            manage = (RelativeLayout) view.findViewById(R.id.manage);
-//            manage.setOnClickListener(this);
-
+            String isSon = UserUtils.getIsSon(getActivity());
+            if(!TextUtils.isEmpty(isSon) && TextUtils.equals("1",isSon)){
+                manage.setVisibility(View.GONE);
+            }else{
+                manage.setVisibility(View.VISIBLE);
+            }
         }else{
             ((FrameLayout)view.getParent()).removeView(view);
         }
@@ -127,7 +132,7 @@ public class PersonalCenterFragment extends BaseHomeFragment implements NetWorkV
                 ActivityUtils.goToActivity(getActivity(), MyWalletActivity.class);
                 HYMob.getDataList(getActivity(), HYEventConstans.EVENT_ID_MY_WALLET);
                 break;
-            case R.id.manage:
+            case R.id.manage://点击了子账号管理
                 ActivityUtils.goToActivity(getActivity(), AccountManageActivity.class);
                 break;
             case R.id.sliding_settings://点击了设置

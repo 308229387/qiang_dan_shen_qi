@@ -288,6 +288,9 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
+            android:name="wuba.zhaobiao.common.activity.AboutActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activity.SystemActiveActivity"
             android:process=":webhelp"
             android:screenOrientation="portrait" />

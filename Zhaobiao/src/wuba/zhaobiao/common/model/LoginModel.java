@@ -16,6 +16,7 @@ import com.huangyezhaobiao.utils.PhoneUtils;
 import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import com.lzy.okhttputils.OkHttpUtils;
+import com.lzy.okhttputils.request.BaseRequest;
 import com.wuba.loginsdk.external.LoginCallback;
 import com.wuba.loginsdk.external.LoginClient;
 import com.wuba.loginsdk.external.Request;
@@ -52,7 +53,7 @@ public class LoginModel extends BaseModel {
         }, 1500);
     }
 
-    public void creatLoginCallback() {
+    public void createLoginCallback() {
         mLoginCallback = new loginCallBack();
     }
 
@@ -68,26 +69,34 @@ public class LoginModel extends BaseModel {
         OkHttpUtils.post(Urls.LOGIN)
                 .params("deviceId", PhoneUtils.getIMEI(context))
                 .params("token", PhoneUtils.getIMEI(context))
+                .params("phone",LoginClient.doGetUserPhoneOperate(context))
                 .execute(new localLoginRespons());
     }
 
-    private void passpordLoginSuccess(LoginRespons loginRespons) {
+    private void passportLoginSuccess(LoginRespons loginRespons) {
         saveInfoAndStatistics(loginRespons);
+        saveAccountInfo(loginRespons);
         validatedPhoneNumAfterGoToWhere(loginRespons);
         context.finish();
     }
 
     private void saveInfoAndStatistics(LoginRespons loginRespons) {
         String userName = LoginClient.doGetUnameOperate(context);
-        String compnyName = loginRespons.getData().getCompanyName();
+        String companyName = loginRespons.getData().getCompanyName();
         String userId = loginRespons.getData().getUserId();
-        saveInfo(userName, compnyName, userId);
+        saveInfo(userName, companyName,userId);
     }
 
     private void saveInfo(String userName, String compnyName, String userId) {
         saveLocalInfo();
         saveStatistics(userName, userId);
         UserUtils.saveUser(context, userId, compnyName, userName);
+    }
+
+    private void saveAccountInfo(LoginRespons loginRespons){
+        String isSon = loginRespons.getData().getIsSon();
+        String rbac = loginRespons.getData().getRbac();
+        UserUtils.saveAcocuntInfo(context, isSon, rbac);
     }
 
     private void validatedPhoneNumAfterGoToWhere(LoginRespons loginRespons) {
@@ -99,15 +108,15 @@ public class LoginModel extends BaseModel {
         }
     }
 
-    //1:NOT_VALIDATED    0:HAS_VALIDATEDD
+    //1:NOT_VALIDATED    0:HAS_VALIDATED
     private Boolean hasValidated(LoginRespons loginRespons) {
         Boolean check = loginRespons.getData().getHasValidated().equals(NOT_VALIDATED);
         return check;
     }
 
-    private void initPasspordErrorDailog(String msg) {
+    private void initPassportErrorDialog(String msg) {
         if (alertDialog == null) {
-            creatAndConfigErrorDialog(msg);
+            createAndConfigErrorDialog(msg);
         }
     }
 
@@ -125,7 +134,7 @@ public class LoginModel extends BaseModel {
                 .setLogoResId(R.drawable.newlogin_logo)
                 .setLoginProtocolActivity(SoftwareUsageActivity.class)//控制是否显示协议，协议页面是一个activity
                 .setForgetPwdEnable(true)//是否显示忘记密码
-                .setPhoneLoginEnable(false)//是否显示手机动态码登录入口
+                .setPhoneLoginEnable(true)//是否显示手机动态码登录入口
                 .setRegistEnable(false)//是否显示注册入口
                 .setSocialEntranceEnable(false)//设置页面是否显示三方登录
                 .setCloseButtonEnable(false)//设置页面是否带关闭按钮
@@ -151,13 +160,13 @@ public class LoginModel extends BaseModel {
         GePushProxy.bindPushAlias(context.getApplicationContext(), userId + "_" + PhoneUtils.getIMEI(context));
     }
 
-    private void creatAndConfigErrorDialog(String msg) {
-        creatErrorDalog();
+    private void createAndConfigErrorDialog(String msg) {
+        createErrorDialog();
         setErrorDialogInfo(msg);
         errorDialogShow();
     }
 
-    private void creatErrorDalog() {
+    private void createErrorDialog() {
         alertDialog = new ZhaoBiaoDialog(context, "");
     }
 
@@ -171,7 +180,7 @@ public class LoginModel extends BaseModel {
         alertDialog.show();
     }
 
-    private boolean isPasspordLoginFail(@Nullable LoginSDKBean loginSDKBean) {
+    private boolean isPassportLoginFail(@Nullable LoginSDKBean loginSDKBean) {
         return loginSDKBean != null && loginSDKBean.getCode() == LoginSDKBean.CODE_CANCEL_OPERATION;
     }
 
@@ -183,7 +192,7 @@ public class LoginModel extends BaseModel {
                 loginSuccess(msg);
             }
 
-            if (isPasspordLoginFail(loginSDKBean)) {
+            if (isPassportLoginFail(loginSDKBean)) {
                 context.finish();
             }
         }
@@ -192,13 +201,23 @@ public class LoginModel extends BaseModel {
     private class localLoginRespons extends JsonCallback<LoginRespons> {
 
         @Override
+        public void onBefore(BaseRequest request) {
+
+            request.headers("ppu", LoginClient.doGetPPUOperate(BiddingApplication.getAppInstanceContext()))//
+                    .headers("userId", LoginClient.doGetUserIDOperate(BiddingApplication.getAppInstanceContext()))//
+                    .headers("version", "6")//
+                    .headers("platform", "1")//
+                    .headers("UUID", com.huangye.commonlib.utils.PhoneUtils.getIMEI(BiddingApplication.getAppInstanceContext()));
+        }
+
+        @Override
         public void onResponse(boolean isFromCache, LoginRespons loginRespons, okhttp3.Request request, @Nullable Response response) {
-            passpordLoginSuccess(loginRespons);
+            passportLoginSuccess(loginRespons);
         }
 
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
-            initPasspordErrorDailog(e.getMessage());
+            initPassportErrorDialog(e.getMessage());
         }
     }
 
