@@ -55,22 +55,22 @@ public class GuideModel extends BaseModel implements View.OnClickListener {
     }
 
     public void initViewPager() {
-        creatViewPager();
+        createViewPager();
         initPoint();
         initImage();
         initText();
     }
 
-    private void creatViewPager() {
+    private void createViewPager() {
         viewPager = (ViewPager) context.findViewById(R.id.viewPager);
     }
 
     private void initPoint() {
-        creatPoint();
+        createPoint();
         setPointDistance();
     }
 
-    private void creatPoint() {
+    private void createPoint() {
         hint_indicator = (ImageView) context.findViewById(R.id.hint_indicator);
     }
 
@@ -79,13 +79,13 @@ public class GuideModel extends BaseModel implements View.OnClickListener {
     }
 
     private void initImage() {
-        initailizationImage();
+        initializationImage();
         initializationImageFather();
         initializationImageView();
         addImage();
     }
 
-    private void initailizationImage() {
+    private void initializationImage() {
         for (int i = 0; i < indicators.length; i++)
             indicators[i] = (ImageView) context.findViewById(ids[i]);
     }
@@ -109,11 +109,11 @@ public class GuideModel extends BaseModel implements View.OnClickListener {
     }
 
     private void initText() {
-        TextView rl = creatText();
+        TextView rl = createText();
         setTextListener(rl);
     }
 
-    private TextView creatText() {
+    private TextView createText() {
         return (TextView) view3.findViewById(R.id.rl_click);
     }
 
@@ -127,7 +127,7 @@ public class GuideModel extends BaseModel implements View.OnClickListener {
         context.getWindow().setBackgroundDrawable(null);
     }
 
-    public void creatAdatper() {
+    public void createAdapter() {
         adapter = new GuideAdapter();
     }
 
@@ -199,7 +199,7 @@ public class GuideModel extends BaseModel implements View.OnClickListener {
         hint_indicator.setLayoutParams(params);
     }
 
-    public void statisticsDetalTime() {
+    public void statisticsDeadTime() {
         HYMob.getBaseDataListForPage(context, HYEventConstans.PAGE_GUIDE, context.stop_time - context.resume_time);
     }
 

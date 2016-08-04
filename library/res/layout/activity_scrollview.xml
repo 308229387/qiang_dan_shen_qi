@@ -24,29 +24,29 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/h" />
+                    android:background="@drawable/launcher" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/i" />
+                    android:background="@drawable/launcher" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/j" />
+                    android:background="@drawable/launcher" />
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/k" />
+                    android:background="@drawable/launcher" />
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/l" />
+                    android:background="@drawable/launcher" />
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/m" />
+                    android:background="@drawable/launcher" />
             </LinearLayout>
         </RelativeLayout>
     </com.jingchen.pulltorefresh.pullableview.PullableScrollView>
