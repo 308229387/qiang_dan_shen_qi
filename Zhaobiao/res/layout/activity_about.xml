@@ -14,7 +14,8 @@
         android:id="@+id/tbl"
         android:layout_width="fill_parent"
         android:layout_height="45dp"
-        android:layout_below="@id/layout_head"/>
+        android:layout_below="@id/layout_head"
+        android:visibility="gone"/>
 
     <RelativeLayout
         android:id="@+id/logo_title"

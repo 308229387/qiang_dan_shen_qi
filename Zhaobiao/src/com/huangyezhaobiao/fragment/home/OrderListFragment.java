@@ -54,6 +54,7 @@ import com.huangyezhaobiao.utils.PushUtils;
 import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.StateUtils;
 import com.huangyezhaobiao.utils.UnreadUtils;
+import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
 import com.huangyezhaobiao.vm.QiangDanListViewModel;
 import com.huangyezhaobiao.vm.YuEViewModel;
@@ -75,6 +76,7 @@ public class OrderListFragment extends  BaseHomeFragment implements INotificatio
     private PullToRefreshListView lv_all_fragment;
     private ListView lv;
     private View layout_no_data; //您还没有已抢订单呢！
+    private TextView tv_no_orders;
     private SwipeRefreshLayout srl;
     private OrderLVAdapter adapter;
 
@@ -183,6 +185,7 @@ public class OrderListFragment extends  BaseHomeFragment implements INotificatio
             lv = lv_all_fragment.getRefreshableView();
             layout_no_data = view.findViewById(R.id.layout_no_data);
             layout_no_data.setVisibility(View.GONE);
+            tv_no_orders = (TextView) view.findViewById(R.id.tv_no_orders);
 //            layout_no_internet_click = view.findViewById(R.id.layout_no_internet_click_refresh);
 
             adapter = new OrderLVAdapter(getActivity(),adapterListener);
@@ -363,15 +366,28 @@ public class OrderListFragment extends  BaseHomeFragment implements INotificatio
         lv_all_fragment.onRefreshComplete();
         srl.setRefreshing(false);
 
-        if (beans.size() > 0) {
-            lv.setVisibility(View.VISIBLE);
-            layout_no_data.setVisibility(View.GONE);
+        String isSon = UserUtils.getIsSon(getActivity());
+        if (!TextUtils.isEmpty(isSon) && TextUtils.equals("1", isSon)) {
+            String rbac = UserUtils.getRbac(getActivity());
+            if (!TextUtils.isEmpty(rbac)
+                    && TextUtils.equals("1", rbac) || TextUtils.equals("3", rbac)) {
+                lv.setVisibility(View.GONE);
+                layout_no_data.setVisibility(View.VISIBLE);
+                tv_no_orders.setText("对不起，您的账号\n暂无查看已抢订单权限");
+            }
 
         } else {
-            lv.setVisibility(View.GONE);
-            layout_no_data.setVisibility(View.VISIBLE);
+
+            if (beans.size() > 0) {
+                lv.setVisibility(View.VISIBLE);
+                layout_no_data.setVisibility(View.GONE);
+
+            } else {
+                lv.setVisibility(View.GONE);
+                layout_no_data.setVisibility(View.VISIBLE);
 //            TextView tv = (TextView) ((ViewGroup)layout_no_data).getChildAt(1);
 //            tv.setText("您还没有订单");
+            }
         }
     }
 

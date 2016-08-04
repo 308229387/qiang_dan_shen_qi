@@ -252,7 +252,7 @@ public class HomePageModel extends BaseModel {
 
     public void checkIsLongTimeNotLogout() {
         if (beyondLogoutTime() && userIdNotEmpty())
-            new LogoutDialogUtils(context, "您已长时间无登录操作，请重新登录").initAndShowDialog();
+            new LogoutDialogUtils(context, "您已长时间无登录操作，请重新登录").showSingleButtonDialog();
     }
 
     private boolean beyondLogoutTime() {

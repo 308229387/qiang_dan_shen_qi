@@ -35,6 +35,7 @@ import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.MDUtils;
 import com.huangyezhaobiao.utils.PushUtils;
+import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog.onDialogClickListener;
@@ -256,25 +257,38 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 		popPass = log.toPopPassBean();
 		bidState = log.getBidState();
 		if (bidState == 0) {
-			done.setBackgroundColor(getResources().getColor(R.color.button_red));
-			done.setText(R.string.grab_list);
-			done.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View arg0) {
-							try {
-								BDMob.getBdMobInstance().onMobEvent(OrderDetailActivity.this, BDEventConstans.EVENT_ID_BIDDING_DETAIL_PAGE_BIDDING);
-
-								HYMob.getDataListForQiangdan(OrderDetailActivity.this,HYEventConstans.EVENT_ID_BIDDING_DETAIL_PAGE_BIDDING, String.valueOf(popPass.getBidId()), "2");
-
-								rl_qd.setVisibility(View.VISIBLE);
-								knockViewModel = new KnockViewModel(OrderDetailActivity.this, OrderDetailActivity.this);
-								knockViewModel.knock(popPass, AppConstants.BIDSOURCE_DETAIL);
-								MDUtils.bidDetailsPageMD(OrderDetailActivity.this, "" + bidState,popPass.getCateId() + "", popPass.getBidId() + "", MDConstans.ACTION_QIANG_DAN);
-							} catch (Exception e) {
-
-					        }
+			String isSon = UserUtils.getIsSon(this);
+			if (!TextUtils.isEmpty(isSon) && TextUtils.equals("1", isSon)) {
+				String rbac = UserUtils.getRbac(this);
+				if (!TextUtils.isEmpty(rbac)
+						&& TextUtils.equals("1", rbac) || TextUtils.equals("5", rbac)) {
+					done.setBackgroundColor(Color.parseColor("#AFAFAF"));
+					done.setText(R.string.grab_list);
+					done.setClickable(false);
 				}
-			});
+
+			} else {
+				done.setBackgroundColor(getResources().getColor(R.color.button_red));
+				done.setText(R.string.grab_list);
+				done.setClickable(true);
+				done.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View arg0) {
+						try {
+							BDMob.getBdMobInstance().onMobEvent(OrderDetailActivity.this, BDEventConstans.EVENT_ID_BIDDING_DETAIL_PAGE_BIDDING);
+
+							HYMob.getDataListForQiangdan(OrderDetailActivity.this, HYEventConstans.EVENT_ID_BIDDING_DETAIL_PAGE_BIDDING, String.valueOf(popPass.getBidId()), "2");
+
+							rl_qd.setVisibility(View.VISIBLE);
+							knockViewModel = new KnockViewModel(OrderDetailActivity.this, OrderDetailActivity.this);
+							knockViewModel.knock(popPass, AppConstants.BIDSOURCE_DETAIL);
+							MDUtils.bidDetailsPageMD(OrderDetailActivity.this, "" + bidState, popPass.getCateId() + "", popPass.getBidId() + "", MDConstans.ACTION_QIANG_DAN);
+						} catch (Exception e) {
+
+						}
+					}
+				});
+			}
 		} else {
 //			done.setBackgroundColor(getResources().getColor(R.color.whitedark));
 			done.setBackgroundColor(Color.parseColor("#AFAFAF"));

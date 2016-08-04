@@ -25,6 +25,7 @@ import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.MDUtils;
 import com.huangyezhaobiao.utils.TimeUtils;
+import com.huangyezhaobiao.utils.UserUtils;
 
 /**
  * Created by shenzhixin on 2015/12/5.
@@ -240,18 +241,33 @@ public class CleaningListBean extends QDBaseBean{
                 cleaningBidHolder.grab_style.setImageResource(R.drawable.type_back_grab);
                 cleaningBidHolder.iv_cleaning_type.setImageResource(R.drawable.iv_cleaning_label_knock);
                 cleaningBidHolder.cleaning_bottom.setVisibility(View.VISIBLE);
-                cleaningBidHolder.grab_cleaning_knock.setBackgroundResource(R.drawable.bt_knock_button_selector);
-                cleaningBidHolder.grab_cleaning_knock.setTextColor(context.getResources().getColor(R.color.white));
-                cleaningBidHolder.grab_cleaning_knock.setText("抢单");
-                cleaningBidHolder.grab_cleaning_knock.setClickable(true);
-                cleaningBidHolder.grab_cleaning_knock.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        adapter.itemClicked(cleaningBidHolder.grab_cleaning_knock.getId(), toPopPassBean());
-                        MDUtils.servicePageMD(CleaningListBean.this.context, cateId, String.valueOf(bidId), MDConstans.ACTION_QIANG_DAN);
 
+                String isSon = UserUtils.getIsSon(context);
+                if(!TextUtils.isEmpty(isSon) && TextUtils.equals("1",isSon)){
+                    String rbac = UserUtils.getRbac(context);
+                    if(!TextUtils.isEmpty(rbac)
+                            && TextUtils.equals("1",rbac) || TextUtils.equals("5",rbac)){
+                        cleaningBidHolder.grab_cleaning_knock.setBackgroundResource(R.color.t_gray);
+                        cleaningBidHolder.grab_cleaning_knock.setTextColor(context.getResources().getColor(R.color.white));
+                        cleaningBidHolder.grab_cleaning_knock.setText("抢单");
+                        cleaningBidHolder.grab_cleaning_knock.setClickable(false);
                     }
-                });
+
+                }else{
+                    cleaningBidHolder.grab_cleaning_knock.setBackgroundResource(R.drawable.bt_knock_button_selector);
+                    cleaningBidHolder.grab_cleaning_knock.setTextColor(context.getResources().getColor(R.color.white));
+                    cleaningBidHolder.grab_cleaning_knock.setText("抢单");
+                    cleaningBidHolder.grab_cleaning_knock.setClickable(true);
+                    cleaningBidHolder.grab_cleaning_knock.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            adapter.itemClicked(cleaningBidHolder.grab_cleaning_knock.getId(), toPopPassBean());
+                            MDUtils.servicePageMD(CleaningListBean.this.context, cateId, String.valueOf(bidId), MDConstans.ACTION_QIANG_DAN);
+
+                        }
+                    });
+                }
+
                 break;
         }
 

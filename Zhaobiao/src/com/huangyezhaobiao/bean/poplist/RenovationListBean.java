@@ -28,6 +28,7 @@ import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.MDUtils;
 import com.huangyezhaobiao.utils.TimeUtils;
+import com.huangyezhaobiao.utils.UserUtils;
 
 /**
  * 抢单信息的模型类----装修
@@ -287,18 +288,32 @@ public class RenovationListBean extends QDBaseBean {
 				holder.grab_style.setImageResource(R.drawable.type_back_grab);
 				holder.iv_renovation_type.setImageResource(R.drawable.iv_renovation_brush_knock);
 				holder.view_bottom.setVisibility(View.VISIBLE);
-				holder.knock.setBackgroundResource(R.drawable.bt_knock_button_selector);
-				holder.knock.setTextColor(context.getResources().getColor(R.color.white));
-				holder.knock.setText("抢单");
-				holder.knock.setClickable(true);
-				holder.knock.setOnClickListener(new View.OnClickListener() {
-					@Override
-					public void onClick(View view) {
-						adapter.itemClicked(holder.knock.getId(), toPopPassBean());
-						MDUtils.servicePageMD(RenovationListBean.this.context, cateId, String.valueOf(bidId),
-								MDConstans.ACTION_QIANG_DAN);
+
+				String isSon = UserUtils.getIsSon(context);
+				if (!TextUtils.isEmpty(isSon) && TextUtils.equals("1", isSon)) {
+					String rbac = UserUtils.getRbac(context);
+					if (!TextUtils.isEmpty(rbac)
+							&& TextUtils.equals("1", rbac) || TextUtils.equals("5", rbac)) {
+						holder.knock.setBackgroundResource(R.color.t_gray);
+						holder.knock.setTextColor(context.getResources().getColor(R.color.white));
+						holder.knock.setText("抢单");
+						holder.knock.setClickable(false);
 					}
-				});
+
+				} else {
+					holder.knock.setBackgroundResource(R.drawable.bt_knock_button_selector);
+					holder.knock.setTextColor(context.getResources().getColor(R.color.white));
+					holder.knock.setText("抢单");
+					holder.knock.setClickable(true);
+					holder.knock.setOnClickListener(new View.OnClickListener() {
+						@Override
+						public void onClick(View view) {
+							adapter.itemClicked(holder.knock.getId(), toPopPassBean());
+							MDUtils.servicePageMD(RenovationListBean.this.context, cateId, String.valueOf(bidId),
+									MDConstans.ACTION_QIANG_DAN);
+						}
+					});
+				}
 				break;
 		}
 		/**

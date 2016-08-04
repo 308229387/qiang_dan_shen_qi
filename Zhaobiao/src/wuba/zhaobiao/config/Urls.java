@@ -8,4 +8,6 @@ public class Urls {
     public static final String LOGIN = BASE_URL + "api/login";
     public static final String WLT_CHECK = BASE_URL + "app/global/params";
     public static final String UPDATE_VERSION = BASE_URL + "app/getversion/apk";
+    public static final String LOGOUT = BASE_URL + "api/logout";
+    public static final String USER_INFO = BASE_URL + "app/userinfo";
 }

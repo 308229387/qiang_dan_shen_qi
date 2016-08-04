@@ -18,7 +18,6 @@ import com.huangyezhaobiao.activity.HelpActivity;
 import com.huangyezhaobiao.activity.MainActivity;
 import com.huangyezhaobiao.activity.AccountManageActivity;
 import com.huangyezhaobiao.activity.MyWalletActivity;
-import com.huangyezhaobiao.activity.SettingsActivity;
 import com.huangyezhaobiao.bean.GlobalConfigBean;
 import com.huangyezhaobiao.enums.TitleBarType;
 import com.huangyezhaobiao.utils.ActivityUtils;
@@ -33,6 +32,7 @@ import com.huangyezhaobiao.vm.YuEViewModel;
 import java.util.Map;
 
 import wuba.zhaobiao.common.activity.AboutActivity;
+import wuba.zhaobiao.common.activity.SettingActivity;
 
 /**
  * Created by 58 on 2016/6/17.
@@ -136,8 +136,9 @@ public class PersonalCenterFragment extends BaseHomeFragment implements NetWorkV
                 ActivityUtils.goToActivity(getActivity(), AccountManageActivity.class);
                 break;
             case R.id.sliding_settings://点击了设置
-                Intent intent = SettingsActivity.onNewIntent(getActivity());
-                startActivity(intent);
+                ActivityUtils.goToActivity(getActivity(), SettingActivity.class);
+//                Intent intent = SettingsActivity.onNewIntent(getActivity());
+//                startActivity(intent);
                 HYMob.getDataList(getActivity(), HYEventConstans.EVENT_ID_SETTING);
                 break;
             case R.id.help:// 点击了帮助

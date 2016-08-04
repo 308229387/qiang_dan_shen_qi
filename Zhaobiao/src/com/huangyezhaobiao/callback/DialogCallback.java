@@ -52,9 +52,9 @@ public abstract class DialogCallback<T> extends JsonCallback<T> {
             progress.stopLoading();
 
         if (e != null && e.getMessage().equals(NEED_DOWN_LINE))
-            new LogoutDialogUtils(context, context.getString(R.string.force_exit)).initAndShowDialog();
+            new LogoutDialogUtils(context, context.getString(R.string.force_exit)).showSingleButtonDialog();
         else if (e != null && e.getMessage().equals(PPU_EXPIRED))
-            new LogoutDialogUtils(context, context.getString(R.string.ppu_expired)).initAndShowDialog();
+            new LogoutDialogUtils(context, context.getString(R.string.ppu_expired)).showSingleButtonDialog();
     }
 
 }

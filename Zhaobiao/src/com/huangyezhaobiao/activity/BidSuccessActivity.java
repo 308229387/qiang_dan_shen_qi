@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -34,6 +35,7 @@ import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.KeyguardUtils;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.UnreadUtils;
+import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
 
 import java.util.HashMap;
@@ -109,6 +111,20 @@ public class BidSuccessActivity extends QBBaseActivity {
 		toOrderList = (Button) findViewById(R.id.success_orderlist);
 		toBidList = (Button) findViewById(R.id.success_bidlist);
 		tbl = (TitleMessageBarLayout) findViewById(R.id.tbl);
+
+		String isSon = UserUtils.getIsSon(this);
+		if (!TextUtils.isEmpty(isSon) && TextUtils.equals("1", isSon)) {
+			String rbac = UserUtils.getRbac(this);
+			if (!TextUtils.isEmpty(rbac)
+					&& TextUtils.equals("1", rbac) || TextUtils.equals("3", rbac)) {
+				toOrderList.setVisibility(View.GONE);
+			}else{
+				toOrderList.setVisibility(View.VISIBLE);
+			}
+		}else{
+			toOrderList.setVisibility(View.VISIBLE);
+		}
+
 	}
 
 	@Override

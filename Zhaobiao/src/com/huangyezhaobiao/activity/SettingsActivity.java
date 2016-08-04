@@ -65,10 +65,10 @@ public class SettingsActivity extends QBBaseActivity implements View.OnClickList
     private LogoutViewModel lvm; //退出接口
 
 
-    public static Intent onNewIntent(Context context){
-        Intent intent = new Intent(context,SettingsActivity.class);
-        return intent;
-    }
+//    public static Intent onNewIntent(Context context){
+//        Intent intent = new Intent(context,SettingsActivity.class);
+//        return intent;
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
