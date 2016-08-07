@@ -1,7 +1,6 @@
 package com.huangyezhaobiao.fragment.home;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -11,16 +10,14 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.huangye.commonlib.vm.callback.ListNetWorkVMCallBack;
@@ -33,6 +30,7 @@ import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.bean.GlobalConfigBean;
 import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.bean.push.PushToPassBean;
+import com.huangyezhaobiao.db.UserRequestDao;
 import com.huangyezhaobiao.enums.TitleBarType;
 import com.huangyezhaobiao.eventbus.EventAction;
 import com.huangyezhaobiao.eventbus.EventType;
@@ -63,10 +61,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import wuba.zhaobiao.order.utils.OrderCachUtils;
+
 /**
  * Created by 58 on 2016/6/18.
  */
-public class OrderListFragment extends  BaseHomeFragment implements INotificationListener,ListNetWorkVMCallBack {
+public class OrderListFragment<T> extends  BaseHomeFragment implements INotificationListener,ListNetWorkVMCallBack {
     private BiddingApplication app;
     private TextView txt_head;
     private ImageView btn_clean;
@@ -212,6 +212,9 @@ public class OrderListFragment extends  BaseHomeFragment implements INotificatio
                 }
             });
 
+            String result = UserRequestDao.getData(UserRequestDao.INTERFACE_ORDERLIST);
+            List<T> ts = new OrderCachUtils().transferToListBean(result);
+            onRefreshSuccess(ts);
         }else{
             ((FrameLayout)view.getParent()).removeView(view);
         }
@@ -361,6 +364,9 @@ public class OrderListFragment extends  BaseHomeFragment implements INotificatio
      */
     @Override
     public void onRefreshSuccess(Object t) {
+        String temp = JSON.toJSONString(t);
+        UserRequestDao.addData(UserRequestDao.INTERFACE_ORDERLIST, temp);
+
         List<QDBaseBean> beans = (List<QDBaseBean>) t;
         adapter.refreshSuccess(beans);
         lv_all_fragment.onRefreshComplete();
