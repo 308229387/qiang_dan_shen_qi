@@ -1,20 +1,21 @@
-package wuba.zhaobiao.common.activity;
+package wuba.zhaobiao.mine.activity;
 
 import android.os.Bundle;
 
 import com.huangyezhaobiao.R;
 
-import wuba.zhaobiao.common.model.AboutModel;
+import wuba.zhaobiao.common.activity.BaseActivity;
+import wuba.zhaobiao.common.model.SettingModel;
 
 /**
  * Created by 58 on 2016/8/3.
  */
-public class AboutActivity  extends BaseActivity<AboutModel>{
+public class SettingActivity extends BaseActivity<SettingModel> {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
+        setContentView(R.layout.activity_settings);
         init();
     }
 
@@ -28,18 +29,16 @@ public class AboutActivity  extends BaseActivity<AboutModel>{
     }
 
     private void initView(){
-        model.initHeaderView();
-        model.initVersionName();
-        model.initFunctionInfo();
-        model.initCheckUpdate();
-        model.initSoftwareUsage();
+        model.initHeader();
+        model.initMobileSetting();
+        model.initAutoSetting();
+        model.initLogout();
     }
-
-
     @Override
     protected void onResume() {
         super.onResume();
         model.setTopBarHeight();
+        model.getUserInfo();
     }
 
     @Override
@@ -49,7 +48,7 @@ public class AboutActivity  extends BaseActivity<AboutModel>{
     }
 
     @Override
-    public AboutModel createModel() {
-        return new AboutModel(AboutActivity.this);
+    public SettingModel createModel() {
+        return new SettingModel(SettingActivity.this);
     }
 }

@@ -30,7 +30,7 @@ import com.lzy.okhttputils.OkHttpUtils;
 import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
-import wuba.zhaobiao.common.activity.SettingActivity;
+import wuba.zhaobiao.mine.activity.SettingActivity;
 import wuba.zhaobiao.config.Urls;
 import wuba.zhaobiao.respons.UserInfoRespons;
 import wuba.zhaobiao.utils.LogoutDialogUtils;
