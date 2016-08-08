@@ -195,7 +195,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="27dp"
-        android:background="@drawable/submit_btn_bgs"
+        android:background="@drawable/subimt_bg_account"
         android:text="保存"
         android:textSize="16sp"
         android:textColor="#FECDCA" />
