@@ -226,7 +226,8 @@ public class PushUtils {
 			UnreadUtils.saveSysNoti(context);
 			break;
 		case LOGOUT:
-
+			SystemPushBean logoutPushBean = JsonUtils.jsonToObject(info.toString(), SystemPushBean.class);
+			bean = logoutPushBean;
 			break;
 		default:
 			break;
