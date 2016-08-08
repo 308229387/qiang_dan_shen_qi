@@ -265,6 +265,27 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 					done.setBackgroundColor(Color.parseColor("#AFAFAF"));
 					done.setText(R.string.grab_list);
 					done.setClickable(false);
+				}else{
+					done.setBackgroundColor(getResources().getColor(R.color.button_red));
+					done.setText(R.string.grab_list);
+					done.setClickable(true);
+					done.setOnClickListener(new OnClickListener() {
+						@Override
+						public void onClick(View arg0) {
+							try {
+								BDMob.getBdMobInstance().onMobEvent(OrderDetailActivity.this, BDEventConstans.EVENT_ID_BIDDING_DETAIL_PAGE_BIDDING);
+
+								HYMob.getDataListForQiangdan(OrderDetailActivity.this, HYEventConstans.EVENT_ID_BIDDING_DETAIL_PAGE_BIDDING, String.valueOf(popPass.getBidId()), "2");
+
+								rl_qd.setVisibility(View.VISIBLE);
+								knockViewModel = new KnockViewModel(OrderDetailActivity.this, OrderDetailActivity.this);
+								knockViewModel.knock(popPass, AppConstants.BIDSOURCE_DETAIL);
+								MDUtils.bidDetailsPageMD(OrderDetailActivity.this, "" + bidState, popPass.getCateId() + "", popPass.getBidId() + "", MDConstans.ACTION_QIANG_DAN);
+							} catch (Exception e) {
+
+							}
+						}
+					});
 				}
 
 			} else {

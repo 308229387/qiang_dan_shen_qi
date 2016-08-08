@@ -195,6 +195,23 @@ public class PersonalRegisterListBean extends QDBaseBean {
 					holder.knock.setTextColor(context.getResources().getColor(R.color.white));
 					holder.knock.setText("抢单");
 					holder.knock.setClickable(false);
+				}else{
+					holder.knock.setBackgroundResource(R.drawable.bt_knock_button_selector);
+					holder.knock.setTextColor(context.getResources().getColor(R.color.white));
+					holder.knock.setText("抢单");
+					holder.knock.setClickable(true);
+					holder.knock.setOnClickListener(new OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							Log.e("holder.knock", holder.knock.getId() + "");
+							PersonalRegisterListBean.this.adapter.itemClicked(holder.knock.getId(), toPopPassBean());
+							//Toast.makeText(PersonalRegisterListBean.this.context, "抢单", 0).show();
+							MDUtils.servicePageMD(PersonalRegisterListBean.this.context, "" + cateId, String.valueOf(bidId),
+									MDConstans.ACTION_QIANG_DAN);
+
+
+						}
+					});
 				}
 
 			} else {

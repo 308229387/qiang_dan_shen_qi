@@ -15,6 +15,7 @@ import com.huangyezhaobiao.bean.push.PushToStorageBean;
 import com.huangyezhaobiao.inter.Constans;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.TimeUtils;
+import com.huangyezhaobiao.utils.UserUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,10 +77,22 @@ public class OtherAdapter extends BaseAdapter{
 			if(status == 1){
 				holder.tv_qd_result.setText(R.string.bidding_success);
 				holder.view.setVisibility(View.VISIBLE);
-				holder.rl_more.setVisibility(View.VISIBLE);
 				holder.tv_noouejd.setVisibility(View.VISIBLE);
 				holder.tv_noouejd.setText("订单编号  " + messageBean.getOrderid());
 				holder.tv_order_number.setVisibility(View.VISIBLE);
+
+				String isSon = UserUtils.getIsSon(context);
+				if (!TextUtils.isEmpty(isSon) && TextUtils.equals("1", isSon)) {
+					String rbac = UserUtils.getRbac(context);
+					if (!TextUtils.isEmpty(rbac)
+							&& TextUtils.equals("1", rbac) || TextUtils.equals("3", rbac)) {
+						holder.rl_more.setVisibility(View.GONE);
+					}else{
+						holder.rl_more.setVisibility(View.VISIBLE);
+					}
+				}else{
+					holder.rl_more.setVisibility(View.VISIBLE);
+				}
 				
 			}else{
 				holder.tv_qd_result.setText(R.string.bidding_failure);
@@ -113,10 +126,23 @@ public class OtherAdapter extends BaseAdapter{
 			holder.tv_noouejd.setText("订单编号  " + messageBean.getOrderid());
 			holder.tv_bg_title.setText("客户姓名  " + messageBean.getGuestName());
 			holder.view.setVisibility(View.VISIBLE);
-			holder.rl_more.setVisibility(View.VISIBLE);
+
 			holder.tv_more.setText("查看详情");
 			holder.tv_noouejd.setVisibility(View.VISIBLE);
 			holder.tv_order_number.setVisibility(View.GONE);
+
+			String isSon = UserUtils.getIsSon(context);
+			if (!TextUtils.isEmpty(isSon) && TextUtils.equals("1", isSon)) {
+				String rbac = UserUtils.getRbac(context);
+				if (!TextUtils.isEmpty(rbac)
+						&& TextUtils.equals("1", rbac) || TextUtils.equals("3", rbac)) {
+					holder.rl_more.setVisibility(View.GONE);
+				}else{
+					holder.rl_more.setVisibility(View.VISIBLE);
+				}
+			}else{
+				holder.rl_more.setVisibility(View.VISIBLE);
+			}
 
 			break;
 		case Constans.SYS_NOTI://倒计时

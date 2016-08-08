@@ -25,6 +25,7 @@ import java.util.List;
 import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
+import wuba.zhaobiao.respons.AccountMaxRespons;
 
 /**
  * Created by 58 on 2016/7/21.
@@ -44,7 +45,6 @@ public class AccountManageActivity extends QBBaseActivity implements View.OnClic
     private ChildAccountAdapter adapter;
 
     private List<ChildAccountBean.data.bean> list = new ArrayList<>();
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -177,12 +177,44 @@ public class AccountManageActivity extends QBBaseActivity implements View.OnClic
                 }
                 break;
             case R.id.rl_add_manage:
-                if (list != null && list.size() >= 3) {
-                    ToastUtils.showShort(this, getString(R.string.account_add_more), 3000);
-                } else {
-                    ActivityUtils.goToActivity(this, AddAccountActivity.class);
-                }
+                getChildAccountMax();
                 break;
+        }
+
+    }
+
+    //请求实体
+    private void getChildAccountMax() {
+        OkHttpUtils.get("http://zhaobiao.58.com/api/getaccountmax")//
+                .execute(new AccountMaxCallback(AccountManageActivity.this, true));
+    }
+
+    //响应类
+    private class AccountMaxCallback extends DialogCallback<AccountMaxRespons> {
+
+        public AccountMaxCallback(Activity context, Boolean needProgress) {
+            super(context, needProgress);
+        }
+
+        @Override
+        public void onResponse(boolean isFromCache, AccountMaxRespons accountMaxRespons, Request request, @Nullable Response response) {
+            LogUtils.LogV("childAccount", "accountMax_success");
+            String number = accountMaxRespons.getData().getAccountMaxSize();
+            try {
+                if (list != null && list.size() >= Integer.parseInt(number)) {
+                    ToastUtils.showShort(AccountManageActivity.this, getString(R.string.account_add_more), 3000);
+                } else {
+                    ActivityUtils.goToActivity(AccountManageActivity.this, AddAccountActivity.class);
+                }
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
+
+            ToastUtils.showToast(e.getMessage());
         }
     }
 

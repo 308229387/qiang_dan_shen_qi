@@ -271,6 +271,5 @@ public class AboutModel extends BaseModel implements View.OnClickListener {
             });
         }
 
-
     }
 }

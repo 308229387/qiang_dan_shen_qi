@@ -72,6 +72,5 @@ public class LoginRespons implements Serializable {
             this.userId = userId;
         }
 
-
     }
 }

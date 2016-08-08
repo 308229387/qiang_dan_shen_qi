@@ -92,6 +92,7 @@ public class HomePageActivity extends BaseActivity<HomePageModel> {
         unRegistService();
     }
 
+
     private void unRegistService() {
         model.unregisterScreenOffReceiver();
         model.unregistEvenBus();

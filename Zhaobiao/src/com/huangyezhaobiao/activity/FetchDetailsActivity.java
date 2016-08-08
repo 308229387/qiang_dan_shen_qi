@@ -43,6 +43,7 @@ import com.huangyezhaobiao.view.WaitingTransfer;
 import com.huangyezhaobiao.vm.CallPhoneViewModel;
 import com.huangyezhaobiao.vm.FetchDetailsVM;
 import com.huangyezhaobiao.vm.TelephoneVModel;
+import com.wuba.loginsdk.external.LoginClient;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -98,8 +99,7 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 		fetchDetailsPresenter = new FetchDetailsPresenter(this);
 		initView();
 		initListener();
-		mobile = SPUtils.getVByK(this, GlobalConfigBean.KEY_USERPHONE);
-
+		mobile = LoginClient.doGetUserPhoneOperate(this);
 		phoneViewModel = new CallPhoneViewModel(vmCallback,this);
 
 		PhoneReceiver.addToMonitor(interaction);

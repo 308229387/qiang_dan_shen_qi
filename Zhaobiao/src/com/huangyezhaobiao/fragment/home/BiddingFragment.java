@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +23,6 @@ import com.alibaba.fastjson.JSON;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.huangye.commonlib.vm.callback.ListNetWorkVMCallBack;
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.activity.AutoSettingsActivity;
 import com.huangyezhaobiao.activity.BidFailureActivity;
 import com.huangyezhaobiao.activity.BidGoneActivity;
 import com.huangyezhaobiao.activity.BidSuccessActivity;
@@ -46,7 +44,6 @@ import com.huangyezhaobiao.inter.INotificationListener;
 import com.huangyezhaobiao.iview.SwitchButton;
 import com.huangyezhaobiao.lib.QDBaseBean;
 import com.huangyezhaobiao.lib.ZBBaseAdapter;
-import com.huangyezhaobiao.url.URLConstans;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.BidListUtils;
@@ -60,9 +57,6 @@ import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.StateUtils;
 import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.utils.UnreadUtils;
-import com.huangyezhaobiao.utils.UpdateManager;
-import com.huangyezhaobiao.utils.UserUtils;
-import com.huangyezhaobiao.utils.VersionUtils;
 import com.huangyezhaobiao.view.QDWaitDialog;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
@@ -105,9 +99,9 @@ public class BiddingFragment<T> extends BaseHomeFragment implements INotificatio
     private ZhaoBiaoDialog autoSettingDialog; //自定义设置
 
     private boolean forceUpdate;//是否强制更新
-
     private boolean isFirstOpen = true;
 
+//    private String isSet;
 
     @Override
     public void OnFragmentSelectedChanged(boolean isSelected) {
@@ -164,42 +158,18 @@ public class BiddingFragment<T> extends BaseHomeFragment implements INotificatio
     }
 
     @Override
-    public void onCreate(@org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         listViewModel = new GrabListViewModel(this, getActivity());
         progressDialog = new QDWaitDialog(getActivity());
         initAccountExpireDialog();
-        initAutoSettingDialog();
+
     }
 
     private void getExpireState() {
         String expireState = SPUtils.getVByK(getActivity(), GlobalConfigBean.KEY_WLT_EXPIRE);
         String expireMsg = SPUtils.getVByK(getActivity(), GlobalConfigBean.KEY_WLT_EXPIRE_MSG);
         onLoadingSuccess(new AccountExpireBean(expireState, expireMsg));
-    }
-
-    /**
-     * 初始化自定义设置界面的dialog
-     */
-    private void initAutoSettingDialog() {
-
-        autoSettingDialog = new ZhaoBiaoDialog(getActivity(), "是否需要进行自定义的接单设置?");
-        autoSettingDialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
-            @Override
-            public void onDialogOkClick() {
-                autoSettingDialog.dismiss();
-                Intent intent = AutoSettingsActivity.onNewIntent(getActivity());
-                startActivity(intent);
-                SPUtils.saveAutoSetting(getActivity());
-            }
-
-            @Override
-            public void onDialogCancelClick() {
-                autoSettingDialog.dismiss();
-                SPUtils.saveAutoSetting(getActivity());
-            }
-        });
-
     }
 
     @Nullable
@@ -522,53 +492,8 @@ public class BiddingFragment<T> extends BaseHomeFragment implements INotificatio
 
     @Override
     public void onVersionBack(String version) {
-
-        if (getActivity() != null && !UserUtils.isNeedUpdate(getActivity())) { //判断是否强制更新
-            String versionCode = "";
-            int currentVersion = -1; //当前版本号
-            int versionNum = -1;
-            //获取当前系统版本号
-            try {
-                currentVersion = Integer.parseInt(VersionUtils.getVersionCode(getActivity()));
-            } catch (Exception e) {
-
-            }
-            if (currentVersion == -1) return;
-
-            //当前是MainActivity，获取服务器header返回的版本号
-            if (version != null) {
-                if (version.contains("F")) {
-                    forceUpdate = true;
-                    String[] fs = version.split("F");
-                    versionCode = fs[0];
-                    try {
-                        versionNum = Integer.parseInt(versionCode);
-                    } catch (Exception e) {
-
-                    }
-                } else {
-                    try {
-                        versionNum = Integer.parseInt(version);
-                    } catch (Exception e) {
-
-                    }
-                }
-
-                if (versionNum == -1) {
-                    return;
-                }
-
-                UpdateManager.getUpdateManager().isUpdateNow(getActivity(), versionNum, currentVersion, URLConstans.DOWNLOAD_ZHAOBIAO_ADDRESS, forceUpdate);
-//          UpdateManager.getUpdateManager().isUpdateNow(this, versionNum, currentVersion, "http://10.252.23.45:8001/2.7.0_zhaobiao.apk", forceUpdate);
-                Boolean flag = UpdateManager.needUpdate;
-                Log.v("www", "flag:" + flag);
-                if (!flag) {
-                    //判断是不是第一次进入主界面
-                    showFirst();
-                }
-            }
-        }
     }
+
 
 
     @Override
@@ -578,52 +503,6 @@ public class BiddingFragment<T> extends BaseHomeFragment implements INotificatio
         ola.onLoginInvalidate();
     }
 
-    /**
-     * 第一次登录时的提示
-     */
-    private void showFirst() {
-//      if(!SPUtils.getAppUpdate(this)){
-        if (SPUtils.isFirstUpdate(getActivity())) {//需要弹窗
-            if (updateMessageDialog == null) {
-                updateMessageDialog = new ZhaoBiaoDialog(getActivity(),
-//                    getString(R.string.update_hint),
-                        getString(R.string.update_message));
-                updateMessageDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        updateMessageDialog = null;
-                        //弹自定义界面的弹
-                        if (SPUtils.isAutoSetting(getActivity())) {
-                            autoSettingDialog.show();
-                        }
-                    }
-                });
-                updateMessageDialog.setCancelable(false);
-                updateMessageDialog.setCancelButtonGone();
-                updateMessageDialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
-                    @Override
-                    public void onDialogOkClick() {
-                        updateMessageDialog.dismiss();
-                        SPUtils.saveAlreadyFirstUpdate(getActivity(), false);
-//                    UserUtils.setAppVersion(MainActivity.this, ""); //2.7升级可删
-//                       SPUtils.setAppUpdate(MainActivity.this, true);
-                    }
-
-                    @Override
-                    public void onDialogCancelClick() {
-                    }
-                });
-                updateMessageDialog.show();
-
-            }
-        } else {
-            if (SPUtils.isAutoSetting(getActivity())) {
-                autoSettingDialog.show();
-            }
-        }
-
-
-    }
 
     /**
      * adapter的回调监听

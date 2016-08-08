@@ -252,6 +252,19 @@ public class NannyListBean extends QDBaseBean{
                         nannyBidHolder.grab_nanny_knock.setTextColor(context.getResources().getColor(R.color.white));
                         nannyBidHolder.grab_nanny_knock.setText("抢单");
                         nannyBidHolder.grab_nanny_knock.setClickable(false);
+                    }else{
+                        nannyBidHolder.grab_nanny_knock.setBackgroundResource(R.drawable.bt_knock_button_selector);
+                        nannyBidHolder.grab_nanny_knock.setTextColor(context.getResources().getColor(R.color.white));
+                        nannyBidHolder.grab_nanny_knock.setText("抢单");
+                        nannyBidHolder.grab_nanny_knock.setClickable(true);
+                        nannyBidHolder.grab_nanny_knock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                adapter.itemClicked(nannyBidHolder.grab_nanny_knock.getId(), toPopPassBean());
+                                MDUtils.servicePageMD(NannyListBean.this.context, cateId, String.valueOf(bidId),
+                                        MDConstans.ACTION_QIANG_DAN);
+                            }
+                        });
                     }
 
                 } else {

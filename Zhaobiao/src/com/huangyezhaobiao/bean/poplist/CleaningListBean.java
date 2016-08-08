@@ -251,6 +251,19 @@ public class CleaningListBean extends QDBaseBean{
                         cleaningBidHolder.grab_cleaning_knock.setTextColor(context.getResources().getColor(R.color.white));
                         cleaningBidHolder.grab_cleaning_knock.setText("抢单");
                         cleaningBidHolder.grab_cleaning_knock.setClickable(false);
+                    }else{
+                        cleaningBidHolder.grab_cleaning_knock.setBackgroundResource(R.drawable.bt_knock_button_selector);
+                        cleaningBidHolder.grab_cleaning_knock.setTextColor(context.getResources().getColor(R.color.white));
+                        cleaningBidHolder.grab_cleaning_knock.setText("抢单");
+                        cleaningBidHolder.grab_cleaning_knock.setClickable(true);
+                        cleaningBidHolder.grab_cleaning_knock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                adapter.itemClicked(cleaningBidHolder.grab_cleaning_knock.getId(), toPopPassBean());
+                                MDUtils.servicePageMD(CleaningListBean.this.context, cateId, String.valueOf(bidId), MDConstans.ACTION_QIANG_DAN);
+
+                            }
+                        });
                     }
 
                 }else{

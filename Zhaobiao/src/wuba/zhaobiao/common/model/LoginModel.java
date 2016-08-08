@@ -2,6 +2,8 @@ package wuba.zhaobiao.common.model;
 
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
+import android.view.View;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.activity.MobileValidateActivity;
@@ -75,7 +77,6 @@ public class LoginModel extends BaseModel {
 
     private void passportLoginSuccess(LoginRespons loginRespons) {
         saveInfoAndStatistics(loginRespons);
-        saveAccountInfo(loginRespons);
         validatedPhoneNumAfterGoToWhere(loginRespons);
         context.finish();
     }
@@ -84,19 +85,17 @@ public class LoginModel extends BaseModel {
         String userName = LoginClient.doGetUnameOperate(context);
         String companyName = loginRespons.getData().getCompanyName();
         String userId = loginRespons.getData().getUserId();
-        saveInfo(userName, companyName,userId);
-    }
-
-    private void saveInfo(String userName, String compnyName, String userId) {
-        saveLocalInfo();
-        saveStatistics(userName, userId);
-        UserUtils.saveUser(context, userId, compnyName, userName);
-    }
-
-    private void saveAccountInfo(LoginRespons loginRespons){
+        String suserId = loginRespons.getData().getSuserId();
         String isSon = loginRespons.getData().getIsSon();
         String rbac = loginRespons.getData().getRbac();
         UserUtils.saveAcocuntInfo(context, isSon, rbac);
+        saveInfo(userName, companyName,userId,suserId);
+    }
+
+    private void saveInfo(String userName, String compnyName, String userId,String suserId) {
+        saveLocalInfo();
+        saveStatistics(userName, userId,suserId);
+        UserUtils.saveUser(context, userId, compnyName, userName);
     }
 
     private void validatedPhoneNumAfterGoToWhere(LoginRespons loginRespons) {
@@ -155,9 +154,15 @@ public class LoginModel extends BaseModel {
         UserUtils.saveNeedUpdate(context, false);
     }
 
-    private void saveStatistics(String userName, String userId) {
+    private void saveStatistics(String userName, String userId,String suserId) {
         HYMob.getDataListByLoginSuccess(context, HYEventConstans.EVENT_ID_LOGIN, "1", userName);
-        GePushProxy.bindPushAlias(context.getApplicationContext(), userId + "_" + PhoneUtils.getIMEI(context));
+        String isSon = UserUtils.getIsSon(context);
+        if(!TextUtils.isEmpty(isSon) && TextUtils.equals("1",isSon)){
+            GePushProxy.bindPushAlias(context.getApplicationContext(), suserId + "_" + PhoneUtils.getIMEI(context));
+        }else{
+            GePushProxy.bindPushAlias(context.getApplicationContext(), userId + "_" + PhoneUtils.getIMEI(context));
+        }
+
     }
 
     private void createAndConfigErrorDialog(String msg) {
