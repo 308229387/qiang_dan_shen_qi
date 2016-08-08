@@ -57,6 +57,7 @@ public abstract class JsonCallback<T> extends EncryptCallback<T> {
                     throw new IllegalStateException("need_down_line");
                 } else {
                     /**
+                     *
                      * code = 0 代表成功，默认实现了Gson解析成相应的实体Bean返回，可以自己替换成fastjson等
                      * 对于返回参数，先支持 String，然后优先支持class类型的字节码，最后支持type类型的参数
                      */
@@ -79,6 +80,10 @@ public abstract class JsonCallback<T> extends EncryptCallback<T> {
                 throw new IllegalStateException(msg);
             case 600:
                 throw new IllegalStateException(msg);
+            case 1000:
+                throw new IllegalStateException("child_function_ban");
+            case 1001:
+                throw new IllegalStateException("child_has_unbind");
             case 2001:
                 throw new IllegalStateException("ppu_expired");
             default:

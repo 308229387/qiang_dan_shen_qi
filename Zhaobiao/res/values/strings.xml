@@ -60,6 +60,8 @@
     <string name="toast_bidding_timeless">客户联系提醒</string>
     <string name="force_exit">账号在其他手机登录，您已被迫下线.\n请注意密码安全。</string>
     <string name="ppu_expired">PPU过期，请重新登录</string>
+    <string name="child_function_ban">子账号功能被禁止</string>
+    <string name="child_has_unbind">子账号被解绑</string>
     <string name="register_success">Register push success.</string>
     <string name="register_fail">Register push fail.</string>
     <string name="recv_passthrough_message"> Receive a passthrough message. Content is \"%1$s\"</string>
