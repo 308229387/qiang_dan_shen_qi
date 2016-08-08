@@ -159,9 +159,15 @@ public class HomePageModel extends BaseModel {
     }
 
     private void saveUserSetState(GetWltStateRespons wltStateRespons) {
-        String setState = wltStateRespons.getData().getAppUserSet().getSetState();
-        if (!TextUtils.isEmpty(setState))
-            SPUtils.saveKV(context, GlobalConfigBean.KEY_SETSTATE, setState);
+        try{
+            String setState = wltStateRespons.getData().getAppUserSet().getSetState();
+
+            if (!TextUtils.isEmpty(setState))
+                SPUtils.saveKV(context, GlobalConfigBean.KEY_SETSTATE, setState);
+        } catch(Exception e){
+            return ;
+        }
+
     }
 
 
@@ -481,8 +487,8 @@ public class HomePageModel extends BaseModel {
 
         @Override
         public void onResponse(boolean isFromCache, GetWltStateRespons WltStateRespons, Request request, @Nullable Response response) {
-            if (WltStateRespons != null && response != null)
-                saveInfoAndJugeUpdate(WltStateRespons, response);
+            saveInfoAndJugeUpdate(WltStateRespons, response);
+
         }
 
         @Override

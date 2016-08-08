@@ -1,16 +1,12 @@
 package com.huangyezhaobiao.fragment.home;
 
 import android.os.Build;
-import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.format.DateUtils;
 import android.util.TypedValue;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.ListView;
@@ -30,7 +26,7 @@ import com.huangyezhaobiao.view.TitleMessageBarLayout;
 /**
  * Created by 58 on 2016/6/17.
  */
-public abstract class BaseHomeFragment extends Fragment implements TitleMessageBarLayout.OnTitleBarClickListener, INetStateChangedListener {
+public abstract class BaseHomeFragment extends Fragment implements TitleMessageBarLayout.OnTitleBarClickListener,INetStateChangedListener {
     private BiddingApplication app;
     protected View layout_back_head;
     protected TitleMessageBarLayout tbl;
@@ -41,7 +37,7 @@ public abstract class BaseHomeFragment extends Fragment implements TitleMessageB
 
     protected Handler handler;
 
-    protected long resume_time, stop_time;
+    protected long resume_time,stop_time;
 
     public abstract void OnFragmentSelectedChanged(boolean isSelected);
 
@@ -55,39 +51,33 @@ public abstract class BaseHomeFragment extends Fragment implements TitleMessageB
      * 加载更多
      */
     protected abstract void loadMore();
-
     @Override
     public void onTitleBarClosedClicked() {
-        if (tbl != null)
+        if(tbl!=null)
             tbl.setVisibility(View.GONE);
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        app = BiddingApplication.getBiddingApplication();
-        app.registerNetStateListener();
-        NetStateManager.getNetStateManagerInstance().setINetStateChangedListener(this);
-        if (tbl != null) {
-            tbl.setVisibility(View.GONE);
-            tbl.setTitleBarListener(this);
-        }
-        return super.onCreateView(inflater, container, savedInstanceState);
-    }
 
     @Override
     public void onResume() {
-        if (NetUtils.isNetworkConnected(app)) {
+        app = BiddingApplication.getBiddingApplication();
+        app.registerNetStateListener();
+        NetStateManager.getNetStateManagerInstance().setINetStateChangedListener(this);
+        if(tbl!=null){
+            tbl.setVisibility(View.GONE);
+            tbl.setTitleBarListener(this);
+        }
+
+        if(NetUtils.isNetworkConnected(app)){
             NetConnected();
-        } else {
+        }else{
             NetDisConnected();
         }
         super.onResume();
 
         resume_time = System.currentTimeMillis();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT) {
             //透明状态栏
             getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             int height = Utils.getStatusBarHeight(getActivity());
@@ -120,7 +110,7 @@ public abstract class BaseHomeFragment extends Fragment implements TitleMessageB
 
     @Override
     public void NetConnected() {
-        if (getActivity() != null && tbl != null && tbl.getType() == TitleBarType.NETWORK_ERROR) {
+        if(getActivity() != null && tbl!=null && tbl.getType()== TitleBarType.NETWORK_ERROR ){
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -132,7 +122,7 @@ public abstract class BaseHomeFragment extends Fragment implements TitleMessageB
 
     @Override
     public void NetDisConnected() {
-        if (getActivity() != null) {
+        if(getActivity() != null) {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -150,7 +140,7 @@ public abstract class BaseHomeFragment extends Fragment implements TitleMessageB
      * 对话框消失
      */
     public void stopLoading() {
-        if (getActivity() != null && !getActivity().isFinishing() && loading != null && loading.isShowing()) {
+        if (getActivity()!=null && !getActivity().isFinishing() && loading != null && loading.isShowing()) {
             loading.dismiss();
             loading = null;
         }
@@ -161,12 +151,12 @@ public abstract class BaseHomeFragment extends Fragment implements TitleMessageB
      */
     public void startLoading() {
         try {
-            if (loading == null && getActivity() != null) {
+            if (loading == null && getActivity()!=null) {
                 loading = new LoadingProgress(getActivity(), R.style.loading);
             }
             loading.show();
         } catch (RuntimeException e) {
-            if (getActivity() != null && !getActivity().isFinishing() && loading != null && loading.isShowing()) {
+            if (getActivity()!=null && !getActivity().isFinishing() && loading != null && loading.isShowing()) {
                 loading.dismiss();
                 loading = null;
             }
@@ -175,6 +165,7 @@ public abstract class BaseHomeFragment extends Fragment implements TitleMessageB
     }
 
     /**
+     *
      * @param mPullToRefreshListView
      */
     protected void configListViewCannotLoadMore(
@@ -212,7 +203,7 @@ public abstract class BaseHomeFragment extends Fragment implements TitleMessageB
     /**
      * 配置listView的下拉事件上拉下拉都可以
      */
-    protected void configListViewRefreshListener(final PullToRefreshListView lv, final SwipeRefreshLayout srl) {
+    protected void configListViewRefreshListener(final PullToRefreshListView lv,final SwipeRefreshLayout srl) {
         lv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(
@@ -225,7 +216,7 @@ public abstract class BaseHomeFragment extends Fragment implements TitleMessageB
             }
         });
         final ListView listView = lv.getRefreshableView();
-        if (srl != null) {
+        if(srl!=null) {
             srl.setColorSchemeResources
                     (android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
             srl.setProgressBackgroundColor(R.color.red);
