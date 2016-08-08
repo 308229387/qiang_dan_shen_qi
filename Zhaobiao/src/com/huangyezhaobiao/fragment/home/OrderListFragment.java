@@ -380,7 +380,7 @@ public class OrderListFragment<T> extends  BaseHomeFragment implements INotifica
                     && TextUtils.equals("1", rbac) || TextUtils.equals("3", rbac)) {
                 lv.setVisibility(View.GONE);
                 layout_no_data.setVisibility(View.VISIBLE);
-                tv_no_orders.setText("对不起，您的账号\n暂无查看已抢订单权限");
+                tv_no_orders.setText("对不起，您的账号暂无\n查看已抢订单权限");
             }else{
                 if (beans.size() > 0) {
                     lv.setVisibility(View.VISIBLE);
