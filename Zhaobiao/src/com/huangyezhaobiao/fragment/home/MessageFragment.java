@@ -39,6 +39,7 @@ import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.PushUtils;
 import com.huangyezhaobiao.utils.StateUtils;
 import com.huangyezhaobiao.utils.UnreadUtils;
+import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
 import com.huangyezhaobiao.vm.CenterMessageStorageViewModel;
 
@@ -307,8 +308,24 @@ public class MessageFragment extends BaseHomeFragment implements INotificationLi
             int type = pushBean.getTag();
             if (type == 100 && StateUtils.getState(getActivity()) == 1) {
                 LogUtils.LogV("nnnnnnB2c", String.valueOf(pushBean.getTag()));
-                Intent intent = new Intent(getActivity(), PushInActivity.class);
-                startActivity(intent);
+
+                String isSon = UserUtils.getIsSon(getActivity());
+                if (!TextUtils.isEmpty(isSon) && TextUtils.equals("1", isSon)) {
+                    String rbac = UserUtils.getRbac(getActivity());
+                    if (!TextUtils.isEmpty(rbac)
+                            && TextUtils.equals("1", rbac) || TextUtils.equals("3", rbac)) {
+                        LogUtils.LogV("PushInActivity", "MessageFragment" + "没有权限弹窗");
+                    }else{
+
+                        Intent intent = new Intent(getActivity(), PushInActivity.class);
+                        startActivity(intent);
+                    }
+
+                } else {
+                    Intent intent = new Intent(getActivity(), PushInActivity.class);
+                    startActivity(intent);
+                }
+
             } else {
                 LogUtils.LogV("nnnnnnB2d", String.valueOf(pushBean.getTag()));
 //                if(tbl  != null){
