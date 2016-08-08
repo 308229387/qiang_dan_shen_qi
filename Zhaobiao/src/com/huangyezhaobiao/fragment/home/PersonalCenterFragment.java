@@ -1,6 +1,5 @@
 package com.huangyezhaobiao.fragment.home;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -31,8 +30,8 @@ import com.huangyezhaobiao.vm.YuEViewModel;
 
 import java.util.Map;
 
-import wuba.zhaobiao.common.activity.AboutActivity;
-import wuba.zhaobiao.common.activity.SettingActivity;
+import wuba.zhaobiao.mine.activity.AboutActivity;
+import wuba.zhaobiao.mine.activity.SettingActivity;
 
 /**
  * Created by 58 on 2016/6/17.

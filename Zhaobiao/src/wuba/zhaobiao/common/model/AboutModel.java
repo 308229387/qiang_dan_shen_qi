@@ -33,7 +33,7 @@ import okhttp3.Call;
 import okhttp3.Headers;
 import okhttp3.Request;
 import okhttp3.Response;
-import wuba.zhaobiao.common.activity.AboutActivity;
+import wuba.zhaobiao.mine.activity.AboutActivity;
 import wuba.zhaobiao.config.Urls;
 
 /**
