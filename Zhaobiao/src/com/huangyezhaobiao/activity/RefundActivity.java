@@ -231,7 +231,7 @@ public class RefundActivity extends CommonFragmentActivity implements View.OnCli
                     startActivity(intent);
                 }
 
-            } else {
+            } else if(type != 100 && type != 105) {
                 tbl.setPushBean(pushBean);
                 tbl.setVisibility(View.VISIBLE);
                 PushUtils.pushList.clear();

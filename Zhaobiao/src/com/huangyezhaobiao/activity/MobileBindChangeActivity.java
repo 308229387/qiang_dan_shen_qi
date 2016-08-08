@@ -226,9 +226,11 @@ public class MobileBindChangeActivity extends QBBaseActivity implements View.OnC
                 ToastUtils.makeImgAndTextToast(this,"验证码已发送",R.drawable.validate_done,Toast.LENGTH_SHORT).show();
                 //开始倒计时
                mobileBindChangePresenter.startCountDown();
+            }else if(TextUtils.equals(status,FAILURE)){
+                ToastUtils.makeImgAndTextToast(this,"获取验证码已达上限",R.drawable.validate_done,Toast.LENGTH_SHORT).show();
             }
             else{
-                ToastUtils.makeImgAndTextToast(this, status, R.drawable.validate_error, Toast.LENGTH_SHORT).show();
+                ToastUtils.makeImgAndTextToast(this, "获取验证码失败", R.drawable.validate_error, Toast.LENGTH_SHORT).show();
             }
         }
         //提交

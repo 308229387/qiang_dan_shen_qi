@@ -567,7 +567,7 @@ public class BiddingFragment<T> extends BaseHomeFragment implements INotificatio
                     startActivity(intent);
                 }
 
-            } else {
+            } else if(type != 100 && type != 105){
                 LogUtils.LogV("nnnnnnB1d", String.valueOf(pushBean.getTag()));
                 tbl.setPushBean(pushBean);
                 tbl.setVisibility(View.VISIBLE);

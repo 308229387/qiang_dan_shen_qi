@@ -326,7 +326,7 @@ public class MessageFragment extends BaseHomeFragment implements INotificationLi
                     startActivity(intent);
                 }
 
-            } else {
+            } else if(type != 100 && type != 105){
                 LogUtils.LogV("nnnnnnB2d", String.valueOf(pushBean.getTag()));
 //                if(tbl  != null){
 //                    tbl.setPushBean(pushBean);

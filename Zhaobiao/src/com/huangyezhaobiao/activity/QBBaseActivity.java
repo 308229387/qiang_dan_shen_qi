@@ -317,7 +317,7 @@ public abstract class QBBaseActivity extends CommonBaseActivity implements INoti
 				}
 
 			}
-			else{
+			else if(type != 100 && type != 105){
 				if(tbl!=null){
 					tbl.setPushBean(pushBean);
 					tbl.setVisibility(View.VISIBLE);
