@@ -29,9 +29,9 @@ public enum PopTypeEnum {
 		case 103:
 			return PopTypeEnum.SYSTEMMESSAGE;
 		case 105:
-			return PopTypeEnum.SYSTEMMESSAGE;
-		default:
 			return PopTypeEnum.LOGOUT;
+		default:
+			return PopTypeEnum.NEW_ORDER;
 		}
 	}
 
