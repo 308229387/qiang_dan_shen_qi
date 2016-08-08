@@ -57,6 +57,7 @@ import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.StateUtils;
 import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.utils.UnreadUtils;
+import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.view.QDWaitDialog;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
@@ -548,8 +549,24 @@ public class BiddingFragment<T> extends BaseHomeFragment implements INotificatio
             LogUtils.LogV("nnnnnnB1b", String.valueOf(pushBean.getTag()) + StateUtils.getState(getActivity()));
             if (type == 100 && StateUtils.getState(getActivity()) == 1) {
                 LogUtils.LogV("nnnnnnB1c", String.valueOf(pushBean.getTag()));
-                Intent intent = new Intent(getActivity(), PushInActivity.class);
-                startActivity(intent);
+
+                String isSon = UserUtils.getIsSon(getActivity());
+                if (!TextUtils.isEmpty(isSon) && TextUtils.equals("1", isSon)) {
+                    String rbac = UserUtils.getRbac(getActivity());
+                    if (!TextUtils.isEmpty(rbac)
+                            && TextUtils.equals("1", rbac) || TextUtils.equals("3", rbac)) {
+                        LogUtils.LogV("PushInActivity", "BiddingFragment" + "没有权限弹窗");
+                    }else{
+
+                        Intent intent = new Intent(getActivity(), PushInActivity.class);
+                        startActivity(intent);
+                    }
+
+                } else {
+                    Intent intent = new Intent(getActivity(), PushInActivity.class);
+                    startActivity(intent);
+                }
+
             } else {
                 LogUtils.LogV("nnnnnnB1d", String.valueOf(pushBean.getTag()));
                 tbl.setPushBean(pushBean);

@@ -1,15 +1,12 @@
 package com.huangyezhaobiao.deal;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.inter.INotificationListener;
 import com.huangyezhaobiao.notification.NotificationExecutor;
 import com.huangyezhaobiao.push.BiddingMessageReceiver;
-import com.huangyezhaobiao.utils.LogUtils;
-import com.huangyezhaobiao.utils.PushUtils;
 import com.huangyezhaobiao.utils.UpdateManager;
 
 /**
