@@ -48,6 +48,8 @@ import com.wuba.loginsdk.external.LoginClient;
 
 import java.sql.Ref;
 
+import wuba.zhaobiao.utils.LogoutDialogUtils;
+
 /**
  * Created by shenzhixin on 2015/12/9.
  * 退单界面
@@ -231,7 +233,15 @@ public class RefundActivity extends CommonFragmentActivity implements View.OnCli
                     startActivity(intent);
                 }
 
-            } else if(type != 100 && type != 105) {
+            }
+            else if(type == 105){
+                try {
+                    new LogoutDialogUtils(RefundActivity.this, "当前账号被强制退出").showSingleButtonDialog();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            else if(type != 100 && type != 105) {
                 tbl.setPushBean(pushBean);
                 tbl.setVisibility(View.VISIBLE);
                 PushUtils.pushList.clear();

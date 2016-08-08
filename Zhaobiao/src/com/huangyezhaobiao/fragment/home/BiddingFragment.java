@@ -67,6 +67,7 @@ import com.huangyezhaobiao.vm.KnockViewModel;
 import java.util.List;
 
 import wuba.zhaobiao.grab.utils.GrabCachUtils;
+import wuba.zhaobiao.utils.LogoutDialogUtils;
 
 /**
  * Created by 58 on 2016/6/17.
@@ -567,7 +568,15 @@ public class BiddingFragment<T> extends BaseHomeFragment implements INotificatio
                     startActivity(intent);
                 }
 
-            } else if(type != 100 && type != 105){
+            }
+            else if(type == 105){
+                try {
+                    new LogoutDialogUtils(getActivity(), "当前账号被强制退出").showSingleButtonDialog();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            else if(type != 100 && type != 105){
                 LogUtils.LogV("nnnnnnB1d", String.valueOf(pushBean.getTag()));
                 tbl.setPushBean(pushBean);
                 tbl.setVisibility(View.VISIBLE);

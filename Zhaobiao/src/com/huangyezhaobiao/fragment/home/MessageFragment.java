@@ -48,6 +48,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import wuba.zhaobiao.utils.LogoutDialogUtils;
+
 /**
  * Created by 58 on 2016/6/17.
  */
@@ -326,7 +328,15 @@ public class MessageFragment extends BaseHomeFragment implements INotificationLi
                     startActivity(intent);
                 }
 
-            } else if(type != 100 && type != 105){
+            }
+            else if(type == 105){
+                try {
+                    new LogoutDialogUtils(getActivity(), "当前账号被强制退出").showSingleButtonDialog();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            else if(type != 100 && type != 105){
                 LogUtils.LogV("nnnnnnB2d", String.valueOf(pushBean.getTag()));
 //                if(tbl  != null){
 //                    tbl.setPushBean(pushBean);

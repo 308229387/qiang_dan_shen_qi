@@ -226,11 +226,7 @@ public class PushUtils {
 			UnreadUtils.saveSysNoti(context);
 			break;
 		case LOGOUT:
-			try {
-				new LogoutDialogUtils((Activity)context, "当前账号被强制退出").showSingleButtonDialog();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+
 			break;
 		default:
 			break;

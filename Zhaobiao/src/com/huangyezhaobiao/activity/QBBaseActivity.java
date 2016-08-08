@@ -1,5 +1,6 @@
 package com.huangyezhaobiao.activity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
@@ -37,6 +38,8 @@ import com.huangyezhaobiao.view.TitleMessageBarLayout.OnTitleBarClickListener;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog.onDialogClickListener;
 import com.huangyezhaobiao.vm.KnockViewModel;
+
+import wuba.zhaobiao.utils.LogoutDialogUtils;
 
 /**
  * 抢标的最基类activity,多一些这个项目的新东西
@@ -316,6 +319,12 @@ public abstract class QBBaseActivity extends CommonBaseActivity implements INoti
 					startActivity(intent);
 				}
 
+			}else if(type == 105){
+				try {
+					new LogoutDialogUtils(QBBaseActivity.this, "当前账号被强制退出").showSingleButtonDialog();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 			else if(type != 100 && type != 105){
 				if(tbl!=null){
