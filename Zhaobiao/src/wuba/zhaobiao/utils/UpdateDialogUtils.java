@@ -2,24 +2,12 @@ package wuba.zhaobiao.utils;
 
 import android.app.Activity;
 import android.content.DialogInterface;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.bean.GlobalConfigBean;
-import com.huangyezhaobiao.callback.DialogCallback;
-import com.huangyezhaobiao.utils.ActivityUtils;
-import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.SPUtils;
-import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
-import com.lzy.okhttputils.OkHttpUtils;
-
-import okhttp3.Call;
-import okhttp3.Request;
-import okhttp3.Response;
-import wuba.zhaobiao.common.activity.LoginActivity;
-import wuba.zhaobiao.config.Urls;
 
 /**
  * Created by SongYongmeng on 2016/7/31.
@@ -99,7 +87,6 @@ public class UpdateDialogUtils {
         @Override
         public void onDismiss(DialogInterface dialog) {
             updatetDialog = null;
-            //弹自定义界面的弹
             String isSet = SPUtils.getVByK(context, GlobalConfigBean.KEY_SETSTATE);
             if (!TextUtils.equals("1", isSet) && SPUtils.isAutoSetting(context)) {
                 new AutoSettingDialogUtils(context, context.getString(R.string.auto_setting_message)).showTwoButtonDialog();

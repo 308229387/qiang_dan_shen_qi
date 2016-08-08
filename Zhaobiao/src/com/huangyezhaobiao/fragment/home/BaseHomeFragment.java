@@ -1,60 +1,36 @@
 package com.huangyezhaobiao.fragment.home;
 
-import android.app.Activity;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.format.DateUtils;
-import android.util.Log;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.huangye.commonlib.file.SharedPreferencesUtils;
-import com.huangye.commonlib.utils.UserConstans;
-import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.activity.AutoSettingsActivity;
-import com.huangyezhaobiao.activity.BlankActivity;
-import com.huangyezhaobiao.activity.MainActivity;
-import com.huangyezhaobiao.activity.PushInActivity;
 import com.huangyezhaobiao.application.BiddingApplication;
-import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.enums.TitleBarType;
-import com.huangyezhaobiao.gtui.GePushProxy;
-import com.huangyezhaobiao.inter.INotificationListener;
 import com.huangyezhaobiao.netmodel.INetStateChangedListener;
 import com.huangyezhaobiao.netmodel.NetStateManager;
-import com.huangyezhaobiao.url.URLConstans;
-import com.huangyezhaobiao.utils.ActivityUtils;
-import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.NetUtils;
-import com.huangyezhaobiao.utils.PushUtils;
-import com.huangyezhaobiao.utils.SPUtils;
-import com.huangyezhaobiao.utils.StateUtils;
-import com.huangyezhaobiao.utils.UpdateManager;
-import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.utils.Utils;
-import com.huangyezhaobiao.utils.VersionUtils;
 import com.huangyezhaobiao.view.LoadingProgress;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
-import com.huangyezhaobiao.view.ZhaoBiaoDialog;
-import com.huangyezhaobiao.vm.LogoutViewModel;
-import com.wuba.loginsdk.external.LoginClient;
-import com.xiaomi.mipush.sdk.MiPushClient;
 
 /**
  * Created by 58 on 2016/6/17.
  */
-public abstract class BaseHomeFragment extends Fragment implements TitleMessageBarLayout.OnTitleBarClickListener,INetStateChangedListener {
+public abstract class BaseHomeFragment extends Fragment implements TitleMessageBarLayout.OnTitleBarClickListener, INetStateChangedListener {
     private BiddingApplication app;
     protected View layout_back_head;
     protected TitleMessageBarLayout tbl;
@@ -65,7 +41,7 @@ public abstract class BaseHomeFragment extends Fragment implements TitleMessageB
 
     protected Handler handler;
 
-    protected long resume_time,stop_time;
+    protected long resume_time, stop_time;
 
     public abstract void OnFragmentSelectedChanged(boolean isSelected);
 
@@ -79,33 +55,39 @@ public abstract class BaseHomeFragment extends Fragment implements TitleMessageB
      * 加载更多
      */
     protected abstract void loadMore();
+
     @Override
     public void onTitleBarClosedClicked() {
-        if(tbl!=null)
+        if (tbl != null)
             tbl.setVisibility(View.GONE);
     }
 
-
+    @Nullable
     @Override
-    public void onResume() {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         app = BiddingApplication.getBiddingApplication();
         app.registerNetStateListener();
         NetStateManager.getNetStateManagerInstance().setINetStateChangedListener(this);
-        if(tbl!=null){
+        if (tbl != null) {
             tbl.setVisibility(View.GONE);
             tbl.setTitleBarListener(this);
         }
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
 
-        if(NetUtils.isNetworkConnected(app)){
+    @Override
+    public void onResume() {
+        if (NetUtils.isNetworkConnected(app)) {
             NetConnected();
-        }else{
+        } else {
             NetDisConnected();
         }
         super.onResume();
 
         resume_time = System.currentTimeMillis();
 
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //透明状态栏
             getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             int height = Utils.getStatusBarHeight(getActivity());
@@ -131,14 +113,14 @@ public abstract class BaseHomeFragment extends Fragment implements TitleMessageB
     @Override
     public void onDestroy() {
         if (app != null)
-        app.unRegisterNetStateListener();//解除网络的变化Listener
+            app.unRegisterNetStateListener();//解除网络的变化Listener
 //        app.stopTimer();//停止文件的上传
         super.onDestroy();
     }
 
     @Override
     public void NetConnected() {
-        if(getActivity() != null && tbl!=null && tbl.getType()== TitleBarType.NETWORK_ERROR ){
+        if (getActivity() != null && tbl != null && tbl.getType() == TitleBarType.NETWORK_ERROR) {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -150,7 +132,7 @@ public abstract class BaseHomeFragment extends Fragment implements TitleMessageB
 
     @Override
     public void NetDisConnected() {
-        if(getActivity() != null) {
+        if (getActivity() != null) {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -168,7 +150,7 @@ public abstract class BaseHomeFragment extends Fragment implements TitleMessageB
      * 对话框消失
      */
     public void stopLoading() {
-        if (getActivity()!=null && !getActivity().isFinishing() && loading != null && loading.isShowing()) {
+        if (getActivity() != null && !getActivity().isFinishing() && loading != null && loading.isShowing()) {
             loading.dismiss();
             loading = null;
         }
@@ -179,12 +161,12 @@ public abstract class BaseHomeFragment extends Fragment implements TitleMessageB
      */
     public void startLoading() {
         try {
-            if (loading == null && getActivity()!=null) {
+            if (loading == null && getActivity() != null) {
                 loading = new LoadingProgress(getActivity(), R.style.loading);
             }
             loading.show();
         } catch (RuntimeException e) {
-            if (getActivity()!=null && !getActivity().isFinishing() && loading != null && loading.isShowing()) {
+            if (getActivity() != null && !getActivity().isFinishing() && loading != null && loading.isShowing()) {
                 loading.dismiss();
                 loading = null;
             }
@@ -193,7 +175,6 @@ public abstract class BaseHomeFragment extends Fragment implements TitleMessageB
     }
 
     /**
-     *
      * @param mPullToRefreshListView
      */
     protected void configListViewCannotLoadMore(
@@ -231,7 +212,7 @@ public abstract class BaseHomeFragment extends Fragment implements TitleMessageB
     /**
      * 配置listView的下拉事件上拉下拉都可以
      */
-    protected void configListViewRefreshListener(final PullToRefreshListView lv,final SwipeRefreshLayout srl) {
+    protected void configListViewRefreshListener(final PullToRefreshListView lv, final SwipeRefreshLayout srl) {
         lv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(
@@ -244,7 +225,7 @@ public abstract class BaseHomeFragment extends Fragment implements TitleMessageB
             }
         });
         final ListView listView = lv.getRefreshableView();
-        if(srl!=null) {
+        if (srl != null) {
             srl.setColorSchemeResources
                     (android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
             srl.setProgressBackgroundColor(R.color.red);

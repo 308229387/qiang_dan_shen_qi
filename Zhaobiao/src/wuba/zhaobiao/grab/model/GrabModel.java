@@ -10,6 +10,6 @@ public class GrabModel extends BaseModel {
     private GrabFragment context;
 
     public GrabModel(GrabFragment context) {
-
+        this.context = context;
     }
 }

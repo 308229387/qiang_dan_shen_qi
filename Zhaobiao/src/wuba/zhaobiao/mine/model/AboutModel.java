@@ -1,4 +1,4 @@
-package wuba.zhaobiao.common.model;
+package wuba.zhaobiao.mine.model;
 
 import android.app.Activity;
 import android.content.pm.PackageManager;
@@ -33,6 +33,7 @@ import okhttp3.Call;
 import okhttp3.Headers;
 import okhttp3.Request;
 import okhttp3.Response;
+import wuba.zhaobiao.common.model.BaseModel;
 import wuba.zhaobiao.mine.activity.AboutActivity;
 import wuba.zhaobiao.config.Urls;
 

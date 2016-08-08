@@ -2,20 +2,15 @@ package wuba.zhaobiao.common.activity;
 
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.widget.Toast;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.eventbus.EventAction;
-import com.huangyezhaobiao.utils.ToastUtils;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 import wuba.zhaobiao.common.model.HomePageModel;
 
 /**
  * Created by SongYongmeng on 2016/7/29.
- * 描    述：首页，设置锁屏弹窗、设置顶部透明、注册EventBus、添加fragment到列表、配置Viewpager和底部按钮、每次onResume检查红点及抢单成功
+ * 描    述：首页，设置锁屏弹窗、设置顶部透明、注册EventBus、添加fragment到列表、配置Viewpager和底部按钮、每次onResume检查红点及抢单成功,检查网灵通后，升级、以及是否是第一次设置
  */
 public class HomePageActivity extends BaseActivity<HomePageModel> {
 
@@ -30,7 +25,7 @@ public class HomePageActivity extends BaseActivity<HomePageModel> {
         initLayout();
         initEvenBus();
         registService();
-        checkWltOnLineState();
+        checkWltOnLineStateAndIsNeedUpdateAfterFirstSetting();
     }
 
     private void initLayout() {
@@ -58,8 +53,8 @@ public class HomePageActivity extends BaseActivity<HomePageModel> {
         model.registerScreenOffReceiver();
     }
 
-    private void checkWltOnLineState() {
-        model.getWltOnlineStateAndPhoneNum();
+    private void checkWltOnLineStateAndIsNeedUpdateAfterFirstSetting() {
+        model.getWltOnlineStateAndPhoneNumAndIsNeedUpdateAfterFirstSetting();
     }
 
     public void onEventMainThread(EventAction action) {

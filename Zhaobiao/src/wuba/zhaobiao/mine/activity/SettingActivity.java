@@ -5,7 +5,7 @@ import android.os.Bundle;
 import com.huangyezhaobiao.R;
 
 import wuba.zhaobiao.common.activity.BaseActivity;
-import wuba.zhaobiao.common.model.SettingModel;
+import wuba.zhaobiao.mine.model.SettingModel;
 
 /**
  * Created by 58 on 2016/8/3.

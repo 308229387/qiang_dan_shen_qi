@@ -1,9 +1,9 @@
 package wuba.zhaobiao.common.model;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -33,7 +33,6 @@ import com.huangyezhaobiao.tab.MainTabIndicator;
 import com.huangyezhaobiao.tab.MainTabIndicatorBean;
 import com.huangyezhaobiao.tab.MainTabViewPager;
 import com.huangyezhaobiao.url.URLConstans;
-import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.PhoneUtils;
 import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.TimeUtils;
@@ -42,7 +41,6 @@ import com.huangyezhaobiao.utils.UnreadUtils;
 import com.huangyezhaobiao.utils.UpdateManager;
 import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.utils.VersionUtils;
-import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import com.lzy.okhttputils.OkHttpUtils;
 
 import java.util.ArrayList;
@@ -154,16 +152,15 @@ public class HomePageModel extends BaseModel {
             doRegist();
     }
 
-
-    public void getWltOnlineStateAndPhoneNum() {
+    public void getWltOnlineStateAndPhoneNumAndIsNeedUpdateAfterFirstSetting() {
         OkHttpUtils.post(Urls.WLT_CHECK)
                 .params("deviceId", PhoneUtils.getIMEI(context))
                 .execute(new GetWltState(context));
     }
 
-    private  void saveUserSetState(GetWltStateRespons wltStateRespons){
+    private void saveUserSetState(GetWltStateRespons wltStateRespons) {
         String setState = wltStateRespons.getData().getAppUserSet().getSetState();
-        if(!TextUtils.isEmpty(setState))
+        if (!TextUtils.isEmpty(setState))
             SPUtils.saveKV(context, GlobalConfigBean.KEY_SETSTATE, setState);
     }
 
@@ -376,6 +373,75 @@ public class HomePageModel extends BaseModel {
         }, 2000);
     }
 
+    private void saveInfoAndJugeUpdate(GetWltStateRespons WltStateRespons, @Nullable Response response) {
+        saveUserSetState(WltStateRespons);
+        savePhoneAndWltState(WltStateRespons);
+        getVerSionAndJugeIsNeedUpdate(response);
+    }
+
+    private void getVerSionAndJugeIsNeedUpdate(@Nullable Response response) {
+        Headers responseHeadersString = response.headers();
+        String version = responseHeadersString.get("version");
+        if (!UserUtils.isNeedUpdate(context) && version != null)
+            getVersion(version);
+    }
+
+    private void getVersion(String version) {
+        getVersionForCompare(version);
+        compare();
+    }
+
+    private void getVersionForCompare(String version) {
+        try {
+            jugeVersionAndGet(version);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void jugeVersionAndGet(String version) throws PackageManager.NameNotFoundException {
+        if (version.contains("F")) {
+            constansF(version);
+        } else {
+            versionNum = Integer.parseInt(version);
+        }
+        currentVersion = Integer.parseInt(VersionUtils.getVersionCode(context));
+    }
+
+    private void constansF(String version) {
+        forceUpdate = true;
+        String[] fs = version.split("F");
+        String versionCode = fs[0];
+        versionNum = Integer.parseInt(versionCode);
+    }
+
+    private void compare() {
+        compareVersion(versionNum, currentVersion, forceUpdate);
+    }
+
+    private void compareVersion(int netVersion, int localVersion, boolean isForceUpdate) {
+        UpdateManager.getUpdateManager().isUpdateNow(context, netVersion, localVersion, URLConstans.DOWNLOAD_ZHAOBIAO_ADDRESS, isForceUpdate);
+        alreadyNewVersion();
+    }
+
+    private void alreadyNewVersion() {
+        if (UpdateManager.needUpdate)
+            isFirstUpdate();
+    }
+
+    private void isFirstUpdate() {
+        if (SPUtils.isFirstUpdate(context))
+            new UpdateDialogUtils(context, context.getString(R.string.update_message)).showSingleButtonDialog();
+        else
+            oldUserUpdate();
+    }
+
+    private void oldUserUpdate() {
+        String isSet = SPUtils.getVByK(context, GlobalConfigBean.KEY_SETSTATE);
+        if (!TextUtils.equals("1", isSet) && SPUtils.isAutoSetting(context))
+            new AutoSettingDialogUtils(context, context.getString(R.string.auto_setting_message)).showTwoButtonDialog();
+    }
+
     public HomePageModel(HomePageActivity context) {
         this.context = context;
     }
@@ -415,19 +481,8 @@ public class HomePageModel extends BaseModel {
 
         @Override
         public void onResponse(boolean isFromCache, GetWltStateRespons WltStateRespons, Request request, @Nullable Response response) {
-            LogUtils.LogV("global", "global_success");
-            if( WltStateRespons != null &&  response!=null ){
-
-                saveUserSetState(WltStateRespons);
-                savePhoneAndWltState(WltStateRespons);
-
-                Headers responseHeadersString = response.headers();
-                String version = responseHeadersString.get("version");//获取服务器header返回的版本号
-                if (!UserUtils.isNeedUpdate(context) && version != null) {//判断是否强制更新
-                    getVersion(version);
-                }
-            }
-
+            if (WltStateRespons != null && response != null)
+                saveInfoAndJugeUpdate(WltStateRespons, response);
         }
 
         @Override
@@ -435,54 +490,4 @@ public class HomePageModel extends BaseModel {
         }
     }
 
-    private void getVersion(String version ){
-        try {
-            if (version.contains("F")) {
-                forceUpdate = true;
-                String[] fs = version.split("F");
-                String versionCode = fs[0];
-                versionNum = Integer.parseInt(versionCode);
-            } else {
-                versionNum = Integer.parseInt(version);
-            }
-            if (versionNum == -1) return;
-
-            currentVersion = Integer.parseInt(VersionUtils.getVersionCode(context));
-            if (currentVersion == -1) return;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        compareVersion(versionNum, currentVersion, forceUpdate);
-
-    }
-    private void compareVersion(int netVersion,int localVersion,boolean isForceUpdate) {
-        UpdateManager.getUpdateManager().isUpdateNow(context, netVersion, localVersion, URLConstans.DOWNLOAD_ZHAOBIAO_ADDRESS, isForceUpdate);
-        alreadyNewVersion();
-    }
-    private void alreadyNewVersion() {
-        Boolean flag = UpdateManager.needUpdate;
-        if (!flag) {
-            showFirst();//判断是不是第一次进入主界面
-        }
-
-    }
-
-    /**
-     * 第一次登录时的提示
-     */
-    private void showFirst() {
-        if (SPUtils.isFirstUpdate(context)) {//需要弹窗
-            new UpdateDialogUtils(context, context.getString(R.string.update_message)).showSingleButtonDialog();
-
-        } else {
-            String isSet = SPUtils.getVByK(context, GlobalConfigBean.KEY_SETSTATE);
-            if (!TextUtils.equals("1",isSet) && SPUtils.isAutoSetting(context)) {
-                new AutoSettingDialogUtils(context, context.getString(R.string.auto_setting_message)).showTwoButtonDialog();
-            }
-        }
-
-
-    }
 }
