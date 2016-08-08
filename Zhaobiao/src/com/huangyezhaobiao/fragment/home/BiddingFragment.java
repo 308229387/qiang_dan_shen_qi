@@ -95,13 +95,7 @@ public class BiddingFragment<T> extends BaseHomeFragment implements INotificatio
     private PushToPassBean passBean;//抢单流程传递参数
 
     private ZhaoBiaoDialog accountExpireDialog; //网邻通过期通知
-    private ZhaoBiaoDialog updateMessageDialog; //更新对话框
-    private ZhaoBiaoDialog autoSettingDialog; //自定义设置
-
-    private boolean forceUpdate;//是否强制更新
     private boolean isFirstOpen = true;
-
-//    private String isSet;
 
     @Override
     public void OnFragmentSelectedChanged(boolean isSelected) {
