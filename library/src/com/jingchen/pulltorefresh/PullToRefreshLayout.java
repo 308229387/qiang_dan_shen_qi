@@ -108,7 +108,7 @@ public class PullToRefreshLayout extends RelativeLayout {
     // 这两个变量用来控制pull的方向，如果不加控制，当情况满足可上拉又可下拉时没法下拉
     private boolean canPullDown = true;
     private boolean canPullUp = true;
-    private boolean banPullUp = true;
+    private boolean banPullUp = false;
     private Context mContext;
 
     /**
@@ -236,7 +236,7 @@ public class PullToRefreshLayout extends RelativeLayout {
                     changeState(DONE);
                     hide();
                 }
-            }.sendEmptyMessageDelayed(0, 1000);
+            }.sendEmptyMessageDelayed(0, 0);
         } else {
             changeState(DONE);
             hide();
@@ -377,7 +377,11 @@ public class PullToRefreshLayout extends RelativeLayout {
                             isTouch = true;
                         }
                     } else if (pullUpY < 0
-                            || (((Pullable) pullableView).canPullUp() && banPullUp && canPullUp && state != REFRESHING)) {
+                            || (((Pullable) pullableView).canPullUp() && canPullUp && state != REFRESHING)) {
+                        if (banPullUp)
+                            loadmoreView.setVisibility(View.GONE);
+                        else
+                            loadmoreView.setVisibility(View.VISIBLE);
                         // 可以上拉，正在刷新时不能上拉
                         pullUpY = pullUpY + (ev.getY() - lastY) / radio;
                         if (pullUpY > 0) {
@@ -454,6 +458,10 @@ public class PullToRefreshLayout extends RelativeLayout {
         // 事件分发交给父类
         super.dispatchTouchEvent(ev);
         return true;
+    }
+
+    public void refreshComplete() {
+        refreshFinish(SUCCEED);
     }
 
     /**
