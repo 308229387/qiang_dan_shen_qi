@@ -19,7 +19,9 @@
     <com.jingchen.pulltorefresh.PullToRefreshLayout
         android:id="@+id/refresh_view"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
 
         <include layout="@layout/refresh_head" />
         <!-- 支持所有实现Pullable接口的View -->
@@ -28,8 +30,7 @@
             android:id="@+id/grab_list"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+
             android:cacheColorHint="@android:color/transparent"
             android:divider="@null"
             android:fadingEdge="none"

@@ -14,16 +14,26 @@ import wuba.zhaobiao.grab.model.GrabModel;
  */
 public class GrabFragment extends BaseFragment<GrabModel> {
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return model.initView(inflater, container);
+        model.creatView(inflater, container);
+        model.initView();
+        model.setParamsForListView();
+        return model.getView();
     }
 
     @Override
     public void onResume() {
         super.onResume();
         model.getData();
+    }
+
+    @Override
+    public void OnFragmentSelectedChanged(boolean isSelected) {
+        if (isSelected && model != null)
+            model.selectChange();
     }
 
     @Override
