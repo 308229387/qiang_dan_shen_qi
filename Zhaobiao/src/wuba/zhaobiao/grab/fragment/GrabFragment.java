@@ -11,22 +11,40 @@ import wuba.zhaobiao.grab.model.GrabModel;
 
 /**
  * Created by SongYongmeng on 2016/8/8.
+ * 描    述：抢单展示，红点检测。
  */
 public class GrabFragment extends BaseFragment<GrabModel> {
-
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        initalizationLayout(inflater, container);
+        creatAdapter();
+        setInfo();
+
+        return model.getView();
+    }
+
+    private void initalizationLayout(LayoutInflater inflater, ViewGroup container) {
         model.creatView(inflater, container);
         model.initView();
+        model.registMessageBar();
+    }
+
+    private void creatAdapter() {
+        model.creatAdapter();
+    }
+
+    private void setInfo() {
+        model.setInfoForTop();
         model.setParamsForListView();
-        return model.getView();
+        model.setCachRespons();
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        model.checkNet();
         model.getData();
     }
 
