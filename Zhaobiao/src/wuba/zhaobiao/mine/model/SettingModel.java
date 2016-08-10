@@ -14,9 +14,10 @@ import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.activity.AutoSettingsActivity;
-import com.huangyezhaobiao.activity.MobileBindChangeActivity;
 import com.huangyezhaobiao.bean.GlobalConfigBean;
 import com.huangyezhaobiao.callback.DialogCallback;
+import com.huangyezhaobiao.constans.AppConstants;
+import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.HYEventConstans;
@@ -27,10 +28,13 @@ import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.utils.Utils;
 import com.lzy.okhttputils.OkHttpUtils;
 
+import java.util.HashMap;
+
 import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
 import wuba.zhaobiao.common.model.BaseModel;
+import wuba.zhaobiao.mine.activity.MobileBindChangeActivity;
 import wuba.zhaobiao.mine.activity.SettingActivity;
 import wuba.zhaobiao.config.Urls;
 import wuba.zhaobiao.respons.UserInfoRespons;
@@ -205,8 +209,10 @@ public class SettingModel extends BaseModel implements View.OnClickListener{
     }
 
     private void goToMobileChangePage(){
-        Intent intent = MobileBindChangeActivity.onNewIntent(context,mobile);
-        context.startActivity(intent);
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put(AppConstants.MOBILE, mobile);
+        ActivityUtils.goToActivityWithString(context, MobileBindChangeActivity.class, map);
+
     }
 
     private void goToMobileChangePageStatistics(){

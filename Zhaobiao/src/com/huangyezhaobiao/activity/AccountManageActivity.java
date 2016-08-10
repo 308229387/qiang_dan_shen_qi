@@ -37,7 +37,7 @@ public class AccountManageActivity extends QBBaseActivity implements View.OnClic
     private LinearLayout ll_add_child_account;
     private TextView tv_edit;
     private ListView lv_sManage;
-    private View divider2;
+    private View divider2,divider3;
 
     private RelativeLayout rl_add_manage;
     public boolean flag = false;// false表示右上角显示"编辑"，true表示显示"完成"
@@ -93,9 +93,8 @@ public class AccountManageActivity extends QBBaseActivity implements View.OnClic
                         tv_edit.setText("编辑");
                         ll_add_child_account.setVisibility(View.VISIBLE);
                     }
-
-                    lv_sManage.setVisibility(View.VISIBLE);
                     divider2.setVisibility(View.VISIBLE);
+                    lv_sManage.setVisibility(View.VISIBLE);
 
                 } else {
                     tv_edit.setVisibility(View.GONE);
@@ -133,6 +132,7 @@ public class AccountManageActivity extends QBBaseActivity implements View.OnClic
         rl_add_manage.setOnClickListener(this);
         divider2 = getView(R.id.divider2);
         ll_add_child_account = getView(R.id.ll_add_child_account);
+        divider3 = getView(R.id.divider3);
     }
 
     @Override

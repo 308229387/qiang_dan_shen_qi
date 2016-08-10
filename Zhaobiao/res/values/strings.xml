@@ -104,8 +104,8 @@
 
     <string name="transfer_answer_number">您需要先接听免费的转接电话，\n接听后会自动帮您呼叫客户，\n您的绑定号码：</string>
     <string name="alert_customer_call">现在联系客户，成功签单的几率是平时\n的一倍哦~积极联系客户有助于促进\n成单呢~</string>
-    <string name="manage_notice">温馨提示: 子账号在登录界面使用手机动态即可</string>
-    <string name="account_help">基础操作包括: \n1.登陆抢单神器\n2.接收系统通知和活动咨询\n3.查看账户余额\n4.除抢单和查看已抢订单操作,\n其他功能均具备</string>
+    <string name="manage_notice">温馨提示: 子账号在登录界面使用手机动态码登录即可</string>
+    <string name="account_help">基础操作包括: \n1.登陆抢单神器\n2.接收系统通知和活动资讯\n3.查看账户余额\n4.除抢单和查看已抢订单操作,\n其他功能均具备</string>
     <string name="account_add_more">您最多可设置三个账号，\n请删除其他子账号再重试</string>
     <string name="auto_setting_message">马上去设置接单范围?\n设置后将提高订单匹配度,\n为您推送最想要的订单哦(建议设置)</string>
 </resources>
