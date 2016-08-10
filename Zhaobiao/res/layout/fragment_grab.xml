@@ -15,6 +15,12 @@
         android:layout_width="fill_parent"
         android:layout_height="45dp" />
 
+    <ViewStub
+        android:id="@+id/no_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inflatedId="@+id/pic_view_id_after_inflate"
+        android:layout="@layout/view_main_no_bid" />
 
     <com.jingchen.pulltorefresh.PullToRefreshLayout
         android:id="@+id/refresh_view"
@@ -24,7 +30,6 @@
         android:layout_marginRight="10dp">
 
         <include layout="@layout/refresh_head" />
-        <!-- 支持所有实现Pullable接口的View -->
 
         <com.jingchen.pulltorefresh.pullableview.PullableListView xmlns:ptr="http://schemas.android.com/apk/res-auto"
             android:id="@+id/grab_list"

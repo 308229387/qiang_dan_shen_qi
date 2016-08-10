@@ -2,23 +2,25 @@ package wuba.zhaobiao.grab.model;
 
 import android.app.Activity;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.huangye.commonlib.utils.JsonUtils;
-import com.huangye.commonlib.utils.NetBean;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.adapter.PopAdapter;
 import com.huangyezhaobiao.bean.push.PushToPassBean;
 import com.huangyezhaobiao.callback.DialogCallback;
 import com.huangyezhaobiao.constans.AppConstants;
+import com.huangyezhaobiao.db.UserRequestDao;
+import com.huangyezhaobiao.enums.TitleBarType;
 import com.huangyezhaobiao.eventbus.EventAction;
 import com.huangyezhaobiao.eventbus.EventType;
 import com.huangyezhaobiao.eventbus.EventbusAgent;
@@ -29,9 +31,11 @@ import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
+import com.huangyezhaobiao.utils.NetUtils;
 import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.utils.UnreadUtils;
+import com.huangyezhaobiao.view.TitleMessageBarLayout;
 import com.huangyezhaobiao.vm.KnockViewModel;
 import com.jingchen.pulltorefresh.PullToRefreshLayout;
 import com.lzy.okhttputils.OkHttpUtils;
@@ -51,7 +55,7 @@ import wuba.zhaobiao.grab.utils.GrabCachUtils;
 /**
  * Created by SongYongmeng on 2016/8/8.
  */
-public class GrabModel<T> extends BaseModel {
+public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnTitleBarClickListener {
     private GrabFragment context;
     private PullToRefreshLayout refreshView;
     private ListView listView;
@@ -64,7 +68,10 @@ public class GrabModel<T> extends BaseModel {
     private View view;
     private List<QDBaseBean> showData = new ArrayList<QDBaseBean>();
     private String pushId = "-1";
-    private boolean banPullUpTag;
+    private ViewStub noData;
+    private View root;
+    protected TitleMessageBarLayout tbl;
+    private Boolean isFromCache;
 
 
     public GrabModel(GrabFragment context) {
@@ -76,32 +83,52 @@ public class GrabModel<T> extends BaseModel {
     }
 
     public void initView() {
-        refreshView = (PullToRefreshLayout) view.findViewById(R.id.refresh_view);
-        listView = (ListView) view.findViewById(R.id.grab_list);
+        initTopBar();
+        initListView();
+    }
+
+    private void initTopBar() {
+        tbl = (TitleMessageBarLayout) view.findViewById(R.id.tbl);
         choseLayout = (LinearLayout) view.findViewById(R.id.ll_grab);
         textHead = (TextView) view.findViewById(R.id.txt_head);
         switchButton = (SwitchButton) view.findViewById(R.id.switch_button);
+    }
+
+    private void initListView() {
+        refreshView = (PullToRefreshLayout) view.findViewById(R.id.refresh_view);
+        listView = (ListView) view.findViewById(R.id.grab_list);
+        noData = (ViewStub) view.findViewById(R.id.no_data);
+    }
+
+    public void creatAdapter() {
         adapter = new PopAdapter(context.getActivity(), adapterListener);
     }
 
-    public void banPullUp() {
-        refreshView.setBanPullUp(true);
-        banPullUpTag = true;
-    }
-
-    public void canPullUp() {
-        refreshView.setBanPullUp(false);
-        banPullUpTag = false;
-    }
-
-
-    public void setParamsForListView() {
+    public void setInfoForTop() {
         textHead.setText("抢单");
         choseLayout.setVisibility(View.VISIBLE);
+    }
+
+    public void setParamsForListView() {
         listView.setDividerHeight((int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP, 10, context.getResources().getDisplayMetrics()));
         listView.setAdapter(adapter);
         refreshView.setOnRefreshListener(new Refresh());
+    }
+
+    public void registMessageBar() {
+        if (tbl != null) {
+            tbl.setVisibility(View.GONE);
+            tbl.setTitleBarListener(this);
+        }
+    }
+
+    public void banPullUp() {
+        refreshView.setBanPullUp(true);
+    }
+
+    public void canPullUp() {
+        refreshView.setBanPullUp(false);
     }
 
     public void getData() {
@@ -165,6 +192,10 @@ public class GrabModel<T> extends BaseModel {
         }
     };
 
+    public Boolean getBanPullUpState() {
+        return refreshView.getBanPullUpState();
+    }
+
     public View getView() {
         return view;
     }
@@ -182,6 +213,136 @@ public class GrabModel<T> extends BaseModel {
         EventbusAgent.getInstance().post(action);
     }
 
+    private void hasData(String s) {
+        clearLocalInfo();
+        dealWithData(s);
+    }
+
+    private void dealWithData(String s) {
+        List<QDBaseBean> list = getData(s);
+        if (list != null)
+            dealWithDateNow(list);
+    }
+
+    private void dealWithDateNow(List<QDBaseBean> list) {
+        noData(list);
+        hasData(list);
+        hasDataButNotFull(list);
+    }
+
+    private List<QDBaseBean> getData(String s) {
+        JSONObject result = JSON.parseObject(s);
+        List<T> ts = getJSONObject(result);
+        return (List<QDBaseBean>) ts;
+    }
+
+    private List<T> getJSONObject(JSONObject result) {
+        try {
+            return new GrabCachUtils().transferToListBean(result.getString("data"));
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+
+    private void hasDataButNotFull(List<QDBaseBean> list) {
+        if (list.size() < 20)
+            banPullUp();
+    }
+
+    private void hasData(List<QDBaseBean> list) {
+        if (list.size() > 0)
+            showDataToList(list);
+    }
+
+    private void showDataToList(List<QDBaseBean> list) {
+        setPushId(list);
+        showData.addAll(list);
+        adapter.loadMoreSuccess(showData);
+        adapter.notifyDataSetChanged();
+    }
+
+    private void setPushId(List<QDBaseBean> list) {
+        if (isFromCache != null && !isFromCache)
+            pushId = String.valueOf(list.get(list.size() - 1).getPushId());
+    }
+
+    private void noData(List<QDBaseBean> list) {
+        if (list.size() == 0 && showData.size() == 0)
+            showEmptyView();
+        else
+            dismissEmptyView();
+    }
+
+    public void showEmptyView() {
+        if (root == null)
+            creatRoot();
+        root.setVisibility(View.VISIBLE);
+    }
+
+    private void creatRoot() {
+        root = noData.inflate();
+        root.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getData();
+            }
+        });
+    }
+
+    private void dismissEmptyView() {
+        if (root != null)
+            root.setVisibility(View.GONE);
+    }
+
+    private void clearLocalInfo() {
+        if (pushId.equals("-1"))
+            showData.clear();
+    }
+
+    @Override
+    public void onTitleBarClicked(TitleBarType type) {
+
+    }
+
+    @Override
+    public void onTitleBarClosedClicked() {
+        if (tbl != null)
+            tbl.setVisibility(View.GONE);
+    }
+
+
+    private void saveRespons(String s) {
+        UserRequestDao.addData(UserRequestDao.INTERFACE_GETBINDS, s);
+    }
+
+    public void setCachRespons() {
+        String respons = UserRequestDao.getData(UserRequestDao.INTERFACE_GETBINDS);
+        if (respons != null) {
+            Log.d("grab_respons_set", respons);
+            hasData(respons);
+        }
+    }
+
+    public void checkNet() {
+        if (NetUtils.isNetworkConnected(context.getActivity())) {
+            NetConnected();
+        } else {
+            NetDisConnected();
+        }
+    }
+
+    private void NetDisConnected() {
+        if (tbl != null) {
+            tbl.showNetError();
+            tbl.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void NetConnected() {
+        if (tbl != null && tbl.getType() == TitleBarType.NETWORK_ERROR)
+            tbl.setVisibility(View.GONE);
+    }
 
     private class Refresh implements PullToRefreshLayout.OnRefreshListener {
         @Override
@@ -193,7 +354,7 @@ public class GrabModel<T> extends BaseModel {
 
         @Override
         public void onLoadMore(PullToRefreshLayout pullToRefreshLayout) {
-            if (banPullUpTag)
+            if (getBanPullUpState())
                 refreshView.refreshComplete();
             else
                 getData();
@@ -208,7 +369,8 @@ public class GrabModel<T> extends BaseModel {
 
         @Override
         public void onResponse(boolean isFromCache, String s, Request request, @Nullable Response response) {
-
+            ToastUtils.showToast(s);
+            getData();
         }
     }
 
@@ -219,32 +381,25 @@ public class GrabModel<T> extends BaseModel {
 
         @Override
         public void onResponse(boolean isFromCache, String s, Request request, @Nullable Response response) {
-            if (pushId.equals("-1"))
-                showData.clear();
-
-            JSONObject result = JSON.parseObject(s);
-            List<T> ts = new GrabCachUtils().transferToListBean(result.getString("data"));
-            List<QDBaseBean> list = (List<QDBaseBean>) ts;
-            if (list.size() > 0) {
-                pushId = String.valueOf(list.get(list.size() - 1).getPushId());
-                showData.addAll(list);
-                adapter.loadMoreSuccess(showData);
+            if (s != null) {
+                Log.d("grab_respons", s);
+                if (pushId.equals("-1"))
+                    saveRespons(s);
+                hasData(s);
+                saveCacheState(isFromCache);
             }
-            if (list.size() < 20)
-                banPullUp();
-
             refreshView.refreshComplete();
         }
 
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
             super.onError(isFromCache, call, response, e);
-            ToastUtils.showToast("");
+            refreshView.refreshComplete();
         }
     }
 
-    public NetBean transformJsonToNetBean(String result) {
-        NetBean bean = JsonUtils.jsonToNetBean(result);
-        return bean;
+    private void saveCacheState(Boolean isFromCache) {
+        this.isFromCache = isFromCache;
     }
+
 }
