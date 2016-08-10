@@ -464,6 +464,10 @@ public class PullToRefreshLayout extends RelativeLayout {
         refreshFinish(SUCCEED);
     }
 
+    public Boolean getBanPullUpState() {
+        return banPullUp;
+    }
+
     /**
      * @author chenjing 自动模拟手指滑动的task
      */
