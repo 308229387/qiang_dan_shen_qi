@@ -205,7 +205,6 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
             @Override
             public void onDialogCancelClick() {
                 saveDialog.dismiss();
-                finish();
             }
         });
         saveDialog.show();

@@ -289,17 +289,17 @@ public class MobileBindChangeActivity extends QBBaseActivity implements View.OnC
 
     @Override
     public void validateNumberEnabled() {
-        btn_getCode.setBackgroundResource(R.drawable.submit_btn_bg);
-        btn_getCode.setTextColor(getResources().getColor(R.color.white));
+//        btn_getCode.setBackgroundResource(R.drawable.submit_btn_bg);
+//        btn_getCode.setTextColor(getResources().getColor(R.color.white));
         btn_getCode.setClickable(true);
-        btn_getCode.setText("重新发送验证码");
+        btn_getCode.setText("重新发送");
 
     }
 
     @Override
     public void validateNumberUnEnabled(int time) {
-        btn_getCode.setBackgroundResource(R.drawable.submit_bg_gray);
-        btn_getCode.setTextColor(getResources().getColor(R.color.white));
+//        btn_getCode.setBackgroundResource(R.drawable.submit_bg_gray);
+//        btn_getCode.setTextColor(getResources().getColor(R.color.white));
         btn_getCode.setClickable(false);
         btn_getCode.setText(time+"秒后重发");
     }

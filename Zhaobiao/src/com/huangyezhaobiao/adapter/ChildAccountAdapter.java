@@ -51,7 +51,6 @@ public class ChildAccountAdapter extends BaseAdapter{
         this.context = context;
         this.childAccountList = childAccountList;
         this.flag = flag;
-        initDeleteDialog();
     }
     @Override
     public int getCount() {
@@ -98,6 +97,13 @@ public class ChildAccountAdapter extends BaseAdapter{
             holder.account_delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    deleteDialog= new ZhaoBiaoDialog(context,"确认删除选中子账号?");
+                    deleteDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialog) {
+                            deleteDialog = null;
+                        }
+                    });
                     deleteDialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
                         @Override
                         public void onDialogOkClick() {
@@ -142,16 +148,6 @@ public class ChildAccountAdapter extends BaseAdapter{
         ImageView account_edit; //修改
     }
 
-    protected void initDeleteDialog(){
-        deleteDialog= new ZhaoBiaoDialog(context,"确认删除选中子账号?");
-
-        deleteDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                deleteDialog = null;
-            }
-        });
-    }
 
     //请求实体
     private void adeleteChildAccount(String id) {

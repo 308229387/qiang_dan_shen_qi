@@ -515,6 +515,11 @@
                </intent-filter>
             -->
         </activity>
+
+        <activity
+            android:name="wuba.zhaobiao.mine.activity.MobileBindChangeActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".activity.SettingsActivity"
             android:screenOrientation="portrait" />

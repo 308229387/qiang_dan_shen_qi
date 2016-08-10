@@ -65,7 +65,7 @@
             android:layout_marginBottom="11dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="11dp"
-            android:text="使用手机人"
+            android:text="使用人手机"
             android:textColor="@color/black"
             android:textSize="@dimen/textsize_large"/>
 

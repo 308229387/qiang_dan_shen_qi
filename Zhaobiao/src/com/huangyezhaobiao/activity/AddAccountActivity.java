@@ -87,6 +87,27 @@ public class AddAccountActivity extends QBBaseActivity implements View.OnClickLi
         back_layout.setOnClickListener(this);
         iv_base_help.setOnClickListener(this);
         btn_save.setOnClickListener(this);
+        tv_user_content.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                if (hasFocus) {
+                    ((EditText) v).setHint("");
+                }
+
+            }
+        });
+
+        tv_phone_content.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                if (hasFocus) {
+                    ((EditText) v).setHint("");
+                }
+
+            }
+        });
     }
 
     @Override
@@ -192,7 +213,6 @@ public class AddAccountActivity extends QBBaseActivity implements View.OnClickLi
 
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
-
             ToastUtils.showToast(e.getMessage());
         }
 
@@ -200,7 +220,11 @@ public class AddAccountActivity extends QBBaseActivity implements View.OnClickLi
 
     @Override
     public void onBackPressed() {
-        initSaveDialog();
+        if(!TextUtils.isEmpty(tv_user_content.getText().toString()) && !TextUtils.isEmpty(tv_phone_content.getText().toString())){
+            initSaveDialog();
+        }else{
+            finish();
+        }
     }
 
     private void initSaveDialog(){
@@ -217,6 +241,7 @@ public class AddAccountActivity extends QBBaseActivity implements View.OnClickLi
         saveDialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
             @Override
             public void onDialogOkClick() {
+                saveDialog.dismiss();
                 save();
             }
 
