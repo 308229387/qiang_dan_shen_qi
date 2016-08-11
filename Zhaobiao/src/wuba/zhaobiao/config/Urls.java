@@ -14,4 +14,5 @@ public class Urls {
     public static final String UPDATE_MOBILE =BASE_URL + "api/updatePhoneNumber";
     public static final String GRAB_REQUEST = BASE_URL + "app/order/bidding";
     public static final String GRAB_GET_LIST = BASE_URL + "api/getBids";
+    public static final String VALIDATE = BASE_URL + "api/validate";
 }

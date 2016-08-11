@@ -313,6 +313,11 @@
             android:name=".activity.MobileValidateActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name="wuba.zhaobiao.common.activity.MobileValidateActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.BidFailureActivity"
             android:screenOrientation="portrait" />
@@ -358,6 +363,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.MyWalletActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="wuba.zhaobiao.mine.activity.MyWalletActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.IntroduceFunctionActivity"

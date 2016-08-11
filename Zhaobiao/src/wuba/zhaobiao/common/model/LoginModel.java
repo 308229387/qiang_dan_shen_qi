@@ -3,10 +3,8 @@ package wuba.zhaobiao.common.model;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.view.View;
 
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.activity.MobileValidateActivity;
 import com.huangyezhaobiao.activity.SoftwareUsageActivity;
 import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.callback.JsonCallback;
@@ -29,6 +27,7 @@ import okhttp3.Call;
 import okhttp3.Response;
 import wuba.zhaobiao.common.activity.HomePageActivity;
 import wuba.zhaobiao.common.activity.LoginActivity;
+import wuba.zhaobiao.common.activity.MobileValidateActivity;
 import wuba.zhaobiao.config.Urls;
 import wuba.zhaobiao.respons.LoginRespons;
 

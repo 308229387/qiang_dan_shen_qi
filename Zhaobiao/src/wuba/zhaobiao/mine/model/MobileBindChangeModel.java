@@ -369,10 +369,12 @@ public class MobileBindChangeModel extends BaseModel implements View.OnClickList
         public void handleMessage(Message msg) {
             time--;
             if(time>0){
+                btn_getCode.setTextColor(context.getResources().getColor(R.color.whitedark));
                 btn_getCode.setClickable(false);
                 btn_getCode.setText(time + "秒后重发");
                 handler.sendEmptyMessageDelayed(0,1000*1);
             }else{
+                btn_getCode.setTextColor(context.getResources().getColor(R.color.red));
                 btn_getCode.setClickable(true);
                 btn_getCode.setText("重新发送");
             }
