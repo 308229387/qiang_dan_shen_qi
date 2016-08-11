@@ -109,6 +109,8 @@ public class PullToRefreshLayout extends RelativeLayout {
     private boolean canPullDown = true;
     private boolean canPullUp = true;
     private boolean banPullUp = false;
+    private Boolean isRefresh = false;
+    private Boolean isLoadMore = false;
     private Context mContext;
 
     /**
@@ -236,7 +238,7 @@ public class PullToRefreshLayout extends RelativeLayout {
                     changeState(DONE);
                     hide();
                 }
-            }.sendEmptyMessageDelayed(0, 0);
+            }.sendEmptyMessageDelayed(0, 1000);
         } else {
             changeState(DONE);
             hide();
@@ -328,6 +330,23 @@ public class PullToRefreshLayout extends RelativeLayout {
         }
     }
 
+    public void refreshComplete() {
+        if (isRefresh)
+            refreshFinish(SUCCEED);
+        else if (isLoadMore)
+            loadmoreFinish(SUCCEED);
+    }
+
+
+    public Boolean getBanPullUpState() {
+        return banPullUp;
+    }
+
+    public void setBanPullUp(Boolean tag) {
+        banPullUp = tag;
+    }
+
+
     /**
      * 不限制上拉或下拉
      */
@@ -378,10 +397,12 @@ public class PullToRefreshLayout extends RelativeLayout {
                         }
                     } else if (pullUpY < 0
                             || (((Pullable) pullableView).canPullUp() && canPullUp && state != REFRESHING)) {
+
                         if (banPullUp)
                             loadmoreView.setVisibility(View.GONE);
                         else
                             loadmoreView.setVisibility(View.VISIBLE);
+
                         // 可以上拉，正在刷新时不能上拉
                         pullUpY = pullUpY + (ev.getY() - lastY) / radio;
                         if (pullUpY > 0) {
@@ -443,13 +464,19 @@ public class PullToRefreshLayout extends RelativeLayout {
                 if (state == RELEASE_TO_REFRESH) {
                     changeState(REFRESHING);
                     // 刷新操作
-                    if (mListener != null)
+                    if (mListener != null) {
                         mListener.onRefresh(this);
+                        isRefresh = true;
+                        isLoadMore = false;
+                    }
                 } else if (state == RELEASE_TO_LOAD) {
                     changeState(LOADING);
                     // 加载操作
-                    if (mListener != null)
+                    if (mListener != null) {
                         mListener.onLoadMore(this);
+                        isRefresh = false;
+                        isLoadMore = true;
+                    }
                 }
                 hide();
             default:
@@ -458,14 +485,6 @@ public class PullToRefreshLayout extends RelativeLayout {
         // 事件分发交给父类
         super.dispatchTouchEvent(ev);
         return true;
-    }
-
-    public void refreshComplete() {
-        refreshFinish(SUCCEED);
-    }
-
-    public Boolean getBanPullUpState() {
-        return banPullUp;
     }
 
     /**
@@ -512,10 +531,6 @@ public class PullToRefreshLayout extends RelativeLayout {
     public void autoRefresh() {
         AutoRefreshAndLoadTask task = new AutoRefreshAndLoadTask();
         task.execute(20);
-    }
-
-    public void setBanPullUp(Boolean tag) {
-        banPullUp = tag;
     }
 
     /**
