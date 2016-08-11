@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="libammsdk-3.1.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Zhaobiao/build/intermediates/exploded-aar/com.wuba.wuxian.third/libammsdk/3.1.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/Zhaobiao/build/intermediates/exploded-aar/com.wuba.wuxian.third/libammsdk/3.1.1/res" />
+      <root url="jar://$PROJECT_DIR$/Zhaobiao/build/intermediates/exploded-aar/com.wuba.wuxian.third/libammsdk/3.1.1/jars/libs/libammsdk.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

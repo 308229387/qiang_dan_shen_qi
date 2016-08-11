@@ -60,7 +60,8 @@ public class BidSuccessActivity extends QBBaseActivity {
 
         Intent intent = this.getIntent();
         receivePassBean = (PushToPassBean) intent.getSerializableExtra("passBean");
-        orderId = Long.parseLong(intent.getStringExtra("orderId"));
+        if (intent.hasExtra("orderId"))
+            orderId = Long.parseLong(intent.getStringExtra("orderId"));
 
         if (receivePassBean != null) {
             bidId = String.valueOf(receivePassBean.getBidId());

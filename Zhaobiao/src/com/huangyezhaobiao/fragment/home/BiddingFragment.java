@@ -73,8 +73,8 @@ import wuba.zhaobiao.utils.LogoutDialogUtils;
  * Created by 58 on 2016/6/17.
  */
 public class BiddingFragment<T> extends BaseHomeFragment implements INotificationListener, ListNetWorkVMCallBack {
-    private BiddingApplication app;
-    private LinearLayout ll_grab;
+
+    private LinearLayout ll_grab;private BiddingApplication app;
     private TextView txt_head;
     private SwitchButton switch_button;
     private PullToRefreshListView mPullToRefreshListView; // 抢单列表

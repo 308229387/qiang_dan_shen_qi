@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="weibosdkcore-3.1.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Zhaobiao/build/intermediates/exploded-aar/com.wuba.wuxian.third/weibosdkcore/3.1.2/jars/libs/weibosdkcore.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Zhaobiao/build/intermediates/exploded-aar/com.wuba.wuxian.third/weibosdkcore/3.1.2/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/Zhaobiao/build/intermediates/exploded-aar/com.wuba.wuxian.third/weibosdkcore/3.1.2/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

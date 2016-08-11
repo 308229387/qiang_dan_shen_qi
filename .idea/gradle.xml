@@ -10,11 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Commonlib" />
             <option value="$PROJECT_DIR$/Zhaobiao" />
-            <option value="$PROJECT_DIR$/designpatterndemo" />
-            <option value="$PROJECT_DIR$/leakcanary" />
             <option value="$PROJECT_DIR$/library" />
-            <option value="$PROJECT_DIR$/myapplication" />
-            <option value="$PROJECT_DIR$/smenulibrary" />
           </set>
         </option>
         <option name="myModules">
@@ -22,11 +18,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Commonlib" />
             <option value="$PROJECT_DIR$/Zhaobiao" />
-            <option value="$PROJECT_DIR$/designpatterndemo" />
-            <option value="$PROJECT_DIR$/leakcanary" />
             <option value="$PROJECT_DIR$/library" />
-            <option value="$PROJECT_DIR$/myapplication" />
-            <option value="$PROJECT_DIR$/smenulibrary" />
           </set>
         </option>
       </GradleProjectSettings>

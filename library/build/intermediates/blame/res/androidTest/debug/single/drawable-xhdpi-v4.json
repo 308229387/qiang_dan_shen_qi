@@ -1,38 +1,54 @@
 [
     {
-        "merged": "D:\\workspace\\hy_android_zb\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\indicator_arrow.png",
-        "source": "D:\\workspace\\hy_android_zb\\library\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\indicator_arrow.png"
+        "merged": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\refresh_succeed.png",
+        "source": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\refresh_succeed.png"
     },
     {
-        "merged": "D:\\workspace\\hy_android_zb\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_flip.png",
-        "source": "D:\\workspace\\hy_android_zb\\library\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_flip.png"
+        "merged": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\pullup_icon_big.png",
+        "source": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\pullup_icon_big.png"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\refreshing.png",
+        "source": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\refreshing.png"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\loading.png",
+        "source": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\loading.png"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\load_succeed.png",
+        "source": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\load_succeed.png"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\pull_icon_big.png",
+        "source": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\pull_icon_big.png"
     },
     {
         "merged": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\indicator_arrow.png",
         "source": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\indicator_arrow.png"
     },
     {
-        "merged": "E:\\qiang\\hy_android_zb\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_flip.png",
-        "source": "E:\\qiang\\hy_android_zb\\library\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_flip.png"
+        "merged": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\launcher.png",
+        "source": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\launcher.png"
     },
     {
         "merged": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_rotate.png",
         "source": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_rotate.png"
     },
     {
-        "merged": "E:\\qiang\\hy_android_zb\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\indicator_arrow.png",
-        "source": "E:\\qiang\\hy_android_zb\\library\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\indicator_arrow.png"
+        "merged": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\load_failed.png",
+        "source": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\load_failed.png"
     },
     {
-        "merged": "D:\\workspace\\hy_android_zb\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_rotate.png",
-        "source": "D:\\workspace\\hy_android_zb\\library\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_rotate.png"
+        "merged": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\refresh_failed.png",
+        "source": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\refresh_failed.png"
+    },
+    {
+        "merged": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\ic_launcher.png",
+        "source": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\ic_launcher.png"
     },
     {
         "merged": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_flip.png",
         "source": "E:\\qiangdan\\hy_android_zb\\library\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_flip.png"
-    },
-    {
-        "merged": "E:\\qiang\\hy_android_zb\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_rotate.png",
-        "source": "E:\\qiang\\hy_android_zb\\library\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_rotate.png"
     }
 ]

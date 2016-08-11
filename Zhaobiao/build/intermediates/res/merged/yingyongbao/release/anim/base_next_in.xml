@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- 默认的进入下一个页面的动画 -->
-<set xmlns:android="http://schemas.android.com/apk/res/android" 
-    android:interpolator="@android:anim/anticipate_overshoot_interpolator">
-    <translate android:fromXDelta="100%p" android:toXDelta="0%p"
-        android:duration="1000" />
-</set>

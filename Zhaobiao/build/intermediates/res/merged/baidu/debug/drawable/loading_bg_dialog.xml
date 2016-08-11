@@ -3,12 +3,12 @@
     android:shape="rectangle"
     >
 
-
     <solid
-        android:color="#4D000000"
+        android:color="#D5D5D5"
         />
     <!-- 圆角 -->
     <corners
-        android:radius="10dp" />
+        android:radius="10dp"/>
+
 
 </shape>
