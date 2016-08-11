@@ -16,7 +16,6 @@ import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.activity.HelpActivity;
 import com.huangyezhaobiao.activity.MainActivity;
 import com.huangyezhaobiao.activity.AccountManageActivity;
-import com.huangyezhaobiao.activity.MyWalletActivity;
 import com.huangyezhaobiao.bean.GlobalConfigBean;
 import com.huangyezhaobiao.enums.TitleBarType;
 import com.huangyezhaobiao.utils.ActivityUtils;
@@ -31,6 +30,7 @@ import com.huangyezhaobiao.vm.YuEViewModel;
 import java.util.Map;
 
 import wuba.zhaobiao.mine.activity.AboutActivity;
+import wuba.zhaobiao.mine.activity.MyWalletActivity;
 import wuba.zhaobiao.mine.activity.SettingActivity;
 
 /**
