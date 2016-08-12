@@ -15,7 +15,6 @@ import com.huangyezhaobiao.model.KnockModel;
 import com.huangyezhaobiao.utils.BidUtils;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.SPUtils;
-import com.huangyezhaobiao.utils.UserUtils;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -85,7 +84,7 @@ public class KnockViewModel extends SourceViewModel {
 					long orderId = object.getLong("orderId");
 					BidSuccessActivity.orderId = orderId;
 				}
-				callBack.onLoadingSuccess(knockStatus);
+				callBack.onLoadingSuccess(bean);
 			}
 		} else {
 			String msg = bean.getMsg();

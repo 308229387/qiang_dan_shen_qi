@@ -18,7 +18,7 @@
         android:layout_marginTop="30dip"
         android:textSize="19sp"
         android:textColor="@color/white"
-        android:text="name"
+        android:text=""
         android:textStyle="normal" />
         <com.huangyezhaobiao.view.CircleImageView
             android:id="@+id/civ_user"
@@ -39,7 +39,7 @@
             android:paddingBottom="20dip"
             android:textSize="18sp"
             android:textColor="@color/white"
-            android:text="company"
+            android:text=""
             android:textStyle="normal" />
         </RelativeLayout>
 
@@ -81,7 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:text="￥1200.00"
+                android:text="￥0.00"
                 android:textColor="#e12f37"
                 android:textSize="14sp" />
 
@@ -139,10 +139,46 @@
 
 
     <RelativeLayout
-        android:id="@+id/sliding_settings"
+        android:id="@+id/manage"
         android:layout_width="fill_parent"
         android:layout_height="44dp"
         android:layout_below="@id/mywallet"
+        android:background="@drawable/menu_item_background">
+
+        <ImageView
+            android:id="@+id/iv_manage"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/iv_manage" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/iv_manage"
+            android:text="子账号管理"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize_large" />
+
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="15dp"
+            android:background="#eeeeee"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/sliding_settings"
+        android:layout_width="fill_parent"
+        android:layout_height="44dp"
+        android:layout_below="@id/manage"
         android:background="@drawable/menu_item_background"
       >
 
@@ -245,53 +281,6 @@
     </RelativeLayout>
 
 
-    <RelativeLayout
-        android:id="@+id/manage"
-        android:layout_width="fill_parent"
-        android:layout_height="44dp"
-        android:layout_below="@id/about"
-        android:background="@drawable/menu_item_background"
-        android:visibility="gone">
-
-        <ImageView
-            android:id="@+id/iv_qiangdan"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"
-            android:src="@drawable/iv_message" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/iv_qiangdan"
-            android:text="账号管理"
-            android:textColor="@color/black"
-            android:textSize="@dimen/textsize_large" />
-
-
-        <TextView
-            android:id="@+id/tv_unread"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="21dp"
-            android:background="@drawable/bg_clean"
-            android:gravity="center"
-            android:text="3"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            android:visibility="gone"/>
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="15dp"
-            android:background="#eeeeee" />
-    </RelativeLayout>
 
 </RelativeLayout>
 

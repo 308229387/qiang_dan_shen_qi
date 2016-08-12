@@ -9,10 +9,12 @@ package com.handmark.pulltorefresh.library;
 
 public final class R {
     public static final class anim {
-        public static int slide_in_from_bottom=0x7f040000;
-        public static int slide_in_from_top=0x7f040001;
-        public static int slide_out_to_bottom=0x7f040002;
-        public static int slide_out_to_top=0x7f040003;
+        public static int reverse_anim=0x7f040000;
+        public static int rotating=0x7f040001;
+        public static int slide_in_from_bottom=0x7f040002;
+        public static int slide_in_from_top=0x7f040003;
+        public static int slide_out_to_bottom=0x7f040004;
+        public static int slide_out_to_top=0x7f040005;
     }
     public static final class attr {
         /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
@@ -126,50 +128,100 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
          */
         public static int ptrSubHeaderTextAppearance=0x7f01000b;
     }
+    public static final class color {
+        public static int black=0x7f060000;
+        public static int gray=0x7f060001;
+        public static int light_blue=0x7f060002;
+        public static int white=0x7f060003;
+    }
     public static final class dimen {
-        public static int header_footer_left_right_padding=0x7f060000;
-        public static int header_footer_top_bottom_padding=0x7f060001;
-        public static int indicator_corner_radius=0x7f060002;
-        public static int indicator_internal_padding=0x7f060003;
-        public static int indicator_right_padding=0x7f060004;
+        public static int activity_horizontal_margin=0x7f070000;
+        public static int activity_vertical_margin=0x7f070001;
+        public static int header_footer_left_right_padding=0x7f070002;
+        public static int header_footer_top_bottom_padding=0x7f070003;
+        public static int indicator_corner_radius=0x7f070004;
+        public static int indicator_internal_padding=0x7f070005;
+        public static int indicator_right_padding=0x7f070006;
     }
     public static final class drawable {
         public static int default_ptr_flip=0x7f020000;
         public static int default_ptr_rotate=0x7f020001;
-        public static int indicator_arrow=0x7f020002;
-        public static int indicator_bg_bottom=0x7f020003;
-        public static int indicator_bg_top=0x7f020004;
+        public static int ic_launcher=0x7f020002;
+        public static int indicator_arrow=0x7f020003;
+        public static int indicator_bg_bottom=0x7f020004;
+        public static int indicator_bg_top=0x7f020005;
+        public static int launcher=0x7f020006;
+        public static int load_failed=0x7f020007;
+        public static int load_succeed=0x7f020008;
+        public static int loading=0x7f020009;
+        public static int pull_icon_big=0x7f02000a;
+        public static int pullup_icon_big=0x7f02000b;
+        public static int refresh_failed=0x7f02000c;
+        public static int refresh_succeed=0x7f02000d;
+        public static int refreshing=0x7f02000e;
     }
     public static final class id {
-        public static int both=0x7f070003;
-        public static int disabled=0x7f070004;
-        public static int fl_inner=0x7f07000c;
-        public static int flip=0x7f07000a;
-        public static int gridview=0x7f070000;
-        public static int manualOnly=0x7f070005;
-        public static int pullDownFromTop=0x7f070006;
-        public static int pullFromEnd=0x7f070007;
-        public static int pullFromStart=0x7f070008;
-        public static int pullUpFromBottom=0x7f070009;
-        public static int pull_to_refresh_image=0x7f07000d;
-        public static int pull_to_refresh_progress=0x7f07000e;
-        public static int pull_to_refresh_sub_text=0x7f070010;
-        public static int pull_to_refresh_text=0x7f07000f;
-        public static int rotate=0x7f07000b;
-        public static int scrollview=0x7f070001;
-        public static int webview=0x7f070002;
+        public static int both=0x7f080003;
+        public static int content_view=0x7f08000d;
+        public static int disabled=0x7f080004;
+        public static int fl_inner=0x7f080016;
+        public static int flip=0x7f08000a;
+        public static int getsource=0x7f08000e;
+        public static int gridview=0x7f080000;
+        public static int head_view=0x7f08001b;
+        public static int loading_icon=0x7f080013;
+        public static int loadmore_view=0x7f080011;
+        public static int loadstate_iv=0x7f080015;
+        public static int loadstate_tv=0x7f080014;
+        public static int manualOnly=0x7f080005;
+        public static int pullDownFromTop=0x7f080006;
+        public static int pullFromEnd=0x7f080007;
+        public static int pullFromStart=0x7f080008;
+        public static int pullUpFromBottom=0x7f080009;
+        public static int pull_icon=0x7f08001c;
+        public static int pull_to_refresh_image=0x7f080017;
+        public static int pull_to_refresh_progress=0x7f080018;
+        public static int pull_to_refresh_sub_text=0x7f08001a;
+        public static int pull_to_refresh_text=0x7f080019;
+        public static int pullup_icon=0x7f080012;
+        public static int refresh_view=0x7f08000c;
+        public static int refreshing_icon=0x7f08001d;
+        public static int rotate=0x7f08000b;
+        public static int scrollview=0x7f080001;
+        public static int state_iv=0x7f08001f;
+        public static int state_tv=0x7f08001e;
+        public static int tablayout=0x7f08000f;
+        public static int tv=0x7f080010;
+        public static int webview=0x7f080002;
     }
     public static final class layout {
-        public static int pull_to_refresh_header_horizontal=0x7f030000;
-        public static int pull_to_refresh_header_vertical=0x7f030001;
+        public static int activity_listview=0x7f030000;
+        public static int activity_main=0x7f030001;
+        public static int list_item_layout=0x7f030002;
+        public static int load_more=0x7f030003;
+        public static int pull_to_refresh_header_horizontal=0x7f030004;
+        public static int pull_to_refresh_header_vertical=0x7f030005;
+        public static int refresh_head=0x7f030006;
     }
     public static final class string {
+        public static int app_name=0x7f050006;
+        public static int head=0x7f050007;
+        public static int load_fail=0x7f050008;
+        public static int load_succeed=0x7f050009;
+        public static int loading=0x7f05000a;
+        public static int pull_to_refresh=0x7f05000b;
         public static int pull_to_refresh_from_bottom_pull_label=0x7f050003;
         public static int pull_to_refresh_from_bottom_refreshing_label=0x7f050004;
         public static int pull_to_refresh_from_bottom_release_label=0x7f050005;
         public static int pull_to_refresh_pull_label=0x7f050000;
         public static int pull_to_refresh_refreshing_label=0x7f050001;
         public static int pull_to_refresh_release_label=0x7f050002;
+        public static int pullup_to_load=0x7f05000c;
+        public static int refresh_fail=0x7f05000d;
+        public static int refresh_succeed=0x7f05000e;
+        public static int refreshing=0x7f05000f;
+        public static int release_to_load=0x7f050010;
+        public static int release_to_refresh=0x7f050011;
     }
     public static final class styleable {
         /** Attributes that can be used with a PullToRefresh.

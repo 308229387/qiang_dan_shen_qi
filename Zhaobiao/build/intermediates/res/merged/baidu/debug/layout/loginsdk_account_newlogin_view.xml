@@ -35,8 +35,9 @@
                     style="@style/RegisterEdit"
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/px76"
-                    android:textColor="@color/loginsdk_account_newlogin_edittext"
+                    android:textColor="@color/black"
                     android:hint="@string/login_username_hint"
+                    android:textColorHint="@color/loginsdk_account_newlogin_edittext"
                     android:maxLength="50" />
 
             </LinearLayout>
@@ -57,7 +58,8 @@
                     android:layout_height="@dimen/px76"
                     android:layout_weight="1"
                     android:hint="@string/login_pass_hint"
-                    android:textColor="@color/loginsdk_account_newlogin_edittext"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/loginsdk_account_newlogin_edittext"
                     android:imeOptions="actionDone"
                     android:inputType="textPassword"
                     android:maxLength="16"/>

@@ -1,13 +1,5 @@
 [
     {
-        "merged": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout-sw600dp-v13\\layout_snackbar.xml",
-        "source": "D:\\workspace\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.0\\res\\layout-sw600dp\\layout_snackbar.xml"
-    },
-    {
-        "merged": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout-sw600dp-v13\\layout_snackbar.xml",
-        "source": "E:\\qiang\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.0\\res\\layout-sw600dp\\layout_snackbar.xml"
-    },
-    {
         "merged": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\res\\merged\\baidu\\debug\\layout-sw600dp-v13\\layout_snackbar.xml",
         "source": "E:\\qiangdan\\hy_android_zb\\Zhaobiao\\build\\intermediates\\exploded-aar\\com.android.support\\design\\22.2.0\\res\\layout-sw600dp\\layout_snackbar.xml"
     }

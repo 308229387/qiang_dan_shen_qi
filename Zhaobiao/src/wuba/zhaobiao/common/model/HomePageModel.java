@@ -22,11 +22,6 @@ import com.huangyezhaobiao.constans.AppConstants;
 import com.huangyezhaobiao.eventbus.EventAction;
 import com.huangyezhaobiao.eventbus.EventType;
 import com.huangyezhaobiao.eventbus.EventbusAgent;
-import com.huangyezhaobiao.fragment.home.BaseHomeFragment;
-import com.huangyezhaobiao.fragment.home.BiddingFragment;
-import com.huangyezhaobiao.fragment.home.MessageFragment;
-import com.huangyezhaobiao.fragment.home.OrderListFragment;
-import com.huangyezhaobiao.fragment.home.PersonalCenterFragment;
 import com.huangyezhaobiao.service.MyService;
 import com.huangyezhaobiao.tab.MainTabFragmentAdapter;
 import com.huangyezhaobiao.tab.MainTabIndicator;
@@ -52,8 +47,11 @@ import okhttp3.Headers;
 import okhttp3.Request;
 import okhttp3.Response;
 import wuba.zhaobiao.common.activity.HomePageActivity;
+import wuba.zhaobiao.common.fragment.BaseFragment;
 import wuba.zhaobiao.config.ScreenReceiver;
 import wuba.zhaobiao.config.Urls;
+import wuba.zhaobiao.grab.fragment.GrabFragment;
+import wuba.zhaobiao.grab.fragment.GrabTestFragment;
 import wuba.zhaobiao.respons.GetWltStateRespons;
 import wuba.zhaobiao.utils.AutoSettingDialogUtils;
 import wuba.zhaobiao.utils.LogoutDialogUtils;
@@ -106,10 +104,10 @@ public class HomePageModel extends BaseModel {
     }
 
     private void addFragment() {
-        mFragmentList.add(new BiddingFragment());
-        mFragmentList.add(new MessageFragment());
-        mFragmentList.add(new OrderListFragment());
-        mFragmentList.add(new PersonalCenterFragment());
+        mFragmentList.add(new GrabFragment());
+        mFragmentList.add(new GrabTestFragment());
+        mFragmentList.add(new GrabTestFragment());
+        mFragmentList.add(new GrabTestFragment());
     }
 
     public void configViewPagerAndButton() {
@@ -159,17 +157,18 @@ public class HomePageModel extends BaseModel {
     }
 
     private void saveUserSetState(GetWltStateRespons wltStateRespons) {
-        try{
-            String setState = wltStateRespons.getData().getAppUserSet().getSetState();
-
-            if (!TextUtils.isEmpty(setState))
-                SPUtils.saveKV(context, GlobalConfigBean.KEY_SETSTATE, setState);
-        } catch(Exception e){
-            return ;
-        }
-
+        String setState = getUserSetState(wltStateRespons);
+        if (!TextUtils.isEmpty(setState))
+            SPUtils.saveKV(context, GlobalConfigBean.KEY_SETSTATE, setState);
     }
 
+    private String getUserSetState(GetWltStateRespons wltStateRespons) {
+        try {
+            return wltStateRespons.getData().getAppUserSet().getSetState();
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+    }
 
     private void savePhoneAndWltState(GetWltStateRespons wltStateRespons) {
         jugedPhoneNumState(wltStateRespons);
@@ -177,14 +176,30 @@ public class HomePageModel extends BaseModel {
     }
 
     private void jugedPhoneNumState(GetWltStateRespons wltStateRespons) {
-        String status = wltStateRespons.getData().getUserPhoneResult().getStatus();
+        String status = getStatus(wltStateRespons);
         if (TextUtils.equals(UserPhoneBean.SUCCESS, status))
             savePhoneNumToSP(wltStateRespons);
     }
 
+    private String getStatus(GetWltStateRespons wltStateRespons) {
+        try {
+            return wltStateRespons.getData().getUserPhoneResult().getStatus();
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
     private void savePhoneNumToSP(GetWltStateRespons wltStateRespons) {
-        String userPhone = wltStateRespons.getData().getUserPhoneResult().getUserPhone();
+        String userPhone = getPhoneNumToSP(wltStateRespons);
         SPUtils.saveKV(context, GlobalConfigBean.KEY_USERPHONE, userPhone);
+    }
+
+    private String getPhoneNumToSP(GetWltStateRespons wltStateRespons) {
+        try {
+            return wltStateRespons.getData().getUserPhoneResult().getUserPhone();
+        } catch (Exception e) {
+            return e.getMessage();
+        }
     }
 
     private void saveWltState(GetWltStateRespons wltStateRespons) {
@@ -193,13 +208,29 @@ public class HomePageModel extends BaseModel {
     }
 
     private void saveWltExpireState(GetWltStateRespons wltStateRespons) {
-        String expireState = wltStateRespons.getData().getWltAlertResult().getExpireState();
+        String expireState = getExpireState(wltStateRespons);
         SPUtils.saveKV(context, GlobalConfigBean.KEY_WLT_EXPIRE, expireState);
     }
 
+    private String getExpireState(GetWltStateRespons wltStateRespons) {
+        try {
+            return wltStateRespons.getData().getWltAlertResult().getExpireState();
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
     private void saveWltMsg(GetWltStateRespons wltStateRespons) {
-        String msg = wltStateRespons.getData().getWltAlertResult().getMsg();
+        String msg = getSaveWltMsg(wltStateRespons);
         SPUtils.saveKV(context, GlobalConfigBean.KEY_WLT_EXPIRE_MSG, msg);
+    }
+
+    private String getSaveWltMsg(GetWltStateRespons wltStateRespons) {
+        try {
+            return wltStateRespons.getData().getWltAlertResult().getMsg();
+        } catch (Exception e) {
+            return e.getMessage();
+        }
     }
 
     public void eventBusThing(EventAction action) {
@@ -328,8 +359,8 @@ public class HomePageModel extends BaseModel {
     }
 
     private void checkWhichOne(int paramInt, int index) {
-        BaseHomeFragment
-                fragment = (BaseHomeFragment) mFragmentList.get(index);
+        BaseFragment
+                fragment = (BaseFragment) mFragmentList.get(index);
         if (paramInt == index) {
             changeFragmentStateForTrue(fragment, index);
         } else if (AppConstants.HOME_PAGE_INDEX == index) {
@@ -337,12 +368,12 @@ public class HomePageModel extends BaseModel {
         }
     }
 
-    private void changeFragmentStateForTrue(BaseHomeFragment fragment, int index) {
+    private void changeFragmentStateForTrue(BaseFragment fragment, int index) {
         fragment.OnFragmentSelectedChanged(true);
-        BaseHomeFragment.current_index = index;
+        BaseFragment.current_index = index;
     }
 
-    private void changeFragmentStateForFalse(BaseHomeFragment fragment) {
+    private void changeFragmentStateForFalse(BaseFragment fragment) {
         fragment.OnFragmentSelectedChanged(false);
     }
 

@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.huangyezhaobiao"
     android:installLocation="auto"
-    android:versionCode="24"
-    android:versionName="3.0.0" >
+    android:versionCode="25"
+    android:versionName="3.0.1" >
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -267,6 +267,11 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
+            android:name="wuba.zhaobiao.common.activity.HomePageActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="com.huangyezhaobiao.activity.OrderDetailActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
@@ -281,6 +286,9 @@
         <activity
             android:name="com.huangyezhaobiao.activity.AboutActivity"
             android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="wuba.zhaobiao.mine.activity.AboutActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.huangyezhaobiao.activity.SystemActiveActivity"
@@ -319,8 +327,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateUnchanged|adjustPan" />
         <activity
-            android:name="com.huangyezhaobiao.activity.SplashActivity"
-            android:launchMode="singleTask"
+            android:name="wuba.zhaobiao.common.activity.SplashActivity"
             android:noHistory="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme3" >
@@ -334,6 +341,9 @@
             android:name="com.huangyezhaobiao.activity.BlankActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name="wuba.zhaobiao.common.activity.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="com.huangyezhaobiao.activity.LockActivity"
             android:launchMode="singleInstance"
             android:noHistory="true"
@@ -341,6 +351,9 @@
             android:theme="@android:style/Theme.Wallpaper.NoTitleBar" />
         <activity
             android:name="com.huangyezhaobiao.activity.GuideActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="wuba.zhaobiao.common.activity.GuideActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.huangyezhaobiao.activity.MyWalletActivity"
@@ -502,7 +515,22 @@
             -->
         </activity>
         <activity
+            android:name="wuba.zhaobiao.mine.activity.MobileBindChangeActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="com.huangyezhaobiao.activity.SettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="wuba.zhaobiao.mine.activity.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.huangyezhaobiao.activity.AccountManageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.huangyezhaobiao.activity.AddAccountActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.huangyezhaobiao.activity.UpdateAccountActivity"
             android:screenOrientation="portrait" />
 
         <receiver android:name="com.huangyezhaobiao.receiver.BatteryReceiver" >
@@ -628,6 +656,13 @@
         <receiver
             android:name="com.wuba.loginsdk.internal.OfflineAlertReceiver"
             android:exported="false" />
+
+        <activity
+            android:name="com.wuba.loginsdk.activity.account.ThirdinfoAuthActivity"
+            android:configChanges="keyboardHidden|locale"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Translucent" />
 
         <service
             android:name="com.wuba.lego.service.LegoSendAndWriteService"

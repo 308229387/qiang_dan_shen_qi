@@ -6,6 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.huangyezhaobiao.activity.PushInActivity;
+import com.huangyezhaobiao.bean.push.PushBean;
+import com.huangyezhaobiao.inter.INotificationListener;
+
 import wuba.zhaobiao.common.fragment.BaseFragment;
 import wuba.zhaobiao.grab.model.GrabModel;
 
@@ -13,15 +17,16 @@ import wuba.zhaobiao.grab.model.GrabModel;
  * Created by SongYongmeng on 2016/8/8.
  * 描    述：抢单展示，红点检测。
  */
-public class GrabFragment extends BaseFragment<GrabModel> {
+public class GrabFragment extends BaseFragment<GrabModel> implements INotificationListener {
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         initalizationLayout(inflater, container);
+        registPushAndEventBus();
         creatAdapter();
         setInfo();
-
         return model.getView();
     }
 
@@ -29,6 +34,10 @@ public class GrabFragment extends BaseFragment<GrabModel> {
         model.creatView(inflater, container);
         model.initView();
         model.registMessageBar();
+    }
+
+    private void registPushAndEventBus() {
+        model.registListener();
     }
 
     private void creatAdapter() {
@@ -49,6 +58,15 @@ public class GrabFragment extends BaseFragment<GrabModel> {
     }
 
     @Override
+    public void onNotificationCome(PushBean pushBean) {
+        model.showPush(pushBean);
+    }
+
+    public void onEventMainThread(PushInActivity.GrabSuccessMessage event) {
+        model.jugePush(event);
+    }
+
+
     public void OnFragmentSelectedChanged(boolean isSelected) {
         if (isSelected && model != null)
             model.selectChange();
@@ -58,4 +76,13 @@ public class GrabFragment extends BaseFragment<GrabModel> {
     protected GrabModel createModel() {
         return new GrabModel(GrabFragment.this);
     }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        model.unregistPushAndEventBus();
+    }
+
+
 }

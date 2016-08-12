@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/unlogin_bg_grey" />
-    <corners android:radius="2dip" />
-</shape><!-- From: file:/I:/E/2016523/58sdklogin/WubaLoginSDK/loginsdk/src/main/res/drawable/loginsdk_wb_unlogin_btn_xml.xml -->
