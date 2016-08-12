@@ -15,4 +15,7 @@ public class Urls {
     public static final String GRAB_REQUEST = BASE_URL + "app/order/bidding";
     public static final String GRAB_GET_LIST = BASE_URL + "api/getBids";
     public static final String VALIDATE = BASE_URL + "api/validate";
+
+
+    public static final String AUTO_SETTING = BASE_URL + "api/business/setting?";
 }

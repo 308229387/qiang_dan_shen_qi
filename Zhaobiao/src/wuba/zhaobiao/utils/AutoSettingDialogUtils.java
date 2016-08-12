@@ -2,13 +2,12 @@ package wuba.zhaobiao.utils;
 
 import android.app.Activity;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.text.TextUtils;
 
-import com.huangyezhaobiao.activity.AutoSettingsActivity;
-import com.huangyezhaobiao.bean.GlobalConfigBean;
+import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
+
+import wuba.zhaobiao.mine.activity.AutoSettingActivity;
 
 /**
  * Created by SongYongmeng on 2016/7/31.
@@ -76,8 +75,9 @@ public class AutoSettingDialogUtils {
         @Override
         public void onDialogOkClick() {
             dismiss();
-            Intent intent = AutoSettingsActivity.onNewIntent(context);
-            context.startActivity(intent);
+            ActivityUtils.goToActivity(context, AutoSettingActivity.class);
+//            Intent intent = AutoSettingsActivity.onNewIntent(context);
+//            context.startActivity(intent);
             SPUtils.saveAutoSetting(context);
         }
 

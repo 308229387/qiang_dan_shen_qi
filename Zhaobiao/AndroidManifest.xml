@@ -374,7 +374,12 @@
         <activity
             android:name=".activity.AutoSettingsActivity"
             android:process=":webhelp"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name="wuba.zhaobiao.mine.activity.AutoSettingActivity"
+            android:process=":webhelp"
+            android:screenOrientation="portrait"/>
 
             <!--
              <intent-filter>
@@ -382,7 +387,6 @@
                  <category android:name="android.intent.category.LAUNCHER" />
              </intent-filter>
             -->
-        </activity>
         <activity
             android:name=".activity.SoftwareUsageActivity"
             android:process=":webhelp"

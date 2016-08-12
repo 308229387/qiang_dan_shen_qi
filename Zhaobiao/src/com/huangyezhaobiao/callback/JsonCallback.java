@@ -68,6 +68,8 @@ public abstract class JsonCallback<T> extends EncryptCallback<T> {
                     if (type != null) return new Gson().fromJson(data, type);
                 }
                 break;
+            case 1:
+                throw new IllegalStateException(msg);
             case 100:
                 throw new IllegalStateException(msg);
             case 200:

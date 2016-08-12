@@ -1,7 +1,6 @@
 package wuba.zhaobiao.mine.model;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -13,7 +12,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.activity.AutoSettingsActivity;
 import com.huangyezhaobiao.bean.GlobalConfigBean;
 import com.huangyezhaobiao.callback.DialogCallback;
 import com.huangyezhaobiao.constans.AppConstants;
@@ -34,9 +32,10 @@ import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
 import wuba.zhaobiao.common.model.BaseModel;
+import wuba.zhaobiao.config.Urls;
+import wuba.zhaobiao.mine.activity.AutoSettingActivity;
 import wuba.zhaobiao.mine.activity.MobileBindChangeActivity;
 import wuba.zhaobiao.mine.activity.SettingActivity;
-import wuba.zhaobiao.config.Urls;
 import wuba.zhaobiao.respons.UserInfoRespons;
 import wuba.zhaobiao.utils.LogoutDialogUtils;
 
@@ -220,8 +219,9 @@ public class SettingModel extends BaseModel implements View.OnClickListener{
     }
 
     private void goToAutoSettingPage(){
-        Intent intent = AutoSettingsActivity.onNewIntent(context);
-        context.startActivity(intent);
+        ActivityUtils.goToActivity(context, AutoSettingActivity.class);
+//        Intent intent = AutoSettingsActivity.onNewIntent(context);
+//        context.startActivity(intent);
     }
 
     private void goToAutoSettingPageStatistics(){
