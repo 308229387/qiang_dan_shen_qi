@@ -238,7 +238,7 @@ public class PullToRefreshLayout extends RelativeLayout {
                     changeState(DONE);
                     hide();
                 }
-            }.sendEmptyMessageDelayed(0, 1000);
+            }.sendEmptyMessageDelayed(0, 0);
         } else {
             changeState(DONE);
             hide();
@@ -276,7 +276,7 @@ public class PullToRefreshLayout extends RelativeLayout {
                     changeState(DONE);
                     hide();
                 }
-            }.sendEmptyMessageDelayed(0, 1000);
+            }.sendEmptyMessageDelayed(0, 0);
         } else {
             changeState(DONE);
             hide();
