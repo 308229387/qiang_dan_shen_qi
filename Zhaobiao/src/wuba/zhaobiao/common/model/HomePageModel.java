@@ -52,6 +52,7 @@ import wuba.zhaobiao.config.ScreenReceiver;
 import wuba.zhaobiao.config.Urls;
 import wuba.zhaobiao.grab.fragment.GrabFragment;
 import wuba.zhaobiao.grab.fragment.GrabTestFragment;
+import wuba.zhaobiao.message.fragment.MessageFragment;
 import wuba.zhaobiao.mine.fragment.MineFragment;
 import wuba.zhaobiao.order.fragment.OrderFragment;
 import wuba.zhaobiao.respons.GetWltStateRespons;
@@ -107,7 +108,7 @@ public class HomePageModel extends BaseModel {
 
     private void addFragment() {
         mFragmentList.add(new GrabFragment());
-        mFragmentList.add(new GrabTestFragment());
+        mFragmentList.add(new MessageFragment());
         mFragmentList.add(new OrderFragment());
         mFragmentList.add(new MineFragment());
     }
@@ -526,6 +527,9 @@ public class HomePageModel extends BaseModel {
 
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
+            if (!isToast) {
+                ToastUtils.showToast(e.getMessage());
+            }
         }
     }
 

@@ -99,7 +99,13 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 		fetchDetailsPresenter = new FetchDetailsPresenter(this);
 		initView();
 		initListener();
-		mobile = LoginClient.doGetUserPhoneOperate(this);
+		String isSon = UserUtils.getIsSon(this);
+		if(!TextUtils.isEmpty(isSon) && TextUtils.equals("1",isSon)){
+			mobile = LoginClient.doGetUserPhoneOperate(this);
+		}else{
+			mobile = SPUtils.getVByK(this, GlobalConfigBean.KEY_USERPHONE);
+		}
+
 		phoneViewModel = new CallPhoneViewModel(vmCallback,this);
 
 		PhoneReceiver.addToMonitor(interaction);
@@ -432,9 +438,9 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 				break;
 			case R.id.order_detail_message:
 				flag = false;
-				Uri uri = Uri.parse("smsto:" + clientPhone);
-				Intent sendIntent = new Intent(Intent.ACTION_VIEW, uri);
-				sendIntent.putExtra("sms_body", "");
+				Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+				sendIntent.setData(Uri.parse("smsto:" + clientPhone));
+//				sendIntent.putExtra("sms_body", "");
 				startActivity(sendIntent);
 
 				HYMob.getDataListByCall(FetchDetailsActivity.this, HYEventConstans.EVENT_ID_ORDER_DETAIL_PAGE_MESSAGE, String.valueOf(orderId), "1");

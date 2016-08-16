@@ -15,6 +15,8 @@ import com.huangyezhaobiao.bean.ChildAccountBean;
 import com.huangyezhaobiao.callback.DialogCallback;
 import com.huangyezhaobiao.callback.JsonCallback;
 import com.huangyezhaobiao.utils.ActivityUtils;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.ToastUtils;
 import com.lzy.okhttputils.OkHttpUtils;
@@ -112,7 +114,9 @@ public class AccountManageActivity extends QBBaseActivity implements View.OnClic
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
 
-            ToastUtils.showToast(e.getMessage());
+            if (!isToast) {
+                ToastUtils.showToast(e.getMessage());
+            }
         }
 
     }
@@ -166,6 +170,8 @@ public class AccountManageActivity extends QBBaseActivity implements View.OnClic
                     adapter = new ChildAccountAdapter(this, list, flag);
                     lv_sManage.setAdapter(adapter);
 
+                    HYMob.getDataList(this, HYEventConstans.EVENT_ACCOUNT_FINISH);
+
                 } else {  //右上角显示为编辑的界面
                     flag = !flag;
                     tv_edit.setVisibility(View.VISIBLE);
@@ -174,10 +180,14 @@ public class AccountManageActivity extends QBBaseActivity implements View.OnClic
 
                     adapter = new ChildAccountAdapter(this, list, flag);
                     lv_sManage.setAdapter(adapter);
+
+                    HYMob.getDataList(this, HYEventConstans.EVENT_ACCOUNT_EDIT);
                 }
                 break;
             case R.id.rl_add_manage:
                 getChildAccountMax();
+
+                HYMob.getDataList(this, HYEventConstans.EVENT_ACCOUNT_ADD);
                 break;
         }
 
@@ -213,10 +223,16 @@ public class AccountManageActivity extends QBBaseActivity implements View.OnClic
 
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
+            if (!isToast) {
+                ToastUtils.showToast(e.getMessage());
+            }
 
-            ToastUtils.showToast(e.getMessage());
         }
     }
 
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+        HYMob.getBaseDataListForPage(this, HYEventConstans.PAGE_ACCOUNT_MANANGE, stop_time - resume_time);
+    }
 }

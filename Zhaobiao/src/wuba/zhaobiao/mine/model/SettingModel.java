@@ -258,7 +258,9 @@ public class SettingModel extends BaseModel implements View.OnClickListener{
         }
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
-            ToastUtils.showToast(e.getMessage());
+            if (!isToast) {
+                ToastUtils.showToast(e.getMessage());
+            }
         }
 
     }

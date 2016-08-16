@@ -3,6 +3,7 @@ package com.huangyezhaobiao.utils;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -14,6 +15,7 @@ import com.huangyezhaobiao.bean.HYEventBean.CommonBean;
 import com.huangyezhaobiao.bean.HYEventBean.DataBean;
 import com.huangyezhaobiao.url.URLConstans;
 import com.lidroid.xutils.http.ResponseInfo;
+import com.wuba.loginsdk.external.LoginClient;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -86,7 +88,15 @@ public class HYMob {
      * @return
      */
     public static DataBean getBaseDataBean(Context context,String co){
-        String userId =UserUtils.getUserId(context);
+
+        String userId = "";
+        String isSon = UserUtils.getIsSon(context);
+        if(!TextUtils.isEmpty(isSon) && TextUtils.equals("1",isSon)){
+            userId =  LoginClient.doGetUserIDOperate(context);
+        }else{
+             userId =UserUtils.getUserId(context);
+        }
+
         String time = String.valueOf(System.currentTimeMillis());
         if(TextUtils.isEmpty(userId)){
             userId ="-";
@@ -108,7 +118,13 @@ public class HYMob {
     public static DataBean getBaseDataBeanByModel(Context context,String co){
         int  state = StateUtils.state -1;
         String modelState = String.valueOf(state); //模式状态 服务0、休息1
-        String userId =UserUtils.getUserId(context);
+        String userId = "";
+        String isSon = UserUtils.getIsSon(context);
+        if(!TextUtils.isEmpty(isSon) && TextUtils.equals("1",isSon)){
+            userId =  LoginClient.doGetUserIDOperate(context);
+        }else{
+            userId =UserUtils.getUserId(context);
+        }
         String time = String.valueOf(System.currentTimeMillis());
 
         if(TextUtils.isEmpty(userId)){
@@ -134,7 +150,13 @@ public class HYMob {
     }
 
     public static DataBean getBaseDataBeanByState(Context context,String co){
-        String userId =UserUtils.getUserId(context);
+        String userId = "";
+        String isSon = UserUtils.getIsSon(context);
+        if(!TextUtils.isEmpty(isSon) && TextUtils.equals("1",isSon)){
+            userId =  LoginClient.doGetUserIDOperate(context);
+        }else{
+            userId =UserUtils.getUserId(context);
+        }
         String time = String.valueOf(System.currentTimeMillis());
         String serviceState = FetchDetailsActivity.orderState;  //服务状态 待服务1/服务中2/已结束31,32
         if(TextUtils.isEmpty(userId)){
@@ -388,7 +410,13 @@ public class HYMob {
      */
     public static void getBaseDataListForPage(Context context,String cr,long cs){
         if(cs <=0)cs =0;
-        String userId =UserUtils.getUserId(context);
+        String userId = "";
+        String isSon = UserUtils.getIsSon(context);
+        if(!TextUtils.isEmpty(isSon) && TextUtils.equals("1",isSon)){
+            userId =  LoginClient.doGetUserIDOperate(context);
+        }else{
+            userId =UserUtils.getUserId(context);
+        }
         String time = String.valueOf(cs);
         if(TextUtils.isEmpty(userId)){
             userId ="-";
@@ -417,7 +445,13 @@ public class HYMob {
      */
     public static void getBaseDataListFromPage(Context context,String cr,long cs,String from){
         if(cs <=0)cs =0;
-        String userId =UserUtils.getUserId(context);
+        String userId = "";
+        String isSon = UserUtils.getIsSon(context);
+        if(!TextUtils.isEmpty(isSon) && TextUtils.equals("1",isSon)){
+            userId =  LoginClient.doGetUserIDOperate(context);
+        }else{
+            userId =UserUtils.getUserId(context);
+        }
         String time = String.valueOf(cs);
         if(TextUtils.isEmpty(userId)){
             userId ="-";

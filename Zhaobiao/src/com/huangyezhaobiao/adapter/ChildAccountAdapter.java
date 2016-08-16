@@ -1,5 +1,6 @@
 package com.huangyezhaobiao.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.Nullable;
@@ -13,9 +14,12 @@ import android.widget.TextView;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.activity.UpdateAccountActivity;
 import com.huangyezhaobiao.bean.ChildAccountBean;
+import com.huangyezhaobiao.callback.DialogCallback;
 import com.huangyezhaobiao.callback.JsonCallback;
 import com.huangyezhaobiao.inter.Constans;
 import com.huangyezhaobiao.utils.ActivityUtils;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
@@ -111,6 +115,7 @@ public class ChildAccountAdapter extends BaseAdapter{
                             adeleteChildAccount(account.getId());
                             remove(position);
                             notifyDataSetChanged();
+                            HYMob.getDataList(context, HYEventConstans.EVENT_ACCOUNT_DELETE);
                         }
 
                         @Override
@@ -124,6 +129,8 @@ public class ChildAccountAdapter extends BaseAdapter{
             holder.account_edit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    HYMob.getDataList(context, HYEventConstans.EVENT_ACCOUNT_MODIFY);
 
                     Map<String, String> map = new HashMap<String, String>();
                     map.put(Constans.CHILD_ACCOUNT_ID,account.getId());
@@ -153,10 +160,14 @@ public class ChildAccountAdapter extends BaseAdapter{
     private void adeleteChildAccount(String id) {
         OkHttpUtils.get("http://zhaobiao.58.com/api/suserdelete")//
                 .params("id", id)//
-                .execute(new callback());
+                .execute(new callback((Activity) context));
     }
     //响应类
-    private class callback extends JsonCallback<String> {
+    private class callback extends DialogCallback<String> {
+
+        public callback(Activity context) {
+            super(context);
+        }
 
         @Override
         public void onResponse(boolean isFromCache, String s, Request request, @Nullable Response response) {
@@ -165,8 +176,9 @@ public class ChildAccountAdapter extends BaseAdapter{
 
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
-
-            ToastUtils.showToast(e.getMessage());
+            if (!isToast) {
+                ToastUtils.showToast(e.getMessage());
+            }
         }
 
     }

@@ -180,6 +180,10 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
         }
     }
 
+    public void grabClickedStatistics(){
+        HYMob.getDataList(context.getActivity(), HYEventConstans.INDICATOR_BIDDING_LIST_PAGE);
+    }
+
     public void banPullUp() {
         refreshView.setBanPullUp(true);
     }
@@ -372,6 +376,8 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
     }
 
     private void refresh() {
+        BDMob.getBdMobInstance().onMobEvent(context.getActivity(), BDEventConstans.EVENT_ID_BIDDING_LIAT_PAGE_MANUAL_REFRESH);
+        HYMob.getDataList(context.getActivity(), HYEventConstans.EVENT_ID_BIDDING_LIAT_PAGE_MANUAL_REFRESH);
         canPullUp();
         pushId = "-1";
         getData();
@@ -593,7 +599,9 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
 
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
-            super.onError(isFromCache, call, response, e);
+            if (!isToast) {
+                ToastUtils.showToast(e.getMessage());
+            }
             refreshView.refreshComplete();
         }
     }

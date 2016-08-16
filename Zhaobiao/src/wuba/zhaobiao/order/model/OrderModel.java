@@ -44,6 +44,7 @@ import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.NetUtils;
 import com.huangyezhaobiao.utils.PushUtils;
 import com.huangyezhaobiao.utils.StateUtils;
+import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.utils.UnreadUtils;
 import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.utils.Utils;
@@ -573,7 +574,9 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
 
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
-            super.onError(isFromCache, call, response, e);
+            if (!isToast) {
+                ToastUtils.showToast(e.getMessage());
+            }
             refreshView.refreshComplete();
         }
     }

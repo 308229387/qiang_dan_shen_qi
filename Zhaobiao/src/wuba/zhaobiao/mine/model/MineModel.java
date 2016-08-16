@@ -183,6 +183,7 @@ public class MineModel extends BaseModel implements View.OnClickListener{
                 goToWalletPage();
                 break;
             case R.id.manage://点击了子账号管理
+                goToAccountManageStatistics();
                 goToAccountManage();
                 break;
             case R.id.sliding_settings://点击了设置
@@ -241,6 +242,10 @@ public class MineModel extends BaseModel implements View.OnClickListener{
         ActivityUtils.goToActivity(context.getActivity(), MyWalletActivity.class);
     }
 
+    private void goToAccountManageStatistics(){
+        HYMob.getDataList(context.getActivity(), HYEventConstans.EVENT_ID_ACCOUNT);
+    }
+
     private void goToAccountManage(){
         ActivityUtils.goToActivity(context.getActivity(), AccountManageActivity.class);
     }
@@ -290,7 +295,9 @@ public class MineModel extends BaseModel implements View.OnClickListener{
         }
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
-            ToastUtils.showToast(e.getMessage());
+            if (!isToast) {
+                ToastUtils.showToast(e.getMessage());
+            }
         }
 
     }

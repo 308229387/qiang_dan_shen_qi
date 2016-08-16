@@ -21,6 +21,8 @@ import com.huangyezhaobiao.bean.ChildAccountBean;
 import com.huangyezhaobiao.callback.DialogCallback;
 import com.huangyezhaobiao.callback.JsonCallback;
 import com.huangyezhaobiao.inter.Constans;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.StringUtils;
 import com.huangyezhaobiao.utils.ToastUtils;
@@ -125,6 +127,7 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
                 break;
             case R.id.iv_update_base_help:
                 initHelpDialog();
+                HYMob.getDataList(this, HYEventConstans.EVENT_ACCOUNT_HELP);
                 break;
             case R.id.btn_update_save:
                 String name = et_update_user_content.getText().toString();
@@ -154,6 +157,9 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
 
     //请求实体
     private void updateChildAccount(String id, String name,String authority) {
+
+        HYMob.getDataList(this, HYEventConstans.EVENT_UPDATE_ACCOUNT_SAVE);
+
         OkHttpUtils.get("http://zhaobiao.58.com/api/suserupdate")//
                 .params("id",id)
                 .params("username", name)
@@ -176,7 +182,9 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
 
-            ToastUtils.showToast(e.getMessage());
+            if (!isToast) {
+                ToastUtils.showToast(e.getMessage());
+            }
         }
 
     }
@@ -239,6 +247,9 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
         helpDialog.show();
     }
 
-
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+        HYMob.getBaseDataListForPage(this, HYEventConstans.PAGE_ACCOUNT_EDIT, stop_time - resume_time);
+    }
 }
