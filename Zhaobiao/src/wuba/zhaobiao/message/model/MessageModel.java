@@ -149,7 +149,7 @@ public class MessageModel extends BaseModel implements TitleMessageBarLayout.OnT
         if (type == 100 && StateUtils.getState(context.getActivity()) == 1) {
             dealWhitData();
         } else if (type == 105) {
-            grabLogout();
+            messageLogout();
         } else if (type != 100 && type != 105) {
             tbl.setPushBean(pushBean);
             tbl.setVisibility(View.VISIBLE);
@@ -185,7 +185,7 @@ public class MessageModel extends BaseModel implements TitleMessageBarLayout.OnT
         goingPushin();
     }
 
-    private void grabLogout() {
+    private void messageLogout() {
         try {
             new LogoutDialogUtils(context.getActivity(), "当前账号被强制退出").showSingleButtonDialog();
         } catch (Exception e) {
