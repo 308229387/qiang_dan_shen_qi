@@ -2,6 +2,7 @@ package wuba.zhaobiao.grab.model;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
+import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -51,6 +53,7 @@ import com.huangyezhaobiao.utils.StateUtils;
 import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.utils.UnreadUtils;
 import com.huangyezhaobiao.utils.UserUtils;
+import com.huangyezhaobiao.utils.Utils;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
 import com.jingchen.pulltorefresh.PullToRefreshLayout;
 import com.lzy.okhttputils.OkHttpUtils;
@@ -77,6 +80,7 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
     private GrabFragment context;
     private PullToRefreshLayout refreshView;
     private ListView listView;
+    private View layout_back_head;
     private LinearLayout choseLayout;
     private TextView textHead;
     private SwitchButton switchButton;
@@ -106,6 +110,7 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
 
     private void initTopBar() {
         tbl = (TitleMessageBarLayout) view.findViewById(R.id.tbl);
+        layout_back_head = view.findViewById(R.id.layout_head);
         choseLayout = (LinearLayout) view.findViewById(R.id.ll_grab);
         textHead = (TextView) view.findViewById(R.id.txt_head);
         switchButton = (SwitchButton) view.findViewById(R.id.switch_button);
@@ -122,6 +127,11 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
     }
 
     public void setInfoForTop() {
+        initHeader();
+        initEvent();
+    }
+
+    private void initHeader(){
         textHead.setText("抢单");
         choseLayout.setVisibility(View.VISIBLE);
     }
@@ -145,6 +155,7 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
         EventBus.getDefault().register(context);
         app = BiddingApplication.getBiddingApplication();
         app.setCurrentNotificationListener(context);
+        app.registerNetStateListener();
     }
 
     private void initEvent() {
@@ -156,6 +167,18 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
         switchButton.setOnCheckedChangeListener(new SwitchListener());
     }
 
+
+    public  void setHeaderHeight(){
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT) {
+            //透明状态栏
+            context.getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            int height = Utils.getStatusBarHeight(context.getActivity());
+            int more = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, context.getResources().getDisplayMetrics());
+            if (layout_back_head != null) {
+                layout_back_head.setPadding(0, height + more, 0, 0);
+            }
+        }
+    }
 
     public void banPullUp() {
         refreshView.setBanPullUp(true);
@@ -428,6 +451,7 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
     public void unregistPushAndEventBus() {
         EventBus.getDefault().unregister(context);
         app.removeINotificationListener();
+        app.unRegisterNetStateListener();
     }
 
     private void switchNotChicked() {
@@ -544,6 +568,10 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
                     break;
             }
         }
+    }
+
+    public void statisticsDeadTime() {
+        HYMob.getBaseDataListForPage(context.getActivity(), HYEventConstans.PAGE_BINGING_LIST, context.stop_time - context.resume_time);
     }
 
     private class GetGrabListRespons extends DialogCallback<String> {

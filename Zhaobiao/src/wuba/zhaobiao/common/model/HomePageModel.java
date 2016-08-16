@@ -52,6 +52,8 @@ import wuba.zhaobiao.config.ScreenReceiver;
 import wuba.zhaobiao.config.Urls;
 import wuba.zhaobiao.grab.fragment.GrabFragment;
 import wuba.zhaobiao.grab.fragment.GrabTestFragment;
+import wuba.zhaobiao.mine.fragment.MineFragment;
+import wuba.zhaobiao.order.fragment.OrderFragment;
 import wuba.zhaobiao.respons.GetWltStateRespons;
 import wuba.zhaobiao.utils.AutoSettingDialogUtils;
 import wuba.zhaobiao.utils.LogoutDialogUtils;
@@ -106,8 +108,8 @@ public class HomePageModel extends BaseModel {
     private void addFragment() {
         mFragmentList.add(new GrabFragment());
         mFragmentList.add(new GrabTestFragment());
-        mFragmentList.add(new GrabTestFragment());
-        mFragmentList.add(new GrabTestFragment());
+        mFragmentList.add(new OrderFragment());
+        mFragmentList.add(new MineFragment());
     }
 
     public void configViewPagerAndButton() {

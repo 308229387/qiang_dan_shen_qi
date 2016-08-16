@@ -76,6 +76,7 @@ public class OrderListFragment<T> extends  BaseHomeFragment implements INotifica
 
     private PullToRefreshListView lv_all_fragment;
     private ListView lv;
+
     private View layout_no_data; //您还没有已抢订单呢！
     private TextView tv_no_orders;
     private SwipeRefreshLayout srl;
@@ -180,6 +181,7 @@ public class OrderListFragment<T> extends  BaseHomeFragment implements INotifica
             btn_clean = (ImageView) view.findViewById(R.id.btn_clean);
             btn_clean.setVisibility(View.VISIBLE);
             btn_clean.setOnClickListener(listener);
+
             srl             = (SwipeRefreshLayout) view.findViewById(R.id.srl);
             srl.setRefreshing(true);
             lv_all_fragment = (PullToRefreshListView) view.findViewById(R.id.lv_all_fragment);

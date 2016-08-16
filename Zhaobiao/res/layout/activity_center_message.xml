@@ -9,9 +9,7 @@
         layout="@layout/layout_backhead"
         android:id="@+id/layout_head"
         />
-	<!-- <include
-        layout="@layout/layout_order_hint"
-        /> -->
+
 	 <com.huangyezhaobiao.view.TitleMessageBarLayout
        android:id="@+id/tbl"
        android:layout_width="fill_parent"

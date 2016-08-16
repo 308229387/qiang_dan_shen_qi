@@ -9,10 +9,11 @@ import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.bean.mylist.OrderState.OrderStateEntity;
-import com.huangyezhaobiao.fragment.home.OrderListFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import wuba.zhaobiao.order.model.OrderModel;
 
 /**
  * Created by 58 on 2016/6/29.
@@ -64,7 +65,7 @@ public class OrderStateAdapter extends BaseAdapter{
 
         holder.tv_orderState_popup.setText(entity.getOrderState());
 
-        if(OrderListFragment.checkedId.contains(entity.getOrderStateId())){
+        if(OrderModel.checkedId.contains(entity.getOrderStateId())){
             holder.tv_orderState_popup.setBackgroundResource(R.drawable.order_state_checked
             );
             holder.tv_orderState_popup.setTextColor(context.getResources().getColor(R.color.white));
@@ -76,11 +77,11 @@ public class OrderStateAdapter extends BaseAdapter{
             @Override
             public void onClick(View v) {
                 String id = entity.getOrderStateId();
-                if (OrderListFragment.checkedId.contains(id)) {//之前选中,变成不选中
-                    OrderListFragment.checkedId.remove(id);
+                if (OrderModel.checkedId.contains(id)) {//之前选中,变成不选中
+                    OrderModel.checkedId.remove(id);
                 } else {//之前没选中，变成选中
-                    OrderListFragment.checkedId.clear();
-                    OrderListFragment.checkedId.add(id);
+                    OrderModel.checkedId.clear();
+                    OrderModel.checkedId.add(id);
                 }
                 notifyDataSetChanged();
             }

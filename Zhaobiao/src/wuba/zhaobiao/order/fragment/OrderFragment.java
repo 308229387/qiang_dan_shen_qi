@@ -1,4 +1,4 @@
-package wuba.zhaobiao.grab.fragment;
+package wuba.zhaobiao.order.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,25 +6,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.huangyezhaobiao.activity.PushInActivity;
 import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.inter.INotificationListener;
 
 import wuba.zhaobiao.common.fragment.BaseFragment;
-import wuba.zhaobiao.grab.model.GrabModel;
+import wuba.zhaobiao.order.model.OrderModel;
 
 /**
- * Created by SongYongmeng on 2016/8/8.
- * 描    述：抢单展示，红点检测。
+ * Created by 58 on 2016/8/15.
  */
-public class GrabFragment extends BaseFragment<GrabModel> implements INotificationListener {
+public class OrderFragment extends BaseFragment<OrderModel> implements INotificationListener{
+
     public long resume_time;
     public long stop_time;
+
+    @Override
+    public void OnFragmentSelectedChanged(boolean isSelected) {
+        if (isSelected && model != null)
+            model.selectChange();
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        initalizationLayout(inflater, container);
+        initalizationLayout(inflater,  container);
         registPushAndEventBus();
         creatAdapter();
         setInfo();
@@ -32,23 +37,22 @@ public class GrabFragment extends BaseFragment<GrabModel> implements INotificati
     }
 
     private void initalizationLayout(LayoutInflater inflater, ViewGroup container) {
-        model.creatView(inflater, container);
+        model.createView(inflater, container);
         model.initView();
-        model.registMessageBar();
+        model.registerMessageBar();
     }
 
     private void registPushAndEventBus() {
-        model.registListener();
+        model.registerListenrer();
     }
 
     private void creatAdapter() {
-        model.creatAdapter();
+        model.createAdapter();
     }
 
     private void setInfo() {
-        model.setInfoForTop();
-        model.setParamsForListView();
-        model.setCachRespons();
+        model.setParamsForListVew();
+        model.setCacheRespons();
     }
 
     @Override
@@ -57,29 +61,16 @@ public class GrabFragment extends BaseFragment<GrabModel> implements INotificati
         resume_time = System.currentTimeMillis();
         model.setHeaderHeight();
         model.checkNet();
+        model.OrderTabClickedStatistics();
         model.getData();
     }
 
     @Override
-    public void onNotificationCome(PushBean pushBean) {
-        model.showPush(pushBean);
+    public void onStop() {
+        super.onStop();
+        stop_time = System.currentTimeMillis();
+        model.statisticsDeadTime();
     }
-
-    public void onEventMainThread(PushInActivity.GrabSuccessMessage event) {
-        model.jugePush(event);
-    }
-
-
-    public void OnFragmentSelectedChanged(boolean isSelected) {
-        if (isSelected && model != null)
-            model.selectChange();
-    }
-
-    @Override
-    protected GrabModel createModel() {
-        return new GrabModel(GrabFragment.this);
-    }
-
 
     @Override
     public void onDestroy() {
@@ -88,9 +79,12 @@ public class GrabFragment extends BaseFragment<GrabModel> implements INotificati
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
-        stop_time = System.currentTimeMillis();
-        model.statisticsDeadTime();
+    protected OrderModel createModel() {
+        return new OrderModel(OrderFragment.this);
+    }
+
+    @Override
+    public void onNotificationCome(PushBean pushBean) {
+        model.showPush(pushBean);
     }
 }

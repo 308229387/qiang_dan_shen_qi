@@ -44,11 +44,10 @@ public class PersonalCenterFragment extends BaseHomeFragment implements NetWorkV
     private ImageView iv_refresh;// 刷新按钮
 
     private RelativeLayout mywallet;//我的钱包
-    private RelativeLayout manage; //
+    private RelativeLayout manage; //账号管理
     private RelativeLayout sliding_settings; //设置
     private RelativeLayout help;//帮助
     private RelativeLayout about; //关于
-//    private RelativeLayout manage; //账号管理
 
     private YuEViewModel yuEViewModel;
 
@@ -88,7 +87,7 @@ public class PersonalCenterFragment extends BaseHomeFragment implements NetWorkV
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = null;
         if(view == null){
-            view = inflater.inflate(R.layout.navigation_header, null);
+            view = inflater.inflate(R.layout.fragment_mine, null);
             tv_userName = (TextView) view.findViewById(R.id.tv_userName);
             tv_userCompany = (TextView) view.findViewById(R.id.tv_userCompany);
             iv_refresh = (ImageView) view.findViewById(R.id.iv_refresh);

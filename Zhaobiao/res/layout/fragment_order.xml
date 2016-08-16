@@ -2,25 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:animateLayoutChanges="true"
     android:background="@color/common_background"
     android:orientation="vertical">
 
     <include
-        android:id="@+id/layout_head"
+        android:id="@+id/layout_back"
         layout="@layout/layout_backhead" />
-
     <com.huangyezhaobiao.view.TitleMessageBarLayout
         android:id="@+id/tbl"
         android:layout_width="fill_parent"
         android:layout_height="45dp" />
 
-    <ViewStub
-        android:id="@+id/no_data"
+    <include
+        android:id="@+id/layout_no_data"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:inflatedId="@+id/pic_view_id_after_inflate"
-        android:layout="@layout/view_main_no_bid" />
+        layout="@layout/activity_no_internet" />
 
     <com.jingchen.pulltorefresh.PullToRefreshLayout
         android:id="@+id/refresh_view"
@@ -33,14 +30,14 @@
 
         <com.jingchen.pulltorefresh.pullableview.PullableListView
             xmlns:ptr="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/grab_list"
+            android:id="@+id/order_list"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
 
             android:cacheColorHint="@android:color/transparent"
             android:divider="@null"
             android:fadingEdge="none"
-            android:listSelector="#000000"
+            android:listSelector="#00000000"
             android:persistentDrawingCache="none"
             android:scrollbars="none"
             android:scrollingCache="false"
@@ -48,7 +45,7 @@
             ptr:ptrAnimationStyle="flip"
             ptr:ptrHeaderSubTextColor="@color/red"
             ptr:ptrHeaderTextColor="@color/black"
-            ptr:ptrMode="pullUpFromBottom" />
+            ptr:ptrMode="pullUpFromBottom"/>
 
         <include layout="@layout/load_more" />
     </com.jingchen.pulltorefresh.PullToRefreshLayout>

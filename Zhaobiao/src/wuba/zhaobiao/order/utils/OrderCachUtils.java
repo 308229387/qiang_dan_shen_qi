@@ -58,6 +58,23 @@ public class OrderCachUtils<T> {
     }
 
 
+    public String transferToBean(String t) {
+        String pageNum = "";
+        try {
+            JSONObject jsonObject = JSON.parseObject(t);
+            if (jsonObject == null) {
+                return null;
+            } else {
+                pageNum = jsonObject.getString("pageCount");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return pageNum;
+    }
+
+
     protected void registerSourceDirs() {
         sourcesDir.put("1", (Class<? extends T>) QDZhuangXiuMessageBean.class);
         sourcesDir.put("2", (Class<? extends T>) MessCenIACIndividualBean.class);
