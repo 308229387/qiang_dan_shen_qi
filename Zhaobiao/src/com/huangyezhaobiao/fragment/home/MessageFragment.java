@@ -130,6 +130,7 @@ public class MessageFragment extends BaseHomeFragment implements INotificationLi
 
             adapter = new MessageSeriesAdapter(getActivity());
             lv_message_center = (ListView) view.findViewById(R.id.lv_message_center);
+
             lv_message_center.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> arg0, View arg1,

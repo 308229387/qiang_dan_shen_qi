@@ -44,6 +44,7 @@ public class MessageFragment extends BaseFragment<MessageModel> implements INoti
     @Override
     public void onStop() {
         super.onStop();
+        stop_time = System.currentTimeMillis();
     }
 
     @Override
