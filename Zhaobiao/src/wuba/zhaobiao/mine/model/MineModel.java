@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.activity.AccountManageActivity;
-import com.huangyezhaobiao.activity.HelpActivity;
 import com.huangyezhaobiao.bean.GlobalConfigBean;
 import com.huangyezhaobiao.callback.DialogCallback;
 import com.huangyezhaobiao.utils.ActivityUtils;
@@ -31,6 +30,7 @@ import okhttp3.Response;
 import wuba.zhaobiao.common.model.BaseModel;
 import wuba.zhaobiao.config.Urls;
 import wuba.zhaobiao.mine.activity.AboutActivity;
+import wuba.zhaobiao.mine.activity.HelpActivity;
 import wuba.zhaobiao.mine.activity.MyWalletActivity;
 import wuba.zhaobiao.mine.activity.SettingActivity;
 import wuba.zhaobiao.mine.fragment.MineFragment;

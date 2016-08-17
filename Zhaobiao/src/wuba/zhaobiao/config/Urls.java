@@ -17,6 +17,7 @@ public class Urls {
     public static final String VALIDATE = BASE_URL + "api/validate";
     public static final String ORDER_GET_LIST = BASE_URL + "app/order/orderlist";
 
-
+    public static final String BASE_H5_URl = "http://static.58.com/ds/zhaobiao/app_yunying/mycenter/html/";
     public static final String AUTO_SETTING = BASE_URL + "api/business/setting?";
+    public static final String HELP = BASE_H5_URl + "help.html";
 }

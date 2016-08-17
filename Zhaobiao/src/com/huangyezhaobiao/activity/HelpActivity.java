@@ -65,14 +65,18 @@ public class HelpActivity extends QBBaseActivity implements OnClickListener{
 
 		view_no_internet = getView(R.id.view_no_internet);
 		pb          = getView(R.id.pb);
+
 		rl_help_tel = getView(R.id.rl_help_tel);
 		//webView 	= getView(R.id.webview);
+
 		webView     = new WebView(getApplicationContext());
 		ll_webview_container.addView(webView);
 		tbl         = getView(R.id.tbl);
+
 		client      = new BaseWebClient();
 		webView.getSettings().setJavaScriptEnabled(true);
 		webChromeBaseClient = new WebChromeBaseClient();
+
 		if(NetUtils.isNetworkConnected(this)){
 			webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);  //设置 缓存模式
 		}else{

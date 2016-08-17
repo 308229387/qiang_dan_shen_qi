@@ -197,7 +197,7 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
                 .params("pushId", pushId)
                 .params("bidId", "-1")
                 .params("bidState", "-1")
-                .execute(new GetGrabListRespons(context.getActivity()));
+                .execute(new GetGrabListRespons(context.getActivity(),true));
     }
 
     private void grabRequset(PushToPassBean bean, String bidsourceList) {
@@ -581,8 +581,10 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
     }
 
     private class GetGrabListRespons extends DialogCallback<String> {
-        public GetGrabListRespons(Activity context) {
-            super(context);
+
+
+        public GetGrabListRespons(Activity context, Boolean needProgress) {
+            super(context, needProgress);
         }
 
         @Override

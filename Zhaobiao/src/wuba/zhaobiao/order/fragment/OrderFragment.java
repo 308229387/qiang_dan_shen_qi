@@ -22,8 +22,10 @@ public class OrderFragment extends BaseFragment<OrderModel> implements INotifica
 
     @Override
     public void OnFragmentSelectedChanged(boolean isSelected) {
-        if (isSelected && model != null)
+        if (isSelected && model != null){
             model.selectChange();
+        }
+
     }
 
     @Nullable

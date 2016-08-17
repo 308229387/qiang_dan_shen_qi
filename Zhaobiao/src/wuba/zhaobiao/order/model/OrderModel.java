@@ -325,7 +325,7 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
         OkHttpUtils.get(Urls.ORDER_GET_LIST)
                 .params("orderState", orderState)
                 .params("pageNum", pageNum)
-                .execute(new getOrderListRespons(context.getActivity()));
+                .execute(new getOrderListRespons(context.getActivity(),true));
     }
 
     private void saveRespons(String s) {
@@ -379,29 +379,32 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
     }
 
     private void dealWithDateNow(List<QDBaseBean> list) {
+
         String isSon = UserUtils.getIsSon(context.getActivity());
         if (!TextUtils.isEmpty(isSon) && TextUtils.equals("1", isSon)) {
             String rbac = UserUtils.getRbac(context.getActivity());
             if (!TextUtils.isEmpty(rbac)
                     && TextUtils.equals("1", rbac) || TextUtils.equals("3", rbac)) {
-                listView.setVisibility(View.GONE);
+//                listView.setVisibility(View.GONE);
                 layout_no_data.setVisibility(View.VISIBLE);
                 tv_no_orders.setText("对不起，您的账号暂无\n查看已抢订单权限");
             } else {
                 noData(list);
                 hasData(list);
+                hasDataButNotFull(list);
             }
 
         } else {
             noData(list);
             hasData(list);
+            hasDataButNotFull(list);
         }
-        hasDataButNotFull(list);
+
     }
 
     private void noData(List<QDBaseBean> list) {
         if (list.size() == 0 && showData.size() == 0){
-            listView.setVisibility(View.GONE);
+//            listView.setVisibility(View.GONE);
             layout_no_data.setVisibility(View.VISIBLE);
             layout_no_data.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -411,13 +414,17 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
                 }
             });
         }else{
-            listView.setVisibility(View.VISIBLE);
+//            listView.setVisibility(View.VISIBLE);
             layout_no_data.setVisibility(View.GONE);
         }
 
 
     }
-
+    private void hasData(List<QDBaseBean> list) {
+        if (list.size() > 0){
+            showDataToList(list);
+        }
+    }
 
     private void showDataToList(List<QDBaseBean> list) {
         setPageNum();
@@ -442,11 +449,6 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
 
     }
 
-    private void hasData(List<QDBaseBean> list) {
-        if (list.size() > 0){
-            showDataToList(list);
-        }
-    }
 
     private void hasDataButNotFull(List<QDBaseBean> list) {
         if (list.size() < 5)
@@ -556,8 +558,8 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
     private class getOrderListRespons extends DialogCallback<String> {
 
 
-        public getOrderListRespons(Activity context) {
-            super(context);
+        public getOrderListRespons(Activity context, Boolean needProgress) {
+            super(context, needProgress);
         }
 
         @Override
