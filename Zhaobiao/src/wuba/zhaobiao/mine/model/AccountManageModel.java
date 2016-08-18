@@ -12,7 +12,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.activity.AddAccountActivity;
 import com.huangyezhaobiao.adapter.ChildAccountAdapter;
 import com.huangyezhaobiao.bean.ChildAccountBean;
 import com.huangyezhaobiao.callback.DialogCallback;
@@ -32,6 +31,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import wuba.zhaobiao.common.model.BaseModel;
 import wuba.zhaobiao.mine.activity.AccountManageActivity;
+import wuba.zhaobiao.mine.activity.AddAccountActivity;
 import wuba.zhaobiao.respons.AccountMaxRespons;
 
 /**

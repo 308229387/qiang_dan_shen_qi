@@ -562,6 +562,9 @@
         <activity
             android:name=".activity.AddAccountActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="wuba.zhaobiao.mine.activity.AddAccountActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".activity.UpdateAccountActivity"
