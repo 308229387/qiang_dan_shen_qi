@@ -130,10 +130,8 @@ public class AccountManageActivity extends QBBaseActivity implements View.OnClic
         txt_head.setText("子账号管理");
         tbl = getView(R.id.tbl);
         tv_edit = getView(R.id.tv_edit);
-        tv_edit.setOnClickListener(this);
         lv_sManage = getView(R.id.lv_sManage);
         rl_add_manage = getView(R.id.rl_add_manage);
-        rl_add_manage.setOnClickListener(this);
         divider2 = getView(R.id.divider2);
         ll_add_child_account = getView(R.id.ll_add_child_account);
         divider3 = getView(R.id.divider3);

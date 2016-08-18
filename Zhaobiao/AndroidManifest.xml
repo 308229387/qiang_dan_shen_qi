@@ -556,7 +556,9 @@
         <activity
             android:name=".activity.AccountManageActivity"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name="wuba.zhaobiao.mine.activity.AccountManageActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.AddAccountActivity"
             android:screenOrientation="portrait" />
