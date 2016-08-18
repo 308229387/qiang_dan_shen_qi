@@ -72,11 +72,6 @@ public class IntroduceFunctionActivity extends QBBaseActivity implements OnClick
 		webView_introduce.loadUrl(url);
 	}
 
-	/**
-	 * 显示判断系统版本 ，如果在4.2以下，就手动移除removeJavascriptInterface
-	 * 因为在4.3.1~3.0版本，webview默认添加了searchBoxJavaBridge_接口,
-	 */
-
 		/**
 		 * 显示判断系统版本 ，如果在4.2以下，就手动移除removeJavascriptInterface
 		 * 因为在4.3.1~3.0版本，webview默认添加了searchBoxJavaBridge_接口,

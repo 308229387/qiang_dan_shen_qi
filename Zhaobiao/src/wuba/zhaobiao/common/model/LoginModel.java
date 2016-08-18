@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.activity.SoftwareUsageActivity;
 import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.callback.JsonCallback;
 import com.huangyezhaobiao.gtui.GePushProxy;
@@ -29,6 +28,7 @@ import wuba.zhaobiao.common.activity.HomePageActivity;
 import wuba.zhaobiao.common.activity.LoginActivity;
 import wuba.zhaobiao.common.activity.MobileValidateActivity;
 import wuba.zhaobiao.config.Urls;
+import wuba.zhaobiao.mine.activity.SoftwareProtocolActivity;
 import wuba.zhaobiao.respons.LoginRespons;
 
 /**
@@ -130,7 +130,7 @@ public class LoginModel extends BaseModel {
         Request request = new Request.Builder()
                 .setOperate(Request.LOGIN)
                 .setLogoResId(R.drawable.newlogin_logo)
-                .setLoginProtocolActivity(SoftwareUsageActivity.class)//控制是否显示协议，协议页面是一个activity
+                .setLoginProtocolActivity(SoftwareProtocolActivity.class)//控制是否显示协议，协议页面是一个activity
                 .setForgetPwdEnable(true)//是否显示忘记密码
                 .setPhoneLoginEnable(true)//是否显示手机动态码登录入口
                 .setRegistEnable(false)//是否显示注册入口

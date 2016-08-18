@@ -69,14 +69,21 @@ public class SoftwareUsageActivity extends QBBaseActivity implements View.OnClic
         setContentView(R.layout.activity_introduce_production);
         ll_webview_container = getView(R.id.ll_webview_container);
         chromeBaseClient = new WebChromeBaseClient();
+
         view_no_internet = getView(R.id.view_no_internet);
+
         layout_back_head = getView(R.id.layout_head);
+
         pb         = getView(R.id.pb);
+
         backLayout = getView(R.id.back_layout);
         backLayout.setVisibility(View.VISIBLE);
         txt_head   = getView(R.id.txt_head);
+
         tbl        = getView(R.id.tbl);
+
         webView_introduce = getView(R.id.webview);
+
         client      = new BaseWebClient();
         webView_introduce.getSettings().setJavaScriptEnabled(true);
         webView_introduce.getSettings().setUseWideViewPort(true);
@@ -108,11 +115,6 @@ public class SoftwareUsageActivity extends QBBaseActivity implements View.OnClic
         webView_introduce.loadUrl(url);
 
     }
-
-    /**
-     * 显示判断系统版本 ，如果在4.2以下，就手动移除removeJavascriptInterface
-     * 因为在4.3.1~3.0版本，webview默认添加了searchBoxJavaBridge_接口,
-     */
 
     /**
      * 显示判断系统版本 ，如果在4.2以下，就手动移除removeJavascriptInterface

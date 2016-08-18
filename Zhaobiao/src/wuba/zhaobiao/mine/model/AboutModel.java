@@ -12,8 +12,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.activity.IntroduceFunctionActivity;
-import com.huangyezhaobiao.activity.SoftwareUsageActivity;
 import com.huangyezhaobiao.callback.DialogCallback;
 import com.huangyezhaobiao.constans.AppConstants;
 import com.huangyezhaobiao.url.URLConstans;
@@ -34,8 +32,10 @@ import okhttp3.Headers;
 import okhttp3.Request;
 import okhttp3.Response;
 import wuba.zhaobiao.common.model.BaseModel;
-import wuba.zhaobiao.mine.activity.AboutActivity;
 import wuba.zhaobiao.config.Urls;
+import wuba.zhaobiao.mine.activity.AboutActivity;
+import wuba.zhaobiao.mine.activity.IntroductionActivity;
+import wuba.zhaobiao.mine.activity.SoftwareProtocolActivity;
 
 /**
  * Created by 58 on 2016/8/3.
@@ -191,7 +191,7 @@ public class AboutModel extends BaseModel implements View.OnClickListener {
 
 
     private void goToFunctionPage(){
-        ActivityUtils.goToActivity(context, IntroduceFunctionActivity.class);
+        ActivityUtils.goToActivity(context, IntroductionActivity.class);
     }
 
     private void goToFunctionPageStatistics(){
@@ -202,7 +202,7 @@ public class AboutModel extends BaseModel implements View.OnClickListener {
         HashMap<String, String> map = new HashMap<String, String>();
         map.put(AppConstants.H5_TITLE, context.getString(R.string.h5_login_softwareusage));
         map.put(AppConstants.H5_WEBURL, URLConstans.SOFTWARE_USEAGE_PROTOCOL);  //2016.5.3 add
-        ActivityUtils.goToActivityWithString(context, SoftwareUsageActivity.class, map);
+        ActivityUtils.goToActivityWithString(context, SoftwareProtocolActivity.class, map);
     }
 
     public void statisticsDeadTime() {

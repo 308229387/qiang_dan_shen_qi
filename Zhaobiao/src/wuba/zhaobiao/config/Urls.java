@@ -20,4 +20,8 @@ public class Urls {
     public static final String BASE_H5_URl = "http://static.58.com/ds/zhaobiao/app_yunying/mycenter/html/";
     public static final String AUTO_SETTING = BASE_URL + "api/business/setting?";
     public static final String HELP = BASE_H5_URl + "help.html";
+    public static final String Introduction = BASE_H5_URl + "introduction.html";
+
+    public static final String BASE_HTML_URL = "http://img.58cdn.com.cn/ds/zhaobiao/app_zhaobiao/html/";
+    public static final String PROTOCOL = BASE_HTML_URL + "usageProtocol.html";
 }
