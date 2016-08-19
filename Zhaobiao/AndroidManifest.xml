@@ -570,6 +570,10 @@
             android:name=".activity.UpdateAccountActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name="wuba.zhaobiao.mine.activity.UpdateAccountActivity"
+            android:screenOrientation="portrait" />
+
         <receiver android:name=".receiver.BatteryReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BATTERY_CHANGED" />

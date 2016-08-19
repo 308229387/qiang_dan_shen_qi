@@ -12,10 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.activity.UpdateAccountActivity;
 import com.huangyezhaobiao.bean.ChildAccountBean;
 import com.huangyezhaobiao.callback.DialogCallback;
-import com.huangyezhaobiao.callback.JsonCallback;
 import com.huangyezhaobiao.inter.Constans;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.HYEventConstans;
@@ -33,6 +31,7 @@ import java.util.Map;
 import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
+import wuba.zhaobiao.mine.activity.UpdateAccountActivity;
 
 /**
  * Created by 58 on 2016/7/22.

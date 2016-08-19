@@ -80,6 +80,7 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
         iv_update_base_help = getView(R.id.iv_update_base_help);
         btn_update_save = getView(R.id.btn_update_save);
         cb_update_order = getView(R.id.cb_update_order);
+        cb_update_bidding = getView(R.id.cb_update_bidding);
     }
 
     private void initData(){
@@ -101,7 +102,7 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
                 && TextUtils.equals("5",authority) || TextUtils.equals("7",authority)){
             cb_update_order.setChecked(true);
         }
-        cb_update_bidding = getView(R.id.cb_update_bidding);
+
         if(!TextUtils.isEmpty(authority)
                 && TextUtils.equals("3",authority) || TextUtils.equals("7",authority)){
             cb_update_bidding.setChecked(true);
