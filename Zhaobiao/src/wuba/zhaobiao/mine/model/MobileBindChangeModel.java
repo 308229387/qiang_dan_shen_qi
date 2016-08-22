@@ -294,13 +294,14 @@ public class MobileBindChangeModel extends BaseModel implements View.OnClickList
 
     private void submit(){
         CompareTwoMobile();
-        initConfirmChangeMobileDialog();
     }
 
     private void CompareTwoMobile(){
         if(TextUtils.equals(et_now_bind_mobile.getText().toString(),et_new_validate_mobile.getText().toString())){
             ToastUtils.makeImgAndTextToast(context, "两次修改的手机号不能一致", R.drawable.validate_error, 0).show();
             return ;
+        }else{
+            initConfirmChangeMobileDialog();
         }
     }
 

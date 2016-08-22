@@ -442,6 +442,10 @@
             android:name=".activity.ConsumptionActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name="wuba.zhaobiao.mine.activity.ConsumingRecordActivity"
+            android:screenOrientation="portrait" />
+
         <!--
             <activity android:name=".activity.TestActivity">
             &lt;!&ndash;<intent-filter>

@@ -232,6 +232,7 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
                 LogUtils.LogV("tag", "正在关闭");
                 mOrderCateWindow.dismiss();
                 pageNum ="1";
+                pageNumber =1;
                 getData();
                 filterClickedStatistics();
             } else {
@@ -264,6 +265,7 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
                     if(mOrderCateWindow!=null && mOrderCateWindow.isShowing()){
                         mOrderCateWindow.dismiss();
                         pageNum ="1";
+                        pageNumber =1;
                         getData();
                     }
                     HYMob.getDataList(context.getActivity(), HYEventConstans.EVENT_ID_FILTER_CONFIRM);
@@ -309,6 +311,7 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
     private void refresh() {
         canPullUp();
         pageNum = "1";
+        pageNumber =1;
         getData();
     }
 
@@ -410,6 +413,7 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
                 @Override
                 public void onClick(View v) {
                     pageNum = "1";
+                    pageNumber =1;
                     getData();
                 }
             });

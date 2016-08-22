@@ -46,7 +46,12 @@ public class JsonUtils {
 	}
 
 	public static <T> List<T> jsonToObjectList(String json, Class<T> clazz) {
-		return JSON.parseArray(json, clazz);
+		try {
+			return JSON.parseArray(json, clazz);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public static <T> T jsonToObject(String json, Class<T> clazz) {

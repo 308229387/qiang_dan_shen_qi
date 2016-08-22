@@ -13,7 +13,8 @@
     <com.huangyezhaobiao.view.TitleMessageBarLayout
         android:id="@+id/tbl"
         android:layout_width="fill_parent"
-        android:layout_height="45dp" />
+        android:layout_height="45dp"
+        android:visibility="gone"/>
     <RelativeLayout
         android:id="@+id/datas_empty_layout"
         android:layout_width="fill_parent"
@@ -37,13 +38,18 @@
             android:textColor="#808080"
             android:textSize="16sp"
             />
-        </RelativeLayout>
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/srl"
+
+    </RelativeLayout>
+    <com.jingchen.pulltorefresh.PullToRefreshLayout
+        android:id="@+id/refresh"
         android:layout_width="fill_parent"
-        android:layout_marginLeft="15dp"
-        android:layout_height="fill_parent">
-        <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <include layout="@layout/refresh_head" />
+
+        <com.jingchen.pulltorefresh.pullableview.PullableListView
             xmlns:ptr="http://schemas.android.com/apk/res-auto"
             android:id="@+id/consume_list"
             android:layout_width="fill_parent"
@@ -56,11 +62,12 @@
             android:scrollbars="none"
             android:scrollingCache="false"
             android:splitMotionEvents="false"
-            android:layout_marginLeft="15dp"
             ptr:ptrAnimationStyle="flip"
             ptr:ptrHeaderSubTextColor="@color/red"
             ptr:ptrHeaderTextColor="@color/black"
             ptr:ptrMode="pullUpFromBottom" />
-    </android.support.v4.widget.SwipeRefreshLayout>
+
+        <include layout="@layout/load_more" />
+    </com.jingchen.pulltorefresh.PullToRefreshLayout>
 
 </LinearLayout>

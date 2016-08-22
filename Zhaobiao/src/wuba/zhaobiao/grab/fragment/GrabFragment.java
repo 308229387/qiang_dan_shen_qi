@@ -58,6 +58,7 @@ public class GrabFragment extends BaseFragment<GrabModel> implements INotificati
         model.setHeaderHeight();
         model.checkNet();
         model.getData();
+        model.selectChange();
         model.grabClickedStatistics();
     }
 

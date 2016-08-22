@@ -8,13 +8,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.activity.ConsumptionActivity;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.Utils;
 
 import wuba.zhaobiao.common.model.BaseModel;
+import wuba.zhaobiao.mine.activity.ConsumingRecordActivity;
 import wuba.zhaobiao.mine.activity.MyWalletActivity;
 
 /**
@@ -108,7 +108,7 @@ public class MyWalletModel extends BaseModel implements View.OnClickListener{
     }
 
     private void goToConsumptionPage(){
-        ActivityUtils.goToActivity(context, ConsumptionActivity.class);
+        ActivityUtils.goToActivity(context, ConsumingRecordActivity.class);
     }
 
     private void goToConsumptionPageStatistics(){
