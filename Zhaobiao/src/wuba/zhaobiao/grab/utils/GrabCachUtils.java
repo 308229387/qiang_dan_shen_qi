@@ -35,7 +35,13 @@ public class GrabCachUtils<T> {
         String key = "displayType";
 
         try {
-            JSONArray jsonArray = JSON.parseArray(t);
+            JSONArray jsonArray = null;
+            try {
+                jsonArray = JSON.parseArray(t);
+            } catch (Exception e) {
+                e.printStackTrace();
+                jsonArray = null;
+            }
             if (jsonArray == null) {
                 return list;
             } else {

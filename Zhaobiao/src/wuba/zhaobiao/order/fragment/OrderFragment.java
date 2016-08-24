@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.inter.INotificationListener;
+import com.huangyezhaobiao.netmodel.INetStateChangedListener;
 
 import wuba.zhaobiao.common.fragment.BaseFragment;
 import wuba.zhaobiao.order.model.OrderModel;
@@ -15,7 +16,7 @@ import wuba.zhaobiao.order.model.OrderModel;
 /**
  * Created by 58 on 2016/8/15.
  */
-public class OrderFragment extends BaseFragment<OrderModel> implements INotificationListener{
+public class OrderFragment extends BaseFragment<OrderModel> implements INotificationListener,INetStateChangedListener {
 
     public long resume_time;
     public long stop_time;
@@ -88,5 +89,15 @@ public class OrderFragment extends BaseFragment<OrderModel> implements INotifica
     @Override
     public void onNotificationCome(PushBean pushBean) {
         model.showPush(pushBean);
+    }
+
+    @Override
+    public void NetConnected() {
+       model.closeMessageBar();
+    }
+
+    @Override
+    public void NetDisConnected() {
+       model.diaplayMessageBar();
     }
 }

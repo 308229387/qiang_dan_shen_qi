@@ -41,6 +41,7 @@ import com.huangyezhaobiao.eventbus.EventbusAgent;
 import com.huangyezhaobiao.iview.SwitchButton;
 import com.huangyezhaobiao.lib.QDBaseBean;
 import com.huangyezhaobiao.lib.ZBBaseAdapter;
+import com.huangyezhaobiao.netmodel.NetStateManager;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.HYEventConstans;
@@ -156,6 +157,7 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
         app = BiddingApplication.getBiddingApplication();
         app.setCurrentNotificationListener(context);
         app.registerNetStateListener();
+        NetStateManager.getNetStateManagerInstance().setINetStateChangedListener(context);
     }
 
     private void initEvent() {
@@ -197,7 +199,7 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
                 .params("pushId", pushId)
                 .params("bidId", "-1")
                 .params("bidState", "-1")
-                .execute(new GetGrabListRespons(context.getActivity(),true));
+                .execute(new GetGrabListRespons(context.getActivity(), true));
     }
 
     private void grabRequset(PushToPassBean bean, String bidsourceList) {
@@ -321,7 +323,7 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
         root.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getData();
+                refresh();
             }
         });
     }
@@ -369,6 +371,11 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
     }
 
     private void NetDisConnected() {
+       context.NetDisConnected();
+    }
+
+
+    public void diaplayMessageBar(){
         if (tbl != null) {
             tbl.showNetError();
             tbl.setVisibility(View.VISIBLE);
@@ -384,6 +391,10 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
     }
 
     private void NetConnected() {
+       context.NetConnected();
+    }
+
+    public void closeMessageBar(){
         if (tbl != null && tbl.getType() == TitleBarType.NETWORK_ERROR)
             tbl.setVisibility(View.GONE);
     }
@@ -458,6 +469,7 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
         EventBus.getDefault().unregister(context);
         app.removeINotificationListener();
         app.unRegisterNetStateListener();
+        NetStateManager.getNetStateManagerInstance().removeINetStateChangedListener();
     }
 
     private void switchNotChicked() {
@@ -521,9 +533,7 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
         public void onAdapterViewClick(int id, PushToPassBean bean) {
             //点击了抢单
             BDMob.getBdMobInstance().onMobEvent(context.getActivity(), BDEventConstans.EVENT_ID_BIDDING_LIST_PAGE_BIDDING);
-
             HYMob.getDataListForQiangdan(context.getActivity(), HYEventConstans.EVENT_ID_BIDDING_LIST_PAGE_BIDDING, String.valueOf(bean.getBidId()), "1");
-
             passBean = bean;
             grabRequset(bean, AppConstants.BIDSOURCE_LIST);
 
@@ -601,6 +611,7 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
 
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
+            super.onError(isFromCache, call, response, e);
             if (!isToast) {
                 ToastUtils.showToast(e.getMessage());
             }

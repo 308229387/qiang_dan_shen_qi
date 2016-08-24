@@ -27,6 +27,7 @@ import com.huangyezhaobiao.enums.TitleBarType;
 import com.huangyezhaobiao.eventbus.EventAction;
 import com.huangyezhaobiao.eventbus.EventType;
 import com.huangyezhaobiao.eventbus.EventbusAgent;
+import com.huangyezhaobiao.netmodel.NetStateManager;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
@@ -193,6 +194,7 @@ public class MessageModel extends BaseModel implements TitleMessageBarLayout.OnT
         app = BiddingApplication.getBiddingApplication();
         app.setCurrentNotificationListener(context);
         app.registerNetStateListener();
+        NetStateManager.getNetStateManagerInstance().setINetStateChangedListener(context);
     }
 
     public void setHeaderHeight() {
@@ -342,6 +344,10 @@ public class MessageModel extends BaseModel implements TitleMessageBarLayout.OnT
     }
 
     private void NetDisConnected() {
+        context.NetConnected();
+    }
+
+    public void diaplayMessageBar(){
         if (tbl != null) {
             tbl.showNetError();
             tbl.setVisibility(View.VISIBLE);
@@ -349,6 +355,10 @@ public class MessageModel extends BaseModel implements TitleMessageBarLayout.OnT
     }
 
     private void NetConnected() {
+        context.NetConnected();
+    }
+
+    public void closeMessageBar(){
         if (tbl != null && tbl.getType() == TitleBarType.NETWORK_ERROR)
             tbl.setVisibility(View.GONE);
     }
@@ -415,6 +425,7 @@ public class MessageModel extends BaseModel implements TitleMessageBarLayout.OnT
         EventBus.getDefault().unregister(context);
         app.removeINotificationListener();
         app.unRegisterNetStateListener();
+        NetStateManager.getNetStateManagerInstance().removeINetStateChangedListener();
     }
 
     public void statisticsDeadTime() {

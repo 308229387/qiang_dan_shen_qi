@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.huangye.commonlib.vm.callback.StorageVMCallBack;
 import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.inter.INotificationListener;
+import com.huangyezhaobiao.netmodel.INetStateChangedListener;
 
 import wuba.zhaobiao.common.fragment.BaseFragment;
 import wuba.zhaobiao.message.model.MessageModel;
@@ -16,7 +17,7 @@ import wuba.zhaobiao.message.model.MessageModel;
 /**
  * Created by 58 on 2016/8/16.
  */
-public class MessageFragment extends BaseFragment<MessageModel> implements INotificationListener,StorageVMCallBack {
+public class MessageFragment extends BaseFragment<MessageModel> implements INotificationListener,INetStateChangedListener,StorageVMCallBack {
     public long resume_time;
     public long stop_time;
 
@@ -83,6 +84,16 @@ public class MessageFragment extends BaseFragment<MessageModel> implements INoti
         model.showPush(pushBean);
     }
 
+
+    @Override
+    public void NetConnected() {
+        model.closeMessageBar();
+    }
+
+    @Override
+    public void NetDisConnected() {
+        model.diaplayMessageBar();
+    }
     @Override
     public void getDataSuccess(Object o) {
         model.getDataSuccess(o);
@@ -112,4 +123,6 @@ public class MessageFragment extends BaseFragment<MessageModel> implements INoti
     public void deleteDataFailure() {
 
     }
+
+
 }

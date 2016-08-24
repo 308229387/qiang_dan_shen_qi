@@ -3,6 +3,7 @@ package wuba.zhaobiao.utils;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.huangyezhaobiao.callback.DialogCallback;
 import com.huangyezhaobiao.utils.ActivityUtils;
@@ -49,7 +50,9 @@ public class LogoutDialogUtils {
     }
 
     private void createDialog(Activity activity) {
-        LogoutDialog = new ZhaoBiaoDialog(activity, "");
+        if(LogoutDialog == null){
+            LogoutDialog = new ZhaoBiaoDialog(activity, "");
+        }
     }
 
     private void configSingleButtonDialog() {
@@ -67,7 +70,10 @@ public class LogoutDialogUtils {
     }
 
     private void showDialog() {
-        LogoutDialog.show();
+        if(LogoutDialog != null){
+            LogoutDialog.show();
+        }
+
     }
 
     private void clearInfoAndService() {
@@ -125,6 +131,7 @@ public class LogoutDialogUtils {
 
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
+            super.onError(isFromCache, call, response, e);
             if (!isToast) {
                 ToastUtils.showToast(e.getMessage());
             }

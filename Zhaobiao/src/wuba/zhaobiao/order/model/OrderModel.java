@@ -35,6 +35,7 @@ import com.huangyezhaobiao.eventbus.EventbusAgent;
 import com.huangyezhaobiao.iview.OrderCatePopupWindow;
 import com.huangyezhaobiao.lib.QDBaseBean;
 import com.huangyezhaobiao.lib.ZBBaseAdapter;
+import com.huangyezhaobiao.netmodel.NetStateManager;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
@@ -55,7 +56,6 @@ import com.lzy.okhttputils.OkHttpUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.greenrobot.event.EventBus;
 import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -166,6 +166,7 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
         app = BiddingApplication.getBiddingApplication();
         app.setCurrentNotificationListener(context);
         app.registerNetStateListener();
+        NetStateManager.getNetStateManagerInstance().setINetStateChangedListener(context);
     }
 
 
@@ -178,11 +179,19 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
     }
 
     private void NetConnected() {
+        context.NetConnected();
+    }
+
+    public void closeMessageBar(){
         if (tbl != null && tbl.getType() == TitleBarType.NETWORK_ERROR)
             tbl.setVisibility(View.GONE);
     }
 
     private void NetDisConnected() {
+        context.NetConnected();
+    }
+
+    public void diaplayMessageBar(){
         if (tbl != null) {
             tbl.showNetError();
             tbl.setVisibility(View.VISIBLE);
@@ -271,10 +280,7 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
                     HYMob.getDataList(context.getActivity(), HYEventConstans.EVENT_ID_FILTER_CONFIRM);
 
                     break;
-
             }
-
-
         }
     };
 
@@ -412,9 +418,7 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
             layout_no_data.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    pageNum = "1";
-                    pageNumber =1;
-                    getData();
+                    refresh();
                 }
             });
         }else{
@@ -438,10 +442,10 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
     }
 
     private void setPageNum(){
+        boolean  flag = isFromCache != null;
         if (isFromCache != null && !isFromCache ){
             try {
                 if(pageNumber <= Integer.parseInt(totalPage)){
-                    LogUtils.LogV("totalPage","totalpage" + totalPage);
                     pageNumber++;
                     pageNum = String.valueOf(pageNumber);
                 }
@@ -523,6 +527,7 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
     public void unregistPushAndEventBus() {
         app.removeINotificationListener();
         app.unRegisterNetStateListener();
+        NetStateManager.getNetStateManagerInstance().removeINetStateChangedListener();
     }
 
     public void statisticsDeadTime() {
@@ -572,14 +577,16 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
                 if (TextUtils.equals(pageNum, "1")) {
                     saveRespons(s);
                 }
-                hasData(s);
                 saveCacheState(isFromCache);
+                hasData(s);
+
             }
             refreshView.refreshComplete();
         }
 
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
+            super.onError(isFromCache, call, response, e);
             if (!isToast) {
                 ToastUtils.showToast(e.getMessage());
             }

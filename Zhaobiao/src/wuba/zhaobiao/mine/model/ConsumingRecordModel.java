@@ -160,24 +160,38 @@ public class ConsumingRecordModel extends BaseModel implements View.OnClickListe
         String dataList  = result.getString("data");
         List<ConsumeItemBean> list = JsonUtils.jsonToObjectList(dataList, ConsumeItemBean.class);
         totalPage =  getJSONObjectOfPage(result);
-        if(list==null || list.size()==0){
+
+        if(list != null){
+            noData(list);
+            hasData(list);
+            hasDataButNotFull(list);
+        }
+    }
+
+    private void noData(List<ConsumeItemBean> list) {
+        if(list!=null &&  list.size()==0){
             datas_empty_layout.setVisibility(View.VISIBLE);
         }else {
             datas_empty_layout.setVisibility(View.GONE);
-            if (list!=null && list.size() > 0){
-                setPageNum();
-                itemBeans.addAll(list);
-                adapter.notifyDatas(itemBeans);
-            }
         }
-        if (list.size() < 10){
+    }
+
+    private void hasDataButNotFull( List<ConsumeItemBean> list) {
+        if (list!=null && list.size() < 10){
             refresh.setBanPullUp(true);
         }
+    }
 
+    private void hasData( List<ConsumeItemBean> list) {
+        if (list!=null && list.size() > 0){
+            setPageNum();
+            itemBeans.addAll(list);
+            adapter.notifyDatas(itemBeans);
+
+        }
     }
 
     private void setPageNum(){
-        if (isFromCache != null && !isFromCache ){
             try {
                 if(pageNumber <= Integer.parseInt(totalPage)){
                     pageNumber++;
@@ -186,7 +200,6 @@ public class ConsumingRecordModel extends BaseModel implements View.OnClickListe
             } catch (NumberFormatException e) {
                 e.printStackTrace();
             }
-        }
     }
 
     private String  getJSONObjectOfPage(JSONObject result) {
@@ -242,13 +255,13 @@ public class ConsumingRecordModel extends BaseModel implements View.OnClickListe
         public void onResponse(boolean isFromCache, String s, Request request, @Nullable Response response) {
             if (s != null) {
                 hasData(s);
-                saveCacheState(isFromCache);
             }
             refresh.refreshComplete();
         }
 
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
+            super.onError(isFromCache, call, response, e);
             if (!isToast) {
                 ToastUtils.showToast(e.getMessage());
             }
@@ -256,8 +269,5 @@ public class ConsumingRecordModel extends BaseModel implements View.OnClickListe
         }
     }
 
-    private void saveCacheState(Boolean isFromCache) {
-        this.isFromCache = isFromCache;
-    }
 
 }

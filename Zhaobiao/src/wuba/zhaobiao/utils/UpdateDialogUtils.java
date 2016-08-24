@@ -59,7 +59,10 @@ public class UpdateDialogUtils {
     }
 
     private void showDialog() {
-        updatetDialog.show();
+        if(updatetDialog != null){
+            updatetDialog.show();
+        }
+
     }
 
 

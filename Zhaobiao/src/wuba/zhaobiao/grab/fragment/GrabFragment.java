@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.huangyezhaobiao.activity.PushInActivity;
 import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.inter.INotificationListener;
+import com.huangyezhaobiao.netmodel.INetStateChangedListener;
 
 import wuba.zhaobiao.common.fragment.BaseFragment;
 import wuba.zhaobiao.grab.model.GrabModel;
@@ -17,7 +18,7 @@ import wuba.zhaobiao.grab.model.GrabModel;
  * Created by SongYongmeng on 2016/8/8.
  * 描    述：抢单展示，红点检测。
  */
-public class GrabFragment extends BaseFragment<GrabModel> implements INotificationListener {
+public class GrabFragment extends BaseFragment<GrabModel> implements INotificationListener,INetStateChangedListener {
     public long resume_time;
     public long stop_time;
 
@@ -96,5 +97,15 @@ public class GrabFragment extends BaseFragment<GrabModel> implements INotificati
         super.onStop();
         stop_time = System.currentTimeMillis();
         model.statisticsDeadTime();
+    }
+
+    @Override
+    public void NetConnected() {
+        model.closeMessageBar();
+    }
+
+    @Override
+    public void NetDisConnected() {
+        model.diaplayMessageBar();
     }
 }
