@@ -36,6 +36,8 @@ public class HomePageActivity extends BaseActivity<HomePageModel> {
     private void addLayout() {
         model.setTobBarColor();
         model.initViewPagerAndButton();
+        model.initMaskView();
+        model.setMask();
     }
 
     private void addFragment() {

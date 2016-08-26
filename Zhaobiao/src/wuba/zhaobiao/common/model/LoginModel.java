@@ -1,11 +1,13 @@
 package wuba.zhaobiao.common.model;
 
+import android.app.Activity;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.application.BiddingApplication;
+import com.huangyezhaobiao.callback.DialogCallback;
 import com.huangyezhaobiao.callback.JsonCallback;
 import com.huangyezhaobiao.gtui.GePushProxy;
 import com.huangyezhaobiao.utils.ActivityUtils;
@@ -71,7 +73,7 @@ public class LoginModel extends BaseModel {
                 .params("deviceId", PhoneUtils.getIMEI(context))
                 .params("token", PhoneUtils.getIMEI(context))
                 .params("phone",LoginClient.doGetUserPhoneOperate(context))
-                .execute(new localLoginRespons());
+                .execute(new localLoginRespons(context,false));
     }
 
     private void passportLoginSuccess(LoginRespons loginRespons) {
@@ -202,7 +204,11 @@ public class LoginModel extends BaseModel {
         }
     }
 
-    private class localLoginRespons extends JsonCallback<LoginRespons> {
+    private class localLoginRespons extends DialogCallback<LoginRespons> {
+
+        public localLoginRespons(Activity context, Boolean needProgress) {
+            super(context, needProgress);
+        }
 
         @Override
         public void onBefore(BaseRequest request) {
@@ -221,6 +227,17 @@ public class LoginModel extends BaseModel {
 
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
+            if (e != null && e.getMessage().equals(NEED_DOWN_LINE)) {
+                initPassportErrorDialog (context.getString(R.string.force_exit));
+            } else if (e != null && e.getMessage().equals(CHILD_FUNCTION_BAN)) {
+                initPassportErrorDialog(context.getString(R.string.child_function_ban));
+            } else if (e != null && e.getMessage().equals(CHILD_HAS_UNBIND)) {
+                initPassportErrorDialog(context.getString(R.string.child_has_unbind));
+            } else if (e != null && e.getMessage().equals(PPU_EXPIRED)) {
+                initPassportErrorDialog (context.getString(R.string.ppu_expired));
+            }
+
+            if( e != null)
             initPassportErrorDialog(e.getMessage());
         }
     }

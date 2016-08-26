@@ -35,6 +35,7 @@ import wuba.zhaobiao.mine.activity.MyWalletActivity;
 import wuba.zhaobiao.mine.activity.SettingActivity;
 import wuba.zhaobiao.mine.fragment.MineFragment;
 import wuba.zhaobiao.respons.UserInfoRespons;
+import wuba.zhaobiao.utils.LogoutDialogUtils;
 
 /**
  * Created by 58 on 2016/8/12.
@@ -51,6 +52,7 @@ public class MineModel extends BaseModel implements View.OnClickListener{
     private RelativeLayout sliding_settings; //设置
     private RelativeLayout help;//帮助
     private RelativeLayout about; //关于
+
 
     public MineModel(MineFragment context){
         this.context = context;
@@ -166,6 +168,7 @@ public class MineModel extends BaseModel implements View.OnClickListener{
         about.setOnClickListener(this);
     }
 
+
     public View getView() {
         return view;
     }
@@ -218,7 +221,9 @@ public class MineModel extends BaseModel implements View.OnClickListener{
     }
 
     private void saveUserPhone(String phone){
-        SPUtils.saveKV(context.getActivity(), GlobalConfigBean.KEY_USERPHONE, phone);
+        if(!TextUtils.isEmpty(phone)){
+            SPUtils.saveKV(context.getActivity(), GlobalConfigBean.KEY_USERPHONE, phone);
+        }
     }
 
     private void setUserInfo(String balance,String companyName,String userName){
@@ -296,11 +301,24 @@ public class MineModel extends BaseModel implements View.OnClickListener{
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
             super.onError(isFromCache, call, response, e);
-            if (!isToast) {
+            if (!isToast && e != null) {
                 ToastUtils.showToast(e.getMessage());
             }
         }
 
+        @Override
+        public void onAfter(boolean isFromCache, @Nullable UserInfoRespons userInfoRespons, Call call, @Nullable Response response, @Nullable Exception e) {
+            super.onAfter(isFromCache, userInfoRespons, call, response, e);
+            if (e != null && e.getMessage().equals(NEED_DOWN_LINE)) {
+                new LogoutDialogUtils(context.getActivity(), context.getString(R.string.force_exit)).showSingleButtonDialog();
+            } else if (e != null && e.getMessage().equals(CHILD_FUNCTION_BAN)) {
+                new LogoutDialogUtils(context.getActivity(), context.getString(R.string.child_function_ban)).showSingleButtonDialog();
+            } else if (e != null && e.getMessage().equals(CHILD_HAS_UNBIND)) {
+                new LogoutDialogUtils(context.getActivity(), context.getString(R.string.child_has_unbind)).showSingleButtonDialog();
+            } else if (e != null && e.getMessage().equals(PPU_EXPIRED)) {
+                new LogoutDialogUtils(context.getActivity(), context.getString(R.string.ppu_expired)).showSingleButtonDialog();
+            }
+        }
     }
 
 

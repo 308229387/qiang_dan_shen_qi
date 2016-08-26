@@ -23,10 +23,10 @@ public abstract class DialogCallback<T> extends JsonCallback<T> {
     private Boolean needProgress = false;
     private Class<T> clazz;
     private Activity context;
-    private String NEED_DOWN_LINE = "need_down_line";
-    private String PPU_EXPIRED = "ppu_expired";
-    private String CHILD_FUNCTION_BAN = "child_function_ban";
-    private String CHILD_HAS_UNBIND = "child_has_unbind";
+    protected String NEED_DOWN_LINE = "need_down_line";
+    protected String PPU_EXPIRED = "ppu_expired";
+    protected String CHILD_FUNCTION_BAN = "child_function_ban";
+    protected String CHILD_HAS_UNBIND = "child_has_unbind";
 
     protected boolean isToast = false;
 
@@ -55,9 +55,9 @@ public abstract class DialogCallback<T> extends JsonCallback<T> {
     public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
         super.onError(isFromCache, call, response, e);
         if (e != null && e.getMessage().equals(NEED_DOWN_LINE)
-                || e.getMessage().equals(CHILD_FUNCTION_BAN)
+                || e != null && e.getMessage().equals(CHILD_FUNCTION_BAN)
                 || e != null && e.getMessage().equals(CHILD_HAS_UNBIND)
-                || e.getMessage().equals(PPU_EXPIRED)){
+                || e != null && e.getMessage().equals(PPU_EXPIRED)){
             isToast = true;
         }
     }
@@ -67,17 +67,6 @@ public abstract class DialogCallback<T> extends JsonCallback<T> {
         super.onAfter(isFromCache, t, call, response, e);
         if (needProgress)
             progress.stopLoading();
-
-            if (e != null && e.getMessage().equals(NEED_DOWN_LINE)){
-                new LogoutDialogUtils(context, context.getString(R.string.force_exit)).showSingleButtonDialog();
-            }
-            else if (e != null &&  e.getMessage().equals(CHILD_FUNCTION_BAN)) {
-                new LogoutDialogUtils(context, context.getString(R.string.child_function_ban)).showSingleButtonDialog();
-            } else if (e != null && e != null && e.getMessage().equals(CHILD_HAS_UNBIND)) {
-                new LogoutDialogUtils(context, context.getString(R.string.child_has_unbind)).showSingleButtonDialog();
-            } else if (e != null && e != null && e.getMessage().equals(PPU_EXPIRED)) {
-                new LogoutDialogUtils(context, context.getString(R.string.ppu_expired)).showSingleButtonDialog();
-            }
 
     }
 

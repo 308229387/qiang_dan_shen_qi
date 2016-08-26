@@ -209,6 +209,7 @@ public class SoftwareProtocolModel extends BaseModel implements View.OnClickList
         webView_introduce.removeAllViews();
         webView_introduce.destroy();
         webView_introduce = null;
+        System.exit(0);
     }
 
     public void statisticsDeadTime() {

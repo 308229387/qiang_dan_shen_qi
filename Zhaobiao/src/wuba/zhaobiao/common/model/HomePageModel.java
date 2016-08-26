@@ -1,8 +1,10 @@
 package wuba.zhaobiao.common.model;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -10,7 +12,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.activity.BidSuccessActivity;
@@ -76,6 +84,102 @@ public class HomePageModel extends BaseModel {
     int currentVersion = -1; //当前版本号
     int versionNum = -1; //获取当前系统版本号
     private boolean forceUpdate = false; //是否强制更新
+
+
+    /** 初次进入时候的蒙版背景 */
+    private RelativeLayout layout_mask;
+    /** 初次进入时的蒙版图片 */
+    private ImageView imageView_mine;
+
+    /** 初次进入时候的蒙版背景 */
+    private RelativeLayout rl_mine_layout;
+    /** 初次进入时的蒙版图片 */
+    private ImageView iv_account_alert;
+
+
+    public void initMaskView(){
+        initLayoutView();
+        initMaskImageView();
+    }
+
+    private void initLayoutView(){
+        //蒙版相关初始化
+        layout_mask = (RelativeLayout)context.findViewById(R.id.linearLayout_mask);
+        layout_mask.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
+    }
+
+    private void initMaskImageView(){
+        imageView_mine = (ImageView)context.findViewById(R.id.iv_mine);
+        imageView_mine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_mask.setVisibility(View.GONE);
+                context.getSharedPreferences("Setting", Context.MODE_PRIVATE).edit().putBoolean("read_account", true).commit();
+                int pageIndex = 3;
+                setViewPage(pageIndex);
+                initMineMaskView();
+                setMineMask();
+            }
+        });
+    }
+
+    public void setMask() {
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+                "Setting", Context.MODE_PRIVATE);
+        boolean isread = sharedPreferences.getBoolean("read_account", false);
+        if (!isread) {
+            layout_mask.setVisibility(View.VISIBLE);
+        } else {
+            layout_mask.setVisibility(View.GONE);
+        }
+    }
+
+
+    public void initMineMaskView(){
+        initMineLayoutView();
+        initMineImageView();
+    }
+
+    private void initMineLayoutView(){
+        //蒙版相关初始化
+        rl_mine_layout = (RelativeLayout)context.findViewById(R.id.rl_mine_layout);
+        rl_mine_layout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
+    }
+
+    private void initMineImageView(){
+        iv_account_alert = (ImageView)context.findViewById(R.id.iv_account_alert);
+        iv_account_alert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rl_mine_layout.setVisibility(View.GONE);
+                context.getSharedPreferences("Setting", Context.MODE_PRIVATE).edit().putBoolean("mine_account", true).commit();
+
+            }
+        });
+    }
+
+    public void setMineMask() {
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+                "Setting", Context.MODE_PRIVATE);
+        boolean isread = sharedPreferences.getBoolean("mine_account", false);
+        if (!isread) {
+            rl_mine_layout.setVisibility(View.VISIBLE);
+        } else {
+            rl_mine_layout.setVisibility(View.GONE);
+        }
+    }
 
     public void setTobBarColor() {
         context.getWindow().setBackgroundDrawable(null);
@@ -528,8 +632,22 @@ public class HomePageModel extends BaseModel {
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
             super.onError(isFromCache, call, response, e);
-            if (!isToast) {
+            if (!isToast && e!= null) {
                 ToastUtils.showToast(e.getMessage());
+            }
+        }
+
+        @Override
+        public void onAfter(boolean isFromCache, @Nullable GetWltStateRespons getWltStateRespons, Call call, @Nullable Response response, @Nullable Exception e) {
+            super.onAfter(isFromCache, getWltStateRespons, call, response, e);
+            if (e != null && e.getMessage().equals(NEED_DOWN_LINE)) {
+                new LogoutDialogUtils(context, context.getString(R.string.force_exit)).showSingleButtonDialog();
+            } else if (e != null && e.getMessage().equals(CHILD_FUNCTION_BAN)) {
+                new LogoutDialogUtils(context, context.getString(R.string.child_function_ban)).showSingleButtonDialog();
+            } else if (e != null && e.getMessage().equals(CHILD_HAS_UNBIND)) {
+                new LogoutDialogUtils(context, context.getString(R.string.child_has_unbind)).showSingleButtonDialog();
+            } else if (e != null && e.getMessage().equals(PPU_EXPIRED)) {
+                new LogoutDialogUtils(context, context.getString(R.string.ppu_expired)).showSingleButtonDialog();
             }
         }
     }

@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.callback.DialogCallback;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.LogUtils;
@@ -25,7 +26,7 @@ import wuba.zhaobiao.config.Urls;
 public class LogoutDialogUtils {
 
     private Activity context;
-    protected ZhaoBiaoDialog LogoutDialog;
+    private ZhaoBiaoDialog LogoutDialog;
     private String msg;
 
     public LogoutDialogUtils(Activity context, String msg) {
@@ -50,7 +51,7 @@ public class LogoutDialogUtils {
     }
 
     private void createDialog(Activity activity) {
-        if(LogoutDialog == null){
+        if(LogoutDialog == null ){
             LogoutDialog = new ZhaoBiaoDialog(activity, "");
         }
     }
@@ -81,7 +82,9 @@ public class LogoutDialogUtils {
     }
 
     private void dismiss() {
-        LogoutDialog.dismiss();
+        if(LogoutDialog != null) {
+            LogoutDialog.dismiss();
+        }
     }
 
 
@@ -132,8 +135,23 @@ public class LogoutDialogUtils {
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
             super.onError(isFromCache, call, response, e);
-            if (!isToast) {
+            if (!isToast && e != null) {
                 ToastUtils.showToast(e.getMessage());
+            }
+        }
+
+        @Override
+        public void onAfter(boolean isFromCache, @Nullable String s, Call call, @Nullable Response response, @Nullable Exception e) {
+            super.onAfter(isFromCache, s, call, response, e);
+
+            if (e != null && e.getMessage().equals(NEED_DOWN_LINE)) {
+                new LogoutDialogUtils(context, context.getString(R.string.force_exit)).showSingleButtonDialog();
+            } else if (e != null && e.getMessage().equals(CHILD_FUNCTION_BAN)) {
+                new LogoutDialogUtils(context, context.getString(R.string.child_function_ban)).showSingleButtonDialog();
+            } else if (e != null && e.getMessage().equals(CHILD_HAS_UNBIND)) {
+                new LogoutDialogUtils(context, context.getString(R.string.child_has_unbind)).showSingleButtonDialog();
+            } else if (e != null && e.getMessage().equals(PPU_EXPIRED)) {
+                new LogoutDialogUtils(context, context.getString(R.string.ppu_expired)).showSingleButtonDialog();
             }
         }
     }

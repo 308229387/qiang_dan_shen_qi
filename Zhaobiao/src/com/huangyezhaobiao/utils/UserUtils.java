@@ -145,7 +145,11 @@ public class UserUtils {
 	 * @return
 	 */
 	public static long getSessionTime(Context context){
-		sessionTime = context.getSharedPreferences(PPU_SP_NAME,0).getLong(SESSION_TIME,0L);
+		try {
+			sessionTime = context.getSharedPreferences(PPU_SP_NAME,0).getLong(SESSION_TIME,0L);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return sessionTime;
 	}
 

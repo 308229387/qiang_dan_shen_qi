@@ -35,6 +35,7 @@ import java.util.List;
 import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
+import wuba.zhaobiao.utils.LogoutDialogUtils;
 
 
 /**
@@ -221,11 +222,24 @@ public class AddAccountActivity extends QBBaseActivity implements View.OnClickLi
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
             super.onError(isFromCache, call, response, e);
-            if (!isToast) {
+            if (!isToast  && e != null) {
                 ToastUtils.showToast(e.getMessage());
             }
         }
 
+        @Override
+        public void onAfter(boolean isFromCache, @Nullable String s, Call call, @Nullable Response response, @Nullable Exception e) {
+            super.onAfter(isFromCache, s, call, response, e);
+            if (e != null && e.getMessage().equals(NEED_DOWN_LINE)) {
+                new LogoutDialogUtils(AddAccountActivity.this, getString(R.string.force_exit)).showSingleButtonDialog();
+            } else if (e != null && e.getMessage().equals(CHILD_FUNCTION_BAN)) {
+                new LogoutDialogUtils(AddAccountActivity.this, getString(R.string.child_function_ban)).showSingleButtonDialog();
+            } else if (e != null && e.getMessage().equals(CHILD_HAS_UNBIND)) {
+                new LogoutDialogUtils(AddAccountActivity.this, getString(R.string.child_has_unbind)).showSingleButtonDialog();
+            } else if (e != null && e.getMessage().equals(PPU_EXPIRED)) {
+                new LogoutDialogUtils(AddAccountActivity.this, getString(R.string.ppu_expired)).showSingleButtonDialog();
+            }
+        }
     }
 
     @Override

@@ -66,6 +66,7 @@ public class OrderFragment extends BaseFragment<OrderModel> implements INotifica
         model.checkNet();
         model.OrderTabClickedStatistics();
         model.getData();
+        model.selectChange();
     }
 
     @Override
