@@ -87,14 +87,9 @@ public class HomePageModel extends BaseModel {
 
 
     /** 初次进入时候的蒙版背景 */
-    private RelativeLayout layout_mask;
+    private RelativeLayout layout_mask,rl_mine_layout;
     /** 初次进入时的蒙版图片 */
-    private ImageView imageView_mine;
-
-    /** 初次进入时候的蒙版背景 */
-    private RelativeLayout rl_mine_layout;
-    /** 初次进入时的蒙版图片 */
-    private ImageView iv_account_alert;
+    private ImageView imageView_mine, iv_account_alert;
 
 
     public void initMaskView(){
@@ -120,12 +115,16 @@ public class HomePageModel extends BaseModel {
             public void onClick(View v) {
                 layout_mask.setVisibility(View.GONE);
                 context.getSharedPreferences("Setting", Context.MODE_PRIVATE).edit().putBoolean("read_account", true).commit();
-                int pageIndex = 3;
-                setViewPage(pageIndex);
+                selectMine();
                 initMineMaskView();
                 setMineMask();
             }
         });
+    }
+
+    private void selectMine(){
+        int pageIndex = 3;
+        setViewPage(pageIndex);
     }
 
     public void setMask() {
