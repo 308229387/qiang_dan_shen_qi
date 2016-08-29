@@ -45,6 +45,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/iv_mine"
             android:layout_marginRight="10dip"
+            android:layout_marginBottom="2dip"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"/>
     </RelativeLayout>
