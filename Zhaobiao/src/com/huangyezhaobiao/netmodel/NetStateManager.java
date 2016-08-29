@@ -9,13 +9,18 @@ import com.huangyezhaobiao.utils.LogUtils;
  */
 public class NetStateManager {
 	private INetStateChangedListener listener;
-	private static NetStateManager manager = new NetStateManager();
+	private static NetStateManager manager ;
 	private int net_state;
 	public static final int NET_CONNTTED = 1;
 	public static final int NET_DISCONNECTED = 2;
 	private NetStateManager(){};
 	
 	public static NetStateManager getNetStateManagerInstance(){
+		if (manager == null) {
+			synchronized (NetStateManager.class){
+				manager = new NetStateManager();
+			}
+		}
 		return manager;
 	}
 	
@@ -23,10 +28,10 @@ public class NetStateManager {
 		net_state = state;
 		if(listener!=null){
 			if(net_state==NET_CONNTTED){
-				LogUtils.LogE("ashenUU", "connected");
+				LogUtils.LogV("网络变化", "connected");
 				listener.NetConnected();
 			}else{
-				LogUtils.LogE("ashenUU", "not connected");
+				LogUtils.LogV("网络变化", "not connected");
 				listener.NetDisConnected();
 			}
 		}
