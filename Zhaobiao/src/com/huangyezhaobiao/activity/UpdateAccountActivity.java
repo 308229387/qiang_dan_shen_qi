@@ -189,19 +189,6 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
             }
         }
 
-        @Override
-        public void onAfter(boolean isFromCache, @Nullable ChildAccountBean childAccountBean, Call call, @Nullable Response response, @Nullable Exception e) {
-            super.onAfter(isFromCache, childAccountBean, call, response, e);
-            if (e != null && e.getMessage().equals(NEED_DOWN_LINE)) {
-                new LogoutDialogUtils(UpdateAccountActivity.this, getString(R.string.force_exit)).showSingleButtonDialog();
-            } else if (e != null && e.getMessage().equals(CHILD_FUNCTION_BAN)) {
-                new LogoutDialogUtils(UpdateAccountActivity.this, getString(R.string.child_function_ban)).showSingleButtonDialog();
-            } else if (e != null && e.getMessage().equals(CHILD_HAS_UNBIND)) {
-                new LogoutDialogUtils(UpdateAccountActivity.this, getString(R.string.child_has_unbind)).showSingleButtonDialog();
-            } else if (e != null && e.getMessage().equals(PPU_EXPIRED)) {
-                new LogoutDialogUtils(UpdateAccountActivity.this, getString(R.string.ppu_expired)).showSingleButtonDialog();
-            }
-        }
     }
 
     @Override

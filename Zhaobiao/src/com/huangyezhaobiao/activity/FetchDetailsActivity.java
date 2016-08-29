@@ -160,7 +160,7 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 			dialog.setCancelable(false);
 			dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
 				@Override
-				public void onDismiss(DialogInterface dialog) {
+				public void onDismiss(DialogInterface d) {
 					dialog = null;
 					call_dismiss_time = System.currentTimeMillis();
 					HYMob.getBaseDataListForPage(FetchDetailsActivity.this, HYEventConstans.PAGE_MY_ORDER_LIST, call_dismiss_time - call_Show_time);

@@ -7,6 +7,8 @@ import com.huangyezhaobiao.R;
 import com.lzy.okhttputils.request.BaseRequest;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import okhttp3.Call;
 import okhttp3.Response;
@@ -29,6 +31,8 @@ public abstract class DialogCallback<T> extends JsonCallback<T> {
     protected String CHILD_HAS_UNBIND = "child_has_unbind";
 
     protected boolean isToast = false;
+
+    private static Boolean isShow = false;
 
 
     public DialogCallback(Activity context) {
@@ -68,6 +72,37 @@ public abstract class DialogCallback<T> extends JsonCallback<T> {
         if (needProgress)
             progress.stopLoading();
 
+        if(context != null && e!= null){
+            if (e.getMessage().equals(NEED_DOWN_LINE) && !isShow) {
+                isShow = true;
+                new LogoutDialogUtils(context, context.getString(R.string.force_exit)).showSingleButtonDialog();
+                exitTimeRunTask();
+            } else if ( e.getMessage().equals(CHILD_FUNCTION_BAN)  && !isShow) {
+                isShow = true;
+                new LogoutDialogUtils(context, context.getString(R.string.child_function_ban)).showSingleButtonDialog();
+                exitTimeRunTask();
+            } else if ( e.getMessage().equals(CHILD_HAS_UNBIND)  && !isShow) {
+                isShow = true;
+                new LogoutDialogUtils(context, context.getString(R.string.child_has_unbind)).showSingleButtonDialog();
+                exitTimeRunTask();
+            } else if ( e.getMessage().equals(PPU_EXPIRED)  && !isShow) {
+                isShow = true;
+                new LogoutDialogUtils(context, context.getString(R.string.ppu_expired)).showSingleButtonDialog();
+                exitTimeRunTask();
+            }
+
+        }
+
+    }
+
+    private void exitTimeRunTask() {
+        Timer isDialogShow  = new Timer();
+        isDialogShow.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                isShow = false;
+            }
+        }, 3000);
     }
 
 }

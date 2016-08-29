@@ -252,19 +252,7 @@ public class UpdateAccountModel extends BaseModel implements View.OnClickListene
     }
 
     private void updateAccount(){
-        String name = getUserName();
-        judgeUserName(name);
-        StringBuilder builder = getAuthority();
-        updateChildAccount(id, name, builder.toString()); //更新子账号接口
-        updateSaveClickedStatistics();
-    }
-
-
-    private String  getUserName(){
-        return et_update_user_content.getText().toString();
-    }
-
-    private void judgeUserName(String name){
+        String name = et_update_user_content.getText().toString();
         if(TextUtils.isEmpty(name)){
             ToastUtils.showToast("权限使用人不能为空");
             return;
@@ -273,9 +261,7 @@ public class UpdateAccountModel extends BaseModel implements View.OnClickListene
             et_update_user_content.setSelection(name.length());//设置新的光标所在位置
             return;
         }
-    }
 
-    private StringBuilder getAuthority(){
         StringBuilder builder= new StringBuilder();
         builder.append("1");
         if(cb_update_bidding.isChecked()){
@@ -284,8 +270,10 @@ public class UpdateAccountModel extends BaseModel implements View.OnClickListene
         if(cb_update_order.isChecked()){
             builder.append("|").append("4");
         }
-        return builder;
+        updateChildAccount(id, name, builder.toString()); //更新子账号接口
+        updateSaveClickedStatistics();
     }
+
 
     private void updateSaveClickedStatistics(){
         HYMob.getDataList(context, HYEventConstans.EVENT_UPDATE_ACCOUNT_SAVE);
@@ -321,19 +309,6 @@ public class UpdateAccountModel extends BaseModel implements View.OnClickListene
             }
         }
 
-        @Override
-        public void onAfter(boolean isFromCache, @Nullable ChildAccountBean childAccountBean, Call call, @Nullable Response response, @Nullable Exception e) {
-            super.onAfter(isFromCache, childAccountBean, call, response, e);
-            if (e != null && e.getMessage().equals(NEED_DOWN_LINE)) {
-                new LogoutDialogUtils(context, context.getString(R.string.force_exit)).showSingleButtonDialog();
-            } else if (e != null && e.getMessage().equals(CHILD_FUNCTION_BAN)) {
-                new LogoutDialogUtils(context, context.getString(R.string.child_function_ban)).showSingleButtonDialog();
-            } else if (e != null && e.getMessage().equals(CHILD_HAS_UNBIND)) {
-                new LogoutDialogUtils(context, context.getString(R.string.child_has_unbind)).showSingleButtonDialog();
-            } else if (e != null && e.getMessage().equals(PPU_EXPIRED)) {
-                new LogoutDialogUtils(context, context.getString(R.string.ppu_expired)).showSingleButtonDialog();
-            }
-        }
     }
 
     public void initSaveDialog(){

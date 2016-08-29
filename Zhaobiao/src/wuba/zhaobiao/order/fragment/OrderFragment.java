@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.inter.INotificationListener;
 import com.huangyezhaobiao.netmodel.INetStateChangedListener;
+import com.huangyezhaobiao.utils.LogUtils;
 
 import wuba.zhaobiao.common.fragment.BaseFragment;
 import wuba.zhaobiao.order.model.OrderModel;
@@ -32,8 +33,7 @@ public class OrderFragment extends BaseFragment<OrderModel> implements INotifica
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        initalizationLayout(inflater,  container);
-        registPushAndEventBus();
+        initalizationLayout(inflater, container);
         creatAdapter();
         setInfo();
         return model.getView();
@@ -62,6 +62,7 @@ public class OrderFragment extends BaseFragment<OrderModel> implements INotifica
     public void onResume() {
         super.onResume();
         resume_time = System.currentTimeMillis();
+        registPushAndEventBus();
         model.setHeaderHeight();
         model.checkNet();
         model.OrderTabClickedStatistics();

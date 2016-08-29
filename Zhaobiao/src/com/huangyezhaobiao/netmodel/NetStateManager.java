@@ -23,6 +23,7 @@ public class NetStateManager {
 		net_state = state;
 		if(listener!=null){
 			if(net_state==NET_CONNTTED){
+				LogUtils.LogE("ashenUU", "connected");
 				listener.NetConnected();
 			}else{
 				LogUtils.LogE("ashenUU", "not connected");

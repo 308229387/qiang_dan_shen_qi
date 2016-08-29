@@ -362,20 +362,6 @@ public class MobileBindChangeModel extends BaseModel implements View.OnClickList
                 ToastUtils.showToast(e.getMessage());
             }
         }
-
-        @Override
-        public void onAfter(boolean isFromCache, @Nullable GetCodeRespons getCodeRespons, Call call, @Nullable Response response, @Nullable Exception e) {
-            super.onAfter(isFromCache, getCodeRespons, call, response, e);
-            if (e != null && e.getMessage().equals(NEED_DOWN_LINE)) {
-                new LogoutDialogUtils(context, context.getString(R.string.force_exit)).showSingleButtonDialog();
-            } else if (e != null && e.getMessage().equals(CHILD_FUNCTION_BAN)) {
-                new LogoutDialogUtils(context, context.getString(R.string.child_function_ban)).showSingleButtonDialog();
-            } else if (e != null && e.getMessage().equals(CHILD_HAS_UNBIND)) {
-                new LogoutDialogUtils(context, context.getString(R.string.child_has_unbind)).showSingleButtonDialog();
-            } else if (e != null && e.getMessage().equals(PPU_EXPIRED)) {
-                new LogoutDialogUtils(context, context.getString(R.string.ppu_expired)).showSingleButtonDialog();
-            }
-        }
     }
 
     private void startCountDown(){
@@ -428,19 +414,6 @@ public class MobileBindChangeModel extends BaseModel implements View.OnClickList
             }
         }
 
-        @Override
-        public void onAfter(boolean isFromCache, @Nullable UpdateMobileRespons updateMobileRespons, Call call, @Nullable Response response, @Nullable Exception e) {
-            super.onAfter(isFromCache, updateMobileRespons, call, response, e);
-            if (e != null && e.getMessage().equals(NEED_DOWN_LINE)) {
-                new LogoutDialogUtils(context, context.getString(R.string.force_exit)).showSingleButtonDialog();
-            } else if (e != null && e.getMessage().equals(CHILD_FUNCTION_BAN)) {
-                new LogoutDialogUtils(context, context.getString(R.string.child_function_ban)).showSingleButtonDialog();
-            } else if (e != null && e.getMessage().equals(CHILD_HAS_UNBIND)) {
-                new LogoutDialogUtils(context, context.getString(R.string.child_has_unbind)).showSingleButtonDialog();
-            } else if (e != null && e.getMessage().equals(PPU_EXPIRED)) {
-                new LogoutDialogUtils(context, context.getString(R.string.ppu_expired)).showSingleButtonDialog();
-            }
-        }
     }
 
 }

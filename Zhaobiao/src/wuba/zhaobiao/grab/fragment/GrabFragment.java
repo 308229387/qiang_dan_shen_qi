@@ -10,6 +10,7 @@ import com.huangyezhaobiao.activity.PushInActivity;
 import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.inter.INotificationListener;
 import com.huangyezhaobiao.netmodel.INetStateChangedListener;
+import com.huangyezhaobiao.utils.LogUtils;
 
 import wuba.zhaobiao.common.fragment.BaseFragment;
 import wuba.zhaobiao.grab.model.GrabModel;
@@ -26,9 +27,8 @@ public class GrabFragment extends BaseFragment<GrabModel> implements INotificati
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         initalizationLayout(inflater, container);
-        registPushAndEventBus();
         creatAdapter();
-        setInfo();
+        setInfo(); registPushAndEventBus();
         return model.getView();
     }
 
@@ -56,11 +56,13 @@ public class GrabFragment extends BaseFragment<GrabModel> implements INotificati
     public void onResume() {
         super.onResume();
         resume_time = System.currentTimeMillis();
+
         model.setHeaderHeight();
         model.checkNet();
+        model.grabClickedStatistics();
         model.getData();
         model.selectChange();
-        model.grabClickedStatistics();
+
     }
 
     @Override
@@ -96,7 +98,9 @@ public class GrabFragment extends BaseFragment<GrabModel> implements INotificati
     public void onStop() {
         super.onStop();
         stop_time = System.currentTimeMillis();
+
         model.statisticsDeadTime();
+
     }
 
     @Override

@@ -452,7 +452,8 @@ public abstract class BaseRequest<R extends BaseRequest> {
             @Override
             public void onFailure(Call call, IOException e) {
                 //请求失败，一般为url地址错误，网络错误等
-                sendFailResultCallback(false, call, null, e, mCallback);
+                IllegalStateException d = new IllegalStateException("网络错误");
+                sendFailResultCallback(false, call, null, d, mCallback);
             }
 
             @Override

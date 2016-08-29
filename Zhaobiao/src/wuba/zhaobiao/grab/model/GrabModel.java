@@ -604,8 +604,9 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
                 Log.d("grab_respons", s);
                 if (pushId.equals("-1"))
                     saveRespons(s);
-                hasData(s);
                 saveCacheState(isFromCache);
+                hasData(s);
+
             }
             refreshView.refreshComplete();
         }
@@ -619,19 +620,6 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
             refreshView.refreshComplete();
         }
 
-        @Override
-        public void onAfter(boolean isFromCache, @Nullable String s, Call call, @Nullable Response response, @Nullable Exception e) {
-            super.onAfter(isFromCache, s, call, response, e);
-            if (context.getActivity()!= null && e != null && e.getMessage().equals(NEED_DOWN_LINE)) {
-                new LogoutDialogUtils(context.getActivity(), context.getString(R.string.force_exit)).showSingleButtonDialog();
-            } else if (context.getActivity()!= null && e != null && e.getMessage().equals(CHILD_FUNCTION_BAN)) {
-                new LogoutDialogUtils(context.getActivity(), context.getString(R.string.child_function_ban)).showSingleButtonDialog();
-            } else if (context.getActivity()!= null && e != null && e.getMessage().equals(CHILD_HAS_UNBIND)) {
-                new LogoutDialogUtils(context.getActivity(), context.getString(R.string.child_has_unbind)).showSingleButtonDialog();
-            } else if (context.getActivity()!= null && e != null && e.getMessage().equals(PPU_EXPIRED)) {
-                new LogoutDialogUtils(context.getActivity(), context.getString(R.string.ppu_expired)).showSingleButtonDialog();
-            }
-        }
     }
 
     private void saveCacheState(Boolean isFromCache) {

@@ -50,55 +50,55 @@ public class AddAccountModel extends BaseModel implements View.OnClickListener {
     private ImageView iv_base_help;
     private Button btn_save;
 
-    private CheckBox cb_order,cb_bidding;
+    private CheckBox cb_order, cb_bidding;
 
     private AccountHelpDialog helpDialog;
     private ZhaoBiaoDialog saveDialog;
 
 
-    public AddAccountModel(AddAccountActivity context){
+    public AddAccountModel(AddAccountActivity context) {
         this.context = context;
     }
 
-    public void initHeader(){
+    public void initHeader() {
         createHeader();
         initBack();
         createTitle();
     }
 
-    private void createHeader(){
+    private void createHeader() {
         layout_back_head = context.findViewById(R.id.layout_head);
     }
 
-    private void initBack(){
+    private void initBack() {
         createBack();
         setBackListener();
     }
 
-    private void createBack(){
+    private void createBack() {
         back_layout = context.findViewById(R.id.back_layout);
         back_layout.setVisibility(View.VISIBLE);
     }
 
-    private void setBackListener(){
+    private void setBackListener() {
         back_layout.setOnClickListener(this);
     }
 
-    private void createTitle(){
+    private void createTitle() {
         txt_head = (TextView) context.findViewById(R.id.txt_head);
         txt_head.setText("添加子账号");
     }
 
-    public void initUser(){
+    public void initUser() {
         createUser();
         setUserChangeListener();
     }
 
-    private void createUser(){
+    private void createUser() {
         tv_user_content = (EditText) context.findViewById(R.id.tv_user_content);
     }
 
-    private void setUserChangeListener(){
+    private void setUserChangeListener() {
         tv_user_content.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -109,15 +109,17 @@ public class AddAccountModel extends BaseModel implements View.OnClickListener {
             }
         });
     }
-    public void initPhone(){
+
+    public void initPhone() {
         createPhone();
         setPhoneChangeListener();
     }
-    private void createPhone(){
+
+    private void createPhone() {
         tv_phone_content = (EditText) context.findViewById(R.id.tv_phone_content);
     }
 
-    private void setPhoneChangeListener(){
+    private void setPhoneChangeListener() {
         tv_phone_content.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -128,43 +130,43 @@ public class AddAccountModel extends BaseModel implements View.OnClickListener {
         });
     }
 
-    public void initBaseHelp(){
+    public void initBaseHelp() {
         createBaseHelp();
         setBaseHelpListener();
     }
 
-    private void createBaseHelp(){
+    private void createBaseHelp() {
         iv_base_help = (ImageView) context.findViewById(R.id.iv_base_help);
     }
 
-    private void setBaseHelpListener(){
+    private void setBaseHelpListener() {
         iv_base_help.setOnClickListener(this);
     }
 
-    public void initSave(){
+    public void initSave() {
         createSave();
         setSaveListener();
     }
 
-    private void createSave(){
+    private void createSave() {
         btn_save = (Button) context.findViewById(R.id.btn_save);
     }
 
-    private void setSaveListener(){
+    private void setSaveListener() {
         btn_save.setOnClickListener(this);
     }
 
 
-    public  void initGrabAndOrder(){
+    public void initGrabAndOrder() {
         createGrab();
         createOrder();
     }
 
-    private void createGrab(){
+    private void createGrab() {
         cb_bidding = (CheckBox) context.findViewById(R.id.cb_bidding);
     }
 
-    private void createOrder(){
+    private void createOrder() {
         cb_order = (CheckBox) context.findViewById(R.id.cb_order);
     }
 
@@ -201,11 +203,11 @@ public class AddAccountModel extends BaseModel implements View.OnClickListener {
         }
     }
 
-    private void back(){
+    private void back() {
         context.onBackPressed();
     }
 
-    private void  initHelpDialog(){
+    private void initHelpDialog() {
         helpDialog = new AccountHelpDialog(context);
         helpDialog.setMessage(context.getString(R.string.account_help));
         helpDialog.setCancelButtonGone();
@@ -231,16 +233,51 @@ public class AddAccountModel extends BaseModel implements View.OnClickListener {
         helpDialog.show();
     }
 
-    private void baseHelpClickedStatistics(){
+    private void baseHelpClickedStatistics() {
         HYMob.getDataList(context, HYEventConstans.EVENT_ACCOUNT_HELP);
     }
 
-    private void saveAccount(boolean isDialog){
-        String name = getUserName();
-        judgeUserName(name, isDialog);
-        String phone = getUserPhone();
-        judgeUserPhone(phone, isDialog);
-        StringBuilder builder = getAuthority();
+    private void saveAccount(boolean isDialog) {
+        String name = tv_user_content.getText().toString();
+        if (TextUtils.isEmpty(name)) {
+            if (isDialog) {
+                closeDialog();
+            }
+            ToastMessage("权限使用人不能为空");
+            return;
+        } else if (!TextUtils.isEmpty(name) && !StringUtils.stringFilter(name)) {
+            if (isDialog) {
+                closeDialog();
+            }
+            ToastMessage("权限使用人只允许输入文字或者字母");
+            tv_user_content.setSelection(name.length());//设置新的光标所在位置
+            return;
+        }
+
+        String phone = tv_phone_content.getText().toString();
+        if (TextUtils.isEmpty(phone)) {
+            ToastMessage("使用人手机不能为空");
+            if (isDialog) {
+                closeDialog();
+            }
+            return;
+        } else if (!TextUtils.isEmpty(phone) && !StringUtils.isMobileNO(phone)) {
+            ToastMessage("请输入正确的手机号");
+            if (isDialog) {
+                closeDialog();
+            }
+            tv_phone_content.setSelection(phone.length());//设置新的光标所在位置
+            return;
+        }
+
+        StringBuilder builder = new StringBuilder();
+        builder.append("1");
+        if (cb_bidding.isChecked()) {
+            builder.append("|").append("2");
+        }
+        if (cb_order.isChecked()) {
+            builder.append("|").append("4");
+        }
         addChildAccount(name, phone, builder.toString()); //增加子账号接口
         LogUtils.LogV("childAccount", "update_success_bidding---" + builder.toString());
         addSaveClickedStatistics();
@@ -248,92 +285,38 @@ public class AddAccountModel extends BaseModel implements View.OnClickListener {
     }
 
 
-    private String getUserName(){
-        return tv_user_content.getText().toString();
-    }
-
-    private void judgeUserName(String name ,boolean isDialog){
-        if(TextUtils.isEmpty(name)){
-            if(isDialog){
-                closeDialog();
-            }
-            ToastMessage("权限使用人不能为空");
-            return;
-        }else if(!TextUtils.isEmpty(name) && !StringUtils.stringFilter(name)){
-            if(isDialog){
-                closeDialog();
-            }
-            ToastMessage("权限使用人只允许输入文字或者字母");
-            tv_user_content.setSelection(name.length());//设置新的光标所在位置
-            return;
-        }
-    }
-
-    private String getUserPhone(){
-        return  tv_phone_content.getText().toString();
-    }
-
-    private void judgeUserPhone(String phone,boolean isDialog){
-        if(TextUtils.isEmpty(phone)){
-            ToastMessage("使用人手机不能为空");
-            if(isDialog){
-                closeDialog();
-            }
-            return;
-        }else if(!TextUtils.isEmpty(phone) && !StringUtils.isMobileNO(phone)){
-            ToastMessage("请输入正确的手机号");
-            if(isDialog){
-                closeDialog();
-            }
-            tv_phone_content.setSelection(phone.length());//设置新的光标所在位置
-            return;
-        }
-    }
-
-    private StringBuilder getAuthority(){
-        StringBuilder builder = new StringBuilder();
-        builder.append("1");
-        if(cb_bidding.isChecked()){
-            builder.append("|").append("2");
-        }
-        if(cb_order.isChecked()){
-            builder.append("|").append("4");
-        }
-        return builder;
-    }
-
-    private void ToastMessage(String message){
+    private void ToastMessage(String message) {
         ToastUtils.showToast(message);
     }
 
-    private void closeDialog(){
+    private void closeDialog() {
         saveDialog.dismiss();
     }
 
     //请求实体
-    private void addChildAccount(String name,String phone ,String authority) {
+    private void addChildAccount(String name, String phone, String authority) {
 
         OkHttpUtils.get("http://zhaobiao.58.com/api/suseradd")//
                 .params("username", name)//
-                .params("phone",phone)//
-                .params("rbac",authority)
+                .params("phone", phone)//
+                .params("rbac", authority)
                 .execute(new callback(context, true));
     }
 
-    private  void addSaveClickedStatistics(){
+    private void addSaveClickedStatistics() {
         HYMob.getDataList(context, HYEventConstans.EVENT_ADD_ACCOUNT_SAVE);
     }
 
-    public void closePage(){
-        if(!TextUtils.isEmpty(tv_user_content.getText().toString()) && !TextUtils.isEmpty(tv_phone_content.getText().toString())){
+    public void closePage() {
+        if (!TextUtils.isEmpty(tv_user_content.getText().toString()) && !TextUtils.isEmpty(tv_phone_content.getText().toString())) {
             initSaveDialog();
-        }else{
+        } else {
             context.finish();
         }
     }
 
-    private void initSaveDialog(){
-        saveDialog= new ZhaoBiaoDialog(context,"是否保存添加的子账号?");
+    private void initSaveDialog() {
+        saveDialog = new ZhaoBiaoDialog(context, "是否保存添加的子账号?");
         saveDialog.setNagativeText("不保存");
         saveDialog.setPositiveText("保存");
         saveDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -372,7 +355,7 @@ public class AddAccountModel extends BaseModel implements View.OnClickListener {
 
         @Override
         public void onResponse(boolean isFromCache, String s, Request request, @Nullable Response response) {
-            LogUtils.LogV("childAccount","add_success");
+            LogUtils.LogV("childAccount", "add_success");
             context.finish();
         }
 
@@ -381,20 +364,6 @@ public class AddAccountModel extends BaseModel implements View.OnClickListener {
             super.onError(isFromCache, call, response, e);
             if (!isToast && e != null) {
                 ToastUtils.showToast(e.getMessage());
-            }
-        }
-
-        @Override
-        public void onAfter(boolean isFromCache, @Nullable String s, Call call, @Nullable Response response, @Nullable Exception e) {
-            super.onAfter(isFromCache, s, call, response, e);
-            if (e != null && e.getMessage().equals(NEED_DOWN_LINE)) {
-                new LogoutDialogUtils(context, context.getString(R.string.force_exit)).showSingleButtonDialog();
-            } else if (e != null && e.getMessage().equals(CHILD_FUNCTION_BAN)) {
-                new LogoutDialogUtils(context, context.getString(R.string.child_function_ban)).showSingleButtonDialog();
-            } else if (e != null && e.getMessage().equals(CHILD_HAS_UNBIND)) {
-                new LogoutDialogUtils(context, context.getString(R.string.child_has_unbind)).showSingleButtonDialog();
-            } else if (e != null && e.getMessage().equals(PPU_EXPIRED)) {
-                new LogoutDialogUtils(context, context.getString(R.string.ppu_expired)).showSingleButtonDialog();
             }
         }
     }
