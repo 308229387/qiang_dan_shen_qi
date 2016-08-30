@@ -46,6 +46,7 @@ import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
+import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.MDUtils;
 import com.huangyezhaobiao.utils.NetUtils;
 import com.huangyezhaobiao.utils.PushUtils;
@@ -251,6 +252,11 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
         EventbusAgent.getInstance().post(action);
     }
 
+    public void resetTabNumber(){
+        EventAction action = new EventAction(EventType.EVENT_TAB_RESET);
+        EventbusAgent.getInstance().post(action);
+    }
+
     private void hasData(String s) {
         clearLocalInfo();
         dealWithData(s);
@@ -269,13 +275,13 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
     }
 
     private List<QDBaseBean> getData(String s) {
-        JSONObject result = JSON.parseObject(s);
-        List<T> ts = getJSONObject(result);
+        List<T> ts = getJSONObject(s);
         return (List<QDBaseBean>) ts;
     }
 
-    private List<T> getJSONObject(JSONObject result) {
+    private List<T> getJSONObject(String s) {
         try {
+            JSONObject result = JSON.parseObject(s);
             return new GrabCachUtils().transferToListBean(result.getString("data"));
         } catch (Exception e) {
             return null;
@@ -419,6 +425,7 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
             tbl.setVisibility(View.VISIBLE);
             PushUtils.pushList.clear();
         }
+
     }
 
     private void dealWhitData() {
@@ -426,7 +433,7 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
         if (!TextUtils.isEmpty(isSon) && TextUtils.equals("1", isSon)) {
             rightInfo();
         } else {
-            goingPushin();
+            successGrab();
         }
     }
 
@@ -447,6 +454,12 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
     private void successGrab() {
         refresh();
         goingPushin();
+        refreshComeSuccess();
+    }
+
+    private void refreshComeSuccess(){
+        EventAction action = new EventAction(EventType.EVENT_TAB_RESET_COME_SUCCESS);
+        EventbusAgent.getInstance().post(action);
     }
 
     private void grabLogout() {
@@ -461,10 +474,15 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
         Toast.makeText(context.getActivity(), "实体bean为空", Toast.LENGTH_SHORT).show();
     }
 
-    public void jugePush(PushInActivity.GrabSuccessMessage event) {
-        if (event.getmMsg().equals("grabSuccess"))
+    public void jugePush(EventAction action) {
+
+        if (action.getType() == EventType.EVENT_TAB_RESET_SUCCESS){
             refresh();
+        }else if(action.getType() == EventType.EVENT_TAB_RESET_COME_SUCCESS){
+            refresh();
+        }
     }
+
 
     public void unregistPushAndEventBus() {
         EventBus.getDefault().unregister(context);
@@ -614,9 +632,6 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
             super.onError(isFromCache, call, response, e);
-            if (!isToast && e != null) {
-                ToastUtils.showToast(e.getMessage());
-            }
             refreshView.refreshComplete();
         }
 

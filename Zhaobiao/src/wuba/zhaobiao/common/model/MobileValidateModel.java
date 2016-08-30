@@ -315,13 +315,6 @@ public class MobileValidateModel extends BaseModel implements View.OnClickListen
 
         }
 
-        @Override
-        public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
-            super.onError(isFromCache, call, response, e);
-            if (!isToast && e != null) {
-                ToastUtils.showToast(e.getMessage());
-            }
-        }
     }
 
     private class validateCallback extends DialogCallback<UpdateMobileRespons>{
@@ -341,14 +334,6 @@ public class MobileValidateModel extends BaseModel implements View.OnClickListen
                 ToastUtils.makeImgAndTextToast(context, message, R.drawable.validate_error, 0).show();
             }
 
-        }
-
-        @Override
-        public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
-            super.onError(isFromCache, call, response, e);
-            if (!isToast && e != null) {
-                ToastUtils.showToast(e.getMessage());
-            }
         }
 
     }

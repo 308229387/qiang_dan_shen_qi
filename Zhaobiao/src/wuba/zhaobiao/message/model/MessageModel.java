@@ -45,7 +45,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import de.greenrobot.event.EventBus;
 import wuba.zhaobiao.common.model.BaseModel;
 import wuba.zhaobiao.message.fragment.MessageFragment;
 import wuba.zhaobiao.utils.LogoutDialogUtils;
@@ -344,7 +343,7 @@ public class MessageModel extends BaseModel implements TitleMessageBarLayout.OnT
     }
 
     private void NetDisConnected() {
-        context.NetConnected();
+        context.NetDisConnected();
     }
 
     public void diaplayMessageBar(){
@@ -391,6 +390,7 @@ public class MessageModel extends BaseModel implements TitleMessageBarLayout.OnT
             rightInfo();
         } else {
             goingPushin();
+            refreshComeSuccess();
         }
     }
 
@@ -400,6 +400,7 @@ public class MessageModel extends BaseModel implements TitleMessageBarLayout.OnT
                 && TextUtils.equals("1", rbac) || TextUtils.equals("3", rbac)) {
         } else {
             goingPushin();
+            refreshComeSuccess();
         }
     }
 
@@ -407,7 +408,14 @@ public class MessageModel extends BaseModel implements TitleMessageBarLayout.OnT
     private void goingPushin() {
         Intent intent = new Intent(context.getActivity(), PushInActivity.class);
         context.startActivity(intent);
+
     }
+
+    private void refreshComeSuccess(){
+        EventAction action = new EventAction(EventType.EVENT_TAB_RESET_COME_SUCCESS);
+        EventbusAgent.getInstance().post(action);
+    }
+
 
     private void messageLogout() {
         try {
@@ -422,7 +430,6 @@ public class MessageModel extends BaseModel implements TitleMessageBarLayout.OnT
     }
 
     public void unregistPushAndEventBus() {
-        EventBus.getDefault().unregister(context);
         app.removeINotificationListener();
         app.unRegisterNetStateListener();
         NetStateManager.getNetStateManagerInstance().removeINetStateChangedListener();

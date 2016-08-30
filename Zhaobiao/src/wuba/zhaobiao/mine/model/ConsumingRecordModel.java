@@ -194,7 +194,11 @@ public class ConsumingRecordModel extends BaseModel implements View.OnClickListe
 
     private void setPageNum(){
             try {
-                if(pageNumber <= Integer.parseInt(totalPage)){
+                int totalNumber = Integer.parseInt(totalPage);
+                if(totalNumber <= 0){
+                    totalNumber = 1;
+                }
+                if(pageNumber <= totalNumber){
                     pageNumber++;
                     pageNum = String.valueOf(pageNumber);
                 }
@@ -263,9 +267,6 @@ public class ConsumingRecordModel extends BaseModel implements View.OnClickListe
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
             super.onError(isFromCache, call, response, e);
-            if (!isToast && e != null) {
-                ToastUtils.showToast(e.getMessage());
-            }
             refresh.refreshComplete();
         }
 

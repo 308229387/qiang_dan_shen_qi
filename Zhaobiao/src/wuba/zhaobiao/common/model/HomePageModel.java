@@ -36,6 +36,8 @@ import com.huangyezhaobiao.tab.MainTabIndicator;
 import com.huangyezhaobiao.tab.MainTabIndicatorBean;
 import com.huangyezhaobiao.tab.MainTabViewPager;
 import com.huangyezhaobiao.url.URLConstans;
+import com.huangyezhaobiao.utils.LogUtils;
+import com.huangyezhaobiao.utils.LoggerUtils;
 import com.huangyezhaobiao.utils.PhoneUtils;
 import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.TimeUtils;
@@ -628,13 +630,6 @@ public class HomePageModel extends BaseModel {
 
         }
 
-        @Override
-        public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
-            super.onError(isFromCache, call, response, e);
-            if (!isToast && e!= null) {
-                ToastUtils.showToast(e.getMessage());
-            }
-        }
 
     }
 

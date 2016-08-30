@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.support.annotation.Nullable;
 
 import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.utils.ToastUtils;
 import com.lzy.okhttputils.request.BaseRequest;
 
 import java.lang.reflect.ParameterizedType;
@@ -35,6 +36,8 @@ public abstract class DialogCallback<T> extends JsonCallback<T> {
     private static Boolean isShow = false;
 
 
+    private static Boolean toastOnce = false;
+
     public DialogCallback(Activity context) {
         this.context = context;
         this.clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
@@ -58,12 +61,28 @@ public abstract class DialogCallback<T> extends JsonCallback<T> {
     @Override
     public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
         super.onError(isFromCache, call, response, e);
-        if (e != null && e.getMessage().equals(NEED_DOWN_LINE)
-                || e != null && e.getMessage().equals(CHILD_FUNCTION_BAN)
-                || e != null && e.getMessage().equals(CHILD_HAS_UNBIND)
-                || e != null && e.getMessage().equals(PPU_EXPIRED)){
-            isToast = true;
+
+        if(e!= null){
+            if (e.getMessage().equals(NEED_DOWN_LINE)
+                    ||e.getMessage().equals(CHILD_FUNCTION_BAN)
+                    || e.getMessage().equals(CHILD_HAS_UNBIND)
+                    || e.getMessage().equals(PPU_EXPIRED)
+                    || e.getMessage().equals("网络错误")){
+                isToast = true;
+            }
+
+            if (isToast &&  e.getMessage().equals("网络错误") && !toastOnce) {
+                toastOnce = true;
+                ToastUtils.showToast(e.getMessage());
+                showTimeRunTask();
+            }
+
+            if (!isToast ) {
+                ToastUtils.showToast(e.getMessage());
+            }
+
         }
+
     }
 
     @Override
@@ -72,7 +91,7 @@ public abstract class DialogCallback<T> extends JsonCallback<T> {
         if (needProgress)
             progress.stopLoading();
 
-        if(context != null && e!= null){
+        if(context != null &&  !context .isFinishing() && e!= null){
             if (e.getMessage().equals(NEED_DOWN_LINE) && !isShow) {
                 isShow = true;
                 new LogoutDialogUtils(context, context.getString(R.string.force_exit)).showSingleButtonDialog();
@@ -105,5 +124,15 @@ public abstract class DialogCallback<T> extends JsonCallback<T> {
         }, 3000);
     }
 
+
+    private void showTimeRunTask() {
+        Timer isToastShow  = new Timer();
+        isToastShow.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                toastOnce = false;
+            }
+        }, 3000);
+    }
 }
 

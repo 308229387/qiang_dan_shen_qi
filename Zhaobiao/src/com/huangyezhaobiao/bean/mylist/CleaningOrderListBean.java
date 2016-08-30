@@ -205,22 +205,26 @@ public class CleaningOrderListBean extends QDBaseBean{
             if(TextUtils.equals(orderState, Constans.DONE_FRAGMENT_FINISH)){ //已完成(成交)
                 cleanindOrderHolder.iv_cleaning_order_state_line.setVisibility(View.GONE);
                 cleanindOrderHolder.tv_cleaning_order_state.setText(R.string.over_done);
+                cleanindOrderHolder.tv_cleaning_order_state.setTextColor(Color.parseColor("#C5C5C5"));
                 if(TextUtils.isEmpty(refundText) || TextUtils.equals(refundText,"未退单")){
 
                 }else{
                     StringBuilder sb = new StringBuilder();
                     sb.append("已结束(成交)").append("(").append(refundText).append(")");
                     cleanindOrderHolder.tv_cleaning_order_state.setText(sb.toString());
+                    cleanindOrderHolder.tv_cleaning_order_state.setTextColor(Color.parseColor("#C5C5C5"));
                 }
             }else if( TextUtils.equals(orderState, Constans.DONE_FRAGMENT_CANCEL)){ //已完成(未成交)
                 cleanindOrderHolder.iv_cleaning_order_state_line.setVisibility(View.GONE);
                 cleanindOrderHolder.tv_cleaning_order_state.setText(R.string.over_undone);
+                cleanindOrderHolder.tv_cleaning_order_state.setTextColor(Color.parseColor("#C5C5C5"));
                 if(TextUtils.isEmpty(refundText) ||TextUtils.equals(refundText,"未退单")){
 
                 }else{
                     StringBuilder sb = new StringBuilder();
                     sb.append("已结束(未成交)").append("(").append(refundText).append(")");
                     cleanindOrderHolder.tv_cleaning_order_state.setText(sb.toString());
+                    cleanindOrderHolder.tv_cleaning_order_state.setTextColor(Color.parseColor("#C5C5C5"));
                 }
             }else if(TextUtils.equals(orderState, Constans.READY_SERVICE)){
                 cleanindOrderHolder.iv_cleaning_order_state_line.setVisibility(View.VISIBLE);

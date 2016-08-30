@@ -43,5 +43,11 @@ public enum  EventType {
 //    EVENT_TELEPHONE_FROM_DETAIL
 
     //抢单成功后跳转订单页
-    EVENT_TAB_RESET
+    EVENT_TAB_RESET,
+
+    //抢单成功后刷新数据
+    EVENT_TAB_RESET_SUCCESS,
+
+    //抢单成功后刷新数据
+    EVENT_TAB_RESET_COME_SUCCESS
 }

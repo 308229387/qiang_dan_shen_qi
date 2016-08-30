@@ -298,13 +298,7 @@ public class MineModel extends BaseModel implements View.OnClickListener{
             saveUserPhone(userPhone);
             setUserInfo(balance, companyName,userName);
         }
-        @Override
-        public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
-            super.onError(isFromCache, call, response, e);
-            if (!isToast && e != null) {
-                ToastUtils.showToast(e.getMessage());
-            }
-        }
+
     }
 
 

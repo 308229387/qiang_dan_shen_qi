@@ -1,6 +1,7 @@
 package com.huangyezhaobiao.activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -16,6 +17,7 @@ import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.adapter.OtherAdapter;
 import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.bean.push.PushToStorageBean;
+import com.huangyezhaobiao.db.DataBaseManager;
 import com.huangyezhaobiao.db.DataBaseManager.TABLE_OTHER;
 import com.huangyezhaobiao.inter.Constans;
 import com.huangyezhaobiao.utils.ActivityUtils;
@@ -23,6 +25,7 @@ import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.UnreadUtils;
+import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import com.huangyezhaobiao.vm.DetailMessageListStorageVM;
 
@@ -116,6 +119,23 @@ public class OtherDetailActivity extends QBBaseActivity implements OnClickListen
 //		btn_clean = getView(R.id.btn_clean);
 //		btn_clean.setOnClickListener(this);
 		back_layout.setOnClickListener(this);
+
+		String isSon = UserUtils.getIsSon(this);
+		if (!TextUtils.isEmpty(isSon) && TextUtils.equals("1", isSon)) {
+			String rbac = UserUtils.getRbac(this);
+			if (!TextUtils.isEmpty(rbac)
+					&& TextUtils.equals("1", rbac) || TextUtils.equals("3", rbac)) {
+
+			}else{
+				setLIstViewListener();
+			}
+		}else{
+			setLIstViewListener();
+		}
+
+	}
+
+	private void setLIstViewListener() {
 		lv_message_center.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,

@@ -355,13 +355,6 @@ public class MobileBindChangeModel extends BaseModel implements View.OnClickList
             }
         }
 
-        @Override
-        public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
-            super.onError(isFromCache, call, response, e);
-            if (!isToast && e != null) {
-                ToastUtils.showToast(e.getMessage());
-            }
-        }
     }
 
     private void startCountDown(){
@@ -406,13 +399,6 @@ public class MobileBindChangeModel extends BaseModel implements View.OnClickList
             }
         }
 
-        @Override
-        public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
-            super.onError(isFromCache, call, response, e);
-            if (!isToast && e != null) {
-                ToastUtils.showToast(e.getMessage());
-            }
-        }
 
     }
 

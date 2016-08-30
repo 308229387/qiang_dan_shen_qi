@@ -132,13 +132,6 @@ public class LogoutDialogUtils {
             LogUtils.LogV("logout", "logout_success");
         }
 
-        @Override
-        public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
-            super.onError(isFromCache, call, response, e);
-            if (!isToast && e != null) {
-                ToastUtils.showToast(e.getMessage());
-            }
-        }
 
     }
 }

@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 
 import com.huangyezhaobiao.activity.PushInActivity;
 import com.huangyezhaobiao.bean.push.PushBean;
+import com.huangyezhaobiao.enums.TitleBarType;
+import com.huangyezhaobiao.eventbus.EventAction;
+import com.huangyezhaobiao.eventbus.EventType;
 import com.huangyezhaobiao.inter.INotificationListener;
 import com.huangyezhaobiao.netmodel.INetStateChangedListener;
 import com.huangyezhaobiao.utils.LogUtils;
@@ -28,7 +31,8 @@ public class GrabFragment extends BaseFragment<GrabModel> implements INotificati
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         initalizationLayout(inflater, container);
         creatAdapter();
-        setInfo(); registPushAndEventBus();
+        setInfo();
+        registPushAndEventBus();
         return model.getView();
     }
 
@@ -56,13 +60,11 @@ public class GrabFragment extends BaseFragment<GrabModel> implements INotificati
     public void onResume() {
         super.onResume();
         resume_time = System.currentTimeMillis();
-
         model.setHeaderHeight();
         model.checkNet();
         model.grabClickedStatistics();
         model.getData();
-        model.selectChange();
-
+        model.resetTabNumber();
     }
 
     @Override
@@ -70,14 +72,15 @@ public class GrabFragment extends BaseFragment<GrabModel> implements INotificati
         model.showPush(pushBean);
     }
 
-    public void onEventMainThread(PushInActivity.GrabSuccessMessage event) {
-        model.jugePush(event);
-    }
+    public void onEventMainThread(EventAction action) {
+        model.jugePush(action);
 
+    }
 
     public void OnFragmentSelectedChanged(boolean isSelected) {
         if (isSelected && model != null){
             model.selectChange();
+            model.checkNet();
         }
 
     }
@@ -98,10 +101,10 @@ public class GrabFragment extends BaseFragment<GrabModel> implements INotificati
     public void onStop() {
         super.onStop();
         stop_time = System.currentTimeMillis();
-
         model.statisticsDeadTime();
 
     }
+
 
     @Override
     public void NetConnected() {

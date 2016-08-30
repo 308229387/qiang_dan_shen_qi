@@ -22,6 +22,9 @@ import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.bean.push.pop.PopBaseBean;
 import com.huangyezhaobiao.constans.AppConstants;
+import com.huangyezhaobiao.eventbus.EventAction;
+import com.huangyezhaobiao.eventbus.EventType;
+import com.huangyezhaobiao.eventbus.EventbusAgent;
 import com.huangyezhaobiao.inter.INotificationListener;
 import com.huangyezhaobiao.inter.MDConstans;
 import com.huangyezhaobiao.utils.BDEventConstans;
@@ -299,9 +302,12 @@ public class PushInActivity extends BaseActivity implements NetWorkVMCallBack, V
                     newIntent.putExtras(bundle);
                     startActivity(newIntent);
 
-                    GrabSuccessMessage msg=   new GrabSuccessMessage();
-                    msg.setmMsg("grabSuccess");
-                    EventBus.getDefault().post(msg);
+                    EventAction action = new EventAction(EventType.EVENT_TAB_RESET_SUCCESS);
+                    EventbusAgent.getInstance().post(action);
+
+//                    GrabSuccessMessage msg=   new GrabSuccessMessage();
+//                    msg.setmMsg("grabSuccess");
+//                    EventBus.getDefault().post(msg);
                     break;
                 case 4://您已抢过此单
                     ToastUtils.makeImgAndTextToast(this, "您以抢过此单", R.drawable.validate_error, 1).show();
@@ -470,15 +476,15 @@ public class PushInActivity extends BaseActivity implements NetWorkVMCallBack, V
         }
     }
 
-    public class GrabSuccessMessage {
-        private String mMsg;
-
-        public String getmMsg() {
-            return mMsg;
-        }
-
-        public void setmMsg(String mMsg) {
-            this.mMsg = mMsg;
-        }
-    }
+//    public class GrabSuccessMessage {
+//        private String mMsg;
+//
+//        public String getmMsg() {
+//            return mMsg;
+//        }
+//
+//        public void setmMsg(String mMsg) {
+//            this.mMsg = mMsg;
+//        }
+//    }
 }

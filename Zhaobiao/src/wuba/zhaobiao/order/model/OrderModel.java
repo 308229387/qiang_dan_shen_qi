@@ -56,6 +56,7 @@ import com.lzy.okhttputils.OkHttpUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.greenrobot.event.EventBus;
 import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -222,6 +223,11 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
         EventbusAgent.getInstance().post(action);
     }
 
+    public void resetTabNumber(){
+        EventAction action = new EventAction(EventType.EVENT_TAB_RESET);
+        EventbusAgent.getInstance().post(action);
+    }
+
     public void setHeaderHeight() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //透明状态栏
@@ -240,9 +246,7 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
             if (mOrderCateWindow != null && mOrderCateWindow.isShowing()) {
                 LogUtils.LogV("tag", "正在关闭");
                 mOrderCateWindow.dismiss();
-                pageNum ="1";
-                pageNumber =1;
-                getData();
+                refresh();
                 filterClickedStatistics();
             } else {
                 LogUtils.LogV("tag", "正在打开");
@@ -273,9 +277,7 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
                     }
                     if(mOrderCateWindow!=null && mOrderCateWindow.isShowing()){
                         mOrderCateWindow.dismiss();
-                        pageNum ="1";
-                        pageNumber =1;
-                        getData();
+                        refresh();
                     }
                     HYMob.getDataList(context.getActivity(), HYEventConstans.EVENT_ID_FILTER_CONFIRM);
 
@@ -334,7 +336,7 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
         OkHttpUtils.get(Urls.ORDER_GET_LIST)
                 .params("orderState", orderState)
                 .params("pageNum", pageNum)
-                .execute(new getOrderListRespons(context.getActivity(),true));
+                .execute(new getOrderListRespons(context.getActivity(), true));
     }
 
     private void saveRespons(String s) {
@@ -360,27 +362,27 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
     }
 
     private String  getPage(String s ){
-        JSONObject result = JSON.parseObject(s);
-        totalPage = getJSONObjectOfPage(result);
+        totalPage = getJSONObjectOfPage(s);
         return totalPage;
     }
 
     private List<QDBaseBean> getData(String s) {
-        JSONObject result = JSON.parseObject(s);
-        List<T> ts = getJSONObject(result);
+        List<T> ts = getJSONObject(s);
         return (List<QDBaseBean>) ts;
     }
 
-    private List<T> getJSONObject(JSONObject result) {
+    private List<T> getJSONObject(String s) {
         try {
+            JSONObject result = JSON.parseObject(s);
             return new OrderCachUtils().transferToListBean(result.getString("data"));
         } catch (Exception e) {
             return null;
         }
     }
 
-    private String  getJSONObjectOfPage(JSONObject result) {
+    private String  getJSONObjectOfPage(String s ) {
         try {
+            JSONObject result = JSON.parseObject(s);
             return new OrderCachUtils().transferToBean(result.getString("other"));
         } catch (Exception e) {
             return null;
@@ -444,7 +446,11 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
     private void setPageNum(){
         if (isFromCache != null && !isFromCache ){
             try {
-                if(pageNumber <= Integer.parseInt(totalPage)){
+                int totalNumber = Integer.parseInt(totalPage);
+                if(totalNumber <= 0){
+                    totalNumber = 1;
+                }
+                if(pageNumber <= totalNumber){
                     pageNumber++;
                     pageNum = String.valueOf(pageNumber);
                 }
@@ -488,7 +494,7 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
         if (!TextUtils.isEmpty(isSon) && TextUtils.equals("1", isSon)) {
             rightInfo();
         } else {
-            goingPushin();
+            successGrab();
         }
     }
 
@@ -504,6 +510,13 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
     private void successGrab() {
         refresh();
         goingPushin();
+        refreshComeSuccess();
+    }
+
+
+    private void refreshComeSuccess(){
+        EventAction action = new EventAction(EventType.EVENT_TAB_RESET_COME_SUCCESS);
+        EventbusAgent.getInstance().post(action);
     }
 
     private void goingPushin() {
@@ -578,7 +591,6 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
                 }
                 saveCacheState(isFromCache);
                 hasData(s);
-
             }
             refreshView.refreshComplete();
         }
@@ -586,9 +598,6 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
             super.onError(isFromCache, call, response, e);
-            if (!isToast && e != null) {
-                ToastUtils.showToast(e.getMessage());
-            }
             refreshView.refreshComplete();
         }
 
@@ -596,5 +605,6 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
     private void saveCacheState(Boolean isFromCache) {
         this.isFromCache = isFromCache;
     }
+
 
 }

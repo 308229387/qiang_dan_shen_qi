@@ -261,15 +261,6 @@ public class AccountManageModel  extends BaseModel implements View.OnClickListen
         }
 
 
-        @Override
-        public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
-            super.onError(isFromCache, call, response, e);
-            if (!isToast && e != null) {
-                LogUtils.LogV("isToast","----" + isToast);
-                ToastUtils.showToast(e.getMessage());
-            }
-        }
-
     }
 
     public void statisticsDeadTime() {
@@ -291,13 +282,7 @@ public class AccountManageModel  extends BaseModel implements View.OnClickListen
             getDataSuccess(childAccountBean);
         }
 
-        @Override
-        public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
-            super.onError(isFromCache, call, response, e);
-            if (!isToast && e != null) {
-                ToastUtils.showToast(e.getMessage());
-            }
-        }
+
     }
 
     private void getDataSuccess(ChildAccountBean childAccountBean){

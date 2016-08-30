@@ -10,6 +10,7 @@ import com.huangye.commonlib.vm.callback.StorageVMCallBack;
 import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.inter.INotificationListener;
 import com.huangyezhaobiao.netmodel.INetStateChangedListener;
+import com.huangyezhaobiao.utils.LogUtils;
 
 import wuba.zhaobiao.common.fragment.BaseFragment;
 import wuba.zhaobiao.message.model.MessageModel;
@@ -46,8 +47,11 @@ public class MessageFragment extends BaseFragment<MessageModel> implements INoti
 
     @Override
     public void OnFragmentSelectedChanged(boolean isSelected) {
-        if (isSelected && model != null)
+        if (isSelected && model != null){
             model.load();
+            model.checkNet();
+        }
+
     }
 
     @Override
