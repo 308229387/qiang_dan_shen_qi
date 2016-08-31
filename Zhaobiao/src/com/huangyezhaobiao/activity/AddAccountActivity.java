@@ -18,6 +18,8 @@ import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.bean.result;
 import com.huangyezhaobiao.callback.DialogCallback;
 import com.huangyezhaobiao.callback.JsonCallback;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.StringUtils;
 import com.huangyezhaobiao.utils.ToastUtils;
@@ -33,6 +35,7 @@ import java.util.List;
 import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
+import wuba.zhaobiao.utils.LogoutDialogUtils;
 
 
 /**
@@ -87,6 +90,27 @@ public class AddAccountActivity extends QBBaseActivity implements View.OnClickLi
         back_layout.setOnClickListener(this);
         iv_base_help.setOnClickListener(this);
         btn_save.setOnClickListener(this);
+        tv_user_content.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                if (hasFocus) {
+                    ((EditText) v).setHint("");
+                }
+
+            }
+        });
+
+        tv_phone_content.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                if (hasFocus) {
+                    ((EditText) v).setHint("");
+                }
+
+            }
+        });
     }
 
     @Override
@@ -97,6 +121,7 @@ public class AddAccountActivity extends QBBaseActivity implements View.OnClickLi
                 break;
             case R.id.iv_base_help:
                 initHelpDialog();
+                HYMob.getDataList(this, HYEventConstans.EVENT_ACCOUNT_HELP);
                 break;
             case R.id.btn_save:
                 String name = tv_user_content.getText().toString();
@@ -128,6 +153,7 @@ public class AddAccountActivity extends QBBaseActivity implements View.OnClickLi
 
                 addChildAccount(name, phone, builder.toString()); //增加子账号接口
                 LogUtils.LogV("childAccount", "update_success_bidding---" + builder.toString());
+
                 break;
         }
     }
@@ -171,11 +197,14 @@ public class AddAccountActivity extends QBBaseActivity implements View.OnClickLi
 
     //请求实体
     private void addChildAccount(String name,String phone ,String authority) {
+
+        HYMob.getDataList(this, HYEventConstans.EVENT_ADD_ACCOUNT_SAVE);
+
         OkHttpUtils.get("http://zhaobiao.58.com/api/suseradd")//
                 .params("username", name)//
                 .params("phone",phone)//
                 .params("rbac",authority)
-                .execute(new callback(AddAccountActivity.this,true));
+                .execute(new callback(AddAccountActivity.this, true));
     }
     //响应类
     private class callback extends DialogCallback<String> {
@@ -190,17 +219,15 @@ public class AddAccountActivity extends QBBaseActivity implements View.OnClickLi
             finish();
         }
 
-        @Override
-        public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
-
-            ToastUtils.showToast(e.getMessage());
-        }
-
     }
 
     @Override
     public void onBackPressed() {
-        initSaveDialog();
+        if(!TextUtils.isEmpty(tv_user_content.getText().toString()) && !TextUtils.isEmpty(tv_phone_content.getText().toString())){
+            initSaveDialog();
+        }else{
+            finish();
+        }
     }
 
     private void initSaveDialog(){
@@ -217,6 +244,7 @@ public class AddAccountActivity extends QBBaseActivity implements View.OnClickLi
         saveDialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
             @Override
             public void onDialogOkClick() {
+                saveDialog.dismiss();
                 save();
             }
 
@@ -257,5 +285,9 @@ public class AddAccountActivity extends QBBaseActivity implements View.OnClickLi
         helpDialog.show();
     }
 
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+        HYMob.getBaseDataListForPage(this, HYEventConstans.PAGE_ACCOUNT_ADD, stop_time - resume_time);
+    }
 }

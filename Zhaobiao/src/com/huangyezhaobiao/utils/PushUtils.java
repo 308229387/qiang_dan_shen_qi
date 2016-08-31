@@ -1,5 +1,6 @@
 package com.huangyezhaobiao.utils;
 
+import android.app.Activity;
 import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
@@ -33,6 +34,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import wuba.zhaobiao.utils.LogoutDialogUtils;
 
 //Push json信息转化成 Bean 的工具类
 public class PushUtils {
@@ -168,7 +171,7 @@ public class PushUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		// 100:新标的 101:抢单结果,成功or失败在detail中体现 102:倒计时提醒 103:系统消息
+		// 100:新标的 101:抢单结果,成功or失败在detail中体现 102:倒计时提醒 103:系统消息,105:登出
 		switch (PopTypeEnum.getPopType(type)) {
 
 		case NEW_ORDER:
@@ -222,6 +225,10 @@ public class PushUtils {
 			bean = systemPushBean;
 			UnreadUtils.saveSysNoti(context);
 			break;
+		case LOGOUT:
+			SystemPushBean logoutPushBean = JsonUtils.jsonToObject(info.toString(), SystemPushBean.class);
+			bean = logoutPushBean;
+			break;
 		default:
 			break;
 		}
@@ -244,7 +251,7 @@ public class PushUtils {
 		int tag = pushToStorageBean.getTag();
 		try {
 			SqlUtils.getInstance(context);
-			if(tag!=100) {
+			if(tag!=100 && tag!=105) {
 				SqlUtils.dbUtils.save(pushToStorageBean);
 			}
 

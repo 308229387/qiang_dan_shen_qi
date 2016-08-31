@@ -1,14 +1,6 @@
 [
     {
-        "merged": "D:\\workspace\\hy_android_zb\\Commonlib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ic_launcher.png",
-        "source": "D:\\workspace\\hy_android_zb\\Commonlib\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ic_launcher.png"
-    },
-    {
         "merged": "E:\\qiangdan\\hy_android_zb\\Commonlib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ic_launcher.png",
         "source": "E:\\qiangdan\\hy_android_zb\\Commonlib\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ic_launcher.png"
-    },
-    {
-        "merged": "E:\\qiang\\hy_android_zb\\Commonlib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ic_launcher.png",
-        "source": "E:\\qiang\\hy_android_zb\\Commonlib\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ic_launcher.png"
     }
 ]

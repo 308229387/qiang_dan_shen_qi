@@ -2,11 +2,22 @@ package wuba.zhaobiao.utils;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.support.annotation.Nullable;
+import android.util.Log;
 
+import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.callback.DialogCallback;
 import com.huangyezhaobiao.utils.ActivityUtils;
+import com.huangyezhaobiao.utils.LogUtils;
+import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
+import com.lzy.okhttputils.OkHttpUtils;
 
+import okhttp3.Call;
+import okhttp3.Request;
+import okhttp3.Response;
 import wuba.zhaobiao.common.activity.LoginActivity;
+import wuba.zhaobiao.config.Urls;
 
 /**
  * Created by SongYongmeng on 2016/7/31.
@@ -15,7 +26,7 @@ import wuba.zhaobiao.common.activity.LoginActivity;
 public class LogoutDialogUtils {
 
     private Activity context;
-    protected ZhaoBiaoDialog LogoutDialog;
+    private ZhaoBiaoDialog LogoutDialog;
     private String msg;
 
     public LogoutDialogUtils(Activity context, String msg) {
@@ -27,17 +38,25 @@ public class LogoutDialogUtils {
         this.msg = msg;
     }
 
-    public void initAndShowDialog() {
-        creatDialog(context);
-        configDialog();
+    public void showSingleButtonDialog() { //弹框只显示一个确定按钮
+        createDialog(context);
+        configSingleButtonDialog();
         showDialog();
     }
 
-    private void creatDialog(Activity activity) {
-        LogoutDialog = new ZhaoBiaoDialog(activity, "");
+    public void showTwoButtonDialog(){ //弹框显示两个按钮--取消、确定
+        createDialog(context);
+        configTwoButtonDialog();
+        showDialog();
     }
 
-    private void configDialog() {
+    private void createDialog(Activity activity) {
+        if(LogoutDialog == null ){
+            LogoutDialog = new ZhaoBiaoDialog(activity, "");
+        }
+    }
+
+    private void configSingleButtonDialog() {
         LogoutDialog.setCancelButtonGone();
         LogoutDialog.setCancelable(false);
         LogoutDialog.setOnDismissListener(new Dismiss());
@@ -45,8 +64,17 @@ public class LogoutDialogUtils {
         LogoutDialog.setMessage(msg);
     }
 
+    private void configTwoButtonDialog() {
+        LogoutDialog.setOnDismissListener(new Dismiss());
+        LogoutDialog.setOnDialogClickListener(new DialogClickListener());
+        LogoutDialog.setMessage(msg);
+    }
+
     private void showDialog() {
-        LogoutDialog.show();
+        if(LogoutDialog != null){
+            LogoutDialog.show();
+        }
+
     }
 
     private void clearInfoAndService() {
@@ -54,7 +82,9 @@ public class LogoutDialogUtils {
     }
 
     private void dismiss() {
-        LogoutDialog.dismiss();
+        if(LogoutDialog != null) {
+            LogoutDialog.dismiss();
+        }
     }
 
 
@@ -62,17 +92,23 @@ public class LogoutDialogUtils {
         ActivityUtils.goToActivity(context, LoginActivity.class);
     }
 
+    private void logout(){
+        OkHttpUtils.get(Urls.LOGOUT)//
+                .execute(new logoutCallback(context,true));
+    }
+
     private class DialogClickListener implements ZhaoBiaoDialog.onDialogClickListener {
         @Override
         public void onDialogOkClick() {
             dismiss();
+            logout();
             clearInfoAndService();
             goToLogin();
         }
 
         @Override
         public void onDialogCancelClick() {
-
+            dismiss();
         }
     }
 
@@ -84,4 +120,18 @@ public class LogoutDialogUtils {
         }
     }
 
+
+    private class logoutCallback extends DialogCallback<String>{
+
+        public logoutCallback(Activity context, Boolean needProgress) {
+            super(context, needProgress);
+        }
+
+        @Override
+        public void onResponse(boolean isFromCache, String s, Request request, @Nullable Response response) {
+            LogUtils.LogV("logout", "logout_success");
+        }
+
+
+    }
 }

@@ -1,6 +1,5 @@
 package com.huangyezhaobiao.fragment.home;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -14,12 +13,9 @@ import android.widget.TextView;
 
 import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.activity.AboutActivity;
 import com.huangyezhaobiao.activity.HelpActivity;
 import com.huangyezhaobiao.activity.MainActivity;
 import com.huangyezhaobiao.activity.AccountManageActivity;
-import com.huangyezhaobiao.activity.MyWalletActivity;
-import com.huangyezhaobiao.activity.SettingsActivity;
 import com.huangyezhaobiao.bean.GlobalConfigBean;
 import com.huangyezhaobiao.enums.TitleBarType;
 import com.huangyezhaobiao.utils.ActivityUtils;
@@ -28,9 +24,14 @@ import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.SPUtils;
+import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.vm.YuEViewModel;
 
 import java.util.Map;
+
+import wuba.zhaobiao.mine.activity.AboutActivity;
+import wuba.zhaobiao.mine.activity.MyWalletActivity;
+import wuba.zhaobiao.mine.activity.SettingActivity;
 
 /**
  * Created by 58 on 2016/6/17.
@@ -43,11 +44,10 @@ public class PersonalCenterFragment extends BaseHomeFragment implements NetWorkV
     private ImageView iv_refresh;// 刷新按钮
 
     private RelativeLayout mywallet;//我的钱包
-    private RelativeLayout manage; //
+    private RelativeLayout manage; //账号管理
     private RelativeLayout sliding_settings; //设置
     private RelativeLayout help;//帮助
     private RelativeLayout about; //关于
-//    private RelativeLayout manage; //账号管理
 
     private YuEViewModel yuEViewModel;
 
@@ -87,7 +87,7 @@ public class PersonalCenterFragment extends BaseHomeFragment implements NetWorkV
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = null;
         if(view == null){
-            view = inflater.inflate(R.layout.navigation_header, null);
+            view = inflater.inflate(R.layout.fragment_mine, null);
             tv_userName = (TextView) view.findViewById(R.id.tv_userName);
             tv_userCompany = (TextView) view.findViewById(R.id.tv_userCompany);
             iv_refresh = (ImageView) view.findViewById(R.id.iv_refresh);
@@ -103,9 +103,12 @@ public class PersonalCenterFragment extends BaseHomeFragment implements NetWorkV
             help.setOnClickListener(this);
             about = (RelativeLayout) view.findViewById(R.id.about);
             about.setOnClickListener(this);
-//            manage = (RelativeLayout) view.findViewById(R.id.manage);
-//            manage.setOnClickListener(this);
-
+            String isSon = UserUtils.getIsSon(getActivity());
+            if(!TextUtils.isEmpty(isSon) && TextUtils.equals("1",isSon)){
+                manage.setVisibility(View.GONE);
+            }else{
+                manage.setVisibility(View.VISIBLE);
+            }
         }else{
             ((FrameLayout)view.getParent()).removeView(view);
         }
@@ -127,12 +130,13 @@ public class PersonalCenterFragment extends BaseHomeFragment implements NetWorkV
                 ActivityUtils.goToActivity(getActivity(), MyWalletActivity.class);
                 HYMob.getDataList(getActivity(), HYEventConstans.EVENT_ID_MY_WALLET);
                 break;
-            case R.id.manage:
+            case R.id.manage://点击了子账号管理
                 ActivityUtils.goToActivity(getActivity(), AccountManageActivity.class);
                 break;
             case R.id.sliding_settings://点击了设置
-                Intent intent = SettingsActivity.onNewIntent(getActivity());
-                startActivity(intent);
+                ActivityUtils.goToActivity(getActivity(), SettingActivity.class);
+//                Intent intent = SettingsActivity.onNewIntent(getActivity());
+//                startActivity(intent);
                 HYMob.getDataList(getActivity(), HYEventConstans.EVENT_ID_SETTING);
                 break;
             case R.id.help:// 点击了帮助

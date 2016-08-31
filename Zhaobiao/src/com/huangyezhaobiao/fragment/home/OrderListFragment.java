@@ -1,7 +1,6 @@
 package com.huangyezhaobiao.fragment.home;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -11,16 +10,14 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.huangye.commonlib.vm.callback.ListNetWorkVMCallBack;
@@ -33,6 +30,7 @@ import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.bean.GlobalConfigBean;
 import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.bean.push.PushToPassBean;
+import com.huangyezhaobiao.db.UserRequestDao;
 import com.huangyezhaobiao.enums.TitleBarType;
 import com.huangyezhaobiao.eventbus.EventAction;
 import com.huangyezhaobiao.eventbus.EventType;
@@ -54,6 +52,7 @@ import com.huangyezhaobiao.utils.PushUtils;
 import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.StateUtils;
 import com.huangyezhaobiao.utils.UnreadUtils;
+import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
 import com.huangyezhaobiao.vm.QiangDanListViewModel;
 import com.huangyezhaobiao.vm.YuEViewModel;
@@ -62,10 +61,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import wuba.zhaobiao.order.utils.OrderCachUtils;
+import wuba.zhaobiao.utils.LogoutDialogUtils;
+
 /**
  * Created by 58 on 2016/6/18.
  */
-public class OrderListFragment extends  BaseHomeFragment implements INotificationListener,ListNetWorkVMCallBack {
+public class OrderListFragment<T> extends  BaseHomeFragment implements INotificationListener,ListNetWorkVMCallBack {
     private BiddingApplication app;
     private TextView txt_head;
     private ImageView btn_clean;
@@ -74,7 +76,9 @@ public class OrderListFragment extends  BaseHomeFragment implements INotificatio
 
     private PullToRefreshListView lv_all_fragment;
     private ListView lv;
+
     private View layout_no_data; //您还没有已抢订单呢！
+    private TextView tv_no_orders;
     private SwipeRefreshLayout srl;
     private OrderLVAdapter adapter;
 
@@ -177,12 +181,14 @@ public class OrderListFragment extends  BaseHomeFragment implements INotificatio
             btn_clean = (ImageView) view.findViewById(R.id.btn_clean);
             btn_clean.setVisibility(View.VISIBLE);
             btn_clean.setOnClickListener(listener);
+
             srl             = (SwipeRefreshLayout) view.findViewById(R.id.srl);
             srl.setRefreshing(true);
             lv_all_fragment = (PullToRefreshListView) view.findViewById(R.id.lv_all_fragment);
             lv = lv_all_fragment.getRefreshableView();
             layout_no_data = view.findViewById(R.id.layout_no_data);
             layout_no_data.setVisibility(View.GONE);
+            tv_no_orders = (TextView) view.findViewById(R.id.tv_no_orders);
 //            layout_no_internet_click = view.findViewById(R.id.layout_no_internet_click_refresh);
 
             adapter = new OrderLVAdapter(getActivity(),adapterListener);
@@ -209,6 +215,9 @@ public class OrderListFragment extends  BaseHomeFragment implements INotificatio
                 }
             });
 
+            String result = UserRequestDao.getData(UserRequestDao.INTERFACE_ORDERLIST);
+            List<T> ts = new OrderCachUtils().transferToListBean(result);
+            onRefreshSuccess(ts);
         }else{
             ((FrameLayout)view.getParent()).removeView(view);
         }
@@ -358,20 +367,45 @@ public class OrderListFragment extends  BaseHomeFragment implements INotificatio
      */
     @Override
     public void onRefreshSuccess(Object t) {
+        String temp = JSON.toJSONString(t);
+        UserRequestDao.addData(UserRequestDao.INTERFACE_ORDERLIST, temp);
+
         List<QDBaseBean> beans = (List<QDBaseBean>) t;
         adapter.refreshSuccess(beans);
         lv_all_fragment.onRefreshComplete();
         srl.setRefreshing(false);
 
-        if (beans.size() > 0) {
-            lv.setVisibility(View.VISIBLE);
-            layout_no_data.setVisibility(View.GONE);
+        String isSon = UserUtils.getIsSon(getActivity());
+        if (!TextUtils.isEmpty(isSon) && TextUtils.equals("1", isSon)) {
+            String rbac = UserUtils.getRbac(getActivity());
+            if (!TextUtils.isEmpty(rbac)
+                    && TextUtils.equals("1", rbac) || TextUtils.equals("3", rbac)) {
+                lv.setVisibility(View.GONE);
+                layout_no_data.setVisibility(View.VISIBLE);
+                tv_no_orders.setText("对不起，您的账号暂无\n查看已抢订单权限");
+            }else{
+                if (beans.size() > 0) {
+                    lv.setVisibility(View.VISIBLE);
+                    layout_no_data.setVisibility(View.GONE);
+
+                } else {
+                    lv.setVisibility(View.GONE);
+                    layout_no_data.setVisibility(View.VISIBLE);
+                }
+            }
 
         } else {
-            lv.setVisibility(View.GONE);
-            layout_no_data.setVisibility(View.VISIBLE);
+
+            if (beans.size() > 0) {
+                lv.setVisibility(View.VISIBLE);
+                layout_no_data.setVisibility(View.GONE);
+
+            } else {
+                lv.setVisibility(View.GONE);
+                layout_no_data.setVisibility(View.VISIBLE);
 //            TextView tv = (TextView) ((ViewGroup)layout_no_data).getChildAt(1);
 //            tv.setText("您还没有订单");
+            }
         }
     }
 
@@ -488,9 +522,32 @@ public class OrderListFragment extends  BaseHomeFragment implements INotificatio
             int type = pushBean.getTag();
             if (type == 100 && StateUtils.getState(getActivity()) == 1) {
                 LogUtils.LogV("nnnnnnB3c", String.valueOf(pushBean.getTag()));
-                Intent intent = new Intent(getActivity(), PushInActivity.class);
-                startActivity(intent);
-            } else {
+
+                String isSon = UserUtils.getIsSon(getActivity());
+                if (!TextUtils.isEmpty(isSon) && TextUtils.equals("1", isSon)) {
+                    String rbac = UserUtils.getRbac(getActivity());
+                    if (!TextUtils.isEmpty(rbac)
+                            && TextUtils.equals("1", rbac) || TextUtils.equals("5", rbac)) {
+                        LogUtils.LogV("PushInActivity", "OrderListFragment" + "没有权限弹窗");
+                    }else{
+                        Intent intent = new Intent(getActivity(), PushInActivity.class);
+                        startActivity(intent);
+                    }
+
+                } else {
+                    Intent intent = new Intent(getActivity(), PushInActivity.class);
+                    startActivity(intent);
+                }
+
+            }
+            else if(type == 105){
+                try {
+                    new LogoutDialogUtils(getActivity(), "当前账号被强制退出").showSingleButtonDialog();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            else if(type != 100 && type != 105){
                 LogUtils.LogV("nnnnnnB3d", String.valueOf(pushBean.getTag()));
                 tbl.setPushBean(pushBean);
                 tbl.setVisibility(View.VISIBLE);

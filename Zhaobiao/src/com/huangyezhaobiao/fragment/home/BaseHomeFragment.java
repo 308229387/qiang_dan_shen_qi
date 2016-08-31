@@ -1,55 +1,27 @@
 package com.huangyezhaobiao.fragment.home;
 
-import android.app.Activity;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.format.DateUtils;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.huangye.commonlib.file.SharedPreferencesUtils;
-import com.huangye.commonlib.utils.UserConstans;
-import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.activity.AutoSettingsActivity;
-import com.huangyezhaobiao.activity.BlankActivity;
-import com.huangyezhaobiao.activity.MainActivity;
-import com.huangyezhaobiao.activity.PushInActivity;
 import com.huangyezhaobiao.application.BiddingApplication;
-import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.enums.TitleBarType;
-import com.huangyezhaobiao.gtui.GePushProxy;
-import com.huangyezhaobiao.inter.INotificationListener;
 import com.huangyezhaobiao.netmodel.INetStateChangedListener;
 import com.huangyezhaobiao.netmodel.NetStateManager;
-import com.huangyezhaobiao.url.URLConstans;
-import com.huangyezhaobiao.utils.ActivityUtils;
-import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.NetUtils;
-import com.huangyezhaobiao.utils.PushUtils;
-import com.huangyezhaobiao.utils.SPUtils;
-import com.huangyezhaobiao.utils.StateUtils;
-import com.huangyezhaobiao.utils.UpdateManager;
-import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.utils.Utils;
-import com.huangyezhaobiao.utils.VersionUtils;
 import com.huangyezhaobiao.view.LoadingProgress;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
-import com.huangyezhaobiao.view.ZhaoBiaoDialog;
-import com.huangyezhaobiao.vm.LogoutViewModel;
-import com.wuba.loginsdk.external.LoginClient;
-import com.xiaomi.mipush.sdk.MiPushClient;
 
 /**
  * Created by 58 on 2016/6/17.
@@ -131,7 +103,7 @@ public abstract class BaseHomeFragment extends Fragment implements TitleMessageB
     @Override
     public void onDestroy() {
         if (app != null)
-        app.unRegisterNetStateListener();//解除网络的变化Listener
+            app.unRegisterNetStateListener();//解除网络的变化Listener
 //        app.stopTimer();//停止文件的上传
         super.onDestroy();
     }

@@ -9,6 +9,7 @@ import com.huangyezhaobiao.callback.JsonCallback;
 import com.lzy.okhttputils.OkHttpUtils;
 
 import okhttp3.Call;
+import okhttp3.Headers;
 import okhttp3.Request;
 import okhttp3.Response;
 import wuba.zhaobiao.config.Urls;
@@ -54,6 +55,10 @@ public class ExampleUtils {
         @Override
         public void onResponse(boolean isFromCache, result getBinds, Request request, @Nullable Response response) {
             ToastUtils.showToast(getBinds.getData().get(0).getBidState());
+            if(response!=null){
+                Headers responseHeadersString = response.headers();
+                String value = responseHeadersString.get("key");
+            }
         }
 
         @Override

@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,10 +19,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.huangye.commonlib.vm.callback.ListNetWorkVMCallBack;
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.activity.AutoSettingsActivity;
 import com.huangyezhaobiao.activity.BidFailureActivity;
 import com.huangyezhaobiao.activity.BidGoneActivity;
 import com.huangyezhaobiao.activity.BidSuccessActivity;
@@ -36,6 +35,7 @@ import com.huangyezhaobiao.bean.GlobalConfigBean;
 import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.bean.push.PushToPassBean;
 import com.huangyezhaobiao.constans.AppConstants;
+import com.huangyezhaobiao.db.UserRequestDao;
 import com.huangyezhaobiao.enums.TitleBarType;
 import com.huangyezhaobiao.eventbus.EventAction;
 import com.huangyezhaobiao.eventbus.EventType;
@@ -44,7 +44,6 @@ import com.huangyezhaobiao.inter.INotificationListener;
 import com.huangyezhaobiao.iview.SwitchButton;
 import com.huangyezhaobiao.lib.QDBaseBean;
 import com.huangyezhaobiao.lib.ZBBaseAdapter;
-import com.huangyezhaobiao.url.URLConstans;
 import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.BidListUtils;
@@ -58,9 +57,7 @@ import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.StateUtils;
 import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.utils.UnreadUtils;
-import com.huangyezhaobiao.utils.UpdateManager;
 import com.huangyezhaobiao.utils.UserUtils;
-import com.huangyezhaobiao.utils.VersionUtils;
 import com.huangyezhaobiao.view.QDWaitDialog;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
@@ -69,12 +66,16 @@ import com.huangyezhaobiao.vm.KnockViewModel;
 
 import java.util.List;
 
+import wuba.zhaobiao.grab.utils.GrabCachUtils;
+import wuba.zhaobiao.utils.LogoutDialogUtils;
+
 /**
  * Created by 58 on 2016/6/17.
  */
-public class BiddingFragment extends BaseHomeFragment  implements INotificationListener,ListNetWorkVMCallBack {
-    private BiddingApplication app;
+public class BiddingFragment<T> extends BaseHomeFragment implements INotificationListener, ListNetWorkVMCallBack {
+
     private LinearLayout ll_grab;
+    private BiddingApplication app;
     private TextView txt_head;
     private SwitchButton switch_button;
     private PullToRefreshListView mPullToRefreshListView; // 抢单列表
@@ -97,22 +98,16 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
     private PushToPassBean passBean;//抢单流程传递参数
 
     private ZhaoBiaoDialog accountExpireDialog; //网邻通过期通知
-    private ZhaoBiaoDialog updateMessageDialog; //更新对话框
-    private ZhaoBiaoDialog autoSettingDialog; //自定义设置
-
-    private boolean forceUpdate;//是否强制更新
-
     private boolean isFirstOpen = true;
-
 
     @Override
     public void OnFragmentSelectedChanged(boolean isSelected) {
-        if(isSelected){
-            if(isFirstOpen){
+        if (isSelected) {
+            if (isFirstOpen) {
                 loadDatas();
-            }else{
+            } else {
                 try {
-                    if(UnreadUtils.isHasNewOrder(getActivity())){
+                    if (UnreadUtils.isHasNewOrder(getActivity())) {
                         UnreadUtils.clearNewOder(getActivity());
                     }
 
@@ -128,7 +123,7 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
 
     @Override
     protected void loadDatas() {
-        if(listViewModel!= null){
+        if (listViewModel != null) {
             listViewModel.refresh();
 
             BDMob.getBdMobInstance().onMobEvent(getActivity(), BDEventConstans.EVENT_ID_BIDDING_LIAT_PAGE_MANUAL_REFRESH);
@@ -140,7 +135,7 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
 
     @Override
     protected void loadMore() {
-        if(listViewModel!= null){
+        if (listViewModel != null) {
             listViewModel.loadMore();
         }
     }
@@ -165,7 +160,7 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
         listViewModel = new GrabListViewModel(this, getActivity());
         progressDialog = new QDWaitDialog(getActivity());
         initAccountExpireDialog();
-        initAutoSettingDialog();
+
     }
 
     private void getExpireState() {
@@ -174,35 +169,11 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
         onLoadingSuccess(new AccountExpireBean(expireState, expireMsg));
     }
 
-    /**
-     * 初始化自定义设置界面的dialog
-     */
-    private void initAutoSettingDialog() {
-
-        autoSettingDialog = new ZhaoBiaoDialog(getActivity(),"是否需要进行自定义的接单设置?");
-        autoSettingDialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
-            @Override
-            public void onDialogOkClick() {
-                autoSettingDialog.dismiss();
-                Intent intent = AutoSettingsActivity.onNewIntent(getActivity());
-                startActivity(intent);
-                SPUtils.saveAutoSetting(getActivity());
-            }
-
-            @Override
-            public void onDialogCancelClick() {
-                autoSettingDialog.dismiss();
-                SPUtils.saveAutoSetting(getActivity());
-            }
-        });
-
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View  view = null;
-        if(view == null) {
+        View view = null;
+        if (view == null) {
             view = inflater.inflate(R.layout.fragment_binding, null);
             ll_grab = (LinearLayout) view.findViewById(R.id.ll_grab);
             ll_grab.setVisibility(View.VISIBLE);
@@ -229,40 +200,44 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
 
             initEvent();
 
-        }else{
-            ((FrameLayout)view.getParent()).removeView(view);
+            String result = UserRequestDao.getData(UserRequestDao.INTERFACE_GETBINDS);
+            List<T> ts = new GrabCachUtils().transferToListBean(result);
+
+            onRefreshSuccess(ts);
+        } else {
+            ((FrameLayout) view.getParent()).removeView(view);
         }
 
-        return view ;
+        return view;
     }
 
-   private void initEvent(){
+    private void initEvent() {
 
-       if("1".equals(SPUtils.getServiceState(getActivity()))){
-           switch_button.setChecked(true);//选中服务模式
-       }else{
-           switch_button.setChecked(false);//选中休息模式
-       }
-       switch_button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        if ("1".equals(SPUtils.getServiceState(getActivity()))) {
+            switch_button.setChecked(true);//选中服务模式
+        } else {
+            switch_button.setChecked(false);//选中休息模式
+        }
+        switch_button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
-           @Override
-           public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-               if (isChecked) {
-                   StateUtils.state = 1; //服务模式
-                   BDMob.getBdMobInstance().onMobEvent(getActivity(), BDEventConstans.EVENT_ID_SERVICE_MODE);
-                   HYMob.getDataListByModel(getActivity(), HYEventConstans.EVENT_ID_CHANGE_MODE);
-               } else {
-                   StateUtils.state = 2; //休息模式
-                   BDMob.getBdMobInstance().onMobEvent(getActivity(), BDEventConstans.EVENT_ID_REST_MODE);
-                   //点击事件埋点
-                   HYMob.getDataListByModel(getActivity(), HYEventConstans.EVENT_ID_CHANGE_MODE);
-               }
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    StateUtils.state = 1; //服务模式
+                    BDMob.getBdMobInstance().onMobEvent(getActivity(), BDEventConstans.EVENT_ID_SERVICE_MODE);
+                    HYMob.getDataListByModel(getActivity(), HYEventConstans.EVENT_ID_CHANGE_MODE);
+                } else {
+                    StateUtils.state = 2; //休息模式
+                    BDMob.getBdMobInstance().onMobEvent(getActivity(), BDEventConstans.EVENT_ID_REST_MODE);
+                    //点击事件埋点
+                    HYMob.getDataListByModel(getActivity(), HYEventConstans.EVENT_ID_CHANGE_MODE);
+                }
 
-               SPUtils.setServiceState(getActivity(), StateUtils.state + "");
-               loadDatas();
-           }
-       });
-   }
+                SPUtils.setServiceState(getActivity(), StateUtils.state + "");
+                loadDatas();
+            }
+        });
+    }
 
 
     public void canLoad() {
@@ -281,6 +256,8 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
      */
     @Override
     public void onRefreshSuccess(Object t) {
+        String temp = JSON.toJSONString(t);
+        UserRequestDao.addData(UserRequestDao.INTERFACE_GETBINDS, temp);
         srl.setRefreshing(false);
         stopLoading();
         List<QDBaseBean> list = (List<QDBaseBean>) t;
@@ -337,10 +314,10 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
         }
         //判断是否可以继续加载更多
         if (null == list || list.size() == 0 || list.size() % 20 != 0) {
-            LogUtils.LogV("loadMore2",""+list.size());
+            LogUtils.LogV("loadMore2", "" + list.size());
             canNotLoad();
         } else {
-            LogUtils.LogV("loadMore3",""+list.size());
+            LogUtils.LogV("loadMore3", "" + list.size());
             canLoad();
         }
     }
@@ -369,16 +346,16 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
             AccountExpireBean accountExpireBean = (AccountExpireBean) t;
             String expireState = accountExpireBean.getExpireState();
             String message = accountExpireBean.getMsg();
-            if (!TextUtils.isEmpty(expireState) && TextUtils.equals("1",expireState)&& !TextUtils.isEmpty(message)) {
-                    //网灵通过期
-                if(accountExpireDialog!= null){
+            if (!TextUtils.isEmpty(expireState) && TextUtils.equals("1", expireState) && !TextUtils.isEmpty(message)) {
+                //网灵通过期
+                if (accountExpireDialog != null) {
                     accountExpireDialog.setMessage(message);
                     accountExpireDialog.show();
                 }
 
 
             }
-        }else if (t instanceof Integer) {
+        } else if (t instanceof Integer) {
             stopLoading();
             int status = (Integer) t;
 //            Toast.makeText(getActivity(), "status:" + status, Toast.LENGTH_SHORT).show();
@@ -396,7 +373,7 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
                 intent.setClass(getActivity(), BidGoneActivity.class);
                 startActivity(intent);
             } else if (status == 2) {
-                yueNotEnoughDialog = new ZhaoBiaoDialog(getActivity(),getString(R.string.not_enough_balance));
+                yueNotEnoughDialog = new ZhaoBiaoDialog(getActivity(), getString(R.string.not_enough_balance));
                 yueNotEnoughDialog.setCancelButtonGone();
                 yueNotEnoughDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
@@ -437,7 +414,7 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
     /**
      * 初始化网邻通过期的dialog
      */
-    private void initAccountExpireDialog(){
+    private void initAccountExpireDialog() {
         accountExpireDialog = new ZhaoBiaoDialog(getActivity(), "");
         accountExpireDialog.setCancelable(false);
         accountExpireDialog.setCancelButtonGone();
@@ -450,7 +427,7 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
         accountExpireDialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
             @Override
             public void onDialogOkClick() {
-                    accountExpireDialog.dismiss();
+                accountExpireDialog.dismiss();
 
             }
 
@@ -467,28 +444,28 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
         if (srl != null && srl.isRefreshing()) {
             srl.setRefreshing(false);
         }
-        if(getActivity() != null){
+        if (getActivity() != null) {
             stopLoading();
         }
 
         //加载ViewStub
-        if (root == null) {
-            root = viewStub_no_data.inflate();
-            root.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    loadDatas();
-                }
-            });
-        }
-        root.setVisibility(View.VISIBLE);
+//        if (root == null) {
+//            root = viewStub_no_data.inflate();
+//            root.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    loadDatas();
+//                }
+//            });
+//        }
+//        root.setVisibility(View.VISIBLE);
 
         try {
             if (!TextUtils.isEmpty(msg) && msg.equals("2001")) {
                 MainActivity ola = (MainActivity) getActivity();
                 ola.onLoadingError(msg);
-            }else if (getActivity() != null && !TextUtils.isEmpty(msg)) {
-               ToastUtils.showToast(msg);
+            } else if (getActivity() != null && !TextUtils.isEmpty(msg)) {
+                ToastUtils.showToast(msg);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -512,53 +489,8 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
 
     @Override
     public void onVersionBack(String version) {
-
-       if(getActivity() != null && !UserUtils.isNeedUpdate(getActivity())){ //判断是否强制更新
-           String versionCode = "";
-           int currentVersion = -1; //当前版本号
-           int versionNum = -1;
-           //获取当前系统版本号
-           try {
-               currentVersion = Integer.parseInt(VersionUtils.getVersionCode(getActivity()));
-           } catch (Exception e) {
-
-           }
-           if (currentVersion == -1) return;
-
-           //当前是MainActivity，获取服务器header返回的版本号
-           if (version != null) {
-               if (version.contains("F")) {
-                   forceUpdate = true;
-                   String[] fs = version.split("F");
-                   versionCode = fs[0];
-                   try {
-                       versionNum = Integer.parseInt(versionCode);
-                   } catch (Exception e) {
-
-                   }
-               }else{
-                   try {
-                       versionNum = Integer.parseInt(version);
-                   } catch (Exception e) {
-
-                   }
-               }
-
-               if (versionNum == -1) {
-                   return;
-               }
-
-               UpdateManager.getUpdateManager().isUpdateNow(getActivity(), versionNum, currentVersion, URLConstans.DOWNLOAD_ZHAOBIAO_ADDRESS, forceUpdate);
-//          UpdateManager.getUpdateManager().isUpdateNow(this, versionNum, currentVersion, "http://10.252.23.45:8001/2.7.0_zhaobiao.apk", forceUpdate);
-               Boolean flag = UpdateManager.needUpdate;
-               Log.v("www", "flag:" + flag);
-               if (!flag) {
-                   //判断是不是第一次进入主界面
-                   showFirst();
-               }
-           }
-       }
     }
+
 
 
     @Override
@@ -568,81 +500,35 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
         ola.onLoginInvalidate();
     }
 
-    /**
-     * 第一次登录时的提示
-     */
-    private void showFirst() {
-//      if(!SPUtils.getAppUpdate(this)){
-        if (SPUtils.isFirstUpdate(getActivity())) {//需要弹窗
-            if (updateMessageDialog == null) {
-                updateMessageDialog = new ZhaoBiaoDialog(getActivity(),
-//                    getString(R.string.update_hint),
-                        getString(R.string.update_message));
-                updateMessageDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        updateMessageDialog = null;
-                        //弹自定义界面的弹
-                        if (SPUtils.isAutoSetting(getActivity())) {
-                            autoSettingDialog.show();
-                        }
-                    }
-                });
-                updateMessageDialog.setCancelable(false);
-                updateMessageDialog.setCancelButtonGone();
-                updateMessageDialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
-                    @Override
-                    public void onDialogOkClick() {
-                        updateMessageDialog.dismiss();
-                        SPUtils.saveAlreadyFirstUpdate(getActivity(), false);
-//                    UserUtils.setAppVersion(MainActivity.this, ""); //2.7升级可删
-//                       SPUtils.setAppUpdate(MainActivity.this, true);
-                    }
-
-                    @Override
-                    public void onDialogCancelClick() {
-                    }
-                });
-                updateMessageDialog.show();
-
-            }
-        } else {
-            if (SPUtils.isAutoSetting(getActivity())) {
-                autoSettingDialog.show();
-            }
-        }
-
-
-    }
 
     /**
      * adapter的回调监听
      */
-  ZBBaseAdapter.AdapterListener adapterListener = new ZBBaseAdapter.AdapterListener() {
-      @Override
-      public void onAdapterRefreshSuccess() {
-          mPullToRefreshListView.setAdapter(adapter);
-      }
+    ZBBaseAdapter.AdapterListener adapterListener = new ZBBaseAdapter.AdapterListener() {
+        @Override
+        public void onAdapterRefreshSuccess() {
+            mPullToRefreshListView.setAdapter(adapter);
+        }
 
-      @Override
-      public void onAdapterLoadMoreSuccess() {
-          adapter.notifyDataSetChanged();
-      }
+        @Override
+        public void onAdapterLoadMoreSuccess() {
+            adapter.notifyDataSetChanged();
+        }
 
-      @Override
-      public void onAdapterViewClick(int id, PushToPassBean bean) {
-          //点击了抢单
-          BDMob.getBdMobInstance().onMobEvent(getActivity(), BDEventConstans.EVENT_ID_BIDDING_LIST_PAGE_BIDDING);
+        @Override
+        public void onAdapterViewClick(int id, PushToPassBean bean) {
+            //点击了抢单
+            BDMob.getBdMobInstance().onMobEvent(getActivity(), BDEventConstans.EVENT_ID_BIDDING_LIST_PAGE_BIDDING);
 
-          HYMob.getDataListForQiangdan(getActivity(), HYEventConstans.EVENT_ID_BIDDING_LIST_PAGE_BIDDING, String.valueOf(bean.getBidId()), "1");
+            HYMob.getDataListForQiangdan(getActivity(), HYEventConstans.EVENT_ID_BIDDING_LIST_PAGE_BIDDING, String.valueOf(bean.getBidId()), "1");
 
-          passBean = bean;
-          knockViewModel = new KnockViewModel(BiddingFragment.this, getActivity());
-          knockViewModel.knock(bean, AppConstants.BIDSOURCE_LIST);
+            passBean = bean;
+            knockViewModel = new KnockViewModel(BiddingFragment.this, getActivity());
+            knockViewModel.knock(bean, AppConstants.BIDSOURCE_LIST);
 
-          rl_qd.setVisibility(View.VISIBLE);
-      }
-  };
+            rl_qd.setVisibility(View.VISIBLE);
+        }
+    };
 
 
     @Override
@@ -662,12 +548,36 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
         LogUtils.LogV("nnnnnnB1a", String.valueOf(pushBean.getTag()));
         if (null != pushBean) {
             int type = pushBean.getTag();
-            LogUtils.LogV("nnnnnnB1b", String.valueOf(pushBean.getTag())+ StateUtils.getState(getActivity()) );
+            LogUtils.LogV("nnnnnnB1b", String.valueOf(pushBean.getTag()) + StateUtils.getState(getActivity()));
             if (type == 100 && StateUtils.getState(getActivity()) == 1) {
                 LogUtils.LogV("nnnnnnB1c", String.valueOf(pushBean.getTag()));
-                Intent intent = new Intent(getActivity(), PushInActivity.class);
-                startActivity(intent);
-            } else {
+
+                String isSon = UserUtils.getIsSon(getActivity());
+                if (!TextUtils.isEmpty(isSon) && TextUtils.equals("1", isSon)) {
+                    String rbac = UserUtils.getRbac(getActivity());
+                    if (!TextUtils.isEmpty(rbac)
+                            && TextUtils.equals("1", rbac) || TextUtils.equals("5", rbac)) {
+                        LogUtils.LogV("PushInActivity", "BiddingFragment" + "没有权限弹窗");
+                    }else{
+
+                        Intent intent = new Intent(getActivity(), PushInActivity.class);
+                        startActivity(intent);
+                    }
+
+                } else {
+                    Intent intent = new Intent(getActivity(), PushInActivity.class);
+                    startActivity(intent);
+                }
+
+            }
+            else if(type == 105){
+                try {
+                    new LogoutDialogUtils(getActivity(), "当前账号被强制退出").showSingleButtonDialog();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            else if(type != 100 && type != 105){
                 LogUtils.LogV("nnnnnnB1d", String.valueOf(pushBean.getTag()));
                 tbl.setPushBean(pushBean);
                 tbl.setVisibility(View.VISIBLE);
@@ -677,7 +587,7 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
             Toast.makeText(getActivity(), "实体bean为空", Toast.LENGTH_SHORT).show();
         }
 
-        if (listViewModel != null){
+        if (listViewModel != null) {
             loadDatas();
         }
     }
@@ -703,4 +613,6 @@ public class BiddingFragment extends BaseHomeFragment  implements INotificationL
             yueNotEnoughDialog = null;
         }
     }
+
+
 }

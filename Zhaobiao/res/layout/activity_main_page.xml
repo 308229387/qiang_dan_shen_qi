@@ -3,23 +3,78 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-        <com.huangyezhaobiao.tab.MainTabViewPager
-            android:id="@+id/id_pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+    <com.huangyezhaobiao.tab.MainTabViewPager
+        android:id="@+id/id_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/divider" />
 
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/common_divider_line_height"
-            android:background="@color/gray_color_line"
-            android:layout_above="@+id/id_indicator"/>
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_divider_line_height"
+        android:layout_above="@+id/id_indicator"
+        android:background="@color/gray_color_line" />
 
-        <com.huangyezhaobiao.tab.MainTabIndicator
-            android:id="@+id/id_indicator"
-            android:layout_alignParentBottom="true"
-            android:layout_width="match_parent"
-            android:layout_height="49.0dip"/>
+    <com.huangyezhaobiao.tab.MainTabIndicator
+        android:id="@+id/id_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="49.0dip"
+        android:layout_alignParentBottom="true" />
+
+
+    <RelativeLayout
+        android:id="@+id/linearLayout_mask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/mask_back"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_mask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/iv_mask"
+            android:layout_marginRight="35dip"
+            android:layout_alignParentRight="true"
+            android:layout_above="@+id/iv_mine"/>
+
+        <ImageView
+            android:id="@+id/iv_mine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/iv_mine"
+            android:layout_marginRight="10dip"
+            android:layout_marginBottom="2dip"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_mine_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/mask_back"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_account_mask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="220dip"
+            android:layout_marginLeft="5dip"
+            android:src="@drawable/iv_account" />
+
+        <ImageView
+            android:id="@+id/iv_account_alert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dip"
+            android:layout_below="@id/iv_account_mask"
+            android:src="@drawable/iv_mine_account" />
+    </RelativeLayout>
 
 
 </RelativeLayout>

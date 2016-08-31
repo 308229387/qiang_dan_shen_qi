@@ -199,23 +199,27 @@ public class NannyOrderListBean extends QDBaseBean{
             if(TextUtils.equals(orderState, Constans.DONE_FRAGMENT_FINISH)){ //已完成(成交)
                 nannyOrderHolder.iv_order_state_line.setVisibility(View.GONE);
                 nannyOrderHolder.tv_order_state.setText(R.string.over_done);
+                nannyOrderHolder.tv_order_state.setTextColor(Color.parseColor("#C5C5C5"));
                 if(TextUtils.isEmpty(refundText) || TextUtils.equals(refundText,"未退单")){
 
                 }else{
                     StringBuilder sb = new StringBuilder();
                     sb.append("已结束").append("(").append(refundText).append(")");
                     nannyOrderHolder.tv_order_state.setText(sb.toString());
+                    nannyOrderHolder.tv_order_state.setTextColor(Color.parseColor("#C5C5C5"));
                 }
 
             }else if(TextUtils.equals(orderState, Constans.DONE_FRAGMENT_CANCEL)){ //已完成(未成交)
                 nannyOrderHolder.iv_order_state_line.setVisibility(View.GONE);
                 nannyOrderHolder.tv_order_state.setText(R.string.over_undone);
+                nannyOrderHolder.tv_order_state.setTextColor(Color.parseColor("#C5C5C5"));
                 if(TextUtils.isEmpty(refundText) || TextUtils.equals(refundText,"未退单") ){
 
                 }else{
                     StringBuilder sb = new StringBuilder();
                     sb.append("已结束").append("(").append(refundText).append(")");
                     nannyOrderHolder.tv_order_state.setText(sb.toString());
+                    nannyOrderHolder.tv_order_state.setTextColor(Color.parseColor("#C5C5C5"));
                 }
             }else if(TextUtils.equals(orderState, Constans.READY_SERVICE)){
                 nannyOrderHolder.iv_order_state_line.setVisibility(View.VISIBLE);

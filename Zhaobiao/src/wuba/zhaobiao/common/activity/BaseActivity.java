@@ -18,7 +18,6 @@ public abstract class BaseActivity<T extends BaseModel> extends FragmentActivity
     protected T model;
     public long resume_time;
     public long stop_time;
-    protected final static String CLOSE_ACTIVITTY = "CLOSE_ACTIVITTY";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

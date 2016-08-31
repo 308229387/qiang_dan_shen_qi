@@ -2,7 +2,7 @@ package com.huangyezhaobiao.enums;
 
 public enum PopTypeEnum {
 
-	NEW_ORDER(100), ORDERRESULT(101), COUNTDOWN(102), SYSTEMMESSAGE(103);
+	NEW_ORDER(100), ORDERRESULT(101), COUNTDOWN(102), SYSTEMMESSAGE(103),LOGOUT(105);
 
 	private int type;
 
@@ -28,6 +28,8 @@ public enum PopTypeEnum {
 			return PopTypeEnum.COUNTDOWN;
 		case 103:
 			return PopTypeEnum.SYSTEMMESSAGE;
+		case 105:
+			return PopTypeEnum.LOGOUT;
 		default:
 			return PopTypeEnum.NEW_ORDER;
 		}

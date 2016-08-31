@@ -31,7 +31,7 @@ public class LogoutClearInfoAndStopServiceUtils {
         UserUtils.clearUserInfo(context.getApplicationContext());
     }
 
-    private void unRigistGePush() {
+    private void unRigistGePush() { //退出时注销个推
         GePushProxy.unBindPushAlias(context.getApplicationContext(), UserUtils.getUserId(context.getApplicationContext()));
     }
 

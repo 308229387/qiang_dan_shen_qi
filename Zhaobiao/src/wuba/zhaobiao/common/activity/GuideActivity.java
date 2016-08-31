@@ -22,7 +22,7 @@ public class GuideActivity extends BaseActivity<GuideModel> {
 
     private void init() {
         setTopBarColor();
-        onfigViewPager();
+        configViewPager();
         getCurrentVersion();
         getSP();
     }
@@ -39,10 +39,10 @@ public class GuideActivity extends BaseActivity<GuideModel> {
         model.setTopBarColor();
     }
 
-    private void onfigViewPager() {
+    private void configViewPager() {
         model.initViewPager();
         model.setListenerForViewPager();
-        model.creatAdatper();
+        model.createAdapter();
         model.setAdapter();
     }
 
@@ -55,7 +55,7 @@ public class GuideActivity extends BaseActivity<GuideModel> {
     @Override
     protected void onStop() {
         super.onStop();
-        model.statisticsDetalTime();
+        model.statisticsDeadTime();
     }
 
     @Override

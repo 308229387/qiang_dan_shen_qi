@@ -87,7 +87,7 @@ public class GPushService extends IntentService {
 //        params.addHeader("userId",UserUtils.getPassportUserId(BiddingApplication.getAppInstanceContext()));
 
         params.addHeader("ppu", LoginClient.doGetPPUOperate(BiddingApplication.getAppInstanceContext()));
-        params.addHeader("userId",LoginClient.doGetUserIDOperate(BiddingApplication.getAppInstanceContext()));
+        params.addHeader("userId",UserUtils.getUserId(BiddingApplication.getAppInstanceContext()));
 //        params.addHeader("userId","34675169722113");  //bigbang1
 //        params.addHeader("userId","34680567140865");  //bigbang2
 //        params.addHeader("userId","34680592616449");  //bigbang3
@@ -98,6 +98,9 @@ public class GPushService extends IntentService {
         params.addHeader("version", "6");
         params.addHeader("platform", "1");
         params.addHeader("UUID", PhoneUtils.getIMEI(BiddingApplication.getAppInstanceContext()));
+
+        params.addHeader("isSon", UserUtils.getIsSon(BiddingApplication.getAppInstanceContext()));
+        params.addHeader("suserId", LoginClient.doGetUserIDOperate(BiddingApplication.getAppInstanceContext()));
         return params;
     }
     /**

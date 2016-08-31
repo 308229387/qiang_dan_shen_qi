@@ -39,6 +39,7 @@ import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.PushUtils;
 import com.huangyezhaobiao.utils.StateUtils;
 import com.huangyezhaobiao.utils.UnreadUtils;
+import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
 import com.huangyezhaobiao.vm.CenterMessageStorageViewModel;
 
@@ -46,6 +47,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import wuba.zhaobiao.utils.LogoutDialogUtils;
 
 /**
  * Created by 58 on 2016/6/17.
@@ -127,6 +130,7 @@ public class MessageFragment extends BaseHomeFragment implements INotificationLi
 
             adapter = new MessageSeriesAdapter(getActivity());
             lv_message_center = (ListView) view.findViewById(R.id.lv_message_center);
+
             lv_message_center.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> arg0, View arg1,
@@ -307,9 +311,33 @@ public class MessageFragment extends BaseHomeFragment implements INotificationLi
             int type = pushBean.getTag();
             if (type == 100 && StateUtils.getState(getActivity()) == 1) {
                 LogUtils.LogV("nnnnnnB2c", String.valueOf(pushBean.getTag()));
-                Intent intent = new Intent(getActivity(), PushInActivity.class);
-                startActivity(intent);
-            } else {
+
+                String isSon = UserUtils.getIsSon(getActivity());
+                if (!TextUtils.isEmpty(isSon) && TextUtils.equals("1", isSon)) {
+                    String rbac = UserUtils.getRbac(getActivity());
+                    if (!TextUtils.isEmpty(rbac)
+                            && TextUtils.equals("1", rbac) || TextUtils.equals("5", rbac)) {
+                        LogUtils.LogV("PushInActivity", "MessageFragment" + "没有权限弹窗");
+                    }else{
+
+                        Intent intent = new Intent(getActivity(), PushInActivity.class);
+                        startActivity(intent);
+                    }
+
+                } else {
+                    Intent intent = new Intent(getActivity(), PushInActivity.class);
+                    startActivity(intent);
+                }
+
+            }
+            else if(type == 105){
+                try {
+                    new LogoutDialogUtils(getActivity(), "当前账号被强制退出").showSingleButtonDialog();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            else if(type != 100 && type != 105){
                 LogUtils.LogV("nnnnnnB2d", String.valueOf(pushBean.getTag()));
 //                if(tbl  != null){
 //                    tbl.setPushBean(pushBean);

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
@@ -35,6 +36,7 @@ import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
+import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.NetUtils;
 import com.huangyezhaobiao.utils.PushUtils;
 import com.huangyezhaobiao.utils.StateUtils;
@@ -45,6 +47,8 @@ import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import com.wuba.loginsdk.external.LoginClient;
 
 import java.sql.Ref;
+
+import wuba.zhaobiao.utils.LogoutDialogUtils;
 
 /**
  * Created by shenzhixin on 2015/12/9.
@@ -213,9 +217,31 @@ public class RefundActivity extends CommonFragmentActivity implements View.OnCli
         if (null != pushBean) {
             int type = pushBean.getTag();
             if (type == 100 && StateUtils.getState(RefundActivity.this) == 1) {
-                Intent intent = new Intent(this, PushInActivity.class);
-                startActivity(intent);
-            } else {
+                String isSon = UserUtils.getIsSon(this);
+                if (!TextUtils.isEmpty(isSon) && TextUtils.equals("1", isSon)) {
+                    String rbac = UserUtils.getRbac(this);
+                    if (!TextUtils.isEmpty(rbac)
+                            && TextUtils.equals("1", rbac) || TextUtils.equals("5", rbac)) {
+                        LogUtils.LogV("PushInActivity", "RefundActivity" + "没有权限弹窗");;
+                    }else{
+                        Intent intent = new Intent(this, PushInActivity.class);
+                        startActivity(intent);
+                    }
+
+                } else {
+                    Intent intent = new Intent(this, PushInActivity.class);
+                    startActivity(intent);
+                }
+
+            }
+            else if(type == 105){
+                try {
+                    new LogoutDialogUtils(RefundActivity.this, "当前账号被强制退出").showSingleButtonDialog();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            else if(type != 100 && type != 105) {
                 tbl.setPushBean(pushBean);
                 tbl.setVisibility(View.VISIBLE);
                 PushUtils.pushList.clear();

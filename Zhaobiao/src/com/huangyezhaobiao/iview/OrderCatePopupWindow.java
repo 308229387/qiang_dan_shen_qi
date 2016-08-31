@@ -16,13 +16,14 @@ import android.widget.TextView;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.adapter.OrderStateAdapter;
 import com.huangyezhaobiao.bean.mylist.OrderState.OrderStateEntity;
-import com.huangyezhaobiao.fragment.home.OrderListFragment;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import wuba.zhaobiao.order.model.OrderModel;
 
 
 public class OrderCatePopupWindow extends PopupWindow implements OnClickListener {
@@ -106,8 +107,8 @@ public class OrderCatePopupWindow extends PopupWindow implements OnClickListener
             @Override
             public void onClick(View v) {
                 LogUtils.LogV("tag", "重置被点击");
-                OrderListFragment.orderState = "0";
-                OrderListFragment.checkedId.clear();
+                OrderModel.orderState = "0";
+                OrderModel.checkedId.clear();
                 adapter.notifyDataSetChanged();
 
                 HYMob.getDataList(context, HYEventConstans.EVENT_ID_FILTER_RESET);

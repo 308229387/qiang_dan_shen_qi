@@ -22,6 +22,7 @@ import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
+import com.huangyezhaobiao.utils.StringUtils;
 import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
@@ -83,7 +84,7 @@ public class MobileValidateActivity extends CommonBaseActivity implements NetWor
 				HYMob.getDataList(MobileValidateActivity.this, HYEventConstans.EVENT_ID_MOBILE_BIND_PAGE_GETCODE);
 
 				String mobiletext = mobile.getText().toString();
-				if (isMobile(mobiletext)) {
+				if (StringUtils.isMobile(mobiletext)) {
 					viewModel.getCode(UserUtils.userId, mobiletext,false);
 				} else {
 					ToastUtils.makeImgAndTextToast(MobileValidateActivity.this,  getString(R.string.input_correct_mobile), R.drawable.validate_error, Toast.LENGTH_SHORT).show();
@@ -101,10 +102,10 @@ public class MobileValidateActivity extends CommonBaseActivity implements NetWor
 
 				String mobiletext = mobile.getText().toString();
 				String codetext = code.getText().toString();
-				if (!isMobile(mobiletext)) {
+				if (!StringUtils.isMobile(mobiletext)) {
 					ToastUtils.makeImgAndTextToast(MobileValidateActivity.this, getString(R.string.input_correct_mobile), R.drawable.validate_error, Toast.LENGTH_SHORT).show();
 				}
-				else if(!isCode(codetext)){
+				else if(!StringUtils.isCode(codetext)){
 					ToastUtils.makeImgAndTextToast(MobileValidateActivity.this, getString(R.string.input_correct_validate), R.drawable.validate_error, Toast.LENGTH_SHORT).show();
 				}
 				else{
@@ -154,32 +155,6 @@ public class MobileValidateActivity extends CommonBaseActivity implements NetWor
             
         }  
     };  
-	
-	protected boolean isCode(String str) {
-		Pattern p = null;
-		Matcher m = null;
-		boolean b = false;
-		p = Pattern.compile("^[0-9]{6}$"); // 验证手机号
-		m = p.matcher(str);
-		b = m.matches();
-		return b;
-	 }
-                                                                                                                                                                                                                                                                                 	/**                
-	 * 手机号验证
-	 * 
-	 * @param str
-	 * @return 验证通过返回true
-	 */
-	public static boolean isMobile(String str) {
-		Pattern p = null;
-		Matcher m = null;
-		boolean b = false;
-		p = Pattern.compile("^[1][3,4,5,7,8][0-9]{9}$"); // 验证手机号
-		m = p.matcher(str);
-		b = m.matches();
-		return b;
-	}
-
 
 	@Override
 	public void onLoadingStart() {

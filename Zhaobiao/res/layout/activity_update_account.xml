@@ -65,7 +65,7 @@
             android:layout_marginBottom="11dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="11dp"
-            android:text="使用手机人"
+            android:text="使用人手机"
             android:textColor="@color/black"
             android:textSize="@dimen/textsize_large"/>
 
@@ -195,7 +195,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="27dp"
-        android:background="@drawable/submit_btn_bgs"
+        android:background="@drawable/subimt_bg_account"
         android:text="保存"
         android:textSize="16sp"
         android:textColor="#FECDCA" />

@@ -3,23 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-        <com.huangyezhaobiao.tab.MainTabViewPager
-            android:id="@+id/id_pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+    <com.huangyezhaobiao.tab.MainTabViewPager
+        android:id="@+id/id_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/divider" />
 
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/common_divider_line_height"
-            android:background="@color/gray_color_line"
-            android:layout_above="@+id/id_indicator"/>
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_divider_line_height"
+        android:layout_above="@+id/id_indicator"
+        android:background="@color/gray_color_line" />
 
-        <com.huangyezhaobiao.tab.MainTabIndicator
-            android:id="@+id/id_indicator"
-            android:layout_alignParentBottom="true"
-            android:layout_width="match_parent"
-            android:layout_height="49.0dip"/>
+    <com.huangyezhaobiao.tab.MainTabIndicator
+        android:id="@+id/id_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="49.0dip"
+        android:layout_alignParentBottom="true" />
 
 
 </RelativeLayout>

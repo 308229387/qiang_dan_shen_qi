@@ -12,11 +12,6 @@
         <include layout="@layout/layout_backhead"
             android:id="@+id/layout_head"
             />
-        <!--
-          <include 
-         layout="@layout/layout_order_hint"
-         />
-        -->
 
         <include
             layout="@layout/no_internet_layout"
@@ -34,9 +29,8 @@
         <com.huangyezhaobiao.view.TitleMessageBarLayout
             android:id="@+id/tbl"
             android:layout_width="fill_parent"
-            android:layout_height="45dp" />
-
-        
+            android:layout_height="45dp"
+            android:visibility="gone"/>
 
             <RelativeLayout
                 android:layout_width="fill_parent"
@@ -88,13 +82,7 @@
                     android:layout_width="fill_parent"
                     android:orientation="horizontal"
                     android:layout_height="fill_parent"/>
-                
-              <!--  <WebView
-	                    android:id="@+id/webView_help"
-	                    android:layout_width="fill_parent"
-	                    android:layout_height="fill_parent"
-	                    android:layout_above="@id/rl_help_tel"
-                    />-->
+
                 
             </RelativeLayout>
        

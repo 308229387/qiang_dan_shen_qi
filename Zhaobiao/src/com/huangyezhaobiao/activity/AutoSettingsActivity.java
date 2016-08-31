@@ -67,19 +67,23 @@ public class AutoSettingsActivity extends QBBaseActivity implements View.OnClick
         back_layout.setVisibility(View.VISIBLE);
         txt_head              = getView(R.id.txt_head);
         txt_head.setText("自定义设置");
+
         progress              = getView(R.id.pb);
         tv_no_internet        = getView(R.id.tv_no_internet);
         webView_auto_settings = new WebView(this);
         ll_webview_container.addView(webView_auto_settings);
+
         baseWebClient         = new BaseWebClient();
         webChromeBaseClient   = new WebChromeBaseClient();
-        webView_auto_settings.setWebViewClient(baseWebClient);
+
         webView_auto_settings.getSettings().setJavaScriptEnabled(true);
         webView_auto_settings.getSettings().setUseWideViewPort(true);
         webView_auto_settings.getSettings().setDefaultTextEncodingName("UTF-8"); // 设置默认的显示编码
         webView_auto_settings.setWebViewClient(baseWebClient);
         webView_auto_settings.setWebChromeClient(webChromeBaseClient);
+
         removeJSInterface();
+
         String url = URLConstans.AUTO_SETTINGS + UrlSuffix.getAutoSettingSuffix(this);
         Log.e("ashen", "url:" + url);
         if(NetUtils.isNetworkConnected(this)) {
@@ -92,6 +96,8 @@ public class AutoSettingsActivity extends QBBaseActivity implements View.OnClick
             webView_auto_settings.setVisibility(View.GONE);
             tv_no_internet.setVisibility(View.VISIBLE);
         }
+
+
         dialog               = new ZhaoBiaoDialog(this,"确定要退出自定义设置么");
         dialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
             @Override

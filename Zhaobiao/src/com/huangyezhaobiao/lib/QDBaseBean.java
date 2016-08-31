@@ -21,7 +21,7 @@ public abstract class QDBaseBean {
 	 * @return
 	 */
 	public  abstract String getCateId();
-	
+
 	/**
 	 * 商机列表页需要重写
 	 * @return
@@ -29,7 +29,7 @@ public abstract class QDBaseBean {
 	public   long getBidId(){
 		return 0;
 	}
-	
+
 	/**
 	 * 商机列表页需要重写
 	 * @return
@@ -37,7 +37,7 @@ public abstract class QDBaseBean {
 	public   long getPushId(){
 		return 0;
 	}
-	
+
 	/**
 	 * 商机列表页需要重写
 	 * @return
@@ -45,7 +45,7 @@ public abstract class QDBaseBean {
 	public int getBidState(){
 		return 0;
 	}
-	
+
 	public  abstract int getDisplayType();
 
 	public abstract  void setCateId(String cateId);
@@ -59,22 +59,22 @@ public abstract class QDBaseBean {
 	 * @return
 	 */
 	public  abstract int getLayoutId();
-	
+
 	public QDBaseBean() {
 		layout_id = getLayoutId();
 	}
-	
-	
-	
+
+
+
 	/**
 	 * 得到view
 	 * @return
 	 */
 	public  View getLayoutView(LayoutInflater inflater,ViewGroup parent){
-		
+
 		return inflater.inflate(getLayoutId(), parent, false);
 	}
-	
+
 	/**
 	 * 填充数据
 	 */
@@ -85,10 +85,10 @@ public abstract class QDBaseBean {
 	 * @param convertView
 	 */
 	public abstract View initView(View convertView,LayoutInflater inflater,ViewGroup parent,Context context,ZBBaseAdapter<QDBaseBean> adapter);
-	
+
 	/**
 	 * 复用这个view
 	 */
 	public abstract void converseView(View convertView,Context context,ZBBaseAdapter<QDBaseBean> adapter);
-	
+
 }

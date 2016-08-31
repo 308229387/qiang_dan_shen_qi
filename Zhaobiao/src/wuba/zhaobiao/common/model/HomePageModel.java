@@ -1,15 +1,24 @@
 package wuba.zhaobiao.common.model;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.activity.BidSuccessActivity;
@@ -21,22 +30,22 @@ import com.huangyezhaobiao.constans.AppConstants;
 import com.huangyezhaobiao.eventbus.EventAction;
 import com.huangyezhaobiao.eventbus.EventType;
 import com.huangyezhaobiao.eventbus.EventbusAgent;
-import com.huangyezhaobiao.fragment.home.BaseHomeFragment;
-import com.huangyezhaobiao.fragment.home.BiddingFragment;
-import com.huangyezhaobiao.fragment.home.MessageFragment;
-import com.huangyezhaobiao.fragment.home.OrderListFragment;
-import com.huangyezhaobiao.fragment.home.PersonalCenterFragment;
 import com.huangyezhaobiao.service.MyService;
 import com.huangyezhaobiao.tab.MainTabFragmentAdapter;
 import com.huangyezhaobiao.tab.MainTabIndicator;
 import com.huangyezhaobiao.tab.MainTabIndicatorBean;
 import com.huangyezhaobiao.tab.MainTabViewPager;
+import com.huangyezhaobiao.url.URLConstans;
+import com.huangyezhaobiao.utils.LogUtils;
+import com.huangyezhaobiao.utils.LoggerUtils;
 import com.huangyezhaobiao.utils.PhoneUtils;
 import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.TimeUtils;
 import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.utils.UnreadUtils;
+import com.huangyezhaobiao.utils.UpdateManager;
 import com.huangyezhaobiao.utils.UserUtils;
+import com.huangyezhaobiao.utils.VersionUtils;
 import com.lzy.okhttputils.OkHttpUtils;
 
 import java.util.ArrayList;
@@ -44,13 +53,22 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import okhttp3.Call;
+import okhttp3.Headers;
 import okhttp3.Request;
 import okhttp3.Response;
 import wuba.zhaobiao.common.activity.HomePageActivity;
+import wuba.zhaobiao.common.fragment.BaseFragment;
 import wuba.zhaobiao.config.ScreenReceiver;
 import wuba.zhaobiao.config.Urls;
+import wuba.zhaobiao.grab.fragment.GrabFragment;
+import wuba.zhaobiao.grab.fragment.GrabTestFragment;
+import wuba.zhaobiao.message.fragment.MessageFragment;
+import wuba.zhaobiao.mine.fragment.MineFragment;
+import wuba.zhaobiao.order.fragment.OrderFragment;
 import wuba.zhaobiao.respons.GetWltStateRespons;
+import wuba.zhaobiao.utils.AutoSettingDialogUtils;
 import wuba.zhaobiao.utils.LogoutDialogUtils;
+import wuba.zhaobiao.utils.UpdateDialogUtils;
 
 /**
  * Created by SongYongmeng on 2016/7/29.
@@ -64,6 +82,105 @@ public class HomePageModel extends BaseModel {
     private ScreenReceiver receiver;
     private static Boolean isExit = false;
     private int DEFALT_FRAGMENT_NUM = 0;
+
+    int currentVersion = -1; //当前版本号
+    int versionNum = -1; //获取当前系统版本号
+    private boolean forceUpdate = false; //是否强制更新
+
+
+    /** 初次进入时候的蒙版背景 */
+    private RelativeLayout layout_mask,rl_mine_layout;
+    /** 初次进入时的蒙版图片 */
+    private ImageView imageView_mine, iv_account_alert;
+
+
+    public void initMaskView(){
+        initLayoutView();
+        initMaskImageView();
+    }
+
+    private void initLayoutView(){
+        //蒙版相关初始化
+        layout_mask = (RelativeLayout)context.findViewById(R.id.linearLayout_mask);
+        layout_mask.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
+    }
+
+    private void initMaskImageView(){
+        imageView_mine = (ImageView)context.findViewById(R.id.iv_mine);
+        imageView_mine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_mask.setVisibility(View.GONE);
+                context.getSharedPreferences("Setting", Context.MODE_PRIVATE).edit().putBoolean("read_account", true).commit();
+                selectMine();
+                initMineMaskView();
+                setMineMask();
+            }
+        });
+    }
+
+    private void selectMine(){
+        int pageIndex = 3;
+        setViewPage(pageIndex);
+    }
+
+    public void setMask() {
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+                "Setting", Context.MODE_PRIVATE);
+        boolean isread = sharedPreferences.getBoolean("read_account", false);
+        if (!isread) {
+            layout_mask.setVisibility(View.VISIBLE);
+        } else {
+            layout_mask.setVisibility(View.GONE);
+        }
+    }
+
+
+    public void initMineMaskView(){
+        initMineLayoutView();
+        initMineImageView();
+    }
+
+    private void initMineLayoutView(){
+        //蒙版相关初始化
+        rl_mine_layout = (RelativeLayout)context.findViewById(R.id.rl_mine_layout);
+        rl_mine_layout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
+    }
+
+    private void initMineImageView(){
+        iv_account_alert = (ImageView)context.findViewById(R.id.iv_account_alert);
+        iv_account_alert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rl_mine_layout.setVisibility(View.GONE);
+                context.getSharedPreferences("Setting", Context.MODE_PRIVATE).edit().putBoolean("mine_account", true).commit();
+
+            }
+        });
+    }
+
+    public void setMineMask() {
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+                "Setting", Context.MODE_PRIVATE);
+        boolean isread = sharedPreferences.getBoolean("mine_account", false);
+        if (!isread) {
+            rl_mine_layout.setVisibility(View.VISIBLE);
+        } else {
+            rl_mine_layout.setVisibility(View.GONE);
+        }
+    }
 
     public void setTobBarColor() {
         context.getWindow().setBackgroundDrawable(null);
@@ -95,10 +212,10 @@ public class HomePageModel extends BaseModel {
     }
 
     private void addFragment() {
-        mFragmentList.add(new BiddingFragment());
+        mFragmentList.add(new GrabFragment());
         mFragmentList.add(new MessageFragment());
-        mFragmentList.add(new OrderListFragment());
-        mFragmentList.add(new PersonalCenterFragment());
+        mFragmentList.add(new OrderFragment());
+        mFragmentList.add(new MineFragment());
     }
 
     public void configViewPagerAndButton() {
@@ -141,18 +258,25 @@ public class HomePageModel extends BaseModel {
             doRegist();
     }
 
-    public void getWltOnlineStateAndPhoneNum() {
+    public void getWltOnlineStateAndPhoneNumAndIsNeedUpdateAfterFirstSetting() {
         OkHttpUtils.post(Urls.WLT_CHECK)
                 .params("deviceId", PhoneUtils.getIMEI(context))
                 .execute(new GetWltState(context));
     }
 
-    private  void saveUserSetState(GetWltStateRespons wltStateRespons){
-        String setState = wltStateRespons.getData().getAppUserSet().getSetState();
-        if(!TextUtils.isEmpty(setState))
+    private void saveUserSetState(GetWltStateRespons wltStateRespons) {
+        String setState = getUserSetState(wltStateRespons);
+        if (!TextUtils.isEmpty(setState))
             SPUtils.saveKV(context, GlobalConfigBean.KEY_SETSTATE, setState);
     }
 
+    private String getUserSetState(GetWltStateRespons wltStateRespons) {
+        try {
+            return wltStateRespons.getData().getAppUserSet().getSetState();
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+    }
 
     private void savePhoneAndWltState(GetWltStateRespons wltStateRespons) {
         jugedPhoneNumState(wltStateRespons);
@@ -160,14 +284,30 @@ public class HomePageModel extends BaseModel {
     }
 
     private void jugedPhoneNumState(GetWltStateRespons wltStateRespons) {
-        String status = wltStateRespons.getData().getUserPhoneResult().getStatus();
+        String status = getStatus(wltStateRespons);
         if (TextUtils.equals(UserPhoneBean.SUCCESS, status))
             savePhoneNumToSP(wltStateRespons);
     }
 
+    private String getStatus(GetWltStateRespons wltStateRespons) {
+        try {
+            return wltStateRespons.getData().getUserPhoneResult().getStatus();
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
     private void savePhoneNumToSP(GetWltStateRespons wltStateRespons) {
-        String userPhone = wltStateRespons.getData().getUserPhoneResult().getUserPhone();
+        String userPhone = getPhoneNumToSP(wltStateRespons);
         SPUtils.saveKV(context, GlobalConfigBean.KEY_USERPHONE, userPhone);
+    }
+
+    private String getPhoneNumToSP(GetWltStateRespons wltStateRespons) {
+        try {
+            return wltStateRespons.getData().getUserPhoneResult().getUserPhone();
+        } catch (Exception e) {
+            return e.getMessage();
+        }
     }
 
     private void saveWltState(GetWltStateRespons wltStateRespons) {
@@ -176,13 +316,29 @@ public class HomePageModel extends BaseModel {
     }
 
     private void saveWltExpireState(GetWltStateRespons wltStateRespons) {
-        String expireState = wltStateRespons.getData().getWltAlertResult().getExpireState();
+        String expireState = getExpireState(wltStateRespons);
         SPUtils.saveKV(context, GlobalConfigBean.KEY_WLT_EXPIRE, expireState);
     }
 
+    private String getExpireState(GetWltStateRespons wltStateRespons) {
+        try {
+            return wltStateRespons.getData().getWltAlertResult().getExpireState();
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
     private void saveWltMsg(GetWltStateRespons wltStateRespons) {
-        String msg = wltStateRespons.getData().getWltAlertResult().getMsg();
+        String msg = getSaveWltMsg(wltStateRespons);
         SPUtils.saveKV(context, GlobalConfigBean.KEY_WLT_EXPIRE_MSG, msg);
+    }
+
+    private String getSaveWltMsg(GetWltStateRespons wltStateRespons) {
+        try {
+            return wltStateRespons.getData().getWltAlertResult().getMsg();
+        } catch (Exception e) {
+            return e.getMessage();
+        }
     }
 
     public void eventBusThing(EventAction action) {
@@ -252,7 +408,7 @@ public class HomePageModel extends BaseModel {
 
     public void checkIsLongTimeNotLogout() {
         if (beyondLogoutTime() && userIdNotEmpty())
-            new LogoutDialogUtils(context, "您已长时间无登录操作，请重新登录").initAndShowDialog();
+            new LogoutDialogUtils(context, "您已长时间无登录操作，请重新登录").showSingleButtonDialog();
     }
 
     private boolean beyondLogoutTime() {
@@ -311,8 +467,8 @@ public class HomePageModel extends BaseModel {
     }
 
     private void checkWhichOne(int paramInt, int index) {
-        BaseHomeFragment
-                fragment = (BaseHomeFragment) mFragmentList.get(index);
+        BaseFragment
+                fragment = (BaseFragment) mFragmentList.get(index);
         if (paramInt == index) {
             changeFragmentStateForTrue(fragment, index);
         } else if (AppConstants.HOME_PAGE_INDEX == index) {
@@ -320,12 +476,12 @@ public class HomePageModel extends BaseModel {
         }
     }
 
-    private void changeFragmentStateForTrue(BaseHomeFragment fragment, int index) {
+    private void changeFragmentStateForTrue(BaseFragment fragment, int index) {
         fragment.OnFragmentSelectedChanged(true);
-        BaseHomeFragment.current_index = index;
+        BaseFragment.current_index = index;
     }
 
-    private void changeFragmentStateForFalse(BaseHomeFragment fragment) {
+    private void changeFragmentStateForFalse(BaseFragment fragment) {
         fragment.OnFragmentSelectedChanged(false);
     }
 
@@ -360,6 +516,75 @@ public class HomePageModel extends BaseModel {
                 isExit = false;
             }
         }, 2000);
+    }
+
+    private void saveInfoAndJugeUpdate(GetWltStateRespons WltStateRespons, @Nullable Response response) {
+        saveUserSetState(WltStateRespons);
+        savePhoneAndWltState(WltStateRespons);
+        getVerSionAndJugeIsNeedUpdate(response);
+    }
+
+    private void getVerSionAndJugeIsNeedUpdate(@Nullable Response response) {
+        Headers responseHeadersString = response.headers();
+        String version = responseHeadersString.get("version");
+        if (!UserUtils.isNeedUpdate(context) && version != null)
+            getVersion(version);
+    }
+
+    private void getVersion(String version) {
+        getVersionForCompare(version);
+        compare();
+    }
+
+    private void getVersionForCompare(String version) {
+        try {
+            jugeVersionAndGet(version);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void jugeVersionAndGet(String version) throws PackageManager.NameNotFoundException {
+        if (version.contains("F")) {
+            constansF(version);
+        } else {
+            versionNum = Integer.parseInt(version);
+        }
+        currentVersion = Integer.parseInt(VersionUtils.getVersionCode(context));
+    }
+
+    private void constansF(String version) {
+        forceUpdate = true;
+        String[] fs = version.split("F");
+        String versionCode = fs[0];
+        versionNum = Integer.parseInt(versionCode);
+    }
+
+    private void compare() {
+        compareVersion(versionNum, currentVersion, forceUpdate);
+    }
+
+    private void compareVersion(int netVersion, int localVersion, boolean isForceUpdate) {
+        UpdateManager.getUpdateManager().isUpdateNow(context, netVersion, localVersion, URLConstans.DOWNLOAD_ZHAOBIAO_ADDRESS, isForceUpdate);
+        alreadyNewVersion();
+    }
+
+    private void alreadyNewVersion() {
+        if (!UpdateManager.needUpdate)
+            isFirstUpdate();
+    }
+
+    private void isFirstUpdate() {
+        if (SPUtils.isFirstUpdate(context))
+            new UpdateDialogUtils(context, context.getString(R.string.update_message)).showSingleButtonDialog();
+        else
+            oldUserUpdate();
+    }
+
+    private void oldUserUpdate() {
+        String isSet = SPUtils.getVByK(context, GlobalConfigBean.KEY_SETSTATE);
+        if (!TextUtils.equals("1", isSet) && SPUtils.isAutoSetting(context))
+            new AutoSettingDialogUtils(context, context.getString(R.string.auto_setting_message)).showTwoButtonDialog();
     }
 
     public HomePageModel(HomePageActivity context) {
@@ -401,13 +626,11 @@ public class HomePageModel extends BaseModel {
 
         @Override
         public void onResponse(boolean isFromCache, GetWltStateRespons WltStateRespons, Request request, @Nullable Response response) {
-            savePhoneAndWltState(WltStateRespons);
+            saveInfoAndJugeUpdate(WltStateRespons, response);
+
         }
 
-        @Override
-        public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
-        }
+
     }
-
 
 }

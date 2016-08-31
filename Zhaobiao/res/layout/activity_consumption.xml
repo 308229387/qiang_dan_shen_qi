@@ -37,7 +37,6 @@
             android:textColor="#808080"
             android:textSize="16sp"
             />
-
         </RelativeLayout>
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/srl"

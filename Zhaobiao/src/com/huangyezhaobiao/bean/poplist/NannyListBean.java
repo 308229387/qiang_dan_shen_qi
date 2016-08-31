@@ -25,6 +25,7 @@ import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.MDUtils;
 import com.huangyezhaobiao.utils.TimeUtils;
+import com.huangyezhaobiao.utils.UserUtils;
 
 /**
  * Created by shenzhixin on 2015/12/4.
@@ -241,18 +242,46 @@ public class NannyListBean extends QDBaseBean{
                 nannyBidHolder.grab_style.setImageResource(R.drawable.type_back_grab);
                 nannyBidHolder.iv_nanny_type.setImageResource(R.drawable.iv_nanny_label_knock);
                 nannyBidHolder.view_nanny_bottom.setVisibility(View.VISIBLE);
-                nannyBidHolder.grab_nanny_knock.setBackgroundResource(R.drawable.bt_knock_button_selector);
-                nannyBidHolder.grab_nanny_knock.setTextColor(context.getResources().getColor(R.color.white));
-                nannyBidHolder.grab_nanny_knock.setText("抢单");
-                nannyBidHolder.grab_nanny_knock.setClickable(true);
-                nannyBidHolder.grab_nanny_knock.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        adapter.itemClicked(nannyBidHolder.grab_nanny_knock.getId(), toPopPassBean());
-                        MDUtils.servicePageMD(NannyListBean.this.context, cateId, String.valueOf(bidId),
-                                MDConstans.ACTION_QIANG_DAN);
+
+                String isSon = UserUtils.getIsSon(context);
+                if (!TextUtils.isEmpty(isSon) && TextUtils.equals("1", isSon)) {
+                    String rbac = UserUtils.getRbac(context);
+                    if (!TextUtils.isEmpty(rbac)
+                            && TextUtils.equals("1", rbac) || TextUtils.equals("5", rbac)) {
+                        nannyBidHolder.grab_nanny_knock.setBackgroundResource(R.color.t_gray);
+                        nannyBidHolder.grab_nanny_knock.setTextColor(context.getResources().getColor(R.color.white));
+                        nannyBidHolder.grab_nanny_knock.setText("抢单");
+                        nannyBidHolder.grab_nanny_knock.setClickable(false);
+                    }else{
+                        nannyBidHolder.grab_nanny_knock.setBackgroundResource(R.drawable.bt_knock_button_selector);
+                        nannyBidHolder.grab_nanny_knock.setTextColor(context.getResources().getColor(R.color.white));
+                        nannyBidHolder.grab_nanny_knock.setText("抢单");
+                        nannyBidHolder.grab_nanny_knock.setClickable(true);
+                        nannyBidHolder.grab_nanny_knock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                adapter.itemClicked(nannyBidHolder.grab_nanny_knock.getId(), toPopPassBean());
+                                MDUtils.servicePageMD(NannyListBean.this.context, cateId, String.valueOf(bidId),
+                                        MDConstans.ACTION_QIANG_DAN);
+                            }
+                        });
                     }
-                });
+
+                } else {
+                    nannyBidHolder.grab_nanny_knock.setBackgroundResource(R.drawable.bt_knock_button_selector);
+                    nannyBidHolder.grab_nanny_knock.setTextColor(context.getResources().getColor(R.color.white));
+                    nannyBidHolder.grab_nanny_knock.setText("抢单");
+                    nannyBidHolder.grab_nanny_knock.setClickable(true);
+                    nannyBidHolder.grab_nanny_knock.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            adapter.itemClicked(nannyBidHolder.grab_nanny_knock.getId(), toPopPassBean());
+                            MDUtils.servicePageMD(NannyListBean.this.context, cateId, String.valueOf(bidId),
+                                    MDConstans.ACTION_QIANG_DAN);
+                        }
+                    });
+                }
+
                 break;
         }
     }

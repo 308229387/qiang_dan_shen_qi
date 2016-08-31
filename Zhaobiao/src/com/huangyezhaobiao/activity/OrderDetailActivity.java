@@ -1,7 +1,6 @@
 package com.huangyezhaobiao.activity;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -10,14 +9,15 @@ import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.huangye.commonlib.utils.NetBean;
 import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.bean.popdetail.BottomViewBean;
@@ -35,21 +35,20 @@ import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.MDUtils;
 import com.huangyezhaobiao.utils.PushUtils;
+import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog.onDialogClickListener;
 import com.huangyezhaobiao.vm.KnockViewModel;
 import com.huangyezhaobiao.vm.QIangDanDetailViewModel;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 /**
  * 可抢订单详情页
- * 
+ *
  * @author linyueyang
- * 
+ *
  */
 public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCallBack, OrderDetailCallBack {
 	private LinearLayout back_layout;
@@ -73,7 +72,7 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 		setContentView(R.layout.activity_orderdetail);
 		initView();
 		initListener();
-		Intent intent = this.getIntent(); 
+		Intent intent = this.getIntent();
 		receivePassBean=(PushToPassBean)intent.getSerializableExtra("passBean");
 		//long bidId = receivePassBean.getBidId();
 		viewModel = new QIangDanDetailViewModel(this, this, this);
@@ -162,8 +161,12 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void onLoadingSuccess(Object t) {
-		if (t instanceof Integer) {
+	public void onLoadingSuccess(Object netBean) {
+		if (netBean instanceof NetBean) {
+            NetBean netBea = (NetBean) netBean;
+            JSONObject object = JSON.parseObject(netBea.getData());
+            int t = object.getInteger("status");
+            String orderId = object.getString("orderId");
 			stopLoading();
 			rl_qd.setVisibility(View.GONE);
 			int status = (Integer) t;
@@ -171,7 +174,7 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 			Bundle bundle = new Bundle();
 			bundle.putSerializable("passBean", popPass);
 			intent.putExtras(bundle);
-			
+
 			if(status==3){
 				intent.setClass(OrderDetailActivity.this, BidSuccessActivity.class);
 				startActivity(intent);
@@ -181,21 +184,21 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 				startActivity(intent);
 			}
 			else if(status==2) {
-				
+
 				zbdialog = new ZhaoBiaoDialog(this, getString(R.string.not_enough_balance));
 				zbdialog.setCancelButtonGone();
 				zbdialog.setOnDialogClickListener(new onDialogClickListener() {
-					
+
 					@Override
 					public void onDialogOkClick() {
 						zbdialog.dismiss();
-						
+
 					}
-					
+
 					@Override
 					public void onDialogCancelClick() {
 						// TODO Auto-generated method stub
-						
+
 					}
 				});
 				zbdialog.show();
@@ -214,7 +217,7 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 		} else {
 			// 这里把bean返回的List<View> 添加到对应位置的linearlayout里面
 			// 当然addView是不能margin和padding的
-			List<View> viewList = (List<View>) t;
+			List<View> viewList = (List<View>) netBean;
 			for (View v : viewList) {
 				linear.addView(v);
 			}
@@ -256,25 +259,59 @@ public class OrderDetailActivity extends QBBaseActivity implements NetWorkVMCall
 		popPass = log.toPopPassBean();
 		bidState = log.getBidState();
 		if (bidState == 0) {
-			done.setBackgroundColor(getResources().getColor(R.color.button_red));
-			done.setText(R.string.grab_list);
-			done.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View arg0) {
+			String isSon = UserUtils.getIsSon(this);
+			if (!TextUtils.isEmpty(isSon) && TextUtils.equals("1", isSon)) {
+				String rbac = UserUtils.getRbac(this);
+				if (!TextUtils.isEmpty(rbac)
+						&& TextUtils.equals("1", rbac) || TextUtils.equals("5", rbac)) {
+					done.setBackgroundColor(Color.parseColor("#AFAFAF"));
+					done.setText(R.string.grab_list);
+					done.setClickable(false);
+				}else{
+					done.setBackgroundColor(getResources().getColor(R.color.button_red));
+					done.setText(R.string.grab_list);
+					done.setClickable(true);
+					done.setOnClickListener(new OnClickListener() {
+						@Override
+						public void onClick(View arg0) {
 							try {
 								BDMob.getBdMobInstance().onMobEvent(OrderDetailActivity.this, BDEventConstans.EVENT_ID_BIDDING_DETAIL_PAGE_BIDDING);
 
-								HYMob.getDataListForQiangdan(OrderDetailActivity.this,HYEventConstans.EVENT_ID_BIDDING_DETAIL_PAGE_BIDDING, String.valueOf(popPass.getBidId()), "2");
+								HYMob.getDataListForQiangdan(OrderDetailActivity.this, HYEventConstans.EVENT_ID_BIDDING_DETAIL_PAGE_BIDDING, String.valueOf(popPass.getBidId()), "2");
 
 								rl_qd.setVisibility(View.VISIBLE);
 								knockViewModel = new KnockViewModel(OrderDetailActivity.this, OrderDetailActivity.this);
 								knockViewModel.knock(popPass, AppConstants.BIDSOURCE_DETAIL);
-								MDUtils.bidDetailsPageMD(OrderDetailActivity.this, "" + bidState,popPass.getCateId() + "", popPass.getBidId() + "", MDConstans.ACTION_QIANG_DAN);
+								MDUtils.bidDetailsPageMD(OrderDetailActivity.this, "" + bidState, popPass.getCateId() + "", popPass.getBidId() + "", MDConstans.ACTION_QIANG_DAN);
 							} catch (Exception e) {
 
-					        }
+							}
+						}
+					});
 				}
-			});
+
+			} else {
+				done.setBackgroundColor(getResources().getColor(R.color.button_red));
+				done.setText(R.string.grab_list);
+				done.setClickable(true);
+				done.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View arg0) {
+						try {
+							BDMob.getBdMobInstance().onMobEvent(OrderDetailActivity.this, BDEventConstans.EVENT_ID_BIDDING_DETAIL_PAGE_BIDDING);
+
+							HYMob.getDataListForQiangdan(OrderDetailActivity.this, HYEventConstans.EVENT_ID_BIDDING_DETAIL_PAGE_BIDDING, String.valueOf(popPass.getBidId()), "2");
+
+							rl_qd.setVisibility(View.VISIBLE);
+							knockViewModel = new KnockViewModel(OrderDetailActivity.this, OrderDetailActivity.this);
+							knockViewModel.knock(popPass, AppConstants.BIDSOURCE_DETAIL);
+							MDUtils.bidDetailsPageMD(OrderDetailActivity.this, "" + bidState, popPass.getCateId() + "", popPass.getBidId() + "", MDConstans.ACTION_QIANG_DAN);
+						} catch (Exception e) {
+
+						}
+					}
+				});
+			}
 		} else {
 //			done.setBackgroundColor(getResources().getColor(R.color.whitedark));
 			done.setBackgroundColor(Color.parseColor("#AFAFAF"));

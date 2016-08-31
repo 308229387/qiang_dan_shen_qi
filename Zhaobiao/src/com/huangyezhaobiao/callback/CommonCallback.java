@@ -2,6 +2,7 @@ package com.huangyezhaobiao.callback;
 
 import com.huangye.commonlib.utils.PhoneUtils;
 import com.huangyezhaobiao.application.BiddingApplication;
+import com.huangyezhaobiao.utils.UserUtils;
 import com.lzy.okhttputils.callback.AbsCallback;
 import com.lzy.okhttputils.request.BaseRequest;
 import com.wuba.loginsdk.external.LoginClient;
@@ -15,9 +16,11 @@ public abstract class CommonCallback<T> extends AbsCallback<T> {
         super.onBefore(request);
         //如果账户已经登录，就添加 token 等等
         request.headers("ppu", LoginClient.doGetPPUOperate(BiddingApplication.getAppInstanceContext()))//
-                .headers("userId", LoginClient.doGetUserIDOperate(BiddingApplication.getAppInstanceContext()))//
+                .headers("userId", UserUtils.getUserId(BiddingApplication.getAppInstanceContext()))//
                 .headers("version", "6")//
                 .headers("platform", "1")//
-                .headers("UUID", PhoneUtils.getIMEI(BiddingApplication.getAppInstanceContext()));
+                .headers("UUID", PhoneUtils.getIMEI(BiddingApplication.getAppInstanceContext()))
+                .headers("isSon", UserUtils.getIsSon(BiddingApplication.getAppInstanceContext()))
+                .headers("suserId",LoginClient.doGetUserIDOperate(BiddingApplication.getAppInstanceContext()));
     }
 }

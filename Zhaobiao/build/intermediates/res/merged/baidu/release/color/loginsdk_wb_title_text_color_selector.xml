@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true" android:color="@color/wb_title_text_pressed"/>
-    <item android:state_enabled="false" android:color="@color/wb_title_text_disabled" />
-    <item android:color="@color/wb_title_text_normal"/>
-</selector>
-<!-- From: file:/I:/E/2016523/58sdklogin/WubaLoginSDK/loginsdk/src/main/res/color/loginsdk_wb_title_text_color_selector.xml -->

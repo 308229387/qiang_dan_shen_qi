@@ -201,4 +201,8 @@ public class AppConstants {
 
 
     public static final String  RESET = "reset";
+
+
+    public static final String MOBILE = "mobile";
+
 }

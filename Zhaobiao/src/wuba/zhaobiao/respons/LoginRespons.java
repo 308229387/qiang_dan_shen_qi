@@ -19,6 +19,9 @@ public class LoginRespons implements Serializable {
     public class data implements Serializable{
         private String companyName;
         private String hasValidated;
+        private String isSon;
+        private String rbac;
+        private String suserId;
         private String userId;
 
         public String getCompanyName() {
@@ -37,6 +40,30 @@ public class LoginRespons implements Serializable {
             this.hasValidated = hasValidated;
         }
 
+        public String getIsSon() {
+            return isSon;
+        }
+
+        public void setIsSon(String isSon) {
+            this.isSon = isSon;
+        }
+
+        public String getRbac() {
+            return rbac;
+        }
+
+        public void setRbac(String rbac) {
+            this.rbac = rbac;
+        }
+
+        public String getSuserId() {
+            return suserId;
+        }
+
+        public void setSuserId(String suserId) {
+            this.suserId = suserId;
+        }
+
         public String getUserId() {
             return userId;
         }
@@ -44,7 +71,6 @@ public class LoginRespons implements Serializable {
         public void setUserId(String userId) {
             this.userId = userId;
         }
-
 
     }
 }

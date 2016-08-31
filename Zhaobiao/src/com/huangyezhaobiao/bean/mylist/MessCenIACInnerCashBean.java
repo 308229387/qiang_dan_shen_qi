@@ -139,22 +139,26 @@ public class   MessCenIACInnerCashBean extends QDBaseBean {
 			if(TextUtils.equals(orderState, Constans.DONE_FRAGMENT_FINISH)){ //已完成(成交)
 				holder.iv_cash_order_state_line.setVisibility(View.GONE);
 				holder.tv_cash_order_state.setText(R.string.over_done);
+				holder.tv_cash_order_state.setTextColor(Color.parseColor("#C5C5C5"));
 				if(TextUtils.isEmpty(refundText) || TextUtils.equals(refundText,"未退单")){
 
 				}else{
 					StringBuilder sb = new StringBuilder();
 					sb.append("已结束(成交)").append("(").append(refundText).append(")");
 					holder.tv_cash_order_state.setText(sb.toString());
+					holder.tv_cash_order_state.setTextColor(Color.parseColor("#C5C5C5"));
 				}
 			}else if(TextUtils.equals(orderState, Constans.DONE_FRAGMENT_CANCEL)){ //已完成(未成交)
 				holder.iv_cash_order_state_line.setVisibility(View.GONE);
 				holder.tv_cash_order_state.setText(R.string.over_undone);
+				holder.tv_cash_order_state.setTextColor(Color.parseColor("#C5C5C5"));
 				if(TextUtils.isEmpty(refundText) || TextUtils.equals(refundText,"未退单")){
 
 				}else{
 					StringBuilder sb = new StringBuilder();
 					sb.append("已结束(未成交)").append("(").append(refundText).append(")");
 					holder.tv_cash_order_state.setText(sb.toString());
+					holder.tv_cash_order_state.setTextColor(Color.parseColor("#C5C5C5"));
 				}
 			}else if(TextUtils.equals(orderState, Constans.READY_SERVICE)){
 				holder.iv_cash_order_state_line.setVisibility(View.VISIBLE);

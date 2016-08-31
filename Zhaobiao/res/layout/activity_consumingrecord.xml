@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/layout_backhead"
+        android:id="@+id/layout_head"
+        />
+    <!-- <include layout="@layout/layout_order_hint" /> -->
+
+    <com.huangyezhaobiao.view.TitleMessageBarLayout
+        android:id="@+id/tbl"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:visibility="gone"/>
+    <RelativeLayout
+        android:id="@+id/datas_empty_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone">
+        <ImageView
+            android:id="@+id/iv_consumption_empty"
+            android:layout_width="146dp"
+            android:layout_height="155dp"
+            android:src="@drawable/consume_blank_hint"
+            android:layout_marginTop="118dp"
+            android:layout_centerHorizontal="true"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_consumption_empty"
+            android:text="您还没有消费过,暂无记录~"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:textColor="#808080"
+            android:textSize="16sp"
+            />
+
+    </RelativeLayout>
+    <com.jingchen.pulltorefresh.PullToRefreshLayout
+        android:id="@+id/refresh"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <include layout="@layout/refresh_head" />
+
+        <com.jingchen.pulltorefresh.pullableview.PullableListView
+            xmlns:ptr="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/consume_list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@null"
+            android:fadingEdge="none"
+            android:listSelector="#000000"
+            android:persistentDrawingCache="none"
+            android:scrollbars="none"
+            android:scrollingCache="false"
+            android:splitMotionEvents="false"
+            ptr:ptrAnimationStyle="flip"
+            ptr:ptrHeaderSubTextColor="@color/red"
+            ptr:ptrHeaderTextColor="@color/black"
+            ptr:ptrMode="pullUpFromBottom" />
+
+        <include layout="@layout/load_more" />
+    </com.jingchen.pulltorefresh.PullToRefreshLayout>
+
+</LinearLayout>

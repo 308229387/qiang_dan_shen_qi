@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_background"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/layout_back"
+        layout="@layout/layout_backhead" />
+    <com.huangyezhaobiao.view.TitleMessageBarLayout
+        android:id="@+id/tbl"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp" />
+
+    <include
+        android:id="@+id/layout_no_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/activity_no_internet" />
+
+    <com.jingchen.pulltorefresh.PullToRefreshLayout
+        android:id="@+id/refresh_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <include layout="@layout/refresh_head" />
+
+        <com.jingchen.pulltorefresh.pullableview.PullableListView
+            xmlns:ptr="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/order_list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@null"
+            android:fadingEdge="none"
+            android:listSelector="#00000000"
+            android:persistentDrawingCache="none"
+            android:scrollbars="none"
+            android:scrollingCache="false"
+            android:splitMotionEvents="false"
+            ptr:ptrAnimationStyle="flip"
+            ptr:ptrHeaderSubTextColor="@color/red"
+            ptr:ptrHeaderTextColor="@color/black"
+            ptr:ptrMode="pullUpFromBottom"/>
+
+        <include layout="@layout/load_more" />
+    </com.jingchen.pulltorefresh.PullToRefreshLayout>
+
+</LinearLayout>

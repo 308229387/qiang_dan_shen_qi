@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_io"
         android:layout_centerHorizontal="true"
+        android:lineSpacingExtra="5dp"
         android:layout_margin="20dp"
         android:text="暂无订单,请继续关注,\n新订单随时出现哦！"
         android:textColor="@color/t_gray"

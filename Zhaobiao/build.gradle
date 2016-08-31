@@ -43,6 +43,7 @@ dependencies {
 //    compile 'com.wuba.wuxian.sdk:login:1.0.3-debug-SNAPSHOT' //线下调试passport SDK
 //    compile 'com.wuba.wuxian.sdk:login:0.1.0-http-SNAPSHOT' //线下 http passport SDK
 
+    compile 'org.jetbrains:annotations-java5:15.0'
 }
 
 android {

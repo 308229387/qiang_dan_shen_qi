@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.huangyezhaobiao"
     android:installLocation="auto"
-    android:versionCode="25"
-    android:versionName="3.0.1">
+    android:versionCode="26"
+    android:versionName="3.1.0">
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -284,8 +284,16 @@
             android:process=":webhelp"
             android:screenOrientation="portrait" />
         <activity
+            android:name="wuba.zhaobiao.mine.activity.HelpActivity"
+            android:process=":webhelp"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".activity.AboutActivity"
             android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="wuba.zhaobiao.mine.activity.AboutActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SystemActiveActivity"
@@ -308,6 +316,11 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.MobileValidateActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="wuba.zhaobiao.common.activity.MobileValidateActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
@@ -357,13 +370,26 @@
             android:name=".activity.MyWalletActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name="wuba.zhaobiao.mine.activity.MyWalletActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activity.IntroduceFunctionActivity"
+            android:process=":webhelp"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="wuba.zhaobiao.mine.activity.IntroductionActivity"
             android:process=":webhelp"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.AutoSettingsActivity"
             android:process=":webhelp"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name="wuba.zhaobiao.mine.activity.AutoSettingActivity"
+            android:process=":webhelp"
+            android:screenOrientation="portrait"/>
 
             <!--
              <intent-filter>
@@ -371,9 +397,12 @@
                  <category android:name="android.intent.category.LAUNCHER" />
              </intent-filter>
             -->
-        </activity>
         <activity
             android:name=".activity.SoftwareUsageActivity"
+            android:process=":webhelp"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="wuba.zhaobiao.mine.activity.SoftwareProtocolActivity"
             android:process=":webhelp"
             android:screenOrientation="portrait" />
         <activity
@@ -411,6 +440,10 @@
         </activity>
         <activity
             android:name=".activity.ConsumptionActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="wuba.zhaobiao.mine.activity.ConsumingRecordActivity"
             android:screenOrientation="portrait" />
 
         <!--
@@ -512,20 +545,37 @@
                </intent-filter>
             -->
         </activity>
+
+        <activity
+            android:name="wuba.zhaobiao.mine.activity.MobileBindChangeActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".activity.SettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="wuba.zhaobiao.mine.activity.SettingActivity"
             android:screenOrientation="portrait" />
 
         <activity
             android:name=".activity.AccountManageActivity"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name="wuba.zhaobiao.mine.activity.AccountManageActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.AddAccountActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="wuba.zhaobiao.mine.activity.AddAccountActivity"
             android:screenOrientation="portrait" />
 
         <activity
             android:name=".activity.UpdateAccountActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="wuba.zhaobiao.mine.activity.UpdateAccountActivity"
             android:screenOrientation="portrait" />
 
         <receiver android:name=".receiver.BatteryReceiver">

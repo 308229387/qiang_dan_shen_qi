@@ -15,6 +15,8 @@ import com.huangyezhaobiao.bean.ChildAccountBean;
 import com.huangyezhaobiao.callback.DialogCallback;
 import com.huangyezhaobiao.callback.JsonCallback;
 import com.huangyezhaobiao.utils.ActivityUtils;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.ToastUtils;
 import com.lzy.okhttputils.OkHttpUtils;
@@ -25,6 +27,8 @@ import java.util.List;
 import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
+import wuba.zhaobiao.respons.AccountMaxRespons;
+import wuba.zhaobiao.utils.LogoutDialogUtils;
 
 /**
  * Created by 58 on 2016/7/21.
@@ -36,7 +40,7 @@ public class AccountManageActivity extends QBBaseActivity implements View.OnClic
     private LinearLayout ll_add_child_account;
     private TextView tv_edit;
     private ListView lv_sManage;
-    private View divider2;
+    private View divider2,divider3;
 
     private RelativeLayout rl_add_manage;
     public boolean flag = false;// false表示右上角显示"编辑"，true表示显示"完成"
@@ -44,7 +48,6 @@ public class AccountManageActivity extends QBBaseActivity implements View.OnClic
     private ChildAccountAdapter adapter;
 
     private List<ChildAccountBean.data.bean> list = new ArrayList<>();
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -93,9 +96,8 @@ public class AccountManageActivity extends QBBaseActivity implements View.OnClic
                         tv_edit.setText("编辑");
                         ll_add_child_account.setVisibility(View.VISIBLE);
                     }
-
-                    lv_sManage.setVisibility(View.VISIBLE);
                     divider2.setVisibility(View.VISIBLE);
+                    lv_sManage.setVisibility(View.VISIBLE);
 
                 } else {
                     tv_edit.setVisibility(View.GONE);
@@ -110,11 +112,6 @@ public class AccountManageActivity extends QBBaseActivity implements View.OnClic
 
         }
 
-        @Override
-        public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
-
-            ToastUtils.showToast(e.getMessage());
-        }
 
     }
 
@@ -127,12 +124,11 @@ public class AccountManageActivity extends QBBaseActivity implements View.OnClic
         txt_head.setText("子账号管理");
         tbl = getView(R.id.tbl);
         tv_edit = getView(R.id.tv_edit);
-        tv_edit.setOnClickListener(this);
         lv_sManage = getView(R.id.lv_sManage);
         rl_add_manage = getView(R.id.rl_add_manage);
-        rl_add_manage.setOnClickListener(this);
         divider2 = getView(R.id.divider2);
         ll_add_child_account = getView(R.id.ll_add_child_account);
+        divider3 = getView(R.id.divider3);
     }
 
     @Override
@@ -166,6 +162,8 @@ public class AccountManageActivity extends QBBaseActivity implements View.OnClic
                     adapter = new ChildAccountAdapter(this, list, flag);
                     lv_sManage.setAdapter(adapter);
 
+                    HYMob.getDataList(this, HYEventConstans.EVENT_ACCOUNT_FINISH);
+
                 } else {  //右上角显示为编辑的界面
                     flag = !flag;
                     tv_edit.setVisibility(View.VISIBLE);
@@ -174,17 +172,53 @@ public class AccountManageActivity extends QBBaseActivity implements View.OnClic
 
                     adapter = new ChildAccountAdapter(this, list, flag);
                     lv_sManage.setAdapter(adapter);
+
+                    HYMob.getDataList(this, HYEventConstans.EVENT_ACCOUNT_EDIT);
                 }
                 break;
             case R.id.rl_add_manage:
-                if (list != null && list.size() >= 3) {
-                    ToastUtils.showShort(this, getString(R.string.account_add_more), 3000);
-                } else {
-                    ActivityUtils.goToActivity(this, AddAccountActivity.class);
-                }
+                getChildAccountMax();
+
+                HYMob.getDataList(this, HYEventConstans.EVENT_ACCOUNT_ADD);
                 break;
         }
+
     }
 
+    //请求实体
+    private void getChildAccountMax() {
+        OkHttpUtils.get("http://zhaobiao.58.com/api/getaccountmax")//
+                .execute(new AccountMaxCallback(AccountManageActivity.this, true));
+    }
 
+    //响应类
+    private class AccountMaxCallback extends DialogCallback<AccountMaxRespons> {
+
+        public AccountMaxCallback(Activity context, Boolean needProgress) {
+            super(context, needProgress);
+        }
+
+        @Override
+        public void onResponse(boolean isFromCache, AccountMaxRespons accountMaxRespons, Request request, @Nullable Response response) {
+            LogUtils.LogV("childAccount", "accountMax_success");
+            String number = accountMaxRespons.getData().getAccountMaxSize();
+            try {
+                if (list != null && list.size() >= Integer.parseInt(number)) {
+                    ToastUtils.showShort(AccountManageActivity.this, getString(R.string.account_add_more), 3000);
+                } else {
+                    ActivityUtils.goToActivity(AccountManageActivity.this, AddAccountActivity.class);
+                }
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        HYMob.getBaseDataListForPage(this, HYEventConstans.PAGE_ACCOUNT_MANANGE, stop_time - resume_time);
+    }
 }

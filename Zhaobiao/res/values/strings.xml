@@ -15,7 +15,7 @@
     <string name="input_correct_mobile">请输入正确的手机号</string>
     <string name="input_correct_validate">请输入正确的验证码</string>
     <string name="daojishi_hint">订单已经到手15分钟啦，别忘了联系客户！越早联系竞争优势越大，成单概率越高哦</string>
-    <string name="get_validate">获取验证码</string>
+    <string name="get_validate">重新获取</string>
     <string name="details">详情</string>
     <string name="order_number">订单编号</string>
     <string name="bidding_success">抢单成功!</string>
@@ -42,8 +42,7 @@
     <string name="login_login_invalidate">登录异常,请稍后重试</string>
     <string name="pls_input">请输入内容</string>
     <string name="not_enough_balance">账户推广余额少!请及时充值,\n以免影响下一次抢单</string>
-    <string name="update_message">1.全新页面设计，增加底部导航!\n2.订单详情页新增发短信和免费电话功能\n3.修复了登录的bug
-    </string>
+    <string name="update_message">1.增设子账号，防止账号信息泄露\n2.优化后台，抢单体验更流畅\n3.修复了一些显示bug</string>
     <string name="logout_now">退出了当前的账号</string>
     <string name="logout_make_sure">确定要退出当前账号么?</string>
     <string name="fetching">获取中</string>
@@ -60,6 +59,8 @@
     <string name="toast_bidding_timeless">客户联系提醒</string>
     <string name="force_exit">账号在其他手机登录，您已被迫下线.\n请注意密码安全。</string>
     <string name="ppu_expired">PPU过期，请重新登录</string>
+    <string name="child_function_ban">子账号功能被禁止</string>
+    <string name="child_has_unbind">子账号被解绑</string>
     <string name="register_success">Register push success.</string>
     <string name="register_fail">Register push fail.</string>
     <string name="recv_passthrough_message"> Receive a passthrough message. Content is \"%1$s\"</string>
@@ -102,7 +103,8 @@
 
     <string name="transfer_answer_number">您需要先接听免费的转接电话，\n接听后会自动帮您呼叫客户，\n您的绑定号码：</string>
     <string name="alert_customer_call">现在联系客户，成功签单的几率是平时\n的一倍哦~积极联系客户有助于促进\n成单呢~</string>
-    <string name="manage_notice">温馨提示: 子账号在登录界面使用手机动态即可</string>
-    <string name="account_help">基础操作包括: \n1.登陆抢单神器\n2.接收系统通知和活动咨询\n3.查看账户余额\n4.除抢单和查看已抢订单操作,\n其他功能均具备</string>
+    <string name="manage_notice">温馨提示: 子账号在登录界面使用手机动态码登录即可</string>
+    <string name="account_help">基础操作包括: \n1.登陆抢单神器\n2.接收系统通知和活动资讯\n3.查看账户余额\n4.除抢单和查看已抢订单操作,\n其他功能均具备</string>
     <string name="account_add_more">您最多可设置三个账号，\n请删除其他子账号再重试</string>
+    <string name="auto_setting_message">马上去设置接单范围?\n设置后将提高订单匹配度,\n为您推送最想要的订单哦(建议设置)</string>
 </resources>

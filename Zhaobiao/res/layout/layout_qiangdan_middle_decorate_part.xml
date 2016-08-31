@@ -47,7 +47,7 @@
             android:id="@+id/tv_recon_type_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="改造类型"
+            android:text="改造项目"
             android:textColor="@color/detail_text"
             android:textSize="@dimen/textsize_large" />
 

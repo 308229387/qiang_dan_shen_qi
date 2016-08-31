@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="login-1.0.3-debug-SNAPSHOT">
+    <ANNOTATIONS>
+      <root url="jar://$PROJECT_DIR$/Zhaobiao/build/intermediates/exploded-aar/com.wuba.wuxian.sdk/login/1.0.3-debug-SNAPSHOT/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/Zhaobiao/build/intermediates/exploded-aar/com.wuba.wuxian.sdk/login/1.0.3-debug-SNAPSHOT/res" />
+      <root url="jar://$PROJECT_DIR$/Zhaobiao/build/intermediates/exploded-aar/com.wuba.wuxian.sdk/login/1.0.3-debug-SNAPSHOT/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

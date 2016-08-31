@@ -1,23 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="passport_request_param">
-        <item>source</item>
-        <item>rsakeyversion</item>
-        <item>isapp</item>
-        <item>isremember</item>
-        <item>validcode</item>
-        <item>vcodekey</item>
-        <item>validcodetype</item>
-    </string-array>
-    <string-array name="passport_request_paramvalue">
-        <item>58app-android</item>
-        <item>1</item>
-        <item>1</item>
-        <item>true</item>
-        <item/>
-        <item/>
-        <item>200</item>
-    </string-array>
     <attr format="reference" name="drawerArrowStyle"/>
     <attr format="dimension" name="height"/>
     <attr format="boolean" name="isLightTheme"/>
@@ -55,9 +37,7 @@
     <color name="binding_detail_text">#B2B2B2</color>
     <color name="binding_list_text">#B4B4B4</color>
     <color name="black">#000000</color>
-    <color name="blacks">#666666</color>
     <color name="blue">#529AF4</color>
-    <color name="blue_color">#5f96f4</color>
     <color name="blue_dark">#ff1881bc</color>
     <color name="blue_fill">#ffc2e2f4</color>
     <color name="blue_light">#ff1793da</color>
@@ -79,10 +59,6 @@
     <color name="category_price_text_credit">#fd553f</color>
     <color name="category_price_text_price">#ff7800</color>
     <color name="changecity_divide">#373737</color>
-    <color name="checkmorebackground">#F6F6F6</color>
-    <color name="checkmorelongline">#dddddd</color>
-    <color name="checkmoreshortline">#e9e9e9</color>
-    <color name="checkmoresoligthword">#c3c3c3</color>
     <color name="choose_place_text">#232528</color>
     <color name="city_item_divider_color">#dddddc</color>
     <color name="city_item_letter_color">#8c8c8c</color>
@@ -93,17 +69,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="common_background">#F5FBFB</color>
-    <color name="counpline">#e2e2e2</color>
-    <color name="counpnum">#ddd</color>
-    <color name="counpnumaround">#dddddd</color>
-    <color name="couponinfotext">#8d8d8d</color>
-    <color name="couponselect">#eeeeee</color>
-    <color name="coupontext">#000000</color>
     <color name="dark">#000000</color>
     <color name="dark_gray">#ff474747</color>
     <color name="darkdark_gray">#ff333333</color>
     <color name="darkgray">#9e9e9e</color>
-    <color name="darkgraylight">#eaeaea</color>
     <color name="darkorange">#FF7800</color>
     <color name="declaration_jinli_text">#FFF</color>
     <color name="declaration_moto_text">#ffffffff</color>
@@ -157,16 +126,11 @@
     <color name="gray_dark">#323232</color>
     <color name="gray_normal">#808080</color>
     <color name="grays">#dfdfdf</color>
-    <color name="green">#85c433</color>
     <color name="green_dark">#ff669900</color>
     <color name="green_fill">#ffdaf0c1</color>
     <color name="green_light">#ff86d046</color>
     <color name="guess_like_item_bg">#ffffff</color>
     <color name="guess_like_item_click_bg">#f6f6f6</color>
-    <color name="hbg">#ffffff</color>
-    <color name="headbackground">#ff9200</color>
-    <color name="headbackground_selected">#fff</color>
-    <color name="headbacktext">#ffe1b8</color>
     <color name="hidecolor">#00000000</color>
     <color name="highlighted_text_material_dark">#6680cbc4</color>
     <color name="highlighted_text_material_light">#66009688</color>
@@ -227,12 +191,12 @@
     <color name="leading_bg_2">#b2eb4e00</color>
     <color name="leading_bg_3">#b2d02641</color>
     <color name="leading_bg_4">#b2e55400</color>
+    <color name="light_blue">#6593cb</color>
     <color name="light_gray">#ffdddddd</color>
     <color name="light_text_color">#808080</color>
     <color name="lightgray">#9B9B9B</color>
     <color name="lightslategray">#5c677d</color>
     <color name="line">#cad0d9</color>
-    <color name="line_gray_color">#e1e1e1</color>
     <color name="link_text_material_dark">@color/material_deep_teal_200</color>
     <color name="link_text_material_light">@color/material_deep_teal_500</color>
     <color name="list_item_pressed">#EBE8E1</color>
@@ -278,18 +242,14 @@
     <color name="message_right_text_color">#ff6a22</color>
     <color name="message_title_text_color">#000000</color>
     <color name="network_invailable_textcolor">#ffffffff</color>
-    <color name="newgray">#a6a6a6</color>
     <color name="orange">#f97d03</color>
     <color name="orange_dark">#ffd4612f</color>
     <color name="orange_dark_gray">#fd8d33</color>
     <color name="orange_light">#ffed792e</color>
-    <color name="orangedark">#D67B00</color>
     <color name="orangered">#ff6c00</color>
     <color name="order_detail_text">#686868</color>
     <color name="order_state_blue">#4EC5BF</color>
     <color name="order_state_default">#C5C5C5</color>
-    <color name="orgdark">#e9d38e</color>
-    <color name="orglight">#fff1c7</color>
     <color name="overlay_background">#ffffff</color>
     <color name="overlay_textcolor">#3399ff</color>
     <color name="p_garbage_text_normal">#a3a3a3</color>
@@ -339,7 +299,6 @@
     <color name="reflection_shortcut_pressed">#20000000</color>
     <color name="refund_reason">#B6B6B6</color>
     <color name="request_loading">#c0000000</color>
-    <color name="reveal_color">#1b000000</color>
     <color name="ripple_material_dark">#4dffffff</color>
     <color name="ripple_material_light">#1f000000</color>
     <color name="robhouse_text_normal">#474747</color>
@@ -362,8 +321,6 @@
     <color name="secondary_text_default_material_light">#8a000000</color>
     <color name="secondary_text_disabled_material_dark">#36ffffff</color>
     <color name="secondary_text_disabled_material_light">#24000000</color>
-    <color name="segment_press">#c62930</color>
-    <color name="segment_unpress">#55ffffff</color>
     <color name="select_city_alpha_text_background">#40000000</color>
     <color name="select_city_alpha_textcolor">#99CCFF</color>
     <color name="select_city_listitem_devider">#cecece</color>
@@ -386,15 +343,8 @@
     <color name="switch_thumb_disabled_material_light">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_dark">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
-    <color name="switchtextcolor">#FFFFFF</color>
     <color name="t_gray">#808080</color>
-    <color name="t_near_white">#70fafafa</color>
     <color name="tab_red">#E12F37</color>
-    <color name="tab_red_light">#c62930</color>
-    <color name="tab_red_press">#c62930</color>
-    <color name="tabbackground">#f8f8fa</color>
-    <color name="tabtext">#787878</color>
-    <color name="tabtext_selected">#ff9200</color>
     <color name="tag_bg">#FFD700</color>
     <color name="task_coin_add_color">#ff662c</color>
     <color name="task_coin_reduce_color">#8bc34a</color>
@@ -405,7 +355,6 @@
     <color name="text_gray">#666666</color>
     <color name="text_red">#ff6b22</color>
     <color name="third_transparent_black">#d0000000</color>
-    <color name="timeline_color">#a6a6a6</color>
     <color name="title_background_night">#424D85</color>
     <color name="title_background_sun">#FF5B3F</color>
     <color name="title_bottom_line">#dddddd</color>
@@ -702,25 +651,9 @@
     <dimen name="cloud_margin_top">75dip</dimen>
     <dimen name="common_divider_line_height">0.5dip</dimen>
     <dimen name="common_divider_padding">10dip</dimen>
-    <dimen name="common_text_size_10">10dp</dimen>
-    <dimen name="common_text_size_11">11dp</dimen>
-    <dimen name="common_text_size_12">12dp</dimen>
-    <dimen name="common_text_size_13">13dp</dimen>
-    <dimen name="common_text_size_14">14dp</dimen>
-    <dimen name="common_text_size_15">15dp</dimen>
-    <dimen name="common_text_size_16">16dp</dimen>
-    <dimen name="common_text_size_18">18dp</dimen>
-    <dimen name="common_text_size_20">20dp</dimen>
-    <dimen name="common_text_size_21">21dp</dimen>
-    <dimen name="common_text_size_22">22dp</dimen>
-    <dimen name="common_text_size_26">26dp</dimen>
-    <dimen name="common_text_size_30">30dp</dimen>
-    <dimen name="common_text_size_32">32dp</dimen>
-    <dimen name="common_text_size_8">8dp</dimen>
     <dimen name="common_text_size_9">9dp</dimen>
     <dimen name="copyright_subtext_marginBottom">20dip</dimen>
     <dimen name="copyright_text_marginBottom">26.7dip</dimen>
-    <dimen name="cornerradius">20dip</dimen>
     <dimen name="dgv_overlap_if_switch_straight_line">16dp</dimen>
     <item name="dialog_fixed_height_major" type="dimen">80%</item>
     <item name="dialog_fixed_height_minor" type="dimen">100%</item>
@@ -952,7 +885,6 @@
     <dimen name="seting_view_item_height">53dip</dimen>
     <dimen name="seting_view_line_height">1px</dimen>
     <dimen name="seting_view_text_width">150dip</dimen>
-    <dimen name="shadow_width">0dp</dimen>
     <dimen name="share_cancel_btn_height">57dip</dimen>
     <dimen name="share_cancel_btn_margin">5dip</dimen>
     <dimen name="share_cancel_btn_textsize">17dip</dimen>
@@ -990,12 +922,9 @@
     <dimen name="textsize_large">16sp</dimen>
     <dimen name="textsize_normal">14sp</dimen>
     <dimen name="textsize_small">12sp</dimen>
-    <dimen name="textsize_tiny">10sp</dimen>
     <dimen name="textsize_xlarge">18sp</dimen>
     <dimen name="textsize_xxlarge">20sp</dimen>
     <dimen name="textsize_xxxlarge">23sp</dimen>
-    <dimen name="title_bar_height">40dp</dimen>
-    <dimen name="title_bar_title_text_size">18.0sp</dimen>
     <dimen name="title_icon_padding">9.33dip</dimen>
     <dimen name="title_margin">13.33dip</dimen>
     <dimen name="title_marginLeft">10dip</dimen>
@@ -1157,6 +1086,8 @@
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <string name="about">关于</string>
+    <string name="account_add_more">您最多可设置三个账号，\n请删除其他子账号再重试</string>
+    <string name="account_help">基础操作包括: \n1.登陆抢单神器\n2.接收系统通知和活动资讯\n3.查看账户余额\n4.除抢单和查看已抢订单操作,\n其他功能均具备</string>
     <string name="action_settings">Settings</string>
     <string name="add_fav_failed">收藏失败</string>
     <string name="album_camera_title">相册</string>
@@ -1170,7 +1101,6 @@
     <string name="app_names">bidding</string>
     <string name="app_third_folder_name">生活小工具</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
-    <string name="area_title">面积:</string>
     <string name="arrive_notification_message"> Arrived a notification message. Content is \"%1$s\"</string>
     <string name="assistant_add_info">填写信息</string>
     <string name="assistant_add_pictures">添加照片能让您的信息得到更多关注</string>
@@ -1229,19 +1159,18 @@
     <string name="auth_login_other_login">使用其他方式登录</string>
     <string name="auth_login_phone_number">手机号</string>
     <string name="auth_login_title">商盾登录</string>
+    <string name="auto_setting_message">马上去设置接单范围?\n设置后将提高订单匹配度,\n为您推送最想要的订单哦(建议设置)</string>
     <string name="bidding_already_bid">您已抢过此单</string>
     <string name="bidding_details">订单详情</string>
     <string name="bidding_exception">抢单异常</string>
     <string name="bidding_failure">抢单失败!</string>
     <string name="bidding_finish">已抢完</string>
-    <string name="bidding_line">抢单排队中</string>
     <string name="bidding_result">抢单结果提醒</string>
     <string name="bidding_success">抢单成功!</string>
     <string name="bidding_success_title">抢单成功</string>
     <string name="bidding_sys_noti">通知资讯</string>
     <string name="bidding_timeless">客户联系提醒</string>
     <string name="bind_wait_alert">绑定中…</string>
-    <string name="budget_title">预算:</string>
     <string name="call_charge_name">话费充值</string>
     <string name="call_charge_tel_number">0571–56072633</string>
     <string name="camera_allsize">单张图片不能超过2M</string>
@@ -1271,6 +1200,8 @@
     <string name="changecity_success_toast">城市切换成功</string>
     <string name="changeuser">切换用户</string>
     <string name="checkupdate">检查更新</string>
+    <string name="child_function_ban">子账号功能被禁止</string>
+    <string name="child_has_unbind">子账号被解绑</string>
     <string name="city_change_fail">切换城市失败</string>
     <string name="city_changing">正在切换中…</string>
     <string name="city_city_list_text">城市列表</string>
@@ -1388,14 +1319,11 @@
     <string name="grab_list">抢单</string>
     <string name="group_map_error">网络连接失败</string>
     <string name="group_nearlist_title">地图模式</string>
-    <string name="h5_login_raiders">2步申请抢单神器会员</string>
     <string name="h5_login_softwareusage">软件使用协议</string>
     <string name="h5_register_success">注册成功，去进行下一步吧</string>
+    <string name="head">这里是HeadView</string>
     <string name="hello_world">Hello world!</string>
     <string name="help">帮助</string>
-    <string name="hint">提示</string>
-    <string name="hint2">服务模式增加弹出式提醒&amp;语音播报</string>
-    <string name="hint_message">新版本升级，请重新登录</string>
     <string name="history_edit">编辑</string>
     <string name="history_finish">完成</string>
     <string name="home_exchange_text">云相机</string>
@@ -1428,6 +1356,9 @@
     <string name="launch_name">北京五八信息技术有限公司</string>
     <string name="leading_start">开始体验</string>
     <string name="list_view_model_transform">模式转换中…</string>
+    <string name="load_fail">加载失败</string>
+    <string name="load_succeed">加载成功</string>
+    <string name="loading">正在加载...</string>
     <string name="login_account_name">账户名</string>
     <string name="login_bind">绑定并登录</string>
     <string name="login_bind_again">系统繁忙，请稍候再试</string>
@@ -1515,8 +1446,8 @@
     <string name="logupload">日志上传</string>
     <string name="lottery_name">彩票</string>
     <string name="lottery_tel_number">4006361818</string>
-    <string name="make_sure_clear_all_message">确定要清空全部消息吗?</string>
     <string name="make_sure_tel">确定要拨打电话?</string>
+    <string name="manage_notice">温馨提示: 子账号在登录界面使用手机动态码登录即可</string>
     <string name="map_setting_lat"> 维度:</string>
     <string name="map_setting_lon"> 经度:</string>
     <string name="mark_count_text">已评价%s条信息</string>
@@ -1534,33 +1465,24 @@
     <string name="mobile_validate">手机验证</string>
     <string name="more_main_title">更多</string>
     <string name="my_bidding">我的订单</string>
-    <string name="native_login_raiders">攻略: 2步成为抢单神器会员</string>
-    <string name="native_login_softwareusage">抢单神器使用协议</string>
     <string name="nearlist_list_mode">列表</string>
     <string name="nearlist_map_location">我的位置</string>
     <string name="nearlist_map_mode">地图</string>
     <string name="net_unavailable_exception_msg">网络不可用,请检查网络!</string>
     <string name="net_unavailable_quit_msg">立即设置</string>
     <string name="net_unavailable_setting_msg">取消</string>
-    <string name="network_error">网络错误</string>
-    <string name="network_error_message">当前网络慢,请您稍后重试奥</string>
     <string name="network_login_unuseable">网络连接失败，请重试</string>
     <string name="network_unuseable_msg">网络不给力，请重试</string>
     <string name="networkerror">检测到当前无网络，请设置网络连接</string>
-    <string name="new_bind_mobile">绑定新手机号码</string>
-    <string name="no_message">暂无消息</string>
     <string name="no_network">当前没有网络</string>
     <string name="not_enough_balance">账户推广余额少!请及时充值,\n以免影响下一次抢单</string>
     <string name="not_upload_pic">您补交证据还没有上传图片,请上传图片</string>
-    <string name="now_bind_mobile">目前绑定手机</string>
     <string name="off">关闭</string>
     <string name="open">开启</string>
     <string name="order_details">订单详情</string>
     <string name="order_number">订单编号</string>
     <string name="over_done">已结束(成交)</string>
-    <string name="over_done_Refund">已结束(已退单)</string>
     <string name="over_done_service">已结束(已服务)</string>
-    <string name="over_done_unRefund">已结束(未退单)</string>
     <string name="over_done_unservice">已结束(未服务)</string>
     <string name="over_undone">已结束(未成交)</string>
     <string name="pay_info">为打击虚假欺诈信息，共建可信的分类信息平台，此次发帖需付费1元进行身份验证</string>
@@ -1595,6 +1517,7 @@
     <string name="pls_input">请输入内容</string>
     <string name="popu_phone">400-810-7558</string>
     <string name="popu_title">想得到更多推广效果！</string>
+    <string name="ppu_expired">PPU过期，请重新登录</string>
     <string name="prelaunch_close_notification">正式环境</string>
     <string name="prelaunch_main_notification">主站预上线</string>
     <string name="prelaunch_news_remind">预上线功能方式</string>
@@ -1613,6 +1536,7 @@
     <string name="publish_select_pictrue">从相册选择</string>
     <string name="publish_take_pictrue">拍照</string>
     <string name="publish_text">发布信息</string>
+    <string name="pull_to_refresh">下拉刷新</string>
     <string name="pull_to_refresh_from_bottom_pull_label">@string/pull_to_refresh_pull_label</string>
     <string name="pull_to_refresh_from_bottom_refreshing_label">@string/pull_to_refresh_refreshing_label</string>
     <string name="pull_to_refresh_from_bottom_release_label">@string/pull_to_refresh_release_label</string>
@@ -1621,6 +1545,7 @@
     <string name="pull_to_refresh_pull_start_label">上一条：{0}</string>
     <string name="pull_to_refresh_refreshing_label">Loading…</string>
     <string name="pull_to_refresh_release_label">Release to refresh…</string>
+    <string name="pullup_to_load">上拉加载更多</string>
     <string name="quick_reg">快速注册</string>
     <string name="quit_dialog_cancel">取  消</string>
     <string name="quit_dialog_content">您确定要退出58同城吗？</string>
@@ -1649,6 +1574,9 @@
     <string name="refresh_alarm_notification_title">58同城</string>
     <string name="refresh_alarm_set_time_error">设置时间无效，请校对本地时间后，修改提醒时间</string>
     <string name="refresh_alarm_today">今天</string>
+    <string name="refresh_fail">刷新失败</string>
+    <string name="refresh_succeed">刷新成功</string>
+    <string name="refreshing">正在刷新...</string>
     <string name="refund_desc_hint">请详细描述服务过程及退单原因,有助于提高审核通过率哦~</string>
     <string name="refund_submit_failure">请重新提交</string>
     <string name="refund_submit_success">请耐心等待客服审核!</string>
@@ -1696,6 +1624,8 @@
     <string name="register_success">Register push success.</string>
     <string name="register_text">注册</string>
     <string name="register_user_pass">密码</string>
+    <string name="release_to_load">释放立即加载</string>
+    <string name="release_to_refresh">释放立即刷新</string>
     <string name="request_loading_img_error">图片加载失败</string>
     <string name="request_loading_info">加载中…</string>
     <string name="requestloading_cancel">取　消</string>
@@ -1743,10 +1673,6 @@
     <string name="sensor_rate">灵敏度</string>
     <string name="sensor_rate_highe">高</string>
     <string name="sensor_rate_low">低</string>
-    <string name="service_renovation_area">面积: %1$s</string>
-    <string name="service_renovation_budget">预算: %1$s</string>
-    <string name="service_renovation_location">区域: %1$s</string>
-    <string name="service_renovation_type">方式: %1$s</string>
     <string name="servicing">服务中</string>
     <string name="set_accept_time_fail"> Set accept time fail for %1$s.</string>
     <string name="set_accept_time_success"> Set accept time %1$s - %2$s success.</string>
@@ -1814,9 +1740,8 @@
     <string name="subscribe_topic_fail"> Subscribe topic fail for %1$s.</string>
     <string name="subscribe_topic_success"> Subscribe topic \"%1$s\" success.</string>
     <string name="suggestion_bottom">您的建议是我们前进的动力</string>
-    <string name="switch_off"/>
-    <string name="switch_on"/>
-    <string name="sys_noti">系统通知</string>
+    <string name="switch_off"> </string>
+    <string name="switch_on"> </string>
     <string name="tel_feedback_title_down">妈妈说帮助别人人品会变好~</string>
     <string name="test_option">开发者选项</string>
     <string name="third_title_close">关闭</string>
@@ -1826,7 +1751,6 @@
     <string name="toast_yue">余额提醒</string>
     <string name="today_temperature">%1$s℃/%2$s℃</string>
     <string name="transfer_answer_number">您需要先接听免费的转接电话，\n接听后会自动帮您呼叫客户，\n您的绑定号码：</string>
-    <string name="transfer_answer_tel">为保证提高您的成单几率，您需要接听免\n费的转接电话，接听后会自动帮您呼叫用户</string>
     <string name="unbind_unresive_first_text">无法接收手机短信?</string>
     <string name="unbind_unresive_last_text">建议您去电脑版个人中心，申请手机解绑。</string>
     <string name="unbind_unresive_second_text">(原手机号已丢失、停用或需解绑原手机)</string>
@@ -1853,8 +1777,7 @@
     <string name="update_dialog_update_js">更新</string>
     <string name="update_dialog_version_propmt">版本更新:V%s</string>
     <string name="update_dialog_wifi_propmt">已经在wifi下为您下载了apk，是否安装？</string>
-    <string name="update_hint">更新提示</string>
-    <string name="update_message">1.全新页面设计，增加底部导航!\n2.订单详情页新增发短信和免费电话功能
+    <string name="update_message">1.全新页面设计，增加底部导航!\n2.订单详情页新增发短信和免费电话功能\n3.修复了登录的bug
     </string>
     <string name="update_notification_text_in">发现新版本，点我更新！ 建议在wifi条件下更新。</string>
     <string name="update_notification_text_up">58同城更新啦！请到通知栏查看。</string>
@@ -1863,10 +1786,8 @@
     <string name="upload_evidence">上传证据</string>
     <string name="upload_pic_suggest">您未上传证据,上传图片证据有助于\n通过审核,确定直接提交?</string>
     <string name="validate_code_already_send">验证码已发送,请耐心等待</string>
-    <string name="validate_number">验证码</string>
     <string name="verified_img_unable">点击刷新</string>
     <string name="verrify_tip">验证码填写错误</string>
-    <string name="version_code">版本号:</string>
     <string name="wait_to_pay">再等等</string>
     <string name="wb_email_fail">邮箱启动失败</string>
     <string name="weather_shortcut_title">空气质量</string>
@@ -2889,6 +2810,12 @@
     <style name="CardView.Light">
         <item name="cardBackgroundColor">@color/cardview_light_background</item>
     </style>
+    <style name="CustomCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkbox_style</item>
+    </style>
+    <style name="DefaultCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkbox_default_style</item>
+    </style>
     <style name="DialogButtonTextStyle" parent="@android:style/Widget.Button">
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/dialog_button_text_color</item>
@@ -3454,9 +3381,11 @@
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@color/sss</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:windowContentOverlay">@null</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
     </style>
     <style name="loginsdk_SeparatorLine">
         <item name="android:layout_width">fill_parent</item>

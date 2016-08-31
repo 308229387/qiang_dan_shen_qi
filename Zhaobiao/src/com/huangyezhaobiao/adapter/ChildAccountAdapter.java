@@ -1,5 +1,6 @@
 package com.huangyezhaobiao.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.Nullable;
@@ -11,11 +12,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.activity.UpdateAccountActivity;
 import com.huangyezhaobiao.bean.ChildAccountBean;
-import com.huangyezhaobiao.callback.JsonCallback;
+import com.huangyezhaobiao.callback.DialogCallback;
 import com.huangyezhaobiao.inter.Constans;
 import com.huangyezhaobiao.utils.ActivityUtils;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
@@ -29,6 +31,8 @@ import java.util.Map;
 import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
+import wuba.zhaobiao.mine.activity.UpdateAccountActivity;
+import wuba.zhaobiao.utils.LogoutDialogUtils;
 
 /**
  * Created by 58 on 2016/7/22.
@@ -51,7 +55,6 @@ public class ChildAccountAdapter extends BaseAdapter{
         this.context = context;
         this.childAccountList = childAccountList;
         this.flag = flag;
-        initDeleteDialog();
     }
     @Override
     public int getCount() {
@@ -98,6 +101,13 @@ public class ChildAccountAdapter extends BaseAdapter{
             holder.account_delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    deleteDialog= new ZhaoBiaoDialog(context,"确认删除选中子账号?");
+                    deleteDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialog) {
+                            deleteDialog = null;
+                        }
+                    });
                     deleteDialog.setOnDialogClickListener(new ZhaoBiaoDialog.onDialogClickListener() {
                         @Override
                         public void onDialogOkClick() {
@@ -105,6 +115,7 @@ public class ChildAccountAdapter extends BaseAdapter{
                             adeleteChildAccount(account.getId());
                             remove(position);
                             notifyDataSetChanged();
+                            HYMob.getDataList(context, HYEventConstans.EVENT_ACCOUNT_DELETE);
                         }
 
                         @Override
@@ -118,6 +129,8 @@ public class ChildAccountAdapter extends BaseAdapter{
             holder.account_edit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    HYMob.getDataList(context, HYEventConstans.EVENT_ACCOUNT_MODIFY);
 
                     Map<String, String> map = new HashMap<String, String>();
                     map.put(Constans.CHILD_ACCOUNT_ID,account.getId());
@@ -142,36 +155,25 @@ public class ChildAccountAdapter extends BaseAdapter{
         ImageView account_edit; //修改
     }
 
-    protected void initDeleteDialog(){
-        deleteDialog= new ZhaoBiaoDialog(context,"确认删除选中子账号?");
-
-        deleteDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                deleteDialog = null;
-            }
-        });
-    }
 
     //请求实体
     private void adeleteChildAccount(String id) {
         OkHttpUtils.get("http://zhaobiao.58.com/api/suserdelete")//
                 .params("id", id)//
-                .execute(new callback());
+                .execute(new callback((Activity) context));
     }
     //响应类
-    private class callback extends JsonCallback<String> {
+    private class callback extends DialogCallback<String> {
+
+        public callback(Activity context) {
+            super(context);
+        }
 
         @Override
         public void onResponse(boolean isFromCache, String s, Request request, @Nullable Response response) {
             LogUtils.LogV("childAccount", "add_success");
         }
 
-        @Override
-        public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
-
-            ToastUtils.showToast(e.getMessage());
-        }
 
     }
 

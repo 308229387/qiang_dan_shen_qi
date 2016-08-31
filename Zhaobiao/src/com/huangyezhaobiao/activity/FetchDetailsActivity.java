@@ -43,6 +43,7 @@ import com.huangyezhaobiao.view.WaitingTransfer;
 import com.huangyezhaobiao.vm.CallPhoneViewModel;
 import com.huangyezhaobiao.vm.FetchDetailsVM;
 import com.huangyezhaobiao.vm.TelephoneVModel;
+import com.wuba.loginsdk.external.LoginClient;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -98,7 +99,12 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 		fetchDetailsPresenter = new FetchDetailsPresenter(this);
 		initView();
 		initListener();
-		mobile = SPUtils.getVByK(this, GlobalConfigBean.KEY_USERPHONE);
+		String isSon = UserUtils.getIsSon(this);
+		if(!TextUtils.isEmpty(isSon) && TextUtils.equals("1",isSon)){
+			mobile = LoginClient.doGetUserPhoneOperate(this);
+		}else{
+			mobile = SPUtils.getVByK(this, GlobalConfigBean.KEY_USERPHONE);
+		}
 
 		phoneViewModel = new CallPhoneViewModel(vmCallback,this);
 
@@ -154,7 +160,7 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 			dialog.setCancelable(false);
 			dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
 				@Override
-				public void onDismiss(DialogInterface dialog) {
+				public void onDismiss(DialogInterface d) {
 					dialog = null;
 					call_dismiss_time = System.currentTimeMillis();
 					HYMob.getBaseDataListForPage(FetchDetailsActivity.this, HYEventConstans.PAGE_MY_ORDER_LIST, call_dismiss_time - call_Show_time);
@@ -432,9 +438,9 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 				break;
 			case R.id.order_detail_message:
 				flag = false;
-				Uri uri = Uri.parse("smsto:" + clientPhone);
-				Intent sendIntent = new Intent(Intent.ACTION_VIEW, uri);
-				sendIntent.putExtra("sms_body", "");
+				Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+				sendIntent.setData(Uri.parse("smsto:" + clientPhone));
+//				sendIntent.putExtra("sms_body", "");
 				startActivity(sendIntent);
 
 				HYMob.getDataListByCall(FetchDetailsActivity.this, HYEventConstans.EVENT_ID_ORDER_DETAIL_PAGE_MESSAGE, String.valueOf(orderId), "1");

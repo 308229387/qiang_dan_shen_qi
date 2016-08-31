@@ -21,6 +21,8 @@ import com.huangyezhaobiao.bean.ChildAccountBean;
 import com.huangyezhaobiao.callback.DialogCallback;
 import com.huangyezhaobiao.callback.JsonCallback;
 import com.huangyezhaobiao.inter.Constans;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.StringUtils;
 import com.huangyezhaobiao.utils.ToastUtils;
@@ -37,6 +39,7 @@ import java.util.regex.PatternSyntaxException;
 import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
+import wuba.zhaobiao.utils.LogoutDialogUtils;
 
 /**
  * Created by 58 on 2016/7/26.
@@ -78,6 +81,7 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
         iv_update_base_help = getView(R.id.iv_update_base_help);
         btn_update_save = getView(R.id.btn_update_save);
         cb_update_order = getView(R.id.cb_update_order);
+        cb_update_bidding = getView(R.id.cb_update_bidding);
     }
 
     private void initData(){
@@ -99,7 +103,7 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
                 && TextUtils.equals("5",authority) || TextUtils.equals("7",authority)){
             cb_update_order.setChecked(true);
         }
-        cb_update_bidding = getView(R.id.cb_update_bidding);
+
         if(!TextUtils.isEmpty(authority)
                 && TextUtils.equals("3",authority) || TextUtils.equals("7",authority)){
             cb_update_bidding.setChecked(true);
@@ -125,6 +129,7 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
                 break;
             case R.id.iv_update_base_help:
                 initHelpDialog();
+                HYMob.getDataList(this, HYEventConstans.EVENT_ACCOUNT_HELP);
                 break;
             case R.id.btn_update_save:
                 String name = et_update_user_content.getText().toString();
@@ -154,6 +159,9 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
 
     //请求实体
     private void updateChildAccount(String id, String name,String authority) {
+
+        HYMob.getDataList(this, HYEventConstans.EVENT_UPDATE_ACCOUNT_SAVE);
+
         OkHttpUtils.get("http://zhaobiao.58.com/api/suserupdate")//
                 .params("id",id)
                 .params("username", name)
@@ -171,12 +179,6 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
         public void onResponse(boolean isFromCache, ChildAccountBean childAccountBean, Request request, @Nullable Response response) {
             LogUtils.LogV("childAccount","update_success");
             finish();
-        }
-
-        @Override
-        public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
-
-            ToastUtils.showToast(e.getMessage());
         }
 
     }
@@ -205,7 +207,6 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
             @Override
             public void onDialogCancelClick() {
                 saveDialog.dismiss();
-                finish();
             }
         });
         saveDialog.show();
@@ -240,6 +241,9 @@ public class UpdateAccountActivity extends QBBaseActivity implements View.OnClic
         helpDialog.show();
     }
 
-
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+        HYMob.getBaseDataListForPage(this, HYEventConstans.PAGE_ACCOUNT_EDIT, stop_time - resume_time);
+    }
 }

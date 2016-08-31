@@ -452,4 +452,64 @@ public interface HYEventConstans {
      * 手机绑定页面
      */
     String PAGE_FIRST_BIND_MOBILE = "450";
+
+    /**
+     * 子账号管理入口
+     */
+    String EVENT_ID_ACCOUNT = "504";
+
+    /**
+     * 子账号页面停留时间
+     */
+    String PAGE_ACCOUNT_MANANGE = "506";
+
+    /**
+     * 点击编辑按钮
+     */
+    String EVENT_ACCOUNT_EDIT = "507";
+
+    /**
+     * 点击完成按钮
+     */
+    String EVENT_ACCOUNT_FINISH = "508";
+
+    /**
+     * 点击子账号按钮
+     */
+    String EVENT_ACCOUNT_ADD = "509";
+
+    /**
+     * 增加子账号界面
+     */
+    String PAGE_ACCOUNT_ADD = "510";
+
+    /**
+     * 点击问号
+     */
+    String EVENT_ACCOUNT_HELP ="511";
+
+    /**
+     * 点击保存
+     */
+    String EVENT_ADD_ACCOUNT_SAVE ="512";
+
+    /**
+     * 修改子账号界面
+     */
+    String PAGE_ACCOUNT_EDIT = "513";
+
+    /**
+     * 点击保存
+     */
+    String EVENT_UPDATE_ACCOUNT_SAVE = "514";
+
+    /**
+     * 点击删除
+     */
+    String EVENT_ACCOUNT_DELETE = "515";
+
+    /**
+     * 点击修改
+     */
+    String EVENT_ACCOUNT_MODIFY = "516";
 }
