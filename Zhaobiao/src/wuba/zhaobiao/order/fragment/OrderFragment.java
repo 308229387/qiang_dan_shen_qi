@@ -33,8 +33,7 @@ public class OrderFragment extends BaseFragment<OrderModel> implements INotifica
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        initalizationLayout(inflater,  container);
-        registPushAndEventBus();
+        initalizationLayout(inflater, container);
         creatAdapter();
         setInfo();
         return model.getView();
@@ -62,6 +61,7 @@ public class OrderFragment extends BaseFragment<OrderModel> implements INotifica
     @Override
     public void onResume() {
         super.onResume();
+        registPushAndEventBus();
         resume_time = System.currentTimeMillis();
         model.setHeaderHeight();
         model.checkNet();

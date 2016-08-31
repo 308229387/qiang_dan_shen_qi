@@ -74,7 +74,7 @@ public class BlankActivity extends CommonBaseActivity {
                 .setLogoResId(R.drawable.newlogin_logo)
 				.setLoginProtocolActivity(SoftwareUsageActivity.class)//控制是否显示协议，协议页面是一个activity
                 .setForgetPwdEnable(true)//是否显示忘记密码
-                .setPhoneLoginEnable(false)//是否显示手机动态码登录入口
+                .setPhoneLoginEnable(true)//是否显示手机动态码登录入口
                 .setRegistEnable(false)//是否显示注册入口
                 .setSocialEntranceEnable(false)//设置页面是否显示三方登录
                 .setCloseButtonEnable(false)//设置页面是否带关闭按钮

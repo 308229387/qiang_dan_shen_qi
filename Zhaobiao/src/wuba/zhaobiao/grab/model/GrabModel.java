@@ -154,11 +154,14 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
     }
 
     public void registListener() {
-        EventBus.getDefault().register(context);
         app = BiddingApplication.getBiddingApplication();
         app.setCurrentNotificationListener(context);
         app.registerNetStateListener();
         NetStateManager.getNetStateManagerInstance().setINetStateChangedListener(context);
+    }
+
+    public void registerEventBus(){
+        EventBus.getDefault().register(context);
     }
 
     private void initEvent() {
@@ -440,7 +443,7 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
     private void rightInfo() {
         String rbac = UserUtils.getRbac(context.getActivity());
         if (!TextUtils.isEmpty(rbac)
-                && TextUtils.equals("1", rbac) || TextUtils.equals("3", rbac)) {
+                && TextUtils.equals("1", rbac) || TextUtils.equals("5", rbac)) {
         } else {
             successGrab();
         }

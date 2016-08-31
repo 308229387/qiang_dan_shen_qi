@@ -32,7 +32,7 @@ public class GrabFragment extends BaseFragment<GrabModel> implements INotificati
         initalizationLayout(inflater, container);
         creatAdapter();
         setInfo();
-        registPushAndEventBus();
+        registEventBus();
         return model.getView();
     }
 
@@ -42,8 +42,12 @@ public class GrabFragment extends BaseFragment<GrabModel> implements INotificati
         model.registMessageBar();
     }
 
-    private void registPushAndEventBus() {
+    private void registPush() {
         model.registListener();
+    }
+
+    private void registEventBus(){
+        model.registerEventBus();
     }
 
     private void creatAdapter() {
@@ -59,6 +63,7 @@ public class GrabFragment extends BaseFragment<GrabModel> implements INotificati
     @Override
     public void onResume() {
         super.onResume();
+        registPush();
         resume_time = System.currentTimeMillis();
         model.setHeaderHeight();
         model.checkNet();

@@ -307,7 +307,7 @@ public abstract class QBBaseActivity extends CommonBaseActivity implements INoti
 				if (!TextUtils.isEmpty(isSon) && TextUtils.equals("1", isSon)) {
 					String rbac = UserUtils.getRbac(this);
 					if (!TextUtils.isEmpty(rbac)
-							&& TextUtils.equals("1", rbac) || TextUtils.equals("3", rbac)) {
+							&& TextUtils.equals("1", rbac) || TextUtils.equals("5", rbac)) {
 						LogUtils.LogV("PushInActivity", "QBBaseActivity" + "没有权限弹窗");
 					}else{
 						Intent intent = new Intent(this,PushInActivity.class);

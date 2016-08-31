@@ -26,7 +26,6 @@ public class MessageFragment extends BaseFragment<MessageModel> implements INoti
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         initHeaderView(inflater, container);
-        registerPushListener();
         createAdapter();
         return model.getView();
     }
@@ -57,6 +56,7 @@ public class MessageFragment extends BaseFragment<MessageModel> implements INoti
     @Override
     public void onResume() {
         super.onResume();
+        registerPushListener();
         resume_time = System.currentTimeMillis();
         model.MessageClickedStatistics();
         model.setHeaderHeight();

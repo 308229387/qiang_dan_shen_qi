@@ -397,7 +397,7 @@ public class MessageModel extends BaseModel implements TitleMessageBarLayout.OnT
     private void rightInfo() {
         String rbac = UserUtils.getRbac(context.getActivity());
         if (!TextUtils.isEmpty(rbac)
-                && TextUtils.equals("1", rbac) || TextUtils.equals("3", rbac)) {
+                && TextUtils.equals("1", rbac) || TextUtils.equals("5", rbac)) {
         } else {
             goingPushin();
             refreshComeSuccess();

@@ -556,7 +556,7 @@ public class BiddingFragment<T> extends BaseHomeFragment implements INotificatio
                 if (!TextUtils.isEmpty(isSon) && TextUtils.equals("1", isSon)) {
                     String rbac = UserUtils.getRbac(getActivity());
                     if (!TextUtils.isEmpty(rbac)
-                            && TextUtils.equals("1", rbac) || TextUtils.equals("3", rbac)) {
+                            && TextUtils.equals("1", rbac) || TextUtils.equals("5", rbac)) {
                         LogUtils.LogV("PushInActivity", "BiddingFragment" + "没有权限弹窗");
                     }else{
 

@@ -570,7 +570,7 @@ public class HomePageModel extends BaseModel {
     }
 
     private void alreadyNewVersion() {
-        if (UpdateManager.needUpdate)
+        if (!UpdateManager.needUpdate)
             isFirstUpdate();
     }
 
