@@ -12,12 +12,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.huangyezhaobiao.R;
@@ -36,8 +34,6 @@ import com.huangyezhaobiao.tab.MainTabIndicator;
 import com.huangyezhaobiao.tab.MainTabIndicatorBean;
 import com.huangyezhaobiao.tab.MainTabViewPager;
 import com.huangyezhaobiao.url.URLConstans;
-import com.huangyezhaobiao.utils.LogUtils;
-import com.huangyezhaobiao.utils.LoggerUtils;
 import com.huangyezhaobiao.utils.PhoneUtils;
 import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.TimeUtils;
@@ -52,7 +48,6 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import okhttp3.Call;
 import okhttp3.Headers;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -60,8 +55,7 @@ import wuba.zhaobiao.common.activity.HomePageActivity;
 import wuba.zhaobiao.common.fragment.BaseFragment;
 import wuba.zhaobiao.config.ScreenReceiver;
 import wuba.zhaobiao.config.Urls;
-import wuba.zhaobiao.grab.fragment.GrabFragment;
-import wuba.zhaobiao.grab.fragment.GrabTestFragment;
+import wuba.zhaobiao.grab.fragment.GrabAndBusinessFragment;
 import wuba.zhaobiao.message.fragment.MessageFragment;
 import wuba.zhaobiao.mine.fragment.MineFragment;
 import wuba.zhaobiao.order.fragment.OrderFragment;
@@ -212,7 +206,7 @@ public class HomePageModel extends BaseModel {
     }
 
     private void addFragment() {
-        mFragmentList.add(new GrabFragment());
+        mFragmentList.add(new GrabAndBusinessFragment());
         mFragmentList.add(new MessageFragment());
         mFragmentList.add(new OrderFragment());
         mFragmentList.add(new MineFragment());

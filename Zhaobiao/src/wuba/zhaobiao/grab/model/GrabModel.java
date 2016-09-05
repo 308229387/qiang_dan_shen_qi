@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.view.WindowManager;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -46,7 +45,6 @@ import com.huangyezhaobiao.utils.BDEventConstans;
 import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
-import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.MDUtils;
 import com.huangyezhaobiao.utils.NetUtils;
 import com.huangyezhaobiao.utils.PushUtils;
@@ -112,10 +110,6 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
 
     private void initTopBar() {
         tbl = (TitleMessageBarLayout) view.findViewById(R.id.tbl);
-        layout_back_head = view.findViewById(R.id.layout_head);
-        choseLayout = (LinearLayout) view.findViewById(R.id.ll_grab);
-        textHead = (TextView) view.findViewById(R.id.txt_head);
-        switchButton = (SwitchButton) view.findViewById(R.id.switch_button);
     }
 
     private void initListView() {
@@ -129,14 +123,10 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
     }
 
     public void setInfoForTop() {
-        initHeader();
-        initEvent();
+//        initHeader();
+//        initEvent();
     }
 
-    private void initHeader(){
-        textHead.setText("抢单");
-        choseLayout.setVisibility(View.VISIBLE);
-    }
 
     public void setParamsForListView() {
 
@@ -160,22 +150,12 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
         NetStateManager.getNetStateManagerInstance().setINetStateChangedListener(context);
     }
 
-    public void registerEventBus(){
+    public void registerEventBus() {
         EventBus.getDefault().register(context);
     }
 
-    private void initEvent() {
-        if ("1".equals(SPUtils.getServiceState(context.getActivity()))) {
-            switchButton.setChecked(true);//选中服务模式
-        } else {
-            switchButton.setChecked(false);//选中休息模式
-        }
-        switchButton.setOnCheckedChangeListener(new SwitchListener());
-    }
-
-
-    public  void setHeaderHeight(){
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT) {
+    public void setHeaderHeight() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //透明状态栏
             context.getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             int height = Utils.getStatusBarHeight(context.getActivity());
@@ -186,7 +166,7 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
         }
     }
 
-    public void grabClickedStatistics(){
+    public void grabClickedStatistics() {
         HYMob.getDataList(context.getActivity(), HYEventConstans.INDICATOR_BIDDING_LIST_PAGE);
     }
 
@@ -255,7 +235,7 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
         EventbusAgent.getInstance().post(action);
     }
 
-    public void resetTabNumber(){
+    public void resetTabNumber() {
         EventAction action = new EventAction(EventType.EVENT_TAB_RESET);
         EventbusAgent.getInstance().post(action);
     }
@@ -381,11 +361,11 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
     }
 
     private void NetDisConnected() {
-       context.NetDisConnected();
+        context.NetDisConnected();
     }
 
 
-    public void diaplayMessageBar(){
+    public void diaplayMessageBar() {
         if (tbl != null) {
             tbl.showNetError();
             tbl.setVisibility(View.VISIBLE);
@@ -401,10 +381,10 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
     }
 
     private void NetConnected() {
-       context.NetConnected();
+        context.NetConnected();
     }
 
-    public void closeMessageBar(){
+    public void closeMessageBar() {
         if (tbl != null && tbl.getType() == TitleBarType.NETWORK_ERROR)
             tbl.setVisibility(View.GONE);
     }
@@ -460,7 +440,7 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
         refreshComeSuccess();
     }
 
-    private void refreshComeSuccess(){
+    private void refreshComeSuccess() {
         EventAction action = new EventAction(EventType.EVENT_TAB_RESET_COME_SUCCESS);
         EventbusAgent.getInstance().post(action);
     }
@@ -479,9 +459,9 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
 
     public void jugePush(EventAction action) {
 
-        if (action.getType() == EventType.EVENT_TAB_RESET_SUCCESS){
+        if (action.getType() == EventType.EVENT_TAB_RESET_SUCCESS) {
             refresh();
-        }else if(action.getType() == EventType.EVENT_TAB_RESET_COME_SUCCESS){
+        } else if (action.getType() == EventType.EVENT_TAB_RESET_COME_SUCCESS) {
             refresh();
         }
     }
@@ -501,6 +481,15 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
         HYMob.getDataListByModel(context.getActivity(), HYEventConstans.EVENT_ID_CHANGE_MODE);
     }
 
+    public void topSwitchChicked(Boolean tag) {
+        if (tag)
+            switchChicked();
+        else
+            switchNotChicked();
+        saveState();
+        refresh();
+    }
+
     private void switchChicked() {
         StateUtils.state = 1;
         BDMob.getBdMobInstance().onMobEvent(context.getActivity(), BDEventConstans.EVENT_ID_SERVICE_MODE);
@@ -509,20 +498,6 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
 
     private void saveState() {
         SPUtils.setServiceState(context.getActivity(), StateUtils.state + "");
-    }
-
-    private class SwitchListener implements CompoundButton.OnCheckedChangeListener {
-        @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            if (isChecked) {
-                switchChicked();
-            } else {
-                switchNotChicked();
-            }
-
-            saveState();
-            refresh();
-        }
     }
 
     private class Refresh implements PullToRefreshLayout.OnRefreshListener {

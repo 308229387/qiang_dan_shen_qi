@@ -197,5 +197,9 @@
         <item name="android:button">@drawable/checkbox_default_style</item>
     </style>
 
+    <style name="TabLayoutTextStyle">
+        <item name="android:textSize">20sp</item>
+    </style>
+
 
 </resources>

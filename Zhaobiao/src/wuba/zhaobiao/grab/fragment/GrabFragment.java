@@ -6,14 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.huangyezhaobiao.activity.PushInActivity;
 import com.huangyezhaobiao.bean.push.PushBean;
-import com.huangyezhaobiao.enums.TitleBarType;
 import com.huangyezhaobiao.eventbus.EventAction;
-import com.huangyezhaobiao.eventbus.EventType;
 import com.huangyezhaobiao.inter.INotificationListener;
 import com.huangyezhaobiao.netmodel.INetStateChangedListener;
-import com.huangyezhaobiao.utils.LogUtils;
 
 import wuba.zhaobiao.common.fragment.BaseFragment;
 import wuba.zhaobiao.grab.model.GrabModel;
@@ -22,7 +18,7 @@ import wuba.zhaobiao.grab.model.GrabModel;
  * Created by SongYongmeng on 2016/8/8.
  * 描    述：抢单展示，红点检测。
  */
-public class GrabFragment extends BaseFragment<GrabModel> implements INotificationListener,INetStateChangedListener {
+public class GrabFragment extends BaseFragment<GrabModel> implements INotificationListener, INetStateChangedListener {
     public long resume_time;
     public long stop_time;
 
@@ -46,7 +42,7 @@ public class GrabFragment extends BaseFragment<GrabModel> implements INotificati
         model.registListener();
     }
 
-    private void registEventBus(){
+    private void registEventBus() {
         model.registerEventBus();
     }
 
@@ -83,7 +79,7 @@ public class GrabFragment extends BaseFragment<GrabModel> implements INotificati
     }
 
     public void OnFragmentSelectedChanged(boolean isSelected) {
-        if (isSelected && model != null){
+        if (isSelected && model != null) {
             model.selectChange();
             model.checkNet();
         }
@@ -119,5 +115,11 @@ public class GrabFragment extends BaseFragment<GrabModel> implements INotificati
     @Override
     public void NetDisConnected() {
         model.diaplayMessageBar();
+    }
+
+
+    public void topSwitchChicked(boolean isChecked) {
+        if (model != null)
+            model.topSwitchChicked(isChecked);
     }
 }

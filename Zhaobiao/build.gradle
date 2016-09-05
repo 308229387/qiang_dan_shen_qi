@@ -1,21 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'bugly'
 
-//buildscript {
-//    repositories {
-//        mavenCentral()
-//        maven { url 'https://maven.fabric.io/public' }
-//    }
-//    dependencies {
-//        classpath 'com.android.tools.build:gradle:2.0.0'
-//    }
-//}
-
-
-//repositories {
-//    mavenCentral()
-//}
-
 bugly {
     appId = '900004313'
     appKey = 'S9RwoAyOW3kknbMJ'
@@ -38,6 +23,7 @@ dependencies {
     compile files('libs/bugly_crash_release__2.1.jar')
     compile 'com.facebook.stetho:stetho:1.1.0'
     compile 'com.google.code.gson:gson:2.5'
+    compile 'com.android.support:design:22.2.0'
 
 //    compile 'com.wuba.wuxian.sdk:login:1.0.3-SNAPSHOT' //线上passport SDK(带线上签名的)
 
