@@ -19,9 +19,9 @@ import java.util.List;
 
 import wuba.zhaobiao.common.model.BaseModel;
 import wuba.zhaobiao.grab.adapter.FragmentAdapter;
+import wuba.zhaobiao.grab.fragment.BusinessOpportunityFragment;
 import wuba.zhaobiao.grab.fragment.GrabAndBusinessFragment;
 import wuba.zhaobiao.grab.fragment.GrabFragment;
-import wuba.zhaobiao.message.fragment.MessageFragment;
 
 /**
  * Created by SongYongmeng on 2016/9/3.
@@ -33,6 +33,7 @@ public class GrabAndBusinessModel<T> extends BaseModel {
     private SwitchButton switchButton;
     private View showLayout;
     private GrabFragment grabFragment;
+    private BusinessOpportunityFragment businessOpportunityFragment;
 
     public GrabAndBusinessModel(GrabAndBusinessFragment context) {
         this.context = context;
@@ -51,6 +52,7 @@ public class GrabAndBusinessModel<T> extends BaseModel {
 
     public void creatFragment() {
         grabFragment = new GrabFragment();
+        businessOpportunityFragment = new BusinessOpportunityFragment();
     }
 
     public void setSitchButtonInfo() {
@@ -69,9 +71,9 @@ public class GrabAndBusinessModel<T> extends BaseModel {
 
     private void setChoiseForSwitch() {
         if ("1".equals(SPUtils.getServiceState(context.getActivity())))
-            switchButton.setChecked(true);//选中服务模式
+            switchButton.setChecked(true);
         else
-            switchButton.setChecked(false);//选中休息模式
+            switchButton.setChecked(false);
     }
 
     public void setListenerForSwitchButton() {
@@ -98,7 +100,7 @@ public class GrabAndBusinessModel<T> extends BaseModel {
     private List<Fragment> getFragments() {
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(grabFragment);
-        fragments.add(new MessageFragment());
+        fragments.add(businessOpportunityFragment);
         return fragments;
     }
 

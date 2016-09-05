@@ -51,7 +51,6 @@ public class GrabFragment extends BaseFragment<GrabModel> implements INotificati
     }
 
     private void setInfo() {
-        model.setInfoForTop();
         model.setParamsForListView();
         model.setCachRespons();
     }
@@ -83,7 +82,6 @@ public class GrabFragment extends BaseFragment<GrabModel> implements INotificati
             model.selectChange();
             model.checkNet();
         }
-
     }
 
     @Override

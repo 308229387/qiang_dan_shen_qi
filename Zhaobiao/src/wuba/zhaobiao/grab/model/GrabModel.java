@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.view.WindowManager;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -122,14 +123,7 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
         adapter = new PopAdapter(context.getActivity(), adapterListener);
     }
 
-    public void setInfoForTop() {
-//        initHeader();
-//        initEvent();
-    }
-
-
     public void setParamsForListView() {
-
         listView.setDividerHeight((int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP, 10, context.getResources().getDisplayMetrics()));
         listView.setAdapter(adapter);
@@ -490,6 +484,12 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
         refresh();
     }
 
+    public void topSwitchNotChicked() {
+        switchNotChicked();
+        saveState();
+        refresh();
+    }
+
     private void switchChicked() {
         StateUtils.state = 1;
         BDMob.getBdMobInstance().onMobEvent(context.getActivity(), BDEventConstans.EVENT_ID_SERVICE_MODE);
@@ -498,6 +498,20 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
 
     private void saveState() {
         SPUtils.setServiceState(context.getActivity(), StateUtils.state + "");
+    }
+
+    public class SwitchListener implements CompoundButton.OnCheckedChangeListener {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            if (isChecked) {
+                switchChicked();
+            } else {
+                switchNotChicked();
+            }
+
+            saveState();
+            refresh();
+        }
     }
 
     private class Refresh implements PullToRefreshLayout.OnRefreshListener {

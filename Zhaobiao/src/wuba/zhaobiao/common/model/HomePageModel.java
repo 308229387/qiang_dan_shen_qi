@@ -124,7 +124,6 @@ public class HomePageModel extends BaseModel {
     }
 
     public void setMask() {
-
         SharedPreferences sharedPreferences = context.getSharedPreferences(
                 "Setting", Context.MODE_PRIVATE);
         boolean isread = sharedPreferences.getBoolean("read_account", false);
@@ -134,7 +133,6 @@ public class HomePageModel extends BaseModel {
             layout_mask.setVisibility(View.GONE);
         }
     }
-
 
     public void initMineMaskView(){
         initMineLayoutView();
@@ -623,7 +621,6 @@ public class HomePageModel extends BaseModel {
             saveInfoAndJugeUpdate(WltStateRespons, response);
 
         }
-
 
     }
 

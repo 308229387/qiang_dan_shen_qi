@@ -6,18 +6,6 @@
     android:background="@color/common_background"
     android:orientation="vertical">
 
-    <com.huangyezhaobiao.view.TitleMessageBarLayout
-        android:id="@+id/tbl"
-        android:layout_width="fill_parent"
-        android:layout_height="45dp" />
-
-    <ViewStub
-        android:id="@+id/no_data"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:inflatedId="@+id/pic_view_id_after_inflate"
-        android:layout="@layout/view_main_no_bid" />
-
     <com.jingchen.pulltorefresh.PullToRefreshLayout
         android:id="@+id/refresh_view"
         android:layout_width="fill_parent"
@@ -32,7 +20,6 @@
             android:id="@+id/grab_list"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-
             android:cacheColorHint="@android:color/transparent"
             android:divider="@null"
             android:fadingEdge="none"

@@ -196,9 +196,12 @@
     <style name="DefaultCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:button">@drawable/checkbox_default_style</item>
     </style>
+    <style name="BusinessCheckboxTheme" >
+        <item name="android:button">@drawable/business_check_box</item>
+    </style>
 
     <style name="TabLayoutTextStyle">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">20dp</item>
     </style>
 
 
