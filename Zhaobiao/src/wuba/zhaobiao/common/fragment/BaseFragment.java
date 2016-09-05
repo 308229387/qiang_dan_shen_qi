@@ -9,7 +9,6 @@ import wuba.zhaobiao.common.model.BaseModel;
  */
 public abstract class BaseFragment<T extends BaseModel> extends android.support.v4.app.Fragment {
     protected T model;
-    public abstract void OnFragmentSelectedChanged(boolean isSelected);
     public static int current_index;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -20,6 +19,11 @@ public abstract class BaseFragment<T extends BaseModel> extends android.support.
     private void initModel() {
         model = createModel();
     }
+
+    public void OnFragmentSelectedChanged(boolean isSelected) {
+
+    }
+
 
     protected abstract T createModel();
 }
