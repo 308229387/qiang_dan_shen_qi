@@ -6,22 +6,59 @@
     android:background="@color/common_background"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#fff">
+
+        <TextView
+            android:id="@+id/business_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="100dp"
+            android:drawablePadding="6dp"
+            android:drawableRight="@drawable/down_arrow"
+            android:text="北京"
+            android:textColor="#585858"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/business_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="100dp"
+            android:drawablePadding="6dp"
+            android:drawableRight="@drawable/down_arrow"
+            android:text="时间"
+            android:textColor="#585858"
+            android:textSize="17sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#d4d8d9" />
+
     <com.jingchen.pulltorefresh.PullToRefreshLayout
         android:id="@+id/refresh_view"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp">
 
         <include layout="@layout/refresh_head" />
 
-        <com.jingchen.pulltorefresh.pullableview.PullableListView
-            xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        <com.jingchen.pulltorefresh.pullableview.PullableListView xmlns:ptr="http://schemas.android.com/apk/res-auto"
             android:id="@+id/grab_list"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:cacheColorHint="@android:color/transparent"
             android:divider="@null"
+            android:dividerHeight="10dp"
             android:fadingEdge="none"
             android:listSelector="#000000"
             android:persistentDrawingCache="none"

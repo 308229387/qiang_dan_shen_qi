@@ -46,15 +46,31 @@ public class BusinessOpportunityAdapter extends BaseAdapter {
         if (convertView == null) {
             holder = new ViewHolder();
             convertView = LayoutInflater.from(mContext).inflate(R.layout.business_opportunity_item, parent, false);
-            holder.title = (TextView) convertView.findViewById(R.id.grab_cleaning_title);
-            holder.time = (TextView) convertView.findViewById(R.id.grab_cleaning_title);
+            holder.title = (TextView) convertView.findViewById(R.id.business_key1);
+            holder.timeKey = (TextView) convertView.findViewById(R.id.business_key2);
+            holder.timeValue = (TextView) convertView.findViewById(R.id.business_key3);
+            holder.remarksKey = (TextView) convertView.findViewById(R.id.business_key4);
+            holder.remarksValue = (TextView) convertView.findViewById(R.id.business_key5);
+            holder.priceKey = (TextView) convertView.findViewById(R.id.business_key6);
+            holder.priceValue = (TextView) convertView.findViewById(R.id.business_key7);
+            holder.box = (CheckBox) convertView.findViewById(R.id.check_business);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-//        if (data.size() > 0) {
-//
-//        }
+        if (data.size() > 0) {
+            holder.title.setText(((BusinessData) data.get(position)).getKey1());
+            holder.timeKey.setText(((BusinessData) data.get(position)).getKey2());
+            holder.timeValue.setText(((BusinessData) data.get(position)).getKey3());
+            holder.remarksKey.setText(((BusinessData) data.get(position)).getKey4());
+            holder.remarksValue.setText(((BusinessData) data.get(position)).getKey5());
+            holder.priceKey.setText(((BusinessData) data.get(position)).getKey6());
+            holder.priceValue.setText(((BusinessData) data.get(position)).getKey7());
+            if (((BusinessData) data.get(position)).getKey())
+                holder.box.setChecked(true);
+            else
+                holder.box.setChecked(false);
+        }
         return convertView;
     }
 
@@ -63,17 +79,24 @@ public class BusinessOpportunityAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    public void setCheckBoxState(int position) {
+        if (((BusinessData) data.get(position)).getKey())
+            ((BusinessData) data.get(position)).setKey(false);
+        else
+            ((BusinessData) data.get(position)).setKey(true);
+        notifyDataSetChanged();
+    }
+
 
     private static class ViewHolder {
 
         private TextView title;
-
-        private TextView price;
-
-        private TextView time;
-
-        private TextView remarks;
-
+        private TextView timeKey;
+        private TextView timeValue;
+        private TextView remarksValue;
+        private TextView priceKey;
+        private TextView priceValue;
+        private TextView remarksKey;
         private CheckBox box;
     }
 

@@ -18,7 +18,7 @@ public class BusinessData implements Serializable {
     private String key10;
     private String key11;
     private String key12;
-    private String key;
+    private Boolean checkbox = false;
 
     public String getKey1() {
         return key1;
@@ -116,11 +116,11 @@ public class BusinessData implements Serializable {
         this.key12 = key12;
     }
 
-    public String getKey() {
-        return key;
+    public Boolean getKey() {
+        return checkbox;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setKey(Boolean key) {
+        this.checkbox = key;
     }
 }

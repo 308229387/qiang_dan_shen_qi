@@ -1,12 +1,12 @@
 package wuba.zhaobiao.grab.model;
 
 import android.support.annotation.Nullable;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.callback.JsonCallback;
@@ -31,6 +31,8 @@ public class BusinessOpportunityModel extends BaseModel {
     private ListView listView;
     private View view;
     private BusinessOpportunityAdapter adapter;
+    private TextView businessCity;
+    private TextView businessTime;
 
     public BusinessOpportunityModel(BusinessOpportunityFragment context) {
         this.context = context;
@@ -44,6 +46,8 @@ public class BusinessOpportunityModel extends BaseModel {
     public void initView() {
         refreshView = (PullToRefreshLayout) view.findViewById(R.id.refresh_view);
         listView = (ListView) view.findViewById(R.id.grab_list);
+        businessCity = (TextView)view.findViewById(R.id.business_city);
+        businessTime = (TextView)view.findViewById(R.id.business_time);
     }
 
     public void creatAdapter() {
@@ -55,8 +59,6 @@ public class BusinessOpportunityModel extends BaseModel {
     }
 
     public void setParamsForListView() {
-        listView.setDividerHeight((int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, 10, context.getResources().getDisplayMetrics()));
         listView.setAdapter(adapter);
         refreshView.setOnRefreshListener(new Refresh());
         listView.setOnItemClickListener(new ClickItem());
@@ -64,7 +66,7 @@ public class BusinessOpportunityModel extends BaseModel {
     }
 
     public void getData() {
-        OkHttpUtils.get("http://zhaobiao.58.com/batch/getBids")//
+        OkHttpUtils.get("http://zhaobiao.58.com/appbatch/getBids")
                 .execute(new Test());
     }
 
@@ -83,7 +85,7 @@ public class BusinessOpportunityModel extends BaseModel {
     private class ClickItem implements android.widget.AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+            adapter.setCheckBoxState(position);
         }
     }
 
