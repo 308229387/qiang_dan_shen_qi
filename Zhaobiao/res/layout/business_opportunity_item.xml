@@ -6,12 +6,6 @@
     app:contentPadding="-2dp"
     app:cardElevation="1dp"
     app:cardCornerRadius="2dip">
-    <LinearLayout
-        android:id="@+id/cleaning_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/grap_list_selector"
-        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/grab_style"
@@ -19,12 +13,12 @@
             android:paddingTop="-2dip"
             android:paddingBottom="-2dip"
             android:layout_height="match_parent"
-            android:src="@drawable/type_back_grabbed"/>
+            android:src="@drawable/type_back_grab"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
+            android:layout_marginLeft="20dip"
             android:layout_marginBottom="9dp"
             android:orientation="vertical">
 
@@ -32,7 +26,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dip">
-
 
                 <TextView
                     android:id="@+id/grab_cleaning_title"
@@ -55,51 +48,80 @@
             </RelativeLayout>
 
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
-               >
-
+                android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/tv_cleaning_size"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:layout_marginRight="15dip"
-                    android:text="清洁面积:"
+                    android:text="创建时间"
                     android:textColor="@color/binding_list_text"
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/tv_cleaning_location"
+                    android:id="@+id/business_creat_time_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_cleaning_size"
-                    android:layout_marginTop="7dip"
                     android:layout_marginRight="15dip"
-                    android:singleLine="true"
-                    android:text="服务区域:"
+                    android:text="2016.06.21"
                     android:textColor="@color/binding_list_text"
-                    android:textSize="15sp"  />
+                    android:layout_marginLeft="15dip"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_cleaning_service_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_cleaning_location"
-                    android:layout_marginTop="7dip"
-                    android:layout_marginRight="15dip"
                     android:singleLine="true"
-                    android:text="服务时间:"
+                    android:layout_marginRight="15dip"
+                    android:text="创建时间"
                     android:textColor="@color/binding_list_text"
                     android:textSize="15sp" />
-            </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/business_remarks_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dip"
+                    android:text="2016.06.21"
+                    android:textColor="@color/binding_list_text"
+                    android:layout_marginLeft="15dip"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:layout_marginRight="15dip"
+                    android:text="创建时间"
+                    android:textColor="@color/binding_list_text"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/business_price_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dip"
+                    android:text="2016.06.21"
+                    android:textColor="@color/binding_list_text"
+                    android:layout_marginLeft="15dip"
+                    android:textSize="15sp" />
+            </LinearLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
-
 
 </android.support.v7.widget.CardView>
 

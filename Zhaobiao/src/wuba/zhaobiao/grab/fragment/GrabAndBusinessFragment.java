@@ -42,6 +42,7 @@ public class GrabAndBusinessFragment extends BaseFragment<GrabAndBusinessModel> 
         model.setupViewPager();
     }
 
+
     @Override
     public void OnFragmentSelectedChanged(boolean isSelected) {
 
