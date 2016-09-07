@@ -20,7 +20,7 @@ public class BusinessCityRespons implements Serializable {
     public class City implements Serializable {
         private String cityId;
         private String cityName;
-        public ArrayList<Areas> data;
+        public ArrayList<Areas> areas;
 
         public String getCityId() {
             return cityId;
@@ -30,12 +30,12 @@ public class BusinessCityRespons implements Serializable {
             this.cityId = cityId;
         }
 
-        public ArrayList<Areas> getData() {
-            return data;
+        public ArrayList<Areas> getAreas() {
+            return areas;
         }
 
-        public void setData(ArrayList<Areas> data) {
-            this.data = data;
+        public void setAreas(ArrayList<Areas> areas) {
+            this.areas = areas;
         }
 
         public String getCityName() {
@@ -47,7 +47,7 @@ public class BusinessCityRespons implements Serializable {
         }
     }
 
-    private class Areas {
+    public class Areas {
         private String areaName;
         private String areaId;
 

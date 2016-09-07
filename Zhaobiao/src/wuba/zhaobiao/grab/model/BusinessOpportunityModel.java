@@ -43,7 +43,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     private ArrayList<BusinessData> buyData = new ArrayList<>();
 
     private SpinerPopWindow<String> mSpinerPopWindow;
-    private List<String> cityList;
+    private List<String> cityList = new ArrayList<>();
     private List<String> timeList;
 
     public BusinessOpportunityModel(BusinessOpportunityFragment context) {
@@ -87,7 +87,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
                 .execute(new BusinessRequest());
     }
 
-    public void getCityData(){
+    public void getCityData() {
         OkHttpUtils.get("http://zhaobiao.58.com/appbatch/getLocal")
                 .execute(new BusinessCityRequest());
     }
@@ -102,29 +102,23 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         }
     }
 
-    private void initCityData() {
-        cityList = new ArrayList<String>();
-        for (int i = 0; i < 5; i++) {
-            cityList.add("test:" + i);
-        }
-    }
     private void initTimeData() {
         timeList = new ArrayList<String>();
         timeList.add("按时间正序");
         timeList.add("按时间倒序");
     }
 
-    private void showCityPop(){
-        initCityData();
+    private void showCityPop() {
         mSpinerPopWindow = new SpinerPopWindow<String>(context.getActivity(), cityList, cityItemClickListener);
         mSpinerPopWindow.setWidth(300);
-        mSpinerPopWindow.showAsDropDown(businessCity,-70,42);
+        mSpinerPopWindow.showAsDropDown(businessCity, -70, 42);
     }
-    private void showTimePop(){
+
+    private void showTimePop() {
         initTimeData();
         mSpinerPopWindow = new SpinerPopWindow<String>(context.getActivity(), timeList, timeItemClickListener);
         mSpinerPopWindow.setWidth(335);
-        mSpinerPopWindow.showAsDropDown(businessTime,-70,42);
+        mSpinerPopWindow.showAsDropDown(businessTime, -70, 42);
     }
 
     @Override
@@ -196,7 +190,16 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     private class BusinessCityRequest extends JsonCallback<BusinessCityRespons> {
         @Override
         public void onResponse(boolean isFromCache, BusinessCityRespons s, Request request, @Nullable Response response) {
-            ToastUtils.showToast(((BusinessCityRespons)s).getData().get(0).getCityId());
+            ToastUtils.showToast(((BusinessCityRespons) s).getData().get(0).getCityId());
+            if (s.getData().size() > 1)
+                for (int i = 0; i < s.getData().size(); i++)
+                    cityList.add(((BusinessCityRespons) s).getData().get(i).getCityName());
+            else {
+                ArrayList<BusinessCityRespons.Areas> temp = ((BusinessCityRespons) s).getData().get(0).getAreas();
+                for (int i = 0; i < temp.size(); i++)
+                    cityList.add(temp.get(i).getAreaName());
+            }
+
         }
     }
 }
