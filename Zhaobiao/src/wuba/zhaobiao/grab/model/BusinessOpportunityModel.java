@@ -24,6 +24,7 @@ import wuba.zhaobiao.bean.BusinessData;
 import wuba.zhaobiao.common.model.BaseModel;
 import wuba.zhaobiao.grab.adapter.BusinessOpportunityAdapter;
 import wuba.zhaobiao.grab.fragment.BusinessOpportunityFragment;
+import wuba.zhaobiao.respons.BusinessCityRespons;
 import wuba.zhaobiao.respons.BusinessOpportunityRespons;
 import wuba.zhaobiao.utils.SpinerPopWindow;
 
@@ -192,10 +193,10 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
 
     }
 
-    private class BusinessCityRequest extends JsonCallback<String> {
+    private class BusinessCityRequest extends JsonCallback<BusinessCityRespons> {
         @Override
-        public void onResponse(boolean isFromCache, String s, Request request, @Nullable Response response) {
-            ToastUtils.showToast(s);
+        public void onResponse(boolean isFromCache, BusinessCityRespons s, Request request, @Nullable Response response) {
+            ToastUtils.showToast(((BusinessCityRespons)s).getData().get(0).getCityId());
         }
     }
 }
