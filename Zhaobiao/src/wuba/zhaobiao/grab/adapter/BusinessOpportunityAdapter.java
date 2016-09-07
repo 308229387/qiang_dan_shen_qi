@@ -79,15 +79,6 @@ public class BusinessOpportunityAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    public void setCheckBoxState(int position) {
-        if (((BusinessData) data.get(position)).getKey())
-            ((BusinessData) data.get(position)).setKey(false);
-        else
-            ((BusinessData) data.get(position)).setKey(true);
-        notifyDataSetChanged();
-    }
-
-
     private static class ViewHolder {
 
         private TextView title;
@@ -95,8 +86,7 @@ public class BusinessOpportunityAdapter extends BaseAdapter {
         private TextView timeValue;
         private TextView remarksValue;
         private TextView priceKey;
-        private TextView priceValue;
-        private TextView remarksKey;
+        private TextView priceValue;        private TextView remarksKey;
         private CheckBox box;
     }
 

@@ -5,7 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
@@ -14,9 +16,13 @@ import com.huangyezhaobiao.utils.ToastUtils;
 import com.jingchen.pulltorefresh.PullToRefreshLayout;
 import com.lzy.okhttputils.OkHttpUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
+import wuba.zhaobiao.bean.BusinessData;
 import wuba.zhaobiao.common.model.BaseModel;
 import wuba.zhaobiao.grab.adapter.BusinessOpportunityAdapter;
 import wuba.zhaobiao.grab.fragment.BusinessOpportunityFragment;
@@ -33,6 +39,8 @@ public class BusinessOpportunityModel extends BaseModel {
     private BusinessOpportunityAdapter adapter;
     private TextView businessCity;
     private TextView businessTime;
+    private ArrayList<BusinessData> data;
+    private ArrayList<BusinessData> buyData = new ArrayList<>();
 
     public BusinessOpportunityModel(BusinessOpportunityFragment context) {
         this.context = context;
@@ -46,8 +54,8 @@ public class BusinessOpportunityModel extends BaseModel {
     public void initView() {
         refreshView = (PullToRefreshLayout) view.findViewById(R.id.refresh_view);
         listView = (ListView) view.findViewById(R.id.grab_list);
-        businessCity = (TextView)view.findViewById(R.id.business_city);
-        businessTime = (TextView)view.findViewById(R.id.business_time);
+        businessCity = (TextView) view.findViewById(R.id.business_city);
+        businessTime = (TextView) view.findViewById(R.id.business_time);
     }
 
     public void creatAdapter() {
@@ -70,6 +78,16 @@ public class BusinessOpportunityModel extends BaseModel {
                 .execute(new Test());
     }
 
+    public void dealWithData(int position) {
+        if (data.get(position).getKey()) {
+            data.get(position).setKey(false);
+            buyData.remove(data.get(position));
+        } else {
+            data.get(position).setKey(true);
+            buyData.add(data.get(position));
+        }
+    }
+
     private class Refresh implements PullToRefreshLayout.OnRefreshListener {
         @Override
         public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
@@ -85,7 +103,8 @@ public class BusinessOpportunityModel extends BaseModel {
     private class ClickItem implements android.widget.AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            adapter.setCheckBoxState(position);
+            dealWithData(position);
+            adapter.setData(data);
         }
     }
 
@@ -94,7 +113,8 @@ public class BusinessOpportunityModel extends BaseModel {
 
         @Override
         public void onResponse(boolean isFromCache, BusinessOpportunityRespons s, Request request, @Nullable Response response) {
-            adapter.setData(s.getRespData());
+            data = s.getRespData();
+            adapter.setData(data);
         }
 
         @Override
