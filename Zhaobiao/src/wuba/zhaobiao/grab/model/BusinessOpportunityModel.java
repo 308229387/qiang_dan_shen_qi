@@ -63,6 +63,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
 
     public void initView() {
         refreshView = (PullToRefreshLayout) view.findViewById(R.id.refresh_view);
+        refreshView.canNotRefresh();
         listView = (ListView) view.findViewById(R.id.grab_list);
         businessCity = (TextView) view.findViewById(R.id.business_city);
         businessTime = (TextView) view.findViewById(R.id.business_time);
@@ -130,6 +131,32 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         mSpinerPopWindow = new SpinerPopWindow<String>(context.getActivity(), timeList, timeItemClickListener);
         mSpinerPopWindow.setWidth(335);
         mSpinerPopWindow.showAsDropDown(businessTime, -70, 42);
+    }
+
+    private void ifShowCity(BusinessCityRespons s) {
+        for (int i = 0; i < s.getData().size(); i++) {
+            cityNameList.add(s.getData().get(i).getCityName());
+            cityIdList.add(s.getData().get(i).getCityId());
+        }
+    }
+
+    private void isShowArea(BusinessCityRespons s) {
+        cityNameList.add(s.getData().get(0).getCityName());
+        cityIdList.add(s.getData().get(0).getCityId());
+        ArrayList<BusinessCityRespons.Areas> temp = s.getData().get(0).getAreas();
+        for (int i = 0; i < temp.size(); i++) {
+            cityNameList.add(temp.get(i).getAreaName());
+            areaIdList.add(temp.get(i).getAreaId());
+        }
+    }
+
+    private void setCityOrAreaID() {
+        if (cityIdList.size() > 0)
+            cityId = cityIdList.get(0);
+        if (areaIdList.size() > 0)
+            areaId = areaIdList.get(0);
+        else
+            areaId = "";
     }
 
     @Override
@@ -208,32 +235,16 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     private class BusinessCityRequest extends JsonCallback<BusinessCityRespons> {
         @Override
         public void onResponse(boolean isFromCache, BusinessCityRespons s, Request request, @Nullable Response response) {
-            cityIdList.clear();
-            cityNameList.clear();
-            ToastUtils.showToast(((BusinessCityRespons) s).getData().get(0).getCityId());
             if (s.getData().size() > 1)
-                for (int i = 0; i < s.getData().size(); i++) {
-                    cityNameList.add(((BusinessCityRespons) s).getData().get(i).getCityName());
-                    cityIdList.add(((BusinessCityRespons) s).getData().get(i).getCityId());
-                }
+                ifShowCity(s);
             else {
-                cityNameList.add(((BusinessCityRespons) s).getData().get(0).getCityName());
-                cityIdList.add(((BusinessCityRespons) s).getData().get(0).getCityId());
-                ArrayList<BusinessCityRespons.Areas> temp = ((BusinessCityRespons) s).getData().get(0).getAreas();
-                for (int i = 0; i < temp.size(); i++) {
-                    cityNameList.add(temp.get(i).getAreaName());
-                    areaIdList.add(temp.get(i).getAreaId());
-                }
+                isShowArea(s);
             }
-            if (cityIdList.size() > 0)
-                cityId = cityIdList.get(0);
-            if (areaIdList.size() > 0)
-                areaId = areaIdList.get(0);
-            else
-                areaId = "";
+            setCityOrAreaID();
 
             getData();
         }
     }
+
 
 }

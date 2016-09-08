@@ -342,6 +342,10 @@ public class PullToRefreshLayout extends RelativeLayout {
         return banPullUp;
     }
 
+    public void canNotRefresh(){
+        canPullDown = false;
+    }
+
     public void setBanPullUp(Boolean tag) {
         banPullUp = tag;
     }
@@ -354,6 +358,8 @@ public class PullToRefreshLayout extends RelativeLayout {
         canPullDown = true;
         canPullUp = true;
     }
+
+
 
     /*
      * （非 Javadoc）由父控件决定是否分发事件，防止事件冲突
