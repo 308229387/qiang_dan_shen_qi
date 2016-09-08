@@ -71,6 +71,8 @@ public class BusinessOpportunityAdapter extends BaseAdapter {
             else
                 holder.box.setChecked(false);
         }
+        if (position ==2)
+            holder.remarksValue.setText("混元肝大厦大厦大厦大厦大厦大厦大厦大厦大厦大厦大厦大厦大厦大厦木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木又又又又又又又又又又又山山山山山山山山山山山山山山山山山山山山山山山山贼恭恭敬敬恭恭敬敬恭恭敬敬恭恭敬敬恭恭敬敬恭恭敬敬恭恭敬敬楏土土土土土土土土月月月月月众人众");
         return convertView;
     }
 

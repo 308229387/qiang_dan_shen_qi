@@ -9,10 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.iview.SwitchButton;
 import com.huangyezhaobiao.utils.SPUtils;
+import com.huangyezhaobiao.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,7 @@ import wuba.zhaobiao.grab.fragment.GrabFragment;
 /**
  * Created by SongYongmeng on 2016/9/3.
  */
-public class GrabAndBusinessModel<T> extends BaseModel {
+public class GrabAndBusinessModel<T> extends BaseModel implements View.OnClickListener {
     private GrabAndBusinessFragment context;
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
@@ -34,6 +36,7 @@ public class GrabAndBusinessModel<T> extends BaseModel {
     private View showLayout;
     private GrabFragment grabFragment;
     private BusinessOpportunityFragment businessOpportunityFragment;
+    private ImageView refresh;
 
     public GrabAndBusinessModel(GrabAndBusinessFragment context) {
         this.context = context;
@@ -48,6 +51,7 @@ public class GrabAndBusinessModel<T> extends BaseModel {
         mTabLayout = (TabLayout) showLayout.findViewById(R.id.tabs);
         mViewPager = (ViewPager) showLayout.findViewById(R.id.viewpager);
         switchButton = (SwitchButton) showLayout.findViewById(R.id.switch_button);
+        refresh = (ImageView) showLayout.findViewById(R.id.business_refresh);
     }
 
     public void creatFragment() {
@@ -78,6 +82,7 @@ public class GrabAndBusinessModel<T> extends BaseModel {
 
     public void setListenerForSwitchButton() {
         switchButton.setOnCheckedChangeListener(new SwitchButtonListener());
+        refresh.setOnClickListener(this);
     }
 
     public void setupViewPager() {
@@ -115,6 +120,28 @@ public class GrabAndBusinessModel<T> extends BaseModel {
         return showLayout;
     }
 
+    private void atGrab() {
+        switchButton.setVisibility(View.VISIBLE);
+        refresh.setVisibility(View.GONE);
+    }
+
+    private void atBusiness() {
+        switchButton.setVisibility(View.GONE);
+        refresh.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.business_refresh:
+                ToastUtils.showToast("refresh");
+                break;
+            default:
+                break;
+        }
+
+    }
+
     private class SwitchButtonListener implements CompoundButton.OnCheckedChangeListener {
 
         @Override
@@ -133,9 +160,9 @@ public class GrabAndBusinessModel<T> extends BaseModel {
         @Override
         public void onPageSelected(int position) {
             if (position == 0)
-                switchButton.setVisibility(View.VISIBLE);
+                atGrab();
             else
-                switchButton.setVisibility(View.GONE);
+                atBusiness();
         }
 
         @Override
@@ -143,6 +170,5 @@ public class GrabAndBusinessModel<T> extends BaseModel {
 
         }
     }
-
 
 }

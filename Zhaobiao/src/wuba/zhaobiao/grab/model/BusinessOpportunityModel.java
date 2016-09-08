@@ -43,8 +43,14 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     private ArrayList<BusinessData> buyData = new ArrayList<>();
 
     private SpinerPopWindow<String> mSpinerPopWindow;
-    private List<String> cityList = new ArrayList<>();
+    private List<String> cityNameList = new ArrayList<>();
+    private List<String> cityIdList = new ArrayList<>();
+    private List<String> areaIdList = new ArrayList<>();
     private List<String> timeList;
+    private String cityId = "";
+    private String areaId = "";
+    private String timestate = "";
+    private int pageNum = 1;
 
     public BusinessOpportunityModel(BusinessOpportunityFragment context) {
         this.context = context;
@@ -60,6 +66,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         listView = (ListView) view.findViewById(R.id.grab_list);
         businessCity = (TextView) view.findViewById(R.id.business_city);
         businessTime = (TextView) view.findViewById(R.id.business_time);
+        initTimeData();
     }
 
     public void setListener() {
@@ -79,11 +86,15 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         listView.setAdapter(adapter);
         refreshView.setOnRefreshListener(new Refresh());
         listView.setOnItemClickListener(new ClickItem());
-        getData();
     }
 
     public void getData() {
         OkHttpUtils.get("http://zhaobiao.58.com/appbatch/getBids")
+                .params("cityId", cityId)
+                .params("areaId", areaId)
+                .params("timestate", timestate)
+                .params("pageNum", pageNum + "")
+                .params("pageSize", 4 + "")
                 .execute(new BusinessRequest());
     }
 
@@ -106,16 +117,16 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         timeList = new ArrayList<String>();
         timeList.add("按时间正序");
         timeList.add("按时间倒序");
+        timestate = 0 + "";
     }
 
     private void showCityPop() {
-        mSpinerPopWindow = new SpinerPopWindow<String>(context.getActivity(), cityList, cityItemClickListener);
+        mSpinerPopWindow = new SpinerPopWindow<String>(context.getActivity(), cityNameList, cityItemClickListener);
         mSpinerPopWindow.setWidth(300);
         mSpinerPopWindow.showAsDropDown(businessCity, -70, 42);
     }
 
     private void showTimePop() {
-        initTimeData();
         mSpinerPopWindow = new SpinerPopWindow<String>(context.getActivity(), timeList, timeItemClickListener);
         mSpinerPopWindow.setWidth(335);
         mSpinerPopWindow.showAsDropDown(businessTime, -70, 42);
@@ -139,8 +150,13 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             mSpinerPopWindow.dismiss();
-            businessCity.setText(cityList.get(position));
-            ToastUtils.showToast(cityList.get(position));
+            if (areaIdList.size() > 0)
+                areaId = (areaIdList.get(position));
+            else
+                cityId = (cityIdList.get(position));
+            businessCity.setText(cityNameList.get(position));
+            ToastUtils.showToast(cityNameList.get(position));
+            getData();
         }
     };
 
@@ -149,6 +165,8 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             mSpinerPopWindow.dismiss();
             ToastUtils.showToast(timeList.get(position));
+            timestate = position + "";
+            getData();
         }
     };
 
@@ -190,16 +208,32 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     private class BusinessCityRequest extends JsonCallback<BusinessCityRespons> {
         @Override
         public void onResponse(boolean isFromCache, BusinessCityRespons s, Request request, @Nullable Response response) {
+            cityIdList.clear();
+            cityNameList.clear();
             ToastUtils.showToast(((BusinessCityRespons) s).getData().get(0).getCityId());
             if (s.getData().size() > 1)
-                for (int i = 0; i < s.getData().size(); i++)
-                    cityList.add(((BusinessCityRespons) s).getData().get(i).getCityName());
+                for (int i = 0; i < s.getData().size(); i++) {
+                    cityNameList.add(((BusinessCityRespons) s).getData().get(i).getCityName());
+                    cityIdList.add(((BusinessCityRespons) s).getData().get(i).getCityId());
+                }
             else {
+                cityNameList.add(((BusinessCityRespons) s).getData().get(0).getCityName());
+                cityIdList.add(((BusinessCityRespons) s).getData().get(0).getCityId());
                 ArrayList<BusinessCityRespons.Areas> temp = ((BusinessCityRespons) s).getData().get(0).getAreas();
-                for (int i = 0; i < temp.size(); i++)
-                    cityList.add(temp.get(i).getAreaName());
+                for (int i = 0; i < temp.size(); i++) {
+                    cityNameList.add(temp.get(i).getAreaName());
+                    areaIdList.add(temp.get(i).getAreaId());
+                }
             }
+            if (cityIdList.size() > 0)
+                cityId = cityIdList.get(0);
+            if (areaIdList.size() > 0)
+                areaId = areaIdList.get(0);
+            else
+                areaId = "";
 
+            getData();
         }
     }
+
 }
