@@ -251,6 +251,23 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
         hasDataButNotFull(list);
     }
 
+    private void noData(List<QDBaseBean> list) {
+        if (list.size() == 0 && showData.size() == 0)
+            showEmptyView();
+        else
+            dismissEmptyView();
+    }
+
+    private void hasData(List<QDBaseBean> list) {
+        if (list.size() > 0)
+            showDataToList(list);
+    }
+
+    private void hasDataButNotFull(List<QDBaseBean> list) {
+        if (list.size() < 20)
+            banPullUp();
+    }
+
     private List<QDBaseBean> getData(String s) {
         List<T> ts = getJSONObject(s);
         return (List<QDBaseBean>) ts;
@@ -265,17 +282,6 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
         }
     }
 
-
-    private void hasDataButNotFull(List<QDBaseBean> list) {
-        if (list.size() < 20)
-            banPullUp();
-    }
-
-    private void hasData(List<QDBaseBean> list) {
-        if (list.size() > 0)
-            showDataToList(list);
-    }
-
     private void showDataToList(List<QDBaseBean> list) {
         setPushId(list);
         showData.addAll(list);
@@ -286,13 +292,6 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
     private void setPushId(List<QDBaseBean> list) {
         if (isFromCache != null && !isFromCache)
             pushId = String.valueOf(list.get(list.size() - 1).getPushId());
-    }
-
-    private void noData(List<QDBaseBean> list) {
-        if (list.size() == 0 && showData.size() == 0)
-            showEmptyView();
-        else
-            dismissEmptyView();
     }
 
     public void showEmptyView() {

@@ -48,4 +48,8 @@ public class BusinessOpportunityFragment extends BaseFragment<BusinessOpportunit
     protected BusinessOpportunityModel createModel() {
         return new BusinessOpportunityModel(BusinessOpportunityFragment.this);
     }
+
+    public void refreshList() {
+        model.refresh();
+    }
 }

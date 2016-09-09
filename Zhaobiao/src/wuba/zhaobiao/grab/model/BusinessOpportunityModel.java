@@ -1,5 +1,6 @@
 package wuba.zhaobiao.grab.model;
 
+import android.app.Activity;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.callback.DialogCallback;
 import com.huangyezhaobiao.callback.JsonCallback;
 import com.huangyezhaobiao.utils.ToastUtils;
 import com.jingchen.pulltorefresh.PullToRefreshLayout;
@@ -41,6 +43,8 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     private TextView businessTime;
     private ArrayList<BusinessData> data;
     private ArrayList<BusinessData> buyData = new ArrayList<>();
+    private ArrayList<BusinessData> showData = new ArrayList<BusinessData>();
+
 
     private SpinerPopWindow<String> mSpinerPopWindow;
     private List<String> cityNameList = new ArrayList<>();
@@ -99,18 +103,28 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
                 .execute(new BusinessRequest());
     }
 
+    private void getDataForRefresh() {
+        OkHttpUtils.get("http://zhaobiao.58.com/appbatch/getBids")
+                .params("cityId", cityId)
+                .params("areaId", areaId)
+                .params("timestate", timestate)
+                .params("pageNum", pageNum + "")
+                .params("pageSize", 4 + "")
+                .execute(new BusinessRefreshRequest(context.getActivity()));
+    }
+
     public void getCityData() {
         OkHttpUtils.get("http://zhaobiao.58.com/appbatch/getLocal")
                 .execute(new BusinessCityRequest());
     }
 
     public void dealWithData(int position) {
-        if (data.get(position).getKey()) {
-            data.get(position).setKey(false);
-            buyData.remove(data.get(position));
+        if (showData.get(position).getKey()) {
+            showData.get(position).setKey(false);
+            buyData.remove(showData.get(position));
         } else {
-            data.get(position).setKey(true);
-            buyData.add(data.get(position));
+            showData.get(position).setKey(true);
+            buyData.add(showData.get(position));
         }
     }
 
@@ -159,6 +173,61 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
             areaId = "";
     }
 
+    private void stateRight(ArrayList<BusinessData> list) {
+        clearLocalInfo();
+        dealWithListData(list);
+    }
+
+    private void clearLocalInfo() {
+        if (pageNum == 1) {
+            showData.clear();
+            listView.setAdapter(adapter);
+        }
+    }
+
+    private void dealWithListData(ArrayList<BusinessData> list) {
+        noData(list);
+        hasData(list);
+        hasDataButNotFull(list);
+    }
+
+    private void noData(ArrayList<BusinessData> list) {
+        if (list.size() == 0) {
+            if (showData.size() == 0) {
+                showEmptyView();
+            } else {
+                banPullUp();
+            }
+        }
+    }
+
+    private void showEmptyView() {
+
+    }
+
+    private void banPullUp() {
+        refreshView.setBanPullUp(true);
+    }
+
+    private void canPullUp() {
+        refreshView.setBanPullUp(false);
+    }
+
+    private void hasData(ArrayList<BusinessData> list) {
+        if (list.size() > 0)
+            showDataToList(list);
+    }
+
+    private void showDataToList(ArrayList<BusinessData> list) {
+        showData.addAll(list);
+        adapter.setData(showData);
+        pageNum++;
+    }
+
+    private void hasDataButNotFull(ArrayList<BusinessData> list) {
+
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -197,6 +266,13 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         }
     };
 
+    public void refresh() {
+        pageNum = 1;
+        canPullUp();
+        getDataForRefresh();
+    }
+
+
     private class Refresh implements PullToRefreshLayout.OnRefreshListener {
         @Override
         public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
@@ -205,7 +281,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
 
         @Override
         public void onLoadMore(PullToRefreshLayout pullToRefreshLayout) {
-
+            getData();
         }
     }
 
@@ -213,7 +289,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             dealWithData(position);
-            adapter.setData(data);
+            adapter.setData(showData);
         }
     }
 
@@ -222,7 +298,28 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         @Override
         public void onResponse(boolean isFromCache, BusinessOpportunityRespons s, Request request, @Nullable Response response) {
             data = s.getRespData();
-            adapter.setData(data);
+            stateRight(data);
+            refreshView.refreshComplete();
+        }
+
+        @Override
+        public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
+            ToastUtils.showToast(e.getMessage());
+        }
+
+    }
+
+    private class BusinessRefreshRequest extends DialogCallback<BusinessOpportunityRespons> {
+
+        public BusinessRefreshRequest(Activity context) {
+            super(context, true);
+        }
+
+        @Override
+        public void onResponse(boolean isFromCache, BusinessOpportunityRespons s, Request request, @Nullable Response response) {
+            data = s.getRespData();
+            stateRight(data);
+            refreshView.refreshComplete();
         }
 
         @Override

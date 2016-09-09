@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.iview.SwitchButton;
 import com.huangyezhaobiao.utils.SPUtils;
-import com.huangyezhaobiao.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -134,7 +133,7 @@ public class GrabAndBusinessModel<T> extends BaseModel implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.business_refresh:
-                ToastUtils.showToast("refresh");
+                businessOpportunityFragment.refreshList();
                 break;
             default:
                 break;
