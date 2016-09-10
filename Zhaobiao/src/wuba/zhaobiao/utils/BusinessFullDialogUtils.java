@@ -7,17 +7,15 @@ import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 
 /**
  * Created by SongYongmeng on 2016/7/31.
- * 描    述：商机刷新时的弹窗
+ * 描    述：选中商品过多时的弹窗提示
  */
-public class BusinessRefreshDialogUtils {
+public class BusinessFullDialogUtils {
 
     private Activity context;
     private ZhaoBiaoDialog refreshDialog;
     private String msg;
-    private RefreshListener refreshListener;
 
-
-    public BusinessRefreshDialogUtils(Activity context, String msg) {
+    public BusinessFullDialogUtils(Activity context, String msg) {
         setInfo(context, msg);
     }
 
@@ -32,14 +30,14 @@ public class BusinessRefreshDialogUtils {
         showDialog();
     }
 
-    public void showTwoButtonDialog() { //弹框显示两个按钮--取消、确定
+    public void showTwoButtonDialog(){ //弹框显示两个按钮--取消、确定
         createDialog(context);
         configTwoButtonDialog();
         showDialog();
     }
 
     private void createDialog(Activity activity) {
-        if (refreshDialog == null) {
+        if(refreshDialog == null ){
             refreshDialog = new ZhaoBiaoDialog(activity, "");
         }
     }
@@ -47,7 +45,6 @@ public class BusinessRefreshDialogUtils {
     private void configSingleButtonDialog() {
         refreshDialog.setCancelButtonGone();
         refreshDialog.setCancelable(false);
-
         refreshDialog.setOnDismissListener(new Dismiss());
         refreshDialog.setOnDialogClickListener(new DialogClickListener());
         refreshDialog.setMessage(msg);
@@ -57,17 +54,15 @@ public class BusinessRefreshDialogUtils {
         refreshDialog.setOnDismissListener(new Dismiss());
         refreshDialog.setOnDialogClickListener(new DialogClickListener());
         refreshDialog.setMessage(msg);
-        refreshDialog.setNagativeText("我点错了");
-        refreshDialog.setPositiveText("确定刷新");
     }
 
     private void showDialog() {
-        if (refreshDialog != null)
+        if(refreshDialog != null)
             refreshDialog.show();
     }
 
     private void dismiss() {
-        if (refreshDialog != null) {
+        if(refreshDialog != null) {
             refreshDialog.dismiss();
         }
     }
@@ -83,7 +78,6 @@ public class BusinessRefreshDialogUtils {
     private class DialogClickListener implements ZhaoBiaoDialog.onDialogClickListener {
         @Override
         public void onDialogOkClick() {
-            refreshListener.refreshList();
             dismiss();
         }
 
@@ -93,11 +87,5 @@ public class BusinessRefreshDialogUtils {
         }
     }
 
-    public interface RefreshListener {
-        void refreshList();
-    }
 
-    public void setRefreshListener(RefreshListener refreshListener) {
-        this.refreshListener = refreshListener;
-    }
 }

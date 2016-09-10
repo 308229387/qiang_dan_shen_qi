@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.iview.SwitchButton;
 import com.huangyezhaobiao.utils.SPUtils;
+import com.huangyezhaobiao.utils.UserUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,8 +50,7 @@ public class GrabAndBusinessModel<T> extends BaseModel implements View.OnClickLi
     }
 
     public void initView() {
-//        fragmenTag = UserUtils.getHasaction(context.getActivity());
-        fragmenTag = "2";
+        fragmenTag = UserUtils.getHasaction(context.getActivity());
 
         switch (fragmenTag) {
             case "1":

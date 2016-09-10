@@ -28,6 +28,7 @@ import wuba.zhaobiao.grab.adapter.BusinessOpportunityAdapter;
 import wuba.zhaobiao.grab.fragment.BusinessOpportunityFragment;
 import wuba.zhaobiao.respons.BusinessCityRespons;
 import wuba.zhaobiao.respons.BusinessOpportunityRespons;
+import wuba.zhaobiao.utils.BusinessFullDialogUtils;
 import wuba.zhaobiao.utils.BusinessRefreshDialogUtils;
 import wuba.zhaobiao.utils.SpinerPopWindow;
 
@@ -126,9 +127,15 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
             showData.get(position).setKey(false);
             buyData.remove(showData.get(position));
         } else {
-            showData.get(position).setKey(true);
-            buyData.add(showData.get(position));
+            if (buyData.size() == 2)
+                new BusinessFullDialogUtils(context.getActivity(), "您最多可一次购买20条哦~").showSingleButtonDialog();
+            else {
+                showData.get(position).setKey(true);
+                buyData.add(showData.get(position));
+
+            }
         }
+        adapter.setData(showData);
     }
 
     private void initTimeData() {
@@ -279,12 +286,13 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     private void refresh() {
         pageNum = 1;
         canPullUp();
+        buyData.clear();
         getDataForRefresh();
     }
 
     @Override
     public void refreshList() {
-        clickRefresh();
+        refresh();
     }
 
     private class Refresh implements PullToRefreshLayout.OnRefreshListener {
@@ -303,7 +311,6 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             dealWithData(position);
-            adapter.setData(showData);
         }
     }
 
