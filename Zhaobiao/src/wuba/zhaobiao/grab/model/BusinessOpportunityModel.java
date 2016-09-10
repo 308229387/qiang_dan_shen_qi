@@ -28,12 +28,13 @@ import wuba.zhaobiao.grab.adapter.BusinessOpportunityAdapter;
 import wuba.zhaobiao.grab.fragment.BusinessOpportunityFragment;
 import wuba.zhaobiao.respons.BusinessCityRespons;
 import wuba.zhaobiao.respons.BusinessOpportunityRespons;
+import wuba.zhaobiao.utils.BusinessRefreshDialogUtils;
 import wuba.zhaobiao.utils.SpinerPopWindow;
 
 /**
  * Created by SongYongmeng on 2016/9/5.
  */
-public class BusinessOpportunityModel extends BaseModel implements View.OnClickListener {
+public class BusinessOpportunityModel extends BaseModel implements View.OnClickListener, BusinessRefreshDialogUtils.RefreshListener {
     private BusinessOpportunityFragment context;
     private PullToRefreshLayout refreshView;
     private ListView listView;
@@ -45,7 +46,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     private ArrayList<BusinessData> buyData = new ArrayList<>();
     private ArrayList<BusinessData> showData = new ArrayList<BusinessData>();
 
-
+    private BusinessRefreshDialogUtils refreshDialog;
     private SpinerPopWindow<String> mSpinerPopWindow;
     private List<String> cityNameList = new ArrayList<>();
     private List<String> cityIdList = new ArrayList<>();
@@ -71,6 +72,8 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         listView = (ListView) view.findViewById(R.id.grab_list);
         businessCity = (TextView) view.findViewById(R.id.business_city);
         businessTime = (TextView) view.findViewById(R.id.business_time);
+        refreshDialog = new BusinessRefreshDialogUtils(context.getActivity(), "刷新列表将会清空您的购物车，是否继续？");
+        refreshDialog.setRefreshListener(this);
         initTimeData();
     }
 
@@ -262,15 +265,27 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
             mSpinerPopWindow.dismiss();
             ToastUtils.showToast(timeList.get(position));
             timestate = position + "";
-            refresh();        }
+            refresh();
+        }
     };
 
-    public void refresh() {
+    public void clickRefresh() {
+        if (buyData.size() != 0)
+            refreshDialog.showTwoButtonDialog();
+        else
+            refresh();
+    }
+
+    private void refresh() {
         pageNum = 1;
         canPullUp();
         getDataForRefresh();
     }
 
+    @Override
+    public void refreshList() {
+        clickRefresh();
+    }
 
     private class Refresh implements PullToRefreshLayout.OnRefreshListener {
         @Override

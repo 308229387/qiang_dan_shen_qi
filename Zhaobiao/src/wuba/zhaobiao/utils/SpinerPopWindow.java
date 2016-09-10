@@ -16,6 +16,10 @@ import com.huangyezhaobiao.R;
 
 import java.util.List;
 
+/**
+ * Created by SongYongmeng on 2016/9/9.
+ * 描    述：商机地址与时间排序用到的POPWINDOW
+ */
 public class SpinerPopWindow<T> extends PopupWindow {
 	private LayoutInflater inflater;
 	private ListView mListView;

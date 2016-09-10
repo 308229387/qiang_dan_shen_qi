@@ -11,6 +11,7 @@ import com.wuba.loginsdk.external.LoginClient;
 
 /**
  * Created by SongYongmeng on 2016/8/1.
+ * 描    述：退出登陆注销用户信息的工具类
  */
 public class LogoutClearInfoAndStopServiceUtils {
     private final Activity context;
