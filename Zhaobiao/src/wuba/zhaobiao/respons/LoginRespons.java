@@ -16,9 +16,10 @@ public class LoginRespons implements Serializable {
         this.data = data;
     }
 
-    public class data implements Serializable{
+    public class data implements Serializable {
         private String companyName;
         private String hasValidated;
+        private String hasaction;
         private String isSon;
         private String rbac;
         private String suserId;
@@ -72,5 +73,12 @@ public class LoginRespons implements Serializable {
             this.userId = userId;
         }
 
+        public String getHasaction() {
+            return hasaction;
+        }
+
+        public void setHasaction(String hasaction) {
+            this.hasaction = hasaction;
+        }
     }
 }

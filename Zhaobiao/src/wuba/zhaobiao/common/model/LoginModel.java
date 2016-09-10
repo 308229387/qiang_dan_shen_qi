@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.application.BiddingApplication;
 import com.huangyezhaobiao.callback.DialogCallback;
-import com.huangyezhaobiao.callback.JsonCallback;
 import com.huangyezhaobiao.gtui.GePushProxy;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.HYEventConstans;
@@ -35,6 +34,7 @@ import wuba.zhaobiao.respons.LoginRespons;
 
 /**
  * Created by SongYongmeng on 2016/7/28.
+ * 描    述：此类中本地登陆接口中因为在DIALOG层将错误提示关闭了，所以在ERROR方法中又做了处理
  */
 public class LoginModel extends BaseModel {
     private LoginActivity context;
@@ -72,8 +72,8 @@ public class LoginModel extends BaseModel {
         OkHttpUtils.post(Urls.LOGIN)
                 .params("deviceId", PhoneUtils.getIMEI(context))
                 .params("token", PhoneUtils.getIMEI(context))
-                .params("phone",LoginClient.doGetUserPhoneOperate(context))
-                .execute(new localLoginRespons(context,false));
+                .params("phone", LoginClient.doGetUserPhoneOperate(context))
+                .execute(new localLoginRespons(context, false));
     }
 
     private void passportLoginSuccess(LoginRespons loginRespons) {
@@ -89,13 +89,15 @@ public class LoginModel extends BaseModel {
         String suserId = loginRespons.getData().getSuserId();
         String isSon = loginRespons.getData().getIsSon();
         String rbac = loginRespons.getData().getRbac();
+        String hasaction = loginRespons.getData().getHasaction();
+        UserUtils.setHasaction(context,hasaction);
         UserUtils.saveAcocuntInfo(context, isSon, rbac);
-        saveInfo(userName, companyName,userId,suserId);
+        saveInfo(userName, companyName, userId, suserId);
     }
 
-    private void saveInfo(String userName, String compnyName, String userId,String suserId) {
+    private void saveInfo(String userName, String compnyName, String userId, String suserId) {
         saveLocalInfo();
-        saveStatistics(userName, userId,suserId);
+        saveStatistics(userName, userId, suserId);
         UserUtils.saveUser(context, userId, compnyName, userName);
     }
 
@@ -155,12 +157,12 @@ public class LoginModel extends BaseModel {
         UserUtils.saveNeedUpdate(context, false);
     }
 
-    private void saveStatistics(String userName, String userId,String suserId) {
+    private void saveStatistics(String userName, String userId, String suserId) {
         HYMob.getDataListByLoginSuccess(context, HYEventConstans.EVENT_ID_LOGIN, "1", userName);
         String isSon = UserUtils.getIsSon(context);
-        if(!TextUtils.isEmpty(isSon) && TextUtils.equals("1",isSon)){
+        if (!TextUtils.isEmpty(isSon) && TextUtils.equals("1", isSon)) {
             GePushProxy.bindPushAlias(context.getApplicationContext(), suserId + "_" + PhoneUtils.getIMEI(context));
-        }else{
+        } else {
             GePushProxy.bindPushAlias(context.getApplicationContext(), userId + "_" + PhoneUtils.getIMEI(context));
         }
 
@@ -228,17 +230,17 @@ public class LoginModel extends BaseModel {
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
             if (e != null && e.getMessage().equals(NEED_DOWN_LINE)) {
-                initPassportErrorDialog (context.getString(R.string.force_exit));
+                initPassportErrorDialog(context.getString(R.string.force_exit));
             } else if (e != null && e.getMessage().equals(CHILD_FUNCTION_BAN)) {
                 initPassportErrorDialog(context.getString(R.string.child_function_ban));
             } else if (e != null && e.getMessage().equals(CHILD_HAS_UNBIND)) {
                 initPassportErrorDialog(context.getString(R.string.child_has_unbind));
             } else if (e != null && e.getMessage().equals(PPU_EXPIRED)) {
-                initPassportErrorDialog (context.getString(R.string.ppu_expired));
+                initPassportErrorDialog(context.getString(R.string.ppu_expired));
             }
 
-            if( e != null)
-            initPassportErrorDialog(e.getMessage());
+            if (e != null)
+                initPassportErrorDialog(e.getMessage());
         }
     }
 

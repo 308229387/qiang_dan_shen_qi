@@ -40,6 +40,7 @@ public class UserUtils {
 
 	/** 埋点的SharedPerfrencens*/
 	private static final String MOB_FILE_NAME = "hy_mob";
+	private static final String HASACTION = "hasaction";
 	private static final String MOB_ITEM = "mobitems";
 	private static int mobItem;
 	private static final String MOB_COMMON = "mobcommon";
@@ -375,5 +376,15 @@ public class UserUtils {
 		context.getSharedPreferences(MOB_FILE_NAME, 0).edit().putString(mobCommon, "").commit();
 		context.getSharedPreferences(MOB_FILE_NAME, 0).edit().putInt(MOB_ITEM, 0).commit();
 	}
+	public static void setHasaction(Context context,String hasaction){
+		SharedPreferences sp = context.getSharedPreferences(MOB_FILE_NAME, 0);
+		sp.edit().putString(HASACTION, hasaction).commit();
+	}
+
+	public static String getHasaction(Context context){
+		String hasaction = context.getSharedPreferences(MOB_FILE_NAME, 0).getString(HASACTION, "");
+		return hasaction;
+	}
+
 
 }

@@ -1,7 +1,6 @@
 package wuba.zhaobiao.grab.model;
 
 import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -36,6 +35,9 @@ public class GrabAndBusinessModel<T> extends BaseModel implements View.OnClickLi
     private GrabFragment grabFragment;
     private BusinessOpportunityFragment businessOpportunityFragment;
     private ImageView refresh;
+    private String fragmenTag;
+    List<String> titles = new ArrayList<>();
+    List<Fragment> fragments = new ArrayList<>();
 
     public GrabAndBusinessModel(GrabAndBusinessFragment context) {
         this.context = context;
@@ -47,24 +49,75 @@ public class GrabAndBusinessModel<T> extends BaseModel implements View.OnClickLi
     }
 
     public void initView() {
-        mTabLayout = (TabLayout) showLayout.findViewById(R.id.tabs);
+//        fragmenTag = UserUtils.getHasaction(context.getActivity());
+        fragmenTag = "2";
+
+        switch (fragmenTag) {
+            case "1":
+                switchButton = (SwitchButton) showLayout.findViewById(R.id.switch_button);
+                switchButton.setVisibility(View.VISIBLE);
+                mTabLayout = (TabLayout) showLayout.findViewById(R.id.single_tabs);
+                break;
+            case "2":
+                refresh = (ImageView) showLayout.findViewById(R.id.business_refresh);
+                mTabLayout = (TabLayout) showLayout.findViewById(R.id.single_tabs);
+                refresh.setVisibility(View.VISIBLE);
+                refresh.setOnClickListener(this);
+                break;
+            case "3":
+                mTabLayout = (TabLayout) showLayout.findViewById(R.id.tabs);
+                switchButton = (SwitchButton) showLayout.findViewById(R.id.switch_button);
+                switchButton.setVisibility(View.VISIBLE);
+                refresh = (ImageView) showLayout.findViewById(R.id.business_refresh);
+                refresh.setOnClickListener(this);
+                break;
+            default:
+                break;
+        }
+
+
+        mTabLayout.setVisibility(View.VISIBLE);
         mViewPager = (ViewPager) showLayout.findViewById(R.id.viewpager);
-        switchButton = (SwitchButton) showLayout.findViewById(R.id.switch_button);
-        refresh = (ImageView) showLayout.findViewById(R.id.business_refresh);
     }
 
     public void creatFragment() {
-        grabFragment = new GrabFragment();
-        businessOpportunityFragment = new BusinessOpportunityFragment();
+        switch (fragmenTag) {
+            case "1":
+                grabFragment = new GrabFragment();
+                titles.add("抢单");
+                mTabLayout.addTab(mTabLayout.newTab().setText(titles.get(0)));
+                fragments.add(grabFragment);
+                break;
+            case "2":
+                businessOpportunityFragment = new BusinessOpportunityFragment();
+                titles.add("商机");
+                mTabLayout.addTab(mTabLayout.newTab().setText(titles.get(0)));
+                fragments.add(businessOpportunityFragment);
+                break;
+            case "3":
+                grabFragment = new GrabFragment();
+                businessOpportunityFragment = new BusinessOpportunityFragment();
+                titles.add("抢单");
+                titles.add("商机");
+                mTabLayout.addTab(mTabLayout.newTab().setText(titles.get(0)));
+                mTabLayout.addTab(mTabLayout.newTab().setText(titles.get(1)));
+                fragments.add(grabFragment);
+                fragments.add(businessOpportunityFragment);
+                break;
+            default:
+                break;
+        }
+
     }
 
     public void setSitchButtonInfo() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                dealWithSwichButton();
-            }
-        }, 500);
+        if (!fragmenTag.equals("2"))
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    dealWithSwichButton();
+                }
+            }, 500);
     }
 
     private void dealWithSwichButton() {
@@ -81,31 +134,10 @@ public class GrabAndBusinessModel<T> extends BaseModel implements View.OnClickLi
 
     public void setListenerForSwitchButton() {
         switchButton.setOnCheckedChangeListener(new SwitchButtonListener());
-        refresh.setOnClickListener(this);
     }
 
     public void setupViewPager() {
-        List<String> titles = creatTitleForTab();
-        List<Fragment> fragments = getFragments();
         setUp(new FragmentAdapter(context.getChildFragmentManager(), fragments, titles));
-    }
-
-    @NonNull
-    private List<String> creatTitleForTab() {
-        List<String> titles = new ArrayList<>();
-        titles.add("抢单");
-        titles.add("商机");
-        mTabLayout.addTab(mTabLayout.newTab().setText(titles.get(0)));
-        mTabLayout.addTab(mTabLayout.newTab().setText(titles.get(1)));
-        return titles;
-    }
-
-    @NonNull
-    private List<Fragment> getFragments() {
-        List<Fragment> fragments = new ArrayList<>();
-        fragments.add(grabFragment);
-        fragments.add(businessOpportunityFragment);
-        return fragments;
     }
 
     private void setUp(FragmentAdapter adapter) {

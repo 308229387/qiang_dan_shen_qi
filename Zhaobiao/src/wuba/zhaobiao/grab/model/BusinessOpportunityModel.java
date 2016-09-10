@@ -252,7 +252,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
                 cityId = (cityIdList.get(position));
             businessCity.setText(cityNameList.get(position));
             ToastUtils.showToast(cityNameList.get(position));
-            getData();
+            refresh();
         }
     };
 
@@ -262,8 +262,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
             mSpinerPopWindow.dismiss();
             ToastUtils.showToast(timeList.get(position));
             timestate = position + "";
-            getData();
-        }
+            refresh();        }
     };
 
     public void refresh() {
