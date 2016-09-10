@@ -1,16 +1,19 @@
 package com.huangyezhaobiao.activity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.TypedValue;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -18,9 +21,7 @@ import android.widget.Toast;
 
 import com.huangye.commonlib.vm.callback.NetWorkVMCallBack;
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.bean.AccountExpireBean;
 import com.huangyezhaobiao.bean.GlobalConfigBean;
-import com.huangyezhaobiao.bean.UserPhoneBean;
 import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.eventbus.EventAction;
 import com.huangyezhaobiao.eventbus.EventbusAgent;
@@ -30,33 +31,31 @@ import com.huangyezhaobiao.presenter.FetchDetailsPresenter;
 import com.huangyezhaobiao.receiver.PhoneReceiver;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
-import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.PushUtils;
 import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.TimeUtils;
 import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.view.CallAlertDialog;
+import com.huangyezhaobiao.view.CallClassifyDialog;
 import com.huangyezhaobiao.view.CallDialog;
 import com.huangyezhaobiao.view.InputCallDialog;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
 import com.huangyezhaobiao.view.WaitingTransfer;
 import com.huangyezhaobiao.vm.CallPhoneViewModel;
 import com.huangyezhaobiao.vm.FetchDetailsVM;
-import com.huangyezhaobiao.vm.TelephoneVModel;
 import com.wuba.loginsdk.external.LoginClient;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * 抢单详情
  * @author shenzhixin
  *
  */
-public class FetchDetailsActivity extends QBBaseActivity implements
+public class BiddingDetailsActivity extends QBBaseActivity implements
 		OnClickListener, NetWorkVMCallBack {
 	public static String orderState ;
 	public static String time;
@@ -74,6 +73,7 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 	private CallDialog dialog;
 	private InputCallDialog InputDialog;
 	private CallAlertDialog alertDialog;
+	private CallClassifyDialog callClassifyDialog;
 
 	private WaitingTransfer transferDialog;
 	//双呼
@@ -91,6 +91,7 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 	private long call_Show_time,call_dismiss_time ;
 
 	private long input_Show_time,input_dismiss_time ;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +117,7 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 		super.onResume();
 		EventbusAgent.getInstance().register(this);
 		orderId = getIntent().getStringExtra(Constans.ORDER_ID);
+
 		try {
 			if(TextUtils.isEmpty(orderId)){//orderId如果为空
                 vm = new FetchDetailsVM(this, this, 0l);
@@ -149,7 +151,11 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 		tbl = (TitleMessageBarLayout) findViewById(R.id.tbl);
 		order_detail_message = (RelativeLayout) findViewById(R.id.order_detail_message);
 		order_detail_telephone = (RelativeLayout) findViewById(R.id.order_detail_telephone);
+
 	}
+
+
+
 
 
 	private void initDialog() {
@@ -163,14 +169,14 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 				public void onDismiss(DialogInterface d) {
 					dialog = null;
 					call_dismiss_time = System.currentTimeMillis();
-					HYMob.getBaseDataListForPage(FetchDetailsActivity.this, HYEventConstans.PAGE_MY_ORDER_LIST, call_dismiss_time - call_Show_time);
+					HYMob.getBaseDataListForPage(BiddingDetailsActivity.this, HYEventConstans.PAGE_MY_ORDER_LIST, call_dismiss_time - call_Show_time);
 				}
 			});
 			dialog.setOnDialogClickListener(new CallDialog.onDialogClickListener() {
 
 				@Override
 				public void onDialogOkClick() {
-					SPUtils.setAppMobile(FetchDetailsActivity.this, mobile);
+					SPUtils.setAppMobile(BiddingDetailsActivity.this, mobile);
 					if (phoneViewModel != null) {
 						phoneViewModel.call(orderId, mobile);
 					}
@@ -181,24 +187,25 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 						@Override
 						public void run() {
 							stopTransfering();
+//							setMineMask();
 						}
 					}, 15000);
 
-					HYMob.getDataList(FetchDetailsActivity.this, HYEventConstans.PAGE_DIALOG_CALL);
+					HYMob.getDataList(BiddingDetailsActivity.this, HYEventConstans.PAGE_DIALOG_CALL);
 
 				}
 
 				@Override
 				public void onDialogCancelClick() {
 					dialog.dismiss();
-					HYMob.getDataList(FetchDetailsActivity.this, HYEventConstans.EVENT_CALL_CANCEL);
+					HYMob.getDataList(BiddingDetailsActivity.this, HYEventConstans.EVENT_CALL_CANCEL);
 				}
 
 				@Override
 				public void changeNumberClick() {
 					initInputNumberDailog();
 					dialog.dismiss();
-					HYMob.getDataList(FetchDetailsActivity.this, HYEventConstans.EVENT_CHANGE_NUMBER);
+					HYMob.getDataList(BiddingDetailsActivity.this, HYEventConstans.EVENT_CHANGE_NUMBER);
 				}
 			});
 			dialog.show();
@@ -220,7 +227,7 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 				public void onDismiss(DialogInterface dialog) {
 					InputDialog = null;
 					input_dismiss_time = System.currentTimeMillis();
-					HYMob.getBaseDataListForPage(FetchDetailsActivity.this, HYEventConstans.PAGE_DIALOG_INPUT, input_dismiss_time - input_Show_time);
+					HYMob.getBaseDataListForPage(BiddingDetailsActivity.this, HYEventConstans.PAGE_DIALOG_INPUT, input_dismiss_time - input_Show_time);
 				}
 			});
 			InputDialog.setOnDialogClickListener(new InputCallDialog.onDialogClickListener() {
@@ -228,13 +235,13 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 				@Override
 				public void onDialogOkClick() {
 					String phone = InputDialog.getInputNumber();
-					SPUtils.setAppMobile(FetchDetailsActivity.this, phone);
+					SPUtils.setAppMobile(BiddingDetailsActivity.this, phone);
 					if (phoneViewModel != null) {
 						phoneViewModel.call(orderId, phone);
 					}
 					InputDialog.dismiss();
 
-					HYMob.getDataList(FetchDetailsActivity.this, HYEventConstans.EVENT_CALL_CONFIRM);
+					HYMob.getDataList(BiddingDetailsActivity.this, HYEventConstans.EVENT_CALL_CONFIRM);
 					startTransfering();
 
 					// 等15秒
@@ -242,6 +249,7 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 						@Override
 						public void run() {
 							stopTransfering();
+//							setMineMask();
 						}
 					}, 15000);
 				}
@@ -250,7 +258,7 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 				public void onDialogCancelClick() {
 					InputDialog.dismiss();
 					initDialog();
-					HYMob.getDataList(FetchDetailsActivity.this, HYEventConstans.EVENT_CALL_CANCEL);
+					HYMob.getDataList(BiddingDetailsActivity.this, HYEventConstans.EVENT_CALL_CANCEL);
 				}
 
 				@Override
@@ -259,6 +267,32 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 			});
 			InputDialog.show();
 		    input_Show_time = System.currentTimeMillis();
+	}
+
+
+	/**
+	 * 需要同步
+	 *
+	 * @return
+	 */
+	private boolean needAsync() {
+		//当前时间戳
+		Date currentTimeLine = null;
+		//从sp取时间戳
+		Date latTimeLine = null;
+
+		SimpleDateFormat sfd = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+		try {
+			currentTimeLine = new Date(System.currentTimeMillis());
+			if(!TextUtils.isEmpty(time)){
+				latTimeLine = sfd.parse(time);
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return TimeUtils.beyond2Hour(currentTimeLine, latTimeLine);//没有在时间戳范围内
+
 	}
 
 
@@ -285,7 +319,7 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 			alertDialog.setOnDialogClickListener(new CallAlertDialog.onDialogClickListener() {
 				@Override
 				public void onDialogOkClick() {
-					mobile = SPUtils.getAppMobile(FetchDetailsActivity.this);
+					mobile = SPUtils.getAppMobile(BiddingDetailsActivity.this);
 					phoneViewModel.call(orderId,mobile);
 					alertDialog.dismiss();
 
@@ -307,6 +341,7 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 			alertDialog.show();
 
 	}
+
 
 	/**
 	 * 加载效果
@@ -351,7 +386,8 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 				if(status == 0){
 				}else{
 					stopTransfering();
-					Toast.makeText(FetchDetailsActivity.this, "电话转接失败", Toast.LENGTH_SHORT).show();
+//					setMineMask();
+					Toast.makeText(BiddingDetailsActivity.this, "电话转接失败", Toast.LENGTH_SHORT).show();
 				}
 
 			}
@@ -385,31 +421,6 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 	};
 
 	/**
-	 * 需要同步
-	 *
-	 * @return
-	 */
-	private boolean needAsync() {
-		//当前时间戳
-		Date currentTimeLine = null;
-		//从sp取时间戳
-		Date latTimeLine = null;
-
-		SimpleDateFormat sfd = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-
-		try {
-			currentTimeLine = new Date(System.currentTimeMillis());
-			if(!TextUtils.isEmpty(time)){
-				latTimeLine = sfd.parse(time);
-			}
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return TimeUtils.beyond2Hour(currentTimeLine, latTimeLine);//没有在时间戳范围内
-
-	}
-
-	/**
 	 * 拒绝接听电话
 	 */
 	PhoneReceiver.BRInteraction  interaction = new PhoneReceiver.BRInteraction() {
@@ -418,16 +429,14 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 
 			if(action.equals(PhoneReceiver.CALL_UP)){
 				stopTransfering();
-
+//				setMineMask();
 			}else if(action.equals(PhoneReceiver.CALL_OVER)){
 				stopTransfering();
+//				setMineMask();
 				if(!needAsync() && alertDialog == null){ //两小时内
 					initAlertCallDialog();
 				}
-
 			}
-
-
 		}
 	};
 	@Override
@@ -443,12 +452,12 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 //				sendIntent.putExtra("sms_body", "");
 				startActivity(sendIntent);
 
-				HYMob.getDataListByCall(FetchDetailsActivity.this, HYEventConstans.EVENT_ID_ORDER_DETAIL_PAGE_MESSAGE, String.valueOf(orderId), "1");
+				HYMob.getDataListByCall(BiddingDetailsActivity.this, HYEventConstans.EVENT_ID_ORDER_DETAIL_PAGE_MESSAGE, String.valueOf(orderId), "1");
 
 				break;
 			case R.id.order_detail_telephone:
 				initDialog();
-				HYMob.getDataListByCall(FetchDetailsActivity.this, HYEventConstans.EVENT_ID_ORDER_DETAIL_PAGE_PHONE, String.valueOf(orderId), "1");
+				HYMob.getDataListByCall(BiddingDetailsActivity.this, HYEventConstans.EVENT_ID_ORDER_DETAIL_PAGE_PHONE, String.valueOf(orderId), "1");
 				break;
 
 		}
@@ -522,7 +531,7 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 	protected void onStop() {
 		super.onStop();
 //		EventbusAgent.getInstance().unregister(this);
-		HYMob.getBaseDataListForPage(FetchDetailsActivity.this, HYEventConstans.PAGE_MY_ORDER_DETAIL, stop_time - resume_time);
+		HYMob.getBaseDataListForPage(BiddingDetailsActivity.this, HYEventConstans.PAGE_MY_ORDER_DETAIL, stop_time - resume_time);
 	}
 
 	@Override
@@ -589,6 +598,11 @@ public class FetchDetailsActivity extends QBBaseActivity implements
 		if (!this.isFinishing() && alertDialog != null && alertDialog.isShowing()) {
 			alertDialog.dismiss();
 			alertDialog = null;
+		}
+
+		if (!this.isFinishing() && callClassifyDialog != null && callClassifyDialog.isShowing()) {
+			callClassifyDialog.dismiss();
+			callClassifyDialog = null;
 		}
 
 		if (!this.isFinishing() && transferDialog != null && transferDialog.isShowing()) {

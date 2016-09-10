@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fafafa"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_backhead"
+        android:id="@+id/layout_head"/>
+
+    <com.huangyezhaobiao.view.TitleMessageBarLayout
+        android:id="@+id/tb1"
+        android:layout_width="match_parent"
+        android:layout_height="45dip"
+        android:visibility="gone"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="146dip"
+            android:layout_height="155dip"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dip"
+            android:layout_marginTop="77dip"
+            android:src="@drawable/t_orderdetail_failure"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="很遗憾，购买失败!"
+            android:textColor="@color/black"
+            android:textSize ="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dip"
+            android:text="您选中的商机太火爆，已经被别人买走"
+            android:textColor="@color/t_gray"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="请下回早看早下手哦！"
+            android:textColor="@color/t_gray"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -175,7 +175,7 @@
                     android:paddingLeft="12dp"
                     style="@style/CustomCheckboxTheme"
                     android:checked="false"
-                    android:text="抢单"
+                    android:text="抢单/购买商机"
                     android:textColor="#666666"
                     android:textSize="15sp"/>
 

@@ -55,7 +55,7 @@ public class OrderFragment extends BaseFragment<OrderModel> implements INotifica
 
     private void setInfo() {
         model.setParamsForListVew();
-        model.setCacheRespons();
+//        model.setCacheRespons();
     }
 
     @Override

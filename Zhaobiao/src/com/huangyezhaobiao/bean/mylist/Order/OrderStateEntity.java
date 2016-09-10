@@ -1,4 +1,4 @@
-package com.huangyezhaobiao.bean.mylist.OrderState;
+package com.huangyezhaobiao.bean.mylist.Order;
 
 /**
  * Created by 58 on 2016/6/29.

@@ -73,7 +73,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dip"
             android:layout_below="@id/iv_account_mask"
-            android:src="@drawable/iv_mine_account" />
+            android:src="@drawable/iv_i_know" />
     </RelativeLayout>
 
 

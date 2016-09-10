@@ -123,9 +123,10 @@ public class UpdateManager {
 				@Override
 				public void onDialogCancelClick() {
 					dismissConfirmDownloadDialog();
-					UserUtils.saveNeedUpdate(context, true); //存储不强制更新的flag
 					if (forceUpdate) {
 						((Activity) context).finish();//退出应用
+					}else{
+						UserUtils.saveNeedUpdate(context, true); //存储不强制更新的flag
 					}
 				}
 			});

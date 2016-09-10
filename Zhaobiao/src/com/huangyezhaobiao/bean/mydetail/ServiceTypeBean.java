@@ -2,33 +2,15 @@ package com.huangyezhaobiao.bean.mydetail;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.activity.FetchDetailsActivity;
-import com.huangyezhaobiao.bean.TelephoneBean;
+import com.huangyezhaobiao.activity.BusinessDetailsActivity;
 import com.huangyezhaobiao.bean.popdetail.QDDetailBaseBean;
-import com.huangyezhaobiao.eventbus.EventAction;
-import com.huangyezhaobiao.eventbus.EventType;
-import com.huangyezhaobiao.eventbus.EventbusAgent;
 import com.huangyezhaobiao.inter.Constans;
-import com.huangyezhaobiao.inter.MDConstans;
-import com.huangyezhaobiao.utils.ActivityUtils;
-import com.huangyezhaobiao.utils.BDEventConstans;
-import com.huangyezhaobiao.utils.BDMob;
-import com.huangyezhaobiao.utils.DetailsLogBeanUtils;
-import com.huangyezhaobiao.utils.HYEventConstans;
-import com.huangyezhaobiao.utils.HYMob;
-import com.huangyezhaobiao.utils.LogUtils;
-import com.huangyezhaobiao.utils.MDUtils;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
-import com.huangyezhaobiao.view.ZhaoBiaoDialog.onDialogClickListener;
 
 /**
  * 订单详情的服务类型的bean
@@ -99,11 +81,11 @@ public class ServiceTypeBean extends QDDetailBaseBean{
 	private void fillDatas() {
 
 		if(!TextUtils.isEmpty(clientPhone)){
-			FetchDetailsActivity.clientPhone = clientPhone;
+			BusinessDetailsActivity.clientPhone = clientPhone;
 		}
 
 		if(!TextUtils.isEmpty(time)){
-			FetchDetailsActivity.time =time;
+			BusinessDetailsActivity.time =time;
 		}
 
 		tv_last_number_content.setText(orderNum);

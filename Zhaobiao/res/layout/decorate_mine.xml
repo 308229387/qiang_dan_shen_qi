@@ -12,6 +12,33 @@
         android:layout_weight="1">
 
         <TextView
+            android:id="@+id/tv_customer_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/binding_detail_text"
+            android:text="客户姓名"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_customer_name_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dip"
+            android:layout_toRightOf="@id/tv_customer_name"
+            android:text="王先生"
+            android:textColor="@color/binding_detail_text"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
             android:id="@+id/tv_grab_location_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -71,31 +98,7 @@
             android:src="@drawable/iv_arrow" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/tv_customer_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:textColor="@color/binding_detail_text"
-            android:text="客户姓名"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/tv_customer_name_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dip"
-            android:layout_toRightOf="@id/tv_customer_name"
-            android:text="王先生"
-            android:textColor="@color/binding_detail_text"
-            android:textSize="15sp" />
-    </RelativeLayout>
 
 
 </LinearLayout>

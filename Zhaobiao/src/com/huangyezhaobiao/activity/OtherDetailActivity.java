@@ -17,7 +17,6 @@ import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.adapter.OtherAdapter;
 import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.bean.push.PushToStorageBean;
-import com.huangyezhaobiao.db.DataBaseManager;
 import com.huangyezhaobiao.db.DataBaseManager.TABLE_OTHER;
 import com.huangyezhaobiao.inter.Constans;
 import com.huangyezhaobiao.utils.ActivityUtils;
@@ -26,7 +25,6 @@ import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.UnreadUtils;
 import com.huangyezhaobiao.utils.UserUtils;
-import com.huangyezhaobiao.view.ZhaoBiaoDialog;
 import com.huangyezhaobiao.vm.DetailMessageListStorageVM;
 
 import java.util.ArrayList;
@@ -148,14 +146,14 @@ public class OtherDetailActivity extends QBBaseActivity implements OnClickListen
 				switch (type) {
 					case TABLE_OTHER.DAOJISHI:
 						map.put(Constans.ORDER_ID, orderId);
-						ActivityUtils.goToActivityWithString(OtherDetailActivity.this, FetchDetailsActivity.class, map);
+						ActivityUtils.goToActivityWithString(OtherDetailActivity.this, BusinessDetailsActivity.class, map);
 
 						HYMob.getDataList(OtherDetailActivity.this, HYEventConstans.EVENT_ID_CHECK_ORDER);
 						break;
 					case TABLE_OTHER.KOUFEI:
 						if (state == 1) {
 							map.put(Constans.ORDER_ID, orderId);
-							ActivityUtils.goToActivityWithString(OtherDetailActivity.this, FetchDetailsActivity.class, map);
+							ActivityUtils.goToActivityWithString(OtherDetailActivity.this, BusinessDetailsActivity.class, map);
 						}
 						break;
 					case TABLE_OTHER.SYSNOTIF:

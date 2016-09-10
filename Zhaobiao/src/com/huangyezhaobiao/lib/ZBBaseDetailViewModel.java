@@ -114,6 +114,7 @@ public abstract class ZBBaseDetailViewModel<T> extends SourceViewModel{
 					method.invoke(javabean, new Object[] { data.get(field) });
 				}
 			}catch (Exception e) {
+
 			}
 		}
 		return javabean;

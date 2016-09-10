@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.activity.FetchDetailsActivity;
+import com.huangyezhaobiao.activity.BusinessDetailsActivity;
 import com.huangyezhaobiao.holder.MessCenIACInnerCashHolder;
 import com.huangyezhaobiao.inter.Constans;
 import com.huangyezhaobiao.lib.QDBaseBean;
@@ -131,8 +131,8 @@ public class   MessCenIACInnerCashBean extends QDBaseBean {
 //		holder.tv_location_delegate_add_content.setText(agencyLocation);
 //		holder.tv_location_time_content.setText(endTime);
 
-		FetchDetailsActivity.orderState = orderState;
-		FetchDetailsActivity.time =time;
+		BusinessDetailsActivity.orderState = orderState;
+		BusinessDetailsActivity.time =time;
 
 		//判断状态
 		if(!TextUtils.isEmpty(orderState)){ //获取订单状态
@@ -192,11 +192,11 @@ public class   MessCenIACInnerCashBean extends QDBaseBean {
 		holder.ll.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				FetchDetailsActivity.orderState = orderState;
+				BusinessDetailsActivity.orderState = orderState;
 				Map<String, String> map = new HashMap<String, String>();
 				LogUtils.LogE("ashenFetch", "orderid:" + orderId);
 				map.put(Constans.ORDER_ID, orderId);
-				ActivityUtils.goToActivityWithString(MessCenIACInnerCashBean.this.context, FetchDetailsActivity.class, map);
+				ActivityUtils.goToActivityWithString(MessCenIACInnerCashBean.this.context, BusinessDetailsActivity.class, map);
 //				MDUtils.OrderListPageMD(QiangDanBaseFragment.orderState, cateId, orderId, MDConstans.ACTION_DETAILS);
 				HYMob.getDataListByServiceState(context, HYEventConstans.EVENT_ID_ORDER_DETAIL_PAGE);
 				

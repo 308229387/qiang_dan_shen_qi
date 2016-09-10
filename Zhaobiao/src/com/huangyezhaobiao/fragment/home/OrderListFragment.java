@@ -22,7 +22,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.huangye.commonlib.vm.callback.ListNetWorkVMCallBack;
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.activity.FetchDetailsActivity;
+import com.huangyezhaobiao.activity.BusinessDetailsActivity;
 import com.huangyezhaobiao.activity.MainActivity;
 import com.huangyezhaobiao.activity.PushInActivity;
 import com.huangyezhaobiao.adapter.OrderLVAdapter;
@@ -324,7 +324,7 @@ public class OrderListFragment<T> extends  BaseHomeFragment implements INotifica
     AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            ActivityUtils.goToActivity(getActivity(), FetchDetailsActivity.class);
+            ActivityUtils.goToActivity(getActivity(), BusinessDetailsActivity.class);
 
         }
     };

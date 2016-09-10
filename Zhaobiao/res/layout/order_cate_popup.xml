@@ -44,9 +44,40 @@
         android:background="@color/divider" />
 
     <LinearLayout
+        android:id="@+id/ll_order_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/individer"
+        android:layout_marginBottom="10dip"
+        android:layout_marginTop="10dip"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="订单类别"
+            android:textColor="@color/red"
+            android:layout_marginLeft="10dip"
+            android:textSize="@dimen/textsize_large" />
+
+
+        <GridView
+            android:id="@+id/gridView_order_category"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:horizontalSpacing="20dp"
+            android:numColumns="3"
+            android:verticalSpacing="20dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_order_category"
         android:layout_marginBottom="10dip"
         android:layout_marginTop="10dip"
         android:orientation="vertical">

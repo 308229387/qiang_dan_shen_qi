@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fafafa"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_backhead"
+        android:id="@+id/layout_head"/>
+
+    <com.huangyezhaobiao.view.TitleMessageBarLayout
+        android:id="@+id/tbl"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dip"
+            android:layout_marginTop="77dip"
+            android:src="@drawable/t_orderdetail_success"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="恭喜您,您已成功购买20条商机！"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="共花费金额20元~"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dip"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/success_list"
+                android:layout_width="fill_parent"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_height="44dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/t_redbuttonselector"
+                android:text="查看订单"
+                android:textColor="@color/white"
+                android:textSize="18dp" />
+
+            <Button
+                android:id="@+id/success_businesslist"
+                android:layout_width="fill_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="15dip"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/t_whitebuttonselector"
+                android:text="继续购买"
+                android:textColor="@color/button_red"
+                android:textSize="18dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="注：您选中的30条商机有10条在您购买的过程中被其他人买走，已帮您购买了剩下的20条，为避免错失商机，下次 选中商机后要尽快付款哦~"
+            android:textColor="@color/t_gray"
+            android:textSize="16sp" />
+    </LinearLayout>
+</LinearLayout>

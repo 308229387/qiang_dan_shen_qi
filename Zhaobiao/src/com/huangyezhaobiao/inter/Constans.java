@@ -28,6 +28,22 @@ public interface Constans {
 	String DONE_FRAGMENT_CANCEL = "32";
 
 	/**
+	 * 商机--未分类
+	 */
+    String BUSINESS_NOT_CALSSFY = "4";
+
+	/**
+	 * 商机--待跟进
+	 */
+    String BUSINESS_WAIT_FOLLOW = "5";
+
+	/**
+	 * 商机--已完结
+	 */
+	String BUSINESS_ALREADY_FINISH = "6";
+
+
+	/**
 	 * orderId的key----bean-->fetchDetailsActivity的传递key
 	 */
 	String ORDER_ID = "orderId";

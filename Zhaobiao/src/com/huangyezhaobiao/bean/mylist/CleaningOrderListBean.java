@@ -7,11 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.activity.FetchDetailsActivity;
+import com.huangyezhaobiao.activity.BusinessDetailsActivity;
 import com.huangyezhaobiao.holder.order.CleanindOrderHolder;
 import com.huangyezhaobiao.inter.Constans;
 import com.huangyezhaobiao.lib.QDBaseBean;
@@ -22,8 +21,6 @@ import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.TimeUtils;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
-
-import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -186,8 +183,8 @@ public class CleaningOrderListBean extends QDBaseBean{
     @Override
     public void fillDatas() {
 //        initDialog(context);
-        FetchDetailsActivity.orderState = orderState;
-        FetchDetailsActivity.time =time;
+        BusinessDetailsActivity.orderState = orderState;
+        BusinessDetailsActivity.time =time;
 
         cleanindOrderHolder.tv_cleaning_order_title.setText(title);
         cleanindOrderHolder.tv_cleaning_qd_time_content.setText(TimeUtils.formatDateTime(time));
@@ -276,11 +273,11 @@ public class CleaningOrderListBean extends QDBaseBean{
         cleanindOrderHolder.ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FetchDetailsActivity.orderState = orderState;
+                BusinessDetailsActivity.orderState = orderState;
                 Map<String, String> map = new HashMap<String, String>();
                 LogUtils.LogE("ashenFetch", "orderid:" + orderId);
                 map.put(Constans.ORDER_ID, orderId);
-                ActivityUtils.goToActivityWithString(CleaningOrderListBean.this.context, FetchDetailsActivity.class, map);
+                ActivityUtils.goToActivityWithString(CleaningOrderListBean.this.context, BusinessDetailsActivity.class, map);
 //                MDUtils.OrderListPageMD(QiangDanBaseFragment.orderState, cateId, orderId, MDConstans.ACTION_DETAILS);
 
                 HYMob.getDataListByServiceState(context, HYEventConstans.EVENT_ID_ORDER_DETAIL_PAGE);

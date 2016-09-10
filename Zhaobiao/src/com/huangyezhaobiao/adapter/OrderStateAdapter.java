@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.bean.mylist.OrderState.OrderStateEntity;
+import com.huangyezhaobiao.bean.mylist.Order.OrderStateEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +65,7 @@ public class OrderStateAdapter extends BaseAdapter{
 
         holder.tv_orderState_popup.setText(entity.getOrderState());
 
-        if(OrderModel.checkedId.contains(entity.getOrderStateId())){
+        if(OrderModel.stateCheckedId.contains(entity.getOrderStateId())){
             holder.tv_orderState_popup.setBackgroundResource(R.drawable.order_state_checked
             );
             holder.tv_orderState_popup.setTextColor(context.getResources().getColor(R.color.white));
@@ -77,11 +77,11 @@ public class OrderStateAdapter extends BaseAdapter{
             @Override
             public void onClick(View v) {
                 String id = entity.getOrderStateId();
-                if (OrderModel.checkedId.contains(id)) {//之前选中,变成不选中
-                    OrderModel.checkedId.remove(id);
+                if (OrderModel.stateCheckedId.contains(id)) {//之前选中,变成不选中
+                    OrderModel.stateCheckedId.remove(id);
                 } else {//之前没选中，变成选中
-                    OrderModel.checkedId.clear();
-                    OrderModel.checkedId.add(id);
+                    OrderModel.stateCheckedId.clear();
+                    OrderModel.stateCheckedId.add(id);
                 }
                 notifyDataSetChanged();
             }

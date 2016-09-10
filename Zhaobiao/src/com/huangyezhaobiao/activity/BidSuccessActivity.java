@@ -138,7 +138,7 @@ public class BidSuccessActivity extends QBBaseActivity {
 
                 map.put(Constans.ORDER_ID, String.valueOf(orderId));
 
-                ActivityUtils.goToActivityWithString(BidSuccessActivity.this, FetchDetailsActivity.class, map);
+                ActivityUtils.goToActivityWithString(BidSuccessActivity.this, BusinessDetailsActivity.class, map);
 
 
 //			ActivityUtils.goToActivity(BidSuccessActivity.this, MainActivity.class);

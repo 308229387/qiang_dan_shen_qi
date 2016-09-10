@@ -54,7 +54,7 @@ public class BidFailureActivity extends QBBaseActivity{
 		back_layout = (LinearLayout) this.findViewById(R.id.back_layout);
 		back_layout.setVisibility(View.VISIBLE);
 		txt_head = (TextView) findViewById(R.id.txt_head);
-		txt_head.setText(R.string.bidding_failure);
+		txt_head.setText("抢单失败");
 
 		toBidList = (Button) findViewById(R.id.failure_bidlist);
 		tbl = (TitleMessageBarLayout) findViewById(R.id.tbl);

@@ -16,7 +16,7 @@
         android:layout_below="@id/layout_head"
         android:layout_height="45dp" />
 
-    <com.huangyezhaobiao.view.StretchScrollView
+    <ScrollView
         android:layout_below="@id/tbl"
         android:layout_above="@+id/rl_detail_bottom"
         android:layout_width="match_parent"
@@ -32,7 +32,7 @@
             android:layout_marginRight="10dp"
             android:orientation="vertical" >
         </LinearLayout>
-    </com.huangyezhaobiao.view.StretchScrollView>
+    </ScrollView>
 
     <LinearLayout
         android:id="@+id/rl_detail_bottom"
@@ -101,5 +101,6 @@
     </LinearLayout>
 
     </LinearLayout>
+
 
 </RelativeLayout>

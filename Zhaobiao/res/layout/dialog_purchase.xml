@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:background="#00000000"
+    android:layout_height="fill_parent" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:background="@drawable/call_bg_dialog"
+        android:layout_centerVertical="true"
+        android:layout_height="160dip" >
+
+        <TextView
+            android:id="@+id/tv_purchase_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:lineSpacingExtra="2dp"
+            android:gravity="center"
+            android:text="@string/purchase_message"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize_large"/>
+
+
+        <CheckBox
+            android:id="@+id/cb_remind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/CustomCheckboxTheme"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/tv_purchase_content"
+            android:layout_centerHorizontal="true"
+            android:paddingLeft="7dp"
+            android:checked="false"
+            android:text="不要再提醒我"
+            android:textColor="#666666"
+            android:textSize="14sp"/>
+
+
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/rl_cancel"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_dialog_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="取消"
+                    android:textColor="@color/t_gray"
+                    android:textSize="17sp"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="#e4e4e4" />
+
+            <RelativeLayout
+                android:id="@+id/rl_ok"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_dialog_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="继续购买"
+                    android:textColor="@color/red"
+                    android:textSize="17sp"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_above="@id/ll"
+            android:background="#e4e4e4" />
+    </RelativeLayout>
+</RelativeLayout>

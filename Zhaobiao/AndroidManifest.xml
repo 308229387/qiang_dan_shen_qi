@@ -312,7 +312,11 @@
             android:name=".activity.UserFeedBackActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.FetchDetailsActivity"
+            android:name=".activity.BusinessDetailsActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.BiddingDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.MobileValidateActivity"
@@ -326,11 +330,19 @@
         <activity
             android:name=".activity.BidFailureActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.PurchaseFailureActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.BidGoneActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.BidSuccessActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.PurchaseSuccessActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.RefundActivity"
