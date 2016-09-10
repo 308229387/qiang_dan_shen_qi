@@ -20,7 +20,9 @@ public class BusinessOpportunityFragment extends BaseFragment<BusinessOpportunit
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         initalizationLayout(inflater, container);
         initView();
+        model.setCanotPullDown();
         model.setListener();
+        model.initTimeData();
         model.getCityData();
         creatAdapter();
         setInfo();

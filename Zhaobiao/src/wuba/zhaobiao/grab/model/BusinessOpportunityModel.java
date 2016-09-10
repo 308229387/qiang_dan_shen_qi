@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
@@ -57,6 +58,9 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     private String areaId = "";
     private String timestate = "";
     private int pageNum = 1;
+    private int pageSize = 20;
+    private RelativeLayout emptyView;
+    private RelativeLayout topLayout;
 
     public BusinessOpportunityModel(BusinessOpportunityFragment context) {
         this.context = context;
@@ -69,18 +73,24 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
 
     public void initView() {
         refreshView = (PullToRefreshLayout) view.findViewById(R.id.refresh_view);
-        refreshView.canNotRefresh();
+        topLayout = (RelativeLayout) view.findViewById(R.id.top_layout);
         listView = (ListView) view.findViewById(R.id.grab_list);
         businessCity = (TextView) view.findViewById(R.id.business_city);
         businessTime = (TextView) view.findViewById(R.id.business_time);
+        emptyView = (RelativeLayout) view.findViewById(R.id.empty_view);
         refreshDialog = new BusinessRefreshDialogUtils(context.getActivity(), "刷新列表将会清空您的购物车，是否继续？");
-        refreshDialog.setRefreshListener(this);
         initTimeData();
+    }
+
+    public void setCanotPullDown() {
+        refreshView.canNotRefresh();
     }
 
     public void setListener() {
         businessCity.setOnClickListener(this);
         businessTime.setOnClickListener(this);
+        refreshDialog.setRefreshListener(this);
+        emptyView.setOnClickListener(this);
     }
 
     public void creatAdapter() {
@@ -103,7 +113,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
                 .params("areaId", areaId)
                 .params("timestate", timestate)
                 .params("pageNum", pageNum + "")
-                .params("pageSize", 4 + "")
+                .params("pageSize", pageSize + "")
                 .execute(new BusinessRequest());
     }
 
@@ -113,7 +123,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
                 .params("areaId", areaId)
                 .params("timestate", timestate)
                 .params("pageNum", pageNum + "")
-                .params("pageSize", 4 + "")
+                .params("pageSize", pageSize + "")
                 .execute(new BusinessRefreshRequest(context.getActivity()));
     }
 
@@ -123,22 +133,32 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     }
 
     public void dealWithData(int position) {
-        if (showData.get(position).getKey()) {
-            showData.get(position).setKey(false);
-            buyData.remove(showData.get(position));
-        } else {
-            if (buyData.size() == 2)
-                new BusinessFullDialogUtils(context.getActivity(), "您最多可一次购买20条哦~").showSingleButtonDialog();
-            else {
-                showData.get(position).setKey(true);
-                buyData.add(showData.get(position));
-
-            }
-        }
+        setStateToData(position);
         adapter.setData(showData);
     }
 
-    private void initTimeData() {
+    private void setStateToData(int position) {
+        if (showData.get(position).getIsChoice())
+            setNotChoiceState(position);
+        else
+            setChoiceState(position);
+    }
+
+    private void setNotChoiceState(int position) {
+        showData.get(position).setIsChoice(false);
+        buyData.remove(showData.get(position));
+    }
+
+    private void setChoiceState(int position) {
+        if (buyData.size() == 20)
+            new BusinessFullDialogUtils(context.getActivity(), "您最多可一次购买20条哦~").showSingleButtonDialog();
+        else {
+            showData.get(position).setIsChoice(true);
+            buyData.add(showData.get(position));
+        }
+    }
+
+    public void initTimeData() {
         timeList = new ArrayList<String>();
         timeList.add("按时间正序");
         timeList.add("按时间倒序");
@@ -203,16 +223,31 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
 
     private void noData(ArrayList<BusinessData> list) {
         if (list.size() == 0) {
-            if (showData.size() == 0) {
-                showEmptyView();
-            } else {
-                banPullUp();
-            }
+            getEmptyData();
+        } else {
+            showDataView();
         }
     }
 
-    private void showEmptyView() {
+    private void getEmptyData() {
+        if (showData.size() == 0)
+            showEmptyView();
+        else {
+            showDataView();
+            banPullUp();
+        }
+    }
 
+    private void showDataView() {
+        topLayout.setVisibility(View.VISIBLE);
+        refreshView.setVisibility(View.VISIBLE);
+        emptyView.setVisibility(View.GONE);
+    }
+
+    private void showEmptyView() {
+        topLayout.setVisibility(View.GONE);
+        refreshView.setVisibility(View.GONE);
+        emptyView.setVisibility(View.VISIBLE);
     }
 
     private void banPullUp() {
@@ -235,46 +270,9 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     }
 
     private void hasDataButNotFull(ArrayList<BusinessData> list) {
-
+        if (list.size() < pageSize)
+            banPullUp();
     }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.business_city:
-                showCityPop();
-                break;
-            case R.id.business_time:
-                showTimePop();
-                break;
-            default:
-                break;
-        }
-    }
-
-    private AdapterView.OnItemClickListener cityItemClickListener = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            mSpinerPopWindow.dismiss();
-            if (areaIdList.size() > 0)
-                areaId = (areaIdList.get(position));
-            else
-                cityId = (cityIdList.get(position));
-            businessCity.setText(cityNameList.get(position));
-            ToastUtils.showToast(cityNameList.get(position));
-            refresh();
-        }
-    };
-
-    private AdapterView.OnItemClickListener timeItemClickListener = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            mSpinerPopWindow.dismiss();
-            ToastUtils.showToast(timeList.get(position));
-            timestate = position + "";
-            refresh();
-        }
-    };
 
     public void clickRefresh() {
         if (buyData.size() != 0)
@@ -294,6 +292,44 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     public void refreshList() {
         refresh();
     }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.business_city:
+                showCityPop();
+                break;
+            case R.id.business_time:
+                showTimePop();
+                break;
+            case R.id.empty_view:
+                break;
+            default:
+                break;
+        }
+    }
+
+    private AdapterView.OnItemClickListener cityItemClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            mSpinerPopWindow.dismiss();
+            if (areaIdList.size() > 0)
+                areaId = (areaIdList.get(position));
+            else
+                cityId = (cityIdList.get(position));
+            businessCity.setText(cityNameList.get(position));
+            refresh();
+        }
+    };
+
+    private AdapterView.OnItemClickListener timeItemClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            mSpinerPopWindow.dismiss();
+            timestate = position + "";
+            refresh();
+        }
+    };
 
     private class Refresh implements PullToRefreshLayout.OnRefreshListener {
         @Override
@@ -359,10 +395,8 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
                 isShowArea(s);
             }
             setCityOrAreaID();
-
             getData();
         }
     }
-
 
 }

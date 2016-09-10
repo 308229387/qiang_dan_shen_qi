@@ -116,11 +116,11 @@ public class BusinessData implements Serializable {
         this.key12 = key12;
     }
 
-    public Boolean getKey() {
+    public Boolean getIsChoice() {
         return checkbox;
     }
 
-    public void setKey(Boolean key) {
+    public void setIsChoice(Boolean key) {
         this.checkbox = key;
     }
 }
