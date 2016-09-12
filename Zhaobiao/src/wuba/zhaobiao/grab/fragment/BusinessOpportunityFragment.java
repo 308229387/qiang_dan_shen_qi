@@ -22,6 +22,7 @@ public class BusinessOpportunityFragment extends BaseFragment<BusinessOpportunit
         initView();
         model.setCanotPullDown();
         model.setListener();
+        model.creatDialog();
         model.initTimeData();
         model.getCityData();
         creatAdapter();
@@ -40,7 +41,6 @@ public class BusinessOpportunityFragment extends BaseFragment<BusinessOpportunit
     private void setInfo() {
         model.setParamsForListView();
     }
-
 
     private void initalizationLayout(LayoutInflater inflater, ViewGroup container) {
         model.creatView(inflater, container);

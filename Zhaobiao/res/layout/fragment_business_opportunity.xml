@@ -111,7 +111,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:id="@+id/price_layout"
+        android:visibility="gone"
+        android:clickable="true"
+        android:id="@+id/settlement_layout"
         android:background="#fff"
         android:layout_alignParentBottom="true"
         >
@@ -146,15 +148,14 @@
             android:textSize="16sp"
             android:gravity="center"
             android:textColor="#b0b0b0"
-            android:layout_toLeftOf="@+id/settlement"
+            android:layout_toLeftOf="@+id/settlement_button"
             />
 
         <TextView
             android:layout_width="110dp"
             android:layout_height="match_parent"
             android:background="#fb5845"
-            android:id="@+id/settlement"
-            android:text="结算(1)"
+            android:id="@+id/settlement_button"
             android:textSize="18sp"
             android:textColor="#fff"
             android:gravity="center"

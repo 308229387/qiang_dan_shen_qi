@@ -29,6 +29,7 @@ import wuba.zhaobiao.grab.adapter.BusinessOpportunityAdapter;
 import wuba.zhaobiao.grab.fragment.BusinessOpportunityFragment;
 import wuba.zhaobiao.respons.BusinessCityRespons;
 import wuba.zhaobiao.respons.BusinessOpportunityRespons;
+import wuba.zhaobiao.utils.BusinessClearDialogUtils;
 import wuba.zhaobiao.utils.BusinessFullDialogUtils;
 import wuba.zhaobiao.utils.BusinessRefreshDialogUtils;
 import wuba.zhaobiao.utils.SpinerPopWindow;
@@ -36,7 +37,7 @@ import wuba.zhaobiao.utils.SpinerPopWindow;
 /**
  * Created by SongYongmeng on 2016/9/5.
  */
-public class BusinessOpportunityModel extends BaseModel implements View.OnClickListener, BusinessRefreshDialogUtils.RefreshListener {
+public class BusinessOpportunityModel extends BaseModel implements View.OnClickListener, BusinessRefreshDialogUtils.RefreshListener, BusinessClearDialogUtils.ClearListener {
     private BusinessOpportunityFragment context;
     private PullToRefreshLayout refreshView;
     private ListView listView;
@@ -61,6 +62,10 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     private int pageSize = 20;
     private RelativeLayout emptyView;
     private RelativeLayout topLayout;
+    private RelativeLayout settlementLayout;
+    private TextView settleButton;
+    private TextView clearButton;
+    private BusinessClearDialogUtils clearDialog;
 
     public BusinessOpportunityModel(BusinessOpportunityFragment context) {
         this.context = context;
@@ -72,15 +77,15 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     }
 
     public void initView() {
+        settlementLayout = (RelativeLayout) view.findViewById(R.id.settlement_layout);
         refreshView = (PullToRefreshLayout) view.findViewById(R.id.refresh_view);
         topLayout = (RelativeLayout) view.findViewById(R.id.top_layout);
         listView = (ListView) view.findViewById(R.id.grab_list);
         businessCity = (TextView) view.findViewById(R.id.business_city);
         businessTime = (TextView) view.findViewById(R.id.business_time);
         emptyView = (RelativeLayout) view.findViewById(R.id.empty_view);
-        refreshDialog = new BusinessRefreshDialogUtils(context.getActivity(), "刷新列表将会清空您的购物车，是否继续？");
-        refreshView.canNotRefresh();
-        initTimeData();
+        settleButton = (TextView) view.findViewById(R.id.settlement_button);
+        clearButton = (TextView) view.findViewById(R.id.business_clear);
     }
 
     public void setCanotPullDown() {
@@ -91,21 +96,41 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         businessCity.setOnClickListener(this);
         businessTime.setOnClickListener(this);
         refreshDialog.setRefreshListener(this);
+        clearDialog.setClearListener(this);
+        settleButton.setOnClickListener(this);
+        clearButton.setOnClickListener(this);
         emptyView.setOnClickListener(this);
+    }
+
+    public void creatDialog() {
+        refreshDialog = new BusinessRefreshDialogUtils(context.getActivity(), context.getActivity().getString(R.string.business_refresh));
+        clearDialog = new BusinessClearDialogUtils(context.getActivity(), context.getActivity().getString(R.string.business_clear));
+    }
+
+    public void initTimeData() {
+        timeList = new ArrayList<String>();
+        timeList.add("按时间正序");
+        timeList.add("按时间倒序");
+        timestate = 0 + "";
+    }
+
+    public void getCityData() {
+        OkHttpUtils.get("http://zhaobiao.58.com/appbatch/getLocal")
+                .execute(new BusinessCityRequest());
     }
 
     public void creatAdapter() {
         adapter = new BusinessOpportunityAdapter(context.getActivity());
     }
 
-    public View getView() {
-        return view;
-    }
-
     public void setParamsForListView() {
         listView.setAdapter(adapter);
         refreshView.setOnRefreshListener(new Refresh());
         listView.setOnItemClickListener(new ClickItem());
+    }
+
+    public View getView() {
+        return view;
     }
 
     public void getData() {
@@ -126,11 +151,6 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
                 .params("pageNum", pageNum + "")
                 .params("pageSize", pageSize + "")
                 .execute(new BusinessRefreshRequest(context.getActivity()));
-    }
-
-    public void getCityData() {
-        OkHttpUtils.get("http://zhaobiao.58.com/appbatch/getLocal")
-                .execute(new BusinessCityRequest());
     }
 
     public void dealWithData(int position) {
@@ -161,14 +181,12 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     }
 
     private void judgePriceLayout() {
+        if (buyData.size() > 0)
+            settlementLayout.setVisibility(View.VISIBLE);
+        else
+            settlementLayout.setVisibility(View.GONE);
 
-    }
-
-    public void initTimeData() {
-        timeList = new ArrayList<String>();
-        timeList.add("按时间正序");
-        timeList.add("按时间倒序");
-        timestate = 0 + "";
+        settleButton.setText("结算(" + buyData.size() + ")");
     }
 
     private void showCityPop() {
@@ -297,7 +315,22 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     @Override
     public void refreshList() {
         refresh();
+        settlementLayout.setVisibility(View.GONE);
     }
+
+    @Override
+    public void clear() {
+        buyData.clear();
+        settlementLayout.setVisibility(View.GONE);
+        setAllCancelState();
+        adapter.setData(showData);
+    }
+
+    public void setAllCancelState() {
+        for (int i = 0; i < showData.size(); i++)
+            showData.get(i).setIsChoice(false);
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -309,6 +342,13 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
                 showTimePop();
                 break;
             case R.id.empty_view:
+                break;
+            case R.id.settlement_button:
+                ToastUtils.showToast("settle");
+                break;
+            case R.id.business_clear:
+                ToastUtils.showToast("clear");
+                clearDialog.showTwoButtonDialog();
                 break;
             default:
                 break;

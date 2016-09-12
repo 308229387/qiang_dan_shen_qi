@@ -109,4 +109,10 @@
     <string name="auto_setting_message">马上去设置接单范围?\n设置后将提高订单匹配度,\n为您推送最想要的订单哦(建议设置)</string>
 
     <string name="purchase_message">当前选中商机预计20元,当选中商机已售\n完时，实际支付金额低于此报价.</string>
+
+    <!-- 装修 careated by chenguangming -->
+
+    <string name="business_refresh">刷新列表将会清空您的购物车，是否继续？</string>
+    <string name="business_clear">是否确定清空购物车?</string>
+
 </resources>
