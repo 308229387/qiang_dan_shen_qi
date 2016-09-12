@@ -7,10 +7,10 @@
 
     <RelativeLayout
         android:id="@+id/top_layout"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#fff">
+        android:background="#fff"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/business_city"
@@ -49,12 +49,12 @@
     <com.jingchen.pulltorefresh.PullToRefreshLayout
         android:id="@+id/refresh_view"
         android:layout_width="fill_parent"
-        android:visibility="gone"
         android:layout_height="fill_parent"
         android:layout_below="@id/top_layout"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:visibility="gone">
 
         <include layout="@layout/refresh_head" />
 
@@ -79,8 +79,11 @@
         <include layout="@layout/load_more" />
     </com.jingchen.pulltorefresh.PullToRefreshLayout>
 
+
+
     <RelativeLayout
         android:id="@+id/empty_view"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -95,13 +98,66 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"
-            android:lineSpacingExtra = "7dp"
-            android:textSize="17sp"
+            android:lineSpacingExtra="7dp"
             android:text="哎呀，商机已售罄，保持关注，\n        惊喜可能就在下一秒！"
             android:textColor="#7e8484"
-            android:layout_below="@+id/imageView"
-            android:layout_centerHorizontal="true" />
+            android:textSize="17sp" />
     </RelativeLayout>
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:id="@+id/price_layout"
+        android:background="#fff"
+        android:layout_alignParentBottom="true"
+        >
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#dfdfdf"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="33dp"
+            android:layout_marginTop="5dp"
+            android:text="合计"
+            android:id="@+id/price_title" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/price_title"
+            android:textSize="20sp"
+            android:layout_marginLeft="33dp"
+            android:textColor="#fc5846"
+            android:text="¥15.00"
+            />
+        
+        <TextView
+            android:id="@+id/business_clear"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:text="清空"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textColor="#b0b0b0"
+            android:layout_toLeftOf="@+id/settlement"
+            />
+
+        <TextView
+            android:layout_width="110dp"
+            android:layout_height="match_parent"
+            android:background="#fb5845"
+            android:id="@+id/settlement"
+            android:text="结算(1)"
+            android:textSize="18sp"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
 </RelativeLayout>

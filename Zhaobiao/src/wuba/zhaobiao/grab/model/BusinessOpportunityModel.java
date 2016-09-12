@@ -73,13 +73,13 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
 
     public void initView() {
         refreshView = (PullToRefreshLayout) view.findViewById(R.id.refresh_view);
-        refreshView.canNotRefresh();
         topLayout = (RelativeLayout) view.findViewById(R.id.top_layout);
         listView = (ListView) view.findViewById(R.id.grab_list);
         businessCity = (TextView) view.findViewById(R.id.business_city);
         businessTime = (TextView) view.findViewById(R.id.business_time);
         emptyView = (RelativeLayout) view.findViewById(R.id.empty_view);
         refreshDialog = new BusinessRefreshDialogUtils(context.getActivity(), "刷新列表将会清空您的购物车，是否继续？");
+        refreshView.canNotRefresh();
         initTimeData();
     }
 
@@ -135,6 +135,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
 
     public void dealWithData(int position) {
         setStateToData(position);
+        judgePriceLayout();
         adapter.setData(showData);
     }
 
@@ -157,6 +158,10 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
             showData.get(position).setIsChoice(true);
             buyData.add(showData.get(position));
         }
+    }
+
+    private void judgePriceLayout() {
+
     }
 
     public void initTimeData() {
