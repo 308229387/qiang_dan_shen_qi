@@ -73,6 +73,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
 
     public void initView() {
         refreshView = (PullToRefreshLayout) view.findViewById(R.id.refresh_view);
+        refreshView.canNotRefresh();
         topLayout = (RelativeLayout) view.findViewById(R.id.top_layout);
         listView = (ListView) view.findViewById(R.id.grab_list);
         businessCity = (TextView) view.findViewById(R.id.business_city);

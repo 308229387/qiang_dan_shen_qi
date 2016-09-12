@@ -6,6 +6,7 @@ bugly {
     appKey = 'S9RwoAyOW3kknbMJ'
 }
 
+
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
     compile project(':library')
@@ -23,11 +24,12 @@ dependencies {
     compile files('libs/bugly_crash_release__2.1.jar')
     compile 'com.facebook.stetho:stetho:1.1.0'
     compile 'com.google.code.gson:gson:2.5'
+    compile 'com.android.support:multidex:1.0.0'
     compile 'com.android.support:design:22.2.0'
 
 //    compile 'com.wuba.wuxian.sdk:login:2.3.1-SNAPSHOT' //线上passport SDK(带线上签名的)
 
-    compile 'com.wuba.wuxian.sdk:login:1.0.3-debug-SNAPSHOT' //调试passport SDK 2.3.1-debug-SNAPSHOT
+    compile 'com.wuba.wuxian.sdk:login:2.3.5-debug-SNAPSHOT' //调试passport SDK 2.3.1-debug-SNAPSHOT
 
 //    compile 'com.wuba.wuxian.sdk:login:0.1.0-http-SNAPSHOT' //线下 http passport SDK
 
@@ -35,6 +37,10 @@ dependencies {
 }
 
 android {
+
+    defaultConfig{
+        multiDexEnabled true
+    }
 
     signingConfigs {
         release_key {

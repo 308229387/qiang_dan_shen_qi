@@ -3,13 +3,13 @@ package com.huangyezhaobiao.application;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
-import android.app.Application;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Process;
 import android.os.StrictMode;
+import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
 import com.facebook.stetho.Stetho;
@@ -56,7 +56,7 @@ import java.util.List;
  *
  * @author linyueyang
  */
-public class BiddingApplication extends Application {
+public class BiddingApplication extends MultiDexApplication {
 
     private List<Activity> activityList = new LinkedList<Activity>();
     private NotificationExecutor notificationExecutor;
