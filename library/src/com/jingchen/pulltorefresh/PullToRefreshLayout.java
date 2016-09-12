@@ -111,6 +111,7 @@ public class PullToRefreshLayout extends RelativeLayout {
     private boolean banPullUp = false;
     private Boolean isRefresh = false;
     private Boolean isLoadMore = false;
+    private boolean canotPullDown = true;
     private Context mContext;
 
     /**
@@ -343,7 +344,7 @@ public class PullToRefreshLayout extends RelativeLayout {
     }
 
     public void canNotRefresh(){
-        canPullDown = false;
+        canotPullDown = false;
     }
 
     public void setBanPullUp(Boolean tag) {
@@ -386,7 +387,7 @@ public class PullToRefreshLayout extends RelativeLayout {
                 if (mEvents == 0) {
                     if (pullDownY > 0
                             || (((Pullable) pullableView).canPullDown()
-                            && canPullDown && state != LOADING)) {
+                            && canPullDown &&canotPullDown&& state != LOADING)) {
                         // 可以下拉，正在加载时不能下拉
                         // 对实际滑动距离做缩小，造成用力拉的感觉
                         pullDownY = pullDownY + (ev.getY() - lastY) / radio;

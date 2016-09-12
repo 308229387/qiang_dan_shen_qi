@@ -72,6 +72,7 @@ public class GrabAndBusinessModel<T> extends BaseModel implements View.OnClickLi
                 refresh.setOnClickListener(this);
                 break;
             default:
+                mTabLayout = (TabLayout) showLayout.findViewById(R.id.tabs);
                 break;
         }
 
