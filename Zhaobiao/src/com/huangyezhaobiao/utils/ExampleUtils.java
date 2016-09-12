@@ -7,6 +7,7 @@ import com.huangyezhaobiao.bean.result;
 import com.huangyezhaobiao.callback.DialogCallback;
 import com.huangyezhaobiao.callback.JsonCallback;
 import com.lzy.okhttputils.OkHttpUtils;
+import com.lzy.okhttputils.cache.CacheMode;
 
 import okhttp3.Call;
 import okhttp3.Headers;
@@ -23,10 +24,11 @@ public class ExampleUtils {
 
     //示例get请求。
     private void get() {
-        OkHttpUtils.get("http://zhaobiao.58.com/api/getBids")//
-                .params("pushId", "-1")//
-                .params("bidId", "-1")//
-                .params("bidState", "-1")//
+        OkHttpUtils.get("http://zhaobiao.58.com/api/getBids")
+                .params("pushId", "-1")
+                .params("bidId", "-1")
+                .params("bidState", "-1")
+                .cacheMode(CacheMode.FIRST_CACHE_THEN_REQUEST)
                 .execute(new LogoutRequest(context));
     }
 
