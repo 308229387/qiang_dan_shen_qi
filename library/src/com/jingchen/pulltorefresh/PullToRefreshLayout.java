@@ -74,6 +74,8 @@ public class PullToRefreshLayout extends RelativeLayout {
     // 手指滑动距离与下拉头的滑动距离比，中间会随正切函数变化
     private float radio = 2;
 
+    private int stayTime = 500;
+
     // 下拉箭头的转180°动画
     private RotateAnimation rotateAnimation;
     // 均匀旋转动画
@@ -239,7 +241,7 @@ public class PullToRefreshLayout extends RelativeLayout {
                     changeState(DONE);
                     hide();
                 }
-            }.sendEmptyMessageDelayed(0, 500);
+            }.sendEmptyMessageDelayed(0, stayTime);
         } else {
             changeState(DONE);
             hide();
@@ -277,7 +279,7 @@ public class PullToRefreshLayout extends RelativeLayout {
                     changeState(DONE);
                     hide();
                 }
-            }.sendEmptyMessageDelayed(0, 500);
+            }.sendEmptyMessageDelayed(0, stayTime);
         } else {
             changeState(DONE);
             hide();
@@ -343,12 +345,16 @@ public class PullToRefreshLayout extends RelativeLayout {
         return banPullUp;
     }
 
-    public void canNotRefresh(){
+    public void canNotRefresh() {
         canotPullDown = false;
     }
 
     public void setBanPullUp(Boolean tag) {
         banPullUp = tag;
+        if (tag)
+            stayTime = 0;
+        else
+            stayTime = 500;
     }
 
 
@@ -359,7 +365,6 @@ public class PullToRefreshLayout extends RelativeLayout {
         canPullDown = true;
         canPullUp = true;
     }
-
 
 
     /*
@@ -387,7 +392,7 @@ public class PullToRefreshLayout extends RelativeLayout {
                 if (mEvents == 0) {
                     if (pullDownY > 0
                             || (((Pullable) pullableView).canPullDown()
-                            && canPullDown &&canotPullDown&& state != LOADING)) {
+                            && canPullDown && canotPullDown && state != LOADING)) {
                         // 可以下拉，正在加载时不能下拉
                         // 对实际滑动距离做缩小，造成用力拉的感觉
                         pullDownY = pullDownY + (ev.getY() - lastY) / radio;
