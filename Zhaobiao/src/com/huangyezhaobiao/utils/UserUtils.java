@@ -52,6 +52,7 @@ public class UserUtils {
 	private static final String USER_APP_VERSION = "appVersion";
 	private static String appVersion;
 	private static final String BUSINESS_MASK = "business_mask";
+	private static final String BUSINESS_CHECK = "business_check";
 
 	/**
 	 * 非强制更新判断
@@ -384,7 +385,7 @@ public class UserUtils {
 	}
 
 	public static String getHasaction(Context context){
-		String hasaction = context.getSharedPreferences(MOB_FILE_NAME, 0).getString(HASACTION, "3");
+		String hasaction = context.getSharedPreferences(MOB_FILE_NAME, 0).getString(HASACTION, "1");
 		return hasaction;
 	}
 
@@ -396,6 +397,16 @@ public class UserUtils {
 	public static Boolean getBusinessMask(Context context){
 		Boolean isReaded = context.getSharedPreferences(MOB_FILE_NAME, 0).getBoolean(BUSINESS_MASK, false);
 		return isReaded;
+	}
+
+	public static void setBusinessCheckBox(Context context,Boolean checkTag){
+		SharedPreferences sp = context.getSharedPreferences(MOB_FILE_NAME, 0);
+		sp.edit().putBoolean(BUSINESS_CHECK, checkTag).commit();
+	}
+
+	public static Boolean getBusinessCheckBox(Context context){
+		Boolean needshow = context.getSharedPreferences(MOB_FILE_NAME, 0).getBoolean(BUSINESS_CHECK, true);
+		return needshow;
 	}
 
 }

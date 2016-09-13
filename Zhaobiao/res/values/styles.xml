@@ -200,6 +200,9 @@
         <item name="android:button">@drawable/business_check_box</item>
     </style>
 
+    <style name="BusinessSettlementTheme" >
+    <item name="android:button">@drawable/business_settlement_check_box</item>
+    </style>
     <style name="TabLayoutTextStyle">
         <item name="android:textSize">20sp</item>
     </style>

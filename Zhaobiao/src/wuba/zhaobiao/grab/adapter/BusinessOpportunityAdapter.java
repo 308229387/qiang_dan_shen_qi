@@ -13,6 +13,7 @@ import com.huangyezhaobiao.R;
 import java.util.ArrayList;
 
 import wuba.zhaobiao.bean.BusinessData;
+import wuba.zhaobiao.utils.PublickMethod;
 
 /**
  * Created by SongYongmeng on 2016/9/5.
@@ -66,7 +67,9 @@ public class BusinessOpportunityAdapter extends BaseAdapter {
             holder.remarksValue.setText(((BusinessData) data.get(position)).getKey5());
             holder.priceKey.setText(((BusinessData) data.get(position)).getKey6());
 
-            holder.priceValue.setText(((BusinessData) data.get(position)).getKey7());
+            String price = PublickMethod.getPriceFromString(((BusinessData) data.get(position)).getKey7());
+            holder.priceValue.setText(price);
+
             if (((BusinessData) data.get(position)).getIsChoice())
                 holder.box.setChecked(true);
             else
@@ -87,7 +90,8 @@ public class BusinessOpportunityAdapter extends BaseAdapter {
         private TextView timeValue;
         private TextView remarksValue;
         private TextView priceKey;
-        private TextView priceValue;        private TextView remarksKey;
+        private TextView priceValue;
+        private TextView remarksKey;
         private CheckBox box;
     }
 

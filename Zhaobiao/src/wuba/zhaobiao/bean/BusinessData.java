@@ -6,6 +6,7 @@ import java.io.Serializable;
  * Created by SongYongmeng on 2016/9/6.
  */
 public class BusinessData implements Serializable {
+    private String bidid;
     private String key1;
     private String key2;
     private String key3;
@@ -19,6 +20,22 @@ public class BusinessData implements Serializable {
     private String key11;
     private String key12;
     private Boolean checkbox = false;
+
+    public String getBidid() {
+        return bidid;
+    }
+
+    public void setBidid(String bidid) {
+        this.bidid = bidid;
+    }
+
+    public Boolean getCheckbox() {
+        return checkbox;
+    }
+
+    public void setCheckbox(Boolean checkbox) {
+        this.checkbox = checkbox;
+    }
 
     public String getKey1() {
         return key1;
