@@ -73,9 +73,9 @@ public class GrabAndBusinessModel<T> extends BaseModel implements View.OnClickLi
                 break;
             default:
                 mTabLayout = (TabLayout) showLayout.findViewById(R.id.tabs);
+                switchButton = (SwitchButton) showLayout.findViewById(R.id.switch_button);
                 break;
         }
-
 
         mTabLayout.setVisibility(View.VISIBLE);
         mViewPager = (ViewPager) showLayout.findViewById(R.id.viewpager);
@@ -171,7 +171,6 @@ public class GrabAndBusinessModel<T> extends BaseModel implements View.OnClickLi
             default:
                 break;
         }
-
     }
 
     private class SwitchButtonListener implements CompoundButton.OnCheckedChangeListener {

@@ -65,6 +65,7 @@ public class BusinessOpportunityAdapter extends BaseAdapter {
             holder.remarksKey.setText(((BusinessData) data.get(position)).getKey4());
             holder.remarksValue.setText(((BusinessData) data.get(position)).getKey5());
             holder.priceKey.setText(((BusinessData) data.get(position)).getKey6());
+
             holder.priceValue.setText(((BusinessData) data.get(position)).getKey7());
             if (((BusinessData) data.get(position)).getIsChoice())
                 holder.box.setChecked(true);

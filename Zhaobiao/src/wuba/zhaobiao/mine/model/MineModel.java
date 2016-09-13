@@ -19,11 +19,9 @@ import com.huangyezhaobiao.utils.BDMob;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.SPUtils;
-import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.utils.UserUtils;
 import com.lzy.okhttputils.OkHttpUtils;
 
-import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
 import wuba.zhaobiao.common.model.BaseModel;
@@ -35,7 +33,6 @@ import wuba.zhaobiao.mine.activity.MyWalletActivity;
 import wuba.zhaobiao.mine.activity.SettingActivity;
 import wuba.zhaobiao.mine.fragment.MineFragment;
 import wuba.zhaobiao.respons.UserInfoRespons;
-import wuba.zhaobiao.utils.LogoutDialogUtils;
 
 /**
  * Created by 58 on 2016/8/12.
@@ -212,7 +209,7 @@ public class MineModel extends BaseModel implements View.OnClickListener{
     }
 
     private void getUserInfo(){
-        OkHttpUtils.get(Urls.USER_INFO)//
+        OkHttpUtils.get(Urls.USER_INFO)
                 .execute(new userInfoCallback(context.getActivity(), true));
     }
 

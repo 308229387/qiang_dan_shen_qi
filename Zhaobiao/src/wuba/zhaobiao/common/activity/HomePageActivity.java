@@ -7,6 +7,7 @@ import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.eventbus.EventAction;
 
 import wuba.zhaobiao.common.model.HomePageModel;
+import wuba.zhaobiao.grab.model.BusinessOpportunityModel;
 
 /**
  * Created by SongYongmeng on 2016/7/29.
@@ -36,8 +37,6 @@ public class HomePageActivity extends BaseActivity<HomePageModel> {
     private void addLayout() {
         model.setTobBarColor();
         model.initViewPagerAndButton();
-        model.initMaskView();
-        model.setMask();
     }
 
     private void addFragment() {
@@ -62,6 +61,11 @@ public class HomePageActivity extends BaseActivity<HomePageModel> {
     public void onEventMainThread(EventAction action) {
         model.eventBusThing(action);
     }
+
+    public void onEventMainThread(BusinessOpportunityModel.BusinessMessage action) {
+        model.eventBusThing(action);
+    }
+
 
     @Override
     protected void onResume() {

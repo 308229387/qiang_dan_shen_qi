@@ -21,10 +21,11 @@ public class BusinessOpportunityFragment extends BaseFragment<BusinessOpportunit
         initalizationLayout(inflater, container);
         initView();
         model.setCanotPullDown();
-        model.setListener();
         model.creatDialog();
+        model.setListener();
         model.initTimeData();
         model.getCityData();
+        model.getMaskState();
         creatAdapter();
         setInfo();
         return model.getView();

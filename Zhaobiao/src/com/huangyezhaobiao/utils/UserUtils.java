@@ -51,6 +51,7 @@ public class UserUtils {
 	private static long mobTime;
 	private static final String USER_APP_VERSION = "appVersion";
 	private static String appVersion;
+	private static final String BUSINESS_MASK = "business_mask";
 
 	/**
 	 * 非强制更新判断
@@ -376,15 +377,25 @@ public class UserUtils {
 		context.getSharedPreferences(MOB_FILE_NAME, 0).edit().putString(mobCommon, "").commit();
 		context.getSharedPreferences(MOB_FILE_NAME, 0).edit().putInt(MOB_ITEM, 0).commit();
 	}
+
 	public static void setHasaction(Context context,String hasaction){
 		SharedPreferences sp = context.getSharedPreferences(MOB_FILE_NAME, 0);
 		sp.edit().putString(HASACTION, hasaction).commit();
 	}
 
 	public static String getHasaction(Context context){
-		String hasaction = context.getSharedPreferences(MOB_FILE_NAME, 0).getString(HASACTION, "");
+		String hasaction = context.getSharedPreferences(MOB_FILE_NAME, 0).getString(HASACTION, "3");
 		return hasaction;
 	}
 
+	public static void setBusinessMask(Context context,Boolean maskTag){
+		SharedPreferences sp = context.getSharedPreferences(MOB_FILE_NAME, 0);
+		sp.edit().putBoolean(BUSINESS_MASK, maskTag).commit();
+	}
+
+	public static Boolean getBusinessMask(Context context){
+		Boolean isReaded = context.getSharedPreferences(MOB_FILE_NAME, 0).getBoolean(BUSINESS_MASK, false);
+		return isReaded;
+	}
 
 }

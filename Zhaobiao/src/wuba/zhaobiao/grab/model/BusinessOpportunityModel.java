@@ -14,21 +14,25 @@ import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.callback.DialogCallback;
 import com.huangyezhaobiao.callback.JsonCallback;
 import com.huangyezhaobiao.utils.ToastUtils;
+import com.huangyezhaobiao.utils.UserUtils;
 import com.jingchen.pulltorefresh.PullToRefreshLayout;
 import com.lzy.okhttputils.OkHttpUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import de.greenrobot.event.EventBus;
 import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
 import wuba.zhaobiao.bean.BusinessData;
 import wuba.zhaobiao.common.model.BaseModel;
+import wuba.zhaobiao.config.Urls;
 import wuba.zhaobiao.grab.adapter.BusinessOpportunityAdapter;
 import wuba.zhaobiao.grab.fragment.BusinessOpportunityFragment;
 import wuba.zhaobiao.respons.BusinessCityRespons;
 import wuba.zhaobiao.respons.BusinessOpportunityRespons;
+import wuba.zhaobiao.respons.UserInfoRespons;
 import wuba.zhaobiao.utils.BusinessClearDialogUtils;
 import wuba.zhaobiao.utils.BusinessFullDialogUtils;
 import wuba.zhaobiao.utils.BusinessRefreshDialogUtils;
@@ -60,10 +64,12 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     private String timestate = "";
     private int pageNum = 1;
     private int pageSize = 20;
+    private boolean isread;
     private RelativeLayout emptyView;
     private RelativeLayout topLayout;
     private RelativeLayout settlementLayout;
     private TextView settleButton;
+    private TextView balance;
     private TextView clearButton;
     private BusinessClearDialogUtils clearDialog;
 
@@ -86,6 +92,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         emptyView = (RelativeLayout) view.findViewById(R.id.empty_view);
         settleButton = (TextView) view.findViewById(R.id.settlement_button);
         clearButton = (TextView) view.findViewById(R.id.business_clear);
+        balance = (TextView) view.findViewById(R.id.business_balance);
     }
 
     public void setCanotPullDown() {
@@ -127,6 +134,10 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         listView.setAdapter(adapter);
         refreshView.setOnRefreshListener(new Refresh());
         listView.setOnItemClickListener(new ClickItem());
+    }
+
+    public void getMaskState() {
+        isread = UserUtils.getBusinessMask(context.getActivity());
     }
 
     public View getView() {
@@ -186,6 +197,13 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         else
             settlementLayout.setVisibility(View.GONE);
 
+        double temp = 0;
+        for (int i = 0; i < buyData.size(); i++) {
+            double balanceTemp = Double.parseDouble(buyData.get(i).getKey7());
+            temp = temp + balanceTemp;
+        }
+
+        balance.setText(temp+"");
         settleButton.setText("结算(" + buyData.size() + ")");
     }
 
@@ -331,6 +349,10 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
             showData.get(i).setIsChoice(false);
     }
 
+    private void getBalance() {
+        OkHttpUtils.get(Urls.USER_INFO)
+                .execute(new GetBalance(context.getActivity(), false));
+    }
 
     @Override
     public void onClick(View v) {
@@ -344,10 +366,9 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
             case R.id.empty_view:
                 break;
             case R.id.settlement_button:
-                ToastUtils.showToast("settle");
+                getBalance();
                 break;
             case R.id.business_clear:
-                ToastUtils.showToast("clear");
                 clearDialog.showTwoButtonDialog();
                 break;
             default:
@@ -392,7 +413,11 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     private class ClickItem implements android.widget.AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            dealWithData(position);
+            if (!isread) {
+                isread = true;
+                EventBus.getDefault().post(new BusinessMessage("business_mask"));
+            } else
+                dealWithData(position);
         }
     }
 
@@ -428,6 +453,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
             ToastUtils.showToast(e.getMessage());
+            showEmptyView();
         }
 
     }
@@ -445,4 +471,30 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         }
     }
 
+    public class BusinessMessage {
+        private String msg;
+
+        public BusinessMessage(String msg) {
+            this.msg = msg;
+        }
+
+        public String getMsg() {
+            return msg;
+        }
+    }
+
+    private class GetBalance extends DialogCallback<UserInfoRespons> {
+
+        public GetBalance(Activity context, Boolean needProgress) {
+            super(context, needProgress);
+        }
+
+        @Override
+        public void onResponse(boolean isFromCache, UserInfoRespons userInfoRespons, Request request, @Nullable Response response) {
+            String temp = userInfoRespons.getData().getBalance();
+            double balance = Double.parseDouble(temp);
+
+        }
+
+    }
 }

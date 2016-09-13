@@ -24,56 +24,28 @@
 
 
     <RelativeLayout
-        android:id="@+id/linearLayout_mask"
+        android:id="@+id/business_mask_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/mask_back"
-        android:visibility="gone">
+        android:clickable="true"
+        android:visibility="gone"
+        android:background="@drawable/mask_back">
 
         <ImageView
-            android:id="@+id/iv_mask"
             android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/iv_mask"
-            android:layout_marginRight="35dip"
-            android:layout_alignParentRight="true"
-            android:layout_above="@+id/iv_mine"/>
+            android:background="@drawable/business_mask" />
 
         <ImageView
-            android:id="@+id/iv_mine"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/iv_mine"
-            android:layout_marginRight="10dip"
-            android:layout_marginBottom="2dip"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"/>
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/rl_mine_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/mask_back"
-        android:visibility="gone">
-
-        <ImageView
-            android:id="@+id/iv_account_mask"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="220dip"
-            android:layout_marginLeft="5dip"
-            android:src="@drawable/iv_account" />
-
-        <ImageView
-            android:id="@+id/iv_account_alert"
+            android:id="@+id/business_mask_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dip"
-            android:layout_below="@id/iv_account_mask"
+            android:layout_marginTop="430dip"
             android:src="@drawable/iv_i_know" />
+
     </RelativeLayout>
 
 

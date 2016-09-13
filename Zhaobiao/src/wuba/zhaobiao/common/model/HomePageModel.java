@@ -1,10 +1,8 @@
 package wuba.zhaobiao.common.model;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -12,7 +10,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -56,6 +53,7 @@ import wuba.zhaobiao.common.fragment.BaseFragment;
 import wuba.zhaobiao.config.ScreenReceiver;
 import wuba.zhaobiao.config.Urls;
 import wuba.zhaobiao.grab.fragment.GrabAndBusinessFragment;
+import wuba.zhaobiao.grab.model.BusinessOpportunityModel;
 import wuba.zhaobiao.message.fragment.MessageFragment;
 import wuba.zhaobiao.mine.fragment.MineFragment;
 import wuba.zhaobiao.order.fragment.OrderFragment;
@@ -67,112 +65,22 @@ import wuba.zhaobiao.utils.UpdateDialogUtils;
 /**
  * Created by SongYongmeng on 2016/7/29.
  */
-public class HomePageModel extends BaseModel {
+public class HomePageModel extends BaseModel implements View.OnClickListener {
     public HomePageActivity context;
     private MainTabIndicator mIndicator;
     private MainTabViewPager mViewPager;
     private ArrayList<Fragment> mFragmentList;
     private MainTabFragmentAdapter mAdapter;
+    private boolean forceUpdate = false;
+    private RelativeLayout businessMaskLayout;
+    private ImageView businessMaskButton;
     private ScreenReceiver receiver;
     private static Boolean isExit = false;
     private int DEFALT_FRAGMENT_NUM = 0;
+    int currentVersion = -1;
+    int versionNum = -1;
+    private String BUSINESS_MASK = "business_mask";
 
-    int currentVersion = -1; //当前版本号
-    int versionNum = -1; //获取当前系统版本号
-    private boolean forceUpdate = false; //是否强制更新
-
-
-    /** 初次进入时候的蒙版背景 */
-    private RelativeLayout layout_mask,rl_mine_layout;
-    /** 初次进入时的蒙版图片 */
-    private ImageView imageView_mine, iv_account_alert;
-
-
-    public void initMaskView(){
-        initLayoutView();
-        initMaskImageView();
-    }
-
-    private void initLayoutView(){
-        //蒙版相关初始化
-        layout_mask = (RelativeLayout)context.findViewById(R.id.linearLayout_mask);
-        layout_mask.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
-    }
-
-    private void initMaskImageView(){
-        imageView_mine = (ImageView)context.findViewById(R.id.iv_mine);
-        imageView_mine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                layout_mask.setVisibility(View.GONE);
-                context.getSharedPreferences("Setting", Context.MODE_PRIVATE).edit().putBoolean("read_account", true).commit();
-                selectMine();
-                initMineMaskView();
-                setMineMask();
-            }
-        });
-    }
-
-    private void selectMine(){
-        int pageIndex = 3;
-        setViewPage(pageIndex);
-    }
-
-    public void setMask() {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(
-                "Setting", Context.MODE_PRIVATE);
-        boolean isread = sharedPreferences.getBoolean("read_account", false);
-        if (!isread) {
-            layout_mask.setVisibility(View.VISIBLE);
-        } else {
-            layout_mask.setVisibility(View.GONE);
-        }
-    }
-
-    public void initMineMaskView(){
-        initMineLayoutView();
-        initMineImageView();
-    }
-
-    private void initMineLayoutView(){
-        //蒙版相关初始化
-        rl_mine_layout = (RelativeLayout)context.findViewById(R.id.rl_mine_layout);
-        rl_mine_layout.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
-    }
-
-    private void initMineImageView(){
-        iv_account_alert = (ImageView)context.findViewById(R.id.iv_account_alert);
-        iv_account_alert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rl_mine_layout.setVisibility(View.GONE);
-                context.getSharedPreferences("Setting", Context.MODE_PRIVATE).edit().putBoolean("mine_account", true).commit();
-
-            }
-        });
-    }
-
-    public void setMineMask() {
-
-        SharedPreferences sharedPreferences = context.getSharedPreferences(
-                "Setting", Context.MODE_PRIVATE);
-        boolean isread = sharedPreferences.getBoolean("mine_account", false);
-        if (!isread) {
-            rl_mine_layout.setVisibility(View.VISIBLE);
-        } else {
-            rl_mine_layout.setVisibility(View.GONE);
-        }
-    }
 
     public void setTobBarColor() {
         context.getWindow().setBackgroundDrawable(null);
@@ -192,6 +100,26 @@ public class HomePageModel extends BaseModel {
     public void initViewPagerAndButton() {
         mIndicator = (MainTabIndicator) context.findViewById(R.id.id_indicator);
         mViewPager = (MainTabViewPager) context.findViewById(R.id.id_pager);
+    }
+
+    public void initMaskView() {
+        initMaskImageView();
+        setMaskListener();
+        setMask();
+    }
+
+    private void initMaskImageView() {
+        businessMaskLayout = (RelativeLayout) context.findViewById(R.id.business_mask_layout);
+        businessMaskButton = (ImageView) context.findViewById(R.id.business_mask_button);
+    }
+
+    private void setMaskListener() {
+        businessMaskButton.setOnClickListener(this);
+    }
+
+    private void setMask() {
+        businessMaskLayout.setVisibility(View.VISIBLE);
+        UserUtils.setBusinessMask(context, true);
     }
 
     public void addFragmentToList() {
@@ -336,6 +264,11 @@ public class HomePageModel extends BaseModel {
     public void eventBusThing(EventAction action) {
         if (action.getType() == EventType.EVENT_TAB_RESET)
             refreshTab();
+    }
+
+    public void eventBusThing(BusinessOpportunityModel.BusinessMessage action) {
+        if (action.getMsg().equals(BUSINESS_MASK))
+            initMaskView();
     }
 
     public void refreshTab() {
@@ -583,6 +516,11 @@ public class HomePageModel extends BaseModel {
         this.context = context;
     }
 
+    @Override
+    public void onClick(View v) {
+        businessMaskLayout.setVisibility(View.GONE);
+        UserUtils.setBusinessMask(context, true);
+    }
 
     public class TabSelectListener implements MainTabIndicator.OnTabSelectedListener {
 

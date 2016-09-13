@@ -131,13 +131,13 @@
             android:id="@+id/price_title" />
 
         <TextView
+            android:id="@+id/business_balance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/price_title"
             android:textSize="20sp"
             android:layout_marginLeft="33dp"
             android:textColor="#fc5846"
-            android:text="¥15.00"
             />
         
         <TextView
