@@ -61,6 +61,7 @@ import java.util.List;
 
 import okhttp3.Request;
 import okhttp3.Response;
+import wuba.zhaobiao.config.Urls;
 import wuba.zhaobiao.respons.OrderDetailRespons;
 
 /**
@@ -78,11 +79,9 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 	private LinearLayout back_layout;
 	private TextView txt_head;
 
-
 	private HYListView lv_basic_info;
-
 	private HYListView lv_detail_info;
-
+    private RelativeLayout rl_detail_price;
 	private TextView tv_order_fee,tv_order_fee_content,tv_original_fee_content;
 
 	private LinearLayout ll_contact_record;
@@ -96,7 +95,6 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 
 	private CallDialog dialog;
 	private InputCallDialog InputDialog;
-	private CallAlertDialog alertDialog;
 	private CallClassifyDialog callClassifyDialog;
 
 	private WaitingTransfer transferDialog;
@@ -107,7 +105,7 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 
 	String  mobile; //商家电话
 
-	public static String clientPhone; //客户电话
+	public  String clientPhone; //客户电话
 
 	 boolean flag =true; //发短信界面不弹窗
 
@@ -140,8 +138,6 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 		}
 		phoneViewModel = new CallPhoneViewModel(vmCallback,this);
 		PhoneReceiver.addToMonitor(interaction);
-
-
 	}
 
 	@Override
@@ -155,7 +151,8 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 
 
 	public void getData(String orderId) {
-		OkHttpUtils.get("http://zhaobiao.58.com/appbatch/order/orderdetail")
+//		OkHttpUtils.get("http://zhaobiao.58.com/appbatch/order/orderdetail")
+		OkHttpUtils.get(Urls.GET_NEW_ORDER_DETAILS)
                 .params("orderId", orderId)
 				.execute(new getOrderDetailRespons(this, true));
 	}
@@ -185,6 +182,7 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 			 }
 			 OrderDetailRespons.PriceBean price = orderDetailRespons.getPriceDetail();
 			 if(price!= null){
+				 rl_detail_price.setVisibility(View.VISIBLE);
 				 String price_title = price.getTitle();
 				 if(!TextUtils.isEmpty(price_title)){
 					 tv_order_fee.setText(price_title);
@@ -205,12 +203,17 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 			 }
              List<OrderDetailRespons.bean>  callList =  orderDetailRespons.getCallList();
 			 if(callList!= null && callList.size() >0){
+				 ll_contact_record.setVisibility(View.VISIBLE);
 				 adapter = new OrderDetailAdapter(BusinessDetailsActivity.this,callList);
 				 lv_contact_record.setAdapter(adapter);
 				 lv_contact_record.setFocusable(false);
+			 }else{
+				 ll_contact_record.setVisibility(View.GONE);
 			 }
 
 			 callState = orderDetailRespons.getOrderState();
+
+			 clientPhone = orderDetailRespons.getPhone();
 
 		 }
 
@@ -230,13 +233,12 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 		txt_head = getView(R.id.txt_head);
 		txt_head.setText(R.string.bidding_details);
 
-//		ll = (LinearLayout) findViewById(R.id.ll);
 		tbl = (TitleMessageBarLayout) findViewById(R.id.tbl);
 
 		lv_basic_info = (HYListView) findViewById(R.id.lv_basic_info);
-
 		lv_detail_info = (HYListView) findViewById(R.id.lv_detail_info);
 
+		rl_detail_price = (RelativeLayout) findViewById(R.id.rl_detail_price);
 		tv_order_fee = (TextView) findViewById(R.id.tv_order_fee);
 		tv_order_fee_content = (TextView) findViewById(R.id.tv_order_fee_content);
 		tv_original_fee_content = (TextView) findViewById(R.id.tv_original_fee_content);
@@ -315,17 +317,16 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 					}
 					dialog.dismiss();
 
-//					startTransfering();
-//					// 等15秒
-//					handler.postDelayed(new Runnable() {
-//						@Override
-//						public void run() {
-//							stopTransfering();
-//							setMineMask();
-//						}
-//					}, 15000);
-
 					HYMob.getDataList(BusinessDetailsActivity.this, HYEventConstans.PAGE_DIALOG_CALL);
+					startTransfering();
+					// 等15秒
+					handler.postDelayed(new Runnable() {
+						@Override
+						public void run() {
+							stopTransfering();
+							setMineMask();
+						}
+					}, 15000);
 
 				}
 
@@ -375,16 +376,15 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 					}
 					InputDialog.dismiss();
 					HYMob.getDataList(BusinessDetailsActivity.this, HYEventConstans.EVENT_CALL_CONFIRM);
-//					startTransfering();
-//
-//					// 等15秒
-//					handler.postDelayed(new Runnable() {
-//						@Override
-//						public void run() {
-//							stopTransfering();
-//							setMineMask();
-//						}
-//					}, 15000);
+					startTransfering();
+					// 等15秒
+					handler.postDelayed(new Runnable() {
+						@Override
+						public void run() {
+							stopTransfering();
+							setMineMask();
+						}
+					}, 15000);
 				}
 
 				@Override
@@ -403,91 +403,19 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 	}
 
 
-	/**
-	 * 需要同步
-	 *
-	 * @return
-	 */
-	private boolean needAsync() {
-		//当前时间戳
-		Date currentTimeLine = null;
-		//从sp取时间戳
-		Date latTimeLine = null;
-
-		SimpleDateFormat sfd = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-
-		try {
-			currentTimeLine = new Date(System.currentTimeMillis());
-			if(!TextUtils.isEmpty(time)){
-				latTimeLine = sfd.parse(time);
-			}
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return TimeUtils.beyond2Hour(currentTimeLine, latTimeLine);//没有在时间戳范围内
-
-	}
-
-
-	private void initAlertCallDialog(){
-			alertDialog = new CallAlertDialog(this);
-			alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-				@Override
-				public void onDismiss(DialogInterface dialog) {
-					alertDialog.dismiss();
-				}
-			});
-			alertDialog.setMessage(getString(R.string.alert_customer_call));
-			alertDialog.setCancelable(false);
-			alertDialog.setCancelButtonGone();
-//			alertDialog.setOkButtonBackground(Color.parseColor("#FFE3A1"));
-			alertDialog.setPositiveText("呼叫用户");
-			alertDialog.setOkButtonCOlor(Color.parseColor("#86661D"));
-			alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-				@Override
-				public void onDismiss(DialogInterface dialog) {
-					alertDialog = null;
-				}
-			});
-			alertDialog.setOnDialogClickListener(new CallAlertDialog.onDialogClickListener() {
-				@Override
-				public void onDialogOkClick() {
-					mobile = SPUtils.getAppMobile(BusinessDetailsActivity.this);
-					phoneViewModel.call(orderId,mobile);
-					alertDialog.dismiss();
-
-					startTransfering();
-
-					// 等15秒
-					handler.postDelayed(new Runnable() {
-						@Override
-						public void run() {
-							stopTransfering();
-						}
-					}, 15000);
-				}
-
-				@Override
-				public void onDialogCancelClick() {
-				}
-			});
-			alertDialog.show();
-
-	}
-
-
-	private void initCallClassifyDialog(){
-		if(this != null && !this.isFinishing() && callClassifyDialog == null){
+	private void initCallClassifyDialog() {
+		if (this != null && !this.isFinishing() && callClassifyDialog == null) {
 			callCheckedId.clear();
-			if(!TextUtils.isEmpty(callState) && !TextUtils.equals(callState, "1")
-					&& !TextUtils.equals(callState, "2")&& !TextUtils.equals(callState, "90")) {//已结束不弹窗
-					if (TextUtils.equals(callState, "0") || TextUtils.equals(callState, "10")
-							|| TextUtils.equals(callState, "11")) {  //第一次弹窗
-						callClassifyDialog = new CallClassifyDialog(this, true);
-					} else {
-						callClassifyDialog = new CallClassifyDialog(this, false);
-					}
+			if (!TextUtils.isEmpty(callState) && !TextUtils.equals(callState, "1")
+					&& !TextUtils.equals(callState, "2") && !TextUtils.equals(callState, "90")) {//已结束不弹窗
+
+				if (TextUtils.equals(callState, "0") || TextUtils.equals(callState, "10")
+						|| TextUtils.equals(callState, "11")) {  //第一次弹窗
+					callClassifyDialog = new CallClassifyDialog(this, true);
+				} else {
+					callClassifyDialog = new CallClassifyDialog(this, false);
 				}
+
 				callClassifyDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
 					@Override
 					public void onDismiss(DialogInterface dialog) {
@@ -498,9 +426,7 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 				callClassifyDialog.setOnDialogClickListener(new CallClassifyDialog.onDialogClickListener() {
 					@Override
 					public void onDialogSubmitClick() {
-
 						String callMark = null;
-
 						if (callCheckedId != null && callCheckedId.size() > 0) {
 							for (String s : callCheckedId) {
 								callMark = s;
@@ -516,12 +442,14 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 					}
 				});
 				callClassifyDialog.show();
+			}
 		}
 
 	}
 
 	public void getData(String orderId,String mark,String desc) {
-		OkHttpUtils.get("http://zhaobiao.58.com/appbatch/order/callStateUpload")
+//		OkHttpUtils.get("http://zhaobiao.58.com/appbatch/order/callStateUpload")
+		OkHttpUtils.get(Urls.SUBMIT_CALL_TYPE)
 				.params("orderId", orderId)
 				.params("mark", mark)
 				.params("desc", desc)
@@ -547,7 +475,6 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 	 * 加载效果
 	 */
 	public void startTransfering() {
-
 		transferDialog = new WaitingTransfer(this);
 		transferDialog.setCancelable(false);
 		transferDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -582,14 +509,7 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 			if (t instanceof Integer) {
 				int status = (Integer) t;
 				if(status == 0){
-					// 等15秒
-					handler.postDelayed(new Runnable() {
-						@Override
-						public void run() {
-							stopTransfering();
-							setMineMask();
-						}
-					}, 15000);
+
 				}else{
 					stopTransfering();
 					setMineMask();
@@ -736,10 +656,6 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 			InputDialog.dismiss();
 			InputDialog = null;
 		}
-//		if (!this.isFinishing() && alertDialog != null && alertDialog.isShowing()) {
-//			alertDialog.dismiss();
-//			alertDialog = null;
-//		}
 
 		if (!this.isFinishing() && callClassifyDialog != null && callClassifyDialog.isShowing()) {
 			callClassifyDialog.dismiss();

@@ -40,7 +40,7 @@ public class MineFragment extends BaseFragment<MineModel>{
     @Override
     public void OnFragmentSelectedChanged(boolean isSelected) {
         if (isSelected && model != null){
-            model.initUserInfo();
+            model.getUserInfo();
         }
     }
 

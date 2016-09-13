@@ -18,6 +18,8 @@ public class OrderDetailRespons implements Serializable{
 
     private String orderState;
 
+    private String phone;
+
     public ArrayList<bean> getBasicDetail() {
         return basicDetail;
     }
@@ -56,6 +58,14 @@ public class OrderDetailRespons implements Serializable{
 
     public void setOrderState(String orderState) {
         this.orderState = orderState;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public class bean implements Serializable{

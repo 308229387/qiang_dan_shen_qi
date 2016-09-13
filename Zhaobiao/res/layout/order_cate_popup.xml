@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/top"
+    android:orientation="vertical"
     android:padding="16dp">
 
     <RelativeLayout
         android:id="@+id/orderState_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_gravity="right"
         android:gravity="center">
 
         <TextView
@@ -36,10 +37,8 @@
     </RelativeLayout>
 
     <View
-        android:id="@+id/individer"
         android:layout_width="match_parent"
         android:layout_height="1dip"
-        android:layout_below="@id/orderState_title"
         android:layout_marginTop="10dip"
         android:background="@color/divider" />
 
@@ -47,7 +46,6 @@
         android:id="@+id/ll_order_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/individer"
         android:layout_marginBottom="10dip"
         android:layout_marginTop="10dip"
         android:orientation="vertical"
@@ -75,12 +73,13 @@
 
 
     <LinearLayout
+        android:id="@+id/ll_order_state"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ll_order_category"
         android:layout_marginBottom="10dip"
         android:layout_marginTop="10dip"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
@@ -102,4 +101,4 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

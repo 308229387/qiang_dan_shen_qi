@@ -188,7 +188,7 @@ public class OrderModel1<T> extends BaseModel implements TitleMessageBarLayout.O
     }
 
     private void NetDisConnected() {
-        context.NetConnected();
+        context.NetDisConnected();;
     }
 
     public void diaplayMessageBar(){

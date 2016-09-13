@@ -48,6 +48,7 @@ import com.huangyezhaobiao.utils.Utils;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
 import com.jingchen.pulltorefresh.PullToRefreshLayout;
 import com.lzy.okhttputils.OkHttpUtils;
+import com.lzy.okhttputils.cache.CacheMode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,6 +59,7 @@ import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
 import wuba.zhaobiao.common.model.BaseModel;
+import wuba.zhaobiao.config.Urls;
 import wuba.zhaobiao.order.fragment.OrderFragment;
 import wuba.zhaobiao.respons.OrderListRespons;
 import wuba.zhaobiao.utils.LogoutDialogUtils;
@@ -81,21 +83,19 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
     private ListView listView;
     private View layout_no_data; //您还没有已抢订单呢！
     private TextView tv_no_orders;
-
-//    private OrderLVAdapter adapter;  //旧的adapter
     private OrderListAdapter orderListAdapter;   //新的adapter
 
     private String pageNum = "1";
     private int pageNumber = 1;
     private String totalPage = "";
 
-    private String orderType = "1";
+    private String orderType = "";
 
     private List<OrderListRespons.bean> showData = new ArrayList<>();
 
     private BiddingApplication app;
 
-    public static String orderState ="0"; //根据筛选器得到订单状态 待服务1,服务中2,已服务3
+    public static String orderState ="0"; //根据筛选器得到订单状态 待服务1,服务中2,已服务3,未分类4，待跟进5，已完结6
 
     public final static  List<String> CategoryCheckedId = new ArrayList<>(); //订单状态列表
     public final static  List<String> stateCheckedId = new ArrayList<>(); //订单状态列表
@@ -133,16 +133,22 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
         tv_no_orders = (TextView) view.findViewById(R.id.tv_no_orders);
     }
 
+    public void initType() {
+        String type = UserUtils.getHasaction(context.getActivity());
+        if(TextUtils.equals(type,"2")){
+            orderType = "2";
+        }else{
+            orderType = "1";
+        }
+    }
 
     public void createAdapter() {
-//        adapter = new OrderLVAdapter(context.getActivity(), adapterListener);
         orderListAdapter  = new OrderListAdapter(context.getActivity(),showData);
     }
 
     public void setParamsForListVew() {
         listView.setDividerHeight((int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP, 10, context.getResources().getDisplayMetrics()));
-//        listView.setAdapter(adapter);
         listView.setAdapter(orderListAdapter);
         listView.setOnItemClickListener(itemClickListener);
         refreshView.setOnRefreshListener(new Refresh());
@@ -158,18 +164,24 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
     }
 
     public void registerMessageBar() {
-        if (tbl != null) {
-            tbl.setVisibility(View.GONE);
-            tbl.setTitleBarListener(this);
-        }
+        app = BiddingApplication.getBiddingApplication();
+        app.registerNetStateListener();
+        NetStateManager.getNetStateManagerInstance().mListeners.add(context);
+
+        initMessageBar();
     }
+
+     private void initMessageBar(){
+         if (tbl != null) {
+             tbl.setVisibility(View.GONE);
+             tbl.setTitleBarListener(this);
+         }
+     }
 
 
     public void registerListenrer() {
-        app = BiddingApplication.getBiddingApplication();
         app.setCurrentNotificationListener(context);
-        app.registerNetStateListener();
-        NetStateManager.getNetStateManagerInstance().setINetStateChangedListener(context);
+//        NetStateManager.getNetStateManagerInstance().setINetStateChangedListener(context);
     }
 
 
@@ -191,7 +203,7 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
     }
 
     private void NetDisConnected() {
-        context.NetConnected();
+        context.NetDisConnected();
     }
 
     public void diaplayMessageBar(){
@@ -247,22 +259,25 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
         public void onClick(View v) {
             if (mOrderCateWindow != null && mOrderCateWindow.isShowing()) {
                 LogUtils.LogV("tag", "正在关闭");
-                mOrderCateWindow.dismiss();
-                refresh();
-                filterClickedStatistics();
+                closePopWindow();
             } else {
                 LogUtils.LogV("tag", "正在打开");
-
-                OrderModel.CategoryCheckedId.clear();
-                OrderModel.CategoryCheckedId.add("1");
-                OrderModel.stateCheckedId.clear();
-
-                mOrderCateWindow = new OrderCatePopupWindow(context.getActivity(), R.layout.order_cate_popup, popListener, orderState);
-                mOrderCateWindow.showAsDropDown(btn_clean, 0, 15);
-                filterClickedStatistics();
+                openPopWindow();
             }
         }
     };
+
+    private void closePopWindow(){
+        mOrderCateWindow.dismiss();
+        refresh();
+        filterClickedStatistics();
+    }
+
+    private void openPopWindow(){
+        mOrderCateWindow = new OrderCatePopupWindow(context.getActivity(), R.layout.order_cate_popup, popListener, orderState);
+        mOrderCateWindow.showAsDropDown(btn_clean, 0, 15);
+        filterClickedStatistics();
+    }
 
     private void filterClickedStatistics(){
         HYMob.getDataList(context.getActivity(), HYEventConstans.EVENT_ID_FILTER);
@@ -275,29 +290,44 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
 
                 case R.id.tv_orderState_confirm:
                     LogUtils.LogV("tag", "确定被点击");
-                    if(CategoryCheckedId != null && CategoryCheckedId.size() >0){
-                        for(String s: CategoryCheckedId){
-                            orderType =s;
-                        }
-                    }
-
-                    if(stateCheckedId != null && stateCheckedId.size() >0){
-                        for(String s: stateCheckedId){
-                            orderState =s;
-                        }
-                    }else{
-                        orderState = "0";
-                    }
-                    if(mOrderCateWindow!=null && mOrderCateWindow.isShowing()){
-                        mOrderCateWindow.dismiss();
-                        refresh();
-                    }
-                    HYMob.getDataList(context.getActivity(), HYEventConstans.EVENT_ID_FILTER_CONFIRM);
-
+                    getOrderType();
+                    getOrderState();
+                    closeAndGetData();
+                    clickConfirmStatistics();
                     break;
             }
         }
     };
+
+    private void getOrderType(){
+        if(CategoryCheckedId != null && CategoryCheckedId.size() >0){
+            for(String s: CategoryCheckedId){
+                orderType =s;
+            }
+        }
+    }
+
+    private void getOrderState(){
+        if(stateCheckedId != null && stateCheckedId.size() >0){
+            for(String s: stateCheckedId){
+                orderState =s;
+            }
+        }else{
+            orderState = "0";
+        }
+    }
+
+    private void closeAndGetData(){
+        if(mOrderCateWindow!=null && mOrderCateWindow.isShowing()){
+            mOrderCateWindow.dismiss();
+            refresh();
+        }
+    }
+
+    private void clickConfirmStatistics(){
+        HYMob.getDataList(context.getActivity(), HYEventConstans.EVENT_ID_FILTER_CONFIRM);
+    }
+
 
     private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
         @Override
@@ -305,7 +335,7 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
             OrderListRespons.bean  bean = (OrderListRespons.bean) orderListAdapter.getItem(position);
             Map<String, String> map = new HashMap<String, String>();
             map.put(Constans.ORDER_ID, bean.getId());
-            if(!TextUtils.equals(orderType,"1")){
+            if(TextUtils.equals(orderType,"1")){
                 ActivityUtils.goToActivityWithString(context.getActivity(), BiddingDetailsActivity.class, map);
             }else{
                 ActivityUtils.goToActivityWithString(context.getActivity(), BusinessDetailsActivity.class, map);
@@ -313,8 +343,6 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
 
         }
     };
-
-
 
     private class Refresh implements PullToRefreshLayout.OnRefreshListener {
 
@@ -343,7 +371,6 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
         getData();
     }
 
-
     public void banPullUp() {
         refreshView.setBanPullUp(true);
     }
@@ -353,11 +380,13 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
     }
 
     public void getData() {
-        OkHttpUtils.get("http://zhaobiao.58.com/appbatch/order/orderlist")
+//        OkHttpUtils.get("http://zhaobiao.58.com/appbatch/order/orderlist")
+        OkHttpUtils.get(Urls.GET_NEW_ORDER_LIST)
                 .params("pageNum", pageNum)
                 .params("pageSize", "5")
                 .params("type", orderType)
                 .params("state", orderState)
+//                .cacheMode(CacheMode.FIRST_CACHE_THEN_REQUEST)
                 .execute(new getOrderListRespons(context.getActivity(), true));
     }
 
@@ -380,7 +409,6 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
     private void dealWithData(OrderListRespons orderListRespons) {
 
         List<OrderListRespons.bean> list = orderListRespons.getData();
-//        List<QDBaseBean> list = getData(s);
         if (list != null)
             dealWithDateNow(list);
     }
@@ -390,29 +418,6 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
         return totalPage;
     }
 
-//    private List<QDBaseBean> getData(String s) {
-//        List<T> ts = getJSONObject(s);
-//        return (List<QDBaseBean>) ts;
-//    }
-//
-//    private List<T> getJSONObject(String s) {
-//        try {
-//            JSONObject result = JSON.parseObject(s);
-//            return new OrderCachUtils().transferToListBean(result.getString("data"));
-//        } catch (Exception e) {
-//            return null;
-//        }
-//    }
-
-//    private String  getJSONObjectOfPage(String s ) {
-//        try {
-//            JSONObject result = JSON.parseObject(s);
-//            return new OrderCachUtils().transferToBean(result.getString("other"));
-//        } catch (Exception e) {
-//            return null;
-//        }
-//    }
-
     private void dealWithDateNow(List<OrderListRespons.bean> list) {
 
         String isSon = UserUtils.getIsSon(context.getActivity());
@@ -420,7 +425,6 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
             String rbac = UserUtils.getRbac(context.getActivity());
             if (!TextUtils.isEmpty(rbac)
                     && TextUtils.equals("1", rbac) || TextUtils.equals("3", rbac)) {
-//                listView.setVisibility(View.GONE);
                 layout_no_data.setVisibility(View.VISIBLE);
                 tv_no_orders.setText("对不起，您的账号暂无\n查看已抢订单权限");
             } else {
@@ -434,12 +438,10 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
             hasData(list);
             hasDataButNotFull(list);
         }
-
     }
 
     private void noData(List<OrderListRespons.bean> list) {
         if (list.size() == 0 && showData.size() == 0){
-//            listView.setVisibility(View.GONE);
             layout_no_data.setVisibility(View.VISIBLE);
             layout_no_data.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -448,11 +450,8 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
                 }
             });
         }else{
-//            listView.setVisibility(View.VISIBLE);
             layout_no_data.setVisibility(View.GONE);
         }
-
-
     }
     private void hasData(List<OrderListRespons.bean> list) {
         if (list.size() > 0){
@@ -463,7 +462,6 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
     private void showDataToList(List<OrderListRespons.bean> list) {
         setPageNum();
         showData.addAll(list);
-//        listView.setAdapter(orderListAdapter);
         orderListAdapter.notifyDataSetChanged();
     }
 
@@ -482,10 +480,7 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
                 e.printStackTrace();
             }
         }
-
-
     }
-
 
     private void hasDataButNotFull(List<OrderListRespons.bean> list) {
         if (list.size() < 5)
@@ -526,7 +521,6 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
         String rbac = UserUtils.getRbac(context.getActivity());
         if (!TextUtils.isEmpty(rbac)
                 && TextUtils.equals("1", rbac) || TextUtils.equals("5", rbac)) {
-
         } else {
             successGrab();
         }
@@ -537,7 +531,6 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
         refresh();
         refreshComeSuccess();
     }
-
 
     private void refreshComeSuccess(){
         EventAction action = new EventAction(EventType.EVENT_TAB_RESET_COME_SUCCESS);
@@ -564,31 +557,12 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
     public void unregistPushAndEventBus() {
         app.removeINotificationListener();
         app.unRegisterNetStateListener();
-        NetStateManager.getNetStateManagerInstance().removeINetStateChangedListener();
+//        NetStateManager.getNetStateManagerInstance().removeINetStateChangedListener();
     }
 
     public void statisticsDeadTime() {
         HYMob.getBaseDataListForPage(context.getActivity(), HYEventConstans.PAGE_MY_ORDER_LIST, context.stop_time - context.resume_time);
     }
-
-//    ZBBaseAdapter.AdapterListener adapterListener = new ZBBaseAdapter.AdapterListener() {
-//        @Override
-//        public void onAdapterRefreshSuccess() {
-//            if (listView != null && adapter != null) {
-//                listView.setAdapter(adapter);
-//            }
-//        }
-//
-//        @Override
-//        public void onAdapterLoadMoreSuccess() {
-//            adapter.notifyDataSetChanged();
-//        }
-//
-//        @Override
-//        public void onAdapterViewClick(int id, PushToPassBean bean) {
-//
-//        }
-//    };
 
     @Override
     public void onTitleBarClicked(TitleBarType type) {
@@ -607,7 +581,6 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
         public getOrderListRespons(Activity context, Boolean needProgress) {
             super(context, needProgress);
         }
-
 
         @Override
         public void onResponse(boolean isFromCache, OrderListRespons orderListRespons, Request request, @Nullable Response response) {

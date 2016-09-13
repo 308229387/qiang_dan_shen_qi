@@ -217,6 +217,8 @@ public class LoginModel extends BaseModel {
 
             request.headers("ppu", LoginClient.doGetPPUOperate(BiddingApplication.getAppInstanceContext()))//
                     .headers("userId", LoginClient.doGetUserIDOperate(BiddingApplication.getAppInstanceContext()))//
+//                    .headers("userId","34675169722113")//bigbang1
+//                    .headers("userId","35606250707713")//bigbang6
                     .headers("version", "6")//
                     .headers("platform", "1")//
                     .headers("UUID", com.huangye.commonlib.utils.PhoneUtils.getIMEI(BiddingApplication.getAppInstanceContext()));

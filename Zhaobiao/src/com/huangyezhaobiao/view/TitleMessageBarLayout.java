@@ -4,6 +4,7 @@ package com.huangyezhaobiao.view;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -49,7 +50,6 @@ public class TitleMessageBarLayout extends RelativeLayout{
 	private OnTitleBarClickListener titleBarListener;
 	private PushBean       bean;
 	private long orderId;
-	private int  tag;
 	private PushToPassBean pushPassBean;
 
 //	private VoiceManager voiceManager;
@@ -65,8 +65,8 @@ public class TitleMessageBarLayout extends RelativeLayout{
 		this.bean = bean;
 		message = bean.toPushStorageBean().getStr();
 		orderId = bean.toPushStorageBean().getOrderid();
-		tag = bean.getTag();
 		pushPassBean = bean.toPushPassBean();
+		int tag = bean.getTag();
 		//TODO:根据bean来进行type的判断
 		configTag(tag);
 		Log.e("shenzhixinUUU", "message:" + message + ",tag:" + tag + ",orderId:" + orderId);

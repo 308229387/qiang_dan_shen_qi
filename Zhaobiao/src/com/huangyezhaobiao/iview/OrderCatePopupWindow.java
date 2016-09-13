@@ -22,6 +22,7 @@ import com.huangyezhaobiao.bean.mylist.Order.OrderStateEntity;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.LogUtils;
+import com.huangyezhaobiao.utils.UserUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public class OrderCatePopupWindow extends PopupWindow implements OnClickListener
 //	private TextView mTVServiced;
 	private TextView mTVReset;
     private TextView mTVConfirm;
-    private LinearLayout ll_order_category;
+    private LinearLayout ll_order_category,ll_order_state;
     private GridView gridView_order_category,gridView_order_state;
     private OrderCategoryAdapter orderCategoryAdapter;
     private OrderStateAdapter orderStateAdapter;
@@ -47,6 +48,8 @@ public class OrderCatePopupWindow extends PopupWindow implements OnClickListener
     private List<OrderStateEntity> stateList = new ArrayList<>();
 
     public static Boolean isBidding = true;
+
+    private String display;
 
     public OrderCatePopupWindow(final Activity context,int resLayout,OnOrderCatePopupWindowItemClick itemClick,String type) {
         this.itemOrderCateClick = itemClick;
@@ -109,50 +112,6 @@ public class OrderCatePopupWindow extends PopupWindow implements OnClickListener
         mTVConfirm = (TextView) conentView.findViewById(R.id.tv_orderState_confirm);
         mTVConfirm.setOnClickListener(this);
 
-        ll_order_category  = (LinearLayout) conentView.findViewById(R.id.ll_order_category);
-        ll_order_category.setVisibility(View.VISIBLE);
-
-        gridView_order_category = (GridView) conentView.findViewById(R.id.gridView_order_category);
-        orderCategoryAdapter = new OrderCategoryAdapter(context, categoryList);
-        gridView_order_category.setAdapter(orderCategoryAdapter);
-
-
-        gridView_order_state = (GridView) conentView.findViewById(R.id.gridView_order_state);
-        orderStateAdapter = new OrderStateAdapter(context, stateList);
-        gridView_order_state.setAdapter(orderStateAdapter);
-
-        gridView_order_category.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                OrderStateEntity  entity = (OrderStateEntity)orderCategoryAdapter.getItem(position);
-                String orderId = entity.getOrderStateId();
-                if (OrderModel.CategoryCheckedId.contains(orderId)) {//之前选中,变成不选中
-//                    OrderModel.CategoryCheckedId.remove(orderId);
-                } else {//之前没选中，变成选中
-
-                    if(TextUtils.equals(orderId,"1")){
-                        isBidding = true;
-                    }else if(TextUtils.equals(orderId,"2")){
-                        isBidding = false;
-                    }
-                    OrderModel.CategoryCheckedId.clear();
-                    OrderModel.CategoryCheckedId.add(orderId);
-                }
-                orderCategoryAdapter.notifyDataSetChanged();
-
-                if(isBidding){
-                    initOrderStateData();
-                    orderStateAdapter = new OrderStateAdapter(context, stateList);
-                }else{
-                    initBusinessStateData();
-                    orderStateAdapter = new OrderStateAdapter(context, stateList);
-                }
-                gridView_order_state.setAdapter(orderStateAdapter);
-                OrderModel.stateCheckedId.clear();
-                orderStateAdapter.notifyDataSetChanged();
-            }
-        });
-
         mTVReset.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -168,6 +127,105 @@ public class OrderCatePopupWindow extends PopupWindow implements OnClickListener
                 HYMob.getDataList(context, HYEventConstans.EVENT_ID_FILTER_RESET);
             }
         });
+
+        ll_order_category  = (LinearLayout) conentView.findViewById(R.id.ll_order_category);
+        ll_order_state = (LinearLayout) conentView.findViewById(R.id.ll_order_state);
+
+        display = UserUtils.getHasaction(context);
+        OrderModel.CategoryCheckedId.clear();
+        OrderModel.stateCheckedId.clear();
+
+        switch (display) {
+            case "1":
+                ll_order_state.setVisibility(View.VISIBLE);
+                OrderModel.CategoryCheckedId.add("1");
+                initOrderStateData();
+                break;
+            case "2":
+                ll_order_state.setVisibility(View.VISIBLE);
+                OrderModel.CategoryCheckedId.add("2");
+                initBusinessStateData();
+                break;
+            case "3":
+                ll_order_category.setVisibility(View.VISIBLE);
+
+                gridView_order_category = (GridView) conentView.findViewById(R.id.gridView_order_category);
+                orderCategoryAdapter = new OrderCategoryAdapter(context, categoryList);
+                gridView_order_category.setAdapter(orderCategoryAdapter);
+
+                gridView_order_category.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        OrderStateEntity  entity = (OrderStateEntity)orderCategoryAdapter.getItem(position);
+                        String orderId = entity.getOrderStateId();
+                        if (OrderModel.CategoryCheckedId.contains(orderId)) {//之前选中,变成不选中
+//                    OrderModel.CategoryCheckedId.remove(orderId);
+                        } else {//之前没选中，变成选中
+
+                            if(TextUtils.equals(orderId,"1")){
+                                isBidding = true;
+                            }else if(TextUtils.equals(orderId,"2")){
+                                isBidding = false;
+                            }
+                            OrderModel.CategoryCheckedId.clear();
+                            OrderModel.CategoryCheckedId.add(orderId);
+                        }
+                        orderCategoryAdapter.notifyDataSetChanged();
+
+                        if(isBidding){
+                            initOrderStateData();
+                            orderStateAdapter = new OrderStateAdapter(context, stateList);
+                        }else{
+                            initBusinessStateData();
+                            orderStateAdapter = new OrderStateAdapter(context, stateList);
+                        }
+                        gridView_order_state.setAdapter(orderStateAdapter);
+                        OrderModel.stateCheckedId.clear();
+                        orderStateAdapter.notifyDataSetChanged();
+                    }
+                });
+
+
+                ll_order_state.setVisibility(View.VISIBLE);
+                OrderModel.CategoryCheckedId.add("1");
+                break;
+            default:
+                break;
+        }
+
+        gridView_order_state = (GridView) conentView.findViewById(R.id.gridView_order_state);
+        orderStateAdapter = new OrderStateAdapter(context, stateList);
+        gridView_order_state.setAdapter(orderStateAdapter);
+
+        mTVReset.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LogUtils.LogV("tag", "重置被点击");
+
+                OrderModel.CategoryCheckedId.clear();
+                OrderModel.stateCheckedId.clear();
+
+                switch (display) {
+                    case "1":
+                        OrderModel.CategoryCheckedId.add("1");
+                        break;
+                    case "2":
+                        OrderModel.CategoryCheckedId.add("2");
+
+                        break;
+                    case "3":
+                        OrderModel.CategoryCheckedId.add("1");
+                        orderCategoryAdapter.notifyDataSetChanged();
+                        break;
+                }
+
+                OrderModel.orderState = "0";
+                orderStateAdapter.notifyDataSetChanged();
+
+                HYMob.getDataList(context, HYEventConstans.EVENT_ID_FILTER_RESET);
+            }
+        });
+
 
 
     }

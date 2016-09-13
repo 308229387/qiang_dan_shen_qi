@@ -155,9 +155,6 @@ public class BiddingDetailsActivity extends QBBaseActivity implements
 	}
 
 
-
-
-
 	private void initDialog() {
 		    dialog = new CallDialog(this);
 			dialog.setMessage(getString(R.string.transfer_answer_number) + mobile);
@@ -187,12 +184,10 @@ public class BiddingDetailsActivity extends QBBaseActivity implements
 						@Override
 						public void run() {
 							stopTransfering();
-//							setMineMask();
 						}
 					}, 15000);
 
 					HYMob.getDataList(BiddingDetailsActivity.this, HYEventConstans.PAGE_DIALOG_CALL);
-
 				}
 
 				@Override
@@ -249,7 +244,6 @@ public class BiddingDetailsActivity extends QBBaseActivity implements
 						@Override
 						public void run() {
 							stopTransfering();
-//							setMineMask();
 						}
 					}, 15000);
 				}
@@ -358,8 +352,6 @@ public class BiddingDetailsActivity extends QBBaseActivity implements
 		});
 		transferDialog.show();
 
-
-
 	}
 
 	/**
@@ -376,7 +368,6 @@ public class BiddingDetailsActivity extends QBBaseActivity implements
 	private NetWorkVMCallBack vmCallback = new NetWorkVMCallBack() {
 		@Override
 		public void onLoadingStart() {
-
 		}
 
 		@Override
@@ -384,9 +375,9 @@ public class BiddingDetailsActivity extends QBBaseActivity implements
 			if (t instanceof Integer) {
 				int status = (Integer) t;
 				if(status == 0){
+
 				}else{
 					stopTransfering();
-//					setMineMask();
 					Toast.makeText(BiddingDetailsActivity.this, "电话转接失败", Toast.LENGTH_SHORT).show();
 				}
 
@@ -429,10 +420,8 @@ public class BiddingDetailsActivity extends QBBaseActivity implements
 
 			if(action.equals(PhoneReceiver.CALL_UP)){
 				stopTransfering();
-//				setMineMask();
 			}else if(action.equals(PhoneReceiver.CALL_OVER)){
 				stopTransfering();
-//				setMineMask();
 				if(!needAsync() && alertDialog == null){ //两小时内
 					initAlertCallDialog();
 				}

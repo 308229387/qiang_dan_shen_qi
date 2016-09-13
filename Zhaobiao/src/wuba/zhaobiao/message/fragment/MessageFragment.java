@@ -48,7 +48,6 @@ public class MessageFragment extends BaseFragment<MessageModel> implements INoti
     public void OnFragmentSelectedChanged(boolean isSelected) {
         if (isSelected && model != null){
             model.load();
-            model.checkNet();
         }
 
     }
