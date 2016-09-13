@@ -1,6 +1,8 @@
 package wuba.zhaobiao.grab.model;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +15,6 @@ import android.widget.TextView;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.callback.DialogCallback;
 import com.huangyezhaobiao.callback.JsonCallback;
-import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.utils.UserUtils;
 import com.jingchen.pulltorefresh.PullToRefreshLayout;
@@ -30,10 +31,12 @@ import okhttp3.Response;
 import wuba.zhaobiao.bean.BusinessData;
 import wuba.zhaobiao.common.model.BaseModel;
 import wuba.zhaobiao.config.Urls;
+import wuba.zhaobiao.grab.activity.SettlementSuccessActivity;
 import wuba.zhaobiao.grab.adapter.BusinessOpportunityAdapter;
 import wuba.zhaobiao.grab.fragment.BusinessOpportunityFragment;
 import wuba.zhaobiao.respons.BusinessCityRespons;
 import wuba.zhaobiao.respons.BusinessOpportunityRespons;
+import wuba.zhaobiao.respons.BusinessSettlementRespons;
 import wuba.zhaobiao.respons.UserInfoRespons;
 import wuba.zhaobiao.utils.BusinessClearDialogUtils;
 import wuba.zhaobiao.utils.BusinessFullDialogUtils;
@@ -351,7 +354,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     public void settlementCheck() {
         if (settlementDialog.getCheckState())
             UserUtils.setBusinessCheckBox(context.getActivity(), false);
-        ToastUtils.showToast("zhifu");
+        settlement();
     }
 
     public void setAllCancelState() {
@@ -541,15 +544,33 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
 
     }
 
-    private class BusinessSettlement extends DialogCallback<String> {
+    private class BusinessSettlement extends DialogCallback<BusinessSettlementRespons> {
         public BusinessSettlement(Activity context, Boolean needProgress) {
             super(context, needProgress);
         }
 
         @Override
-        public void onResponse(boolean isFromCache, String s, Request request, @Nullable Response response) {
-            ToastUtils.showToast(s);
-            LogUtils.LogV("settlement",s);
+        public void onResponse(boolean isFromCache, BusinessSettlementRespons s, Request request, @Nullable Response response) {
+            switch (s.getState()) {
+                case "1":
+                    Intent intent = new Intent();
+                    intent.setClass(context.getActivity(), SettlementSuccessActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("value", s);
+                    intent.putExtras(bundle);
+
+                    context.startActivity(intent);
+                    break;
+                case "2":
+                    break;
+                case "3":
+                    break;
+                case "4":
+                    break;
+                default:
+                    break;
+            }
+            ToastUtils.showToast(s.getState());
         }
     }
 }

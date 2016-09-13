@@ -332,9 +332,6 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".activity.PurchaseFailureActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activity.BidGoneActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -342,8 +339,9 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".activity.PurchaseSuccessActivity"
+            android:name="wuba.zhaobiao.grab.activity.SettlementSuccessActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".activity.RefundActivity"
             android:screenOrientation="portrait"
