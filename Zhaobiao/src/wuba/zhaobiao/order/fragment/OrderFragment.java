@@ -43,6 +43,7 @@ public class OrderFragment extends BaseFragment<OrderModel> implements INotifica
         model.createView(inflater, container);
         model.initView();
         model.registerMessageBar();
+        model.initType();
     }
 
     private void registPushAndEventBus() {

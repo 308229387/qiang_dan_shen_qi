@@ -183,6 +183,13 @@ public class MessageModel extends BaseModel implements TitleMessageBarLayout.OnT
     }
 
     public void registerMessageBar() {
+        app = BiddingApplication.getBiddingApplication();
+        app.registerNetStateListener();
+        NetStateManager.getNetStateManagerInstance().mListeners.add(context);
+        initMessageBar();
+    }
+
+    private void initMessageBar(){
         if (tbl != null) {
             tbl.setVisibility(View.GONE);
             tbl.setTitleBarListener(this);
@@ -190,11 +197,10 @@ public class MessageModel extends BaseModel implements TitleMessageBarLayout.OnT
     }
 
     public void registerListener() {
-        app = BiddingApplication.getBiddingApplication();
         app.setCurrentNotificationListener(context);
-        app.registerNetStateListener();
-        NetStateManager.getNetStateManagerInstance().setINetStateChangedListener(context);
+//        NetStateManager.getNetStateManagerInstance().setINetStateChangedListener(context);
     }
+
 
     public void setHeaderHeight() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -432,7 +438,7 @@ public class MessageModel extends BaseModel implements TitleMessageBarLayout.OnT
     public void unregistPushAndEventBus() {
         app.removeINotificationListener();
         app.unRegisterNetStateListener();
-        NetStateManager.getNetStateManagerInstance().removeINetStateChangedListener();
+//        NetStateManager.getNetStateManagerInstance().removeINetStateChangedListener();
     }
 
     public void statisticsDeadTime() {

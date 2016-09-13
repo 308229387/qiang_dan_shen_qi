@@ -444,7 +444,7 @@ public abstract class BaseRequest<R extends BaseRequest> {
                 T data = cacheEntity.getData();
                 sendSuccessResultCallback(true, data, call, null, mCallback);
             } else {
-                sendFailResultCallback(true, call, null, new IllegalStateException("没有获取到缓存,或者缓存已经过期!"), mCallback);
+//                sendFailResultCallback(true, call, null, new IllegalStateException("没有获取到缓存,或者缓存已经过期!"), mCallback);
             }
         }
 

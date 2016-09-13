@@ -131,6 +131,13 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
     }
 
     public void registMessageBar() {
+        app = BiddingApplication.getBiddingApplication();
+        app.registerNetStateListener();
+        NetStateManager.getNetStateManagerInstance().mListeners.add(context);
+        initMessageBar();
+    }
+
+    private void initMessageBar(){
         if (tbl != null) {
             tbl.setVisibility(View.GONE);
             tbl.setTitleBarListener(this);
@@ -138,10 +145,8 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
     }
 
     public void registListener() {
-        app = BiddingApplication.getBiddingApplication();
         app.setCurrentNotificationListener(context);
-        app.registerNetStateListener();
-        NetStateManager.getNetStateManagerInstance().setINetStateChangedListener(context);
+//        NetStateManager.getNetStateManagerInstance().setINetStateChangedListener(context);
     }
 
     public void registerEventBus() {
@@ -464,7 +469,7 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
         EventBus.getDefault().unregister(context);
         app.removeINotificationListener();
         app.unRegisterNetStateListener();
-        NetStateManager.getNetStateManagerInstance().removeINetStateChangedListener();
+//        NetStateManager.getNetStateManagerInstance().removeINetStateChangedListener();
     }
 
     private void switchNotChicked() {

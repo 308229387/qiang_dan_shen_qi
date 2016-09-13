@@ -80,7 +80,6 @@ public class GrabFragment extends BaseFragment<GrabModel> implements INotificati
     public void OnFragmentSelectedChanged(boolean isSelected) {
         if (isSelected && model != null) {
             model.selectChange();
-            model.checkNet();
         }
     }
 

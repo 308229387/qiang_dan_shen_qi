@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.activity.BiddingDetailsActivity;
 import com.huangyezhaobiao.activity.BusinessDetailsActivity;
 import com.huangyezhaobiao.bean.popdetail.QDDetailBaseBean;
 import com.huangyezhaobiao.inter.Constans;
@@ -81,7 +82,7 @@ public class ServiceTypeBean extends QDDetailBaseBean{
 	private void fillDatas() {
 
 		if(!TextUtils.isEmpty(clientPhone)){
-			BusinessDetailsActivity.clientPhone = clientPhone;
+			BiddingDetailsActivity.clientPhone = clientPhone;
 		}
 
 		if(!TextUtils.isEmpty(time)){
