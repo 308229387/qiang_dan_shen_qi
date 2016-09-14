@@ -20,12 +20,28 @@ public class SettlementSuccessActivity extends BaseActivity<SettlementSuccessMod
     }
 
     private void init() {
+        initView();
+        setListener();
+        setTop();
+        getInfoToIntent();
+    }
+
+    private void initView() {
         model.initView();
+    }
+
+    private void setListener() {
         model.setListener();
+    }
+
+    private void setTop() {
         model.setTopBarHeight();
         model.setTopBarColor();
         model.setTitle();
         model.setState();
+    }
+
+    private void getInfoToIntent() {
         model.getIntent();
     }
 

@@ -10,9 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.utils.Utils;
 
+import de.greenrobot.event.EventBus;
 import wuba.zhaobiao.common.model.BaseModel;
 import wuba.zhaobiao.grab.activity.SettlementSuccessActivity;
 import wuba.zhaobiao.respons.BusinessSettlementRespons;
@@ -22,26 +22,32 @@ import wuba.zhaobiao.respons.BusinessSettlementRespons;
  */
 public class SettlementSuccessModel extends BaseModel implements View.OnClickListener {
     private SettlementSuccessActivity context;
-    private LinearLayout back_layout;
+    private LinearLayout backLayout;
     private TextView txt_head;
     private Button toOrderList;
     private Button toBusinessList;
     private View headView;
+    private TextView businessNum;
+    private TextView businessPrice;
+    private TextView businessTag;
 
     public SettlementSuccessModel(SettlementSuccessActivity context) {
         this.context = context;
     }
 
     public void initView() {
-        back_layout = (LinearLayout) context.findViewById(R.id.back_layout);
+        backLayout = (LinearLayout) context.findViewById(R.id.back_layout);
         txt_head = (TextView) context.findViewById(R.id.txt_head);
         headView = (View) context.findViewById(R.id.layout_head);
         toOrderList = (Button) context.findViewById(R.id.success_list);
         toBusinessList = (Button) context.findViewById(R.id.success_businesslist);
+        businessNum = (TextView) context.findViewById(R.id.success_business_text);
+        businessPrice = (TextView) context.findViewById(R.id.success_business_price);
+        businessTag = (TextView) context.findViewById(R.id.business_success_tag);
     }
 
     public void setState() {
-        back_layout.setVisibility(View.VISIBLE);
+        backLayout.setVisibility(View.VISIBLE);
     }
 
     public void setTitle() {
@@ -51,15 +57,15 @@ public class SettlementSuccessModel extends BaseModel implements View.OnClickLis
     public void setListener() {
         toOrderList.setOnClickListener(this);
         toBusinessList.setOnClickListener(this);
+        backLayout.setOnClickListener(this);
     }
 
     public void setTopBarHeight() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             int height = Utils.getStatusBarHeight(context);
             int more = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, context.getResources().getDisplayMetrics());
-            if (headView != null) {
+            if (headView != null)
                 headView.setPadding(0, height + more, 0, 0);
-            }
         }
     }
 
@@ -69,14 +75,39 @@ public class SettlementSuccessModel extends BaseModel implements View.OnClickLis
         context.getWindow().setBackgroundDrawable(null);
     }
 
+    private void success(BusinessSettlementRespons temp) {
+        String num = String.format(context.getResources().getString(R.string.business_suc_num), temp.getSuccCount());
+        String price = String.format(context.getResources().getString(R.string.business_suc_price), temp.getTotalFee());
+        businessNum.setText(num);
+        businessPrice.setText(price);
+    }
+
+    private void moneyNotEnough(BusinessSettlementRespons temp) {
+        success(temp);
+        String moneyNotEnoughText = String.format(context.getResources().getString(R.string.business_suc_price_tag), temp.getSuccCount());
+        businessTag.setText(moneyNotEnoughText);
+    }
+
+    private void otherTag(BusinessSettlementRespons temp) {
+        success(temp);
+        int tempInt = Integer.parseInt(temp.getTotalCount()) - Integer.parseInt(temp.getSuccCount());
+        String otherTag = String.format(context.getResources().getString(R.string.business_suc_tag), temp.getTotalCount(), tempInt + "", temp.getSuccCount());
+        businessTag.setText(otherTag);
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.success_list:
-                ToastUtils.showToast("chenggongjiemian");
+                EventBus.getDefault().post(new BusinessResultMessage("order_list"));
+                context.finish();
                 break;
             case R.id.success_businesslist:
-                ToastUtils.showToast("business");
+                EventBus.getDefault().post(new BusinessResultMessage("business_opportunity"));
+                context.finish();
+                break;
+            case R.id.back_layout:
+                back();
                 break;
             default:
                 break;
@@ -84,10 +115,39 @@ public class SettlementSuccessModel extends BaseModel implements View.OnClickLis
 
     }
 
+    private void back() {
+        context.onBackPressed();
+    }
+
     public void getIntent() {
         Intent intent = context.getIntent();
         BusinessSettlementRespons temp = (BusinessSettlementRespons) intent.getSerializableExtra("value");
-        ToastUtils.showToast(temp.getSuccCount());
+        switch (temp.getState()) {
+            case "1":
+                success(temp);
+                break;
+            case "3":
+                moneyNotEnough(temp);
+                break;
+            case "4":
+                otherTag(temp);
+                break;
+            default:
+                break;
+        }
+    }
+
+
+    public class BusinessResultMessage {
+        private String msg;
+
+        public String getMsg() {
+            return msg;
+        }
+
+        public BusinessResultMessage(String msg) {
+            this.msg = msg;
+        }
     }
 }
 

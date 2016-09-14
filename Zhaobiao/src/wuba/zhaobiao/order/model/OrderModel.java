@@ -48,7 +48,6 @@ import com.huangyezhaobiao.utils.Utils;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
 import com.jingchen.pulltorefresh.PullToRefreshLayout;
 import com.lzy.okhttputils.OkHttpUtils;
-import com.lzy.okhttputils.cache.CacheMode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -364,7 +363,7 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
         return refreshView.getBanPullUpState();
     }
 
-    private void refresh() {
+    public void refresh() {
         canPullUp();
         pageNum = "1";
         pageNumber =1;

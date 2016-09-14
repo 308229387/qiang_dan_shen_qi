@@ -8,6 +8,7 @@ import com.huangyezhaobiao.eventbus.EventAction;
 
 import wuba.zhaobiao.common.model.HomePageModel;
 import wuba.zhaobiao.grab.model.BusinessOpportunityModel;
+import wuba.zhaobiao.grab.model.SettlementSuccessModel;
 
 /**
  * Created by SongYongmeng on 2016/7/29.
@@ -63,6 +64,10 @@ public class HomePageActivity extends BaseActivity<HomePageModel> {
     }
 
     public void onEventMainThread(BusinessOpportunityModel.BusinessMessage action) {
+        model.eventBusThing(action);
+    }
+
+    public void onEventMainThread(SettlementSuccessModel.BusinessResultMessage action) {
         model.eventBusThing(action);
     }
 

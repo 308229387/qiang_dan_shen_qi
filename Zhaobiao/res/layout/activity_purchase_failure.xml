@@ -8,11 +8,6 @@
     <include layout="@layout/layout_backhead"
         android:id="@+id/layout_head"/>
 
-    <com.huangyezhaobiao.view.TitleMessageBarLayout
-        android:id="@+id/tb1"
-        android:layout_width="match_parent"
-        android:layout_height="45dip"
-        android:visibility="gone"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
