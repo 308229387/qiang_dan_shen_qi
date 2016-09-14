@@ -582,9 +582,9 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
                         MDUtils.YuENotEnough(passBean.getCateId() + "", passBean.getBidId() + "");
                     }
                     break;
-                case "3":
-                    intent.setClass(context.getActivity(), BidSuccessActivity.class);
+                case "3":intent.setClass(context.getActivity(), BidSuccessActivity.class);
                     context.startActivity(intent);
+
                     Toast.makeText(context.getActivity(), "抢单成功", Toast.LENGTH_SHORT).show();
                     break;
                 case "4":
