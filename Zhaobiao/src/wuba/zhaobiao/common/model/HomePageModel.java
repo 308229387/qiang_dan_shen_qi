@@ -54,6 +54,7 @@ import wuba.zhaobiao.config.ScreenReceiver;
 import wuba.zhaobiao.config.Urls;
 import wuba.zhaobiao.grab.fragment.GrabAndBusinessFragment;
 import wuba.zhaobiao.grab.model.BusinessOpportunityModel;
+import wuba.zhaobiao.grab.model.SettlementSuccessModel;
 import wuba.zhaobiao.message.fragment.MessageFragment;
 import wuba.zhaobiao.mine.fragment.MineFragment;
 import wuba.zhaobiao.order.fragment.OrderFragment;
@@ -80,6 +81,12 @@ public class HomePageModel extends BaseModel implements View.OnClickListener {
     int currentVersion = -1;
     int versionNum = -1;
     private String BUSINESS_MASK = "business_mask";
+    private String BUSINESS_ORDER = "order_list";
+    private String BUSINESS_OPPORTUNITY = "business_opportunity";
+    private GrabAndBusinessFragment grabAndBusinessFragment;
+    private MessageFragment messageFragment;
+    private OrderFragment orderFragment;
+    private MineFragment mineFragment;
 
 
     public void setTobBarColor() {
@@ -132,10 +139,15 @@ public class HomePageModel extends BaseModel implements View.OnClickListener {
     }
 
     private void addFragment() {
-        mFragmentList.add(new GrabAndBusinessFragment());
-        mFragmentList.add(new MessageFragment());
-        mFragmentList.add(new OrderFragment());
-        mFragmentList.add(new MineFragment());
+        grabAndBusinessFragment = new GrabAndBusinessFragment();
+        messageFragment = new MessageFragment();
+        orderFragment = new OrderFragment();
+        mineFragment = new MineFragment();
+
+        mFragmentList.add(grabAndBusinessFragment);
+        mFragmentList.add(messageFragment);
+        mFragmentList.add(orderFragment);
+        mFragmentList.add(mineFragment);
     }
 
     public void configViewPagerAndButton() {
@@ -271,6 +283,23 @@ public class HomePageModel extends BaseModel implements View.OnClickListener {
             initMaskView();
     }
 
+    public void eventBusThing(SettlementSuccessModel.BusinessResultMessage action) {
+        viewPagerJump(action);
+        detaRefresh();
+    }
+
+    private void viewPagerJump(SettlementSuccessModel.BusinessResultMessage action) {
+        if (action.getMsg().equals(BUSINESS_ORDER))
+            setViewPage(2);
+        if (action.getMsg().equals(BUSINESS_OPPORTUNITY))
+            setViewPage(0);
+    }
+
+    private void detaRefresh() {
+        orderFragment.refresh();
+        grabAndBusinessFragment.businessRefresh();
+    }
+
     public void refreshTab() {
         context.runOnUiThread(new Runnable() {
             @Override
@@ -366,7 +395,6 @@ public class HomePageModel extends BaseModel implements View.OnClickListener {
         filter.addAction(Intent.ACTION_SCREEN_ON);
         return filter;
     }
-
 
     private void procTabClick(int paramInt) {
         if (mViewPager != null && paramInt < mViewPager.getAdapter().getCount()) {

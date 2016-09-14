@@ -114,5 +114,14 @@
 
     <string name="business_refresh">刷新列表将会清空您的购物车，是否继续？</string>
     <string name="business_clear">是否确定清空购物车?</string>
+    <string name="business_suc_num">恭喜您,您已成功购买%1$s条商机！</string>
+    <string name="business_suc_price">共花费金额%1$s元~</string>
+    <string name="business_max_prompt">您最多可一次购买20条哦~</string>
+    <string name="business_settlement">当前选中商机预计%1$s元，当选中商机已售完时或余额不足时，实际支付金额低于此报价</string>
+    <string name="business_suc_tag">注：您选中的%1$s条商机有%2$s条在您购买的过程中被其他人买走，已帮您购买了剩下的%3$s条，为避免错失商机，下次选中商机后要尽快付款哦~</string>
+    <string name="business_suc_price_tag">注：由于您的余额不足，只为您购买了%1$s条商机，为避免错失商机。请您尽快充值~</string>
+
+
+
 
 </resources>

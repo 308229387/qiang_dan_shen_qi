@@ -343,6 +343,10 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name="wuba.zhaobiao.grab.activity.SettlementFailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".activity.RefundActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateUnchanged|adjustPan" />
