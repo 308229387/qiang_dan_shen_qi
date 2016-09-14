@@ -48,6 +48,7 @@ import com.huangyezhaobiao.utils.Utils;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
 import com.jingchen.pulltorefresh.PullToRefreshLayout;
 import com.lzy.okhttputils.OkHttpUtils;
+import com.lzy.okhttputils.cache.CacheMode;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -17,6 +17,10 @@ public class Urls {
     public static final String VALIDATE = BASE_URL + "api/validate";
     public static final String ORDER_GET_LIST = BASE_URL + "app/order/orderlist";
     public static final String CONSUMING_RECORD = BASE_URL + "app/costRecord?";
+    public static final String BUSINESS_GETCITY = BASE_URL + "appbatch/getLocal";
+    public static final String BUSINESS_OPPORTUNITY = BASE_URL + "appbatch/getBids";
+    public static final String BUSINESS_SETTLEMENT = BASE_URL + "appbatch/order/purchase";
+
 
     public static final String GET_NEW_ORDER_LIST = BASE_URL + "appbatch/order/orderlist";
 

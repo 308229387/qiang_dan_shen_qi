@@ -134,7 +134,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     }
 
     public void getCityData() {
-        OkHttpUtils.get("http://zhaobiao.58.com/appbatch/getLocal")
+        OkHttpUtils.get(Urls.BUSINESS_GETCITY)
                 .execute(new BusinessCityRequest());
     }
 
@@ -157,7 +157,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     }
 
     public void getData() {
-        OkHttpUtils.get("http://zhaobiao.58.com/appbatch/getBids")
+        OkHttpUtils.get(Urls.BUSINESS_OPPORTUNITY)
                 .params("cityId", cityId)
                 .params("areaId", areaId)
                 .params("timestate", timestate)
@@ -166,7 +166,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     }
 
     private void getDataForRefresh() {
-        OkHttpUtils.get("http://zhaobiao.58.com/appbatch/getBids")
+        OkHttpUtils.get(Urls.BUSINESS_OPPORTUNITY)
                 .params("cityId", cityId)
                 .params("areaId", areaId)
                 .params("timestamp", timestamp)
@@ -389,7 +389,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
 
     private void settlement() {
         StringBuffer temp = getBids();
-        OkHttpUtils.get("http://zhaobiao.58.com/appbatch/order/purchase")
+        OkHttpUtils.get(Urls.BUSINESS_SETTLEMENT)
                 .params("bids", temp.toString())
                 .execute(new BusinessSettlement(context.getActivity(), false));
     }
@@ -582,7 +582,6 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         }
 
     }
-
 
 
     private class BusinessSettlement extends DialogCallback<BusinessSettlementRespons> {

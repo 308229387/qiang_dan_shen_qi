@@ -1,6 +1,8 @@
 package wuba.zhaobiao.grab.adapter;
 
 import android.content.Context;
+import android.graphics.Paint;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +56,7 @@ public class BusinessOpportunityAdapter extends BaseAdapter {
             holder.remarksValue = (TextView) convertView.findViewById(R.id.business_key5);
             holder.priceKey = (TextView) convertView.findViewById(R.id.business_key6);
             holder.priceValue = (TextView) convertView.findViewById(R.id.business_key7);
+            holder.oldValue = (TextView) convertView.findViewById(R.id.business_key8);
             holder.box = (CheckBox) convertView.findViewById(R.id.check_business);
             convertView.setTag(holder);
         } else {
@@ -68,7 +71,9 @@ public class BusinessOpportunityAdapter extends BaseAdapter {
             holder.priceKey.setText(((BusinessData) data.get(position)).getKey6());
 
             String price = PublickMethod.getPriceFromString(((BusinessData) data.get(position)).getKey7());
-            holder.priceValue.setText(price);
+            holder.priceValue.setText(Html.fromHtml("<font color='red'>" + price + "</font>" + "元"));
+            holder.oldValue.setText(((BusinessData) data.get(position)).getKey8());
+            holder.oldValue.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
 
             if (((BusinessData) data.get(position)).getIsChoice())
                 holder.box.setChecked(true);
@@ -91,6 +96,7 @@ public class BusinessOpportunityAdapter extends BaseAdapter {
         private TextView remarksValue;
         private TextView priceKey;
         private TextView priceValue;
+        private TextView oldValue;
         private TextView remarksKey;
         private CheckBox box;
     }
