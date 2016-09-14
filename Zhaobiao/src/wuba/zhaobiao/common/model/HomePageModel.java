@@ -392,8 +392,7 @@ public class HomePageModel extends BaseModel implements View.OnClickListener {
     }
 
     private void checkWhichOne(int paramInt, int index) {
-        BaseFragment
-                fragment = (BaseFragment) mFragmentList.get(index);
+        BaseFragment fragment = (BaseFragment) mFragmentList.get(index);
         if (paramInt == index) {
             changeFragmentStateForTrue(fragment, index);
         } else if (AppConstants.HOME_PAGE_INDEX == index) {
