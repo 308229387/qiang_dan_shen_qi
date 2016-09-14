@@ -93,7 +93,8 @@ public class TitleMessageBarLayout extends RelativeLayout{
 			type = TitleBarType.SYS_NOTI;
 //			voiceManager.createOrdersDialog(NewNotice);
 			break;
-
+		default :
+			type = TitleBarType.YUE;
 		}
 		operateViewwithType();
 	}
