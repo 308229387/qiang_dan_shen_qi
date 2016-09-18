@@ -14,16 +14,18 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@null</item>
     </style>
+
     <style name="anim_popup_dir">
         <item name="android:windowEnterAnimation">@anim/slide_in</item>
         <item name="android:windowExitAnimation">@anim/slide_out</item>
     </style>
 
-    <!-- Base application theme. --><style name="Base.AppTheme" parent="Theme.AppCompat.Light.DarkActionBar" type="text/css">
-    <item name="colorPrimary">#673AB7</item>
-    <item name="colorPrimaryDark">#512DA8</item>
-    <item name="colorAccent">#ffffff</item>
-</style>
+    <!-- Base application theme. -->
+    <style name="Base.AppTheme" parent="Theme.AppCompat.Light.DarkActionBar" type="text/css">
+        <item name="colorPrimary">#F74C47</item>
+        <item name="colorPrimaryDark">#F74C47</item>
+        <item name="colorAccent">#ffffff</item>
+    </style>
 
     <style name="DialogWithOutAnim" parent="@android:style/Theme.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -38,6 +40,7 @@
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:windowSoftInputMode">stateUnspecified|adjustResize</item>
     </style>
+
     <style name="myTransparent">
         <item name="android:windowBackground">@color/transparent</item>
         <item name="android:windowNoTitle">true</item>
@@ -50,7 +53,8 @@
         <item name="colorPrimary">#673AB7</item>
         <item name="colorPrimaryDark">#512DA8</item>
         <item name="colorAccent">#e12f37</item>
-    </style>s
+    </style>
+    s
 
     <style name="BackgroundDimEnabledDialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowBackground">@color/gray</item>

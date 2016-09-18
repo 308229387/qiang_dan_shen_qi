@@ -1,6 +1,8 @@
 package wuba.zhaobiao.common.activity;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.view.WindowManager;
 
 import com.huangyezhaobiao.R;
 
@@ -17,6 +19,12 @@ public class LoginActivity extends BaseActivity<LoginModel> {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blank);
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT) {
+            //透明状态栏
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            //透明导航栏
+//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        }
         removeOtherActivity();
         init();
     }
