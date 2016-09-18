@@ -173,21 +173,21 @@ public class BiddingDetailsActivity extends QBBaseActivity implements
 
 				@Override
 				public void onDialogOkClick() {
+					HYMob.getDataList(BiddingDetailsActivity.this, HYEventConstans.PAGE_DIALOG_CALL);
 					SPUtils.setAppMobile(BiddingDetailsActivity.this, mobile);
 					if (phoneViewModel != null) {
 						phoneViewModel.call(orderId, mobile);
 					}
 					dialog.dismiss();
 					startTransfering();
-					// 等15秒
-					handler.postDelayed(new Runnable() {
-						@Override
-						public void run() {
-							stopTransfering();
-						}
-					}, 15000);
+//					// 等15秒
+//					handler.postDelayed(new Runnable() {
+//						@Override
+//						public void run() {
+//							stopTransfering();
+//						}
+//					}, 15000);
 
-					HYMob.getDataList(BiddingDetailsActivity.this, HYEventConstans.PAGE_DIALOG_CALL);
 				}
 
 				@Override
@@ -229,23 +229,14 @@ public class BiddingDetailsActivity extends QBBaseActivity implements
 
 				@Override
 				public void onDialogOkClick() {
+					HYMob.getDataList(BiddingDetailsActivity.this, HYEventConstans.EVENT_CALL_CONFIRM);
 					String phone = InputDialog.getInputNumber();
 					SPUtils.setAppMobile(BiddingDetailsActivity.this, phone);
 					if (phoneViewModel != null) {
 						phoneViewModel.call(orderId, phone);
 					}
 					InputDialog.dismiss();
-
-					HYMob.getDataList(BiddingDetailsActivity.this, HYEventConstans.EVENT_CALL_CONFIRM);
 					startTransfering();
-
-					// 等15秒
-					handler.postDelayed(new Runnable() {
-						@Override
-						public void run() {
-							stopTransfering();
-						}
-					}, 15000);
 				}
 
 				@Override
@@ -316,16 +307,15 @@ public class BiddingDetailsActivity extends QBBaseActivity implements
 					mobile = SPUtils.getAppMobile(BiddingDetailsActivity.this);
 					phoneViewModel.call(orderId,mobile);
 					alertDialog.dismiss();
-
 					startTransfering();
 
-					// 等15秒
-					handler.postDelayed(new Runnable() {
-						@Override
-						public void run() {
-							stopTransfering();
-						}
-					}, 15000);
+//					// 等15秒
+//					handler.postDelayed(new Runnable() {
+//						@Override
+//						public void run() {
+//							stopTransfering();
+//						}
+//					}, 15000);
 				}
 
 				@Override
@@ -375,7 +365,12 @@ public class BiddingDetailsActivity extends QBBaseActivity implements
 			if (t instanceof Integer) {
 				int status = (Integer) t;
 				if(status == 0){
-
+					handler.postDelayed(new Runnable() {// 等15秒
+						@Override
+						public void run() {
+							stopTransfering();
+						}
+					}, 15000);
 				}else{
 					stopTransfering();
 					Toast.makeText(BiddingDetailsActivity.this, "电话转接失败", Toast.LENGTH_SHORT).show();
