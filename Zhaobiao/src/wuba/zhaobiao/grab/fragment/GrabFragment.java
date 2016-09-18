@@ -38,7 +38,7 @@ public class GrabFragment extends BaseFragment<GrabModel> implements INotificati
         model.registMessageBar();
     }
 
-    private void registPush() {
+    public void registPush() {
         model.registListener();
     }
 
@@ -74,7 +74,6 @@ public class GrabFragment extends BaseFragment<GrabModel> implements INotificati
 
     public void onEventMainThread(EventAction action) {
         model.jugePush(action);
-
     }
 
     public void OnFragmentSelectedChanged(boolean isSelected) {
@@ -89,6 +88,10 @@ public class GrabFragment extends BaseFragment<GrabModel> implements INotificati
     }
 
 
+    public void unregistNotificationListener() {
+        model.unregistNotificationListener();
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -100,7 +103,6 @@ public class GrabFragment extends BaseFragment<GrabModel> implements INotificati
         super.onStop();
         stop_time = System.currentTimeMillis();
         model.statisticsDeadTime();
-
     }
 
 

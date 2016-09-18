@@ -3,6 +3,7 @@ package wuba.zhaobiao.grab.model;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +32,7 @@ import okhttp3.Response;
 import wuba.zhaobiao.bean.BusinessData;
 import wuba.zhaobiao.common.model.BaseModel;
 import wuba.zhaobiao.config.Urls;
+import wuba.zhaobiao.grab.activity.SettlementFailActivity;
 import wuba.zhaobiao.grab.activity.SettlementSuccessActivity;
 import wuba.zhaobiao.grab.adapter.BusinessOpportunityAdapter;
 import wuba.zhaobiao.grab.fragment.BusinessOpportunityFragment;
@@ -69,8 +71,6 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     private String cityId = "";
     private String areaId = "";
     private String timestate = "";
-    private int pageNum = 1;
-    private int pageSize = 20;
     private boolean isread;
     private RelativeLayout emptyView;
     private RelativeLayout topLayout;
@@ -81,6 +81,9 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     private BusinessClearDialogUtils clearDialog;
     private double total;
     private BusinessSettlementDialogUtils settlementDialog;
+    private int pageSize = 10;
+    private String timestamp;
+    private String timeTempTag = "";
 
     public BusinessOpportunityModel(BusinessOpportunityFragment context) {
         this.context = context;
@@ -119,8 +122,8 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     }
 
     public void creatDialog() {
-        refreshDialog = new BusinessRefreshDialogUtils(context.getActivity(), context.getActivity().getString(R.string.business_refresh));
-        clearDialog = new BusinessClearDialogUtils(context.getActivity(), context.getActivity().getString(R.string.business_clear));
+        refreshDialog = new BusinessRefreshDialogUtils(context.getActivity(), context.getString(R.string.business_refresh));
+        clearDialog = new BusinessClearDialogUtils(context.getActivity(), context.getString(R.string.business_clear));
     }
 
     public void initTimeData() {
@@ -131,7 +134,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     }
 
     public void getCityData() {
-        OkHttpUtils.get("http://zhaobiao.58.com/appbatch/getLocal")
+        OkHttpUtils.get(Urls.BUSINESS_GETCITY)
                 .execute(new BusinessCityRequest());
     }
 
@@ -154,22 +157,20 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     }
 
     public void getData() {
-        OkHttpUtils.get("http://zhaobiao.58.com/appbatch/getBids")
+        OkHttpUtils.get(Urls.BUSINESS_OPPORTUNITY)
                 .params("cityId", cityId)
-//                .params("areaId", areaId)
+                .params("areaId", areaId)
                 .params("timestate", timestate)
-                .params("pageNum", pageNum + "")
-                .params("pageSize", pageSize + "")
+                .params("timestamp", timestamp)
                 .execute(new BusinessRequest());
     }
 
     private void getDataForRefresh() {
-        OkHttpUtils.get("http://zhaobiao.58.com/appbatch/getBids")
+        OkHttpUtils.get(Urls.BUSINESS_OPPORTUNITY)
                 .params("cityId", cityId)
-//                .params("areaId", areaId)
+                .params("areaId", areaId)
+                .params("timestamp", timestamp)
                 .params("timestate", timestate)
-                .params("pageNum", pageNum + "")
-                .params("pageSize", pageSize + "")
                 .execute(new BusinessRefreshRequest(context.getActivity()));
     }
 
@@ -193,7 +194,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
 
     private void setChoiceState(int position) {
         if (buyData.size() == 20)
-            new BusinessFullDialogUtils(context.getActivity(), "您最多可一次购买20条哦~").showSingleButtonDialog();
+            new BusinessFullDialogUtils(context.getActivity(), context.getString(R.string.business_max_prompt)).showSingleButtonDialog();
         else {
             showData.get(position).setIsChoice(true);
             buyData.add(showData.get(position));
@@ -201,17 +202,28 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     }
 
     private void judgePriceLayout() {
+        showOrDismissPriceLayout();
+        getTotal();
+        setTextForPrice();
+    }
+
+    private void showOrDismissPriceLayout() {
         if (buyData.size() > 0)
             settlementLayout.setVisibility(View.VISIBLE);
         else
             settlementLayout.setVisibility(View.GONE);
+    }
+
+    private void getTotal() {
         total = 0;
         for (int i = 0; i < buyData.size(); i++) {
             double balanceTemp = Double.parseDouble(buyData.get(i).getKey7());
             total = total + balanceTemp;
         }
+    }
 
-        balance.setText(PublickMethod.getPriceFromDouble(total));
+    private void setTextForPrice() {
+        balance.setText("¥  "+PublickMethod.getPriceFromDouble(total));
         settleButton.setText("结算(" + buyData.size() + ")");
     }
 
@@ -259,7 +271,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     }
 
     private void clearLocalInfo() {
-        if (pageNum == 1) {
+        if (timestamp == "") {
             showData.clear();
             listView.setAdapter(adapter);
         }
@@ -314,7 +326,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     private void showDataToList(ArrayList<BusinessData> list) {
         showData.addAll(list);
         adapter.setData(showData);
-        pageNum++;
+        timestamp = timeTempTag;
     }
 
     private void hasDataButNotFull(ArrayList<BusinessData> list) {
@@ -329,10 +341,11 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
             refresh();
     }
 
-    private void refresh() {
-        pageNum = 1;
+    public void refresh() {
+        timestamp = "";
         canPullUp();
         buyData.clear();
+        showOrDismissPriceLayout();
         getDataForRefresh();
     }
 
@@ -369,21 +382,51 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
 
 
     private void showSettlementDialog() {
-        String temp = "当前选中商机预计" + PublickMethod.getPriceFromDouble(total) + "元，当选中商机已售完时或余额不足时，实际支付金额低于此报价";
+        String temp = String.format(context.getString(R.string.business_settlement), PublickMethod.getPriceFromDouble(total));
         settlementDialog = new BusinessSettlementDialogUtils(context.getActivity(), temp);
         settlementDialog.setSettlementListener(this);
         settlementDialog.showTwoButtonDialog();
     }
 
     private void settlement() {
-        ToastUtils.showToast("getget");
+        StringBuffer temp = getBids();
+        OkHttpUtils.get(Urls.BUSINESS_SETTLEMENT)
+                .params("bids", temp.toString())
+                .execute(new BusinessSettlement(context.getActivity(), false));
+    }
+
+    @NonNull
+    private StringBuffer getBids() {
         StringBuffer temp = new StringBuffer();
         for (int i = 0; i < buyData.size(); i++)
             temp.append(buyData.get(i).getBidid() + ",");
+        return temp;
+    }
 
-        OkHttpUtils.get("http://zhaobiao.58.com/appbatch/order/purchase")
-                .params("bids", temp.toString())
-                .execute(new BusinessSettlement(context.getActivity(), false));
+    private void goToFail() {
+        Intent intent = new Intent();
+        intent.setClass(context.getActivity(), SettlementFailActivity.class);
+        context.startActivity(intent);
+    }
+
+    private void goToSettlementResult(BusinessSettlementRespons result) {
+        Intent intent = new Intent();
+        intent.setClass(context.getActivity(), SettlementSuccessActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("value", result);
+        intent.putExtras(bundle);
+        context.startActivity(intent);
+    }
+
+    @NonNull
+    private List<Double> getDoubles() {
+        List<Double> temp11 = new ArrayList<>();
+        for (int i = 0; i < buyData.size(); i++) {
+            double pr = Double.parseDouble(buyData.get(i).getKey7());
+            temp11.add(pr);
+        }
+        Collections.sort(temp11);
+        return temp11;
     }
 
     @Override
@@ -458,6 +501,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         @Override
         public void onResponse(boolean isFromCache, BusinessOpportunityRespons s, Request request, @Nullable Response response) {
             data = s.getRespData();
+            timeTempTag = s.getTimestamp();
             stateRight(data);
             refreshView.refreshComplete();
         }
@@ -478,6 +522,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         @Override
         public void onResponse(boolean isFromCache, BusinessOpportunityRespons s, Request request, @Nullable Response response) {
             data = s.getRespData();
+            timeTempTag = s.getTimestamp();
             stateRight(data);
             refreshView.refreshComplete();
         }
@@ -525,12 +570,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         public void onResponse(boolean isFromCache, UserInfoRespons userInfoRespons, Request request, @Nullable Response response) {
             String temp = userInfoRespons.getData().getBalance();
             double balance = Double.parseDouble(temp);
-            List<Double> temp11 = new ArrayList<>();
-            for (int i = 0; i < buyData.size(); i++) {
-                double pr = Double.parseDouble(buyData.get(i).getKey7());
-                temp11.add(pr);
-            }
-            Collections.sort(temp11);
+            List<Double> temp11 = getDoubles();
             if (balance < temp11.get(0))
                 ToastUtils.showToast("余额不足");
             else {
@@ -544,33 +584,32 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
 
     }
 
+
     private class BusinessSettlement extends DialogCallback<BusinessSettlementRespons> {
         public BusinessSettlement(Activity context, Boolean needProgress) {
             super(context, needProgress);
         }
 
         @Override
-        public void onResponse(boolean isFromCache, BusinessSettlementRespons s, Request request, @Nullable Response response) {
-            switch (s.getState()) {
+        public void onResponse(boolean isFromCache, BusinessSettlementRespons result, Request request, @Nullable Response response) {
+            switch (result.getState()) {
                 case "1":
-                    Intent intent = new Intent();
-                    intent.setClass(context.getActivity(), SettlementSuccessActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("value", s);
-                    intent.putExtras(bundle);
-
-                    context.startActivity(intent);
+                    goToSettlementResult(result);
                     break;
                 case "2":
+                    goToFail();
                     break;
                 case "3":
+                    goToSettlementResult(result);
                     break;
                 case "4":
+                    goToSettlementResult(result);
                     break;
                 default:
                     break;
             }
-            ToastUtils.showToast(s.getState());
         }
     }
+
+
 }

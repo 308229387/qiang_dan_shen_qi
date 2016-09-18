@@ -19,9 +19,9 @@ public class MainTabIndicatorBean {
     public void initHomeTabs(){
         this.pageParams.clear();
         TabParam localTabParam1 = new TabParam();
-        localTabParam1.title = "抢单";
-        localTabParam1.iconResId = R.drawable.main_btn_bid;
-        localTabParam1.iconSelectedResId = R.drawable.main_btn_bid_pressed;
+        localTabParam1.title = "商机";
+        localTabParam1.iconResId = R.drawable.opportunity_not;
+        localTabParam1.iconSelectedResId = R.drawable.opportunity;
         this.pageParams.add(localTabParam1);
 
         TabParam localTabParam2 = new TabParam();

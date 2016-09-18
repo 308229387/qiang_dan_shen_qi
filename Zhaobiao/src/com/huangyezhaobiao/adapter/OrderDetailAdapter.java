@@ -59,11 +59,12 @@ public class OrderDetailAdapter extends BaseAdapter{
 
         holder.tv_order_detail_title.setText(bean.getTitle());
         holder.tv_order_detail_content.setText(bean.getContent());
-
         return convertView;
     }
 
     class ViewHolder{
-        public TextView tv_order_detail_title,tv_order_detail_content;
+        public TextView tv_order_detail_title, tv_order_detail_content;
     }
+
+
 }

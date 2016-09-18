@@ -170,55 +170,68 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 
 			 List<OrderDetailRespons.bean>  basiclist =  orderDetailRespons.getBasicDetail();
 			 if(basiclist != null && basiclist.size() >0){
-				 adapter = new OrderDetailAdapter(BusinessDetailsActivity.this,basiclist);
-				 lv_basic_info.setAdapter(adapter);
-				 lv_basic_info.setFocusable(false);
+				 setBasicListData(basiclist);
 			 }
 			 List<OrderDetailRespons.bean>  orderlist =  orderDetailRespons.getOrderDetail();
 			 if(orderlist != null && orderlist.size() >0){
-				 adapter = new OrderDetailAdapter(BusinessDetailsActivity.this,orderlist);
-				 lv_detail_info.setAdapter(adapter);
-				 lv_detail_info.setFocusable(false);
+				 setOrderListData(orderlist);
 			 }
 			 OrderDetailRespons.PriceBean price = orderDetailRespons.getPriceDetail();
 			 if(price!= null){
-				 rl_detail_price.setVisibility(View.VISIBLE);
-				 String price_title = price.getTitle();
-				 if(!TextUtils.isEmpty(price_title)){
-					 tv_order_fee.setText(price_title);
-				 }
-				 String price_fee= price.getPromotionPrice();
-				 if(!TextUtils.isEmpty(price_fee)){
-					 tv_order_fee_content.setText("￥"+price_fee);
-				 }
-				 String price_original_fee = price.getOriginPrice();
-				 if(!TextUtils.isEmpty(price_original_fee)){
-					 tv_original_fee_content.setText(price_original_fee);
-				 }
-
-				 tv_original_fee_content.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-				 if(TextUtils.equals(price_fee,price_original_fee)){
-					 tv_original_fee_content.setVisibility(View.GONE);
-				 }
+				 setPriceData( price);
 			 }
              List<OrderDetailRespons.bean>  callList =  orderDetailRespons.getCallList();
 			 if(callList!= null && callList.size() >0){
-				 ll_contact_record.setVisibility(View.VISIBLE);
-				 adapter = new OrderDetailAdapter(BusinessDetailsActivity.this,callList);
-				 lv_contact_record.setAdapter(adapter);
-				 lv_contact_record.setFocusable(false);
+				 setRecordListData(callList);
 			 }else{
 				 ll_contact_record.setVisibility(View.GONE);
 			 }
-
 			 callState = orderDetailRespons.getOrderState();
-
 			 clientPhone = orderDetailRespons.getPhone();
-
 		 }
 
 	  }
   }
+
+	private void setBasicListData(List<OrderDetailRespons.bean>  basiclist){
+		adapter = new OrderDetailAdapter(BusinessDetailsActivity.this,basiclist);
+		lv_basic_info.setAdapter(adapter);
+		lv_basic_info.setFocusable(false);
+	}
+
+	private void setOrderListData(List<OrderDetailRespons.bean>  orderlist){
+		adapter = new OrderDetailAdapter(BusinessDetailsActivity.this,orderlist);
+		lv_detail_info.setAdapter(adapter);
+		lv_detail_info.setFocusable(false);
+	}
+
+	private void setPriceData(OrderDetailRespons.PriceBean price){
+		rl_detail_price.setVisibility(View.VISIBLE);
+		String price_title = price.getTitle();
+		if(!TextUtils.isEmpty(price_title)){
+			tv_order_fee.setText(price_title);
+		}
+		String price_fee= price.getPromotionPrice();
+		if(!TextUtils.isEmpty(price_fee)){
+			tv_order_fee_content.setText("￥"+price_fee);
+		}
+		String price_original_fee = price.getOriginPrice();
+		if(!TextUtils.isEmpty(price_original_fee)){
+			tv_original_fee_content.setText(price_original_fee);
+		}
+
+		tv_original_fee_content.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+		if(TextUtils.equals(price_fee,price_original_fee)){
+			tv_original_fee_content.setVisibility(View.GONE);
+		}
+	}
+
+	private void setRecordListData(  List<OrderDetailRespons.bean>  callList){
+		ll_contact_record.setVisibility(View.VISIBLE);
+		adapter = new OrderDetailAdapter(BusinessDetailsActivity.this,callList);
+		lv_contact_record.setAdapter(adapter);
+		lv_contact_record.setFocusable(false);
+	}
 
 	public void initListener() {
 		back_layout.setOnClickListener(this);
@@ -227,31 +240,48 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 	}
 
 	public void initView() {
+		initHeadView();
+		initMessageBar();
+		initBusinessInfoView();
+		initPriceInfoView();
+		initContactRecordView();
+		initCallAndMessageView();
+		initMineLayoutView();
+		initMineImageView();
+	}
+
+	private void initHeadView(){
 		layout_back_head = getView(R.id.layout_head);
 		back_layout = getView(R.id.back_layout);
 		back_layout.setVisibility(View.VISIBLE);
 		txt_head = getView(R.id.txt_head);
 		txt_head.setText(R.string.bidding_details);
+	}
 
+	private void initMessageBar(){
 		tbl = (TitleMessageBarLayout) findViewById(R.id.tbl);
+	}
 
+	private void initBusinessInfoView(){
 		lv_basic_info = (HYListView) findViewById(R.id.lv_basic_info);
 		lv_detail_info = (HYListView) findViewById(R.id.lv_detail_info);
+	}
 
+	private void initPriceInfoView(){
 		rl_detail_price = (RelativeLayout) findViewById(R.id.rl_detail_price);
 		tv_order_fee = (TextView) findViewById(R.id.tv_order_fee);
 		tv_order_fee_content = (TextView) findViewById(R.id.tv_order_fee_content);
 		tv_original_fee_content = (TextView) findViewById(R.id.tv_original_fee_content);
+	}
 
+	private void initContactRecordView(){
 		ll_contact_record = (LinearLayout) findViewById(R.id.ll_contact_record);
 		lv_contact_record = (HYListView) findViewById(R.id.lv_contact_record);
+	}
 
-
+	private void initCallAndMessageView(){
 		order_detail_message = (RelativeLayout) findViewById(R.id.order_detail_message);
 		order_detail_telephone = (RelativeLayout) findViewById(R.id.order_detail_telephone);
-
-		initMineLayoutView();
-		initMineImageView();
 	}
 
 
@@ -280,7 +310,6 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 	}
 
 	public void setMineMask() {
-
 		SharedPreferences sharedPreferences = getSharedPreferences(
 				"Setting", Context.MODE_PRIVATE);
 		boolean isread = sharedPreferences.getBoolean("detail_call", false);
@@ -290,6 +319,18 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 			rl_call_layout.setVisibility(View.GONE);
 			initCallClassifyDialog();
 		}
+	}
+
+
+	private void closeCallProgress(){
+		// 等15秒
+		handler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				stopTransfering();
+				setMineMask();
+			}
+		}, 15000);
 	}
 
 
@@ -311,23 +352,13 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 
 				@Override
 				public void onDialogOkClick() {
+					HYMob.getDataList(BusinessDetailsActivity.this, HYEventConstans.PAGE_DIALOG_CALL);
 					SPUtils.setAppMobile(BusinessDetailsActivity.this, mobile);
 					if (phoneViewModel != null) {
 						phoneViewModel.call(orderId, mobile);
 					}
 					dialog.dismiss();
-
-					HYMob.getDataList(BusinessDetailsActivity.this, HYEventConstans.PAGE_DIALOG_CALL);
 					startTransfering();
-					// 等15秒
-					handler.postDelayed(new Runnable() {
-						@Override
-						public void run() {
-							stopTransfering();
-							setMineMask();
-						}
-					}, 15000);
-
 				}
 
 				@Override
@@ -369,22 +400,14 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 
 				@Override
 				public void onDialogOkClick() {
+					HYMob.getDataList(BusinessDetailsActivity.this, HYEventConstans.EVENT_CALL_CONFIRM);
 					String phone = InputDialog.getInputNumber();
 					SPUtils.setAppMobile(BusinessDetailsActivity.this, phone);
 					if (phoneViewModel != null) {
 						phoneViewModel.call(orderId, phone);
 					}
 					InputDialog.dismiss();
-					HYMob.getDataList(BusinessDetailsActivity.this, HYEventConstans.EVENT_CALL_CONFIRM);
 					startTransfering();
-					// 等15秒
-					handler.postDelayed(new Runnable() {
-						@Override
-						public void run() {
-							stopTransfering();
-							setMineMask();
-						}
-					}, 15000);
 				}
 
 				@Override
@@ -403,14 +426,22 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 	}
 
 
+	private boolean isAlreadyFinish(){
+			return (!TextUtils.isEmpty(callState) && !TextUtils.equals(callState, "1")
+					&& !TextUtils.equals(callState, "2") && !TextUtils.equals(callState, "90"));
+	}
+
+	private boolean isFirstShow(){
+		return (TextUtils.equals(callState, "0") || TextUtils.equals(callState, "10")
+				|| TextUtils.equals(callState, "11"));
+	}
+
+
 	private void initCallClassifyDialog() {
 		if (this != null && !this.isFinishing() && callClassifyDialog == null) {
 			callCheckedId.clear();
-			if (!TextUtils.isEmpty(callState) && !TextUtils.equals(callState, "1")
-					&& !TextUtils.equals(callState, "2") && !TextUtils.equals(callState, "90")) {//已结束不弹窗
-
-				if (TextUtils.equals(callState, "0") || TextUtils.equals(callState, "10")
-						|| TextUtils.equals(callState, "11")) {  //第一次弹窗
+			if (isAlreadyFinish()) {//已结束不弹窗
+				if (isFirstShow()) {  //第一次弹窗
 					callClassifyDialog = new CallClassifyDialog(this, true);
 				} else {
 					callClassifyDialog = new CallClassifyDialog(this, false);
@@ -509,7 +540,7 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 			if (t instanceof Integer) {
 				int status = (Integer) t;
 				if(status == 0){
-
+					closeCallProgress();
 				}else{
 					stopTransfering();
 					setMineMask();
@@ -559,9 +590,6 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 			}else if(action.equals(PhoneReceiver.CALL_OVER)){
 				stopTransfering();
 				setMineMask();
-//				if(!needAsync() && alertDialog == null){ //两小时内
-//					initAlertCallDialog();
-//				}
 			}
 		}
 	};
@@ -573,11 +601,12 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 				break;
 			case R.id.order_detail_message:
 				flag = false;
-				Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-				sendIntent.setData(Uri.parse("smsto:" + clientPhone));
+				if(!TextUtils.isEmpty(clientPhone)){
+					Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+					sendIntent.setData(Uri.parse("smsto:" + clientPhone));
 //				sendIntent.putExtra("sms_body", "");
-				startActivity(sendIntent);
-
+					startActivity(sendIntent);
+				}
 				HYMob.getDataListByCall(BusinessDetailsActivity.this, HYEventConstans.EVENT_ID_ORDER_DETAIL_PAGE_MESSAGE, String.valueOf(orderId), "1");
 
 				break;

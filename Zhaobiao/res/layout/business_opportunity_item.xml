@@ -24,7 +24,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:singleLine="true"
-                android:text="保洁清洗"
                 android:textColor="@color/black"
                 android:textSize="@dimen/textsize_xlarge" />
 
@@ -54,7 +53,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:text="创建时间"
                 android:textColor="@color/binding_list_text"
                 android:textSize="15sp" />
 
@@ -64,7 +62,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dip"
                 android:layout_marginRight="15dip"
-                android:text="2016.06.21"
                 android:textColor="@color/binding_list_text"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -80,7 +77,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:text="创建时间"
                 android:textColor="@color/binding_list_text"
                 android:textSize="15sp" />
 
@@ -90,7 +86,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dip"
                 android:layout_marginRight="15dip"
-                android:text="2016.06.21"
                 android:textColor="@color/binding_list_text"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -106,7 +101,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:text="创建时间"
                 android:textColor="@color/binding_list_text"
                 android:textSize="15sp" />
 
@@ -116,7 +110,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dip"
                 android:layout_marginRight="15dip"
-                android:text="2016.06.21"
+                android:textColor="@color/binding_list_text"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/business_key8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="15dip"
                 android:textColor="@color/binding_list_text"
                 android:textSize="15sp" />
         </LinearLayout>

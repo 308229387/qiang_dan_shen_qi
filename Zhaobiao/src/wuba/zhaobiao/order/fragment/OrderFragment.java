@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import com.huangyezhaobiao.bean.push.PushBean;
 import com.huangyezhaobiao.inter.INotificationListener;
 import com.huangyezhaobiao.netmodel.INetStateChangedListener;
-import com.huangyezhaobiao.utils.LogUtils;
 
 import wuba.zhaobiao.common.fragment.BaseFragment;
 import wuba.zhaobiao.order.model.OrderModel;
@@ -57,6 +56,10 @@ public class OrderFragment extends BaseFragment<OrderModel> implements INotifica
     private void setInfo() {
         model.setParamsForListVew();
 //        model.setCacheRespons();
+    }
+
+    public void refresh(){
+        model.refresh();
     }
 
     @Override

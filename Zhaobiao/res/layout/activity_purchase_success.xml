@@ -22,19 +22,19 @@
             android:src="@drawable/t_orderdetail_success"/>
 
         <TextView
+            android:id="@+id/success_business_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="恭喜您,您已成功购买20条商机！"
             android:textColor="@color/black"
             android:textSize="18dp" />
 
         <TextView
+            android:id="@+id/success_business_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:text="共花费金额20元~"
             android:textColor="@color/black"
             android:textSize="18dp" />
 
@@ -74,11 +74,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/business_success_tag"
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
-            android:text="注：您选中的30条商机有10条在您购买的过程中被其他人买走，已帮您购买了剩下的20条，为避免错失商机，下次 选中商机后要尽快付款哦~"
             android:textColor="@color/t_gray"
             android:textSize="16sp" />
     </LinearLayout>

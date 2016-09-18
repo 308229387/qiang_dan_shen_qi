@@ -163,48 +163,25 @@ public class OrderListAdapter extends BaseAdapter{
             //判断商机状态
             if(!TextUtils.isEmpty(state)){
                 if(TextUtils.equals(state, Constans.BUSINESS_NOT_CALSSFY)){ //未分类
-                    holder.iv_order_state_line.setVisibility(View.GONE);
-                    holder.tv_order_state_content.setText("未分类");
-                    holder.tv_order_state_content.setTextColor(Color.parseColor("#C5C5C5"));
-//                    if(TextUtils.isEmpty(refundText) || TextUtils.equals(refundText,"未退单")){
-//
-//                    }else{
-//                        StringBuilder sb = new StringBuilder();
-//                        sb.append("已结束(成交)").append("(").append(refundText).append(")");
-//                        holder.tv_order_state_content.setText(sb.toString());
-//                        holder.tv_order_state_content.setTextColor(Color.parseColor("#C5C5C5"));
-//                    }
-                }else if( TextUtils.equals(state,Constans.BUSINESS_WAIT_FOLLOW)){ //待跟进
-                    holder.iv_order_state_line.setVisibility(View.GONE);
-                    holder.tv_order_state_content.setText("待跟进");
-                    holder.tv_order_state_content.setTextColor(Color.parseColor("#C5C5C5"));
-//                    if(TextUtils.isEmpty(refundText) ||TextUtils.equals(refundText,"未退单")){
-//
-//                    }else{
-//                        StringBuilder sb = new StringBuilder();
-//                        sb.append("已结束(未成交)").append("(").append(refundText).append(")");
-//                        holder.tv_order_state_content.setText(sb.toString());
-//                        holder.tv_order_state_content.setTextColor(Color.parseColor("#C5C5C5"));
-//                    }
-                }else if(TextUtils.equals(state, Constans.BUSINESS_ALREADY_FINISH)){
                     holder.iv_order_state_line.setVisibility(View.VISIBLE);
                     holder.iv_order_state_line.setImageResource(R.drawable.onservice_order_state);
-                    holder.tv_order_state_content.setText("已完结");
+                    holder.tv_order_state_content.setText("未分类");
                     holder.tv_order_state_content.setTextColor(Color.parseColor("#4EC5BF"));
-//                    if(TextUtils.isEmpty(refundText) || TextUtils.equals(refundText,"未退单")){
-//
-//                    }else{
-//                        StringBuilder sb = new StringBuilder();
-//                        sb.append("待服务").append("(").append(refundText).append(")");
-//                        holder.tv_order_state_content.setText(sb.toString());
-//                        holder.tv_order_state_content.setTextColor(Color.parseColor("#4EC5BF"));
-//                    }
+
+                }else if( TextUtils.equals(state,Constans.BUSINESS_WAIT_FOLLOW)){ //待跟进
+                    holder.iv_order_state_line.setVisibility(View.VISIBLE);
+                    holder.iv_order_state_line.setImageResource(R.drawable.servicing_order_state);
+                    holder.tv_order_state_content.setText("待跟进");
+                    holder.tv_order_state_content.setTextColor(Color.parseColor("#4EC5BF"));
+                }else if(TextUtils.equals(state, Constans.BUSINESS_ALREADY_FINISH)){
+                    holder.iv_order_state_line.setVisibility(View.GONE);
+                    holder.tv_order_state_content.setText("已完结");
+                    holder.tv_order_state_content.setTextColor(Color.parseColor("#C5C5C5"));
                 }
             }
 
 
         }
-
 
         return convertView;
     }

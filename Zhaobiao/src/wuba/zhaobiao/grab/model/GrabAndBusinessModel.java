@@ -11,8 +11,12 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 
 import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.eventbus.EventAction;
+import com.huangyezhaobiao.eventbus.EventType;
+import com.huangyezhaobiao.eventbus.EventbusAgent;
 import com.huangyezhaobiao.iview.SwitchButton;
 import com.huangyezhaobiao.utils.SPUtils;
+import com.huangyezhaobiao.utils.UnreadUtils;
 import com.huangyezhaobiao.utils.UserUtils;
 
 import java.util.ArrayList;
@@ -111,6 +115,19 @@ public class GrabAndBusinessModel<T> extends BaseModel implements View.OnClickLi
 
     }
 
+    public void selectChange() {
+        try {
+            if (UnreadUtils.isHasNewOrder(context.getActivity())) {
+                UnreadUtils.clearNewOder(context.getActivity());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        EventAction action = new EventAction(EventType.EVENT_TAB_RESET);
+        EventbusAgent.getInstance().post(action);
+    }
+
     public void setSitchButtonInfo() {
         if (!fragmenTag.equals("2"))
             new Handler().postDelayed(new Runnable() {
@@ -155,22 +172,28 @@ public class GrabAndBusinessModel<T> extends BaseModel implements View.OnClickLi
     private void atGrab() {
         switchButton.setVisibility(View.VISIBLE);
         refresh.setVisibility(View.GONE);
+        grabFragment.registPush();
     }
 
     private void atBusiness() {
         switchButton.setVisibility(View.GONE);
         refresh.setVisibility(View.VISIBLE);
+        grabFragment.unregistNotificationListener();
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.business_refresh:
-                businessOpportunityFragment.refreshList();
+                businessRefresh();
                 break;
             default:
                 break;
         }
+    }
+
+    public void businessRefresh() {
+        businessOpportunityFragment.refreshList();
     }
 
     private class SwitchButtonListener implements CompoundButton.OnCheckedChangeListener {

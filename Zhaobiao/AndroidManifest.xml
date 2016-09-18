@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.huangyezhaobiao"
     android:installLocation="auto"
-    android:versionCode="26"
-    android:versionName="3.1.0">
+    android:versionCode="27"
+    android:versionName="3.2.0">
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -340,6 +340,10 @@
 
         <activity
             android:name="wuba.zhaobiao.grab.activity.SettlementSuccessActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="wuba.zhaobiao.grab.activity.SettlementFailActivity"
             android:screenOrientation="portrait" />
 
         <activity

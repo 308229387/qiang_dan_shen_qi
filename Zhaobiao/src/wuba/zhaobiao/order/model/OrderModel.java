@@ -167,7 +167,6 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
         app = BiddingApplication.getBiddingApplication();
         app.registerNetStateListener();
         NetStateManager.getNetStateManagerInstance().mListeners.add(context);
-
         initMessageBar();
     }
 
@@ -216,7 +215,6 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
         //我的订单中心
         BDMob.getBdMobInstance().onMobEvent(context.getActivity(), BDEventConstans.EVENT_ID_MY_BIDDING);
         HYMob.getDataList(context.getActivity(), HYEventConstans.EVENT_ID_MY_BIDDING);
-
         HYMob.getDataList(context.getActivity(), HYEventConstans.INDICATOR_ORDER_PAGE);
     }
 
@@ -364,7 +362,7 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
         return refreshView.getBanPullUpState();
     }
 
-    private void refresh() {
+    public void refresh() {
         canPullUp();
         pageNum = "1";
         pageNumber =1;
@@ -386,7 +384,7 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
                 .params("pageSize", "5")
                 .params("type", orderType)
                 .params("state", orderState)
-//                .cacheMode(CacheMode.FIRST_CACHE_THEN_REQUEST)
+                .cacheMode(CacheMode.FIRST_CACHE_THEN_REQUEST)
                 .execute(new getOrderListRespons(context.getActivity(), true));
     }
 
