@@ -345,6 +345,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         timestamp = "";
         canPullUp();
         buyData.clear();
+        showOrDismissPriceLayout();
         getDataForRefresh();
     }
 
