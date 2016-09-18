@@ -500,8 +500,8 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         @Override
         public void onResponse(boolean isFromCache, BusinessOpportunityRespons s, Request request, @Nullable Response response) {
             data = s.getRespData();
-            stateRight(data);
             timeTempTag = s.getTimestamp();
+            stateRight(data);
             refreshView.refreshComplete();
         }
 
@@ -521,8 +521,8 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         @Override
         public void onResponse(boolean isFromCache, BusinessOpportunityRespons s, Request request, @Nullable Response response) {
             data = s.getRespData();
-            stateRight(data);
             timeTempTag = s.getTimestamp();
+            stateRight(data);
             refreshView.refreshComplete();
         }
 
