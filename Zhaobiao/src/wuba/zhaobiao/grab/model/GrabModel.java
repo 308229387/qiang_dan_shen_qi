@@ -146,7 +146,6 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
 
     public void registListener() {
         app.setCurrentNotificationListener(context);
-//        NetStateManager.getNetStateManagerInstance().setINetStateChangedListener(context);
     }
 
     public void registerEventBus() {
@@ -155,7 +154,6 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
 
     public void setHeaderHeight() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            //透明状态栏
             context.getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             int height = Utils.getStatusBarHeight(context.getActivity());
             int more = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, context.getResources().getDisplayMetrics());
@@ -211,7 +209,6 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
                 .params("token", new Date().getTime() + "")
                 .execute(new GrabRespons(context.getActivity(), true));
     }
-
 
     public Boolean getBanPullUpState() {
         return refreshView.getBanPullUpState();
@@ -300,7 +297,6 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
     }
 
     public void showEmptyView() {
-
         if (root == null)
             creatRoot();
         root.setVisibility(View.VISIBLE);
@@ -406,7 +402,6 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
             tbl.setVisibility(View.VISIBLE);
             PushUtils.pushList.clear();
         }
-
     }
 
     private void dealWhitData() {
@@ -456,7 +451,6 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
     }
 
     public void jugePush(EventAction action) {
-
         if (action.getType() == EventType.EVENT_TAB_RESET_SUCCESS) {
             refresh();
         } else if (action.getType() == EventType.EVENT_TAB_RESET_COME_SUCCESS) {
@@ -464,12 +458,14 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
         }
     }
 
-
     public void unregistPushAndEventBus() {
         EventBus.getDefault().unregister(context);
-        app.removeINotificationListener();
         app.unRegisterNetStateListener();
-//        NetStateManager.getNetStateManagerInstance().removeINetStateChangedListener();
+        unregistNotificationListener();
+    }
+
+    public void unregistNotificationListener(){
+        app.removeINotificationListener();
     }
 
     private void switchNotChicked() {

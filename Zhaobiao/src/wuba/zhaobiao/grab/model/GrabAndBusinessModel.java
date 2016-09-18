@@ -172,11 +172,13 @@ public class GrabAndBusinessModel<T> extends BaseModel implements View.OnClickLi
     private void atGrab() {
         switchButton.setVisibility(View.VISIBLE);
         refresh.setVisibility(View.GONE);
+        grabFragment.registPush();
     }
 
     private void atBusiness() {
         switchButton.setVisibility(View.GONE);
         refresh.setVisibility(View.VISIBLE);
+        grabFragment.unregistNotificationListener();
     }
 
     @Override

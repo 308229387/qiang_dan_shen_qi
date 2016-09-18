@@ -27,9 +27,9 @@ dependencies {
     compile 'com.android.support:multidex:1.0.0'
     compile 'com.android.support:design:22.2.0'
 
-    compile 'com.wuba.wuxian.sdk:login:2.3.5' //线上passport SDK(带线上签名的)
+//    compile 'com.wuba.wuxian.sdk:login:2.3.5' //线上passport SDK(带线上签名的),只能打包登陆，AS直接安装是登陆不了的
 
-//    compile 'com.wuba.wuxian.sdk:login:2.3.5-debug-SNAPSHOT' //调试passport SDK
+    compile 'com.wuba.wuxian.sdk:login:2.3.5-debug-SNAPSHOT' //调试passport SDK
 
 //    compile 'com.wuba.wuxian.sdk:login:0.1.0-http-SNAPSHOT' //线下 http passport SDK
 
