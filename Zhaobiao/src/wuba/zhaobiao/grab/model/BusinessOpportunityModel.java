@@ -341,7 +341,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
             refresh();
     }
 
-    private void refresh() {
+    public void refresh() {
         timestamp = "";
         canPullUp();
         buyData.clear();

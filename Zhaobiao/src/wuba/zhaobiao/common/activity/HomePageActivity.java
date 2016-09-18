@@ -71,7 +71,6 @@ public class HomePageActivity extends BaseActivity<HomePageModel> {
         model.eventBusThing(action);
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -97,7 +96,6 @@ public class HomePageActivity extends BaseActivity<HomePageModel> {
         super.onDestroy();
         unRegistService();
     }
-
 
     private void unRegistService() {
         model.unregisterScreenOffReceiver();
