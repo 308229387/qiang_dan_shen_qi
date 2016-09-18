@@ -223,7 +223,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     }
 
     private void setTextForPrice() {
-        balance.setText(PublickMethod.getPriceFromDouble(total));
+        balance.setText("¥  "+PublickMethod.getPriceFromDouble(total));
         settleButton.setText("结算(" + buyData.size() + ")");
     }
 
