@@ -297,7 +297,7 @@ public class HomePageModel extends BaseModel implements View.OnClickListener {
 
     private void detaRefresh() {
         orderFragment.refresh();
-        grabAndBusinessFragment.businessRefresh();
+        grabAndBusinessFragment.businessDirectRefresh();
     }
 
     public void refreshTab() {
