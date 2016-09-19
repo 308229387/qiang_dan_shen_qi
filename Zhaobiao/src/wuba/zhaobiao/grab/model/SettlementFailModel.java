@@ -36,7 +36,7 @@ public class SettlementFailModel extends BaseModel implements View.OnClickListen
         head.setText("购买失败");
         hint1 = (TextView) context.findViewById(R.id.txt_hint1);
         hint2 = (TextView) context.findViewById(R.id.txt_hint2);
-        if (failType.equals("other")) {
+        if (failType.equals("5")) {
             hint1.setText("系统刚刚开了个小差，一会儿再试试吧~");
             hint2.setVisibility(View.GONE);
         }else if (failType.equals("2")){
