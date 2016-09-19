@@ -1,5 +1,6 @@
 package wuba.zhaobiao.grab.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.huangyezhaobiao.R;
@@ -20,10 +21,20 @@ public class SettlementFailActivity extends BaseActivity<SettlementFailModel> {
     }
 
     private void init() {
-        model.initView();
+        String failType=getFailType();
+        model.initView(failType);
         model.setTopBarHeight();
         model.setTopBarColor();
         model.setListener();
+    }
+
+    private String getFailType() {
+        Intent intent = getIntent();
+        if (intent != null) {
+            return intent.getStringExtra("failType");
+        } else {
+            return "2";
+        }
     }
 
     @Override
