@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -130,7 +131,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         timeList = new ArrayList<String>();
         timeList.add("按时间正序");
         timeList.add("按时间倒序");
-        timestate = 0 + "";
+        timestate = 1 + "";
     }
 
     public void getCityData() {
@@ -223,7 +224,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     }
 
     private void setTextForPrice() {
-        balance.setText("¥  "+PublickMethod.getPriceFromDouble(total));
+        balance.setText("¥  " + PublickMethod.getPriceFromDouble(total));
         settleButton.setText("结算(" + buyData.size() + ")");
     }
 
@@ -235,7 +236,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
 
     private void showTimePop() {
         mSpinerPopWindow = new SpinerPopWindow<String>(context.getActivity(), timeList, timeItemClickListener);
-        mSpinerPopWindow.setWidth(335);
+        mSpinerPopWindow.setWidth(380);
         mSpinerPopWindow.showAsDropDown(businessTime, -70, 42);
     }
 
@@ -405,6 +406,14 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
 
     private void goToFail() {
         Intent intent = new Intent();
+        intent.putExtra("failType", "2");
+        intent.setClass(context.getActivity(), SettlementFailActivity.class);
+        context.startActivity(intent);
+    }
+
+    private void goToFailOther() {
+        Intent intent = new Intent();
+        intent.putExtra("failType", "5");
         intent.setClass(context.getActivity(), SettlementFailActivity.class);
         context.startActivity(intent);
     }
@@ -469,6 +478,10 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             mSpinerPopWindow.dismiss();
             timestate = position + "";
+            if (position == 0)
+                businessTime.setText("时间正序");
+            else
+                businessTime.setText("时间倒序");
             refresh();
         }
     };
@@ -604,6 +617,9 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
                     break;
                 case "4":
                     goToSettlementResult(result);
+                    break;
+                case "5":
+                    goToFailOther();
                     break;
                 default:
                     break;

@@ -21,17 +21,28 @@ public class SettlementFailModel extends BaseModel implements View.OnClickListen
     private View headView;
     private TextView head;
     private LinearLayout backLayout;
+    private TextView hint1;
+    private TextView hint2;
 
     public SettlementFailModel(SettlementFailActivity context) {
         this.context = context;
     }
 
-    public void initView() {
+    public void initView(String failType) {
         backLayout = (LinearLayout) context.findViewById(R.id.back_layout);
         headView = (View) context.findViewById(R.id.layout_head);
         backLayout.setVisibility(View.VISIBLE);
         head = (TextView) context.findViewById(R.id.txt_head);
         head.setText("购买失败");
+        hint1 = (TextView) context.findViewById(R.id.txt_hint1);
+        hint2 = (TextView) context.findViewById(R.id.txt_hint2);
+        if (failType.equals("5")) {
+            hint1.setText("系统刚刚开了个小差，一会儿再试试吧~");
+            hint2.setVisibility(View.GONE);
+        }else if (failType.equals("2")){
+            hint1.setText("您选中的商机太火爆，已经被别人买走");
+            hint2.setVisibility(View.VISIBLE);
+        }
     }
 
     public void setListener() {
