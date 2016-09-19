@@ -322,8 +322,7 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 	}
 
 
-	private void showAndCloseCallProgress(){
-		startTransfering();
+	private void closeCallProgress(){
 		// 等15秒
 		handler.postDelayed(new Runnable() {
 			@Override
@@ -353,13 +352,13 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 
 				@Override
 				public void onDialogOkClick() {
+					HYMob.getDataList(BusinessDetailsActivity.this, HYEventConstans.PAGE_DIALOG_CALL);
 					SPUtils.setAppMobile(BusinessDetailsActivity.this, mobile);
 					if (phoneViewModel != null) {
 						phoneViewModel.call(orderId, mobile);
 					}
 					dialog.dismiss();
-					HYMob.getDataList(BusinessDetailsActivity.this, HYEventConstans.PAGE_DIALOG_CALL);
-					showAndCloseCallProgress();
+					startTransfering();
 				}
 
 				@Override
@@ -401,14 +400,14 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 
 				@Override
 				public void onDialogOkClick() {
+					HYMob.getDataList(BusinessDetailsActivity.this, HYEventConstans.EVENT_CALL_CONFIRM);
 					String phone = InputDialog.getInputNumber();
 					SPUtils.setAppMobile(BusinessDetailsActivity.this, phone);
 					if (phoneViewModel != null) {
 						phoneViewModel.call(orderId, phone);
 					}
 					InputDialog.dismiss();
-					HYMob.getDataList(BusinessDetailsActivity.this, HYEventConstans.EVENT_CALL_CONFIRM);
-					showAndCloseCallProgress();
+					startTransfering();
 				}
 
 				@Override
@@ -541,7 +540,7 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 			if (t instanceof Integer) {
 				int status = (Integer) t;
 				if(status == 0){
-
+					closeCallProgress();
 				}else{
 					stopTransfering();
 					setMineMask();
@@ -608,7 +607,6 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 //				sendIntent.putExtra("sms_body", "");
 					startActivity(sendIntent);
 				}
-
 				HYMob.getDataListByCall(BusinessDetailsActivity.this, HYEventConstans.EVENT_ID_ORDER_DETAIL_PAGE_MESSAGE, String.valueOf(orderId), "1");
 
 				break;

@@ -6,19 +6,18 @@
 
     <TextView
         android:id="@+id/tv_order_detail_title"
-        android:layout_width="80dip"
+        android:layout_width="100dip"
         android:layout_height="wrap_content"
         android:textColor="@color/detail_text"
         android:text=""
         android:textSize="@dimen/textsize_large"/>
     <TextView
         android:id="@+id/tv_order_detail_content"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_toRightOf="@id/tv_order_detail_title"
         android:layout_height="wrap_content"
         android:textColor="@color/order_detail_text"
         android:layout_marginLeft="29dp"
-        android:text=""
         android:textSize="@dimen/textsize_large" />
 
 </RelativeLayout>
