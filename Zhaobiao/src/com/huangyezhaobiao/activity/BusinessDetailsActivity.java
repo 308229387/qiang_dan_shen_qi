@@ -71,57 +71,47 @@ import wuba.zhaobiao.respons.OrderDetailRespons;
  */
 public class BusinessDetailsActivity extends QBBaseActivity implements
 		OnClickListener, NetWorkVMCallBack {
-	public static String orderState ;
-	public static String time;
-	private FetchDetailsVM vm;
+
 	private FetchDetailsPresenter fetchDetailsPresenter;
-//	private LinearLayout ll;
 	private LinearLayout back_layout;
 	private TextView txt_head;
-
 	private HYListView lv_basic_info;
 	private HYListView lv_detail_info;
     private RelativeLayout rl_detail_price;
 	private TextView tv_order_fee,tv_order_fee_content,tv_original_fee_content;
-
 	private LinearLayout ll_contact_record;
     private HYListView lv_contact_record;
-	private OrderDetailAdapter adapter;
-	private String orderId;
-	private String type;
-//	private TelephoneVModel tvm;
-
 	private RelativeLayout order_detail_message ,order_detail_telephone;
-
-	private CallDialog dialog;
-	private InputCallDialog InputDialog;
-	private CallClassifyDialog callClassifyDialog;
-
-	private WaitingTransfer transferDialog;
-	//双呼
-	private CallPhoneViewModel phoneViewModel;
-
-	private Handler handler = new Handler();
-
-	String  mobile; //商家电话
-
-	public  String clientPhone; //客户电话
-
-	 boolean flag =true; //发短信界面不弹窗
-
-	private long call_Show_time,call_dismiss_time ;
-
-	private long input_Show_time,input_dismiss_time ;
-
 	/** 初次进入时候的蒙版背景 */
 	private RelativeLayout rl_call_layout;
 	/** 初次进入时的蒙版图片 */
 	private ImageView  iv_call_alert;
 
+	private OrderDetailAdapter adapter;
+
+	private String orderId;
+	private String type;
+	public static String orderState ;
 	private String callState;
+	public static String time;
+	private  String  mobile; //商家电话
+	public  String clientPhone; //客户电话
+
+	boolean flag =true; //发短信界面不弹窗
+
+	private long call_Show_time,call_dismiss_time ;
+	private long input_Show_time,input_dismiss_time ;
+
+	private CallDialog dialog;
+	private InputCallDialog InputDialog;
+	private CallClassifyDialog callClassifyDialog;
+	private WaitingTransfer transferDialog;
+
+	//双呼
+	private CallPhoneViewModel phoneViewModel;
+	private Handler handler = new Handler();
 
 	public final static List<String> callCheckedId = new ArrayList<>(); //电话状态列表
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

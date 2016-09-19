@@ -70,37 +70,32 @@ import wuba.zhaobiao.utils.LogoutDialogUtils;
 public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.OnTitleBarClickListener {
 
     private OrderFragment context;
-
     private View view;
-
     private View layout_back_head;
     private TextView txt_head;
     private ImageView btn_clean;
     private TitleMessageBarLayout tbl;
     private OrderCatePopupWindow mOrderCateWindow; //筛选框
-
     private PullToRefreshLayout refreshView;
     private ListView listView;
     private View layout_no_data; //您还没有已抢订单呢！
     private TextView tv_no_orders;
+
     private OrderListAdapter orderListAdapter;   //新的adapter
 
     private String pageNum = "1";
     private int pageNumber = 1;
     private String totalPage = "";
-
     private String orderType = "";
+    public static String orderState ="0"; //根据筛选器得到订单状态 待服务1,服务中2,已服务3,未分类4，待跟进5，已完结6
+    private Boolean isFromCache;
+    public static Boolean isBidding = true;
 
     private List<OrderListRespons.bean> showData = new ArrayList<>();
-
-    private BiddingApplication app;
-
-    public static String orderState ="0"; //根据筛选器得到订单状态 待服务1,服务中2,已服务3,未分类4，待跟进5，已完结6
-
-    public final static  List<String> CategoryCheckedId = new ArrayList<>(); //订单状态列表
+    public final static  List<String> CategoryCheckedId = new ArrayList<>(); //订单类别列表
     public final static  List<String> stateCheckedId = new ArrayList<>(); //订单状态列表
 
-    private Boolean isFromCache;
+    private BiddingApplication app;
 
     public OrderModel(OrderFragment context) {
         this.context = context;
@@ -140,6 +135,13 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
         }else{
             orderType = "1";
         }
+    }
+
+    public void clearSelectList(){
+        CategoryCheckedId.clear();
+        CategoryCheckedId.add("1");
+        stateCheckedId.clear();
+        isBidding = true;
     }
 
     public void createAdapter() {
@@ -441,6 +443,11 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
     private void noData(List<OrderListRespons.bean> list) {
         if (list.size() == 0 && showData.size() == 0){
             layout_no_data.setVisibility(View.VISIBLE);
+            if(TextUtils.equals(orderType,"2")){
+                tv_no_orders.setText("暂无已购买的商机,\n去商机页看看吧！");
+            }else{
+                tv_no_orders.setText("暂无已抢到的订单,\n去抢单页等等新订单吧！");
+            }
             layout_no_data.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

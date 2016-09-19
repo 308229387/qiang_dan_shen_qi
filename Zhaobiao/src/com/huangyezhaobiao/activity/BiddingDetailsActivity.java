@@ -57,39 +57,32 @@ import java.util.Date;
  */
 public class BiddingDetailsActivity extends QBBaseActivity implements
 		OnClickListener, NetWorkVMCallBack {
-	public static String orderState ;
-	public static String time;
-	private FetchDetailsVM vm;
-	private FetchDetailsPresenter fetchDetailsPresenter;
 	private LinearLayout ll;
 	private LinearLayout back_layout;
 	private TextView txt_head;
 	private String orderId;
 	private String type;
-//	private TelephoneVModel tvm;
-
 	private RelativeLayout order_detail_message ,order_detail_telephone;
+
+	public static String orderState ;
+	public static String time;
+	private String  mobile; //商家电话
+	public static String clientPhone; //客户电话
+	boolean flag =true; //发短信界面不弹窗
 
 	private CallDialog dialog;
 	private InputCallDialog InputDialog;
 	private CallAlertDialog alertDialog;
 	private CallClassifyDialog callClassifyDialog;
-
 	private WaitingTransfer transferDialog;
-	//双呼
-	private CallPhoneViewModel phoneViewModel;
+
+	private CallPhoneViewModel phoneViewModel;//双呼
+	private FetchDetailsVM vm;
+	private FetchDetailsPresenter fetchDetailsPresenter;
 
 	private Handler handler = new Handler();
 
-	String  mobile; //商家电话
-
-	public static String clientPhone; //客户电话
-
-	 boolean flag =true; //发短信界面不弹窗
-
-
 	private long call_Show_time,call_dismiss_time ;
-
 	private long input_Show_time,input_dismiss_time ;
 
 
@@ -117,7 +110,6 @@ public class BiddingDetailsActivity extends QBBaseActivity implements
 		super.onResume();
 		EventbusAgent.getInstance().register(this);
 		orderId = getIntent().getStringExtra(Constans.ORDER_ID);
-
 		try {
 			if(TextUtils.isEmpty(orderId)){//orderId如果为空
                 vm = new FetchDetailsVM(this, this, 0l);
@@ -126,7 +118,6 @@ public class BiddingDetailsActivity extends QBBaseActivity implements
                 vm = new FetchDetailsVM(this, this, Long.parseLong(SPUtils.getOrderId(this)));
             }
 			vm.fetchDetailDatas();
-
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
@@ -146,7 +137,6 @@ public class BiddingDetailsActivity extends QBBaseActivity implements
 		back_layout.setVisibility(View.VISIBLE);
 		txt_head = getView(R.id.txt_head);
 		txt_head.setText(R.string.bidding_details);
-
 		ll = (LinearLayout) findViewById(R.id.ll);
 		tbl = (TitleMessageBarLayout) findViewById(R.id.tbl);
 		order_detail_message = (RelativeLayout) findViewById(R.id.order_detail_message);
@@ -180,14 +170,6 @@ public class BiddingDetailsActivity extends QBBaseActivity implements
 					}
 					dialog.dismiss();
 					startTransfering();
-//					// 等15秒
-//					handler.postDelayed(new Runnable() {
-//						@Override
-//						public void run() {
-//							stopTransfering();
-//						}
-//					}, 15000);
-
 				}
 
 				@Override
@@ -265,9 +247,7 @@ public class BiddingDetailsActivity extends QBBaseActivity implements
 		Date currentTimeLine = null;
 		//从sp取时间戳
 		Date latTimeLine = null;
-
 		SimpleDateFormat sfd = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-
 		try {
 			currentTimeLine = new Date(System.currentTimeMillis());
 			if(!TextUtils.isEmpty(time)){
@@ -308,14 +288,6 @@ public class BiddingDetailsActivity extends QBBaseActivity implements
 					phoneViewModel.call(orderId,mobile);
 					alertDialog.dismiss();
 					startTransfering();
-
-//					// 等15秒
-//					handler.postDelayed(new Runnable() {
-//						@Override
-//						public void run() {
-//							stopTransfering();
-//						}
-//					}, 15000);
 				}
 
 				@Override

@@ -34,9 +34,6 @@ public class OrderCatePopupWindow extends PopupWindow implements OnClickListener
 	
 	private View conentView;  
 	private OnOrderCatePopupWindowItemClick itemOrderCateClick;
-//	private TextView mTVWateService;
-//	private TextView mTVServicing;
-//	private TextView mTVServiced;
 	private TextView mTVReset;
     private TextView mTVConfirm;
     private LinearLayout ll_order_category,ll_order_state;
@@ -47,33 +44,34 @@ public class OrderCatePopupWindow extends PopupWindow implements OnClickListener
     private List<OrderStateEntity> categoryList = new ArrayList<>();
     private List<OrderStateEntity> stateList = new ArrayList<>();
 
-    public static Boolean isBidding = true;
-
     private String display;
 
     public OrderCatePopupWindow(final Activity context,int resLayout,OnOrderCatePopupWindowItemClick itemClick,String type) {
         this.itemOrderCateClick = itemClick;
 
         initCategoryData();
-        initOrderStateData();
+
+        if(OrderModel.isBidding){
+            initOrderStateData();
+        }else {
+            initBusinessStateData();
+        }
 
     	LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
-        conentView = inflater.inflate(resLayout, null);  
-
+        conentView = inflater.inflate(resLayout, null);
         // 设置SelectPicPopupWindow的View
         this.setContentView(conentView);  
         this.setWidth(android.view.ViewGroup.LayoutParams.MATCH_PARENT);
         this.setHeight(android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
+
          /*设置点击menu以外其他地方以及返回键退出*/
         this.setFocusable(true);
          /*设置触摸外面时消失*/
         this.setOutsideTouchable(true);
-
         // 设置背景颜色变暗
         WindowManager.LayoutParams lp = context.getWindow().getAttributes();
         lp.alpha = 0.7f;
         context.getWindow().setAttributes(lp);
-
         this.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
@@ -90,20 +88,6 @@ public class OrderCatePopupWindow extends PopupWindow implements OnClickListener
         // 设置弹出窗体动画效果
         this.setAnimationStyle(android.R.style.Animation_Dialog);
 
-//        //设置监听
-//        this.setTouchInterceptor(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                if(event.getAction() ==MotionEvent.ACTION_OUTSIDE){
-//                    //如果焦点不在popupWindow上，且点击了外面，不再往下dispatch事件：
-//                    //不做任何响应,不 dismiss popupWindow
-//                    return true;
-//                }
-//                //否则default，往下dispatch事件:关掉popupWindow，
-//                return false;
-//            }
-//        });
-
         // 刷新状态
         this.update();
 
@@ -112,28 +96,26 @@ public class OrderCatePopupWindow extends PopupWindow implements OnClickListener
         mTVConfirm = (TextView) conentView.findViewById(R.id.tv_orderState_confirm);
         mTVConfirm.setOnClickListener(this);
 
-        mTVReset.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LogUtils.LogV("tag", "重置被点击");
-                OrderModel.CategoryCheckedId.clear();
-                OrderModel.CategoryCheckedId.add("1");
-                orderCategoryAdapter.notifyDataSetChanged();
-
-                OrderModel.orderState = "0";
-                OrderModel.stateCheckedId.clear();
-                orderStateAdapter.notifyDataSetChanged();
-
-                HYMob.getDataList(context, HYEventConstans.EVENT_ID_FILTER_RESET);
-            }
-        });
+//        mTVReset.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                LogUtils.LogV("tag", "重置被点击");
+//                OrderModel.CategoryCheckedId.clear();
+//                OrderModel.CategoryCheckedId.add("1");
+//                orderCategoryAdapter.notifyDataSetChanged();
+//
+//                OrderModel.orderState = "0";
+//                OrderModel.stateCheckedId.clear();
+//                orderStateAdapter.notifyDataSetChanged();
+//
+//                HYMob.getDataList(context, HYEventConstans.EVENT_ID_FILTER_RESET);
+//            }
+//        });
 
         ll_order_category  = (LinearLayout) conentView.findViewById(R.id.ll_order_category);
         ll_order_state = (LinearLayout) conentView.findViewById(R.id.ll_order_state);
 
         display = UserUtils.getHasaction(context);
-        OrderModel.CategoryCheckedId.clear();
-        OrderModel.stateCheckedId.clear();
 
         switch (display) {
             case "1":
@@ -148,7 +130,6 @@ public class OrderCatePopupWindow extends PopupWindow implements OnClickListener
                 break;
             case "3":
                 ll_order_category.setVisibility(View.VISIBLE);
-
                 gridView_order_category = (GridView) conentView.findViewById(R.id.gridView_order_category);
                 orderCategoryAdapter = new OrderCategoryAdapter(context, categoryList);
                 gridView_order_category.setAdapter(orderCategoryAdapter);
@@ -158,21 +139,21 @@ public class OrderCatePopupWindow extends PopupWindow implements OnClickListener
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         OrderStateEntity  entity = (OrderStateEntity)orderCategoryAdapter.getItem(position);
                         String orderId = entity.getOrderStateId();
-                        if (OrderModel.CategoryCheckedId.contains(orderId)) {//之前选中,变成不选中
+                        if (OrderModel.CategoryCheckedId.contains(orderId)) {
 //                    OrderModel.CategoryCheckedId.remove(orderId);
                         } else {//之前没选中，变成选中
 
                             if(TextUtils.equals(orderId,"1")){
-                                isBidding = true;
+                                OrderModel.isBidding = true;
                             }else if(TextUtils.equals(orderId,"2")){
-                                isBidding = false;
+                                OrderModel.isBidding = false;
                             }
                             OrderModel.CategoryCheckedId.clear();
                             OrderModel.CategoryCheckedId.add(orderId);
                         }
                         orderCategoryAdapter.notifyDataSetChanged();
 
-                        if(isBidding){
+                        if( OrderModel.isBidding){
                             initOrderStateData();
                             orderStateAdapter = new OrderStateAdapter(context, stateList);
                         }else{
@@ -187,7 +168,8 @@ public class OrderCatePopupWindow extends PopupWindow implements OnClickListener
 
 
                 ll_order_state.setVisibility(View.VISIBLE);
-                OrderModel.CategoryCheckedId.add("1");
+
+
                 break;
             default:
                 break;
@@ -226,10 +208,7 @@ public class OrderCatePopupWindow extends PopupWindow implements OnClickListener
             }
         });
 
-
-
     }
-
 
     private void initCategoryData(){
         OrderStateEntity entity1 = new OrderStateEntity();
@@ -276,8 +255,6 @@ public class OrderCatePopupWindow extends PopupWindow implements OnClickListener
     }
 
 
-  
-    
     public interface OnOrderCatePopupWindowItemClick{
     	void onOrderWindowItemClick(View v);
     }
