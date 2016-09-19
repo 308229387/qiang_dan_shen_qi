@@ -174,6 +174,7 @@ public class OrderListAdapter extends BaseAdapter{
                     holder.tv_order_state_content.setText("待跟进");
                     holder.tv_order_state_content.setTextColor(Color.parseColor("#4EC5BF"));
                 }else if(TextUtils.equals(state, Constans.BUSINESS_ALREADY_FINISH)){
+                    holder.ll_order_state.setBackgroundColor(Color.parseColor("#4EC5BF"));
                     holder.iv_order_state_line.setVisibility(View.GONE);
                     holder.tv_order_state_content.setText("已完结");
                     holder.tv_order_state_content.setTextColor(Color.parseColor("#C5C5C5"));

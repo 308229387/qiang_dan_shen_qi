@@ -25,8 +25,9 @@ public class OrderFragment extends BaseFragment<OrderModel> implements INotifica
     public void OnFragmentSelectedChanged(boolean isSelected) {
         if (isSelected && model != null){
             model.selectChange();
+            model.getData();
+            model.clearSelectList();
         }
-
     }
 
     @Nullable
@@ -72,6 +73,7 @@ public class OrderFragment extends BaseFragment<OrderModel> implements INotifica
         model.OrderTabClickedStatistics();
         model.getData();
         model.resetTabNumber();
+        model.clearSelectList();
     }
 
     @Override
