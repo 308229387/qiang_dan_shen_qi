@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -230,13 +229,13 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
 
     private void showCityPop() {
         mSpinerPopWindow = new SpinerPopWindow<String>(context.getActivity(), cityNameList, cityItemClickListener);
-        mSpinerPopWindow.setWidth(300);
+        mSpinerPopWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         mSpinerPopWindow.showAsDropDown(businessCity, -70, 42);
     }
 
     private void showTimePop() {
         mSpinerPopWindow = new SpinerPopWindow<String>(context.getActivity(), timeList, timeItemClickListener);
-        mSpinerPopWindow.setWidth(380);
+        mSpinerPopWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         mSpinerPopWindow.showAsDropDown(businessTime, -70, 42);
     }
 
@@ -594,7 +593,6 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
                     settlement();
             }
         }
-
     }
 
 
