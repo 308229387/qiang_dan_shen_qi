@@ -196,6 +196,10 @@ public class GrabAndBusinessModel<T> extends BaseModel implements View.OnClickLi
         businessOpportunityFragment.refreshList();
     }
 
+    public void businessDirectRefresh() {
+        businessOpportunityFragment.refresh();
+    }
+
     private class SwitchButtonListener implements CompoundButton.OnCheckedChangeListener {
 
         @Override

@@ -46,6 +46,10 @@ public class GrabAndBusinessFragment extends BaseFragment<GrabAndBusinessModel> 
         model.businessRefresh();
     }
 
+    public void businessDirectRefresh(){
+        model.businessDirectRefresh();
+    }
+
     @Override
     public void OnFragmentSelectedChanged(boolean isSelected) {
         if (isSelected && model != null) {

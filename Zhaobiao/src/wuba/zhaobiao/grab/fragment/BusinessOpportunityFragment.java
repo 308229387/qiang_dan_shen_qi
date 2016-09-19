@@ -53,6 +53,10 @@ public class BusinessOpportunityFragment extends BaseFragment<BusinessOpportunit
     }
 
     public void refreshList() {
+        model.clickRefresh();
+    }
+
+    public void refresh() {
         model.refresh();
     }
 }
