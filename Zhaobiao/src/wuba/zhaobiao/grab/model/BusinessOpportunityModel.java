@@ -2,14 +2,17 @@ package wuba.zhaobiao.grab.model;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -230,13 +233,30 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     private void showCityPop() {
         mSpinerPopWindow = new SpinerPopWindow<String>(context.getActivity(), cityNameList, cityItemClickListener);
         mSpinerPopWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+        mSpinerPopWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         mSpinerPopWindow.showAsDropDown(businessCity, -70, 42);
+        setMaskToDialog();
     }
 
     private void showTimePop() {
         mSpinerPopWindow = new SpinerPopWindow<String>(context.getActivity(), timeList, timeItemClickListener);
         mSpinerPopWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+        mSpinerPopWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         mSpinerPopWindow.showAsDropDown(businessTime, -70, 42);
+        setMaskToDialog();
+    }
+
+    private void setMaskToDialog() {
+        mSpinerPopWindow.setFocusable(true);
+        ColorDrawable dw = new ColorDrawable(0x00000000);
+        backgroundAlpha(context.getActivity(), 0.5f);
+        mSpinerPopWindow.setBackgroundDrawable(dw);
+        mSpinerPopWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                backgroundAlpha(context.getActivity(), 1f);
+            }
+        });
     }
 
     private void ifShowCity(BusinessCityRespons s) {
@@ -244,6 +264,13 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
             cityNameList.add(s.getData().get(i).getCityName());
             cityIdList.add(s.getData().get(i).getCityId());
         }
+    }
+
+    public void backgroundAlpha(Activity context, float bgAlpha) {
+        WindowManager.LayoutParams lp = context.getWindow().getAttributes();
+        lp.alpha = bgAlpha;
+        context.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        context.getWindow().setAttributes(lp);
     }
 
     private void isShowArea(BusinessCityRespons s) {
@@ -403,16 +430,9 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         return temp;
     }
 
-    private void goToFail() {
+    private void goToFail(String failType) {
         Intent intent = new Intent();
-        intent.putExtra("failType", "2");
-        intent.setClass(context.getActivity(), SettlementFailActivity.class);
-        context.startActivity(intent);
-    }
-
-    private void goToFailOther() {
-        Intent intent = new Intent();
-        intent.putExtra("failType", "5");
+        intent.putExtra("failType", failType);
         intent.setClass(context.getActivity(), SettlementFailActivity.class);
         context.startActivity(intent);
     }
@@ -608,7 +628,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
                     goToSettlementResult(result);
                     break;
                 case "2":
-                    goToFail();
+                    goToFail("2");
                     break;
                 case "3":
                     goToSettlementResult(result);
@@ -617,7 +637,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
                     goToSettlementResult(result);
                     break;
                 case "5":
-                    goToFailOther();
+                    goToFail("5");
                     break;
                 default:
                     break;
