@@ -403,16 +403,9 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         return temp;
     }
 
-    private void goToFail() {
+    private void goToFail(String failType) {
         Intent intent = new Intent();
-        intent.putExtra("failType", "2");
-        intent.setClass(context.getActivity(), SettlementFailActivity.class);
-        context.startActivity(intent);
-    }
-
-    private void goToFailOther() {
-        Intent intent = new Intent();
-        intent.putExtra("failType", "5");
+        intent.putExtra("failType", failType);
         intent.setClass(context.getActivity(), SettlementFailActivity.class);
         context.startActivity(intent);
     }
@@ -608,7 +601,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
                     goToSettlementResult(result);
                     break;
                 case "2":
-                    goToFail();
+                    goToFail("2");
                     break;
                 case "3":
                     goToSettlementResult(result);
@@ -617,7 +610,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
                     goToSettlementResult(result);
                     break;
                 case "5":
-                    goToFailOther();
+                    goToFail("5");
                     break;
                 default:
                     break;
