@@ -11,10 +11,13 @@ import java.text.DecimalFormat;
 public class PublickMethod {
 
     public static String getPriceFromString(String stringPrice) {
-        double temp = Double.parseDouble(stringPrice);
-        DecimalFormat df = new DecimalFormat("0.00");
-        String price = df.format(temp);
-        return price;
+        if (stringPrice != null&&!stringPrice.isEmpty()) {
+            double temp = Double.parseDouble(stringPrice);
+            DecimalFormat df = new DecimalFormat("0.00");
+            String price = df.format(temp);
+            return price;
+        } else
+            return "";
     }
 
     public static String getPriceFromDouble(Double doublePrice) {
@@ -25,6 +28,7 @@ public class PublickMethod {
 
     /**
      * json字符串转成对象
+     *
      * @param str
      * @param type
      * @return

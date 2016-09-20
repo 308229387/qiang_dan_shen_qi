@@ -2,17 +2,14 @@ package wuba.zhaobiao.grab.model;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -87,6 +84,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     private int pageSize = 10;
     private String timestamp;
     private String timeTempTag = "";
+    private View line;
 
     public BusinessOpportunityModel(BusinessOpportunityFragment context) {
         this.context = context;
@@ -104,6 +102,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         listView = (ListView) view.findViewById(R.id.grab_list);
         businessCity = (TextView) view.findViewById(R.id.business_city);
         businessTime = (TextView) view.findViewById(R.id.business_time);
+        line = (View)view.findViewById(R.id.line);
         emptyView = (RelativeLayout) view.findViewById(R.id.empty_view);
         settleButton = (TextView) view.findViewById(R.id.settlement_button);
         clearButton = (TextView) view.findViewById(R.id.business_clear);
@@ -231,32 +230,20 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     }
 
     private void showCityPop() {
-        mSpinerPopWindow = new SpinerPopWindow<String>(context.getActivity(), cityNameList, cityItemClickListener);
+        mSpinerPopWindow = new SpinerPopWindow<String>(context.getActivity(), cityNameList, cityItemClickListener, dismissListener);
+        mSpinerPopWindow.itemHigh();
         mSpinerPopWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         mSpinerPopWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-        mSpinerPopWindow.showAsDropDown(businessCity, -70, 42);
-        setMaskToDialog();
+        mSpinerPopWindow.showAsDropDown(line, -70, 0);
+        mSpinerPopWindow.setHighForListView();
     }
 
     private void showTimePop() {
-        mSpinerPopWindow = new SpinerPopWindow<String>(context.getActivity(), timeList, timeItemClickListener);
+        mSpinerPopWindow = new SpinerPopWindow<String>(context.getActivity(), timeList, timeItemClickListener, dismissListener);
         mSpinerPopWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         mSpinerPopWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-        mSpinerPopWindow.showAsDropDown(businessTime, -70, 42);
-        setMaskToDialog();
-    }
-
-    private void setMaskToDialog() {
-        mSpinerPopWindow.setFocusable(true);
-        ColorDrawable dw = new ColorDrawable(0x00000000);
-        backgroundAlpha(context.getActivity(), 0.5f);
-        mSpinerPopWindow.setBackgroundDrawable(dw);
-        mSpinerPopWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public void onDismiss() {
-                backgroundAlpha(context.getActivity(), 1f);
-            }
-        });
+        mSpinerPopWindow.showAsDropDown(line, -70, 42);
+        mSpinerPopWindow.setHighForTime();
     }
 
     private void ifShowCity(BusinessCityRespons s) {
@@ -264,13 +251,6 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
             cityNameList.add(s.getData().get(i).getCityName());
             cityIdList.add(s.getData().get(i).getCityId());
         }
-    }
-
-    public void backgroundAlpha(Activity context, float bgAlpha) {
-        WindowManager.LayoutParams lp = context.getWindow().getAttributes();
-        lp.alpha = bgAlpha;
-        context.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        context.getWindow().setAttributes(lp);
     }
 
     private void isShowArea(BusinessCityRespons s) {
@@ -430,9 +410,16 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         return temp;
     }
 
-    private void goToFail(String failType) {
+    private void goToFail() {
         Intent intent = new Intent();
-        intent.putExtra("failType", failType);
+        intent.putExtra("failType", "2");
+        intent.setClass(context.getActivity(), SettlementFailActivity.class);
+        context.startActivity(intent);
+    }
+
+    private void goToFailOther() {
+        Intent intent = new Intent();
+        intent.putExtra("failType", "5");
         intent.setClass(context.getActivity(), SettlementFailActivity.class);
         context.startActivity(intent);
     }
@@ -479,14 +466,24 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         }
     }
 
+    private View.OnClickListener dismissListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (mSpinerPopWindow != null)
+                mSpinerPopWindow.dismiss();
+        }
+    };
+
     private AdapterView.OnItemClickListener cityItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             mSpinerPopWindow.dismiss();
-            if (areaIdList.size() > 0)
-                areaId = (areaIdList.get(position));
-            else
+            if (areaIdList.size() > 0 && position != 0)
+                areaId = (areaIdList.get(position - 1));
+            else {
                 cityId = (cityIdList.get(position));
+                areaId = "";
+            }
             businessCity.setText(cityNameList.get(position));
             refresh();
         }
@@ -517,7 +514,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         }
     }
 
-    private class ClickItem implements android.widget.AdapterView.OnItemClickListener {
+    private class ClickItem implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             if (!isread) {
@@ -538,11 +535,6 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
             refreshView.refreshComplete();
         }
 
-        @Override
-        public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
-            ToastUtils.showToast(e.getMessage());
-        }
-
     }
 
     private class BusinessRefreshRequest extends DialogCallback<BusinessOpportunityRespons> {
@@ -561,7 +553,6 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
 
         @Override
         public void onError(boolean isFromCache, Call call, @Nullable Response response, @Nullable Exception e) {
-            ToastUtils.showToast(e.getMessage());
             showEmptyView();
         }
 
@@ -628,7 +619,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
                     goToSettlementResult(result);
                     break;
                 case "2":
-                    goToFail("2");
+                    goToFail();
                     break;
                 case "3":
                     goToSettlementResult(result);
@@ -637,7 +628,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
                     goToSettlementResult(result);
                     break;
                 case "5":
-                    goToFail("5");
+                    goToFailOther();
                     break;
                 default:
                     break;
