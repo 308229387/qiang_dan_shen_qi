@@ -379,6 +379,17 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
         refreshView.setBanPullUp(false);
     }
 
+    public void clickTabForData() {
+//        OkHttpUtils.get("http://zhaobiao.58.com/appbatch/order/orderlist")
+        OkHttpUtils.get(Urls.GET_NEW_ORDER_LIST)
+                .params("pageNum", pageNum)
+                .params("pageSize", "5")
+                .params("type", orderType)
+                .params("state", orderState)
+                .cacheMode(CacheMode.FIRST_CACHE_THEN_REQUEST)
+                .execute(new getOrderListRespons(context.getActivity(), false));
+    }
+
     public void getData() {
 //        OkHttpUtils.get("http://zhaobiao.58.com/appbatch/order/orderlist")
         OkHttpUtils.get(Urls.GET_NEW_ORDER_LIST)
