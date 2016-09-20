@@ -110,8 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="5dip"
                 android:layout_marginRight="10dip"
-                android:layout_marginTop="10dip"
-                android:background="@color/divider">
+                android:layout_marginTop="10dip">
 
                 <ImageView
                     android:id="@+id/iv_order_state_line"
