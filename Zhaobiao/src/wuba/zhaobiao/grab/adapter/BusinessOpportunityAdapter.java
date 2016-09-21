@@ -72,7 +72,8 @@ public class BusinessOpportunityAdapter extends BaseAdapter {
 
             String price = PublickMethod.getPriceFromString(((BusinessData) data.get(position)).getKey7());
             holder.priceValue.setText(Html.fromHtml("<font color='red'>" + price + "</font>" + "元"));
-            holder.oldValue.setText(((BusinessData) data.get(position)).getKey8());
+            String oldPrice = PublickMethod.getPriceFromString(((BusinessData) data.get(position)).getKey8());
+            holder.oldValue.setText(oldPrice);
             holder.oldValue.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
 
             if (((BusinessData) data.get(position)).getIsChoice())
