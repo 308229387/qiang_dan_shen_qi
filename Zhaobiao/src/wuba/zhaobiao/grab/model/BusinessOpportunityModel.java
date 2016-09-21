@@ -102,7 +102,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         listView = (ListView) view.findViewById(R.id.grab_list);
         businessCity = (TextView) view.findViewById(R.id.business_city);
         businessTime = (TextView) view.findViewById(R.id.business_time);
-        line = (View)view.findViewById(R.id.line);
+        line = (View) view.findViewById(R.id.line);
         emptyView = (RelativeLayout) view.findViewById(R.id.empty_view);
         settleButton = (TextView) view.findViewById(R.id.settlement_button);
         clearButton = (TextView) view.findViewById(R.id.business_clear);
@@ -242,7 +242,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         mSpinerPopWindow = new SpinerPopWindow<String>(context.getActivity(), timeList, timeItemClickListener, dismissListener);
         mSpinerPopWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         mSpinerPopWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-        mSpinerPopWindow.showAsDropDown(line, -70, 42);
+        mSpinerPopWindow.showAsDropDown(line, -70, 0);
         mSpinerPopWindow.setHighForTime();
     }
 
@@ -448,7 +448,8 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.business_city:
-                showCityPop();
+                if (cityNameList.size() > 0)
+                    showCityPop();
                 break;
             case R.id.business_time:
                 showTimePop();
