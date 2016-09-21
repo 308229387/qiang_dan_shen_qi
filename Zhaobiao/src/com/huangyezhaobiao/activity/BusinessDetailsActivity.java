@@ -75,7 +75,9 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 	private FetchDetailsPresenter fetchDetailsPresenter;
 	private LinearLayout back_layout;
 	private TextView txt_head;
+	private TextView tv_orderDetail_title;
 	private HYListView lv_basic_info;
+	private View individer1,individer2;
 	private HYListView lv_detail_info;
     private RelativeLayout rl_detail_price;
 	private TextView tv_order_fee,tv_order_fee_content,tv_original_fee_content;
@@ -97,7 +99,7 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 	private  String  mobile; //商家电话
 	public  String clientPhone; //客户电话
 
-	boolean flag =true; //发短信界面不弹窗
+	private boolean flag =true; //发短信界面不弹窗
 
 	private long call_Show_time,call_dismiss_time ;
 	private long input_Show_time,input_dismiss_time ;
@@ -184,18 +186,21 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
   }
 
 	private void setBasicListData(List<OrderDetailRespons.bean>  basiclist){
+		tv_orderDetail_title.setVisibility(View.VISIBLE);
 		adapter = new OrderDetailAdapter(BusinessDetailsActivity.this,basiclist);
 		lv_basic_info.setAdapter(adapter);
 		lv_basic_info.setFocusable(false);
 	}
 
 	private void setOrderListData(List<OrderDetailRespons.bean>  orderlist){
+		individer1.setVisibility(View.VISIBLE);
 		adapter = new OrderDetailAdapter(BusinessDetailsActivity.this,orderlist);
 		lv_detail_info.setAdapter(adapter);
 		lv_detail_info.setFocusable(false);
 	}
 
 	private void setPriceData(OrderDetailRespons.PriceBean price){
+		individer2.setVisibility(View.VISIBLE);
 		rl_detail_price.setVisibility(View.VISIBLE);
 		String price_title = price.getTitle();
 		if(!TextUtils.isEmpty(price_title)){
@@ -253,11 +258,14 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 	}
 
 	private void initBusinessInfoView(){
+		tv_orderDetail_title  = (TextView) findViewById(R.id.tv_orderDetail_title);
 		lv_basic_info = (HYListView) findViewById(R.id.lv_basic_info);
+		individer1 = findViewById(R.id.individer1);
 		lv_detail_info = (HYListView) findViewById(R.id.lv_detail_info);
 	}
 
 	private void initPriceInfoView(){
+		individer2 = findViewById(R.id.individer2);
 		rl_detail_price = (RelativeLayout) findViewById(R.id.rl_detail_price);
 		tv_order_fee = (TextView) findViewById(R.id.tv_order_fee);
 		tv_order_fee_content = (TextView) findViewById(R.id.tv_order_fee_content);
@@ -542,17 +550,24 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 
 		@Override
 		public void onLoadingError(String msg) {
-
+			stopTransfering();
+			Toast.makeText(BusinessDetailsActivity.this, "电话转接失败", Toast.LENGTH_SHORT).show();
 		}
 
 		@Override
 		public void onLoadingCancel() {
-
+			stopTransfering();
 		}
 
 		@Override
 		public void onNoInterNetError() {
-
+			handler.postDelayed(new Runnable() {// 等5秒
+				@Override
+				public void run() {
+					stopTransfering();
+				}
+			}, 5000);
+			Toast.makeText(BusinessDetailsActivity.this, "请检查您的网络，再试一下哦~", Toast.LENGTH_SHORT).show();
 		}
 
 		@Override

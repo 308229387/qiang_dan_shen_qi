@@ -68,7 +68,7 @@ public class BiddingDetailsActivity extends QBBaseActivity implements
 	public static String time;
 	private String  mobile; //商家电话
 	public static String clientPhone; //客户电话
-	boolean flag =true; //发短信界面不弹窗
+	private boolean flag =true; //发短信界面不弹窗
 
 	private CallDialog dialog;
 	private InputCallDialog InputDialog;
@@ -353,19 +353,25 @@ public class BiddingDetailsActivity extends QBBaseActivity implements
 
 		@Override
 		public void onLoadingError(String msg) {
-
+			stopTransfering();
+			Toast.makeText(BiddingDetailsActivity.this, "电话转接失败", Toast.LENGTH_SHORT).show();
 		}
 
 		@Override
 		public void onLoadingCancel() {
-
+			stopTransfering();
 		}
 
 		@Override
 		public void onNoInterNetError() {
-
+			handler.postDelayed(new Runnable() {// 等5秒
+				@Override
+				public void run() {
+					stopTransfering();
+				}
+			}, 5000);
+			Toast.makeText(BiddingDetailsActivity.this, "请检查您的网络，再试一下哦~", Toast.LENGTH_SHORT).show();
 		}
-
 		@Override
 		public void onLoginInvalidate() {
 
