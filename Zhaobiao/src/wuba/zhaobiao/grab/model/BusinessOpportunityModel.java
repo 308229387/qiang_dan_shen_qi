@@ -266,10 +266,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     private void setCityOrAreaID() {
         if (cityIdList.size() > 0)
             cityId = cityIdList.get(0);
-        if (areaIdList.size() > 0)
-            areaId = areaIdList.get(0);
-        else
-            areaId = "";
+        areaId = "";
     }
 
     private void stateRight(ArrayList<BusinessData> list) {
