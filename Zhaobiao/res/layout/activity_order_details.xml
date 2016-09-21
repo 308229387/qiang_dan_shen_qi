@@ -31,6 +31,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_orderDetail_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -38,7 +39,8 @@
                 android:layout_marginLeft="10dp"
                 android:text="订单详情"
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:visibility="gone"/>
 
             <com.huangyezhaobiao.view.HYListView
                 android:id="@+id/lv_basic_info"
@@ -56,10 +58,12 @@
                 android:scrollingCache="false"/>
 
             <View
+                android:id="@+id/individer1"
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
-                android:background="@color/divider" />
+                android:background="@color/divider"
+                android:visibility="gone"/>
 
             <com.huangyezhaobiao.view.HYListView
                 android:id="@+id/lv_detail_info"
@@ -77,10 +81,12 @@
                 android:scrollingCache="false"/>
 
             <View
+                android:id="@+id/individer2"
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
-                android:background="@color/divider" />
+                android:background="@color/divider"
+                android:visibility="gone"/>
 
             <RelativeLayout
                 android:id="@+id/rl_detail_price"
@@ -88,6 +94,8 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
                 android:visibility="gone">
+
+
 
                 <TextView
                     android:id="@+id/tv_order_fee"
