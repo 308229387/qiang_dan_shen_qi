@@ -53,6 +53,7 @@ public class HomePageActivity extends BaseActivity<HomePageModel> {
     private void registService() {
         model.startBindService();
         model.registerScreenOffReceiver();
+        model.backgroundToForeGround();
     }
 
     private void checkWltOnLineStateAndIsNeedUpdateAfterFirstSetting() {

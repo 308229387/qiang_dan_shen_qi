@@ -31,6 +31,7 @@ import com.huangyezhaobiao.tab.MainTabIndicator;
 import com.huangyezhaobiao.tab.MainTabIndicatorBean;
 import com.huangyezhaobiao.tab.MainTabViewPager;
 import com.huangyezhaobiao.url.URLConstans;
+import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.PhoneUtils;
 import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.TimeUtils;
@@ -59,6 +60,7 @@ import wuba.zhaobiao.message.fragment.MessageFragment;
 import wuba.zhaobiao.mine.fragment.MineFragment;
 import wuba.zhaobiao.order.fragment.OrderFragment;
 import wuba.zhaobiao.respons.GetWltStateRespons;
+import wuba.zhaobiao.respons.WakeUpRespons;
 import wuba.zhaobiao.utils.AutoSettingDialogUtils;
 import wuba.zhaobiao.utils.LogoutDialogUtils;
 import wuba.zhaobiao.utils.UpdateDialogUtils;
@@ -188,6 +190,11 @@ public class HomePageModel extends BaseModel implements View.OnClickListener {
     public void registerScreenOffReceiver() {
         if (receiver == null)
             doRegist();
+    }
+
+    public void backgroundToForeGround(){
+        OkHttpUtils.post(Urls.BACKGROUNDD_TO_FOREGROUND)
+                .execute(new WakeUpApp(context,false));
     }
 
     public void getWltOnlineStateAndPhoneNumAndIsNeedUpdateAfterFirstSetting() {
@@ -587,6 +594,22 @@ public class HomePageModel extends BaseModel implements View.OnClickListener {
 
         }
 
+    }
+
+    private class WakeUpApp extends DialogCallback<WakeUpRespons> {
+
+
+        public WakeUpApp(Activity context, Boolean needProgress) {
+            super(context, needProgress);
+        }
+
+        @Override
+        public void onResponse(boolean isFromCache, WakeUpRespons wakeUpRespons, Request request, @Nullable Response response) {
+           String status =  wakeUpRespons.getData().getStatus();
+            if(!TextUtils.isEmpty(status) && TextUtils.equals("0",status)){
+                LogUtils.LogD("zhaobiao","唤醒成功");
+            }
+        }
     }
 
 }
