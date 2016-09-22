@@ -38,7 +38,7 @@ public class RequestDaoDBManager {
         }
 
         cursor.close();
-
+        closeDB();
         return strVal;
     }
 
@@ -49,6 +49,7 @@ public class RequestDaoDBManager {
             values.put(port, data);
             db.insert(UserRequestDao.TABLE_NAME, null, values);
         }
+        closeDB();
     }
 
     synchronized public void delete() {
@@ -56,6 +57,7 @@ public class RequestDaoDBManager {
         if (db.isOpen()) {
             db.delete(UserRequestDao.TABLE_NAME, null, null);
         }
+        closeDB();
     }
 
     synchronized public void delete(String port) {
@@ -63,6 +65,7 @@ public class RequestDaoDBManager {
         if (db.isOpen()) {
             db.delete(UserRequestDao.TABLE_NAME, port, null);
         }
+        closeDB();
     }
 
     synchronized public void delete(String port, String data) {
@@ -70,6 +73,7 @@ public class RequestDaoDBManager {
         if (db.isOpen()) {
             db.delete(UserRequestDao.TABLE_NAME, port + "=?", new String[]{data});
         }
+        closeDB();
     }
 
     synchronized public void replace(String port, String data) {
@@ -79,6 +83,7 @@ public class RequestDaoDBManager {
             values.put(port, data);
             db.replace(UserRequestDao.TABLE_NAME, port, values);
         }
+        closeDB();
     }
 
     synchronized public void update(String port, String data) {
@@ -88,6 +93,7 @@ public class RequestDaoDBManager {
             values.put(port, data);
             db.update(UserRequestDao.TABLE_NAME, values, null, null);
         }
+        closeDB();
     }
 
     synchronized public void update(String port, String newData, String oldData) {
@@ -97,6 +103,7 @@ public class RequestDaoDBManager {
             values.put(port, newData);
             db.update(UserRequestDao.TABLE_NAME, values, port + "=?", new String[]{oldData});
         }
+        closeDB();
     }
 
     synchronized public boolean hasData(String port) {
@@ -108,6 +115,7 @@ public class RequestDaoDBManager {
         else
             hasData = false;
         cursor.close();
+        closeDB();
         return hasData;
     }
 
@@ -117,6 +125,4 @@ public class RequestDaoDBManager {
         }
         dbMgr = null;
     }
-
-
 }
