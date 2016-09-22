@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
@@ -35,13 +34,10 @@ import com.huangyezhaobiao.presenter.FetchDetailsPresenter;
 import com.huangyezhaobiao.receiver.PhoneReceiver;
 import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
-import com.huangyezhaobiao.utils.LogUtils;
 import com.huangyezhaobiao.utils.PushUtils;
 import com.huangyezhaobiao.utils.SPUtils;
-import com.huangyezhaobiao.utils.TimeUtils;
 import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.utils.UserUtils;
-import com.huangyezhaobiao.view.CallAlertDialog;
 import com.huangyezhaobiao.view.CallClassifyDialog;
 import com.huangyezhaobiao.view.CallDialog;
 import com.huangyezhaobiao.view.HYListView;
@@ -49,14 +45,10 @@ import com.huangyezhaobiao.view.InputCallDialog;
 import com.huangyezhaobiao.view.TitleMessageBarLayout;
 import com.huangyezhaobiao.view.WaitingTransfer;
 import com.huangyezhaobiao.vm.CallPhoneViewModel;
-import com.huangyezhaobiao.vm.FetchDetailsVM;
 import com.lzy.okhttputils.OkHttpUtils;
 import com.wuba.loginsdk.external.LoginClient;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import okhttp3.Request;
@@ -93,9 +85,7 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 
 	private String orderId;
 	private String type;
-	public static String orderState ;
 	private String callState;
-	public static String time;
 	private  String  mobile; //商家电话
 	public  String clientPhone; //客户电话
 

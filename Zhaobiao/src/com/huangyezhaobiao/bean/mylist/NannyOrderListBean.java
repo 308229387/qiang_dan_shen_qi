@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.activity.BusinessDetailsActivity;
+import com.huangyezhaobiao.activity.BiddingDetailsActivity;
 import com.huangyezhaobiao.holder.order.NannyOrderHolder;
 import com.huangyezhaobiao.inter.Constans;
 import com.huangyezhaobiao.lib.QDBaseBean;
@@ -192,8 +192,8 @@ public class NannyOrderListBean extends QDBaseBean{
     @Override
     public void fillDatas() {
 //        initDialog(context);
-        BusinessDetailsActivity.orderState = orderState;
-        BusinessDetailsActivity.time =time;
+        BiddingDetailsActivity.orderState = orderState;
+        BiddingDetailsActivity.time =time;
         //判断状态
         if(!TextUtils.isEmpty(orderState)){ //获取订单状态
             if(TextUtils.equals(orderState, Constans.DONE_FRAGMENT_FINISH)){ //已完成(成交)
@@ -273,10 +273,10 @@ public class NannyOrderListBean extends QDBaseBean{
         nannyOrderHolder.ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BusinessDetailsActivity.orderState = orderState;
+                BiddingDetailsActivity.orderState = orderState;
                 Map<String, String> map = new HashMap<String, String>();
                 map.put(Constans.ORDER_ID, orderId);
-                ActivityUtils.goToActivityWithString(NannyOrderListBean.this.context, BusinessDetailsActivity.class, map);
+                ActivityUtils.goToActivityWithString(NannyOrderListBean.this.context, BiddingDetailsActivity.class, map);
 //                MDUtils.OrderListPageMD(QiangDanBaseFragment.orderState, cateId, orderId, MDConstans.ACTION_DETAILS);
                 HYMob.getDataListByServiceState(context, HYEventConstans.EVENT_ID_ORDER_DETAIL_PAGE);
 

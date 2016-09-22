@@ -9,7 +9,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
 import com.huangye.commonlib.delegate.HttpRequestCallBack;
 import com.huangye.commonlib.network.HTTPTools;
-import com.huangyezhaobiao.activity.BusinessDetailsActivity;
+import com.huangyezhaobiao.activity.BiddingDetailsActivity;
 import com.huangyezhaobiao.bean.HYEventBean.CommonBean;
 import com.huangyezhaobiao.bean.HYEventBean.DataBean;
 import com.huangyezhaobiao.url.URLConstans;
@@ -157,7 +157,7 @@ public class HYMob {
             userId =UserUtils.getUserId(context);
         }
         String time = String.valueOf(System.currentTimeMillis());
-        String serviceState = BusinessDetailsActivity.orderState;  //服务状态 待服务1/服务中2/已结束31,32
+        String serviceState = BiddingDetailsActivity.orderState;  //服务状态 待服务1/服务中2/已结束31,32
         if(TextUtils.isEmpty(userId)){
             userId ="-";
         }

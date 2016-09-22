@@ -146,14 +146,14 @@ public class OtherDetailActivity extends QBBaseActivity implements OnClickListen
 				switch (type) {
 					case TABLE_OTHER.DAOJISHI:
 						map.put(Constans.ORDER_ID, orderId);
-						ActivityUtils.goToActivityWithString(OtherDetailActivity.this, BusinessDetailsActivity.class, map);
+						ActivityUtils.goToActivityWithString(OtherDetailActivity.this, BiddingDetailsActivity.class, map);
 
 						HYMob.getDataList(OtherDetailActivity.this, HYEventConstans.EVENT_ID_CHECK_ORDER);
 						break;
 					case TABLE_OTHER.KOUFEI:
 						if (state == 1) {
 							map.put(Constans.ORDER_ID, orderId);
-							ActivityUtils.goToActivityWithString(OtherDetailActivity.this, BusinessDetailsActivity.class, map);
+							ActivityUtils.goToActivityWithString(OtherDetailActivity.this, BiddingDetailsActivity.class, map);
 						}
 						break;
 					case TABLE_OTHER.SYSNOTIF:

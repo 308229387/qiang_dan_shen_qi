@@ -20,7 +20,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.activity.BusinessDetailsActivity;
+import com.huangyezhaobiao.activity.BiddingDetailsActivity;
 import com.huangyezhaobiao.activity.PushInActivity;
 import com.huangyezhaobiao.adapter.OrderLVAdapter;
 import com.huangyezhaobiao.application.BiddingApplication;
@@ -293,7 +293,7 @@ public class OrderModel1<T> extends BaseModel implements TitleMessageBarLayout.O
     private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            ActivityUtils.goToActivity(context.getActivity(), BusinessDetailsActivity.class);
+            ActivityUtils.goToActivity(context.getActivity(), BiddingDetailsActivity.class);
 
         }
     };

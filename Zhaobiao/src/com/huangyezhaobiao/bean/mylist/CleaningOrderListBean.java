@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
-import com.huangyezhaobiao.activity.BusinessDetailsActivity;
+import com.huangyezhaobiao.activity.BiddingDetailsActivity;
 import com.huangyezhaobiao.holder.order.CleanindOrderHolder;
 import com.huangyezhaobiao.inter.Constans;
 import com.huangyezhaobiao.lib.QDBaseBean;
@@ -183,8 +183,8 @@ public class CleaningOrderListBean extends QDBaseBean{
     @Override
     public void fillDatas() {
 //        initDialog(context);
-        BusinessDetailsActivity.orderState = orderState;
-        BusinessDetailsActivity.time =time;
+        BiddingDetailsActivity.orderState = orderState;
+        BiddingDetailsActivity.time =time;
 
         cleanindOrderHolder.tv_cleaning_order_title.setText(title);
         cleanindOrderHolder.tv_cleaning_qd_time_content.setText(TimeUtils.formatDateTime(time));
@@ -273,11 +273,11 @@ public class CleaningOrderListBean extends QDBaseBean{
         cleanindOrderHolder.ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BusinessDetailsActivity.orderState = orderState;
+                BiddingDetailsActivity.orderState = orderState;
                 Map<String, String> map = new HashMap<String, String>();
                 LogUtils.LogE("ashenFetch", "orderid:" + orderId);
                 map.put(Constans.ORDER_ID, orderId);
-                ActivityUtils.goToActivityWithString(CleaningOrderListBean.this.context, BusinessDetailsActivity.class, map);
+                ActivityUtils.goToActivityWithString(CleaningOrderListBean.this.context, BiddingDetailsActivity.class, map);
 //                MDUtils.OrderListPageMD(QiangDanBaseFragment.orderState, cateId, orderId, MDConstans.ACTION_DETAILS);
 
                 HYMob.getDataListByServiceState(context, HYEventConstans.EVENT_ID_ORDER_DETAIL_PAGE);

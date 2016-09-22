@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.activity.BiddingDetailsActivity;
-import com.huangyezhaobiao.activity.BusinessDetailsActivity;
 import com.huangyezhaobiao.bean.popdetail.QDDetailBaseBean;
 import com.huangyezhaobiao.inter.Constans;
 import com.huangyezhaobiao.view.ZhaoBiaoDialog;
@@ -86,7 +85,7 @@ public class ServiceTypeBean extends QDDetailBaseBean{
 		}
 
 		if(!TextUtils.isEmpty(time)){
-			BusinessDetailsActivity.time =time;
+			BiddingDetailsActivity.time =time;
 		}
 
 		tv_last_number_content.setText(orderNum);
