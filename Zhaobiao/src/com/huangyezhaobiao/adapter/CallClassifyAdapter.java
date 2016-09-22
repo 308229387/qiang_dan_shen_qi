@@ -15,6 +15,8 @@ import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.activity.BusinessDetailsActivity;
 import com.huangyezhaobiao.bean.mydetail.OrderDetail.CallClassifyEntity;
 import com.huangyezhaobiao.callback.DialogCallback;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.view.CallClassifyDialog;
 import com.lzy.okhttputils.OkHttpUtils;
 
@@ -114,6 +116,8 @@ public class CallClassifyAdapter extends BaseAdapter{
                     BusinessDetailsActivity.callCheckedId.add(id);
                 }
                 notifyDataSetChanged();
+                HYMob.getDataList(context, HYEventConstans.EVENT_CONTACT_STATE);
+
             }
         });
         return convertView;

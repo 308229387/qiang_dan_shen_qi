@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.Utils;
 
 import de.greenrobot.event.EventBus;
@@ -101,10 +103,12 @@ public class SettlementSuccessModel extends BaseModel implements View.OnClickLis
             case R.id.success_list:
                 EventBus.getDefault().post(new BusinessResultMessage("order_list"));
                 context.finish();
+                HYMob.getDataList(context, HYEventConstans.EVENT_GOTOORDERLIST);
                 break;
             case R.id.success_businesslist:
                 EventBus.getDefault().post(new BusinessResultMessage("business_opportunity"));
                 context.finish();
+                HYMob.getDataList(context, HYEventConstans.EVENT_GOON_PURCHASE);
                 break;
             case R.id.back_layout:
                 back();
@@ -135,6 +139,10 @@ public class SettlementSuccessModel extends BaseModel implements View.OnClickLis
             default:
                 break;
         }
+    }
+
+    public void statisticsDeadTime() {
+        HYMob.getBaseDataListForPage(context, HYEventConstans.PAGE_PURCHASE_SUCCESS, context.stop_time - context.resume_time);
     }
 
 

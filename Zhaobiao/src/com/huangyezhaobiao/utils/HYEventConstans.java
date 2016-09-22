@@ -512,4 +512,114 @@ public interface HYEventConstans {
      * 点击修改
      */
     String EVENT_ACCOUNT_MODIFY = "516";
+
+    /**
+     * 商机列表停留时间
+     */
+    String PAGE_BUSINESS_OPPORTUNITY = "545";
+
+    /**
+     * 商机列表刷新按钮
+     */
+    String EVENT_BUSINESS_REFRESH = "546";
+
+    /**
+     * 商机购物车清空按钮
+     */
+    String EVENT_BUSINESS_CLEAR = "547";
+
+    /**
+     *商机购物车结算按钮
+     */
+    String EVENT_BUSINESS_SETTLEMENT = "548";
+
+    /**
+     * 结算提示弹窗停留时间
+     */
+    String PAGE_SETTLE_DIALOG ="549";
+
+    /**
+     * 结算提示弹窗确定按钮
+     */
+    String EVENT_SETTLE_DIALOG_CONFIRM = "550";
+
+    /**
+     *结算提示弹窗取消按钮
+     */
+    String EVENT_SETTLE_DIALOG_CANCEL = "551";
+
+    /**
+     * 结算弹窗勾选
+     */
+    String EVENT_SETTLE_DIALOG_CHECKED = "552";
+
+    /**
+     * 商机列表城市筛选
+     */
+    String EVENT_CITY_SELECT = "553";
+
+    /**
+     *商机列表时间筛选
+     */
+    String EVENT_TIME_SELECT = "554";
+
+    /**
+     * 购买成功页停留时间
+     */
+    String PAGE_PURCHASE_SUCCESS = "555";
+
+    /**
+     * 购买成功页继续购买按钮
+     */
+    String EVENT_GOON_PURCHASE = "556";
+
+    /**
+     * 购买成功页查看订单按钮
+     */
+    String EVENT_GOTOORDERLIST = "557";
+
+    /**
+     * 购买失败页停留时间
+     */
+    String PAGE_PURCHASE_FAILURE = "558";
+
+    /**
+     * 订单列表筛选器类别按钮
+     */
+    String EVENT_ORDER_CATEGORY = "559";
+
+    /**
+     *订单列表筛选器状态按钮
+     */
+    String EVENT_ORDER_STATE = "560";
+
+    /**
+     * 进入抢单订单详情
+     */
+    String EVENT_ORDER_DETAIL = "561";
+
+    /**
+     * 进入商机订单详情
+     */
+    String EVENT_BUSINESS_DETAIL = "562";
+
+    /**
+     * 商机订单详情页停留时间
+     */
+    String PAGE_BUSINESS_DETAIL = "563";
+
+    /**
+     * 联系记录弹窗停留时间
+     */
+    String PAGE_CONTACT_STYLE = "564";
+
+    /**
+     * 联系状态按钮
+     */
+    String EVENT_CONTACT_STATE ="565";
+
+    /***
+     * 商机分类提交按钮
+     */
+    String EVENT_CONTACT_SUBMIT = "566";
 }

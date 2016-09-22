@@ -103,7 +103,7 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 
 	private long call_Show_time,call_dismiss_time ;
 	private long input_Show_time,input_dismiss_time ;
-
+	private long contact_Show_time,contact_dismiss_time ;
 	private CallDialog dialog;
 	private InputCallDialog InputDialog;
 	private CallClassifyDialog callClassifyDialog;
@@ -449,6 +449,8 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 					@Override
 					public void onDismiss(DialogInterface dialog) {
 						callClassifyDialog = null;
+						contact_dismiss_time =  System.currentTimeMillis();
+						HYMob.getBaseDataListForPage(BusinessDetailsActivity.this, HYEventConstans.PAGE_CONTACT_STYLE, contact_dismiss_time - contact_Show_time);
 					}
 				});
 				callClassifyDialog.setCancelable(false);
@@ -468,9 +470,12 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 						} else {
 							ToastUtils.showToast("请对此商机进行分类~");
 						}
+
+						HYMob.getDataList(BusinessDetailsActivity.this, HYEventConstans.EVENT_CONTACT_SUBMIT);
 					}
 				});
 				callClassifyDialog.show();
+				contact_Show_time =  System.currentTimeMillis();
 			}
 		}
 
@@ -550,7 +555,12 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 
 		@Override
 		public void onLoadingError(String msg) {
-			stopTransfering();
+			handler.postDelayed(new Runnable() {// 等5秒
+				@Override
+				public void run() {
+					stopTransfering();
+				}
+			}, 5000);
 			Toast.makeText(BusinessDetailsActivity.this, "电话转接失败", Toast.LENGTH_SHORT).show();
 		}
 
@@ -626,7 +636,7 @@ public class BusinessDetailsActivity extends QBBaseActivity implements
 	protected void onStop() {
 		super.onStop();
 //		EventbusAgent.getInstance().unregister(this);
-		HYMob.getBaseDataListForPage(BusinessDetailsActivity.this, HYEventConstans.PAGE_MY_ORDER_DETAIL, stop_time - resume_time);
+		HYMob.getBaseDataListForPage(BusinessDetailsActivity.this, HYEventConstans.PAGE_BUSINESS_DETAIL, stop_time - resume_time);
 	}
 
 	@Override

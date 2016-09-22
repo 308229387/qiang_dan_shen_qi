@@ -3,6 +3,8 @@ package wuba.zhaobiao.utils;
 import android.app.Activity;
 import android.content.DialogInterface;
 
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.view.BusinessSettlementDialog;
 
 /**
@@ -15,6 +17,8 @@ public class BusinessSettlementDialogUtils {
     private BusinessSettlementDialog settlementDialog;
     private String msg;
     private SettlementListener settlement;
+
+    private long settlementDialog_Show_time,settlementDialog_dismiss_time ;
 
     public BusinessSettlementDialogUtils(Activity context, String msg) {
         setInfo(context, msg);
@@ -59,6 +63,7 @@ public class BusinessSettlementDialogUtils {
     private void showDialog() {
         if (settlementDialog != null)
             settlementDialog.show();
+        settlementDialog_Show_time = System.currentTimeMillis();
     }
 
     private void dismiss() {
@@ -76,6 +81,8 @@ public class BusinessSettlementDialogUtils {
         @Override
         public void onDismiss(DialogInterface dialog) {
             settlementDialog = null;
+            settlementDialog_dismiss_time = System.currentTimeMillis();
+            HYMob.getBaseDataListForPage(context, HYEventConstans.PAGE_SETTLE_DIALOG, settlementDialog_dismiss_time - settlementDialog_Show_time);
         }
     }
 
@@ -84,11 +91,13 @@ public class BusinessSettlementDialogUtils {
         public void onDialogOkClick() {
             dismiss();
             settlement.settlementCheck();
+            HYMob.getDataList(context, HYEventConstans.EVENT_SETTLE_DIALOG_CONFIRM);
         }
 
         @Override
         public void onDialogCancelClick() {
             dismiss();
+            HYMob.getDataList(context, HYEventConstans.EVENT_SETTLE_DIALOG_CANCEL);
         }
     }
 

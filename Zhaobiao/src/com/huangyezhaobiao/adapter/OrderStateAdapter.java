@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.bean.mylist.Order.OrderStateEntity;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,6 +86,7 @@ public class OrderStateAdapter extends BaseAdapter{
                     OrderModel.stateCheckedId.add(id);
                 }
                 notifyDataSetChanged();
+                HYMob.getDataList(context, HYEventConstans.EVENT_ORDER_STATE);
             }
         });
         return convertView;

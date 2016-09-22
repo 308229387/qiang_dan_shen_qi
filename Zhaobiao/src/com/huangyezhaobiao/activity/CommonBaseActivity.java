@@ -56,7 +56,7 @@ public abstract class CommonBaseActivity extends BaseActivity implements NetWork
     protected ZhaoBiaoDialog exitDialog;
     protected  ZhaoBiaoDialog LogoutDialog;
 
-    private final static String CLOSE_ACTIVITTY = "CLOSE_ACTIVITTY";
+    private  final static String CLOSE_ACTIVITTY = "CLOSE_ACTIVITTY";
 
     // 写一个广播的内部类，当收到动作时，结束activity
     protected  BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {

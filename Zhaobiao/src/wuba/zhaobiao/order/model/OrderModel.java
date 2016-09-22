@@ -337,8 +337,11 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
             map.put(Constans.ORDER_ID, bean.getId());
             if(TextUtils.equals(orderType,"1")){
                 ActivityUtils.goToActivityWithString(context.getActivity(), BiddingDetailsActivity.class, map);
+                HYMob.getDataList(context.getActivity(), HYEventConstans.EVENT_ORDER_DETAIL);
             }else{
                 ActivityUtils.goToActivityWithString(context.getActivity(), BusinessDetailsActivity.class, map);
+                HYMob.getDataList(context.getActivity(), HYEventConstans.EVENT_BUSINESS_DETAIL);
+
             }
 
         }

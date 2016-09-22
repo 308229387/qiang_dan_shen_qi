@@ -2,10 +2,12 @@ package wuba.zhaobiao.utils;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.activity.CommonBaseActivity;
 import com.huangyezhaobiao.callback.DialogCallback;
 import com.huangyezhaobiao.utils.ActivityUtils;
 import com.huangyezhaobiao.utils.LogUtils;
@@ -97,6 +99,7 @@ public class LogoutDialogUtils {
                 .execute(new logoutCallback(context,true));
     }
 
+
     private class DialogClickListener implements ZhaoBiaoDialog.onDialogClickListener {
         @Override
         public void onDialogOkClick() {
@@ -132,6 +135,6 @@ public class LogoutDialogUtils {
             LogUtils.LogV("logout", "logout_success");
         }
 
-
     }
+
 }

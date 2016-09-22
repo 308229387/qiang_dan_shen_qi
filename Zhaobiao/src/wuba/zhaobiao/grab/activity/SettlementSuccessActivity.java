@@ -12,6 +12,7 @@ import wuba.zhaobiao.grab.model.SettlementSuccessModel;
  */
 public class SettlementSuccessActivity extends BaseActivity<SettlementSuccessModel> {
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +44,20 @@ public class SettlementSuccessActivity extends BaseActivity<SettlementSuccessMod
 
     private void getInfoToIntent() {
         model.getIntent();
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        resume_time = System.currentTimeMillis();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        stop_time = System.currentTimeMillis();
+        model.statisticsDeadTime();
     }
 
     @Override

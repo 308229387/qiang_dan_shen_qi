@@ -8,6 +8,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.huangyezhaobiao.R;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.Utils;
 
 import wuba.zhaobiao.common.model.BaseModel;
@@ -67,6 +69,10 @@ public class SettlementFailModel extends BaseModel implements View.OnClickListen
     @Override
     public void onClick(View v) {
         context.finish();
+    }
+
+    public void statisticsDeadTime() {
+        HYMob.getBaseDataListForPage(context, HYEventConstans.PAGE_PURCHASE_FAILURE, context.stop_time - context.resume_time);
     }
 }
 

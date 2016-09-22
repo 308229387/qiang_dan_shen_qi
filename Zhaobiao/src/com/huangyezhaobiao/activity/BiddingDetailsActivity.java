@@ -353,7 +353,12 @@ public class BiddingDetailsActivity extends QBBaseActivity implements
 
 		@Override
 		public void onLoadingError(String msg) {
-			stopTransfering();
+			handler.postDelayed(new Runnable() {// 等5秒
+				@Override
+				public void run() {
+					stopTransfering();
+				}
+			}, 5000);
 			Toast.makeText(BiddingDetailsActivity.this, "电话转接失败", Toast.LENGTH_SHORT).show();
 		}
 

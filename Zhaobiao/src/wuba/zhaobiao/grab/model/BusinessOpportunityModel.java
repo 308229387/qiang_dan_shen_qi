@@ -16,6 +16,8 @@ import android.widget.TextView;
 import com.huangyezhaobiao.R;
 import com.huangyezhaobiao.callback.DialogCallback;
 import com.huangyezhaobiao.callback.JsonCallback;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.ToastUtils;
 import com.huangyezhaobiao.utils.UserUtils;
 import com.jingchen.pulltorefresh.PullToRefreshLayout;
@@ -374,6 +376,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     public void settlementCheck() {
         if (settlementDialog.getCheckState())
             UserUtils.setBusinessCheckBox(context.getActivity(), false);
+        HYMob.getDataList(context.getActivity(), HYEventConstans.EVENT_SETTLE_DIALOG_CHECKED);
         settlement();
     }
 
@@ -448,22 +451,42 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.business_city:
+                cityClickedStatistics();
                 showCityPop();
                 break;
             case R.id.business_time:
+                timeClickedStatistics();
                 showTimePop();
                 break;
             case R.id.empty_view:
                 break;
             case R.id.settlement_button:
+                settleClickedStatistics();
                 getBalance();
                 break;
             case R.id.business_clear:
+                clearClickedStatistics();
                 clearDialog.showTwoButtonDialog();
                 break;
             default:
                 break;
         }
+    }
+
+    private void cityClickedStatistics() {
+        HYMob.getDataList(context.getActivity(), HYEventConstans.EVENT_CITY_SELECT);
+    }
+
+    private void timeClickedStatistics() {
+        HYMob.getDataList(context.getActivity(), HYEventConstans.EVENT_TIME_SELECT);
+    }
+
+    private void settleClickedStatistics() {
+        HYMob.getDataList(context.getActivity(), HYEventConstans.EVENT_BUSINESS_SETTLEMENT);
+    }
+
+    private void clearClickedStatistics() {
+        HYMob.getDataList(context.getActivity(), HYEventConstans.EVENT_BUSINESS_CLEAR);
     }
 
     private View.OnClickListener dismissListener = new View.OnClickListener() {
@@ -636,5 +659,8 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         }
     }
 
+    public void statisticsDeadTime() {
+        HYMob.getBaseDataListForPage(context.getActivity(), HYEventConstans.PAGE_BUSINESS_OPPORTUNITY, context.stop_time - context.resume_time);
+    }
 
 }

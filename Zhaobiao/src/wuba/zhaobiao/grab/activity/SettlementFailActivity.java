@@ -38,6 +38,19 @@ public class SettlementFailActivity extends BaseActivity<SettlementFailModel> {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        resume_time = System.currentTimeMillis();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        stop_time = System.currentTimeMillis();
+        model.statisticsDeadTime();
+    }
+
+    @Override
     public SettlementFailModel createModel() {
         return new SettlementFailModel(SettlementFailActivity.this);
     }

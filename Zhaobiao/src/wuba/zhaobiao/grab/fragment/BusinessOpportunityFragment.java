@@ -14,7 +14,8 @@ import wuba.zhaobiao.grab.model.BusinessOpportunityModel;
  * 描    述：商机fragment
  */
 public class BusinessOpportunityFragment extends BaseFragment<BusinessOpportunityModel> {
-
+    public long resume_time;
+    public long stop_time;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,6 +30,12 @@ public class BusinessOpportunityFragment extends BaseFragment<BusinessOpportunit
         creatAdapter();
         setInfo();
         return model.getView();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        resume_time = System.currentTimeMillis();
     }
 
     private void initView() {
@@ -58,5 +65,12 @@ public class BusinessOpportunityFragment extends BaseFragment<BusinessOpportunit
 
     public void refresh() {
         model.refresh();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        stop_time = System.currentTimeMillis();
+        model.statisticsDeadTime();
     }
 }

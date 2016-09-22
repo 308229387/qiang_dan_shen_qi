@@ -168,7 +168,7 @@ public class OrderCatePopupWindow extends PopupWindow implements OnClickListener
 
 
                 ll_order_state.setVisibility(View.VISIBLE);
-
+                HYMob.getDataList(context, HYEventConstans.EVENT_ORDER_CATEGORY);
 
                 break;
             default:

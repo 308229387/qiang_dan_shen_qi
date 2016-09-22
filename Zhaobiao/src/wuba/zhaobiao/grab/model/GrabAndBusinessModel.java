@@ -15,6 +15,8 @@ import com.huangyezhaobiao.eventbus.EventAction;
 import com.huangyezhaobiao.eventbus.EventType;
 import com.huangyezhaobiao.eventbus.EventbusAgent;
 import com.huangyezhaobiao.iview.SwitchButton;
+import com.huangyezhaobiao.utils.HYEventConstans;
+import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.SPUtils;
 import com.huangyezhaobiao.utils.UnreadUtils;
 import com.huangyezhaobiao.utils.UserUtils;
@@ -185,11 +187,16 @@ public class GrabAndBusinessModel<T> extends BaseModel implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.business_refresh:
+                refreshClickedStatistics();
                 businessRefresh();
                 break;
             default:
                 break;
         }
+    }
+
+    private void refreshClickedStatistics() {
+        HYMob.getDataList(context.getActivity(), HYEventConstans.EVENT_BUSINESS_REFRESH);
     }
 
     public void businessRefresh() {
