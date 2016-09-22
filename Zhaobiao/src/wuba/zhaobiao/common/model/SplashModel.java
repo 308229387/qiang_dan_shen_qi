@@ -19,7 +19,6 @@ import com.huangyezhaobiao.utils.UserUtils;
 import com.huangyezhaobiao.utils.VersionUtils;
 import com.wuba.loginsdk.external.LoginClient;
 
-import wuba.zhaobiao.common.activity.GuideActivity;
 import wuba.zhaobiao.common.activity.HomePageActivity;
 import wuba.zhaobiao.common.activity.LoginActivity;
 import wuba.zhaobiao.common.activity.SplashActivity;
@@ -100,9 +99,10 @@ public class SplashModel extends BaseModel {
     }
 
     private void judgeHowManyComeAfterGo(String currentVersionName) {
-        if (isFirstCome(currentVersionName)) {
-            ActivityUtils.goToActivity(context, GuideActivity.class);
-        } else if (neverCome()) {
+//        if (isFirstCome(currentVersionName)) {
+//            ActivityUtils.goToActivity(context, GuideActivity.class);
+//        } else
+        if (isFirstCome(currentVersionName)||neverCome() ||isUpdate()) {
             ActivityUtils.goToActivity(context, LoginActivity.class);
         } else {
             ActivityUtils.goToActivity(context, HomePageActivity.class);
@@ -118,10 +118,21 @@ public class SplashModel extends BaseModel {
         return !isFirst;
     }
 
+    private Boolean isUpdate() {
+        int currentVersion = -1;
+        try {
+            currentVersion = Integer.parseInt(VersionUtils.getVersionCode(context));
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return currentVersion >= 23;
+    }
+
     private boolean neverCome() {
         return TextUtils.isEmpty(UserUtils.getUserId(context))
                 || !UserUtils.isValidate(context)
-                || TextUtils.isEmpty(LoginClient.doGetPPUOperate(BiddingApplication.getAppInstanceContext()));
+                || TextUtils.isEmpty(LoginClient.doGetPPUOperate(BiddingApplication.getAppInstanceContext()))
+                || TextUtils.isEmpty(UserUtils.getAppVersion(context));
     }
 
     private void saveVersionName(String currentVersionName) {
