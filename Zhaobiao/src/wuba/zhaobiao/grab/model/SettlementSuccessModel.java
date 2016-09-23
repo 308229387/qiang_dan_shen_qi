@@ -17,6 +17,7 @@ import com.huangyezhaobiao.utils.Utils;
 import de.greenrobot.event.EventBus;
 import wuba.zhaobiao.common.model.BaseModel;
 import wuba.zhaobiao.grab.activity.SettlementSuccessActivity;
+import wuba.zhaobiao.grab.utils.BusinessNeedRefresh;
 import wuba.zhaobiao.respons.BusinessSettlementRespons;
 
 /**
@@ -101,12 +102,12 @@ public class SettlementSuccessModel extends BaseModel implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.success_list:
-                EventBus.getDefault().post(new BusinessResultMessage("order_list"));
+                EventBus.getDefault().post(new BusinessNeedRefresh("order_list"));
                 context.finish();
                 HYMob.getDataList(context, HYEventConstans.EVENT_GOTOORDERLIST);
                 break;
             case R.id.success_businesslist:
-                EventBus.getDefault().post(new BusinessResultMessage("business_opportunity"));
+                EventBus.getDefault().post(new BusinessNeedRefresh("business_opportunity"));
                 context.finish();
                 HYMob.getDataList(context, HYEventConstans.EVENT_GOON_PURCHASE);
                 break;
@@ -146,16 +147,5 @@ public class SettlementSuccessModel extends BaseModel implements View.OnClickLis
     }
 
 
-    public class BusinessResultMessage {
-        private String msg;
-
-        public String getMsg() {
-            return msg;
-        }
-
-        public BusinessResultMessage(String msg) {
-            this.msg = msg;
-        }
-    }
 }
 

@@ -54,4 +54,10 @@ public class SettlementFailActivity extends BaseActivity<SettlementFailModel> {
     public SettlementFailModel createModel() {
         return new SettlementFailModel(SettlementFailActivity.this);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        model.tellBusinessRefresh();
+    }
 }
