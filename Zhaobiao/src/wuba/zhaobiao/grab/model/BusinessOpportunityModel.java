@@ -399,7 +399,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         StringBuffer temp = getBids();
         OkHttpUtils.get(Urls.BUSINESS_SETTLEMENT)
                 .params("bids", temp.toString())
-                .execute(new BusinessSettlement(context.getActivity(), false));
+                .execute(new BusinessSettlement(context.getActivity(), true));
     }
 
     @NonNull

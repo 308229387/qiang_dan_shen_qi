@@ -55,7 +55,7 @@ import wuba.zhaobiao.config.ScreenReceiver;
 import wuba.zhaobiao.config.Urls;
 import wuba.zhaobiao.grab.fragment.GrabAndBusinessFragment;
 import wuba.zhaobiao.grab.model.BusinessOpportunityModel;
-import wuba.zhaobiao.grab.model.SettlementSuccessModel;
+import wuba.zhaobiao.grab.utils.BusinessNeedRefresh;
 import wuba.zhaobiao.message.fragment.MessageFragment;
 import wuba.zhaobiao.mine.fragment.MineFragment;
 import wuba.zhaobiao.order.fragment.OrderFragment;
@@ -290,12 +290,12 @@ public class HomePageModel extends BaseModel implements View.OnClickListener {
             initMaskView();
     }
 
-    public void eventBusThing(SettlementSuccessModel.BusinessResultMessage action) {
+    public void eventBusThing(BusinessNeedRefresh action) {
         viewPagerJump(action);
         detaRefresh();
     }
 
-    private void viewPagerJump(SettlementSuccessModel.BusinessResultMessage action) {
+    private void viewPagerJump(BusinessNeedRefresh action) {
         if (action.getMsg().equals(BUSINESS_ORDER))
             setViewPage(2);
         if (action.getMsg().equals(BUSINESS_OPPORTUNITY))

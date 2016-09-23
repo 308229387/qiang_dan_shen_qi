@@ -12,8 +12,10 @@ import com.huangyezhaobiao.utils.HYEventConstans;
 import com.huangyezhaobiao.utils.HYMob;
 import com.huangyezhaobiao.utils.Utils;
 
+import de.greenrobot.event.EventBus;
 import wuba.zhaobiao.common.model.BaseModel;
 import wuba.zhaobiao.grab.activity.SettlementFailActivity;
+import wuba.zhaobiao.grab.utils.BusinessNeedRefresh;
 
 /**
  * Created by SongYongmeng on 2016/9/13.
@@ -74,5 +76,11 @@ public class SettlementFailModel extends BaseModel implements View.OnClickListen
     public void statisticsDeadTime() {
         HYMob.getBaseDataListForPage(context, HYEventConstans.PAGE_PURCHASE_FAILURE, context.stop_time - context.resume_time);
     }
+
+    public void tellBusinessRefresh() {
+        EventBus.getDefault().post(new BusinessNeedRefresh("fail_refresh"));
+
+    }
+
 }
 
