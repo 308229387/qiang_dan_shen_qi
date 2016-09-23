@@ -383,7 +383,7 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
                 .params("type", orderType)
                 .params("state", orderState)
                 .cacheMode(CacheMode.FIRST_CACHE_THEN_REQUEST)
-                .execute(new getOrderListRespons(context.getActivity(), true));
+                .execute(new getOrderListRespons(context.getActivity(), false));
     }
 
     private void saveRespons(String s) {
