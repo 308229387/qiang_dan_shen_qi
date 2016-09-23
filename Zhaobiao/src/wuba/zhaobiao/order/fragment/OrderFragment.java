@@ -69,7 +69,7 @@ public class OrderFragment extends BaseFragment<OrderModel> implements INotifica
         model.setHeaderHeight();
         model.checkNet();
         model.OrderTabClickedStatistics();
-        model.getData();
+        model.getInfo();
         model.resetTabNumber();
     }
 
