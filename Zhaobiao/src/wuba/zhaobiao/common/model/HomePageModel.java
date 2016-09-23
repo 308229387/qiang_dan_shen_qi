@@ -591,9 +591,7 @@ public class HomePageModel extends BaseModel implements View.OnClickListener {
         @Override
         public void onResponse(boolean isFromCache, GetWltStateRespons WltStateRespons, Request request, @Nullable Response response) {
             saveInfoAndJugeUpdate(WltStateRespons, response);
-
         }
-
     }
 
     private class WakeUpApp extends DialogCallback<WakeUpRespons> {

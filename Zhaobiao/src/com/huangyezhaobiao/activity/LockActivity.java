@@ -321,7 +321,6 @@ public class LockActivity extends Activity implements NetWorkVMCallBack, View.On
         PushUtils.pushList.clear();
         if(t instanceof  Integer){
             int status = (int) t;
-           // status = 3;//for test
             switch (status){
                 case 1://标已被抢走
                     initDialog("抢单失败,此单已被抢完");
