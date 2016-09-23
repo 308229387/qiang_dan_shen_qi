@@ -52,6 +52,7 @@ public class OrderCatePopupWindow extends PopupWindow implements OnClickListener
         initCategoryData();
 
         if(OrderModel.isBidding){
+            OrderModel.CategoryCheckedId.add("1");
             initOrderStateData();
         }else {
             initBusinessStateData();
@@ -95,22 +96,6 @@ public class OrderCatePopupWindow extends PopupWindow implements OnClickListener
         mTVReset.setOnClickListener(this);
         mTVConfirm = (TextView) conentView.findViewById(R.id.tv_orderState_confirm);
         mTVConfirm.setOnClickListener(this);
-
-//        mTVReset.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                LogUtils.LogV("tag", "重置被点击");
-//                OrderModel.CategoryCheckedId.clear();
-//                OrderModel.CategoryCheckedId.add("1");
-//                orderCategoryAdapter.notifyDataSetChanged();
-//
-//                OrderModel.orderState = "0";
-//                OrderModel.stateCheckedId.clear();
-//                orderStateAdapter.notifyDataSetChanged();
-//
-//                HYMob.getDataList(context, HYEventConstans.EVENT_ID_FILTER_RESET);
-//            }
-//        });
 
         ll_order_category  = (LinearLayout) conentView.findViewById(R.id.ll_order_category);
         ll_order_state = (LinearLayout) conentView.findViewById(R.id.ll_order_state);
@@ -193,7 +178,6 @@ public class OrderCatePopupWindow extends PopupWindow implements OnClickListener
                         break;
                     case "2":
                         OrderModel.CategoryCheckedId.add("2");
-
                         break;
                     case "3":
                         OrderModel.CategoryCheckedId.add("1");
