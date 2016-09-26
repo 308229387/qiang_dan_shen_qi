@@ -102,7 +102,7 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
         settlementLayout = (RelativeLayout) view.findViewById(R.id.settlement_layout);
         refreshView = (PullToRefreshLayout) view.findViewById(R.id.refresh_view);
         topLayout = (RelativeLayout) view.findViewById(R.id.top_layout);
-        listView = (ListView) view.findViewById(R.id.grab_list);
+        listView = (ListView) view.findViewById(R.id.business_list);
         businessCity = (TextView) view.findViewById(R.id.business_city);
         businessTime = (TextView) view.findViewById(R.id.business_time);
         line = (View) view.findViewById(R.id.line);
@@ -630,7 +630,6 @@ public class BusinessOpportunityModel extends BaseModel implements View.OnClickL
             }
         }
     }
-
 
     private class BusinessSettlement extends DialogCallback<BusinessSettlementRespons> {
         public BusinessSettlement(Activity context, Boolean needProgress) {
