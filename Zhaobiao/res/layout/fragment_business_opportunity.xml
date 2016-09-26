@@ -58,14 +58,13 @@
         <include layout="@layout/refresh_head" />
 
         <com.jingchen.pulltorefresh.pullableview.PullableListView xmlns:ptr="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/grab_list"
+            android:id="@+id/business_list"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:cacheColorHint="@android:color/transparent"
             android:divider="@null"
             android:dividerHeight="10dp"
             android:fadingEdge="none"
-            android:listSelector="#000000"
             android:persistentDrawingCache="none"
             android:scrollbars="none"
             android:scrollingCache="false"
