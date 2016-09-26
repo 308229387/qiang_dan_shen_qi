@@ -183,6 +183,14 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
                 .execute(new GetGrabListRespons(context.getActivity(), true));
     }
 
+    public void getGrabData() {
+        OkHttpUtils.get(Urls.GRAB_GET_LIST)
+                .params("pushId", pushId)
+                .params("bidId", "-1")
+                .params("bidState", "-1")
+                .execute(new GetGrabListRespons(context.getActivity(), false));
+    }
+
     private void grabRequset(PushToPassBean bean, String bidsourceList) {
         String userState = creatGetGrabParams();
         getGrabRequst(bean, bidsourceList, userState);
