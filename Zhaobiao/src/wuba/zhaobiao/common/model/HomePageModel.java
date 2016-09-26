@@ -63,7 +63,6 @@ import wuba.zhaobiao.respons.GetWltStateRespons;
 import wuba.zhaobiao.respons.WakeUpRespons;
 import wuba.zhaobiao.utils.AutoSettingDialogUtils;
 import wuba.zhaobiao.utils.LogoutDialogUtils;
-import wuba.zhaobiao.utils.UpdateDialogUtils;
 
 /**
  * Created by SongYongmeng on 2016/7/29.
@@ -534,9 +533,9 @@ public class HomePageModel extends BaseModel implements View.OnClickListener {
     }
 
     private void isFirstUpdate() {
-        if (SPUtils.isFirstUpdate(context))
-            new UpdateDialogUtils(context, context.getString(R.string.update_message)).showSingleButtonDialog();
-        else
+//        if (SPUtils.isFirstUpdate(context))
+//            new UpdateDialogUtils(context, context.getString(R.string.update_message)).showSingleButtonDialog();
+//        else
             oldUserUpdate();
     }
 
