@@ -11,11 +11,13 @@ import android.os.Process;
 import android.os.StrictMode;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
 import com.huangye.commonlib.file.SqlUtils;
 import com.huangye.commonlib.sql.SqlUpgradeCallback;
 import com.huangye.commonlib.utils.UserConstans;
+import com.huangyezhaobiao.BuildConfig;
 import com.huangyezhaobiao.bean.AppBean;
 import com.huangyezhaobiao.bean.push.PushToStorageBean;
 import com.huangyezhaobiao.inter.INotificationListener;
@@ -319,35 +321,34 @@ public class BiddingApplication extends MultiDexApplication {
                 }
             }).start();*/
             Log.e("Thread", Thread.currentThread().getName());
-            // 接入腾讯Bugly
-            final Context appContext = this.getApplicationContext();
-            final String appId = "900004313"; // 上Bugly(bugly.qq.com)注册产品获取的AppId
-            final boolean isDebug = true; // true代表App处于调试阶段，false代表App发布阶段
             SqlUtils.initDB(getApplicationContext(), new SqlUpgradeCallback() {
                 @Override
                 public void onUpgrade(DbUtils dbUtils) {
                     updateDb(dbUtils, "PushToStorageBean");
                 }
             });
-            //初始化Log信息 shenzhixin add
-            LogInvocation.registerExecutorListener(logExecutor);
-            LogInvocation.initDatas(getApplicationContext());
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-
-                    CrashReport.initCrashReport(appContext, appId, isDebug); // 初始化SDK
-
-
                     //初始化Log信息 shenzhixin add end
                     initImageLoader();
                     manager = VoiceManager.getVoiceManagerInstance(getApplicationContext());
                     manager.initVoiceManager(getApplicationContext());//初始化科大讯飞
                 }
             }).start();
-
+            // 接入腾讯Bugly
+            if (BuildConfig.isInitBugly) {
+                final Context appContext = this.getApplicationContext();
+                final String appId = "900004313"; // 上Bugly(bugly.qq.com)注册产品获取的AppId
+                final boolean isDebug = true; // true代表App处于调试阶段，false代表App发布阶段
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        CrashReport.initCrashReport(appContext, appId, isDebug); // 初始化SDK
+                    }
+                }).start();
+            }
         }
-
 
        /* // CrashReport.testJavaCrash ();
         LoggerInterface newLogger = new LoggerInterface() {
