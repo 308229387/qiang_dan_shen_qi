@@ -20,6 +20,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import wuba.zhaobiao.common.activity.LoginActivity;
 import wuba.zhaobiao.config.Urls;
+import wuba.zhaobiao.order.model.OrderModel;
 
 /**
  * Created by SongYongmeng on 2016/7/31.
@@ -99,11 +100,19 @@ public class LogoutDialogUtils {
                 .execute(new logoutCallback(context,true));
     }
 
+    private  void  clearOrderCheckList(){
+        OrderModel.CategoryCheckedId.clear();
+        OrderModel.stateCheckedId.clear();
+        OrderModel.isBidding = true;
+        OrderModel.orderState ="0";
+    }
+
 
     private class DialogClickListener implements ZhaoBiaoDialog.onDialogClickListener {
         @Override
         public void onDialogOkClick() {
             dismiss();
+            clearOrderCheckList();
             logout();
             clearInfoAndService();
             goToLogin();

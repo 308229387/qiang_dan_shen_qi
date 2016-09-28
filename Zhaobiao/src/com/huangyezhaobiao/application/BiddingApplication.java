@@ -278,14 +278,9 @@ public class BiddingApplication extends MultiDexApplication {
         // 注册push服务，注册成功后会向DemoMessageReceiver发送广播
         // 可以从DemoMessageReceiver的onCommandResult方法中MiPushCommandMessage对'象参数中获取注册信息
         // 因为推送服务XMPushService在AndroidManifest.xml中设置为运行在另外一个进程，这导致本Application会被实例化两次，所以我们需要让应用的主进程初始化。
-        Log.e("shenzhixin", "init:" +
+        Log.e("shenzhixin", "init:" + shouldInit() );
 
-                shouldInit()
-
-        );
-        if (shouldInit())
-
-        {
+        if (shouldInit()){
             //shenzhixin add 日志上传者
             logExecutor = new LogExecutor();
             //shenzhixin add 日志上传者end
@@ -369,9 +364,7 @@ public class BiddingApplication extends MultiDexApplication {
         Logger.setLogger(this, newLogger);*/
         if (handler == null)
             handler = new
-
                     PushHandler(getApplicationContext()
-
             );
 
     }
