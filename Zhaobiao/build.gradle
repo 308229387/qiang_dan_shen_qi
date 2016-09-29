@@ -12,28 +12,25 @@ dependencies {
     compile project(':library')
     compile project(':Commonlib')
     compile files('libs/android_api_3.7.0.5.jar')
-    androidTestCompile files('libs/android_api_3.7.0.5.jar')
-    compile 'com.android.support:design:22.2.0'
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3'
+    androidTestCompile files('libs/android_api_3.7.0.5.jar') //用于src/androidTest,测试与Android Api相关的部分
     compile files('libs/eventbus-20150901.jar')
     compile files('libs/universal-image-loader-1.9.4.jar')
     compile files('libs/GetuiExt-2.0.3.jar')
-    compile 'com.android.support:cardview-v7:23.0.1'
     compile files('libs/GetuiSDK2.8.1.0.jar')
     compile files('libs/bugly_crash_release__2.1.jar')
+    compile 'com.android.support:design:22.2.0'
     compile 'com.facebook.stetho:stetho:1.1.0'
+    compile 'com.android.support:cardview-v7:23.0.1'
     compile 'com.google.code.gson:gson:2.5'
     compile 'com.android.support:multidex:1.0.0'
     compile 'com.android.support:design:22.2.0'
-
+    compile 'org.jetbrains:annotations-java5:15.0'
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3'
     releaseCompile 'com.wuba.wuxian.sdk:login:2.3.5' //线上passport SDK(带线上签名的),只能打包登陆，AS直接安装是登陆不了的
-
     debugCompile 'com.wuba.wuxian.sdk:login:2.3.5-debug-SNAPSHOT' //调试passport SDK
-
 //    compile 'com.wuba.wuxian.sdk:login:0.1.0-http-SNAPSHOT' //线下 http passport SDK
 
-    compile 'org.jetbrains:annotations-java5:15.0'
 }
 
 android {
