@@ -1,5 +1,7 @@
 package wuba.zhaobiao.utils;
 
+import android.text.TextUtils;
+
 import com.google.gson.Gson;
 
 import java.lang.reflect.Type;
@@ -11,7 +13,7 @@ import java.text.DecimalFormat;
 public class PublickMethod {
 
     public static String getPriceFromString(String stringPrice) {
-        if (stringPrice != null&&!stringPrice.isEmpty()) {
+        if (!TextUtils.isEmpty(stringPrice)) {
             double temp = Double.parseDouble(stringPrice);
             DecimalFormat df = new DecimalFormat("0.00");
             String price = df.format(temp);

@@ -106,7 +106,8 @@ public class HomePageActivity extends BaseActivity<HomePageModel> {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK)
-            model.exitBy2Click();
+            //model.exitBy2Click();
+            moveTaskToBack(false);
         return false;
     }
 
