@@ -49,7 +49,6 @@ public class MessageFragment extends BaseFragment<MessageModel> implements INoti
         if (isSelected && model != null){
             model.load();
         }
-
     }
 
     @Override

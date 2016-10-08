@@ -161,7 +161,7 @@ public class OrderModel<T> extends BaseModel implements TitleMessageBarLayout.On
     public void registerMessageBar() {
         app = BiddingApplication.getBiddingApplication();
         app.registerNetStateListener();
-        NetStateManager.getNetStateManagerInstance().mListeners.add(context);
+        NetStateManager.getNetStateManagerInstance().add(context);
         initMessageBar();
     }
 

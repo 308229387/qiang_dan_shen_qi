@@ -51,4 +51,11 @@ public class NetStateManager {
 	public void removeINetStateChangedListener(){
 		this.listener = null;
 	}
+
+	public void add(INetStateChangedListener listener){
+		if(!mListeners.contains(listener)){
+			mListeners.add(listener);
+		}
+		LogUtils.LogD("listener",mListeners.size()+"");
+	}
 }

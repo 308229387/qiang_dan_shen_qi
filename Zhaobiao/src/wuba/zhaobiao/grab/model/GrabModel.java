@@ -133,7 +133,7 @@ public class GrabModel<T> extends BaseModel implements TitleMessageBarLayout.OnT
     public void registMessageBar() {
         app = BiddingApplication.getBiddingApplication();
         app.registerNetStateListener();
-        NetStateManager.getNetStateManagerInstance().mListeners.add(context);
+        NetStateManager.getNetStateManagerInstance().add(context);
         initMessageBar();
     }
 

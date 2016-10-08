@@ -185,7 +185,7 @@ public class MessageModel extends BaseModel implements TitleMessageBarLayout.OnT
     public void registerMessageBar() {
         app = BiddingApplication.getBiddingApplication();
         app.registerNetStateListener();
-        NetStateManager.getNetStateManagerInstance().mListeners.add(context);
+        NetStateManager.getNetStateManagerInstance().add(context);
         initMessageBar();
     }
 
