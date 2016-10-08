@@ -17,8 +17,6 @@ public abstract class CommonCallback<T> extends AbsCallback<T> {
         //如果账户已经登录，就添加 token 等等
         request.headers("ppu", LoginClient.doGetPPUOperate(BiddingApplication.getAppInstanceContext()))//
                 .headers("userId", UserUtils.getUserId(BiddingApplication.getAppInstanceContext()))//
-//                .headers("userId","34675169722113")//bigbang1
-//                .headers("userId","35606250707713")//bigbang6
                 .headers("version", "6")//
                 .headers("platform", "1")//
                 .headers("UUID", PhoneUtils.getIMEI(BiddingApplication.getAppInstanceContext()))
